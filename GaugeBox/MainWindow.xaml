@@ -19,7 +19,7 @@
                             <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Ellipse x:Name="PART_Indicator" Width="50" Height="50" Fill="Blue"></Ellipse>
+                        <Ellipse x:Name="PART_Indicator" Width="50" Height="50" Fill="Blue"/>
                         <TickBar x:Name="TopTick" 
                                  SnapsToDevicePixels="True"
                                  Placement="Top"

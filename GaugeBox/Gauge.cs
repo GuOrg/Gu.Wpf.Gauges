@@ -75,7 +75,9 @@
             double minimum = this.Minimum;
             double maximum = this.Maximum;
             double num = this.Value;
-            _indicatorTransform.X = Math.Abs(num - minimum)/Math.Abs(maximum - minimum);
+            double d = Math.Abs(num - minimum) / Math.Abs(maximum - minimum);
+            _indicator.Width = d * 10;
+            //_indicatorTransform.SetCurrentValue(TranslateTransform.XProperty, d);
         }
     }
 }
