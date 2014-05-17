@@ -1,0 +1,87 @@
+﻿<Window x:Class="GaugeBox.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:gaugeBox="clr-namespace:GaugeBox" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525"
+        d:DataContext="{d:DesignInstance gaugeBox:Vm, IsDesignTimeCreatable=True}">
+    <Grid>
+        <gaugeBox:Gauge Value="{Binding Value}" Minimum="{Binding Min}" Maximum="{Binding Max}" >
+            <gaugeBox:Gauge.Template>
+                <ControlTemplate TargetType="{x:Type gaugeBox:Gauge}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TickBar x:Name="TopTick" 
+                                 SnapsToDevicePixels="True"
+                                 Placement="Top"
+                                 Height="4"
+                                 Visibility="Visible">
+                            <TickBar.Fill>
+                                <SolidColorBrush Color="Blue" />
+                            </TickBar.Fill>
+                        </TickBar>
+                        <Border x:Name="TrackBackground" 
+                                Margin="0"
+                                CornerRadius="2"
+                                Height="4"
+                                Grid.Row="1"
+                                BorderThickness="1">
+                            <Border.BorderBrush>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <LinearGradientBrush.GradientStops>
+                                        <GradientStopCollection>
+                                            <GradientStop Color="Red" Offset="0.0" />
+                                            <GradientStop Color="Red" Offset="0.25" />
+                                            <GradientStop Color="Green" Offset="0.25" />
+                                            <GradientStop Color="Green" Offset="0.75" />
+                                            <GradientStop Color="Red" Offset="0.75" />
+                                            <GradientStop Color="Red" Offset="1.0" />
+                                        </GradientStopCollection>
+                                    </LinearGradientBrush.GradientStops>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <LinearGradientBrush.GradientStops>
+                                        <GradientStopCollection>
+                                            <GradientStop Color="Red" Offset="0.0" />
+                                            <GradientStop Color="Red" Offset="0.25" />
+                                            <GradientStop Color="Green" Offset="0.25" />
+                                            <GradientStop Color="Green" Offset="0.75" />
+                                            <GradientStop Color="Red" Offset="0.75" />
+                                            <GradientStop Color="Red" Offset="1.0" />
+                                        </GradientStopCollection>
+                                    </LinearGradientBrush.GradientStops>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                        </Border>
+
+                        <TickBar x:Name="BottomTick" 
+                                 SnapsToDevicePixels="True" 
+                                 Grid.Row="2" 
+                                 Fill="{TemplateBinding Foreground}"
+                                 Placement="Bottom"
+                                 Height="4"
+                                 Visibility="Visible" />
+                    </Grid>
+                    <!--<ControlTemplate.Triggers>
+                        <Trigger Property="TickPlacement" Value="TopLeft">
+                            <Setter TargetName="TopTick" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="TickPlacement" Value="BottomRight">
+                            <Setter TargetName="BottomTick" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="TickPlacement" Value="Both">
+                            <Setter TargetName="TopTick" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="BottomTick" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>-->
+                </ControlTemplate>
+            </gaugeBox:Gauge.Template>
+        </gaugeBox:Gauge>
+    </Grid>
+</Window>
