@@ -4,7 +4,7 @@
              xmlns:gaugeBox="clr-namespace:GaugeBox"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         <DataTemplate DataType="{x:Type gaugeBox:Vm}">
+         <DataTemplate x:Key="VmTemplate" DataType="{x:Type gaugeBox:Vm}">
             <GroupBox Header="Control the vm">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -23,7 +23,7 @@
                     <Slider Grid.Row="1" Grid.Column="1" Value="{Binding Max}" Minimum="-10" Maximum="10"/>
 
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Value, StringFormat='Value:{0:F1}'}"/>
-                    <Slider Grid.Row="2" Grid.Column="1" Value="{Binding Value}"  Minimum="-10" Maximum="10"/>
+                    <Slider Grid.Row="2" Grid.Column="1" Value="{Binding Value}"  Minimum="-200" Maximum="200"/>
                 </Grid>
             </GroupBox>
         </DataTemplate>

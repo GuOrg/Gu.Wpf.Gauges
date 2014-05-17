@@ -19,8 +19,12 @@
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Gauge), new FrameworkPropertyMetadata(typeof(Gauge)));
         }
+        public Gauge()
+        {
+            Lables = new ObservableCollection<double>();
+        }
 
-        public ObservableCollection<GaugeLabel> Lables { get; set; }
+        public ObservableCollection<double> Lables { get; private set; }
 
         /// <summary>
         /// Called when a template is applied to a <see cref="T:System.Windows.Controls.ProgressBar"/>.
@@ -75,12 +79,16 @@
         {
             if (this._indicator == null || _track == null)
                 return;
+            double x = PosFromValue(this.Value);
+            _indicatorTransform.SetCurrentValue(TranslateTransform.XProperty, _track.ActualWidth * (x - 0.5));
+        }
+
+        private double PosFromValue(double value)
+        {
             double minimum = this.Minimum;
             double maximum = this.Maximum;
             double num = this.Value;
-            double d = (num - minimum) / Math.Abs(maximum - minimum);
-
-            _indicatorTransform.SetCurrentValue(TranslateTransform.XProperty, _track.ActualWidth * (d - 0.5));
+            return (value - minimum) / Math.Abs(maximum - minimum);
         }
     }
 }

@@ -12,8 +12,8 @@
 
         public Vm()
         {
-            Min = -10;
-            Max = 10;
+            Min = -200;
+            Max = 200;
             Value = 0.3;
         }
 

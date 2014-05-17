@@ -13,9 +13,17 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <gauges:Gauge Grid.Row="0" Value="{Binding Value}" Minimum="{Binding Min}" Maximum="{Binding Max}" Width="200">
-
+        <gauges:Gauge Grid.Row="0" Value="{Binding Value}" Minimum="{Binding Min}" Maximum="{Binding Max}">
         </gauges:Gauge>
-        <ContentPresenter Grid.Row="1" Content="{Binding}" />
+        <ContentPresenter Grid.Row="1" Content="{Binding}" ContentTemplate="{StaticResource VmTemplate}"/>
+        <gauges:BlockBar Grid.Row="2" Height="20" Width="100" TickFrequency="25" Gap="2">
+            <gauges:BlockBar.Fill>
+                <LinearGradientBrush EndPoint="0,0" StartPoint="1,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </gauges:BlockBar.Fill>
+        </gauges:BlockBar>
+
     </Grid>
 </Window>

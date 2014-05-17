@@ -2,16 +2,34 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Gauges">
+
     <Style TargetType="{x:Type local:Gauge}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Gauge}">
+                    <ControlTemplate.Resources>
+                        <Style x:Key="LabelStyle" TargetType="{x:Type TextBlock}">
+                            <Setter Property="VerticalAlignment" Value="Top"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="Grid.Row" Value="0"/>
+                        </Style>
+                        <LinearGradientBrush x:Key="Brush" StartPoint="0,0" EndPoint="1,0">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStopCollection>
+                                    <GradientStop Color="Red" Offset="0.0" />
+                                    <GradientStop Color="Red" Offset="0.25" />
+                                    <GradientStop Color="Green" Offset="0.25" />
+                                    <GradientStop Color="Green" Offset="0.75" />
+                                    <GradientStop Color="Red" Offset="0.75" />
+                                    <GradientStop Color="Red" Offset="1.0" />
+                                </GradientStopCollection>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </ControlTemplate.Resources>
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
-                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="30" />
+                            <RowDefinition x:Name="BottomRow" Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -20,67 +38,40 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Grid.ColumnSpan="2" 
+                                   Text="{Binding Minimum, RelativeSource={RelativeSource TemplatedParent}, StringFormat='{}{0:F0}'}" 
+                                   Style="{StaticResource LabelStyle}"/>
+                        <TextBlock Grid.Column="3" Grid.ColumnSpan="2" 
+                                   Text="{Binding Maximum, RelativeSource={RelativeSource TemplatedParent}, StringFormat='{}{0:F0}'}" 
+                                   Style="{StaticResource LabelStyle}"/>
 
-                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Minimum, RelativeSource={RelativeSource TemplatedParent}, StringFormat='{}{0:F2}'}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                        <TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Text="{Binding Maximum, RelativeSource={RelativeSource TemplatedParent}, StringFormat='{}{0:F2}'}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="{Binding ElementName=BottomRow, Path=ActualHeight}"/>
+                            </Grid.RowDefinitions>
+                            <Border x:Name="PART_Track" Grid.Row="1" CornerRadius="2" Height="8" BorderThickness="2" 
+                                    VerticalAlignment="Center" BorderBrush="{StaticResource Brush}"/>
+                            <!--<local:TextTickBar Grid.Row="0"
+                                     Ticks="25, 50, 75"
+                                     SnapsToDevicePixels="True" 
+                                     VerticalAlignment="Bottom" Placement="Top" Height="20" 
+                                     Visibility="Visible" Fill="{StaticResource Brush}"/>-->
+                            <TickBar x:Name="TopTick" Grid.Row="1"
+                                     TickFrequency="25"
+                                     SnapsToDevicePixels="True" 
+                                     VerticalAlignment="Bottom" Placement="Top" Height="20" 
+                                     Visibility="Visible" Fill="{StaticResource Brush}">
 
-                        <TickBar x:Name="TopTick"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
-                                SnapsToDevicePixels="True"
-                                Placement="Top" Height="4" Visibility="Visible">
-                            <TickBar.Fill>
-                                <SolidColorBrush Color="Black" />
-                            </TickBar.Fill>
-                        </TickBar>
-                        <Grid Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3">
-                            <Border x:Name="PART_Track" CornerRadius="2" Height="4" BorderThickness="1" VerticalAlignment="Bottom">
-                                <Border.BorderBrush>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <LinearGradientBrush.GradientStops>
-                                            <GradientStopCollection>
-                                                <GradientStop Color="Red" Offset="0.0" />
-                                                <GradientStop Color="Red" Offset="0.25" />
-                                                <GradientStop Color="Green" Offset="0.25" />
-                                                <GradientStop Color="Green" Offset="0.75" />
-                                                <GradientStop Color="Red" Offset="0.75" />
-                                                <GradientStop Color="Red" Offset="1.0" />
-                                            </GradientStopCollection>
-                                        </LinearGradientBrush.GradientStops>
-                                    </LinearGradientBrush>
-                                </Border.BorderBrush>
-                                <Border.Background>
-                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                                        <LinearGradientBrush.GradientStops>
-                                            <GradientStopCollection>
-                                                <GradientStop Color="Red" Offset="0.0" />
-                                                <GradientStop Color="Red" Offset="0.25" />
-                                                <GradientStop Color="Green" Offset="0.25" />
-                                                <GradientStop Color="Green" Offset="0.75" />
-                                                <GradientStop Color="Red" Offset="0.75" />
-                                                <GradientStop Color="Red" Offset="1.0" />
-                                            </GradientStopCollection>
-                                        </LinearGradientBrush.GradientStops>
-                                    </LinearGradientBrush>
-                                </Border.Background>
-                            </Border>
-                            <Grid x:Name="PART_Indicator" VerticalAlignment="Stretch">
-                                <TextBlock Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat='{}{0:F2}'}"
-                                           HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                                <Ellipse  Width="10" Height="10" Fill="HotPink" VerticalAlignment="Bottom"/>
+                            </TickBar>
+                            <Grid Grid.Row="0" Grid.RowSpan="2" x:Name="PART_Indicator" VerticalAlignment="Stretch">
+                                <TextBlock Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat='{}{0:F0}'}"
+                                           Style="{StaticResource LabelStyle}" Background="White"/>
+                                <Rectangle Width="3" Height="10" Fill="{TemplateBinding Foreground}" VerticalAlignment="Bottom"/>
                             </Grid>
                         </Grid>
+                        
                     </Grid>
-                    <!--<ControlTemplate.Triggers>
-                        <Trigger Property="TickPlacement" Value="TopLeft">
-                            <Setter TargetName="TopTick" Property="Visibility" Value="Visible" />
-                        </Trigger>
-                        <Trigger Property="TickPlacement" Value="BottomRight">
-                            <Setter TargetName="BottomTick" Property="Visibility" Value="Visible" />
-                        </Trigger>
-                        <Trigger Property="TickPlacement" Value="Both">
-                            <Setter TargetName="TopTick" Property="Visibility" Value="Visible" />
-                            <Setter TargetName="BottomTick" Property="Visibility" Value="Visible" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>-->
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
