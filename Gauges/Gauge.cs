@@ -7,12 +7,14 @@
     using System.Windows.Media;
 
     [TemplatePart(Name = IndicatorTemplateName, Type = typeof(FrameworkElement))]
+    [TemplatePart(Name = TrackTemplateName, Type = typeof(FrameworkElement))]
     public class Gauge : RangeBase
     {
-        private FrameworkElement _indicator;
-        private readonly TranslateTransform _indicatorTransform = new TranslateTransform();
         private const string IndicatorTemplateName = "PART_Indicator";
-
+        private const string TrackTemplateName = "PART_Track";
+        private readonly TranslateTransform _indicatorTransform = new TranslateTransform();
+        private FrameworkElement _indicator;
+        private FrameworkElement _track;
         static Gauge()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Gauge), new FrameworkPropertyMetadata(typeof(Gauge)));
@@ -31,6 +33,7 @@
             }
             base.OnApplyTemplate();
             this._indicator = this.GetTemplateChild(IndicatorTemplateName) as FrameworkElement;
+            this._track = this.GetTemplateChild(TrackTemplateName) as FrameworkElement;
             if (_indicator != null)
             {
                 _indicator.RenderTransform = _indicatorTransform;
@@ -70,14 +73,14 @@
 
         private void SetIndicatorPos()
         {
-            if (this._indicator == null)
+            if (this._indicator == null || _track == null)
                 return;
             double minimum = this.Minimum;
             double maximum = this.Maximum;
             double num = this.Value;
             double d = (num - minimum) / Math.Abs(maximum - minimum);
 
-            _indicatorTransform.SetCurrentValue(TranslateTransform.XProperty, this.ActualWidth * (d - 0.5));
+            _indicatorTransform.SetCurrentValue(TranslateTransform.XProperty, _track.ActualWidth * (d - 0.5));
         }
     }
 }
