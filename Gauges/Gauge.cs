@@ -1,4 +1,4 @@
-﻿namespace GaugeBox
+﻿namespace Gauges
 {
     using System;
     using System.Windows;
@@ -9,13 +9,12 @@
     public class Gauge : RangeBase
     {
         private FrameworkElement _indicator;
-        private FrameworkElement _track;
         private readonly TranslateTransform _indicatorTransform = new TranslateTransform();
         private const string IndicatorTemplateName = "PART_Indicator";
 
-        public Gauge()
+        static Gauge()
         {
-
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(Gauge), new FrameworkPropertyMetadata(typeof(Gauge)));
         }
 
         /// <summary>
