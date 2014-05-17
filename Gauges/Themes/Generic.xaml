@@ -13,18 +13,20 @@
                             <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Row="0" Text="Min" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                        <TextBlock Grid.Row="0" Text="{TemplateBinding Maximum}" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-                        <Grid Grid.Row="0" Grid.RowSpan="3" x:Name="PART_Indicator">
-                            <TextBlock Grid.Row="0" Text="{TemplateBinding Value}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                            <Ellipse  Width="10" Height="20" Fill="HotPink" VerticalAlignment="Bottom"/>
-                        </Grid>
-                        <TickBar Grid.Row="1" x:Name="TopTick" 
+                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding Minimum, RelativeSource={RelativeSource TemplatedParent}, StringFormat='{}{0:F2}'}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        <TextBlock Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Text="{Binding Maximum, RelativeSource={RelativeSource TemplatedParent}, StringFormat='{}{0:F2}'}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                        <TickBar x:Name="TopTick"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
                                 SnapsToDevicePixels="True"
-                                Placement="Top"
-                                Height="4"
-                                Visibility="Visible">
+                                Placement="Top" Height="4" Visibility="Visible">
                             <TickBar.Fill>
                                 <SolidColorBrush Color="Black" />
                             </TickBar.Fill>
@@ -33,7 +35,8 @@
                             Margin="0"
                             CornerRadius="2"
                             Height="4"
-                            Grid.Row="2"
+                            Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"
+                                
                             BorderThickness="1">
                             <Border.BorderBrush>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
@@ -64,7 +67,10 @@
                                 </LinearGradientBrush>
                             </Border.Background>
                         </Border>
-
+                        <Grid x:Name="PART_Indicator" Grid.Row="0" Grid.RowSpan="3" Grid.Column="1" Grid.ColumnSpan="3">
+                            <TextBlock Grid.Row="0" Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat='{}{0:F2}'}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                            <Ellipse  Width="10" Height="10" Fill="HotPink" VerticalAlignment="Bottom"/>
+                        </Grid>
                         <!--<TickBar x:Name="BottomTick" 
                                 SnapsToDevicePixels="True" 
                                 Grid.Row="2" 

@@ -13,29 +13,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <gauges:Gauge Grid.Row="0" Value="{Binding Value}" Minimum="{Binding Min}" Maximum="{Binding Max}">
+        <gauges:Gauge Grid.Row="0" Value="{Binding Value}" Minimum="{Binding Min}" Maximum="{Binding Max}" Width="200">
 
         </gauges:Gauge>
-        <GroupBox Grid.Row="1" Header="Control the vm">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Min, StringFormat='Min:{0:F1}'}"/>
-                <Slider Grid.Row="0" Grid.Column="1"  Value="{Binding Min}"  Minimum="-10" Maximum="10"/>
-
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Max, StringFormat='Max:{0:F1}'}"/>
-                <Slider Grid.Row="1" Grid.Column="1" Value="{Binding Max}" Minimum="-10" Maximum="10"/>
-
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Value, StringFormat='Value:{0:F1}'}"/>
-                <Slider Grid.Row="2" Grid.Column="1" Value="{Binding Value}"  Minimum="-10" Maximum="10"/>
-            </Grid>
-        </GroupBox>
+        <ContentPresenter Grid.Row="1" Content="{Binding}" />
     </Grid>
 </Window>
