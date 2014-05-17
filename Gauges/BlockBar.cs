@@ -102,8 +102,11 @@
             var totalGap = ActualWidth * (ticks - 1) * Gap / 100.0;
             var width = (ActualWidth - totalGap) / ticks;
             double x = 0;
+            var linearGradientBrush = Fill as LinearGradientBrush;
+
             while (x < ActualWidth)
             {
+
                 dc.DrawRectangle(Fill, new Pen(Stroke, StrokeThickness), new Rect(x, 0, width, ActualHeight));
                 x += width + Gap;
             }
