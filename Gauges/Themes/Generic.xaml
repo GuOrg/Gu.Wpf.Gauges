@@ -9,10 +9,18 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <TickBar Grid.Row="0" x:Name="TopTick" 
+
+                        <TextBlock Grid.Row="0" Text="Min" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <TextBlock Grid.Row="0" Text="{TemplateBinding Maximum}" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                        <Grid Grid.Row="0" Grid.RowSpan="3" x:Name="PART_Indicator">
+                            <TextBlock Grid.Row="0" Text="{TemplateBinding Value}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                            <Ellipse  Width="10" Height="20" Fill="HotPink" VerticalAlignment="Bottom"/>
+                        </Grid>
+                        <TickBar Grid.Row="1" x:Name="TopTick" 
                                 SnapsToDevicePixels="True"
                                 Placement="Top"
                                 Height="4"
@@ -21,14 +29,11 @@
                                 <SolidColorBrush Color="Black" />
                             </TickBar.Fill>
                         </TickBar>
-
-                        <Ellipse Grid.Row="0" Grid.RowSpan="2" x:Name="PART_Indicator" Width="10" Height="20" Fill="Blue"/>
-
                         <Border x:Name="TrackBackground" 
                             Margin="0"
                             CornerRadius="2"
                             Height="4"
-                            Grid.Row="1"
+                            Grid.Row="2"
                             BorderThickness="1">
                             <Border.BorderBrush>
                                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
@@ -60,13 +65,13 @@
                             </Border.Background>
                         </Border>
 
-                        <TickBar x:Name="BottomTick" 
+                        <!--<TickBar x:Name="BottomTick" 
                                 SnapsToDevicePixels="True" 
                                 Grid.Row="2" 
                                 Fill="{TemplateBinding Foreground}"
                                 Placement="Bottom"
                                 Height="4"
-                                Visibility="Visible" />
+                                Visibility="Visible" />-->
                     </Grid>
                     <!--<ControlTemplate.Triggers>
                         <Trigger Property="TickPlacement" Value="TopLeft">

@@ -1,6 +1,7 @@
 ﻿namespace Gauges
 {
     using System;
+    using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
@@ -16,6 +17,8 @@
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Gauge), new FrameworkPropertyMetadata(typeof(Gauge)));
         }
+
+        public ObservableCollection<GaugeLabel> Lables { get; set; }
 
         /// <summary>
         /// Called when a template is applied to a <see cref="T:System.Windows.Controls.ProgressBar"/>.
@@ -74,7 +77,7 @@
             double num = this.Value;
             double d = (num - minimum) / Math.Abs(maximum - minimum);
 
-            _indicatorTransform.SetCurrentValue(TranslateTransform.XProperty, this.ActualWidth * d - this.ActualWidth / 2);
+            _indicatorTransform.SetCurrentValue(TranslateTransform.XProperty, this.ActualWidth * (d - 0.5));
         }
     }
 }

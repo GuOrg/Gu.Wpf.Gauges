@@ -13,7 +13,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <gauges:Gauge Grid.Row="0" Value="{Binding Value}" Minimum="{Binding Min}" Maximum="{Binding Max}" />
+        <gauges:Gauge Grid.Row="0" Value="{Binding Value}" Minimum="{Binding Min}" Maximum="{Binding Max}">
+
+        </gauges:Gauge>
         <GroupBox Grid.Row="1" Header="Control the vm">
             <Grid>
                 <Grid.RowDefinitions>
