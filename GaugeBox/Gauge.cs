@@ -6,14 +6,12 @@
     using System.Windows.Media;
 
     [TemplatePart(Name = IndicatorTemplateName, Type = typeof(FrameworkElement))]
-    [TemplatePart(Name = TrackTemplateName, Type = typeof(FrameworkElement))]
     public class Gauge : RangeBase
     {
         private FrameworkElement _indicator;
         private FrameworkElement _track;
         private readonly TranslateTransform _indicatorTransform = new TranslateTransform();
         private const string IndicatorTemplateName = "PART_Indicator";
-        private const string TrackTemplateName = "PART_Track";
 
         public Gauge()
         {
@@ -31,10 +29,10 @@
             }
             base.OnApplyTemplate();
             this._indicator = this.GetTemplateChild(IndicatorTemplateName) as FrameworkElement;
-            this._track = this.GetTemplateChild(TrackTemplateName) as FrameworkElement;
             if (_indicator != null)
             {
                 _indicator.RenderTransform = _indicatorTransform;
+                _indicator.HorizontalAlignment = HorizontalAlignment.Center;
             }
         }
 
@@ -75,9 +73,9 @@
             double minimum = this.Minimum;
             double maximum = this.Maximum;
             double num = this.Value;
-            double d = Math.Abs(num - minimum) / Math.Abs(maximum - minimum);
-            _indicator.Width = d * 10;
-            //_indicatorTransform.SetCurrentValue(TranslateTransform.XProperty, d);
+            double d = (num - minimum) / Math.Abs(maximum - minimum);
+
+            _indicatorTransform.SetCurrentValue(TranslateTransform.XProperty, this.ActualWidth * d - this.ActualWidth / 2);
         }
     }
 }

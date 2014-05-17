@@ -19,8 +19,7 @@
                             <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Ellipse x:Name="PART_Indicator" Width="50" Height="50" Fill="Blue"/>
-                        <TickBar x:Name="TopTick" 
+                        <TickBar Grid.Row="0" x:Name="TopTick" 
                                  SnapsToDevicePixels="True"
                                  Placement="Top"
                                  Height="4"
@@ -29,6 +28,9 @@
                                 <SolidColorBrush Color="Blue" />
                             </TickBar.Fill>
                         </TickBar>
+                        
+                        <Ellipse Grid.Row="1" x:Name="PART_Indicator" Width="10" Height="20" Fill="Blue"/>
+
                         <Border x:Name="TrackBackground" 
                                 Margin="0"
                                 CornerRadius="2"
