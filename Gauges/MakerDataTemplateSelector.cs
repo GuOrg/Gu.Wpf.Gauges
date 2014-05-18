@@ -52,6 +52,9 @@ namespace Gauges
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
+            if (item == null)
+                return null;
+
             var marker = (Marker)item;
             switch (marker)
             {
