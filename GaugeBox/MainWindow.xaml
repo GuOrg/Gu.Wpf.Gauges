@@ -15,21 +15,22 @@
         <TabItem Header="Demo">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition />
-                    <RowDefinition />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <gauges:Gauge x:Name="Gauge"
                               Grid.Row="0"
                               Margin="20,50,20,50"
-                              Marker="Circle"
+                              Marker="{Binding Marker}"
                               Maximum="{Binding Max}"
                               Minimum="{Binding Min}"
-                              Value="{Binding Value}" 
-                              TickFrequency="20"
+                              Placement="{Binding Placement}"
                               ShowLabels="{Binding ShowLabels}"
                               ShowTicks="{Binding ShowTicks}"
-                              ShowTrack="{Binding ShowTrack}">
+                              ShowTrack="{Binding ShowTrack}"
+                              TickFrequency="{Binding TickFrequency}"
+                              Value="{Binding Value}">
                     <gauges:Gauge.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                             <LinearGradientBrush.GradientStops>
@@ -48,7 +49,9 @@
                 <ContentPresenter Grid.Row="1"
                                   Content="{Binding}"
                                   ContentTemplate="{StaticResource VmTemplate}" />
-                <ContentPresenter Grid.Row="2" Content="{Binding}" ContentTemplate="{StaticResource GaugeTemplate}"/>
+                <ContentPresenter Grid.Row="2"
+                                  Content="{Binding}"
+                                  ContentTemplate="{StaticResource GaugeTemplate}" />
             </Grid>
         </TabItem>
 
@@ -97,8 +100,7 @@
                                     Style="{StaticResource HorizontalTickStyle}"
                                     TickFrequency="25"
                                     Ticks="15,37,70" />
-                <ContentPresenter Content="{Binding}"
-                                  ContentTemplate="{StaticResource VmTemplate}" />
+                <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource VmTemplate}" />
             </StackPanel>
         </TabItem>
 
@@ -145,8 +147,7 @@
                                         TickFrequency="25"
                                         Ticks="15,37,70" />
                 </Border>
-                <ContentPresenter Content="{Binding}"
-                                  ContentTemplate="{StaticResource VmTemplate}" />
+                <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource VmTemplate}" />
 
             </StackPanel>
         </TabItem>

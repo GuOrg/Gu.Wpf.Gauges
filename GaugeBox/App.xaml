@@ -17,14 +17,31 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Min, StringFormat='Min:{0:F1}'}" />
-                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Min}" />
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Text="{Binding Min,
+                                              StringFormat='Min:{0:F1}'}" />
+                    <TextBox Grid.Row="0"
+                             Grid.Column="1"
+                             Text="{Binding Min}" />
 
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Max, StringFormat='Max:{0:F1}'}" />
-                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Max}" />
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="0"
+                               Text="{Binding Max,
+                                              StringFormat='Max:{0:F1}'}" />
+                    <TextBox Grid.Row="1"
+                             Grid.Column="1"
+                             Text="{Binding Max}" />
 
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Value, StringFormat='Value:{0:F1}'}" />
-                    <Slider Grid.Row="2" Grid.Column="1" Value="{Binding Value}" Minimum="{Binding Min}" Maximum="{Binding Max}" />
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="0"
+                               Text="{Binding Value,
+                                              StringFormat='Value:{0:F1}'}" />
+                    <Slider Grid.Row="2"
+                            Grid.Column="1"
+                            Maximum="{Binding Max}"
+                            Minimum="{Binding Min}"
+                            Value="{Binding Value}" />
                 </Grid>
             </Expander>
         </DataTemplate>
@@ -36,19 +53,57 @@
                         <RowDefinition />
                         <RowDefinition />
                         <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="ShowLabels" />
-                    <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding ShowLabels}" />
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Text="ShowLabels" />
+                    <CheckBox Grid.Row="0"
+                              Grid.Column="1"
+                              IsChecked="{Binding ShowLabels}" />
 
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="ShowTicks" />
-                    <CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding ShowTicks}" />
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="0"
+                               Text="ShowTicks" />
+                    <CheckBox Grid.Row="1"
+                              Grid.Column="1"
+                              IsChecked="{Binding ShowTicks}" />
 
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="ShowTrack" />
-                    <CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding ShowTrack}" />
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="0"
+                               Text="ShowTrack" />
+                    <CheckBox Grid.Row="2"
+                              Grid.Column="1"
+                              IsChecked="{Binding ShowTrack}" />
+
+                    <TextBlock Grid.Row="3"
+                               Grid.Column="0"
+                               Text="Placement" />
+                    <ComboBox Grid.Row="3"
+                              Grid.Column="1"
+                              SelectedItem="{Binding Placement}"
+                              gaugeBox:ItemsControl.EnumSource="{x:Type TickBarPlacement}" />
+
+                    <TextBlock Grid.Row="4"
+                               Grid.Column="0"
+                               Text="TickFrequency" />
+                    <TextBox Grid.Row="4"
+                             Grid.Column="1"
+                             Text="{Binding TickFrequency}" />
+
+                    <TextBlock Grid.Row="5"
+                               Grid.Column="0"
+                               Text="Placement" />
+                    <ComboBox Grid.Row="5"
+                              Grid.Column="1"
+                              SelectedItem="{Binding Marker}"
+                              gaugeBox:ItemsControl.EnumSource="{x:Type gauges:Marker}" />
                 </Grid>
             </Expander>
         </DataTemplate>

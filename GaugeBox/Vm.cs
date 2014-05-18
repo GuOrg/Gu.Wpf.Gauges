@@ -2,7 +2,9 @@
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
+    using System.Windows.Controls.Primitives;
     using Annotations;
+    using Gauges;
 
     public class Vm : INotifyPropertyChanged
     {
@@ -12,6 +14,9 @@
         private bool showLabels;
         private bool showTrack;
         private bool showTicks;
+        private TickBarPlacement placement;
+        private double tickFrequency;
+        private Marker marker;
 
         public Vm()
         {
@@ -21,6 +26,8 @@
             this.showLabels = true;
             this.showTicks = true;
             this.ShowTrack = true;
+            this.placement = TickBarPlacement.Bottom;
+            this.tickFrequency = 25;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -129,6 +136,57 @@
                     return;
                 }
                 this.showTicks = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public double TickFrequency
+        {
+            get
+            {
+                return this.tickFrequency;
+            }
+            set
+            {
+                if (value.Equals(this.tickFrequency))
+                {
+                    return;
+                }
+                this.tickFrequency = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public TickBarPlacement Placement
+        {
+            get
+            {
+                return this.placement;
+            }
+            set
+            {
+                if (value == this.placement)
+                {
+                    return;
+                }
+                this.placement = value;
+                this.OnPropertyChanged();
+            }
+        }
+       
+        public Marker Marker
+        {
+            get
+            {
+                return this.marker;
+            }
+            set
+            {
+                if (value == this.marker)
+                {
+                    return;
+                }
+                this.marker = value;
                 this.OnPropertyChanged();
             }
         }
