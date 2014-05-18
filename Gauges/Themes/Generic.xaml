@@ -31,21 +31,20 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition x:Name="TopRow" Height="Auto" />
-                            <RowDefinition Height="Auto" />
+                            <RowDefinition x:Name="BottomRow"  Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition x:Name="LeftColumn" Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition x:Name="RightColumn" Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <Grid x:Name="Ticks"
-                              Grid.Row="0"
-                              Grid.Column="0">
+                              Grid.Row="0" Grid.Column="0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="{Binding ElementName=TopRow, Path=Height}" />
+                                <RowDefinition Height="{Binding ElementName=TopRow, Path=ActualHeight}" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="{Binding ElementName=LeftColumn, Path=Width}" />
+                                <ColumnDefinition Width="{Binding ElementName=LeftColumn, Path=ActualWidth}" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <local:TextTickBar x:Name="TickLabels"
@@ -169,7 +168,7 @@
 
                             <Setter TargetName="MajorTicks" Property="Placement" Value="Top" />
                             <Setter TargetName="MinorTicks" Property="Placement" Value="Top" />
-                            <Setter TargetName="TickLabels" Property="Placement" Value="Bottom" />
+                            <Setter TargetName="TickLabels" Property="Placement" Value="Top" />
                         </Trigger>
 
                         <Trigger Property="Placement" Value="Bottom">
@@ -190,7 +189,7 @@
 
                             <Setter TargetName="MajorTicks" Property="Placement" Value="Bottom" />
                             <Setter TargetName="MinorTicks" Property="Placement" Value="Bottom" />
-                            <Setter TargetName="TickLabels" Property="Placement" Value="Top" />
+                            <Setter TargetName="TickLabels" Property="Placement" Value="Bottom" />
                         </Trigger>
 
                         <Trigger Property="Placement" Value="Left">
