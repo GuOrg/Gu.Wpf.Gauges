@@ -13,6 +13,29 @@
                                                     RelativeSource={RelativeSource Mode=FindAncestor,
                                                                                    AncestorType={x:Type local:Gauge}}}"/>
                         </Style>
+
+                        <Style x:Key="TickBarStyle" TargetType="{x:Type TickBar}">
+                            <Setter Property="Maximum" Value="{Binding Maximum,
+                                                       RelativeSource={RelativeSource Mode=FindAncestor,
+                                                                                   AncestorType={x:Type local:Gauge}}}"/>
+
+                            <Setter Property="Minimum" Value="{Binding Minimum,
+                                                       RelativeSource={RelativeSource Mode=FindAncestor,
+                                                                                   AncestorType={x:Type local:Gauge}}}"/>
+
+                            <Setter Property="TickFrequency" Value="{Binding TickFrequency,
+                                                       RelativeSource={RelativeSource Mode=FindAncestor,
+                                                                                   AncestorType={x:Type local:Gauge}}}"/>
+
+                            <Setter Property="Ticks" Value="{Binding Ticks,
+                                                       RelativeSource={RelativeSource Mode=FindAncestor,
+                                                                                   AncestorType={x:Type local:Gauge}}}"/>
+
+                            <Setter Property="Fill" Value="{Binding Foreground,
+                                                    RelativeSource={RelativeSource Mode=FindAncestor,
+                                                                                   AncestorType={x:Type local:Gauge}}}"/>
+                        </Style>
+
                         <DataTemplate x:Key="CircleTemplate">
                             <Ellipse Width="10"
                                      Height="10"
@@ -33,6 +56,7 @@
                                        Height="10" 
                                        Style="{StaticResource IndicatorStyle}" />
                         </DataTemplate>
+
                         <local:GaugeIndicatorConverter x:Key="GaugeShapeConverter"
                                                        Circle="{StaticResource CircleTemplate}"
                                                        Line="{StaticResource LineTemplate}"
@@ -59,49 +83,48 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <local:TextTickBar Grid.Row="0"
+                            <local:TextTickBar x:Name="TickLabels"
+                                               Grid.Row="0"
                                                Height="20"
-                                               Fill="{TemplateBinding Foreground}"
                                                Placement="Top"
                                                SnapsToDevicePixels="True"
-                                               TickFrequency="25"
-                                               Visibility="Visible" 
+                                               Visibility="Collapsed" 
                                                FontFamily="{TemplateBinding FontFamily}"
                                                FontSize="{TemplateBinding FontSize}"
                                                FontStyle="{TemplateBinding FontStyle}"
                                                FontStretch="{TemplateBinding FontStretch}"
                                                FontWeight="{TemplateBinding FontWeight}"
-                                               Minimum="{TemplateBinding Minimum}"
-                                               Maximum="{TemplateBinding Maximum}" />
-                            <TickBar x:Name="TopTick"
+                                               Style="{StaticResource TickBarStyle}"/>
+                            <TickBar x:Name="MajorTicks"
                                      Grid.Row="1"
                                      Height="15"
                                      Fill="{TemplateBinding Foreground}"
                                      VerticalAlignment="Bottom"
                                      Placement="Bottom"
                                      SnapsToDevicePixels="True"
-                                     TickFrequency="25"
-                                     Visibility="Visible" />
-                            <TickBar Grid.Row="1"
+                                     Visibility="Collapsed"                                     
+                                     Style="{StaticResource TickBarStyle}"/>
+
+                            <TickBar x:Name="MinorTicks"
+                                     Grid.Row="1"
                                      Height="10"
-                                     Fill="{TemplateBinding Foreground}"
                                      VerticalAlignment="Bottom"
                                      Placement="Bottom"
                                      SnapsToDevicePixels="True"
                                      TickFrequency="10"
-                                     Visibility="Visible" />
+                                     Visibility="Collapsed"
+                                     Style="{StaticResource TickBarStyle}"/>
                         </Grid>
-                        <Grid Grid.Row="1">
-                            <Border x:Name="PART_Track"
+                        <Border x:Name="PART_Track" 
+                                Grid.Row="1"
                                     Height="8"
                                     VerticalAlignment="Center"
                                     BorderBrush="{TemplateBinding Background}"
+                                Visibility="Collapsed"
                                     BorderThickness="2"
                                     CornerRadius="4" />
-
-
-                            <Grid x:Name="PART_Indicator" VerticalAlignment="Stretch">
-                                <!--
+                        <Grid x:Name="PART_Indicator" Grid.Row="1" VerticalAlignment="Stretch">
+                            <!--
                                     <TextBlock Background="White"
                                     Style="{StaticResource LabelStyle}"
                                     Text="{Binding Value,
@@ -109,12 +132,25 @@
                                     StringFormat='{}{0:F0}'}" />
                                 -->
 
-                                <ContentPresenter Content="{TemplateBinding Marker}"
+                            <ContentPresenter Content="{TemplateBinding Marker}"
                                                   ContentTemplateSelector="{StaticResource MarkerDataTemplateSelector}" />
-                            </Grid>
                         </Grid>
 
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ShowLabels" Value="True">
+                            <Setter TargetName="TickLabels" Property="Visibility" Value="Visible" />
+                        </Trigger>
+
+                        <Trigger Property="ShowTicks" Value="True">
+                            <Setter TargetName="MajorTicks" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="MinorTicks" Property="Visibility" Value="Visible" />
+                        </Trigger>
+
+                        <Trigger Property="ShowTrack" Value="True">
+                            <Setter TargetName="PART_Track" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

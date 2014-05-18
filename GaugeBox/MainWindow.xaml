@@ -17,13 +17,19 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
-                <gauges:Gauge Grid.Row="0"
+                <gauges:Gauge x:Name="Gauge"
+                              Grid.Row="0"
                               Margin="20,50,20,50"
                               Marker="Circle"
                               Maximum="{Binding Max}"
                               Minimum="{Binding Min}"
-                              Value="{Binding Value}" >
+                              Value="{Binding Value}" 
+                              TickFrequency="20"
+                              ShowLabels="{Binding ShowLabels}"
+                              ShowTicks="{Binding ShowTicks}"
+                              ShowTrack="{Binding ShowTrack}">
                     <gauges:Gauge.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                             <LinearGradientBrush.GradientStops>
@@ -42,6 +48,7 @@
                 <ContentPresenter Grid.Row="1"
                                   Content="{Binding}"
                                   ContentTemplate="{StaticResource VmTemplate}" />
+                <ContentPresenter Grid.Row="2" Content="{Binding}" ContentTemplate="{StaticResource GaugeTemplate}"/>
             </Grid>
         </TabItem>
 

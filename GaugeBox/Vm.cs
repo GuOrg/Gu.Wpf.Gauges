@@ -9,12 +9,18 @@
         private double max;
         private double min;
         private double value;
+        private bool showLabels;
+        private bool showTrack;
+        private bool showTicks;
 
         public Vm()
         {
             this.Min = -200;
             this.Max = 200;
             this.Value = 0.3;
+            this.showLabels = true;
+            this.showTicks = true;
+            this.ShowTrack = true;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -72,6 +78,57 @@
                 }
 
                 this.max = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public bool ShowLabels
+        {
+            get
+            {
+                return this.showLabels;
+            }
+            set
+            {
+                if (value.Equals(this.showLabels))
+                {
+                    return;
+                }
+                this.showLabels = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public bool ShowTrack
+        {
+            get
+            {
+                return this.showTrack;
+            }
+            set
+            {
+                if (value.Equals(this.showTrack))
+                {
+                    return;
+                }
+                this.showTrack = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public bool ShowTicks
+        {
+            get
+            {
+                return this.showTicks;
+            }
+            set
+            {
+                if (value.Equals(this.showTicks))
+                {
+                    return;
+                }
+                this.showTicks = value;
                 this.OnPropertyChanged();
             }
         }

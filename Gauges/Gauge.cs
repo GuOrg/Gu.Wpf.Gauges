@@ -13,7 +13,37 @@
     {
         public static readonly DependencyProperty MarkerProperty = DependencyProperty.Register(
             "Marker", typeof(Marker), typeof(Gauge), new PropertyMetadata(default(Marker), OnMarkerChanged));
+
+        public static readonly DependencyProperty ShowTrackProperty = DependencyProperty.Register(
+            "ShowTrack",
+            typeof (bool),
+            typeof (Gauge),
+            new PropertyMetadata(true));
+
+        public static readonly DependencyProperty ShowLabelsProperty = DependencyProperty.Register(
+            "ShowLabels",
+            typeof (bool),
+            typeof (Gauge),
+            new PropertyMetadata(true));
+
+        public static readonly DependencyProperty ShowTicksProperty = DependencyProperty.Register(
+            "ShowTicks",
+            typeof (bool),
+            typeof (Gauge),
+            new PropertyMetadata(true));
         
+        public static readonly DependencyProperty TickFrequencyProperty = TickBar.TickFrequencyProperty.AddOwner(
+            typeof(Gauge),
+            new FrameworkPropertyMetadata(-1.0, FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
+            typeof(Gauge),
+            new FrameworkPropertyMetadata(default(TickBarPlacement), FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static readonly DependencyProperty TicksProperty = TickBar.TicksProperty.AddOwner(
+            typeof(Gauge),
+            new FrameworkPropertyMetadata(new DoubleCollection(), FrameworkPropertyMetadataOptions.AffectsRender));
+
         private const string IndicatorTemplateName = "PART_Indicator";
         private const string TrackTemplateName = "PART_Track";
         private readonly TranslateTransform indicatorTransform = new TranslateTransform();
@@ -34,6 +64,60 @@
         {
             get { return (Marker)this.GetValue(MarkerProperty); }
             set { this.SetValue(MarkerProperty, value); }
+        }
+
+        public bool ShowLabels
+        {
+            get
+            {
+                return (bool)GetValue(ShowLabelsProperty);
+            }
+            set
+            {
+                SetValue(ShowLabelsProperty, value);
+            }
+        }
+
+        public bool ShowTrack
+        {
+            get
+            {
+                return (bool)GetValue(ShowTrackProperty);
+            }
+            set
+            {
+                SetValue(ShowTrackProperty, value);
+            }
+        }
+
+        public bool ShowTicks
+        {
+            get
+            {
+                return (bool)GetValue(ShowTicksProperty);
+            }
+            set
+            {
+                SetValue(ShowTicksProperty, value);
+            }
+        }
+
+        public Double TickFrequency
+        {
+            get { return (Double)this.GetValue(TickFrequencyProperty); }
+            set { this.SetValue(TickFrequencyProperty, value); }
+        }
+
+        public TickBarPlacement Placement
+        {
+            get { return (TickBarPlacement)this.GetValue(PlacementProperty); }
+            set { this.SetValue(PlacementProperty, value); }
+        }
+
+        public DoubleCollection Ticks
+        {
+            get { return (DoubleCollection)this.GetValue(TicksProperty); }
+            set { this.SetValue(TicksProperty, value); }
         }
 
         public ObservableCollection<double> Lables { get; private set; }
