@@ -8,26 +8,26 @@
     <Grid>
         <Grid.Resources>
             <Style x:Key="HorizontalTickStyle" TargetType="{x:Type TickBar}">
-                <Setter Property="Placement" Value="Top" />
-                <Setter Property="VerticalAlignment" Value="Bottom" />
+                <Setter Property="Placement" Value="Bottom" />
+                <Setter Property="VerticalAlignment" Value="Stretch" />
                 <Setter Property="Minimum" Value="-200" />
                 <Setter Property="Maximum" Value="200" />
                 <Setter Property="Fill" Value="Blue" />
-                <Setter Property="Margin" Value="20,0,20,0"/>
+                <Setter Property="Margin" Value="20,0,20,0" />
             </Style>
 
             <Style x:Key="VerticalTickStyle" TargetType="{x:Type TickBar}">
                 <Setter Property="Placement" Value="Left" />
-                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
                 <Setter Property="Minimum" Value="-200" />
                 <Setter Property="Maximum" Value="200" />
                 <Setter Property="Fill" Value="Blue" />
-                <Setter Property="Margin" Value="0,20,0,20"/>
+                <Setter Property="Margin" Value="0,20,0,20" />
             </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -37,51 +37,68 @@
         <gauges:Gauge Grid.Row="0" Grid.Column="1"
                       Maximum="{Binding Max}"
                       Minimum="{Binding Min}"
-                      Value="{Binding Value}"/>
+                      Value="{Binding Value}" />
         <ContentPresenter Grid.Row="1" Grid.Column="1"
                           Content="{Binding}"
                           ContentTemplate="{StaticResource VmTemplate}" />
-        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal" Background="LightCyan">
-            <!--<gauges:BlockBar Width="100" Height="20" Divisions="4" Fill="Blue"
-                             Gap="5" />-->
-            <Grid>
+        <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+            <!--
+                <gauges:BlockBar Width="100" Height="20" Divisions="4" Fill="Blue"
+                Gap="5" />
+            -->
+            <Border Background="Gold">
+                <Grid>
 
-                <gauges:TextTickBar Height="50" ContentStringFormat="F1" FontSize="12"
-                                    Style="{StaticResource VerticalTickStyle}"
-                                    TickFrequency="25" />
-                <TickBar Width="10"
-                         Style="{StaticResource VerticalTickStyle}"
-                         TickFrequency="5"/>
-                <TickBar Width="40"
-                         Style="{StaticResource VerticalTickStyle}"
-                         TickFrequency="25" />
-            </Grid>
-            <gauges:TextTickBar Width="50" 
+                    <gauges:TextTickBar ContentStringFormat="F1" FontSize="14"
+                                        Style="{StaticResource VerticalTickStyle}"
+                                        Placement="Right"
+                                        TickFrequency="25" />
+                    <TickBar Width="10"
+                             Style="{StaticResource VerticalTickStyle}"
+                             TickFrequency="5" />
+                    <TickBar Width="40"
+                             Style="{StaticResource VerticalTickStyle}"
+                             TickFrequency="25" />
+                </Grid>
+            </Border>
+            <gauges:TextTickBar Width="50"
                                 Style="{StaticResource VerticalTickStyle}"
                                 TickFrequency="25" />
-            <gauges:TextTickBar Width="50" Fill="Green" Style="{StaticResource VerticalTickStyle}"
+            <Border Background="Ivory">
+                <gauges:TextTickBar Width="50" Fill="Green"
+                                Style="{StaticResource VerticalTickStyle}"
+                                Placement="Right"
                                 TickFrequency="25" Ticks="15,37,70" />
+            </Border>
+
 
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="1">
             <gauges:BlockBar Width="100" Height="20" Divisions="4" Fill="Blue"
                              Gap="5" />
-            <Grid Background="Bisque">
+            <Grid Background="Bisque" Height="50">
 
-                <gauges:TextTickBar Height="50" ContentStringFormat="F1" FontSize="12"
+                <gauges:TextTickBar ContentStringFormat="F1" FontSize="12"
+                                    VerticalAlignment="Top"
                                     Style="{StaticResource HorizontalTickStyle}"
                                     TickFrequency="25" />
                 <TickBar Height="10"
+                         VerticalAlignment="Bottom"
                          Style="{StaticResource HorizontalTickStyle}"
                          TickFrequency="5" />
-                <TickBar Height="40"
+                <TickBar Height="30"
+                         VerticalAlignment="Bottom"
                          Style="{StaticResource HorizontalTickStyle}"
                          TickFrequency="25" />
             </Grid>
-            <gauges:TextTickBar Height="50" 
+            <Border Background="Honeydew">
+                <gauges:TextTickBar Height="50" Placement="Top"
+                                    Style="{StaticResource HorizontalTickStyle}"
+                                    TickFrequency="25" />
+            </Border>
+
+            <gauges:TextTickBar Height="50" Fill="Green"
                                 Style="{StaticResource HorizontalTickStyle}"
-                                TickFrequency="25" />
-            <gauges:TextTickBar Height="50" Fill="Green" Style="{StaticResource HorizontalTickStyle}"
                                 TickFrequency="25" Ticks="15,37,70" />
 
         </StackPanel>

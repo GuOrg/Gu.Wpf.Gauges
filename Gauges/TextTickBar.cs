@@ -1,5 +1,6 @@
 ﻿namespace Gauges
 {
+    using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
@@ -109,7 +110,30 @@
                         this.FontStretch),
                     this.FontSize,
                     this.Fill);
-                dc.DrawText(formattedText, new Point(textTick.ScreenX - formattedText.Width / 2, textTick.ScreenY));
+                var offsetX = 0.0;
+                var offsetY = 0.0;
+                switch (this.Placement)
+                {
+                    case TickBarPlacement.Left:
+                        offsetX = 0;
+                        offsetY = -1 * formattedText.Height / 2;
+                        break;
+                    case TickBarPlacement.Top:
+                        offsetX = -1 * formattedText.Width / 2;
+                        offsetY = -1 * formattedText.Height;
+                        break;
+                    case TickBarPlacement.Right:
+                        offsetX = -1 * formattedText.Width;
+                        offsetY = -1 * formattedText.Height / 2;
+                        break;
+                    case TickBarPlacement.Bottom:
+                        offsetX = -1 * formattedText.Width / 2;
+                        offsetY = 0;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+                dc.DrawText(formattedText, new Point(textTick.ScreenX + offsetX, textTick.ScreenY + offsetY));
             }
         }
 
@@ -121,26 +145,48 @@
             }
             double range = this.Maximum - this.Minimum;
             double tickWidth = range * tickFrequency / 100;
-            var x = this.Minimum;
-            double screenY = this.ReservedSpace * 0.5;
-            while (x < (Maximum + tickWidth / 2))
+            var value = this.Minimum;
+            while (value < (Maximum + tickWidth / 2))
             {
-                double screenX = this.ValueToScreen(x);
-                yield return new TextTick(screenX, screenY, x.ToString(this.ContentStringFormat));
-                x += tickWidth;
+                double screenX = this.ValueToScreenX(value);
+                double screenY = this.ValueToScreenY(value);
+                yield return new TextTick(screenX, screenY, value.ToString(this.ContentStringFormat));
+                value += tickWidth;
             }
         }
         private IEnumerable<TextTick> TextTicks(IEnumerable<double> values)
         {
-            double range = this.Maximum - this.Minimum;
-            return values.Select(x => new TextTick(this.ValueToScreen(x), this.ReservedSpace * 0.5, x.ToString(this.ContentStringFormat, CultureInfo.CurrentUICulture)));
+            return values.Select(value => new TextTick(this.ValueToScreenX(value), this.ValueToScreenY(value), value.ToString(this.ContentStringFormat, CultureInfo.CurrentUICulture)));
         }
 
-        private double ValueToScreen(double value)
+        private double ValueToScreenX(double value)
         {
+            if (this.Placement == TickBarPlacement.Left)
+            {
+                return 0;
+            }
+            if (this.Placement == TickBarPlacement.Right)
+            {
+                return this.ActualWidth;
+            }
             double range = this.Maximum - this.Minimum;
             return ((value - this.Minimum) / range) * this.ActualWidth;
         }
+
+        private double ValueToScreenY(double value)
+        {
+            if (this.Placement == TickBarPlacement.Bottom)
+            {
+                return 0;
+            }
+            if (this.Placement == TickBarPlacement.Top)
+            {
+                return this.ActualHeight;
+            }
+            double range = this.Maximum - this.Minimum;
+            return ((value - this.Minimum) / range) * this.ActualHeight;
+        }
+
         public class TextTick
         {
             public TextTick(double screenX, double screenY, string text)
