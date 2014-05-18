@@ -4,26 +4,26 @@
              xmlns:gaugeBox="clr-namespace:GaugeBox"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         <DataTemplate x:Key="VmTemplate" DataType="{x:Type gaugeBox:Vm}">
+        <DataTemplate x:Key="VmTemplate" DataType="{x:Type gaugeBox:Vm}">
             <GroupBox Header="Control the vm">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Min, StringFormat='Min:{0:F1}'}"/>
-                    <Slider Grid.Row="0" Grid.Column="1"  Value="{Binding Min}"  Minimum="-10" Maximum="10"/>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Min, StringFormat='Min:{0:F1}'}" />
+                    <Slider Grid.Row="0" Grid.Column="1" Value="{Binding Min}" Minimum="-10" Maximum="10" />
 
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Max, StringFormat='Max:{0:F1}'}"/>
-                    <Slider Grid.Row="1" Grid.Column="1" Value="{Binding Max}" Minimum="-10" Maximum="10"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Max, StringFormat='Max:{0:F1}'}" />
+                    <Slider Grid.Row="1" Grid.Column="1" Value="{Binding Max}" Minimum="-10" Maximum="10" />
 
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Value, StringFormat='Value:{0:F1}'}"/>
-                    <Slider Grid.Row="2" Grid.Column="1" Value="{Binding Value}"  Minimum="-200" Maximum="200"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Value, StringFormat='Value:{0:F1}'}" />
+                    <Slider Grid.Row="2" Grid.Column="1" Value="{Binding Value}" Minimum="-200" Maximum="200" />
                 </Grid>
             </GroupBox>
         </DataTemplate>

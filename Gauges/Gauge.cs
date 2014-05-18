@@ -12,31 +12,32 @@
     {
         private const string IndicatorTemplateName = "PART_Indicator";
         private const string TrackTemplateName = "PART_Track";
-        private readonly TranslateTransform _indicatorTransform = new TranslateTransform();
-        private FrameworkElement _indicator;
-        private FrameworkElement _track;
+
+        public static readonly DependencyProperty MarkerProperty = DependencyProperty.Register(
+            "Marker", typeof(Marker), typeof(Gauge), new PropertyMetadata(default(Marker), OnMarkerChanged));
+
+        private readonly TranslateTransform indicatorTransform = new TranslateTransform();
+        private FrameworkElement indicator;
+        private FrameworkElement track;
         static Gauge()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Gauge), new FrameworkPropertyMetadata(typeof(Gauge)));
         }
         public Gauge()
         {
-            Lables = new ObservableCollection<double>();
+            this.Lables = new ObservableCollection<double>();
         }
-
-        public static readonly DependencyProperty MarkerProperty = DependencyProperty.Register(
-            "Marker", typeof (Marker), typeof (Gauge), new PropertyMetadata(default(Marker), OnMarkerChanged));
 
         public Marker Marker
         {
-            get { return (Marker) GetValue(MarkerProperty); }
+            get { return (Marker)GetValue(MarkerProperty); }
             set { SetValue(MarkerProperty, value); }
         }
 
         public ObservableCollection<double> Lables { get; private set; }
 
         /// <summary>
-        /// Called when a template is applied to a <see cref="T:System.Windows.Controls.ProgressBar"/>.
+        ///     Called when a template is applied to a <see cref="T:System.Windows.Controls.ProgressBar" />.
         /// </summary>
         public override void OnApplyTemplate()
         {
@@ -45,24 +46,33 @@
                 return;
             }
             base.OnApplyTemplate();
-            this._indicator = this.GetTemplateChild(IndicatorTemplateName) as FrameworkElement;
-            this._track = this.GetTemplateChild(TrackTemplateName) as FrameworkElement;
-            if (_indicator != null)
+            this.indicator = GetTemplateChild(IndicatorTemplateName) as FrameworkElement;
+            this.track = GetTemplateChild(TrackTemplateName) as FrameworkElement;
+            if (this.indicator != null)
             {
-                _indicator.RenderTransform = _indicatorTransform;
-                _indicator.HorizontalAlignment = HorizontalAlignment.Center;
+                this.indicator.RenderTransform = this.indicatorTransform;
+                this.indicator.HorizontalAlignment = HorizontalAlignment.Center;
             }
         }
 
-        private static void OnMarkerChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        private static void OnMarkerChanged(DependencyObject dependencyObject,
+                                            DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Updates the current position of the <see cref="T:System.Windows.Controls.ProgressBar"/> when the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Minimum"/> property changes.
+        ///     Updates the current position of the <see cref="T:System.Windows.Controls.ProgressBar" /> when the
+        ///     <see cref="P:System.Windows.Controls.Primitives.RangeBase.Minimum" /> property changes.
         /// </summary>
-        /// <param name="oldMinimum">Old value of the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Minimum"/> property.</param><param name="newMinimum">New value of the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Minimum"/> property.</param>
+        /// <param name="oldMinimum">
+        ///     Old value of the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Minimum" />
+        ///     property.
+        /// </param>
+        /// <param name="newMinimum">
+        ///     New value of the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Minimum" />
+        ///     property.
+        /// </param>
         protected override void OnMinimumChanged(double oldMinimum, double newMinimum)
         {
             base.OnMinimumChanged(oldMinimum, newMinimum);
@@ -70,9 +80,17 @@
         }
 
         /// <summary>
-        /// Updates the current position of the <see cref="T:System.Windows.Controls.ProgressBar"/> when the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Maximum"/> property changes.
+        ///     Updates the current position of the <see cref="T:System.Windows.Controls.ProgressBar" /> when the
+        ///     <see cref="P:System.Windows.Controls.Primitives.RangeBase.Maximum" /> property changes.
         /// </summary>
-        /// <param name="oldMaximum">Old value of the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Maximum"/> property.</param><param name="newMaximum">New value of the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Maximum"/> property.</param>
+        /// <param name="oldMaximum">
+        ///     Old value of the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Maximum" />
+        ///     property.
+        /// </param>
+        /// <param name="newMaximum">
+        ///     New value of the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Maximum" />
+        ///     property.
+        /// </param>
         protected override void OnMaximumChanged(double oldMaximum, double newMaximum)
         {
             base.OnMaximumChanged(oldMaximum, newMaximum);
@@ -80,9 +98,11 @@
         }
 
         /// <summary>
-        /// Updates the current position of the <see cref="T:System.Windows.Controls.ProgressBar"/> when the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Value"/> property changes.
+        ///     Updates the current position of the <see cref="T:System.Windows.Controls.ProgressBar" /> when the
+        ///     <see cref="P:System.Windows.Controls.Primitives.RangeBase.Value" /> property changes.
         /// </summary>
-        /// <param name="oldValue">Old value of the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Value"/> property.</param><param name="newValue">New value of the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Value"/> property.</param>
+        /// <param name="oldValue">Old value of the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Value" /> property.</param>
+        /// <param name="newValue">New value of the <see cref="P:System.Windows.Controls.Primitives.RangeBase.Value" /> property.</param>
         protected override void OnValueChanged(double oldValue, double newValue)
         {
             base.OnValueChanged(oldValue, newValue);
@@ -91,17 +111,19 @@
 
         private void SetIndicatorPos()
         {
-            if (this._indicator == null || _track == null)
+            if (this.indicator == null || this.track == null)
+            {
                 return;
-            double x = PosFromValue(this.Value);
-            _indicatorTransform.SetCurrentValue(TranslateTransform.XProperty, _track.ActualWidth * (x - 0.5));
+            }
+            double x = this.PosFromValue(Value);
+            this.indicatorTransform.SetCurrentValue(TranslateTransform.XProperty, this.track.ActualWidth * (x - 0.5));
         }
 
         private double PosFromValue(double value)
         {
-            double minimum = this.Minimum;
-            double maximum = this.Maximum;
-            double num = this.Value;
+            double minimum = Minimum;
+            double maximum = Maximum;
+            double num = Value;
             return (value - minimum) / Math.Abs(maximum - minimum);
         }
     }
