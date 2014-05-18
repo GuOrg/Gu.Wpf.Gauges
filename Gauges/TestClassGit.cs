@@ -8,5 +8,9 @@ namespace Gauges
 {
     class TestClassGit
     {
+        public TestClassGit()
+        {
+
+        }
     }
 }
