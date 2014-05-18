@@ -1,14 +1,11 @@
 ﻿namespace Gauges
 {
     using System.Globalization;
-    using System.Linq;
-    using System.Net.Mime;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
     using System.Windows.Documents;
     using System.Windows.Media;
-    using System.Windows.Shapes;
 
     /// <summary>
     /// http://stackoverflow.com/a/3578214/1069200

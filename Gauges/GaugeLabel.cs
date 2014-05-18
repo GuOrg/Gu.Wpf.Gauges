@@ -11,13 +11,15 @@
             new PropertyMetadata(default(string)));
 
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
-            "Value", 
+            "Value",
             typeof(double),
             typeof(GaugeLabel),
             new PropertyMetadata(default(double)));
 
         public static readonly DependencyProperty TextStringformatProperty = DependencyProperty.Register(
-            "TextStringformat", typeof (string), typeof (GaugeLabel), new PropertyMetadata(default(string)));
+            "TextStringformat", typeof(string), typeof(GaugeLabel), new PropertyMetadata(default(string)));
+
+      
 
         public string Text
         {
@@ -25,9 +27,10 @@
             {
                 return (string)GetValue(TextProperty);
             }
+
             set
             {
-                SetValue(TextProperty, value);
+                this.SetValue(TextProperty, value);
             }
         }
 
