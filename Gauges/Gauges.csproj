@@ -56,8 +56,9 @@
     <Compile Include="BlockBar.cs" />
     <Compile Include="Marker.cs" />
     <Compile Include="Gauge.cs" />
-    <Compile Include="GaugeIndicatorConverter.cs" />
+    <Compile Include="MakerDataTemplateSelector.cs" />
     <Compile Include="GaugeLabel.cs" />
+    <Compile Include="StyleCopRulesTest.cs" />
     <Compile Include="TextTickBar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
