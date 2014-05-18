@@ -111,7 +111,8 @@
                                                           RelativeSource={RelativeSource TemplatedParent},
                                                           StringFormat='{}{0:F0}'}" />
 
-                                <ContentPresenter ContentTemplate="{Binding Marker, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GaugeShapeConverter}}" />
+                                <ContentPresenter
+                                    ContentTemplate="{Binding Marker, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GaugeShapeConverter}}" />
                                 <!--
                                     <Rectangle Width="3"
                                     Height="10"
@@ -126,7 +127,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 
 
 </ResourceDictionary>
