@@ -98,7 +98,7 @@
                                           RelativeSource={RelativeSource TemplatedParent},
                                           StringFormat='{}{0:F0}'}" />
 
-                <ContentPresenter ContentTemplateSelector="{StaticResource MarkerDataTemplateSelector}" />
+                <ContentPresenter Content="{TemplateBinding Marker}" ContentTemplateSelector="{StaticResource MarkerDataTemplateSelector}" />
                 <!--
                   <Rectangle Width="3"
                   Height="10"
