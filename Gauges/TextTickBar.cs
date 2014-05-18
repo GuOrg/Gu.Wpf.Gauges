@@ -125,7 +125,8 @@
                 {
                     x += this.ActualWidth / (num / this.TickFrequency);
                 }
-                dc.DrawText(formattedText, new Point(x - formattedText.Width / 2, y));
+
+                dc.DrawText(formattedText, new Point(x - (formattedText.Width / 2), y));
             }
         }
     }

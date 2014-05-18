@@ -10,20 +10,20 @@
     [TemplatePart(Name = TrackTemplateName, Type = typeof(FrameworkElement))]
     public class Gauge : RangeBase
     {
-        private const string IndicatorTemplateName = "PART_Indicator";
-        private const string TrackTemplateName = "PART_Track";
-
         public static readonly DependencyProperty MarkerProperty = DependencyProperty.Register(
             "Marker", typeof(Marker), typeof(Gauge), new PropertyMetadata(default(Marker), OnMarkerChanged));
-
+        
+        private const string IndicatorTemplateName = "PART_Indicator";
+        private const string TrackTemplateName = "PART_Track";
         private readonly TranslateTransform indicatorTransform = new TranslateTransform();
         private FrameworkElement indicator;
         private FrameworkElement track;
+
         static Gauge()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Gauge), new FrameworkPropertyMetadata(typeof(Gauge)));
         }
-        
+
         public Gauge()
         {
             this.Lables = new ObservableCollection<double>();
@@ -31,8 +31,8 @@
 
         public Marker Marker
         {
-            get { return (Marker)GetValue(MarkerProperty); }
-            set { SetValue(MarkerProperty, value); }
+            get { return (Marker)this.GetValue(MarkerProperty); }
+            set { this.SetValue(MarkerProperty, value); }
         }
 
         public ObservableCollection<double> Lables { get; private set; }
@@ -42,13 +42,14 @@
         /// </summary>
         public override void OnApplyTemplate()
         {
-            if (Template == null)
+            if (this.Template == null)
             {
                 return;
             }
+
             base.OnApplyTemplate();
-            this.indicator = GetTemplateChild(IndicatorTemplateName) as FrameworkElement;
-            this.track = GetTemplateChild(TrackTemplateName) as FrameworkElement;
+            this.indicator = this.GetTemplateChild(IndicatorTemplateName) as FrameworkElement;
+            this.track = this.GetTemplateChild(TrackTemplateName) as FrameworkElement;
             if (this.indicator != null)
             {
                 this.indicator.RenderTransform = this.indicatorTransform;
@@ -104,8 +105,7 @@
             this.SetIndicatorPos();
         }
 
-        private static void OnMarkerChanged(DependencyObject dependencyObject,
-                                            DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        private static void OnMarkerChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             throw new NotImplementedException();
         }
@@ -116,15 +116,16 @@
             {
                 return;
             }
-            double x = this.PosFromValue(Value);
+
+            double x = this.PosFromValue(this.Value);
             this.indicatorTransform.SetCurrentValue(TranslateTransform.XProperty, this.track.ActualWidth * (x - 0.5));
         }
 
         private double PosFromValue(double value)
         {
-            double minimum = Minimum;
-            double maximum = Maximum;
-            double num = Value;
+            double minimum = this.Minimum;
+            double maximum = this.Maximum;
+            double num = this.Value;
             return (value - minimum) / Math.Abs(maximum - minimum);
         }
     }

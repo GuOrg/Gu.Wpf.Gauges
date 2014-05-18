@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlockBar.cs" />
+    <Compile Include="GaugeIndicatorConverter.cs" />
     <Compile Include="Marker.cs" />
     <Compile Include="Gauge.cs" />
     <Compile Include="MakerDataTemplateSelector.cs" />

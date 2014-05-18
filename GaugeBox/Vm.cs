@@ -21,13 +21,18 @@
 
         public double Value
         {
-            get { return this.value; }
+            get
+            {
+                return this.value;
+            }
+
             set
             {
                 if (value.Equals(this.value))
                 {
                     return;
                 }
+
                 this.value = value;
                 this.OnPropertyChanged();
             }
@@ -35,7 +40,11 @@
 
         public double Min
         {
-            get { return this.min; }
+            get
+            {
+                return this.min;
+            }
+
             set
             {
                 if (value.Equals(this.min))
@@ -50,7 +59,11 @@
 
         public double Max
         {
-            get { return this.max; }
+            get
+            {
+                return this.max;
+            }
+
             set
             {
                 if (value.Equals(this.max))

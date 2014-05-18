@@ -1,26 +1,24 @@
 ﻿namespace Gauges
 {
+    using System;
+    using System.Globalization;
     using System.Windows;
-    using System.Windows.Controls;
+    using System.Windows.Data;
 
-    public class MakerDataTemplateSelector : DataTemplateSelector
+    public class GaugeIndicatorConverter : IValueConverter
     {
         public DataTemplate Circle { get; set; }
-        
+
         public DataTemplate Rectangle { get; set; }
-        
+
         public DataTemplate Triangle { get; set; }
-        
+
         public DataTemplate Line { get; set; }
 
-        public override DataTemplate SelectTemplate(object item, DependencyObject container)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (item == null)
-            {
-                return null;
-            }
+            var marker = (Marker)value;
 
-            var marker = (Marker)item;
             switch (marker)
             {
                 case Marker.Circle:
@@ -36,6 +34,11 @@
             }
 
             return null;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }
