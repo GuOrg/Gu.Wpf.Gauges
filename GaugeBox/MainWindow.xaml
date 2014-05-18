@@ -18,7 +18,7 @@
         <ContentPresenter Grid.Row="1" Content="{Binding}" ContentTemplate="{StaticResource VmTemplate}"/>
         <StackPanel Grid.Row="2">
             <gauges:BlockBar  Height="20" Width="100" Divisions="4" Gap="5" Fill="Blue"/>
-            <Grid Background="Bisque">
+            <Grid Background="Bisque" Margin="20,0,20,0">
                 <Grid.Resources>
                     <Style x:Key="TickStyle" TargetType="{x:Type TickBar}">
                         <Setter Property="Placement" Value="Top"/>

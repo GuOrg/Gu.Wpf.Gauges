@@ -46,7 +46,6 @@
             }
         }
 
-        [Bindable(true)]
         public Brush Fill
         {
             get
@@ -59,7 +58,6 @@
             }
         }
 
-        [Bindable(true)]
         public Brush Stroke
         {
             get
@@ -72,7 +70,6 @@
             }
         }
 
-        [Bindable(true)]
         public double StrokeThickness
         {
             get

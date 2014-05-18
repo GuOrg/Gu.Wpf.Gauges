@@ -56,7 +56,7 @@
     <Compile Include="BlockBar.cs" />
     <Compile Include="Gauge.cs" />
     <Compile Include="GaugeLabel.cs" />
-    <Compile Include="LabelBar.cs" />
+    <Compile Include="TextTickBar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
