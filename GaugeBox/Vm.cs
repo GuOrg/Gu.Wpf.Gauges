@@ -17,6 +17,8 @@
             this.Value = 0.3;
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public double Value
         {
             get { return this.value; }
@@ -40,6 +42,7 @@
                 {
                     return;
                 }
+
                 this.min = value;
                 this.OnPropertyChanged();
             }
@@ -54,11 +57,11 @@
                 {
                     return;
                 }
+
                 this.max = value;
                 this.OnPropertyChanged();
             }
         }
-        public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

@@ -10,7 +10,7 @@
         public MainWindow()
         {
             this.InitializeComponent();
-            DataContext = new Vm();
+            this.DataContext = new Vm();
         }
     }
 }

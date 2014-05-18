@@ -23,6 +23,7 @@
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(Gauge), new FrameworkPropertyMetadata(typeof(Gauge)));
         }
+        
         public Gauge()
         {
             this.Lables = new ObservableCollection<double>();
@@ -53,12 +54,6 @@
                 this.indicator.RenderTransform = this.indicatorTransform;
                 this.indicator.HorizontalAlignment = HorizontalAlignment.Center;
             }
-        }
-
-        private static void OnMarkerChanged(DependencyObject dependencyObject,
-                                            DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -107,6 +102,12 @@
         {
             base.OnValueChanged(oldValue, newValue);
             this.SetIndicatorPos();
+        }
+
+        private static void OnMarkerChanged(DependencyObject dependencyObject,
+                                            DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            throw new NotImplementedException();
         }
 
         private void SetIndicatorPos()

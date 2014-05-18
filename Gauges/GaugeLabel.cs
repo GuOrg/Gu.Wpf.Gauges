@@ -21,20 +21,20 @@
 
         public string Text
         {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
+            get { return (string)this.GetValue(TextProperty); }
+            set { this.SetValue(TextProperty, value); }
         }
 
         public double Value
         {
-            get { return (double)GetValue(ValueProperty); }
-            set { SetValue(ValueProperty, value); }
+            get { return (double)this.GetValue(ValueProperty); }
+            set { this.SetValue(ValueProperty, value); }
         }
 
         public string TextStringformat
         {
-            get { return (string)GetValue(TextStringformatProperty); }
-            set { SetValue(TextStringformatProperty, value); }
+            get { return (string)this.GetValue(TextStringformatProperty); }
+            set { this.SetValue(TextStringformatProperty, value); }
         }
     }
 }

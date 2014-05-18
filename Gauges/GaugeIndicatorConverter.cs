@@ -8,8 +8,11 @@
     public class GaugeIndicatorConverter : IValueConverter
     {
         public DataTemplate Circle { get; set; }
+        
         public DataTemplate Rectangle { get; set; }
+        
         public DataTemplate Triangle { get; set; }
+        
         public DataTemplate Line { get; set; }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

@@ -15,32 +15,32 @@
         public static readonly DependencyProperty ForegroundProperty = Control.ForegroundProperty.AddOwner(
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
-                null, 
+                null,
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty FontSizeProperty = Control.FontSizeProperty.AddOwner(
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
-                SystemFonts.MessageFontSize, 
+                SystemFonts.MessageFontSize,
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty ContentStringFormatProperty = ContentControl
             .ContentStringFormatProperty.AddOwner(
                 typeof(TextTickBar),
                 new FrameworkPropertyMetadata(
-                    "F0", 
+                    "F0",
                     FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty FontFamilyProperty = Control.FontFamilyProperty.AddOwner(
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
-                SystemFonts.MessageFontFamily, 
+                SystemFonts.MessageFontFamily,
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty FontStyleProperty = Control.FontStyleProperty.AddOwner(
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
-                SystemFonts.MessageFontStyle, 
+                SystemFonts.MessageFontStyle,
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty FontWeightProperty = Control.FontWeightProperty.AddOwner(
@@ -57,44 +57,44 @@
 
         public Brush Foreground
         {
-            get { return (Brush)GetValue(ForegroundProperty); }
-            set { SetValue(ForegroundProperty, value); }
+            get { return (Brush)this.GetValue(ForegroundProperty); }
+            set { this.SetValue(ForegroundProperty, value); }
         }
 
         public double FontSize
         {
-            get { return (double)GetValue(FontSizeProperty); }
-            set { SetValue(FontSizeProperty, value); }
+            get { return (double)this.GetValue(FontSizeProperty); }
+            set { this.SetValue(FontSizeProperty, value); }
         }
 
         public string ContentStringFormat
         {
-            get { return (string)GetValue(ContentStringFormatProperty); }
-            set { SetValue(ContentStringFormatProperty, value); }
+            get { return (string)this.GetValue(ContentStringFormatProperty); }
+            set { this.SetValue(ContentStringFormatProperty, value); }
         }
 
         public FontFamily FontFamily
         {
-            get { return (FontFamily)GetValue(FontFamilyProperty); }
-            set { SetValue(FontFamilyProperty, value); }
+            get { return (FontFamily)this.GetValue(FontFamilyProperty); }
+            set { this.SetValue(FontFamilyProperty, value); }
         }
 
         public FontStyle FontStyle
         {
-            get { return (FontStyle)GetValue(FontStyleProperty); }
-            set { SetValue(FontStyleProperty, value); }
+            get { return (FontStyle)this.GetValue(FontStyleProperty); }
+            set { this.SetValue(FontStyleProperty, value); }
         }
 
         public FontWeight FontWeight
         {
-            get { return (FontWeight)GetValue(FontWeightProperty); }
-            set { SetValue(FontWeightProperty, value); }
+            get { return (FontWeight)this.GetValue(FontWeightProperty); }
+            set { this.SetValue(FontWeightProperty, value); }
         }
 
         public FontStretch FontStretch
         {
-            get { return (FontStretch)GetValue(FontStretchProperty); }
-            set { SetValue(FontStretchProperty, value); }
+            get { return (FontStretch)this.GetValue(FontStretchProperty); }
+            set { this.SetValue(FontStretchProperty, value); }
         }
 
         protected override void OnRender(DrawingContext dc)
@@ -103,7 +103,7 @@
             double y = this.ReservedSpace * 0.5;
             FormattedText formattedText = null;
             double x = 0;
-            for (double i = 0; i <= num; i += TickFrequency)
+            for (double i = 0; i <= num; i += this.TickFrequency)
             {
                 formattedText = new FormattedText(
                     i.ToString(this.ContentStringFormat, CultureInfo.CurrentUICulture),
@@ -111,7 +111,7 @@
                     FlowDirection.LeftToRight,
                     new Typeface(
                         this.FontFamily,
-                        this.FontStyle, 
+                        this.FontStyle,
                         this.FontWeight,
                         this.FontStretch),
                     this.FontSize,

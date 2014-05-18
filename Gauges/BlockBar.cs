@@ -32,32 +32,32 @@
 
         public double Divisions
         {
-            get { return (double)GetValue(DivisionsProperty); }
-            set { SetValue(DivisionsProperty, value); }
+            get { return (double)this.GetValue(DivisionsProperty); }
+            set { this.SetValue(DivisionsProperty, value); }
         }
 
         public Brush Fill
         {
-            get { return (Brush)GetValue(FillProperty); }
-            set { SetValue(FillProperty, value); }
+            get { return (Brush)this.GetValue(FillProperty); }
+            set { this.SetValue(FillProperty, value); }
         }
 
         public Brush Stroke
         {
-            get { return (Brush)GetValue(StrokeProperty); }
-            set { SetValue(StrokeProperty, value); }
+            get { return (Brush)this.GetValue(StrokeProperty); }
+            set { this.SetValue(StrokeProperty, value); }
         }
 
         public double StrokeThickness
         {
-            get { return (double)GetValue(StrokeThicknessProperty); }
-            set { SetValue(StrokeThicknessProperty, value); }
+            get { return (double)this.GetValue(StrokeThicknessProperty); }
+            set { this.SetValue(StrokeThicknessProperty, value); }
         }
 
         public double Gap
         {
-            get { return (double)GetValue(GapProperty); }
-            set { SetValue(GapProperty, value); }
+            get { return (double)this.GetValue(GapProperty); }
+            set { this.SetValue(GapProperty, value); }
         }
 
         protected override void OnRender(DrawingContext dc)
@@ -65,10 +65,10 @@
             double totalGap = this.ActualWidth * (this.Divisions - 1) * this.Gap / 100.0;
             double width = (this.ActualWidth - totalGap) / this.Divisions;
             double x = 0;
-            while (x < ActualWidth)
+            while (x < this.ActualWidth)
             {
                 dc.DrawRectangle(
-                    this.Fill, 
+                    this.Fill,
                     new Pen(this.Stroke, this.StrokeThickness),
                     new Rect(x, 0, width, this.ActualHeight));
                 x += width + this.Gap;
