@@ -104,16 +104,13 @@
             set { this.SetValue(FontStretchProperty, value); }
         }
 
-
-
         protected override void OnRender(DrawingContext dc)
         {
             IEnumerable<TextTick> textTicks = TextTicks(this.TickFrequency).Concat(this.TextTicks(this.Ticks))
                                                                            .ToArray();
-            FormattedText formattedText = null;
             foreach (var textTick in textTicks)
             {
-                formattedText = new FormattedText(
+                var formattedText = new FormattedText(
                     textTick.Text,
                     CultureInfo.CurrentUICulture,
                     FlowDirection.LeftToRight,
@@ -136,11 +133,11 @@
             }
             double range = this.Maximum - this.Minimum;
             double tickWidth = range * tickFrequency / 100;
-            var x = 0.0;
+            var x = this.Minimum;
             double screenY = this.ReservedSpace * 0.5;
             while (x < (Maximum + tickWidth / 2))
             {
-                double screenX = (x / range) * this.ActualWidth;
+                double screenX = this.ValueToScreen(x);
                 yield return new TextTick(screenX, screenY, x.ToString(this.ContentStringFormat));
                 x += tickWidth;
             }
@@ -148,7 +145,13 @@
         private IEnumerable<TextTick> TextTicks(IEnumerable<double> values)
         {
             double range = this.Maximum - this.Minimum;
-            return values.Select(x => new TextTick((x / range) * this.ActualWidth, this.ReservedSpace * 0.5, x.ToString(this.ContentStringFormat, CultureInfo.CurrentUICulture)));
+            return values.Select(x => new TextTick(this.ValueToScreen(x), this.ReservedSpace * 0.5, x.ToString(this.ContentStringFormat, CultureInfo.CurrentUICulture)));
+        }
+
+        private double ValueToScreen(double value)
+        {
+            double range = this.Maximum - this.Minimum;
+            return ((value - this.Minimum) / range) * this.ActualWidth;
         }
         public class TextTick
         {
@@ -158,9 +161,17 @@
                 this.ScreenY = screenY;
                 this.Text = text;
             }
+
             public double ScreenX { get; private set; }
+
             public double ScreenY { get; private set; }
+
             public string Text { get; private set; }
+
+            public override string ToString()
+            {
+                return string.Format("ScreenX: {0}, ScreenY: {1}, Text: {2}", this.ScreenX, this.ScreenY, this.Text);
+            }
         }
     }
 }
