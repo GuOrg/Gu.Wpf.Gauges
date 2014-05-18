@@ -1,6 +1,8 @@
 ﻿namespace Gauges
 {
+    using System.Collections.Generic;
     using System.Globalization;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
@@ -55,6 +57,11 @@
                 TextElement.FontStretchProperty.DefaultMetadata.DefaultValue,
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
+        static TextTickBar()
+        {
+            TickBar.TickFrequencyProperty.OverrideMetadata(typeof(TextTickBar), new FrameworkPropertyMetadata(-1.0, FrameworkPropertyMetadataOptions.AffectsRender));
+        }
+
         public Brush Foreground
         {
             get { return (Brush)this.GetValue(ForegroundProperty); }
@@ -97,16 +104,17 @@
             set { this.SetValue(FontStretchProperty, value); }
         }
 
+
+
         protected override void OnRender(DrawingContext dc)
         {
-            double num = this.Maximum - this.Minimum;
-            double y = this.ReservedSpace * 0.5;
+            IEnumerable<TextTick> textTicks = TextTicks(this.TickFrequency).Concat(this.TextTicks(this.Ticks))
+                                                                           .ToArray();
             FormattedText formattedText = null;
-            double x = 0;
-            for (double i = 0; i <= num; i += this.TickFrequency)
+            foreach (var textTick in textTicks)
             {
                 formattedText = new FormattedText(
-                    i.ToString(this.ContentStringFormat, CultureInfo.CurrentUICulture),
+                    textTick.Text,
                     CultureInfo.CurrentUICulture,
                     FlowDirection.LeftToRight,
                     new Typeface(
@@ -116,18 +124,43 @@
                         this.FontStretch),
                     this.FontSize,
                     this.Foreground);
-
-                if (this.Minimum == i)
-                {
-                    x = 0;
-                }
-                else
-                {
-                    x += this.ActualWidth / (num / this.TickFrequency);
-                }
-
-                dc.DrawText(formattedText, new Point(x - (formattedText.Width / 2), y));
+                dc.DrawText(formattedText, new Point(textTick.ScreenX - formattedText.Width / 2, textTick.ScreenY));
             }
+        }
+
+        private IEnumerable<TextTick> TextTicks(double tickFrequency)
+        {
+            if (tickFrequency < 0)
+            {
+                yield break;
+            }
+            double range = this.Maximum - this.Minimum;
+            double tickWidth = range * tickFrequency / 100;
+            var x = 0.0;
+            double screenY = this.ReservedSpace * 0.5;
+            while (x < (Maximum + tickWidth / 2))
+            {
+                double screenX = (x / range) * this.ActualWidth;
+                yield return new TextTick(screenX, screenY, x.ToString(this.ContentStringFormat));
+                x += tickWidth;
+            }
+        }
+        private IEnumerable<TextTick> TextTicks(IEnumerable<double> values)
+        {
+            double range = this.Maximum - this.Minimum;
+            return values.Select(x => new TextTick((x / range) * this.ActualWidth, this.ReservedSpace * 0.5, x.ToString(this.ContentStringFormat, CultureInfo.CurrentUICulture)));
+        }
+        public class TextTick
+        {
+            public TextTick(double screenX, double screenY, string text)
+            {
+                this.ScreenX = screenX;
+                this.ScreenY = screenY;
+                this.Text = text;
+            }
+            public double ScreenX { get; private set; }
+            public double ScreenY { get; private set; }
+            public string Text { get; private set; }
         }
     }
 }

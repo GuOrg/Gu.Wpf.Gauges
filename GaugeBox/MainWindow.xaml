@@ -58,7 +58,7 @@
                                 Minimum="0"
                                 TickFrequency="25" />
             <gauges:TextTickBar Height="50" Minimum="0" Maximum="100" Fill="Green" FontFamily="Arial"
-                                Ticks="0,20,50,70,100" />
+                                Ticks="20,70" TickFrequency="50"/>
 
         </StackPanel>
     </Grid>
