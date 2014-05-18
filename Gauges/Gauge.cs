@@ -24,6 +24,15 @@
             Lables = new ObservableCollection<double>();
         }
 
+        public static readonly DependencyProperty MarkerProperty = DependencyProperty.Register(
+            "Marker", typeof (Marker), typeof (Gauge), new PropertyMetadata(default(Marker), OnMarkerChanged));
+
+        public Marker Marker
+        {
+            get { return (Marker) GetValue(MarkerProperty); }
+            set { SetValue(MarkerProperty, value); }
+        }
+
         public ObservableCollection<double> Lables { get; private set; }
 
         /// <summary>
@@ -43,6 +52,11 @@
                 _indicator.RenderTransform = _indicatorTransform;
                 _indicator.HorizontalAlignment = HorizontalAlignment.Center;
             }
+        }
+
+        private static void OnMarkerChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
