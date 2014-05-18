@@ -97,7 +97,11 @@
                     i.ToString(ContentStringFormat, CultureInfo.CurrentUICulture),
                     CultureInfo.CurrentUICulture,
                     FlowDirection.LeftToRight,
+<<<<<<< Updated upstream
+                    new Typeface(FontFamily, FontStyle, FontWeight, FontStretch, SystemFonts.MessageFontFamily),
+=======
                     new Typeface(new FontFamily("Verdana"), FontStyles.Oblique, FontWeights.ExtraLight, FontStretches.Normal),
+>>>>>>> Stashed changes
                     FontSize,
                     Foreground);
 
