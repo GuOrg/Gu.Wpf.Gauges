@@ -10,9 +10,11 @@
 
     public class BlockBar : FrameworkElement
     {
-        public static readonly DependencyProperty TickFrequencyProperty = TickBar.TickFrequencyProperty.AddOwner(
-            typeof(BlockBar),
-            new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsRender));
+        public static readonly DependencyProperty DivisionsProperty = DependencyProperty.Register(
+            "Divisions", 
+            typeof (double), 
+            typeof (BlockBar),
+           new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty FillProperty = Shape.FillProperty.AddOwner(
             typeof(BlockBar),
@@ -32,16 +34,15 @@
             typeof(BlockBar),
             new FrameworkPropertyMetadata(default(double), FrameworkPropertyMetadataOptions.AffectsRender));
 
-        [Bindable(true)]
-        public double TickFrequency
+        public double Divisions
         {
             get
             {
-                return (double)this.GetValue(TickFrequencyProperty);
+                return (double)GetValue(DivisionsProperty);
             }
             set
             {
-                this.SetValue(TickFrequencyProperty, value);
+                SetValue(DivisionsProperty, value);
             }
         }
 
@@ -98,9 +99,8 @@
         
         protected override void OnRender(System.Windows.Media.DrawingContext dc)
         {
-            var ticks = (100.0 / TickFrequency);
-            var totalGap = ActualWidth * (ticks - 1) * Gap / 100.0;
-            var width = (ActualWidth - totalGap) / ticks;
+            var totalGap = ActualWidth * (Divisions - 1) * Gap / 100.0;
+            var width = (ActualWidth - totalGap) / Divisions;
             double x = 0;
             var linearGradientBrush = Fill as LinearGradientBrush;
 

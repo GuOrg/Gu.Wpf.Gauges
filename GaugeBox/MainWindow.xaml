@@ -16,7 +16,25 @@
         <gauges:Gauge Grid.Row="0" Value="{Binding Value}" Minimum="{Binding Min}" Maximum="{Binding Max}">
         </gauges:Gauge>
         <ContentPresenter Grid.Row="1" Content="{Binding}" ContentTemplate="{StaticResource VmTemplate}"/>
-        <gauges:BlockBar Grid.Row="2" Height="20" Width="100" TickFrequency="25" Gap="5" Fill="Blue"/>
+        <StackPanel Grid.Row="2">
+            <gauges:BlockBar  Height="20" Width="100" Divisions="4" Gap="5" Fill="Blue"/>
+            <Grid Background="Bisque">
+                <Grid.Resources>
+                    <Style x:Key="TickStyle" TargetType="{x:Type TickBar}">
+                        <Setter Property="Placement" Value="Top"/>
+                        <Setter Property="VerticalAlignment" Value="Bottom"/>
+                        <Setter Property="Minimum" Value="0"/>
+                        <Setter Property="Maximum" Value="100"/>
+                        <Setter Property="Fill" Value="Blue"/>
+                    </Style>
+                </Grid.Resources>
+                <gauges:TextTickBar Height="50" TickFrequency="25" Style="{StaticResource TickStyle}"/>
+                <TickBar Height="20" TickFrequency="5" Style="{StaticResource TickStyle}"/>
+                <TickBar Height="40" TickFrequency="25" Style="{StaticResource TickStyle}"/>
+            </Grid>
+            <gauges:TextTickBar Height="50" Minimum="0" Maximum="100" Fill="Black" TickFrequency="25"/>
+        </StackPanel>
+
 
     </Grid>
 </Window>
