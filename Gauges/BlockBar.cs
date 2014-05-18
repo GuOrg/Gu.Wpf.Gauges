@@ -1,19 +1,15 @@
 ﻿namespace Gauges
 {
-    using System.ComponentModel;
-    using System.Security.Cryptography.X509Certificates;
     using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Controls.Primitives;
     using System.Windows.Media;
     using System.Windows.Shapes;
 
     public class BlockBar : FrameworkElement
     {
         public static readonly DependencyProperty DivisionsProperty = DependencyProperty.Register(
-            "Divisions", 
-            typeof (double), 
-            typeof (BlockBar),
+            "Divisions",
+            typeof(double),
+            typeof(BlockBar),
            new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty FillProperty = Shape.FillProperty.AddOwner(
@@ -21,11 +17,11 @@
             new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty StrokeProperty = Shape.StrokeProperty.AddOwner(
-            typeof (BlockBar),
+            typeof(BlockBar),
             new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty StrokeThicknessProperty = Shape.StrokeThicknessProperty.AddOwner(
-            typeof (BlockBar),
+            typeof(BlockBar),
             new FrameworkPropertyMetadata(default(double), FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty GapProperty = DependencyProperty.Register(
@@ -81,7 +77,7 @@
                 this.SetValue(StrokeThicknessProperty, value);
             }
         }
-       
+
         public double Gap
         {
             get
@@ -93,7 +89,7 @@
                 SetValue(GapProperty, value);
             }
         }
-        
+
         protected override void OnRender(System.Windows.Media.DrawingContext dc)
         {
             var totalGap = ActualWidth * (Divisions - 1) * Gap / 100.0;
