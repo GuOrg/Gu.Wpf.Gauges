@@ -33,6 +33,7 @@
                 <TickBar Height="40" TickFrequency="25" Style="{StaticResource TickStyle}"/>
             </Grid>
             <gauges:TextTickBar Height="50" Minimum="0" Maximum="100" Fill="Black" TickFrequency="25"/>
+            <gauges:TextTickBar Height="50" Minimum="0" Maximum="100" Fill="Green" FontFamily="Arial" Ticks="0,20,50,70,100"/>
         </StackPanel>
     </Grid>
 </Window>
