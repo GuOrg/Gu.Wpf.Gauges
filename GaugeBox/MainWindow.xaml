@@ -28,13 +28,11 @@
                         <Setter Property="Fill" Value="Blue"/>
                     </Style>
                 </Grid.Resources>
-                <gauges:TextTickBar Height="50" TickFrequency="25" Style="{StaticResource TickStyle}"/>
+                <gauges:TextTickBar Height="50" TickFrequency="25" Style="{StaticResource TickStyle}" FontSize="12" ContentStringFormat="F1"/>
                 <TickBar Height="20" TickFrequency="5" Style="{StaticResource TickStyle}"/>
                 <TickBar Height="40" TickFrequency="25" Style="{StaticResource TickStyle}"/>
             </Grid>
             <gauges:TextTickBar Height="50" Minimum="0" Maximum="100" Fill="Black" TickFrequency="25"/>
         </StackPanel>
-
-
     </Grid>
 </Window>

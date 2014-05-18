@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Gauges
 {
+    using System.Windows.Controls;
+
     class TestClassGit
     {
         public TestClassGit()

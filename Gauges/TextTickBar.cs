@@ -1,10 +1,12 @@
 ﻿namespace Gauges
 {
     using System.Globalization;
+    using System.Linq;
     using System.Net.Mime;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
+    using System.Windows.Documents;
     using System.Windows.Media;
     using System.Windows.Shapes;
 
@@ -17,16 +19,35 @@
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender));
 
+        public static readonly DependencyProperty FontSizeProperty = Control.FontSizeProperty.AddOwner(
+            typeof(TextTickBar),
+            new FrameworkPropertyMetadata(12.0, FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static readonly DependencyProperty ContentStringFormatProperty = ContentControl.ContentStringFormatProperty.AddOwner(
+            typeof(TextTickBar),
+            new FrameworkPropertyMetadata("F0", FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static readonly DependencyProperty FontFamilyProperty = Control.FontFamilyProperty.AddOwner(
+            typeof(TextTickBar),
+            new FrameworkPropertyMetadata(SystemFonts.MessageFontFamily, FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static readonly DependencyProperty FontStyleProperty = Control.FontStyleProperty.AddOwner(
+            typeof(TextTickBar),
+            new FrameworkPropertyMetadata(SystemFonts.MessageFontStyle, FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static readonly DependencyProperty FontWeightProperty = Control.FontWeightProperty.AddOwner(
+            typeof(TextTickBar),
+            new FrameworkPropertyMetadata(SystemFonts.MessageFontWeight, FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static readonly DependencyProperty FontStretchProperty = Control.FontStretchProperty.AddOwner(
+            typeof(TextTickBar),
+            new FrameworkPropertyMetadata(TextElement.FontStretchProperty.DefaultMetadata.DefaultValue, FrameworkPropertyMetadataOptions.AffectsRender));
+
         public Brush Foreground
         {
             get { return (Brush)this.GetValue(ForegroundProperty); }
             set { this.SetValue(ForegroundProperty, value); }
         }
-
-
-        public static readonly DependencyProperty FontSizeProperty = Control.FontSizeProperty.AddOwner(
-            typeof(TextTickBar),
-            new FrameworkPropertyMetadata(12.0, FrameworkPropertyMetadataOptions.AffectsRender));
 
         public double FontSize
         {
@@ -34,6 +55,35 @@
             set { this.SetValue(FontSizeProperty, value); }
         }
 
+        public string ContentStringFormat
+        {
+            get { return (string)this.GetValue(ContentStringFormatProperty); }
+            set { this.SetValue(ContentStringFormatProperty, value); }
+        }
+
+        public FontFamily FontFamily
+        {
+            get { return (FontFamily)this.GetValue(FontFamilyProperty); }
+            set { this.SetValue(FontFamilyProperty, value); }
+        }
+
+        public FontStyle FontStyle
+        {
+            get { return (FontStyle)this.GetValue(FontStyleProperty); }
+            set { this.SetValue(FontStyleProperty, value); }
+        }
+
+        public FontWeight FontWeight
+        {
+            get { return (FontWeight)this.GetValue(FontWeightProperty); }
+            set { this.SetValue(FontWeightProperty, value); }
+        }
+
+        public FontStretch FontStretch
+        {
+            get { return (FontStretch)this.GetValue(FontStretchProperty); }
+            set { this.SetValue(FontStretchProperty, value); }
+        }
 
         protected override void OnRender(System.Windows.Media.DrawingContext dc)
         {
@@ -44,10 +94,10 @@
             for (double i = 0; i <= num; i += this.TickFrequency)
             {
                 formattedText = new FormattedText(
-                    i.ToString(CultureInfo.CurrentUICulture),
+                    i.ToString(ContentStringFormat, CultureInfo.CurrentUICulture),
                     CultureInfo.CurrentUICulture,
                     FlowDirection.LeftToRight,
-                    new Typeface("Verdana"),
+                    new Typeface(FontFamily, FontStyle, FontWeight, FontStretch, SystemFonts.MessageFontFamily),
                     FontSize,
                     Foreground);
 
