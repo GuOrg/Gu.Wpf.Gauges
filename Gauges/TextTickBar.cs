@@ -14,12 +14,6 @@
     /// </summary>
     public class TextTickBar : TickBar
     {
-        public static readonly DependencyProperty ForegroundProperty = Control.ForegroundProperty.AddOwner(
-            typeof(TextTickBar),
-            new FrameworkPropertyMetadata(
-                null,
-                FrameworkPropertyMetadataOptions.AffectsRender));
-
         public static readonly DependencyProperty FontSizeProperty = Control.FontSizeProperty.AddOwner(
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
@@ -60,12 +54,6 @@
         static TextTickBar()
         {
             TickBar.TickFrequencyProperty.OverrideMetadata(typeof(TextTickBar), new FrameworkPropertyMetadata(-1.0, FrameworkPropertyMetadataOptions.AffectsRender));
-        }
-
-        public Brush Foreground
-        {
-            get { return (Brush)this.GetValue(ForegroundProperty); }
-            set { this.SetValue(ForegroundProperty, value); }
         }
 
         public double FontSize
@@ -120,7 +108,7 @@
                         this.FontWeight,
                         this.FontStretch),
                     this.FontSize,
-                    this.Foreground);
+                    this.Fill);
                 dc.DrawText(formattedText, new Point(textTick.ScreenX - formattedText.Width / 2, textTick.ScreenY));
             }
         }
