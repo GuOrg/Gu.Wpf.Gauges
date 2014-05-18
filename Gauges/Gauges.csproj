@@ -59,7 +59,6 @@
     <Compile Include="Gauge.cs" />
     <Compile Include="MakerDataTemplateSelector.cs" />
     <Compile Include="GaugeLabel.cs" />
-    <Compile Include="StyleCopRulesTest.cs" />
     <Compile Include="TextTickBar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
