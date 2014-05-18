@@ -5,7 +5,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <DataTemplate x:Key="VmTemplate" DataType="{x:Type gaugeBox:Vm}">
-            <GroupBox Header="Control the vm">
+            <Expander Header="Control the vm">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition />
@@ -25,7 +25,7 @@
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Value, StringFormat='Value:{0:F1}'}" />
                     <Slider Grid.Row="2" Grid.Column="1" Value="{Binding Value}" Minimum="-200" Maximum="200" />
                 </Grid>
-            </GroupBox>
+            </Expander>
         </DataTemplate>
     </Application.Resources>
 </Application>
