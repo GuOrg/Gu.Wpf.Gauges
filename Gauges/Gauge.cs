@@ -68,38 +68,20 @@
 
         public bool ShowLabels
         {
-            get
-            {
-                return (bool)GetValue(ShowLabelsProperty);
-            }
-            set
-            {
-                SetValue(ShowLabelsProperty, value);
-            }
+            get { return (bool)GetValue(ShowLabelsProperty); }
+            set { SetValue(ShowLabelsProperty, value); }
         }
 
         public bool ShowTrack
         {
-            get
-            {
-                return (bool)GetValue(ShowTrackProperty);
-            }
-            set
-            {
-                SetValue(ShowTrackProperty, value);
-            }
+            get { return (bool)GetValue(ShowTrackProperty); }
+            set { SetValue(ShowTrackProperty, value); }
         }
 
         public bool ShowTicks
         {
-            get
-            {
-                return (bool)GetValue(ShowTicksProperty);
-            }
-            set
-            {
-                SetValue(ShowTicksProperty, value);
-            }
+            get { return (bool)GetValue(ShowTicksProperty); }
+            set { SetValue(ShowTicksProperty, value); }
         }
 
         public Double TickFrequency
