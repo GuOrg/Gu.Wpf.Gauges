@@ -95,7 +95,7 @@
 
         protected override void OnRender(DrawingContext dc)
         {
-            IEnumerable<TextTick> textTicks = TextTicks(this.TickFrequency).Concat(this.TextTicks(this.Ticks))
+            IEnumerable<TextTick> textTicks = this.TextTicks(this.TickFrequency).Concat(this.TextTicks(this.Ticks))
                                                                            .ToArray();
             foreach (var textTick in textTicks)
             {
@@ -133,6 +133,7 @@
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
+
                 dc.DrawText(formattedText, new Point(textTick.ScreenX + offsetX, textTick.ScreenY + offsetY));
             }
         }
@@ -146,7 +147,7 @@
             double range = this.Maximum - this.Minimum;
             double tickWidth = range * tickFrequency / 100;
             var value = this.Minimum;
-            while (value < (Maximum + tickWidth / 2))
+            while (value < (this.Maximum + tickWidth / 2))
             {
                 double screenX = this.ValueToScreenX(value);
                 double screenY = this.ValueToScreenY(value);
