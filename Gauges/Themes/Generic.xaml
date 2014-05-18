@@ -7,50 +7,31 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Gauge}">
                     <ControlTemplate.Resources>
-
-                        <LinearGradientBrush x:Key="Brush" StartPoint="0,0" EndPoint="1,0">
-                            <LinearGradientBrush.GradientStops>
-                                <GradientStopCollection>
-                                    <GradientStop Offset="0.0" Color="Red" />
-                                    <GradientStop Offset="0.25" Color="Red" />
-                                    <GradientStop Offset="0.25" Color="Green" />
-                                    <GradientStop Offset="0.75" Color="Green" />
-                                    <GradientStop Offset="0.75" Color="Red" />
-                                    <GradientStop Offset="1.0" Color="Red" />
-                                </GradientStopCollection>
-                            </LinearGradientBrush.GradientStops>
-                        </LinearGradientBrush>
-
+                        <Style x:Key="IndicatorStyle" TargetType="{x:Type Shape}">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="Fill" Value="{Binding Foreground,
+                                                    RelativeSource={RelativeSource Mode=FindAncestor,
+                                                                                   AncestorType={x:Type local:Gauge}}}"/>
+                        </Style>
                         <DataTemplate x:Key="CircleTemplate">
                             <Ellipse Width="10"
                                      Height="10"
-                                     VerticalAlignment="Center"
-                                     Fill="{Binding Foreground,
-                                                    RelativeSource={RelativeSource Mode=FindAncestor,
-                                                                                   AncestorType={x:Type local:Gauge}}}" />
+                                     Style="{StaticResource IndicatorStyle}" />
                         </DataTemplate>
                         <DataTemplate x:Key="RectangleTemplate">
                             <Rectangle Width="5"
                                        Height="10"
-                                       VerticalAlignment="Center"
-                                       Fill="{Binding Foreground,
-                                                      RelativeSource={RelativeSource Mode=FindAncestor,
-                                                                                     AncestorType={x:Type local:Gauge}}}" />
+                                       Style="{StaticResource IndicatorStyle}" />
                         </DataTemplate>
                         <DataTemplate x:Key="TriangleTemplate">
-                            <!--<Path VerticalAlignment="Bottom"
-                                  Data="m0,-5 5,0 10,5z"
-                                  Fill="{Binding Foreground,
-                                                 RelativeSource={RelativeSource Mode=FindAncestor,
-                                                                                AncestorType={x:Type local:Gauge}}}" />-->
+                            <Path VerticalAlignment="Bottom"
+                                  Data="M0,0 L10,0 5,10z"
+                                  Style="{StaticResource IndicatorStyle}" />
                         </DataTemplate>
                         <DataTemplate x:Key="LineTemplate">
                             <Rectangle Width="3"
-                                       Height="10"
-                                       VerticalAlignment="Center"
-                                       Fill="{Binding Foreground,
-                                                      RelativeSource={RelativeSource Mode=FindAncestor,
-                                                                                     AncestorType={x:Type local:Gauge}}}" />
+                                       Height="10" 
+                                       Style="{StaticResource IndicatorStyle}" />
                         </DataTemplate>
                         <local:GaugeIndicatorConverter x:Key="GaugeShapeConverter"
                                                        Circle="{StaticResource CircleTemplate}"
@@ -114,9 +95,9 @@
                             <Border x:Name="PART_Track"
                                     Height="8"
                                     VerticalAlignment="Center"
-                                    BorderBrush="{StaticResource Brush}"
+                                    BorderBrush="{TemplateBinding Background}"
                                     BorderThickness="2"
-                                    CornerRadius="2" />
+                                    CornerRadius="4" />
 
 
                             <Grid x:Name="PART_Indicator" VerticalAlignment="Stretch">
@@ -130,12 +111,6 @@
 
                                 <ContentPresenter Content="{TemplateBinding Marker}"
                                                   ContentTemplateSelector="{StaticResource MarkerDataTemplateSelector}" />
-                                <!--
-                                    <Rectangle Width="3"
-                                    Height="10"
-                                    VerticalAlignment="Bottom"
-                                    Fill="{TemplateBinding Foreground}" />
-                                -->
                             </Grid>
                         </Grid>
 

@@ -5,6 +5,7 @@
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
+    using System.Windows.Media.Animation;
 
     [TemplatePart(Name = IndicatorTemplateName, Type = typeof(FrameworkElement))]
     [TemplatePart(Name = TrackTemplateName, Type = typeof(FrameworkElement))]
@@ -118,14 +119,14 @@
             }
 
             double x = this.PosFromValue(this.Value);
-            this.indicatorTransform.SetCurrentValue(TranslateTransform.XProperty, this.track.ActualWidth * (x - 0.5));
+            var animation = new DoubleAnimation(this.track.ActualWidth * (x - 0.5), TimeSpan.FromMilliseconds(200));
+            this.indicatorTransform.BeginAnimation(TranslateTransform.XProperty, animation);
         }
 
         private double PosFromValue(double value)
         {
             double minimum = this.Minimum;
             double maximum = this.Maximum;
-            double num = this.Value;
             return (value - minimum) / Math.Abs(maximum - minimum);
         }
     }

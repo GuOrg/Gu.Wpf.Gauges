@@ -23,7 +23,22 @@
                               Marker="Circle"
                               Maximum="{Binding Max}"
                               Minimum="{Binding Min}"
-                              Value="{Binding Value}" />
+                              Value="{Binding Value}" >
+                    <gauges:Gauge.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStopCollection>
+                                    <GradientStop Offset="0.0" Color="Red" />
+                                    <GradientStop Offset="0.25" Color="Red" />
+                                    <GradientStop Offset="0.25" Color="Green" />
+                                    <GradientStop Offset="0.75" Color="Green" />
+                                    <GradientStop Offset="0.75" Color="Red" />
+                                    <GradientStop Offset="1.0" Color="Red" />
+                                </GradientStopCollection>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </gauges:Gauge.Background>
+                </gauges:Gauge>
                 <ContentPresenter Grid.Row="1"
                                   Content="{Binding}"
                                   ContentTemplate="{StaticResource VmTemplate}" />

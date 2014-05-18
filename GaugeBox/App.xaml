@@ -17,13 +17,13 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Min, StringFormat='Min:{0:F1}'}" />
-                    <Slider Grid.Row="0" Grid.Column="1" Value="{Binding Min}" Minimum="-10" Maximum="10" />
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Min}" />
 
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Max, StringFormat='Max:{0:F1}'}" />
-                    <Slider Grid.Row="1" Grid.Column="1" Value="{Binding Max}" Minimum="-10" Maximum="10" />
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Max}" />
 
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Value, StringFormat='Value:{0:F1}'}" />
-                    <Slider Grid.Row="2" Grid.Column="1" Value="{Binding Value}" Minimum="-200" Maximum="200" />
+                    <Slider Grid.Row="2" Grid.Column="1" Value="{Binding Value}" Minimum="{Binding Min}" Maximum="{Binding Max}" />
                 </Grid>
             </Expander>
         </DataTemplate>
