@@ -19,7 +19,7 @@
                               Minimum="{Binding Min}"
                               Placement="{Binding Placement}"
                               ShowLabels="{Binding ShowLabels}"
-                              ShowTicks="{Binding ShowTicks}"
+                              ShowMajorTicks="{Binding ShowTicks}"
                               ShowTrack="{Binding ShowTrack}"
                               TickFrequency="{Binding TickFrequency}"
                               Value="{Binding Value}">

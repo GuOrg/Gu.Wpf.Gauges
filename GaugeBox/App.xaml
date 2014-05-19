@@ -70,7 +70,7 @@
 
                     <TextBlock Grid.Row="1"
                                Grid.Column="0"
-                               Text="ShowTicks" />
+                               Text="ShowMajorTicks" />
                     <CheckBox Grid.Row="1"
                               Grid.Column="1"
                               IsChecked="{Binding ShowTicks}" />

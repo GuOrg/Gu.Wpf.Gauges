@@ -16,22 +16,22 @@
 
         public static readonly DependencyProperty ShowTrackProperty = DependencyProperty.Register(
             "ShowTrack",
-            typeof (bool),
-            typeof (Gauge),
+            typeof(bool),
+            typeof(Gauge),
             new PropertyMetadata(true));
 
         public static readonly DependencyProperty ShowLabelsProperty = DependencyProperty.Register(
             "ShowLabels",
-            typeof (bool),
-            typeof (Gauge),
+            typeof(bool),
+            typeof(Gauge),
             new PropertyMetadata(true));
 
-        public static readonly DependencyProperty ShowTicksProperty = DependencyProperty.Register(
-            "ShowTicks",
-            typeof (bool),
-            typeof (Gauge),
+        public static readonly DependencyProperty ShowMajorTicksProperty = DependencyProperty.Register(
+            "ShowMajorTicks",
+            typeof(bool),
+            typeof(Gauge),
             new PropertyMetadata(true));
-        
+
         public static readonly DependencyProperty TickFrequencyProperty = TickBar.TickFrequencyProperty.AddOwner(
             typeof(Gauge),
             new FrameworkPropertyMetadata(-1.0, FrameworkPropertyMetadataOptions.AffectsRender));
@@ -57,7 +57,6 @@
 
         public Gauge()
         {
-            this.Lables = new ObservableCollection<double>();
         }
 
         public Marker Marker
@@ -78,10 +77,10 @@
             set { SetValue(ShowTrackProperty, value); }
         }
 
-        public bool ShowTicks
+        public bool ShowMajorTicks
         {
-            get { return (bool)GetValue(ShowTicksProperty); }
-            set { SetValue(ShowTicksProperty, value); }
+            get { return (bool)GetValue(ShowMajorTicksProperty); }
+            set { SetValue(ShowMajorTicksProperty, value); }
         }
 
         public Double TickFrequency
@@ -101,8 +100,6 @@
             get { return (DoubleCollection)this.GetValue(TicksProperty); }
             set { this.SetValue(TicksProperty, value); }
         }
-
-        public ObservableCollection<double> Lables { get; private set; }
 
         /// <summary>
         ///     Called when a template is applied to a <see cref="T:System.Windows.Controls.ProgressBar" />.
@@ -184,16 +181,39 @@
                 return;
             }
 
-            double x = this.PosFromValue(this.Value);
-            var animation = new DoubleAnimation(this.track.ActualWidth * (x - 0.5), TimeSpan.FromMilliseconds(200));
-            this.indicatorTransform.BeginAnimation(TranslateTransform.XProperty, animation);
+            Point p = this.PosFromValue(this.Value);
+            if (this.Placement == TickBarPlacement.Bottom || this.Placement == TickBarPlacement.Top)
+            {
+                this.indicatorTransform.SetValue(TranslateTransform.YProperty, p.Y);
+                var animation = new DoubleAnimation(this.track.ActualWidth * (p.X - 0.5), TimeSpan.FromMilliseconds(200));
+                this.indicatorTransform.BeginAnimation(TranslateTransform.XProperty, animation);
+            }
+            else
+            {
+                this.indicatorTransform.SetValue(TranslateTransform.XProperty, p.X);
+                var animation = new DoubleAnimation(this.track.ActualHeight * p.Y, TimeSpan.FromMilliseconds(200));
+                this.indicatorTransform.BeginAnimation(TranslateTransform.YProperty, animation);
+            }
         }
 
-        private double PosFromValue(double value)
+        private Point PosFromValue(double value)
         {
-            double minimum = this.Minimum;
-            double maximum = this.Maximum;
-            return (value - minimum) / Math.Abs(maximum - minimum);
+            if (this.Placement == TickBarPlacement.Bottom || this.Placement == TickBarPlacement.Top)
+            {
+                double minimum = this.Minimum;
+                double maximum = this.Maximum;
+                var x = (value - minimum) / Math.Abs(maximum - minimum);
+                var y = 0;
+                return new Point(x, y);
+            }
+            else
+            {
+                double minimum = this.Minimum;
+                double maximum = this.Maximum;
+                var x = 0;
+                var y = (value - minimum) / Math.Abs(maximum - minimum);
+                return new Point(x, y);
+            }
         }
     }
 }

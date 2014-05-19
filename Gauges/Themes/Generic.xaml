@@ -7,6 +7,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Gauge}">
                     <ControlTemplate.Resources>
+
                         <Style x:Key="IndicatorStyle" TargetType="{x:Type Shape}">
                             <Setter Property="VerticalAlignment" Value="Center" />
                             <Setter Property="Fill" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:Gauge}}}" />
@@ -28,28 +29,10 @@
                         </Style>
 
                     </ControlTemplate.Resources>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition x:Name="TopRow" Height="Auto" />
-                            <RowDefinition x:Name="BottomRow"  Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition x:Name="LeftColumn" Width="Auto" />
-                            <ColumnDefinition x:Name="RightColumn" Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Grid x:Name="Ticks"
-                              Grid.Row="0" Grid.Column="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="{Binding ElementName=TopRow, Path=ActualHeight}" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="{Binding ElementName=LeftColumn, Path=ActualWidth}" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                    <DockPanel>
+                        <DockPanel x:Name="TicksPanel">
+
                             <local:TextTickBar x:Name="TickLabels"
-                                               Grid.Row="0"
-                                               Grid.Column="0"
                                                FontFamily="{TemplateBinding FontFamily}"
                                                FontSize="{TemplateBinding FontSize}"
                                                FontStretch="{TemplateBinding FontStretch}"
@@ -59,88 +42,82 @@
                                                SnapsToDevicePixels="True"
                                                Style="{StaticResource TickBarStyle}"
                                                Visibility="Collapsed" />
-                            <TickBar x:Name="MajorTicks"
-                                     Grid.Row="1"
-                                     Grid.Column="1"
-                                     Height="15"
+                            <Grid x:Name="TickMarksGrid">
+                                <TickBar x:Name="MajorTicks"
                                      Fill="Black"
                                      Placement="Bottom"
                                      SnapsToDevicePixels="True"
                                      Style="{StaticResource TickBarStyle}"
                                      Visibility="Collapsed" />
 
-                            <TickBar x:Name="MinorTicks"
-                                     Grid.Row="1"
-                                     Grid.Column="1"
-                                     Height="10"
+                                <TickBar x:Name="MinorTicks"
                                      Placement="Bottom"
                                      SnapsToDevicePixels="True"
                                      Style="{StaticResource TickBarStyle}"
                                      TickFrequency="10"
                                      Visibility="Collapsed" />
+                            </Grid>
+
+                        </DockPanel>
+                        <Grid x:Name="TrackAndIndicatorPanel">
+                            <Border x:Name="PART_Track"
+                                    MinWidth="2"
+                                    MinHeight="2"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    BorderBrush="{TemplateBinding Background}"
+                                    BorderThickness="2"
+                                    CornerRadius="4"
+                                    Visibility="Hidden" />
+                            <Grid x:Name="PART_Indicator">
+                                <StackPanel Orientation="Vertical">
+                                    <!--
+                                        <TextBlock Background="White"
+                                        Style="{StaticResource LabelStyle}"
+                                        Text="{Binding Value,
+                                        RelativeSource={RelativeSource TemplatedParent},
+                                        StringFormat='{}{0:F0}'}" />
+                                    -->
+                                    <Grid Width="10" Height="10">
+                                        <Ellipse Width="10"
+                                                 Height="10"
+                                                 Style="{StaticResource IndicatorStyle}" />
+
+                                        <Rectangle Width="5"
+                                                   Height="10"
+                                                   Style="{StaticResource IndicatorStyle}" />
+
+                                        <Path VerticalAlignment="Bottom"
+                                              Data="M0,0 L10,0 5,10z"
+                                              Style="{StaticResource IndicatorStyle}" />
+
+                                        <Rectangle Width="3"
+                                                   Height="10"
+                                                   Style="{StaticResource IndicatorStyle}" />
+
+                                        <Path VerticalAlignment="Bottom"
+                                              Data="M0,0 L10,0 5,10z"
+                                              Style="{StaticResource IndicatorStyle}" />
+
+                                        <Rectangle Width="3"
+                                                   Height="10"
+                                                   Style="{StaticResource IndicatorStyle}" />
+                                        <!--  <ContentPresenter Content="{TemplateBinding Marker}" ContentTemplateSelector="{StaticResource MarkerDataTemplateSelector}" />  -->
+                                    </Grid>
+
+
+                                </StackPanel>
+
+                            </Grid>
                         </Grid>
-                        <Border x:Name="PART_Track"
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                MinWidth="2"
-                                MinHeight="2"
-                                HorizontalAlignment="Stretch"
-                                VerticalAlignment="Stretch"
-                                BorderBrush="{TemplateBinding Background}"
-                                BorderThickness="2"
-                                CornerRadius="4"
-                                Visibility="Hidden" />
-                        <Grid x:Name="PART_Indicator"
-                              Grid.Row="1"
-                              Grid.Column="1"
-                              VerticalAlignment="Stretch">
-                            <StackPanel Orientation="Vertical">
-                                <!--
-                                    <TextBlock Background="White"
-                                    Style="{StaticResource LabelStyle}"
-                                    Text="{Binding Value,
-                                    RelativeSource={RelativeSource TemplatedParent},
-                                    StringFormat='{}{0:F0}'}" />
-                                -->
-                                <Grid Width="10" Height="10">
-                                    <Ellipse Width="10"
-                                             Height="10"
-                                             Style="{StaticResource IndicatorStyle}" />
 
-                                    <Rectangle Width="5"
-                                               Height="10"
-                                               Style="{StaticResource IndicatorStyle}" />
-
-                                    <Path VerticalAlignment="Bottom"
-                                          Data="M0,0 L10,0 5,10z"
-                                          Style="{StaticResource IndicatorStyle}" />
-
-                                    <Rectangle Width="3"
-                                               Height="10"
-                                               Style="{StaticResource IndicatorStyle}" />
-
-                                    <Path VerticalAlignment="Bottom"
-                                          Data="M0,0 L10,0 5,10z"
-                                          Style="{StaticResource IndicatorStyle}" />
-
-                                    <Rectangle Width="3"
-                                               Height="10"
-                                               Style="{StaticResource IndicatorStyle}" />
-                                    <!--  <ContentPresenter Content="{TemplateBinding Marker}" ContentTemplateSelector="{StaticResource MarkerDataTemplateSelector}" />  -->
-                                </Grid>
-
-
-                            </StackPanel>
-
-                        </Grid>
-
-                    </Grid>
+                    </DockPanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="ShowLabels" Value="True">
                             <Setter TargetName="TickLabels" Property="Visibility" Value="Visible" />
                         </Trigger>
 
-                        <Trigger Property="ShowTicks" Value="True">
+                        <Trigger Property="ShowMajorTicks" Value="True">
                             <Setter TargetName="MajorTicks" Property="Visibility" Value="Visible" />
                             <!--  <Setter TargetName="MinorTicks" Property="Visibility" Value="Visible" />  -->
                         </Trigger>
@@ -150,21 +127,13 @@
                         </Trigger>
 
                         <Trigger Property="Placement" Value="Top">
-                            <Setter TargetName="LeftColumn" Property="Width" Value="*" />
-                            <Setter TargetName="TopRow" Property="Height" Value="Auto" />
-                            <Setter TargetName="PART_Track" Property="Grid.Column" Value="0" />
-                            <Setter TargetName="Ticks" Property="Grid.Column" Value="0" />
-                            <Setter TargetName="PART_Indicator" Property="Grid.Column" Value="0" />
+                            <Setter TargetName="TrackAndIndicatorPanel" Property="DockPanel.Dock" Value="Top" />
+                            <Setter TargetName="TicksPanel" Property="DockPanel.Dock" Value="Bottom" />
+                            <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Bottom" />
+                            <Setter TargetName="TickMarksGrid" Property="DockPanel.Dock" Value="Top" />
 
-                            <Setter TargetName="PART_Track" Property="Grid.Row" Value="0" />
-                            <Setter TargetName="PART_Indicator" Property="Grid.Row" Value="0" />
-                            <Setter TargetName="Ticks" Property="Grid.Row" Value="1" />
-
-                            <Setter TargetName="MajorTicks" Property="Grid.Row" Value="0" />
                             <Setter TargetName="MajorTicks" Property="Height" Value="15" />
-                            <Setter TargetName="MinorTicks" Property="Grid.Row" Value="0" />
                             <Setter TargetName="MinorTicks" Property="Height" Value="5" />
-                            <Setter TargetName="TickLabels" Property="Grid.Row" Value="1" />
 
                             <Setter TargetName="MajorTicks" Property="Placement" Value="Top" />
                             <Setter TargetName="MinorTicks" Property="Placement" Value="Top" />
@@ -172,20 +141,13 @@
                         </Trigger>
 
                         <Trigger Property="Placement" Value="Bottom">
-                            <Setter TargetName="LeftColumn" Property="Width" Value="*" />
-                            <Setter TargetName="TopRow" Property="Height" Value="Auto" />
-                            <Setter TargetName="PART_Track" Property="Grid.Column" Value="0" />
-                            <Setter TargetName="Ticks" Property="Grid.Column" Value="0" />
-                            <Setter TargetName="PART_Indicator" Property="Grid.Column" Value="0" />
+                            <Setter TargetName="TrackAndIndicatorPanel" Property="DockPanel.Dock" Value="Bottom" />
+                            <Setter TargetName="TicksPanel" Property="DockPanel.Dock" Value="Top" />
+                            <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Top" />
+                            <Setter TargetName="TickMarksGrid" Property="DockPanel.Dock" Value="Bottom" />
 
-                            <Setter TargetName="PART_Track" Property="Grid.Row" Value="1" />
-                            <Setter TargetName="PART_Indicator" Property="Grid.Row" Value="1" />
-                            <Setter TargetName="Ticks" Property="Grid.Row" Value="0" />
-                            <Setter TargetName="MajorTicks" Property="Grid.Row" Value="1" />
                             <Setter TargetName="MajorTicks" Property="Height" Value="15" />
-                            <Setter TargetName="MinorTicks" Property="Grid.Row" Value="1" />
                             <Setter TargetName="MinorTicks" Property="Height" Value="5" />
-                            <Setter TargetName="TickLabels" Property="Grid.Row" Value="0" />
 
                             <Setter TargetName="MajorTicks" Property="Placement" Value="Bottom" />
                             <Setter TargetName="MinorTicks" Property="Placement" Value="Bottom" />
@@ -193,45 +155,31 @@
                         </Trigger>
 
                         <Trigger Property="Placement" Value="Left">
-                            <Setter TargetName="LeftColumn" Property="Width" Value="*" />
-                            <Setter TargetName="TopRow" Property="Height" Value="*" />
-                            <Setter TargetName="PART_Track" Property="Grid.Row" Value="0" />
-                            <Setter TargetName="Ticks" Property="Grid.Row" Value="0" />
-                            <Setter TargetName="PART_Indicator" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="TrackAndIndicatorPanel" Property="DockPanel.Dock" Value="Left" />
+                            <Setter TargetName="TicksPanel" Property="DockPanel.Dock" Value="Right" />
+                            <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Right" />
+                            <Setter TargetName="TickMarksGrid" Property="DockPanel.Dock" Value="Left" />
 
-                            <Setter TargetName="PART_Track" Property="Grid.Column" Value="0" />
-                            <Setter TargetName="PART_Indicator" Property="Grid.Column" Value="0" />
-                            <Setter TargetName="Ticks" Property="Grid.Column" Value="1" />
-                            <Setter TargetName="MajorTicks" Property="Grid.Column" Value="0" />
                             <Setter TargetName="MajorTicks" Property="Width" Value="15" />
-                            <Setter TargetName="MinorTicks" Property="Grid.Column" Value="0" />
                             <Setter TargetName="MinorTicks" Property="Width" Value="5" />
-                            <Setter TargetName="TickLabels" Property="Grid.Column" Value="1" />
 
                             <Setter TargetName="MajorTicks" Property="Placement" Value="Left" />
                             <Setter TargetName="MinorTicks" Property="Placement" Value="Left" />
-                            <Setter TargetName="TickLabels" Property="Placement" Value="Right" />
+                            <Setter TargetName="TickLabels" Property="Placement" Value="Left" />
                         </Trigger>
 
                         <Trigger Property="Placement" Value="Right">
-                            <Setter TargetName="LeftColumn" Property="Width" Value="*" />
-                            <Setter TargetName="TopRow" Property="Height" Value="*" />
-                            <Setter TargetName="PART_Track" Property="Grid.Row" Value="0" />
-                            <Setter TargetName="Ticks" Property="Grid.Row" Value="0" />
-                            <Setter TargetName="PART_Indicator" Property="Grid.Row" Value="0" />
+                            <Setter TargetName="TrackAndIndicatorPanel" Property="DockPanel.Dock" Value="Right" />
+                            <Setter TargetName="TicksPanel" Property="DockPanel.Dock" Value="Left" />
+                            <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Left" />
+                            <Setter TargetName="TickMarksGrid" Property="DockPanel.Dock" Value="Right" />
 
-                            <Setter TargetName="PART_Track" Property="Grid.Column" Value="1" />
-                            <Setter TargetName="PART_Indicator" Property="Grid.Column" Value="1" />
-                            <Setter TargetName="Ticks" Property="Grid.Column" Value="0" />
-                            <Setter TargetName="MajorTicks" Property="Grid.Column" Value="1" />
                             <Setter TargetName="MajorTicks" Property="Width" Value="15" />
-                            <Setter TargetName="MinorTicks" Property="Grid.Column" Value="1" />
                             <Setter TargetName="MinorTicks" Property="Width" Value="5" />
-                            <Setter TargetName="TickLabels" Property="Grid.Column" Value="0" />
 
                             <Setter TargetName="MajorTicks" Property="Placement" Value="Right" />
                             <Setter TargetName="MinorTicks" Property="Placement" Value="Right" />
-                            <Setter TargetName="TickLabels" Property="Placement" Value="Left" />
+                            <Setter TargetName="TickLabels" Property="Placement" Value="Right" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
