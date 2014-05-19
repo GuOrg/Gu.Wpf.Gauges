@@ -59,6 +59,7 @@
       <DependentUpon>AddOwnerTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="CodeGenerator.cs" />
+    <Compile Include="CodeVm.cs" />
     <Compile Include="ItemsControl.cs" />
     <Compile Include="Properties\Annotations.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>

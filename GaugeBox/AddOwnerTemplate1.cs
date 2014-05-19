@@ -18,7 +18,7 @@ namespace GaugeBox
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Git\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
+    #line 1 "C:\Git\Kasta\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "12.0.0.0")]
     public partial class AddOwnerTemplate : AddOwnerTemplateBase
     {
@@ -30,70 +30,70 @@ namespace GaugeBox
         {
             this.Write("        public static readonly DependencyProperty ");
             
-            #line 6 "C:\Git\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
+            #line 6 "C:\Git\Kasta\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PropName));
             
             #line default
             #line hidden
             this.Write("Property = ");
             
-            #line 6 "C:\Git\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
+            #line 6 "C:\Git\Kasta\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(OldOwner));
             
             #line default
             #line hidden
             this.Write(".");
             
-            #line 6 "C:\Git\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
+            #line 6 "C:\Git\Kasta\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PropName));
             
             #line default
             #line hidden
             this.Write("Property.AddOwner(\r\n            typeof(");
             
-            #line 7 "C:\Git\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
+            #line 7 "C:\Git\Kasta\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(NewOwner));
             
             #line default
             #line hidden
             this.Write("),\r\n            new FrameworkPropertyMetadata(default(");
             
-            #line 8 "C:\Git\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
+            #line 8 "C:\Git\Kasta\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PropType));
             
             #line default
             #line hidden
-            this.Write("), FrameworkPropertyMetadataOptions.AffectsRender));\r\n\t\t\t\r\n\t\tpublic ");
+            this.Write("), FrameworkPropertyMetadataOptions.AffectsRender));\r\n\t\t\t\r\n        public ");
             
-            #line 10 "C:\Git\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
+            #line 10 "C:\Git\Kasta\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PropType));
             
             #line default
             #line hidden
             this.Write(" ");
             
-            #line 10 "C:\Git\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
+            #line 10 "C:\Git\Kasta\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PropName));
             
             #line default
             #line hidden
             this.Write("\r\n        {\r\n            get { return (");
             
-            #line 12 "C:\Git\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
+            #line 12 "C:\Git\Kasta\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PropType));
             
             #line default
             #line hidden
             this.Write(")this.GetValue(");
             
-            #line 12 "C:\Git\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
+            #line 12 "C:\Git\Kasta\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PropName));
             
             #line default
             #line hidden
             this.Write("Property); }\r\n            set { this.SetValue(");
             
-            #line 13 "C:\Git\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
+            #line 13 "C:\Git\Kasta\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(PropName));
             
             #line default
@@ -102,7 +102,7 @@ namespace GaugeBox
             return this.GenerationEnvironment.ToString();
         }
         
-        #line 15 "C:\Git\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
+        #line 15 "C:\Git\Kasta\GaugeBox\GaugeBox\AddOwnerTemplate.tt"
 
         public string OldOwner { get; set; }
         public string NewOwner { get; set; }

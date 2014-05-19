@@ -160,5 +160,25 @@
 
             </StackPanel>
         </TabItem>
+
+        <TabItem Header="Code">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <ComboBox ItemsSource="{Binding CodeVm.AllTypes}" SelectedItem="{Binding CodeVm.Type}" />
+                <ListBox Grid.Row="1" ItemsSource="{Binding CodeVm.AddOwners}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type gaugeBox:AddOwner}">
+                            <GroupBox Header="{Binding Name}">
+                                <TextBox IsReadOnly="True" Text="{Binding Code, Mode=OneWay}" />
+                            </GroupBox>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+
+        </TabItem>
     </TabControl>
 </Window>

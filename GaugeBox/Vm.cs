@@ -28,6 +28,7 @@
             this.ShowTrack = true;
             this.placement = TickBarPlacement.Bottom;
             this.tickFrequency = 25;
+            this.CodeVm = new CodeVm();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -190,6 +191,8 @@
                 this.OnPropertyChanged();
             }
         }
+
+        public CodeVm CodeVm { get; private set; }
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

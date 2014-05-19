@@ -7,7 +7,7 @@
             typeof(<#=NewOwner#>),
             new FrameworkPropertyMetadata(default(<#=PropType#>), FrameworkPropertyMetadataOptions.AffectsRender));
 			
-		public <#=PropType#> <#=PropName#>
+        public <#=PropType#> <#=PropName#>
         {
             get { return (<#=PropType#>)this.GetValue(<#=PropName#>Property); }
             set { this.SetValue(<#=PropName#>Property, value); }
