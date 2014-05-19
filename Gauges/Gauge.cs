@@ -12,7 +12,7 @@
     public class Gauge : RangeBase
     {
         public static readonly DependencyProperty MarkerProperty = DependencyProperty.Register(
-            "Marker", typeof(Marker), typeof(Gauge), new PropertyMetadata(default(Marker), OnMarkerChanged));
+            "Marker", typeof(Marker), typeof(Gauge), new PropertyMetadata(default(Marker)));
 
         public static readonly DependencyProperty ShowTrackProperty = DependencyProperty.Register(
             "ShowTrack",
@@ -36,13 +36,13 @@
             typeof(Gauge),
             new FrameworkPropertyMetadata(-1.0, FrameworkPropertyMetadataOptions.AffectsRender));
 
-        public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
-            typeof(Gauge),
-            new FrameworkPropertyMetadata(default(TickBarPlacement), FrameworkPropertyMetadataOptions.AffectsRender));
-
         public static readonly DependencyProperty TicksProperty = TickBar.TicksProperty.AddOwner(
             typeof(Gauge),
             new FrameworkPropertyMetadata(new DoubleCollection(), FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
+            typeof(Gauge),
+            new FrameworkPropertyMetadata(default(TickBarPlacement), FrameworkPropertyMetadataOptions.AffectsRender, OnPlacementChanged));
 
         private const string IndicatorTemplateName = "PART_Indicator";
         private const string TrackTemplateName = "PART_Track";
@@ -169,9 +169,14 @@
             this.SetIndicatorPos();
         }
 
-        private static void OnMarkerChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        private static void OnPlacementChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            var gauge = (Gauge)o;
+            if (gauge == null)
+            {
+                return;
+            }
+            gauge.SetIndicatorPos();
         }
 
         private void SetIndicatorPos()
@@ -184,14 +189,14 @@
             Point p = this.PosFromValue(this.Value);
             if (this.Placement == TickBarPlacement.Bottom || this.Placement == TickBarPlacement.Top)
             {
-                this.indicatorTransform.SetValue(TranslateTransform.YProperty, p.Y);
+                this.indicatorTransform.SetCurrentValue(TranslateTransform.YProperty, p.Y);
                 var animation = new DoubleAnimation(this.track.ActualWidth * (p.X - 0.5), TimeSpan.FromMilliseconds(200));
                 this.indicatorTransform.BeginAnimation(TranslateTransform.XProperty, animation);
             }
             else
             {
-                this.indicatorTransform.SetValue(TranslateTransform.XProperty, p.X);
-                var animation = new DoubleAnimation(this.track.ActualHeight * p.Y, TimeSpan.FromMilliseconds(200));
+                this.indicatorTransform.SetCurrentValue(TranslateTransform.XProperty, p.X);
+                var animation = new DoubleAnimation(this.track.ActualHeight * (0.5 - p.Y), TimeSpan.FromMilliseconds(200));
                 this.indicatorTransform.BeginAnimation(TranslateTransform.YProperty, animation);
             }
         }

@@ -234,7 +234,7 @@
                 return this.ActualHeight;
             }
             double range = this.Maximum - this.Minimum;
-            return ((value - this.Minimum) / range) * this.ActualHeight;
+            return (1 - ((value - this.Minimum) / range)) * this.ActualHeight;
         }
 
         public class TextTick

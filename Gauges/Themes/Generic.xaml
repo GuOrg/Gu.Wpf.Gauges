@@ -30,35 +30,6 @@
 
                     </ControlTemplate.Resources>
                     <DockPanel>
-                        <DockPanel x:Name="TicksPanel">
-
-                            <local:TextTickBar x:Name="TickLabels"
-                                               FontFamily="{TemplateBinding FontFamily}"
-                                               FontSize="{TemplateBinding FontSize}"
-                                               FontStretch="{TemplateBinding FontStretch}"
-                                               FontStyle="{TemplateBinding FontStyle}"
-                                               FontWeight="{TemplateBinding FontWeight}"
-                                               Placement="Top"
-                                               SnapsToDevicePixels="True"
-                                               Style="{StaticResource TickBarStyle}"
-                                               Visibility="Collapsed" />
-                            <Grid x:Name="TickMarksGrid">
-                                <TickBar x:Name="MajorTicks"
-                                     Fill="Black"
-                                     Placement="Bottom"
-                                     SnapsToDevicePixels="True"
-                                     Style="{StaticResource TickBarStyle}"
-                                     Visibility="Collapsed" />
-
-                                <TickBar x:Name="MinorTicks"
-                                     Placement="Bottom"
-                                     SnapsToDevicePixels="True"
-                                     Style="{StaticResource TickBarStyle}"
-                                     TickFrequency="10"
-                                     Visibility="Collapsed" />
-                            </Grid>
-
-                        </DockPanel>
                         <Grid x:Name="TrackAndIndicatorPanel">
                             <Border x:Name="PART_Track"
                                     MinWidth="2"
@@ -69,8 +40,10 @@
                                     BorderThickness="2"
                                     CornerRadius="4"
                                     Visibility="Hidden" />
-                            <Grid x:Name="PART_Indicator">
-                                <StackPanel Orientation="Vertical">
+                            <Grid x:Name="PART_Indicator"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center">
+                                <DockPanel>
                                     <!--
                                         <TextBlock Background="White"
                                         Style="{StaticResource LabelStyle}"
@@ -83,34 +56,63 @@
                                                  Height="10"
                                                  Style="{StaticResource IndicatorStyle}" />
 
-                                        <Rectangle Width="5"
-                                                   Height="10"
-                                                   Style="{StaticResource IndicatorStyle}" />
-
-                                        <Path VerticalAlignment="Bottom"
-                                              Data="M0,0 L10,0 5,10z"
-                                              Style="{StaticResource IndicatorStyle}" />
-
-                                        <Rectangle Width="3"
-                                                   Height="10"
-                                                   Style="{StaticResource IndicatorStyle}" />
-
-                                        <Path VerticalAlignment="Bottom"
-                                              Data="M0,0 L10,0 5,10z"
-                                              Style="{StaticResource IndicatorStyle}" />
-
-                                        <Rectangle Width="3"
-                                                   Height="10"
-                                                   Style="{StaticResource IndicatorStyle}" />
+                                        <!--
+                                            <Rectangle Width="5"
+                                            Height="10"
+                                            Style="{StaticResource IndicatorStyle}" />
+                                            
+                                            <Path VerticalAlignment="Bottom"
+                                            Data="M0,0 L10,0 5,10z"
+                                            Style="{StaticResource IndicatorStyle}" />
+                                            
+                                            <Rectangle Width="3"
+                                            Height="10"
+                                            Style="{StaticResource IndicatorStyle}" />
+                                            
+                                            <Path VerticalAlignment="Bottom"
+                                            Data="M0,0 L10,0 5,10z"
+                                            Style="{StaticResource IndicatorStyle}" />
+                                            
+                                            <Rectangle Width="3"
+                                            Height="10"
+                                            Style="{StaticResource IndicatorStyle}" />
+                                        -->
                                         <!--  <ContentPresenter Content="{TemplateBinding Marker}" ContentTemplateSelector="{StaticResource MarkerDataTemplateSelector}" />  -->
                                     </Grid>
-
-
-                                </StackPanel>
-
+                                </DockPanel>
                             </Grid>
                         </Grid>
+                        <DockPanel x:Name="TicksPanel">
 
+                            <Grid x:Name="TickMarksGrid">
+                                <TickBar x:Name="MajorTicks"
+                                         Fill="Black"
+                                         Placement="Bottom"
+                                         SnapsToDevicePixels="True"
+                                         Style="{StaticResource TickBarStyle}"
+                                         Visibility="Collapsed" />
+
+                                <TickBar x:Name="MinorTicks"
+                                         Placement="Bottom"
+                                         SnapsToDevicePixels="True"
+                                         Style="{StaticResource TickBarStyle}"
+                                         TickFrequency="10"
+                                         Visibility="Collapsed" />
+                            </Grid>
+
+                            <local:TextTickBar x:Name="TickLabels"
+                                               FontFamily="{TemplateBinding FontFamily}"
+                                               FontSize="{TemplateBinding FontSize}"
+                                               FontStretch="{TemplateBinding FontStretch}"
+                                               FontStyle="{TemplateBinding FontStyle}"
+                                               FontWeight="{TemplateBinding FontWeight}"
+                                               Placement="Top"
+                                               SnapsToDevicePixels="True"
+                                               Style="{StaticResource TickBarStyle}"
+                                               Visibility="Collapsed" />
+
+                        </DockPanel>
+                        <Grid x:Name="EmptySpace" />
                     </DockPanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="ShowLabels" Value="True">
@@ -128,12 +130,14 @@
 
                         <Trigger Property="Placement" Value="Top">
                             <Setter TargetName="TrackAndIndicatorPanel" Property="DockPanel.Dock" Value="Top" />
-                            <Setter TargetName="TicksPanel" Property="DockPanel.Dock" Value="Bottom" />
-                            <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Bottom" />
+                            <Setter TargetName="TicksPanel" Property="DockPanel.Dock" Value="Top" />
                             <Setter TargetName="TickMarksGrid" Property="DockPanel.Dock" Value="Top" />
+                            <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Top" />
+
 
                             <Setter TargetName="MajorTicks" Property="Height" Value="15" />
                             <Setter TargetName="MinorTicks" Property="Height" Value="5" />
+                            <Setter TargetName="TrackAndIndicatorPanel" Property="Height" Value="8" />
 
                             <Setter TargetName="MajorTicks" Property="Placement" Value="Top" />
                             <Setter TargetName="MinorTicks" Property="Placement" Value="Top" />
@@ -142,12 +146,14 @@
 
                         <Trigger Property="Placement" Value="Bottom">
                             <Setter TargetName="TrackAndIndicatorPanel" Property="DockPanel.Dock" Value="Bottom" />
-                            <Setter TargetName="TicksPanel" Property="DockPanel.Dock" Value="Top" />
-                            <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Top" />
+                            <Setter TargetName="TicksPanel" Property="DockPanel.Dock" Value="Bottom" />
                             <Setter TargetName="TickMarksGrid" Property="DockPanel.Dock" Value="Bottom" />
+                            <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Bottom" />
+
 
                             <Setter TargetName="MajorTicks" Property="Height" Value="15" />
                             <Setter TargetName="MinorTicks" Property="Height" Value="5" />
+                            <Setter TargetName="TrackAndIndicatorPanel" Property="Height" Value="8" />
 
                             <Setter TargetName="MajorTicks" Property="Placement" Value="Bottom" />
                             <Setter TargetName="MinorTicks" Property="Placement" Value="Bottom" />
@@ -156,12 +162,13 @@
 
                         <Trigger Property="Placement" Value="Left">
                             <Setter TargetName="TrackAndIndicatorPanel" Property="DockPanel.Dock" Value="Left" />
-                            <Setter TargetName="TicksPanel" Property="DockPanel.Dock" Value="Right" />
-                            <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Right" />
+                            <Setter TargetName="TicksPanel" Property="DockPanel.Dock" Value="Left" />
                             <Setter TargetName="TickMarksGrid" Property="DockPanel.Dock" Value="Left" />
+                            <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Left" />
 
                             <Setter TargetName="MajorTicks" Property="Width" Value="15" />
                             <Setter TargetName="MinorTicks" Property="Width" Value="5" />
+                            <Setter TargetName="TrackAndIndicatorPanel" Property="Width" Value="8" />
 
                             <Setter TargetName="MajorTicks" Property="Placement" Value="Left" />
                             <Setter TargetName="MinorTicks" Property="Placement" Value="Left" />
@@ -170,12 +177,13 @@
 
                         <Trigger Property="Placement" Value="Right">
                             <Setter TargetName="TrackAndIndicatorPanel" Property="DockPanel.Dock" Value="Right" />
-                            <Setter TargetName="TicksPanel" Property="DockPanel.Dock" Value="Left" />
-                            <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Left" />
+                            <Setter TargetName="TicksPanel" Property="DockPanel.Dock" Value="Right" />
+                            <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Right" />
                             <Setter TargetName="TickMarksGrid" Property="DockPanel.Dock" Value="Right" />
 
                             <Setter TargetName="MajorTicks" Property="Width" Value="15" />
                             <Setter TargetName="MinorTicks" Property="Width" Value="5" />
+                            <Setter TargetName="TrackAndIndicatorPanel" Property="Width" Value="8" />
 
                             <Setter TargetName="MajorTicks" Property="Placement" Value="Right" />
                             <Setter TargetName="MinorTicks" Property="Placement" Value="Right" />
