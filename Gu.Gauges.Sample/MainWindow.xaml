@@ -1,0 +1,164 @@
+﻿<Window x:Class="Gu.Gauges.Sample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sample="clr-namespace:Gu.Gauges.Sample"
+        xmlns:gauges="http://gu.com/Gauges"
+        Title="MainWindow"
+        Width="525"
+        Height="350"
+        d:DataContext="{d:DesignInstance sample:Vm,
+                                         IsDesignTimeCreatable=True}"
+        mc:Ignorable="d">
+    <TabControl>
+        <TabItem Header="Demo">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <gauges:Gauge x:Name="Gauge"
+                              Grid.Row="0"
+                              Margin="15"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"
+                              Marker="{Binding Marker}"
+                              Maximum="{Binding Max}"
+                              Minimum="{Binding Min}"
+                              Placement="{Binding Placement}"
+                              ShowLabels="{Binding ShowLabels}"
+                              ShowMajorTicks="{Binding ShowTicks}"
+                              ShowTrack="{Binding ShowTrack}"
+                              TickFrequency="{Binding TickFrequency}"
+                              Value="{Binding Value}">
+                    <gauges:Gauge.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStopCollection>
+                                    <GradientStop Offset="0.0" Color="Red" />
+                                    <GradientStop Offset="0.10" Color="Red" />
+                                    <GradientStop Offset="0.10" Color="Green" />
+                                    <GradientStop Offset="0.90" Color="Green" />
+                                    <GradientStop Offset="0.90" Color="Red" />
+                                    <GradientStop Offset="1.0" Color="Red" />
+                                </GradientStopCollection>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </gauges:Gauge.Background>
+                </gauges:Gauge>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <ContentPresenter Grid.Column="0"
+                                      Content="{Binding}"
+                                      ContentTemplate="{StaticResource VmTemplate}" />
+                    <ContentPresenter Grid.Column="1"
+                                      Content="{Binding}"
+                                      ContentTemplate="{StaticResource GaugeTemplate}" />
+                </Grid>
+
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Debug Horizontal">
+            <TabItem.Resources>
+                <Style x:Key="HorizontalTickStyle" TargetType="{x:Type TickBar}">
+                    <Setter Property="Placement" Value="Bottom" />
+                    <Setter Property="VerticalAlignment" Value="Stretch" />
+                    <Setter Property="Minimum" Value="-200" />
+                    <Setter Property="Maximum" Value="200" />
+                    <Setter Property="Fill" Value="Blue" />
+                    <Setter Property="Margin" Value="20,0,20,0" />
+                </Style>
+            </TabItem.Resources>
+            <StackPanel>
+                <gauges:BlockBar Width="100"
+                                 Height="20"
+                                 Divisions="4"
+                                 Fill="Blue"
+                                 Gap="5" />
+                <Grid Height="50" Background="Bisque">
+
+                    <gauges:TextTickBar VerticalAlignment="Top"
+                                        ContentStringFormat="F1"
+                                        FontSize="12"
+                                        Style="{StaticResource HorizontalTickStyle}"
+                                        TickFrequency="25" />
+                    <TickBar Height="10"
+                             VerticalAlignment="Bottom"
+                             Style="{StaticResource HorizontalTickStyle}"
+                             TickFrequency="5" />
+                    <TickBar Height="30"
+                             VerticalAlignment="Bottom"
+                             Style="{StaticResource HorizontalTickStyle}"
+                             TickFrequency="25" />
+                </Grid>
+                <Border Background="Honeydew">
+                    <gauges:TextTickBar Height="50"
+                                        Placement="Top"
+                                        Style="{StaticResource HorizontalTickStyle}"
+                                        TickFrequency="25" />
+                </Border>
+
+                <gauges:TextTickBar Height="50"
+                                    Fill="Green"
+                                    Style="{StaticResource HorizontalTickStyle}"
+                                    TickFrequency="25"
+                                    Ticks="15,37,70" />
+                <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource VmTemplate}" />
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="Vertical debug">
+            <TabItem.Resources>
+                <Style x:Key="VerticalTickStyle" TargetType="{x:Type TickBar}">
+                    <Setter Property="Placement" Value="Left" />
+                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                    <Setter Property="Minimum" Value="-200" />
+                    <Setter Property="Maximum" Value="200" />
+                    <Setter Property="Fill" Value="Blue" />
+                    <Setter Property="Margin" Value="0,20,0,20" />
+                </Style>
+            </TabItem.Resources>
+            <StackPanel Orientation="Horizontal">
+                <!--
+                    <gauges:BlockBar Width="100" Height="20" Divisions="4" Fill="Blue"
+                    Gap="5" />
+                -->
+                <Border Background="Gold">
+                    <Grid>
+
+                        <gauges:TextTickBar ContentStringFormat="F1"
+                                            FontSize="14"
+                                            Placement="Right"
+                                            Style="{StaticResource VerticalTickStyle}"
+                                            TickFrequency="25" />
+                        <TickBar Width="10"
+                                 Style="{StaticResource VerticalTickStyle}"
+                                 TickFrequency="5" />
+                        <TickBar Width="40"
+                                 Style="{StaticResource VerticalTickStyle}"
+                                 TickFrequency="25" />
+                    </Grid>
+                </Border>
+                <gauges:TextTickBar Width="50"
+                                    Style="{StaticResource VerticalTickStyle}"
+                                    TickFrequency="25" />
+                <Border Background="Ivory">
+                    <gauges:TextTickBar Width="50"
+                                        Fill="Green"
+                                        Placement="Right"
+                                        Style="{StaticResource VerticalTickStyle}"
+                                        TickFrequency="25"
+                                        Ticks="15,37,70" />
+                </Border>
+                <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource VmTemplate}" />
+
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</Window>
