@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Gauges", "Gu.Gauges\Gu.Gauges.csproj", "{02C21720-28AF-4A11-8B4E-AD4D71668883}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Gauges.Sample", "Gu.Gauges.Sample\Gu.Gauges.Sample.csproj", "{89497D9C-CE65-4104-B64B-E4F3ECE49A51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Gauges.Tests", "Gu.Gauges.Tests\Gu.Gauges.Tests.csproj", "{906C5B9F-C44D-4E32-B363-39A23462EE66}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02C21720-28AF-4A11-8B4E-AD4D71668883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02C21720-28AF-4A11-8B4E-AD4D71668883}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02C21720-28AF-4A11-8B4E-AD4D71668883}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02C21720-28AF-4A11-8B4E-AD4D71668883}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89497D9C-CE65-4104-B64B-E4F3ECE49A51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89497D9C-CE65-4104-B64B-E4F3ECE49A51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89497D9C-CE65-4104-B64B-E4F3ECE49A51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89497D9C-CE65-4104-B64B-E4F3ECE49A51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{906C5B9F-C44D-4E32-B363-39A23462EE66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{906C5B9F-C44D-4E32-B363-39A23462EE66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{906C5B9F-C44D-4E32-B363-39A23462EE66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{906C5B9F-C44D-4E32-B363-39A23462EE66}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
