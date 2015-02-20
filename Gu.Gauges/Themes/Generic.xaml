@@ -2,28 +2,28 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Gu.Gauges">
 
-    <Style TargetType="{x:Type local:Gauge}">
+    <Style TargetType="{x:Type local:LinearGauge}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:Gauge}">
+                <ControlTemplate TargetType="{x:Type local:LinearGauge}">
                     <ControlTemplate.Resources>
 
                         <Style x:Key="IndicatorStyle" TargetType="{x:Type Shape}">
                             <Setter Property="VerticalAlignment" Value="Center" />
-                            <Setter Property="Fill" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:Gauge}}}" />
+                            <Setter Property="Fill" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
                             <Setter Property="Stretch" Value="Uniform" />
                         </Style>
 
                         <Style x:Key="TickBarStyle" TargetType="{x:Type TickBar}">
-                            <Setter Property="Maximum" Value="{Binding Maximum, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:Gauge}}}" />
+                            <Setter Property="Maximum" Value="{Binding Maximum, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
 
-                            <Setter Property="Minimum" Value="{Binding Minimum, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:Gauge}}}" />
+                            <Setter Property="Minimum" Value="{Binding Minimum, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
 
-                            <Setter Property="TickFrequency" Value="{Binding TickFrequency, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:Gauge}}}" />
+                            <Setter Property="TickFrequency" Value="{Binding TickFrequency, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
 
-                            <Setter Property="Ticks" Value="{Binding Ticks, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:Gauge}}}" />
+                            <Setter Property="Ticks" Value="{Binding Ticks, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
 
-                            <Setter Property="Fill" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:Gauge}}}" />
+                            <Setter Property="Fill" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
                             <Setter Property="VerticalAlignment" Value="Stretch" />
                             <Setter Property="HorizontalAlignment" Value="Stretch" />
                         </Style>

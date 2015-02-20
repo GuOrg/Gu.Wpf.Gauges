@@ -57,5 +57,5 @@ using System.Windows.Markup;
 [assembly: AssemblyVersion("0.1.0.0")]
 [assembly: AssemblyFileVersion("0.1.0.0")]
 [assembly: NeutralResourcesLanguageAttribute("en")]
-[assembly: XmlnsDefinition("http://gu.com/Gauges", "Gu.Gauges")]
-[assembly: XmlnsPrefix("http://gu.com/Gauges", "gauges")]
+[assembly: XmlnsDefinition("http://gu.se/Gauges", "Gu.Gauges")]
+[assembly: XmlnsPrefix("http://gu.se/Gauges", "gauges")]

@@ -8,40 +8,46 @@ namespace Gu.Gauges
 {
     [TemplatePart(Name = IndicatorTemplateName, Type = typeof(FrameworkElement))]
     [TemplatePart(Name = TrackTemplateName, Type = typeof(FrameworkElement))]
-    public class Gauge : RangeBase
+    public class LinearGauge : RangeBase
     {
         public static readonly DependencyProperty MarkerProperty = DependencyProperty.Register(
-            "Marker", typeof(Marker), typeof(Gauge), new PropertyMetadata(default(Marker)));
+            "Marker", typeof(Marker), typeof(LinearGauge), new PropertyMetadata(default(Marker)));
 
         public static readonly DependencyProperty ShowTrackProperty = DependencyProperty.Register(
             "ShowTrack",
             typeof(bool),
-            typeof(Gauge),
+            typeof(LinearGauge),
             new PropertyMetadata(true));
 
         public static readonly DependencyProperty ShowLabelsProperty = DependencyProperty.Register(
             "ShowLabels",
             typeof(bool),
-            typeof(Gauge),
+            typeof(LinearGauge),
             new PropertyMetadata(true));
 
         public static readonly DependencyProperty ShowMajorTicksProperty = DependencyProperty.Register(
             "ShowMajorTicks",
             typeof(bool),
-            typeof(Gauge),
+            typeof(LinearGauge),
             new PropertyMetadata(true));
 
         public static readonly DependencyProperty TickFrequencyProperty = TickBar.TickFrequencyProperty.AddOwner(
-            typeof(Gauge),
-            new FrameworkPropertyMetadata(-1.0, FrameworkPropertyMetadataOptions.AffectsRender));
+            typeof(LinearGauge),
+            new FrameworkPropertyMetadata(
+                -1.0, 
+                FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty TicksProperty = TickBar.TicksProperty.AddOwner(
-            typeof(Gauge),
-            new FrameworkPropertyMetadata(new DoubleCollection(), FrameworkPropertyMetadataOptions.AffectsRender));
+            typeof(LinearGauge),
+            new FrameworkPropertyMetadata(
+                new DoubleCollection(), 
+                FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
-            typeof(Gauge),
-            new FrameworkPropertyMetadata(default(TickBarPlacement), FrameworkPropertyMetadataOptions.AffectsRender, OnPlacementChanged));
+            typeof(LinearGauge),
+            new FrameworkPropertyMetadata(
+                default(TickBarPlacement), 
+                FrameworkPropertyMetadataOptions.AffectsRender, OnPlacementChanged));
 
         private const string IndicatorTemplateName = "PART_Indicator";
         private const string TrackTemplateName = "PART_Track";
@@ -49,12 +55,12 @@ namespace Gu.Gauges
         private FrameworkElement indicator;
         private FrameworkElement track;
 
-        static Gauge()
+        static LinearGauge()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(Gauge), new FrameworkPropertyMetadata(typeof(Gauge)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(LinearGauge), new FrameworkPropertyMetadata(typeof(LinearGauge)));
         }
 
-        public Gauge()
+        public LinearGauge()
         {
         }
 
@@ -170,7 +176,7 @@ namespace Gu.Gauges
 
         private static void OnPlacementChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
-            var gauge = (Gauge)o;
+            var gauge = (LinearGauge)o;
             if (gauge == null)
             {
                 return;

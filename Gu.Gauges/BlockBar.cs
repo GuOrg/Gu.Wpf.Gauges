@@ -14,15 +14,21 @@ namespace Gu.Gauges
 
         public static readonly DependencyProperty FillProperty = Shape.FillProperty.AddOwner(
             typeof(BlockBar),
-            new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender));
+            new FrameworkPropertyMetadata(
+                null,
+                FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty StrokeProperty = Shape.StrokeProperty.AddOwner(
             typeof(BlockBar),
-            new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender));
+            new FrameworkPropertyMetadata(
+                null,
+                FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty StrokeThicknessProperty = Shape.StrokeThicknessProperty.AddOwner(
             typeof(BlockBar),
-            new FrameworkPropertyMetadata(default(double), FrameworkPropertyMetadataOptions.AffectsRender));
+            new FrameworkPropertyMetadata(
+                default(double), 
+                FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty GapProperty = DependencyProperty.Register(
             "Gap",

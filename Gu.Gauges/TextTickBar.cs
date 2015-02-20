@@ -21,8 +21,7 @@ namespace Gu.Gauges
                 SystemFonts.MessageFontSize,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
-        public static readonly DependencyProperty ContentStringFormatProperty = ContentControl
-            .ContentStringFormatProperty.AddOwner(
+        public static readonly DependencyProperty ContentStringFormatProperty = ContentControl.ContentStringFormatProperty.AddOwner(
                 typeof(TextTickBar),
                 new FrameworkPropertyMetadata(
                     "F0",
@@ -172,7 +171,7 @@ namespace Gu.Gauges
         private FormattedText ToFormattedText(double value)
         {
             var formattedText = new FormattedText(
-                value.ToString(this.ContentStringFormat, System.Globalization.CultureInfo.CurrentUICulture),
+                value.ToString(this.ContentStringFormat, CultureInfo.CurrentUICulture),
                 CultureInfo.CurrentUICulture,
                 FlowDirection.LeftToRight,
                 new Typeface(
