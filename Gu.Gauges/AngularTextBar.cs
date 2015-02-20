@@ -1,21 +1,17 @@
-using System;
-using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
-using System.Windows.Shapes;
 
 namespace Gu.Gauges
 {
-    using System.Windows.Controls.Primitives;
-
-    public class AngularTickBar : TickBar
+    public class AngularTextBar : TickBar
     {
         public static readonly DependencyProperty MinAngleProperty = DependencyProperty.Register(
             "MinAngle",
             typeof(double),
-            typeof(AngularTickBar),
+            typeof(AngularTextBar),
             new FrameworkPropertyMetadata(
                 default(double),
                 FrameworkPropertyMetadataOptions.AffectsRender));
@@ -23,26 +19,10 @@ namespace Gu.Gauges
         public static readonly DependencyProperty MaxAngleProperty = DependencyProperty.Register(
             "MaxAngle",
             typeof(double),
-            typeof(AngularTickBar),
+            typeof(AngularTextBar),
             new FrameworkPropertyMetadata(
                 default(double),
                 FrameworkPropertyMetadataOptions.AffectsRender));
-
-        public static readonly DependencyProperty StrokeProperty = Shape.StrokeProperty.AddOwner(
-            typeof(AngularTickBar),
-            new FrameworkPropertyMetadata(
-                null,
-                FrameworkPropertyMetadataOptions.AffectsRender));
-
-        public static readonly DependencyProperty StrokeThicknessProperty = Shape.StrokeThicknessProperty.AddOwner(
-            typeof(AngularTickBar),
-            new FrameworkPropertyMetadata(
-                default(double),
-                FrameworkPropertyMetadataOptions.AffectsRender));
-
-        static AngularTickBar()
-        {
-        }
 
         public double MinAngle
         {
@@ -56,24 +36,10 @@ namespace Gu.Gauges
             set { this.SetValue(MaxAngleProperty, value); }
         }
 
-        public Brush Stroke
-        {
-            get { return (Brush)this.GetValue(StrokeProperty); }
-            set { this.SetValue(StrokeProperty, value); }
-        }
-
-        public double StrokeThickness
-        {
-            get { return (double)this.GetValue(StrokeThicknessProperty); }
-            set { this.SetValue(StrokeThicknessProperty, value); }
-        }
-
         protected override void OnRender(DrawingContext dc)
         {
-            var pen = new Pen(this.Stroke, this.StrokeThickness);
             var midPoint = new Point(this.ActualWidth / 2, this.ActualHeight / 2);
             var pi = new Point(this.ActualWidth - this.ReservedSpace, midPoint.Y);
-            var po = new Point(this.ActualWidth, midPoint.Y);
             var ticks = this.Ticks.Concat(AngleHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency));
             foreach (var tick in ticks)
             {
@@ -84,14 +50,15 @@ namespace Gu.Gauges
                 var angle = AngleHelper.ToAngle(tick, this.Minimum, this.Maximum, this.MinAngle, this.MaxAngle);
                 var rotateTransform = new RotateTransform(angle, midPoint.X, midPoint.Y);
                 var p1 = rotateTransform.Transform(pi);
-                var p2 = rotateTransform.Transform(po);
-                dc.DrawLine(pen, p1, p2);
+                var text = this.ToText(tick, angle);
+                //dc.PushTransform(rotateTransform);
+                dc.DrawText(text, p1);
             }
         }
 
-        protected override void OnStyleChanged(Style oldStyle, Style newStyle)
+        private FormattedText ToText(double tick, double angle)
         {
-            base.OnStyleChanged(oldStyle, newStyle);
+            return new FormattedText(tick.ToString(), CultureInfo.CurrentUICulture, FlowDirection.LeftToRight, new Typeface("Arial"), 12, Brushes.Black);
         }
     }
 }

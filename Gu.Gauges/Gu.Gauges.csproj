@@ -49,6 +49,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AngleHelper.cs" />
+    <Compile Include="AngularTextBar.cs" />
     <Compile Include="AngularTickBar.cs" />
     <Compile Include="BlockBar.cs" />
     <Compile Include="GaugeIndicatorConverter.cs" />
@@ -71,7 +73,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TestClassGit.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
