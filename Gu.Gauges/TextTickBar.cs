@@ -21,12 +21,6 @@ namespace Gu.Gauges
                 SystemFonts.MessageFontSize,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
-        public static readonly DependencyProperty ContentStringFormatProperty = ContentControl.ContentStringFormatProperty.AddOwner(
-                typeof(TextTickBar),
-                new FrameworkPropertyMetadata(
-                    "F0",
-                    FrameworkPropertyMetadataOptions.AffectsRender));
-
         public static readonly DependencyProperty FontFamilyProperty = Control.FontFamilyProperty.AddOwner(
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
@@ -50,6 +44,12 @@ namespace Gu.Gauges
             new FrameworkPropertyMetadata(
                 TextElement.FontStretchProperty.DefaultMetadata.DefaultValue,
                 FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static readonly DependencyProperty ContentStringFormatProperty = ContentControl.ContentStringFormatProperty.AddOwner(
+                typeof (TextTickBar),
+                new FrameworkPropertyMetadata(
+                    "F0",
+                    FrameworkPropertyMetadataOptions.AffectsRender));
 
         static TextTickBar()
         {

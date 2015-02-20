@@ -169,9 +169,10 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Border Background="Bisque">
+                <Border Grid.Row="0" Grid.Column="0" Background="Bisque">
                     <gauges:AngularTickBar Width="100"
                                            Height="100"
                                            MaxAngle="{Binding Text,
@@ -185,6 +186,22 @@
                                            ReservedSpace="10"
                                            Stroke="Black"
                                            StrokeThickness="2"
+                                           TickFrequency="{Binding Text,
+                                                                   ElementName=TickFrequency}" />
+                </Border>
+                <Border Grid.Row="0" Grid.Column="1" Background="Lavender">
+                    <gauges:AngularTextBar Width="100"
+                                           Height="100"
+                                           MaxAngle="{Binding Text,
+                                                              ElementName=MaxAngle}"
+                                           Maximum="{Binding Text,
+                                                             ElementName=Maximum}"
+                                           MinAngle="{Binding Text,
+                                                              ElementName=MinAngle}"
+                                           Minimum="{Binding Text,
+                                                             ElementName=Minimum}"
+                                           ReservedSpace="10"
+
                                            TickFrequency="{Binding Text,
                                                                    ElementName=TickFrequency}" />
                 </Border>
