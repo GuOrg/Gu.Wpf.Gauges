@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Windows;
 
 namespace Gu.Gauges
 {
-    internal static class AngleHelper
+    using System;
+    using System.Collections.Generic;
+
+    internal static class TickHelper
     {
         internal static IEnumerable<double> CreateTicks(double minimum, double maximum, double tickFrequency)
         {
@@ -26,6 +28,20 @@ namespace Gu.Gauges
             var dv = (tick - minimum) / (maximum - minimum);
             var a = dv * (maxAngle - minAngle) + minAngle;
             return a;
+        }
+
+        internal static double ToPos(double tick, double minimum, double maximum, double min, double max)
+        {
+            var dv = (tick - minimum) / (maximum - minimum);
+            var a = dv * (max - min) + min;
+            return a;
+        }
+
+        internal static Point ToPos(double tick, double minimum, double maximum, Line line)
+        {
+            var dv = (tick - minimum) / (maximum - minimum);
+            var v = line.EndPoint - line.StartPoint;
+            return line.StartPoint + dv * v;
         }
     }
 }

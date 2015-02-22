@@ -27,9 +27,12 @@
             this.ShowTrack = true;
             this.placement = TickBarPlacement.Bottom;
             this.tickFrequency = 25;
+            TickBarVm = new TickBarVm();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public TickBarVm TickBarVm { get; private set; }
 
         public double Value
         {
@@ -189,7 +192,6 @@
                 this.OnPropertyChanged();
             }
         }
-
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

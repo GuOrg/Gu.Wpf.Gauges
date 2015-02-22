@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Resources;
+using System.Runtime.CompilerServices;
 using System.Windows.Markup;
 
 // General Information about an assembly is controlled through the following 
@@ -59,3 +60,4 @@ using System.Windows.Markup;
 [assembly: NeutralResourcesLanguageAttribute("en")]
 [assembly: XmlnsDefinition("http://gu.se/Gauges", "Gu.Gauges")]
 [assembly: XmlnsPrefix("http://gu.se/Gauges", "gauges")]
+[assembly: InternalsVisibleTo("Gu.Gauges.Tests", AllInternalsVisible = true)]
