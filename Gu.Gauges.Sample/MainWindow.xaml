@@ -12,7 +12,7 @@
                                          IsDesignTimeCreatable=True}"
         mc:Ignorable="d">
     <TabControl>
-        <TabItem Header="Demo">
+        <TabItem Header="LinearGauge">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -90,8 +90,11 @@
                                         TickFrequency="25" />
                     <TickBar Height="10"
                              VerticalAlignment="Bottom"
+                             Maximum="100"
+                             Minimum="0"
                              Style="{StaticResource HorizontalTickStyle}"
                              TickFrequency="5" />
+
                     <TickBar Height="30"
                              VerticalAlignment="Bottom"
                              Style="{StaticResource HorizontalTickStyle}"
@@ -113,7 +116,7 @@
             </StackPanel>
         </TabItem>
 
-        <TabItem Header="Vertical debug">
+        <TabItem Header="Debug Vertical">
             <TabItem.Resources>
                 <Style x:Key="VerticalTickStyle" TargetType="{x:Type TickBar}">
                     <Setter Property="Placement" Value="Left" />
@@ -161,56 +164,116 @@
             </StackPanel>
         </TabItem>
 
-        <TabItem Header="Angular">
+        <TabItem Header="LinearBars">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Border Grid.Row="0" Grid.Column="0" Background="Bisque">
-                    <gauges:AngularTickBar Width="100"
-                                           Height="100"
-                                           MaxAngle="{Binding Text,
-                                                              ElementName=MaxAngle}"
-                                           Maximum="{Binding Text,
-                                                             ElementName=Maximum}"
-                                           MinAngle="{Binding Text,
-                                                              ElementName=MinAngle}"
-                                           Minimum="{Binding Text,
-                                                             ElementName=Minimum}"
-                                           ReservedSpace="10"
-                                           Stroke="Black"
-                                           StrokeThickness="2"
-                                           TickFrequency="{Binding Text,
-                                                                   ElementName=TickFrequency}" />
-                </Border>
-                <Border Grid.Row="0" Grid.Column="1" Background="Lavender">
-                    <gauges:AngularTextBar Width="100"
-                                           Height="100"
-                                           MaxAngle="{Binding Text,
-                                                              ElementName=MaxAngle}"
-                                           Maximum="{Binding Text,
-                                                             ElementName=Maximum}"
-                                           MinAngle="{Binding Text,
-                                                              ElementName=MinAngle}"
-                                           Minimum="{Binding Text,
-                                                             ElementName=Minimum}"
-                                           ReservedSpace="10"
+                <WrapPanel>
+                    <GroupBox Background="Lavender" Header="TickBar">
+                        <TickBar Width="100"
+                                 Height="100"
+                                 Fill="Black"
+                                 IsDirectionReversed="{Binding TickBarVm.IsDirectionReversed}"
+                                 Maximum="{Binding TickBarVm.Maximum}"
+                                 Minimum="{Binding TickBarVm.Minimum}"
+                                 Placement="{Binding TickBarVm.TickBarPlacement}"
+                                 ReservedSpace="{Binding TickBarVm.ReservedSpace}"
+                                 TickFrequency="{Binding TickBarVm.TickFrequency}"
+                                 Ticks="{Binding TickBarVm.Ticks}" />
+                    </GroupBox>
 
-                                           TickFrequency="{Binding Text,
-                                                                   ElementName=TickFrequency}" />
-                </Border>
-                <GroupBox Grid.Row="1"
-                          Grid.Column="0"
-                          Grid.ColumnSpan="2"
-                          Header="Controls">
+                    <GroupBox Background="DarkSeaGreen" Header="LinearTickBar">
+                        <gauges:LinearTickBar Width="100"
+                                              Height="100"
+                                              Fill="Black"
+                                              IsDirectionReversed="{Binding TickBarVm.IsDirectionReversed}"
+                                              Maximum="{Binding TickBarVm.Maximum}"
+                                              Minimum="{Binding TickBarVm.Minimum}"
+                                              Placement="{Binding TickBarVm.TickBarPlacement}"
+                                              ReservedSpace="{Binding TickBarVm.ReservedSpace}"
+                                              TickFrequency="{Binding TickBarVm.TickFrequency}"
+                                              Ticks="{Binding TickBarVm.Ticks}" />
+                    </GroupBox>
+
+                    <!--<GroupBox Background="LightGray" Header="BlockBar">
+                        <gauges:BlockBar Width="100"
+                                              Height="100"
+                                              Fill="Black"
+                                              IsDirectionReversed="{Binding TickBarVm.IsDirectionReversed}"
+                                              Maximum="{Binding TickBarVm.Maximum}"
+                                              Minimum="{Binding TickBarVm.Minimum}"
+                                              Placement="{Binding TickBarVm.TickBarPlacement}"
+                                              ReservedSpace="{Binding TickBarVm.ReservedSpace}"
+                                              TickFrequency="{Binding TickBarVm.TickFrequency}"
+                                              Ticks="{Binding TickBarVm.Ticks}" />
+                    </GroupBox>-->
+
+                    <GroupBox Background="Bisque" Header="TextTickBar">
+                        <gauges:TextTickBar Width="100"
+                                            Height="100"
+                                            Fill="Black"
+                                            Maximum="{Binding TickBarVm.Maximum}"
+                                            Minimum="{Binding TickBarVm.Minimum}"
+                                            Placement="{Binding TickBarVm.TickBarPlacement}"
+                                            ReservedSpace="{Binding TickBarVm.ReservedSpace}"
+                                            TickFrequency="{Binding TickBarVm.TickFrequency}"
+                                            Ticks="{Binding TickBarVm.Ticks}" />
+                    </GroupBox>
+
+
+                </WrapPanel>
+                <ContentPresenter Grid.Row="1" Content="{Binding TickBarVm}" />
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="AngularBars">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <WrapPanel>
+                    <Border Background="Bisque">
+                        <gauges:AngularTickBar Width="100"
+                                               Height="100"
+                                               MaxAngle="{Binding Text,
+                                                                  ElementName=MaxAngle}"
+                                               Maximum="{Binding Text,
+                                                                 ElementName=Maximum}"
+                                               MinAngle="{Binding Text,
+                                                                  ElementName=MinAngle}"
+                                               Minimum="{Binding Text,
+                                                                 ElementName=Minimum}"
+                                               ReservedSpace="10"
+                                               Stroke="Black"
+                                               StrokeThickness="2"
+                                               TickFrequency="{Binding Text,
+                                                                       ElementName=TickFrequency}" />
+                    </Border>
+                    <Border Background="Lavender">
+                        <gauges:AngularTextBar Width="100"
+                                               Height="100"
+                                               MaxAngle="{Binding Text,
+                                                                  ElementName=MaxAngle}"
+                                               Maximum="{Binding Text,
+                                                                 ElementName=Maximum}"
+                                               MinAngle="{Binding Text,
+                                                                  ElementName=MinAngle}"
+                                               Minimum="{Binding Text,
+                                                                 ElementName=Minimum}"
+                                               ReservedSpace="10"
+                                               TickFrequency="{Binding Text,
+                                                                       ElementName=TickFrequency}" />
+                    </Border>
+                </WrapPanel>
+
+                <GroupBox Grid.Row="1" Header="Controls">
                     <Grid>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
