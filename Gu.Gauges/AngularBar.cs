@@ -1,10 +1,9 @@
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Media;
-
 namespace Gu.Gauges
 {
     using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Controls.Primitives;
+    using System.Windows.Media;
 
     public class AngularBar : FrameworkElement
     {
@@ -104,7 +103,7 @@ namespace Gu.Gauges
         /// </summary>
         public double Minimum
         {
-            get { return (double) this.GetValue(MinimumProperty); }
+            get { return (double)this.GetValue(MinimumProperty); }
             set { this.SetValue(MinimumProperty, value); }
         }
 
@@ -116,7 +115,7 @@ namespace Gu.Gauges
         /// </returns>
         public double Maximum
         {
-            get { return (double) this.GetValue(MaximumProperty); }
+            get { return (double)this.GetValue(MaximumProperty); }
             set { this.SetValue(MaximumProperty, value); }
         }
 
@@ -128,7 +127,7 @@ namespace Gu.Gauges
         /// </returns>
         public double ReservedSpace
         {
-            get { return (double) this.GetValue(ReservedSpaceProperty); }
+            get { return (double)this.GetValue(ReservedSpaceProperty); }
             set { this.SetValue(ReservedSpaceProperty, value); }
         }
 
@@ -140,7 +139,7 @@ namespace Gu.Gauges
         /// </returns>
         public double TickFrequency
         {
-            get { return (double) this.GetValue(TickFrequencyProperty); }
+            get { return (double)this.GetValue(TickFrequencyProperty); }
             set { this.SetValue(TickFrequencyProperty, value); }
         }
 
@@ -152,7 +151,7 @@ namespace Gu.Gauges
         /// </returns>
         public DoubleCollection Ticks
         {
-            get { return (DoubleCollection) this.GetValue(TicksProperty); }
+            get { return (DoubleCollection)this.GetValue(TicksProperty); }
             set { this.SetValue(TicksProperty, value); }
         }
     }
