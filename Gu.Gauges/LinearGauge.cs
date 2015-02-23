@@ -1,11 +1,12 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls.Primitives;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-
-namespace Gu.Gauges
+﻿namespace Gu.Gauges
 {
+    using System;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Controls.Primitives;
+    using System.Windows.Media;
+    using System.Windows.Media.Animation;
+
     [TemplatePart(Name = IndicatorTemplateName, Type = typeof(FrameworkElement))]
     [TemplatePart(Name = TrackTemplateName, Type = typeof(FrameworkElement))]
     public class LinearGauge : RangeBase
@@ -48,6 +49,16 @@ namespace Gu.Gauges
             new FrameworkPropertyMetadata(
                 default(TickBarPlacement), 
                 FrameworkPropertyMetadataOptions.AffectsRender, OnPlacementChanged));
+
+
+        /// <summary>
+        /// Identifies the <see cref="P:LinearTickBar.IsDirectionReversed" /> dependency property. 
+        /// </summary>
+        public static readonly DependencyProperty IsDirectionReversedProperty = Slider.IsDirectionReversedProperty.AddOwner(
+            typeof(LinearGauge),
+            new FrameworkPropertyMetadata(
+                false,
+                FrameworkPropertyMetadataOptions.AffectsRender));
 
         private const string IndicatorTemplateName = "PART_Indicator";
         private const string TrackTemplateName = "PART_Track";
@@ -107,7 +118,20 @@ namespace Gu.Gauges
         }
 
         /// <summary>
-        ///     Called when a template is applied to a <see cref="T:System.Windows.Controls.ProgressBar" />.
+        /// Gets or sets the direction of increasing value. 
+        /// </summary>
+        /// <returns>
+        /// true if the direction of increasing value is to the left for a horizontal tickbar or down for a vertical tickbar; otherwise, false. 
+        /// The default is false.
+        /// </returns>
+        public bool IsDirectionReversed
+        {
+            get { return (bool)this.GetValue(IsDirectionReversedProperty); }
+            set { this.SetValue(IsDirectionReversedProperty, value); }
+        }
+
+        /// <summary>
+        /// Called when a template is applied to a <see cref="T:System.Windows.Controls.ProgressBar" />.
         /// </summary>
         public override void OnApplyTemplate()
         {

@@ -4,13 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:gauges="http://gu.se/Gauges"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:sample="clr-namespace:Gu.Gauges.Sample"
-        Title="MainWindow"
-        Width="525"
-        Height="350"
+        xmlns:sample="clr-namespace:Gu.Gauges.Sample" Title="MainWindow"
+        Width="525" Height="350"
         d:DataContext="{d:DesignInstance sample:Vm,
                                          IsDesignTimeCreatable=True}"
-        mc:Ignorable="d">
+        mc:Ignorable="d"
+        >
     <TabControl>
         <TabItem Header="LinearGauge">
             <Grid>
@@ -55,113 +54,15 @@
                     </Grid.ColumnDefinitions>
                     <ContentPresenter Grid.Column="0"
                                       Content="{Binding}"
-                                      ContentTemplate="{StaticResource VmTemplate}" />
+                                      ContentTemplate="{StaticResource VmTemplate}"
+                                      />
                     <ContentPresenter Grid.Column="1"
                                       Content="{Binding}"
-                                      ContentTemplate="{StaticResource GaugeTemplate}" />
+                                      ContentTemplate="{StaticResource GaugeTemplate}"
+                                      />
                 </Grid>
 
             </Grid>
-        </TabItem>
-
-        <TabItem Header="Debug Horizontal">
-            <TabItem.Resources>
-                <Style x:Key="HorizontalTickStyle" TargetType="{x:Type TickBar}">
-                    <Setter Property="Placement" Value="Bottom" />
-                    <Setter Property="VerticalAlignment" Value="Stretch" />
-                    <Setter Property="Minimum" Value="-200" />
-                    <Setter Property="Maximum" Value="200" />
-                    <Setter Property="Fill" Value="Blue" />
-                    <Setter Property="Margin" Value="20,0,20,0" />
-                </Style>
-            </TabItem.Resources>
-            <StackPanel>
-                <gauges:BlockBar Width="100"
-                                 Height="20"
-                                 Divisions="4"
-                                 Fill="Blue"
-                                 Gap="5" />
-                <Grid Height="50" Background="Bisque">
-
-                    <gauges:TextTickBar VerticalAlignment="Top"
-                                        ContentStringFormat="F1"
-                                        FontSize="12"
-                                        Style="{StaticResource HorizontalTickStyle}"
-                                        TickFrequency="25" />
-                    <TickBar Height="10"
-                             VerticalAlignment="Bottom"
-                             Maximum="100"
-                             Minimum="0"
-                             Style="{StaticResource HorizontalTickStyle}"
-                             TickFrequency="5" />
-
-                    <TickBar Height="30"
-                             VerticalAlignment="Bottom"
-                             Style="{StaticResource HorizontalTickStyle}"
-                             TickFrequency="25" />
-                </Grid>
-                <Border Background="Honeydew">
-                    <gauges:TextTickBar Height="50"
-                                        Placement="Top"
-                                        Style="{StaticResource HorizontalTickStyle}"
-                                        TickFrequency="25" />
-                </Border>
-
-                <gauges:TextTickBar Height="50"
-                                    Fill="Green"
-                                    Style="{StaticResource HorizontalTickStyle}"
-                                    TickFrequency="25"
-                                    Ticks="15,37,70" />
-                <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource VmTemplate}" />
-            </StackPanel>
-        </TabItem>
-
-        <TabItem Header="Debug Vertical">
-            <TabItem.Resources>
-                <Style x:Key="VerticalTickStyle" TargetType="{x:Type TickBar}">
-                    <Setter Property="Placement" Value="Left" />
-                    <Setter Property="HorizontalAlignment" Value="Stretch" />
-                    <Setter Property="Minimum" Value="-200" />
-                    <Setter Property="Maximum" Value="200" />
-                    <Setter Property="Fill" Value="Blue" />
-                    <Setter Property="Margin" Value="0,20,0,20" />
-                </Style>
-            </TabItem.Resources>
-            <StackPanel Orientation="Horizontal">
-                <!--
-                    <gauges:BlockBar Width="100" Height="20" Divisions="4" Fill="Blue"
-                    Gap="5" />
-                -->
-                <Border Background="Gold">
-                    <Grid>
-
-                        <gauges:TextTickBar ContentStringFormat="F1"
-                                            FontSize="14"
-                                            Placement="Right"
-                                            Style="{StaticResource VerticalTickStyle}"
-                                            TickFrequency="25" />
-                        <TickBar Width="10"
-                                 Style="{StaticResource VerticalTickStyle}"
-                                 TickFrequency="5" />
-                        <TickBar Width="40"
-                                 Style="{StaticResource VerticalTickStyle}"
-                                 TickFrequency="25" />
-                    </Grid>
-                </Border>
-                <gauges:TextTickBar Width="50"
-                                    Style="{StaticResource VerticalTickStyle}"
-                                    TickFrequency="25" />
-                <Border Background="Ivory">
-                    <gauges:TextTickBar Width="50"
-                                        Fill="Green"
-                                        Placement="Right"
-                                        Style="{StaticResource VerticalTickStyle}"
-                                        TickFrequency="25"
-                                        Ticks="15,37,70" />
-                </Border>
-                <ContentPresenter Content="{Binding}" ContentTemplate="{StaticResource VmTemplate}" />
-
-            </StackPanel>
         </TabItem>
 
         <TabItem Header="LinearBars">
@@ -172,8 +73,7 @@
                 </Grid.RowDefinitions>
                 <WrapPanel>
                     <GroupBox Background="Lavender" Header="TickBar">
-                        <TickBar Width="100"
-                                 Height="100"
+                        <TickBar Width="100" Height="100"
                                  Fill="Black"
                                  IsDirectionReversed="{Binding TickBarVm.IsDirectionReversed}"
                                  Maximum="{Binding TickBarVm.Maximum}"
@@ -181,12 +81,12 @@
                                  Placement="{Binding TickBarVm.TickBarPlacement}"
                                  ReservedSpace="{Binding TickBarVm.ReservedSpace}"
                                  TickFrequency="{Binding TickBarVm.TickFrequency}"
-                                 Ticks="{Binding TickBarVm.Ticks}" />
+                                 Ticks="{Binding TickBarVm.Ticks}"
+                                 />
                     </GroupBox>
 
                     <GroupBox Background="DarkSeaGreen" Header="LinearTickBar">
-                        <gauges:LinearTickBar Width="100"
-                                              Height="100"
+                        <gauges:LinearTickBar Width="100" Height="100"
                                               Fill="Black"
                                               IsDirectionReversed="{Binding TickBarVm.IsDirectionReversed}"
                                               Maximum="{Binding TickBarVm.Maximum}"
@@ -194,7 +94,8 @@
                                               Placement="{Binding TickBarVm.TickBarPlacement}"
                                               ReservedSpace="{Binding TickBarVm.ReservedSpace}"
                                               TickFrequency="{Binding TickBarVm.TickFrequency}"
-                                              Ticks="{Binding TickBarVm.Ticks}" />
+                                              Ticks="{Binding TickBarVm.Ticks}"
+                                              />
                     </GroupBox>
 
                     <!--<GroupBox Background="LightGray" Header="BlockBar">
@@ -211,15 +112,16 @@
                     </GroupBox>-->
 
                     <GroupBox Background="Bisque" Header="TextTickBar">
-                        <gauges:TextTickBar Width="100"
-                                            Height="100"
-                                            Fill="Black"
+                        <gauges:TextTickBar Width="100" Height="100"
+                                            Foreground="Black"
+                                            IsDirectionReversed="{Binding TickBarVm.IsDirectionReversed}"
                                             Maximum="{Binding TickBarVm.Maximum}"
                                             Minimum="{Binding TickBarVm.Minimum}"
                                             Placement="{Binding TickBarVm.TickBarPlacement}"
                                             ReservedSpace="{Binding TickBarVm.ReservedSpace}"
                                             TickFrequency="{Binding TickBarVm.TickFrequency}"
-                                            Ticks="{Binding TickBarVm.Ticks}" />
+                                            Ticks="{Binding TickBarVm.Ticks}"
+                                            />
                     </GroupBox>
 
 
@@ -236,8 +138,7 @@
                 </Grid.RowDefinitions>
                 <WrapPanel>
                     <Border Background="Bisque">
-                        <gauges:AngularTickBar Width="100"
-                                               Height="100"
+                        <gauges:AngularTickBar Width="100" Height="100"
                                                MaxAngle="{Binding Text,
                                                                   ElementName=MaxAngle}"
                                                Maximum="{Binding Text,
@@ -246,15 +147,14 @@
                                                                   ElementName=MinAngle}"
                                                Minimum="{Binding Text,
                                                                  ElementName=Minimum}"
-                                               ReservedSpace="10"
-                                               Stroke="Black"
+                                               ReservedSpace="10" Stroke="Black"
                                                StrokeThickness="2"
                                                TickFrequency="{Binding Text,
-                                                                       ElementName=TickFrequency}" />
+                                                                       ElementName=TickFrequency}"
+                                               />
                     </Border>
                     <Border Background="Lavender">
-                        <gauges:AngularTextBar Width="100"
-                                               Height="100"
+                        <gauges:AngularTextBar Width="100" Height="100"
                                                MaxAngle="{Binding Text,
                                                                   ElementName=MaxAngle}"
                                                Maximum="{Binding Text,
@@ -265,7 +165,8 @@
                                                                  ElementName=Minimum}"
                                                ReservedSpace="10"
                                                TickFrequency="{Binding Text,
-                                                                       ElementName=TickFrequency}" />
+                                                                       ElementName=TickFrequency}"
+                                               />
                     </Border>
                 </WrapPanel>
 
@@ -286,45 +187,40 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Row="0"
-                                   Grid.Column="0"
-                                   Text="Minimum" />
-                        <TextBox x:Name="Minimum"
-                                 Grid.Row="0"
-                                 Grid.Column="1"
-                                 Text="0" />
+                        <TextBlock Grid.Row="0" Grid.Column="0"
+                                   Text="Minimum"
+                                   />
+                        <TextBox x:Name="Minimum" Grid.Row="0"
+                                 Grid.Column="1" Text="0"
+                                 />
 
-                        <TextBlock Grid.Row="1"
-                                   Grid.Column="0"
-                                   Text="MinAngle" />
-                        <TextBox x:Name="MinAngle"
-                                 Grid.Row="1"
-                                 Grid.Column="1"
-                                 Text="0" />
+                        <TextBlock Grid.Row="1" Grid.Column="0"
+                                   Text="MinAngle"
+                                   />
+                        <TextBox x:Name="MinAngle" Grid.Row="1"
+                                 Grid.Column="1" Text="0"
+                                 />
 
-                        <TextBlock Grid.Row="2"
-                                   Grid.Column="0"
-                                   Text="Maximum" />
-                        <TextBox x:Name="Maximum"
-                                 Grid.Row="2"
-                                 Grid.Column="1"
-                                 Text="90" />
+                        <TextBlock Grid.Row="2" Grid.Column="0"
+                                   Text="Maximum"
+                                   />
+                        <TextBox x:Name="Maximum" Grid.Row="2"
+                                 Grid.Column="1" Text="90"
+                                 />
 
-                        <TextBlock Grid.Row="3"
-                                   Grid.Column="0"
-                                   Text="MaxAngle" />
-                        <TextBox x:Name="MaxAngle"
-                                 Grid.Row="3"
-                                 Grid.Column="1"
-                                 Text="90" />
+                        <TextBlock Grid.Row="3" Grid.Column="0"
+                                   Text="MaxAngle"
+                                   />
+                        <TextBox x:Name="MaxAngle" Grid.Row="3"
+                                 Grid.Column="1" Text="90"
+                                 />
 
-                        <TextBlock Grid.Row="4"
-                                   Grid.Column="0"
-                                   Text="TickFrequency" />
-                        <TextBox x:Name="TickFrequency"
-                                 Grid.Row="4"
-                                 Grid.Column="1"
-                                 Text="10" />
+                        <TextBlock Grid.Row="4" Grid.Column="0"
+                                   Text="TickFrequency"
+                                   />
+                        <TextBox x:Name="TickFrequency" Grid.Row="4"
+                                 Grid.Column="1" Text="10"
+                                 />
                     </Grid>
                 </GroupBox>
             </Grid>
