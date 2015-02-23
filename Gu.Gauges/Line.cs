@@ -16,21 +16,21 @@ namespace Gu.Gauges
             this.EndPoint = endPoint;
         }
 
-        public Line(LinearTickBar tickbar)
+        public Line(double actualWidth, double actualHeight, double reservedSpace, TickBarPlacement placement, bool isDirectionReversed)
         {
             Point p1;
             Point p2;
-            if (tickbar.Placement == TickBarPlacement.Bottom || tickbar.Placement == TickBarPlacement.Top)
+            if (placement == TickBarPlacement.Bottom || placement == TickBarPlacement.Top)
             {
-                p1 = new Point(tickbar.ReservedSpace / 2, 0);
-                p2 = new Point(tickbar.ActualWidth - tickbar.ReservedSpace / 2, 0);
+                p1 = new Point(reservedSpace / 2, 0);
+                p2 = new Point(actualWidth - reservedSpace / 2, 0);
             }
             else
             {
-                p1 = new Point(0, tickbar.ReservedSpace / 2);
-                p2 = new Point(0, tickbar.ActualHeight - tickbar.ReservedSpace / 2);
+                p1 = new Point(0, actualHeight - reservedSpace / 2);
+                p2 = new Point(0, reservedSpace / 2);
             }
-            if (tickbar.IsDirectionReversed)
+            if (isDirectionReversed)
             {
                 this.StartPoint = p2;
                 this.EndPoint = p1;
