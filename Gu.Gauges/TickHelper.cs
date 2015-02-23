@@ -1,9 +1,8 @@
-﻿using System.Windows;
-
-namespace Gu.Gauges
+﻿namespace Gu.Gauges
 {
     using System;
     using System.Collections.Generic;
+    using System.Windows;
 
     internal static class TickHelper
     {
@@ -23,17 +22,10 @@ namespace Gu.Gauges
             }
         }
 
-        internal static double ToAngle(double tick, double minimum, double maximum, double minAngle, double maxAngle)
+        internal static double ToAngle(double tick, double minimum, double maximum, Arc arc)
         {
             var dv = (tick - minimum) / (maximum - minimum);
-            var a = dv * (maxAngle - minAngle) + minAngle;
-            return a;
-        }
-
-        internal static double ToPos(double tick, double minimum, double maximum, double min, double max)
-        {
-            var dv = (tick - minimum) / (maximum - minimum);
-            var a = dv * (max - min) + min;
+            var a = dv * (arc.End - arc.Start) + arc.Start;
             return a;
         }
 

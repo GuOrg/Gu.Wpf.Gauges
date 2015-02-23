@@ -2,57 +2,93 @@ namespace Gu.Gauges
 {
     using System.Linq;
     using System.Windows;
+    using System.Windows.Controls.Primitives;
     using System.Windows.Media;
     using System.Windows.Shapes;
 
     public class AngularTickBar : AngularBar
     {
-        public static readonly DependencyProperty StrokeProperty = Shape.StrokeProperty.AddOwner(
+        /// <summary>
+        /// Identifies the <see cref="P:LinearTickBar.PenWidth" /> dependency property. 
+        /// </summary>
+        public static readonly DependencyProperty PenWidthProperty = DependencyProperty.Register(
+            "PenWidth",
+            typeof(double),
             typeof(AngularTickBar),
             new FrameworkPropertyMetadata(
-                null,
+                1.0,
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
-        public static readonly DependencyProperty StrokeThicknessProperty = Shape.StrokeThicknessProperty.AddOwner(
+        /// <summary>
+        /// Identifies the <see cref="P:LinearTickBar.Fill" /> dependency property. This property is read-only.
+        /// </summary>
+        public static readonly DependencyProperty FillProperty = TickBar.FillProperty.AddOwner(
             typeof(AngularTickBar),
             new FrameworkPropertyMetadata(
-                default(double),
+                default(Brush),
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
-        static AngularTickBar()
+        public static readonly DependencyProperty TickLengthProperty = DependencyProperty.Register(
+            "TickLength",
+            typeof(double),
+            typeof(AngularTickBar),
+            new FrameworkPropertyMetadata(
+                10.0,
+                FrameworkPropertyMetadataOptions.AffectsRender));
+
+        /// <summary>
+        /// Gets or sets the <see cref="P:LinearTickBar.PenWidth" />
+        /// The default is 1
+        /// </summary>
+        public double PenWidth
         {
+            get { return (double)this.GetValue(PenWidthProperty); }
+            set { this.SetValue(PenWidthProperty, value); }
         }
 
-        public Brush Stroke
+        /// <summary>
+        /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> that is used to draw the tick marks.  
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.Windows.Media.Brush" /> to use to draw tick marks. The default value is null.
+        /// </returns>
+        public Brush Fill
         {
-            get { return (Brush)this.GetValue(StrokeProperty); }
-            set { this.SetValue(StrokeProperty, value); }
+            get { return (Brush)this.GetValue(FillProperty); }
+            set { this.SetValue(FillProperty, value); }
         }
 
-        public double StrokeThickness
+        /// <summary>
+        /// Gets or sets the length of the ticks. 
+        /// The default value is 10.
+        /// </summary>
+        public double TickLength
         {
-            get { return (double)this.GetValue(StrokeThicknessProperty); }
-            set { this.SetValue(StrokeThicknessProperty, value); }
+            get { return (double)this.GetValue(TickLengthProperty); }
+            set { this.SetValue(TickLengthProperty, value); }
         }
 
         protected override void OnRender(DrawingContext dc)
         {
-            var pen = new Pen(this.Stroke, this.StrokeThickness);
+            var pen = new Pen(this.Fill, this.PenWidth);
+            pen.Freeze();
             var midPoint = new Point(this.ActualWidth / 2, this.ActualHeight / 2);
-            var pi = new Point(this.ActualWidth - this.ReservedSpace, midPoint.Y);
-            var po = new Point(this.ActualWidth, midPoint.Y);
+            var pi = new Point(this.ActualWidth - this.ReservedSpace - this.TickLength, midPoint.Y);
+            var po = new Point(this.ActualWidth - this.ReservedSpace, midPoint.Y);
+            var tickLine = new Line(pi, po);
             var ticks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency).Concat(this.Ticks ?? Enumerable.Empty<double>());
+            var arc = new Arc(midPoint, this.MinAngle, this.MaxAngle, this.ActualWidth - this.ReservedSpace, this.IsDirectionReversed);
+            var transform = new RotateTransform(0, midPoint.X, midPoint.Y);
             foreach (var tick in ticks)
             {
                 if (tick < this.Minimum || tick > this.Maximum)
                 {
                     continue;
                 }
-                var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, this.MinAngle, this.MaxAngle);
-                var rotateTransform = new RotateTransform(angle, midPoint.X, midPoint.Y);
-                var p1 = rotateTransform.Transform(pi);
-                var p2 = rotateTransform.Transform(po);
-                dc.DrawLine(pen, p1, p2);
+                var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
+                transform.Angle = angle;
+                var l = transform.Transform(tickLine);
+                dc.DrawLine(pen, l);
             }
         }
     }

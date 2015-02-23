@@ -27,12 +27,14 @@
             this.ShowTrack = true;
             this.placement = TickBarPlacement.Bottom;
             this.tickFrequency = 25;
-            TickBarVm = new TickBarVm();
+            this.TickBarVm = new TickBarVm();
+            this.AngularTickBarVm = new AngularTickBarVm();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public TickBarVm TickBarVm { get; private set; }
+        public AngularTickBarVm AngularTickBarVm { get; private set; }
 
         public double Value
         {

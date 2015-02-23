@@ -49,9 +49,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Arc.cs" />
     <Compile Include="DrawingContextExt.cs" />
+    <Compile Include="ITextFormat.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="LinearTickBar.cs" />
+    <Compile Include="RotateTransformExt.cs" />
+    <Compile Include="TextHelper.cs" />
     <Compile Include="TickHelper.cs" />
     <Compile Include="AngularBar.cs" />
     <Compile Include="AngularTextBar.cs" />
