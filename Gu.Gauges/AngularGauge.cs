@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Gu.Gauges
 {
@@ -36,6 +37,12 @@ namespace Gu.Gauges
             new PropertyMetadata(
                 false,
                 UpdateValueAngle));
+
+        public static readonly DependencyProperty MajorTickFrequencyProperty = LinearGauge.MajorTickFrequencyProperty.AddOwner(typeof(AngularGauge));
+        
+        public static readonly DependencyProperty MajorTicksProperty = LinearGauge.MajorTicksProperty.AddOwner(typeof(AngularGauge));
+        
+        public static readonly DependencyProperty MinorTickFrequencyProperty = LinearGauge.MinorTickFrequencyProperty.AddOwner(typeof(AngularGauge));
 
         static AngularGauge()
         {
@@ -85,6 +92,24 @@ namespace Gu.Gauges
         {
             get { return (double)this.GetValue(ValueAngleProperty); }
             protected set { this.SetValue(ValueAnglePropertyKey, value); }
+        }
+
+        public double MajorTickFrequency
+        {
+            get { return (double)this.GetValue(MajorTickFrequencyProperty); }
+            set { this.SetValue(MajorTickFrequencyProperty, value); }
+        }
+
+        public DoubleCollection MajorTicks
+        {
+            get { return (DoubleCollection)this.GetValue(MajorTicksProperty); }
+            set { this.SetValue(MajorTicksProperty, value); }
+        }
+
+        public double MinorTickFrequency
+        {
+            get { return (double)this.GetValue(MinorTickFrequencyProperty); }
+            set { this.SetValue(MinorTickFrequencyProperty, value); }
         }
 
         private static void UpdateValueAngle(DependencyObject d, DependencyPropertyChangedEventArgs e)
