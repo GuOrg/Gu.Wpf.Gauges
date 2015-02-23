@@ -92,16 +92,19 @@
 
                             <Grid x:Name="TickMarksGrid">
                                 <local:LinearTickBar x:Name="MajorTicks" Fill="Black"
-                                         Placement="Bottom" SnapsToDevicePixels="True"
-                                         Style="{StaticResource TickBarStyle}"
-                                         Visibility="Collapsed"
-                                         />
+                                                     Placement="Bottom" SnapsToDevicePixels="True"
+                                                     Style="{StaticResource TickBarStyle}"
+                                                     TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                     Ticks="{TemplateBinding MajorTicks}"
+                                                     Visibility="Visible"
+                                                     />
 
                                 <local:LinearTickBar x:Name="MinorTicks" Placement="Bottom"
-                                         SnapsToDevicePixels="True"
-                                         Style="{StaticResource TickBarStyle}"
-                                         TickFrequency="10" Visibility="Collapsed"
-                                         />
+                                                     SnapsToDevicePixels="True"
+                                                     Style="{StaticResource TickBarStyle}"
+                                                     TickFrequency="{TemplateBinding MinorTickFrequency}"
+                                                     Visibility="Visible"
+                                                     />
                             </Grid>
 
                             <local:TextTickBar x:Name="TickLabels"
@@ -112,6 +115,8 @@
                                                FontWeight="{TemplateBinding FontWeight}"
                                                Placement="Top" SnapsToDevicePixels="True"
                                                Style="{StaticResource TextTickBarStyle}"
+                                               TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                               Ticks="{TemplateBinding MajorTicks}"
                                                Visibility="Collapsed"
                                                />
 
@@ -121,11 +126,6 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="ShowLabels" Value="True">
                             <Setter TargetName="TickLabels" Property="Visibility" Value="Visible" />
-                        </Trigger>
-
-                        <Trigger Property="ShowMajorTicks" Value="True">
-                            <Setter TargetName="MajorTicks" Property="Visibility" Value="Visible" />
-                            <!--  <Setter TargetName="MinorTicks" Property="Visibility" Value="Visible" />  -->
                         </Trigger>
 
                         <Trigger Property="ShowTrack" Value="True">

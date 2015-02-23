@@ -11,8 +11,19 @@
     [TemplatePart(Name = TrackTemplateName, Type = typeof(FrameworkElement))]
     public class LinearGauge : RangeBase
     {
+        private static readonly DependencyPropertyKey ValuePositionPropertyKey = DependencyProperty.RegisterReadOnly(
+            "ValuePosition",
+            typeof(Point),
+            typeof(LinearGauge),
+            new PropertyMetadata(default(Point)));
+
+        public static readonly DependencyProperty ValuePositionProperty = ValuePositionPropertyKey.DependencyProperty;
+
         public static readonly DependencyProperty MarkerProperty = DependencyProperty.Register(
-            "Marker", typeof(Marker), typeof(LinearGauge), new PropertyMetadata(default(Marker)));
+            "Marker",
+            typeof(Marker),
+            typeof(LinearGauge),
+            new PropertyMetadata(default(Marker)));
 
         public static readonly DependencyProperty ShowTrackProperty = DependencyProperty.Register(
             "ShowTrack",
@@ -26,30 +37,29 @@
             typeof(LinearGauge),
             new PropertyMetadata(true));
 
-        public static readonly DependencyProperty ShowMajorTicksProperty = DependencyProperty.Register(
-            "ShowMajorTicks",
-            typeof(bool),
+        public static readonly DependencyProperty MajorTickFrequencyProperty = DependencyProperty.Register(
+            "MajorTickFrequency",
+            typeof(double),
             typeof(LinearGauge),
-            new PropertyMetadata(true));
+            new PropertyMetadata(default(double)));
 
-        public static readonly DependencyProperty TickFrequencyProperty = TickBar.TickFrequencyProperty.AddOwner(
+        public static readonly DependencyProperty MajorTicksProperty = DependencyProperty.Register(
+            "MajorTicks",
+            typeof(DoubleCollection),
             typeof(LinearGauge),
-            new FrameworkPropertyMetadata(
-                -1.0, 
-                FrameworkPropertyMetadataOptions.AffectsRender));
+            new PropertyMetadata(default(DoubleCollection)));
 
-        public static readonly DependencyProperty TicksProperty = TickBar.TicksProperty.AddOwner(
+        public static readonly DependencyProperty MinorTickFrequencyProperty = DependencyProperty.Register(
+            "MinorTickFrequency",
+            typeof(double),
             typeof(LinearGauge),
-            new FrameworkPropertyMetadata(
-                new DoubleCollection(), 
-                FrameworkPropertyMetadataOptions.AffectsRender));
+            new PropertyMetadata(default(double)));
 
         public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
             typeof(LinearGauge),
             new FrameworkPropertyMetadata(
-                default(TickBarPlacement), 
-                FrameworkPropertyMetadataOptions.AffectsRender, OnPlacementChanged));
-
+                default(TickBarPlacement),
+                FrameworkPropertyMetadataOptions.AffectsArrange, OnPlacementChanged));
 
         /// <summary>
         /// Identifies the <see cref="P:LinearTickBar.IsDirectionReversed" /> dependency property. 
@@ -58,7 +68,7 @@
             typeof(LinearGauge),
             new FrameworkPropertyMetadata(
                 false,
-                FrameworkPropertyMetadataOptions.AffectsRender));
+                UpdateValuePos));
 
         private const string IndicatorTemplateName = "PART_Indicator";
         private const string TrackTemplateName = "PART_Track";
@@ -73,6 +83,12 @@
 
         public LinearGauge()
         {
+        }
+
+        public Point ValuePosition
+        {
+            get { return (Point)this.GetValue(ValuePositionProperty); }
+            protected set { this.SetValue(ValuePositionPropertyKey, value); }
         }
 
         public Marker Marker
@@ -93,28 +109,27 @@
             set { this.SetValue(ShowTrackProperty, value); }
         }
 
-        public bool ShowMajorTicks
+        public double MajorTickFrequency
         {
-            get { return (bool)this.GetValue(ShowMajorTicksProperty); }
-            set { this.SetValue(ShowMajorTicksProperty, value); }
+            get { return (double)this.GetValue(MajorTickFrequencyProperty); }
+            set { this.SetValue(MajorTickFrequencyProperty, value); }
         }
 
-        public Double TickFrequency
+        public DoubleCollection MajorTicks
         {
-            get { return (Double)this.GetValue(TickFrequencyProperty); }
-            set { this.SetValue(TickFrequencyProperty, value); }
+            get { return (DoubleCollection)this.GetValue(MajorTicksProperty); }
+            set { this.SetValue(MajorTicksProperty, value); }
+        }
+        public double MinorTickFrequency
+        {
+            get { return (double)this.GetValue(MinorTickFrequencyProperty); }
+            set { this.SetValue(MinorTickFrequencyProperty, value); }
         }
 
         public TickBarPlacement Placement
         {
             get { return (TickBarPlacement)this.GetValue(PlacementProperty); }
             set { this.SetValue(PlacementProperty, value); }
-        }
-
-        public DoubleCollection Ticks
-        {
-            get { return (DoubleCollection)this.GetValue(TicksProperty); }
-            set { this.SetValue(TicksProperty, value); }
         }
 
         /// <summary>
@@ -248,6 +263,14 @@
                 var y = (value - minimum) / Math.Abs(maximum - minimum);
                 return new Point(x, y);
             }
+        }
+
+        private static void UpdateValuePos(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var gauge = (LinearGauge)d;
+            var line = new Line(gauge.ActualWidth, gauge.ActualHeight, 0, gauge.Placement, gauge.IsDirectionReversed);
+            var pos = TickHelper.ToPos(gauge.Value, gauge.Minimum, gauge.Maximum, line);
+            gauge.ValuePosition = pos;
         }
     }
 }

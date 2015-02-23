@@ -364,7 +364,7 @@
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            if (this.TickFrequency < 0 && !this.Ticks.Any())
+            if (this.TickFrequency <= 0 && (this.Ticks == null || !this.Ticks.Any()))
             {
                 return new Size(0, 0);
             }
