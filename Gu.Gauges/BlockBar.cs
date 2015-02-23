@@ -1,9 +1,9 @@
-﻿using System.Windows;
-using System.Windows.Media;
-using System.Windows.Shapes;
-
-namespace Gu.Gauges
+﻿namespace Gu.Gauges
 {
+    using System.Windows;
+    using System.Windows.Media;
+    using System.Windows.Shapes;
+
     public class BlockBar : FrameworkElement
     {
         public static readonly DependencyProperty DivisionsProperty = DependencyProperty.Register(

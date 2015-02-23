@@ -217,7 +217,7 @@
             var pen = new Pen(this.Fill, this.PenWidth);
 
             var ticks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency).Concat(this.Ticks ?? Enumerable.Empty<double>());
-            var line = new Line(this);
+            var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace, this.Placement, this.IsDirectionReversed);
             Vector offset = new Vector(0, 0);
             switch (this.Placement)
             {
