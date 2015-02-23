@@ -77,6 +77,16 @@ namespace Gu.Gauges
                 null,
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
+
+        /// <summary>
+        /// Identifies the <see cref="P:LinearTickBar.IsDirectionReversed" /> dependency property. 
+        /// </summary>
+        public static readonly DependencyProperty IsDirectionReversedProperty = Slider.IsDirectionReversedProperty.AddOwner(
+            typeof(AngularBar),
+            new FrameworkPropertyMetadata(
+                false,
+                FrameworkPropertyMetadataOptions.AffectsRender));
+
         /// <summary>
         /// Gets or sets the <see cref="P:AngularBar.MinAngle" />
         /// The default is -180
@@ -117,6 +127,19 @@ namespace Gu.Gauges
         {
             get { return (double)this.GetValue(MaximumProperty); }
             set { this.SetValue(MaximumProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the direction of increasing value. 
+        /// </summary>
+        /// <returns>
+        /// true if the direction of increasing value is to the left for a horizontal tickbar or down for a vertical tickbar; otherwise, false. 
+        /// The default is false.
+        /// </returns>
+        public bool IsDirectionReversed
+        {
+            get { return (bool)this.GetValue(IsDirectionReversedProperty); }
+            set { this.SetValue(IsDirectionReversedProperty, value); }
         }
 
         /// <summary>

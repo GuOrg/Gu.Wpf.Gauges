@@ -168,14 +168,21 @@
                             Maximum="{Binding Maximum}"
                             Minimum="{Binding Minimum}"
                             Value="{Binding TickFrequency}" />
-
+                    
                     <TextBlock Grid.Row="3"
                                Grid.Column="0"
-                               Text="ReservedSpace" />
+                               Text="Ticks" />
                     <TextBox Grid.Row="3"
                              Grid.Column="1"
+                             Text="{Binding Ticks}" />
+                    
+                    <TextBlock Grid.Row="4"
+                               Grid.Column="0"
+                               Text="ReservedSpace" />
+                    <TextBox Grid.Row="4"
+                             Grid.Column="1"
                              Text="{Binding ReservedSpace}" />
-                    <Slider Grid.Row="3"
+                    <Slider Grid.Row="4"
                             Grid.Column="2"
                             Maximum="50"
                             Minimum="0"
@@ -235,63 +242,86 @@
                             Minimum="0"
                             Value="{Binding Minimum}" />
 
+
                     <TextBlock Grid.Row="1"
                                Grid.Column="0"
-                               Text="Maximum" />
+                               Text="MinAngle" />
                     <TextBox Grid.Row="1"
                              Grid.Column="1"
-                             Text="{Binding Maximum}" />
-
+                             Text="{Binding MinAngle}" />
                     <Slider Grid.Row="1"
+                            Grid.Column="2"
+                            Maximum="{Binding MaxAngle}"
+                            Minimum="0"
+                            Value="{Binding MinAngle}" />
+
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="0"
+                               Text="Maximum" />
+                    <TextBox Grid.Row="2"
+                             Grid.Column="1"
+                             Text="{Binding Maximum}" />
+                    <Slider Grid.Row="2"
                             Grid.Column="2"
                             Maximum="100"
                             Minimum="{Binding Minimum}"
                             Value="{Binding Maximum}" />
 
-                    <TextBlock Grid.Row="2"
+                    <TextBlock Grid.Row="3"
+                               Grid.Column="0"
+                               Text="MaxAngle" />
+                    <TextBox Grid.Row="3"
+                             Grid.Column="1"
+                             Text="{Binding MaxAngle}" />
+                    <Slider Grid.Row="3"
+                            Grid.Column="2"
+                            Maximum="100"
+                            Minimum="{Binding MinAngle}"
+                            Value="{Binding MaxAngle}" />
+                    
+                    <TextBlock Grid.Row="4"
                                Grid.Column="0"
                                Text="TickFrequency" />
-                    <TextBox Grid.Row="2"
+                    <TextBox Grid.Row="4"
                              Grid.Column="1"
                              Text="{Binding TickFrequency}" />
-                    <Slider Grid.Row="2"
+                    <Slider Grid.Row="4"
                             Grid.Column="2"
                             Maximum="{Binding Maximum}"
                             Minimum="{Binding Minimum}"
                             Value="{Binding TickFrequency}" />
 
-                    <TextBlock Grid.Row="3"
+                    <TextBlock Grid.Row="5"
+                               Grid.Column="0"
+                               Text="Ticks" />
+                    <TextBox Grid.Row="5"
+                             Grid.Column="1"
+                             Text="{Binding Ticks}" />
+
+                    <TextBlock Grid.Row="6"
                                Grid.Column="0"
                                Text="ReservedSpace" />
-                    <TextBox Grid.Row="3"
+                    <TextBox Grid.Row="6"
                              Grid.Column="1"
                              Text="{Binding ReservedSpace}" />
-                    <Slider Grid.Row="3"
+                    <Slider Grid.Row="6"
                             Grid.Column="2"
                             Maximum="50"
                             Minimum="0"
                             Value="{Binding ReservedSpace}" />
 
-                    <TextBlock Grid.Row="4"
-                               Grid.Column="0"
-                               Text="TickPlacement" />
-                    <ComboBox Grid.Row="4"
-                              Grid.Column="1"
-                              SelectedItem="{Binding TickPlacement}"
-                              sample:ItemsControlExt.EnumSource="{x:Type TickPlacement}" />
-
-                    <TextBlock Grid.Row="5"
+                    <TextBlock Grid.Row="7"
                                Grid.Column="0"
                                Text="TickBarPlacement" />
-                    <ComboBox Grid.Row="5"
+                    <ComboBox Grid.Row="7"
                               Grid.Column="1"
                               SelectedItem="{Binding TickBarPlacement}"
                               sample:ItemsControlExt.EnumSource="{x:Type TickBarPlacement}" />
 
-                    <TextBlock Grid.Row="6"
+                    <TextBlock Grid.Row="8"
                                Grid.Column="0"
                                Text="IsDirectionReversed" />
-                    <CheckBox Grid.Row="6"
+                    <CheckBox Grid.Row="8"
                               Grid.Column="1"
                               IsChecked="{Binding IsDirectionReversed}" />
                 </Grid>

@@ -12,7 +12,7 @@
     /// <summary>
     /// http://stackoverflow.com/a/3578214/1069200
     /// </summary>
-    public class TextTickBar : FrameworkElement
+    public class TextTickBar : FrameworkElement, ITextFormat
     {
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.FontFamily" /> dependency property.
@@ -278,6 +278,7 @@
             get { return (string)this.GetValue(ContentStringFormatProperty); }
             set { this.SetValue(ContentStringFormatProperty, value); }
         }
+
         /// <summary>
         /// Gets or sets the <see cref="P:TextTickBar.Minimum" />
         /// The default is 0
@@ -377,7 +378,7 @@
             else
             {
                 var ticks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency).Concat(this.Ticks ?? Enumerable.Empty<double>());
-                w = ticks.Select(this.ToFormattedText)
+                w = ticks.Select(x => TextHelper.AsFormattedText(x, this))
                               .Max(t => t.Width);
                 h = availableSize.Height;
             }
@@ -401,54 +402,10 @@
                     continue;
                 }
                 var pos = TickHelper.ToPos(tick, this.Minimum, this.Maximum, line);
-                var text = this.ToFormattedText(tick);
-                var offset = this.GetDrawOffset(text);
+                var text = TextHelper.AsFormattedText(tick, this);
+                var offset = TextHelper.GetDrawOffset(text, this.Placement, this.ActualWidth, this.ActualHeight);
                 dc.DrawText(text, pos + offset);
             }
-        }
-
-        private Vector GetDrawOffset(FormattedText formattedText)
-        {
-            var offsetX = 0.0;
-            var offsetY = 0.0;
-            switch (this.Placement)
-            {
-                case TickBarPlacement.Left:
-                    offsetX = 0;
-                    offsetY = -1 * formattedText.Height / 2;
-                    break;
-                case TickBarPlacement.Top:
-                    offsetX = -1 * formattedText.Width / 2;
-                    offsetY = 0;
-                    break;
-                case TickBarPlacement.Right:
-                    offsetX = -1 * formattedText.Width + this.ActualWidth;
-                    offsetY = -1 * formattedText.Height / 2;
-                    break;
-                case TickBarPlacement.Bottom:
-                    offsetX = -1 * formattedText.Width / 2;
-                    offsetY = this.ActualHeight - formattedText.Height;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-            return new Vector(offsetX, offsetY);
-        }
-
-        private FormattedText ToFormattedText(double value)
-        {
-            var formattedText = new FormattedText(
-                value.ToString(this.ContentStringFormat, CultureInfo.CurrentUICulture),
-                CultureInfo.CurrentUICulture,
-                FlowDirection.LeftToRight,
-                new Typeface(
-                    this.FontFamily,
-                    this.FontStyle,
-                    this.FontWeight,
-                    this.FontStretch),
-                this.FontSize,
-                this.Foreground);
-            return formattedText;
         }
     }
 }
