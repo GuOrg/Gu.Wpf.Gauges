@@ -26,9 +26,8 @@
                                     Minimum="{Binding Min}"
                                     Placement="{Binding Placement}"
                                     ShowLabels="{Binding ShowLabels}"
-                                    ShowMajorTicks="{Binding ShowTicks}"
                                     ShowTrack="{Binding ShowTrack}"
-                                    TickFrequency="{Binding TickFrequency}"
+                                    MajorTickFrequency="{Binding TickFrequency}"
                                     Value="{Binding Value}"
                                     >
                     <gauges:LinearGauge.Background>
