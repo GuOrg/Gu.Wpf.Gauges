@@ -1,9 +1,7 @@
-using System.Linq;
-
 namespace Gu.Gauges
 {
     using System;
-    using System.Globalization;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
@@ -191,7 +189,6 @@ namespace Gu.Gauges
             set { this.SetValue(TextEffectsProperty, value); }
         }
 
-
         /// <summary>
         /// Gets or sets a composite string that specifies how to format the <see cref="P:AngularTextBar.Content" /> property if it is displayed as a string.
         /// </summary>
@@ -210,7 +207,7 @@ namespace Gu.Gauges
             var p = new Point(midPoint.X, midPoint.Y - this.ActualHeight / 2 - this.ReservedSpace / 2);
             var arc = new Arc(midPoint, this.MinAngle, this.MaxAngle, this.ActualWidth - this.ReservedSpace, this.IsDirectionReversed);
             var ticks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency).Concat(this.Ticks ?? Enumerable.Empty<double>());
-            var textTransform = new RotateTransform(0, midPoint.X, midPoint.Y);
+            
             foreach (var tick in ticks)
             {
                 if (tick < this.Minimum || tick > this.Maximum)
@@ -220,7 +217,7 @@ namespace Gu.Gauges
                 var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
                 var text = TextHelper.AsFormattedText(tick, this);
                 var offset = TextHelper.GetDrawOffset(text, TickBarPlacement.Top, 0, 0);
-                textTransform.Angle = angle + 90;
+                var textTransform = new RotateTransform(angle + 90, midPoint.X, midPoint.Y);
                 dc.PushTransform(textTransform);
                 dc.DrawText(text, p + offset);
                 dc.Pop();

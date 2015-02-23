@@ -77,7 +77,6 @@ namespace Gu.Gauges
                 null,
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
-
         /// <summary>
         /// Identifies the <see cref="P:LinearTickBar.IsDirectionReversed" /> dependency property. 
         /// </summary>

@@ -59,7 +59,6 @@
                                       ContentTemplate="{StaticResource GaugeTemplate}"
                                       />
                 </Grid>
-
             </Grid>
         </TabItem>
 

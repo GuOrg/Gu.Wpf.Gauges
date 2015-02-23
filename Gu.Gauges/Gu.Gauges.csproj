@@ -49,6 +49,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AngularGauge.cs" />
     <Compile Include="Arc.cs" />
     <Compile Include="DrawingContextExt.cs" />
     <Compile Include="ITextFormat.cs" />
