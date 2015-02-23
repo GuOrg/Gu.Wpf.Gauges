@@ -4,47 +4,68 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:gauges="http://gu.se/Gauges"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:sample="clr-namespace:Gu.Gauges.Sample" Title="MainWindow"
-        Width="525" Height="350"
+        xmlns:sample="clr-namespace:Gu.Gauges.Sample"
+        Title="MainWindow"
+        Width="525"
+        Height="350"
         d:DataContext="{d:DesignInstance sample:Vm,
                                          IsDesignTimeCreatable=True}"
-        mc:Ignorable="d"
-        >
+        mc:Ignorable="d">
     <TabControl>
-        <TabItem Header="LinearGauge">
+        <TabItem Header="Gauges">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <gauges:LinearGauge x:Name="Gauge" Grid.Row="0"
-                                    Margin="15" HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch"
-                                    Marker="{Binding Marker}"
-                                    Maximum="{Binding Max}"
-                                    Minimum="{Binding Min}"
-                                    Placement="{Binding Placement}"
-                                    ShowLabels="{Binding ShowLabels}"
-                                    ShowTrack="{Binding ShowTrack}"
-                                    MajorTickFrequency="{Binding TickFrequency}"
-                                    Value="{Binding Value}"
-                                    >
-                    <gauges:LinearGauge.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                            <LinearGradientBrush.GradientStops>
-                                <GradientStopCollection>
-                                    <GradientStop Offset="0.0" Color="Red" />
-                                    <GradientStop Offset="0.10" Color="Red" />
-                                    <GradientStop Offset="0.10" Color="Green" />
-                                    <GradientStop Offset="0.90" Color="Green" />
-                                    <GradientStop Offset="0.90" Color="Red" />
-                                    <GradientStop Offset="1.0" Color="Red" />
-                                </GradientStopCollection>
-                            </LinearGradientBrush.GradientStops>
-                        </LinearGradientBrush>
-                    </gauges:LinearGauge.Background>
-                </gauges:LinearGauge>
+                <WrapPanel Grid.Row="0">
+                    <gauges:LinearGauge x:Name="Gauge"
+                                        Width="200"
+                                        Height="200"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        IsDirectionReversed="{Binding IsDirectionReversed}"
+                                        MajorTickFrequency="{Binding MajorTickFrequency}"
+                                        Marker="{Binding Marker}"
+                                        Maximum="{Binding Max}"
+                                        Minimum="{Binding Min}"
+                                        MinorTickFrequency="{Binding MinorTickFrequency}"
+                                        Placement="{Binding Placement}"
+                                        ShowLabels="{Binding ShowLabels}"
+                                        ShowTrack="{Binding ShowTrack}"
+                                        Value="{Binding Value}">
+                        <gauges:LinearGauge.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStopCollection>
+                                        <GradientStop Offset="0.0" Color="Red" />
+                                        <GradientStop Offset="0.10" Color="Red" />
+                                        <GradientStop Offset="0.10" Color="Green" />
+                                        <GradientStop Offset="0.90" Color="Green" />
+                                        <GradientStop Offset="0.90" Color="Red" />
+                                        <GradientStop Offset="1.0" Color="Red" />
+                                    </GradientStopCollection>
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </gauges:LinearGauge.Background>
+                    </gauges:LinearGauge>
+                 
+                    <gauges:AngularGauge Width="200"
+                                         Height="200"
+                                         HorizontalAlignment="Stretch"
+                                         VerticalAlignment="Stretch"
+                                         MajorTickFrequency="{Binding MajorTickFrequency}"
+                                         Marker="{Binding Marker}"
+                                         MaxAngle="0"
+                                         Maximum="{Binding Max}"
+                                         MinAngle="-180"
+                                         Minimum="{Binding Min}"
+                                         MinorTickFrequency="{Binding MinorTickFrequency}"
+                                         IsDirectionReversed="{Binding IsDirectionReversed}"
+                                         Value="{Binding Value}" />
+                </WrapPanel>
+
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -52,12 +73,10 @@
                     </Grid.ColumnDefinitions>
                     <ContentPresenter Grid.Column="0"
                                       Content="{Binding}"
-                                      ContentTemplate="{StaticResource VmTemplate}"
-                                      />
+                                      ContentTemplate="{StaticResource VmTemplate}" />
                     <ContentPresenter Grid.Column="1"
                                       Content="{Binding}"
-                                      ContentTemplate="{StaticResource GaugeTemplate}"
-                                      />
+                                      ContentTemplate="{StaticResource GaugeTemplate}" />
                 </Grid>
             </Grid>
         </TabItem>
@@ -70,7 +89,8 @@
                 </Grid.RowDefinitions>
                 <WrapPanel>
                     <GroupBox Background="Lavender" Header="TickBar">
-                        <TickBar Width="100" Height="100"
+                        <TickBar Width="100"
+                                 Height="100"
                                  Fill="Black"
                                  IsDirectionReversed="{Binding TickBarVm.IsDirectionReversed}"
                                  Maximum="{Binding TickBarVm.Maximum}"
@@ -78,12 +98,12 @@
                                  Placement="{Binding TickBarVm.TickBarPlacement}"
                                  ReservedSpace="{Binding TickBarVm.ReservedSpace}"
                                  TickFrequency="{Binding TickBarVm.TickFrequency}"
-                                 Ticks="{Binding TickBarVm.Ticks}"
-                                 />
+                                 Ticks="{Binding TickBarVm.Ticks}" />
                     </GroupBox>
 
                     <GroupBox Background="DarkSeaGreen" Header="LinearTickBar">
-                        <gauges:LinearTickBar Width="100" Height="100"
+                        <gauges:LinearTickBar Width="100"
+                                              Height="100"
                                               Fill="Black"
                                               IsDirectionReversed="{Binding TickBarVm.IsDirectionReversed}"
                                               Maximum="{Binding TickBarVm.Maximum}"
@@ -91,8 +111,7 @@
                                               Placement="{Binding TickBarVm.TickBarPlacement}"
                                               ReservedSpace="{Binding TickBarVm.ReservedSpace}"
                                               TickFrequency="{Binding TickBarVm.TickFrequency}"
-                                              Ticks="{Binding TickBarVm.Ticks}"
-                                              />
+                                              Ticks="{Binding TickBarVm.Ticks}" />
                     </GroupBox>
 
                     <!--<GroupBox Background="LightGray" Header="BlockBar">
@@ -109,7 +128,8 @@
                     </GroupBox>-->
 
                     <GroupBox Background="Bisque" Header="TextTickBar">
-                        <gauges:TextTickBar Width="100" Height="100"
+                        <gauges:TextTickBar Width="100"
+                                            Height="100"
                                             Foreground="Black"
                                             IsDirectionReversed="{Binding TickBarVm.IsDirectionReversed}"
                                             Maximum="{Binding TickBarVm.Maximum}"
@@ -117,8 +137,7 @@
                                             Placement="{Binding TickBarVm.TickBarPlacement}"
                                             ReservedSpace="{Binding TickBarVm.ReservedSpace}"
                                             TickFrequency="{Binding TickBarVm.TickFrequency}"
-                                            Ticks="{Binding TickBarVm.Ticks}"
-                                            />
+                                            Ticks="{Binding TickBarVm.Ticks}" />
                     </GroupBox>
 
 
@@ -135,7 +154,8 @@
                 </Grid.RowDefinitions>
                 <WrapPanel>
                     <Border Background="Bisque">
-                        <gauges:AngularTickBar Width="100" Height="100"
+                        <gauges:AngularTickBar Width="100"
+                                               Height="100"
                                                Fill="Black"
                                                IsDirectionReversed="{Binding AngularTickBarVm.IsDirectionReversed}"
                                                MaxAngle="{Binding AngularTickBarVm.MaxAngle}"
@@ -145,12 +165,12 @@
                                                PenWidth="1"
                                                ReservedSpace="{Binding AngularTickBarVm.ReservedSpace}"
                                                TickFrequency="{Binding AngularTickBarVm.TickFrequency}"
-                                               Ticks="{Binding AngularTickBarVm.Ticks}"
-                                               />
+                                               Ticks="{Binding AngularTickBarVm.Ticks}" />
                     </Border>
 
                     <Border Background="Lavender">
-                        <gauges:AngularTextBar Width="100" Height="100"
+                        <gauges:AngularTextBar Width="100"
+                                               Height="100"
                                                IsDirectionReversed="{Binding AngularTickBarVm.IsDirectionReversed}"
                                                MaxAngle="{Binding AngularTickBarVm.MaxAngle}"
                                                Maximum="{Binding AngularTickBarVm.Maximum}"
@@ -158,8 +178,7 @@
                                                Minimum="{Binding AngularTickBarVm.Minimum}"
                                                ReservedSpace="{Binding AngularTickBarVm.ReservedSpace}"
                                                TickFrequency="{Binding AngularTickBarVm.TickFrequency}"
-                                               Ticks="{Binding AngularTickBarVm.Ticks}"
-                                               />
+                                               Ticks="{Binding AngularTickBarVm.Ticks}" />
                     </Border>
                 </WrapPanel>
 

@@ -14,8 +14,10 @@
         private bool showTrack;
         private bool showTicks;
         private TickBarPlacement placement;
-        private double tickFrequency;
+        private double majorTickFrequency;
         private Marker marker;
+        private double minorTickFrequency;
+        private bool isDirectionReversed;
 
         public Vm()
         {
@@ -26,7 +28,8 @@
             this.showTicks = true;
             this.ShowTrack = true;
             this.placement = TickBarPlacement.Bottom;
-            this.tickFrequency = 25;
+            this.majorTickFrequency = 100;
+            this.MinorTickFrequency = 25;
             this.TickBarVm = new TickBarVm();
             this.AngularTickBarVm = new AngularTickBarVm();
         }
@@ -34,6 +37,7 @@
         public event PropertyChangedEventHandler PropertyChanged;
 
         public TickBarVm TickBarVm { get; private set; }
+       
         public AngularTickBarVm AngularTickBarVm { get; private set; }
 
         public double Value
@@ -144,19 +148,41 @@
             }
         }
 
-        public double TickFrequency
+        public double MajorTickFrequency
         {
             get
             {
-                return this.tickFrequency;
+                return this.majorTickFrequency;
             }
             set
             {
-                if (value.Equals(this.tickFrequency))
+                if (value.Equals(this.majorTickFrequency))
                 {
                     return;
                 }
-                this.tickFrequency = value;
+                this.majorTickFrequency = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public double MinorTickFrequency
+        {
+            get { return this.minorTickFrequency; }
+            set
+            {
+                if (value.Equals(this.minorTickFrequency)) return;
+                this.minorTickFrequency = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public bool IsDirectionReversed
+        {
+            get { return this.isDirectionReversed; }
+            set
+            {
+                if (value.Equals(this.isDirectionReversed)) return;
+                this.isDirectionReversed = value;
                 this.OnPropertyChanged();
             }
         }

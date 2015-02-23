@@ -10,16 +10,24 @@
                             <local:AngularTextBar MaxAngle="{TemplateBinding MaxAngle}"
                                                   Maximum="{TemplateBinding Maximum}"
                                                   MinAngle="{TemplateBinding MinAngle}"
-                                                  Minimum="{TemplateBinding Minimum}" />
+                                                  Minimum="{TemplateBinding Minimum}"
+                                                  TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                  Ticks="{TemplateBinding MajorTicks}" />
                             <local:AngularTickBar MaxAngle="{TemplateBinding MaxAngle}"
                                                   Maximum="{TemplateBinding Maximum}"
                                                   MinAngle="{TemplateBinding MinAngle}"
-                                                  Minimum="{TemplateBinding Minimum}" />
+                                                  Minimum="{TemplateBinding Minimum}"
+                                                  TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                  Ticks="{TemplateBinding MajorTicks}" />
                             <local:AngularTickBar MaxAngle="{TemplateBinding MaxAngle}"
                                                   Maximum="{TemplateBinding Maximum}"
                                                   MinAngle="{TemplateBinding MinAngle}"
-                                                  Minimum="{TemplateBinding Minimum}" />
-                            <Rectangle Fill="HotPink" RenderTransformOrigin="0,0" Height="5" Width="{TemplateBinding ActualWidth}">
+                                                  Minimum="{TemplateBinding Minimum}"
+                                                  TickFrequency="{TemplateBinding MinorTickFrequency}" />
+                            <Rectangle Width="{TemplateBinding ActualWidth}"
+                                       Height="5"
+                                       Fill="HotPink"
+                                       RenderTransformOrigin="0,0">
                                 <Rectangle.RenderTransform>
                                     <RotateTransform Angle="{TemplateBinding ValueAngle}" />
                                 </Rectangle.RenderTransform>
@@ -45,8 +53,6 @@
                         <Style x:Key="TickBarStyle" TargetType="{x:Type local:LinearTickBar}">
                             <Setter Property="Maximum" Value="{Binding Maximum, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
                             <Setter Property="Minimum" Value="{Binding Minimum, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
-                            <Setter Property="TickFrequency" Value="{Binding TickFrequency, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
-                            <Setter Property="Ticks" Value="{Binding Ticks, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
                             <Setter Property="Fill" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
                             <Setter Property="IsDirectionReversed" Value="{Binding IsDirectionReversed, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
                             <Setter Property="VerticalAlignment" Value="Stretch" />
@@ -56,8 +62,6 @@
                         <Style x:Key="TextTickBarStyle" TargetType="{x:Type local:TextTickBar}">
                             <Setter Property="Maximum" Value="{Binding Maximum, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
                             <Setter Property="Minimum" Value="{Binding Minimum, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
-                            <Setter Property="TickFrequency" Value="{Binding TickFrequency, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
-                            <Setter Property="Ticks" Value="{Binding Ticks, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
                             <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
                             <Setter Property="IsDirectionReversed" Value="{Binding IsDirectionReversed, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
                             <Setter Property="VerticalAlignment" Value="Stretch" />
@@ -122,22 +126,19 @@
 
                             <Grid x:Name="TickMarksGrid">
                                 <local:LinearTickBar x:Name="MajorTicks"
-                                                     Placement="Bottom" SnapsToDevicePixels="True"
                                                      Placement="Bottom"
                                                      SnapsToDevicePixels="True"
                                                      Style="{StaticResource TickBarStyle}"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                      Ticks="{TemplateBinding MajorTicks}"
-                                                     Visibility="Visible"
-                                                     />
+                                                     Visibility="Visible" />
 
                                 <local:LinearTickBar x:Name="MinorTicks"
                                                      Placement="Bottom"
                                                      SnapsToDevicePixels="True"
                                                      Style="{StaticResource TickBarStyle}"
                                                      TickFrequency="{TemplateBinding MinorTickFrequency}"
-                                                     Visibility="Visible"
-                                                     />
+                                                     Visibility="Visible" />
                             </Grid>
 
                             <local:TextTickBar x:Name="TickLabels"
@@ -151,8 +152,7 @@
                                                Style="{StaticResource TextTickBarStyle}"
                                                TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                Ticks="{TemplateBinding MajorTicks}"
-                                               Visibility="Collapsed"
-                                               />
+                                               Visibility="Collapsed" />
 
                         </DockPanel>
                         <Grid x:Name="EmptySpace" />
