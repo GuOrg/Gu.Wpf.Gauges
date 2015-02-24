@@ -4,12 +4,11 @@ namespace Gu.Gauges
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
-    using System.Windows.Shapes;
 
     public class AngularTickBar : AngularBar
     {
         /// <summary>
-        /// Identifies the <see cref="P:LinearTickBar.PenWidth" /> dependency property. 
+        /// Identifies the <see cref="P:AngularTickBar.PenWidth" /> dependency property. 
         /// </summary>
         public static readonly DependencyProperty PenWidthProperty = DependencyProperty.Register(
             "PenWidth",
@@ -20,7 +19,7 @@ namespace Gu.Gauges
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
-        /// Identifies the <see cref="P:LinearTickBar.Fill" /> dependency property. This property is read-only.
+        /// Identifies the <see cref="P:AngularTickBar.Fill" /> dependency property. This property is read-only.
         /// </summary>
         public static readonly DependencyProperty FillProperty = TickBar.FillProperty.AddOwner(
             typeof(AngularTickBar),
@@ -37,7 +36,7 @@ namespace Gu.Gauges
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
-        /// Gets or sets the <see cref="P:LinearTickBar.PenWidth" />
+        /// Gets or sets the <see cref="P:AngularTickBar.PenWidth" />
         /// The default is 1
         /// </summary>
         public double PenWidth
@@ -90,6 +89,7 @@ namespace Gu.Gauges
                 var l = transform.Transform(tickLine);
                 dc.DrawLine(pen, l);
             }
+            this.Diameter = 2 * (midPoint - po).Length;
         }
     }
 }

@@ -21,21 +21,21 @@
                 </Grid.RowDefinitions>
                 <WrapPanel Grid.Row="0">
                     <gauges:LinearGauge x:Name="Gauge"
-                                        Margin="25"
                                         Width="200"
                                         Height="200"
                                         HorizontalAlignment="Stretch"
                                         VerticalAlignment="Stretch"
+                                        Background="Black"
                                         IsDirectionReversed="{Binding IsDirectionReversed}"
                                         MajorTickFrequency="{Binding MajorTickFrequency}"
+                                        MajorTicks="{Binding MajorTicks}"
                                         Maximum="{Binding Max}"
                                         Minimum="{Binding Min}"
                                         MinorTickFrequency="{Binding MinorTickFrequency}"
+                                        Padding="25"
                                         Placement="{Binding Placement}"
                                         ShowLabels="{Binding ShowLabels}"
-                                        ShowTrack="{Binding ShowTrack}"
-                                        Value="{Binding Value}"
-                                        Background="Black">
+                                        Value="{Binding Value}">
                         <!--<gauges:LinearGauge.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                                 <LinearGradientBrush.GradientStops>
@@ -51,18 +51,19 @@
                             </LinearGradientBrush>
                         </gauges:LinearGauge.Background>-->
                     </gauges:LinearGauge>
-                 
+
                     <gauges:AngularGauge Width="200"
                                          Height="200"
                                          HorizontalAlignment="Stretch"
                                          VerticalAlignment="Stretch"
+                                         IsDirectionReversed="{Binding IsDirectionReversed}"
                                          MajorTickFrequency="{Binding MajorTickFrequency}"
+                                         MajorTicks="{Binding MajorTicks}"
                                          MaxAngle="0"
                                          Maximum="{Binding Max}"
                                          MinAngle="-180"
                                          Minimum="{Binding Min}"
                                          MinorTickFrequency="{Binding MinorTickFrequency}"
-                                         IsDirectionReversed="{Binding IsDirectionReversed}"
                                          Value="{Binding Value}" />
                 </WrapPanel>
 
@@ -99,6 +100,21 @@
                                  ReservedSpace="{Binding TickBarVm.ReservedSpace}"
                                  TickFrequency="{Binding TickBarVm.TickFrequency}"
                                  Ticks="{Binding TickBarVm.Ticks}" />
+                    </GroupBox>
+
+                    <GroupBox Background="LightYellow" Header="BlockBar">
+                        <gauges:BlockBar Width="100"
+                                         Height="100"
+                                         Fill="CornflowerBlue"
+                                         Gap="2"
+                                         IsDirectionReversed="{Binding TickBarVm.IsDirectionReversed}"
+                                         Maximum="{Binding TickBarVm.Maximum}"
+                                         Minimum="{Binding TickBarVm.Minimum}"
+                                         Placement="{Binding TickBarVm.TickBarPlacement}"
+                                         ReservedSpace="{Binding TickBarVm.ReservedSpace}"
+                                         TickFrequency="{Binding TickBarVm.TickFrequency}"
+                                         Ticks="{Binding TickBarVm.Ticks}"
+                                         Value="{Binding TickBarVm.Value}" />
                     </GroupBox>
 
                     <GroupBox Background="DarkSeaGreen" Header="LinearTickBar">

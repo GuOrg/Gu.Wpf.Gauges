@@ -1,6 +1,8 @@
 ﻿namespace Gu.Gauges.Tests
 {
     using System.Linq;
+    using System.Windows;
+
     using NUnit.Framework;
 
     public class TickHelperTests
@@ -16,11 +18,25 @@
             CollectionAssert.AreEqual(expected, ticks);
         }
 
-        [Test]
-        public void ToPos(double tick, double min, double max)
+        [TestCase(0, 0, 1, 0, 0)]
+        [TestCase(1, 0, 1, 1, 0)]
+        [TestCase(0, -1, 1, 0.5, 0)]
+        [TestCase(1, -1, 1, 1, 0)]
+        public void ToPos(double tick, double min, double max, double expectedX, double expectedY)
         {
-            Assert.Fail();
-             //TickHelper.ToPos(tick,min,max)
+            var point = TickHelper.ToPos(tick, min, max, new Line(new Point(0, 0), new Point(1, 0)));
+            Assert.AreEqual(expectedX, point.X);
+            Assert.AreEqual(expectedY, point.Y);
+        }
+
+        [TestCase(0, 0, 1, 0)]
+        [TestCase(1, 0, 1, 1)]
+        [TestCase(0, -1, 1, 0.5)]
+        [TestCase(1, -1, 1, 1)]
+        public void ToAngle(double tick, double min, double max, double expected)
+        {
+            var actual = TickHelper.ToAngle(tick, min, max, new Arc(new Point(0, 0), 0, 1, 1, false));
+            Assert.AreEqual(expected, actual);
         }
     }
 }

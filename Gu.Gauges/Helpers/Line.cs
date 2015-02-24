@@ -1,7 +1,6 @@
-﻿using System.Windows.Controls.Primitives;
-
-namespace Gu.Gauges
+﻿namespace Gu.Gauges
 {
+    using System.Windows.Controls.Primitives;
     using System.Windows;
 
     internal struct Line

@@ -6,7 +6,7 @@
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
 
-    public static class TextHelper
+    internal static class TextHelper
     {
         internal static FormattedText AsFormattedText(double value, ITextFormat textFormat)
         {

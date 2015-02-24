@@ -1,8 +1,11 @@
 ﻿namespace Gu.Gauges.Sample
 {
+    using System;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
     using System.Windows.Controls.Primitives;
+    using System.Windows.Media;
+
     using Gu.Gauges.Sample.Annotations;
 
     public class Vm : INotifyPropertyChanged
@@ -11,13 +14,13 @@
         private double min;
         private double value;
         private bool showLabels;
-        private bool showTrack;
-        private bool showTicks;
         private TickBarPlacement placement;
         private double majorTickFrequency;
         private Marker marker;
         private double minorTickFrequency;
         private bool isDirectionReversed;
+
+        private DoubleCollection majorTicks;
 
         public Vm()
         {
@@ -25,11 +28,10 @@
             this.Max = 200;
             this.Value = 0.3;
             this.showLabels = true;
-            this.showTicks = true;
-            this.ShowTrack = true;
             this.placement = TickBarPlacement.Top;
             this.majorTickFrequency = 100;
             this.minorTickFrequency = 25;
+            this.majorTicks = new DoubleCollection(new double[] { 50, 150 });
             this.TickBarVm = new TickBarVm();
             this.AngularTickBarVm = new AngularTickBarVm();
         }
@@ -37,7 +39,7 @@
         public event PropertyChangedEventHandler PropertyChanged;
 
         public TickBarVm TickBarVm { get; private set; }
-       
+
         public AngularTickBarVm AngularTickBarVm { get; private set; }
 
         public double Value
@@ -114,40 +116,6 @@
             }
         }
 
-        public bool ShowTrack
-        {
-            get
-            {
-                return this.showTrack;
-            }
-            set
-            {
-                if (value.Equals(this.showTrack))
-                {
-                    return;
-                }
-                this.showTrack = value;
-                this.OnPropertyChanged();
-            }
-        }
-
-        public bool ShowTicks
-        {
-            get
-            {
-                return this.showTicks;
-            }
-            set
-            {
-                if (value.Equals(this.showTicks))
-                {
-                    return;
-                }
-                this.showTicks = value;
-                this.OnPropertyChanged();
-            }
-        }
-
         public double MajorTickFrequency
         {
             get
@@ -161,6 +129,23 @@
                     return;
                 }
                 this.majorTickFrequency = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public DoubleCollection MajorTicks
+        {
+            get
+            {
+                return this.majorTicks;
+            }
+            set
+            {
+                if (Equals(value, this.majorTicks))
+                {
+                    return;
+                }
+                this.majorTicks = value;
                 this.OnPropertyChanged();
             }
         }
@@ -203,7 +188,7 @@
                 this.OnPropertyChanged();
             }
         }
-       
+
         public Marker Marker
         {
             get

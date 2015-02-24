@@ -1,6 +1,43 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Gu.Gauges">
+
+
+    <Style TargetType="{x:Type local:LinearDimension}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:LinearDimension}">
+                    <Canvas>
+                        <Line Line.EndPoint="{TemplateBinding BoundaryLine1P2}"
+                              Line.StartPoint="{TemplateBinding BoundaryLine1P1}"
+                              Stroke="{TemplateBinding Foreground}"
+                              StrokeThickness="0.5" />
+
+                        <Line Line.EndPoint="{TemplateBinding BoundaryLine2P2}"
+                              Line.StartPoint="{TemplateBinding BoundaryLine2P1}"
+                              Stroke="{TemplateBinding Foreground}"
+                              StrokeThickness="0.5" />
+
+                        <Line Line.EndPoint="{TemplateBinding DimensionLineP2}"
+                              Line.StartPoint="{TemplateBinding DimensionLineP1}"
+                              Stroke="{TemplateBinding Foreground}"
+                              StrokeThickness="0.5" />
+
+                        <local:DimensionArrowHead Direction="{TemplateBinding ArrowHead1Direction}"
+                                                  Fill="{TemplateBinding Foreground}"
+                                                  Point="{TemplateBinding DimensionLineP1}"
+                                                  Scale="{TemplateBinding Scale}" />
+
+                        <local:DimensionArrowHead Direction="{TemplateBinding ArrowHead2Direction}"
+                                                  Fill="{TemplateBinding Foreground}"
+                                                  Point="{TemplateBinding DimensionLineP2}"
+                                                  Scale="{TemplateBinding Scale}" />
+                    </Canvas>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type local:AngularGauge}">
         <Setter Property="Template">
             <Setter.Value>
@@ -23,13 +60,14 @@
                                                   Minimum="{TemplateBinding Minimum}"
                                                   TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                   Ticks="{TemplateBinding MajorTicks}" />
-                            <local:AngularTickBar Fill="{TemplateBinding Foreground}"
+                            <local:AngularTickBar x:Name="MajorTicks"
+                                                  Fill="{TemplateBinding Foreground}"
                                                   IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
                                                   MaxAngle="{TemplateBinding MaxAngle}"
                                                   Maximum="{TemplateBinding Maximum}"
                                                   MinAngle="{TemplateBinding MinAngle}"
                                                   Minimum="{TemplateBinding Minimum}"
-                                                  ReservedSpace="{TemplateBinding FontSize}"
+                                                  ReservedSpace="{TemplateBinding TextSpace}"
                                                   TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                   TickLength="10"
                                                   Ticks="{TemplateBinding MajorTicks}" />
@@ -39,16 +77,20 @@
                                                   Maximum="{TemplateBinding Maximum}"
                                                   MinAngle="{TemplateBinding MinAngle}"
                                                   Minimum="{TemplateBinding Minimum}"
-                                                  ReservedSpace="{TemplateBinding FontSize}"
+                                                  ReservedSpace="{TemplateBinding TextSpace}"
                                                   TickFrequency="{TemplateBinding MinorTickFrequency}"
                                                   TickLength="5" />
-                            <Path HorizontalAlignment="Center"
+                            <Path Width="{Binding Diameter,
+                                                  ElementName=MajorTicks}"
+                                  Height="{Binding Diameter,
+                                                   ElementName=MajorTicks}"
+                                  HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
-                                  Stretch="Fill"
-                                  Data="M50,49L90,50 50,51z  M0,50 L100,50 M50,0 L50,100"
+                                  Data="M50,49L100,50 50,51z M0,50 L100,50 M50,0 L50,100"
                                   Fill="{TemplateBinding Foreground}"
                                   RenderTransform="{TemplateBinding AngleTransform}"
-                                  RenderTransformOrigin="0.5,0.5" />
+                                  RenderTransformOrigin="0.5,0.5"
+                                  Stretch="Fill" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -68,80 +110,78 @@
                             <Setter Property="Fill" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
                             <Setter Property="Stretch" Value="Uniform" />
                         </Style>
-
-                        <Style x:Key="TickBarStyle" TargetType="{x:Type local:LinearTickBar}">
-                            <Setter Property="Maximum" Value="{Binding Maximum, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
-                            <Setter Property="Minimum" Value="{Binding Minimum, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
-                            <Setter Property="Fill" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
-                            <Setter Property="IsDirectionReversed" Value="{Binding IsDirectionReversed, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
-                            <Setter Property="VerticalAlignment" Value="Stretch" />
-                            <Setter Property="HorizontalAlignment" Value="Stretch" />
-                        </Style>
-
-                        <Style x:Key="TextTickBarStyle" TargetType="{x:Type local:TextTickBar}">
-                            <Setter Property="Maximum" Value="{Binding Maximum, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
-                            <Setter Property="Minimum" Value="{Binding Minimum, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
-                            <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
-                            <Setter Property="IsDirectionReversed" Value="{Binding IsDirectionReversed, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
-                            <Setter Property="VerticalAlignment" Value="Stretch" />
-                            <Setter Property="HorizontalAlignment" Value="Stretch" />
-                        </Style>
-
                     </ControlTemplate.Resources>
-                    <DockPanel>
-                        <Grid x:Name="TrackAndIndicatorPanel">
-                            <Border MinWidth="2"
-                                    MinHeight="2"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch"
-                                    BorderBrush="{TemplateBinding Background}"
-                                    BorderThickness="2"
-                                    CornerRadius="4"
-                                    Visibility="{TemplateBinding ShowTrack}" />
-                            <Ellipse x:Name="Indicator"
-                                     Width="10"
-                                     Height="10"
-                                     HorizontalAlignment="Left"
-                                     VerticalAlignment="Top"
-                                     RenderTransform="{TemplateBinding ValueTransform}"
-                                     Style="{StaticResource IndicatorStyle}" />
-                        </Grid>
-                        <DockPanel x:Name="TicksPanel">
-                            <Grid x:Name="TickMarksGrid">
-                                <local:LinearTickBar x:Name="MajorTicks"
-                                                     Placement="Bottom"
-                                                     SnapsToDevicePixels="True"
-                                                     Style="{StaticResource TickBarStyle}"
-                                                     TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                                     Ticks="{TemplateBinding MajorTicks}"
-                                                     Visibility="Visible" />
-
-                                <local:LinearTickBar x:Name="MinorTicks"
-                                                     Placement="Bottom"
-                                                     SnapsToDevicePixels="True"
-                                                     Style="{StaticResource TickBarStyle}"
-                                                     TickFrequency="{TemplateBinding MinorTickFrequency}"
-                                                     Visibility="Visible" />
+                    <Border Margin="{TemplateBinding Padding}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <DockPanel>
+                            <Grid x:Name="TrackAndIndicatorPanel">
+                                <Border MinWidth="2"
+                                        MinHeight="2"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch"
+                                        BorderBrush="{TemplateBinding Background}"
+                                        BorderThickness="2"
+                                        CornerRadius="4" />
+                                <Ellipse x:Name="Indicator"
+                                         Width="10"
+                                         Height="10"
+                                         HorizontalAlignment="Left"
+                                         VerticalAlignment="Top"
+                                         RenderTransform="{TemplateBinding ValueTransform}"
+                                         Style="{StaticResource IndicatorStyle}" />
                             </Grid>
 
-                            <local:TextTickBar x:Name="TickLabels"
-                                               FontFamily="{TemplateBinding FontFamily}"
-                                               FontSize="{TemplateBinding FontSize}"
-                                               FontStretch="{TemplateBinding FontStretch}"
-                                               FontStyle="{TemplateBinding FontStyle}"
-                                               FontWeight="{TemplateBinding FontWeight}"
-                                               Foreground="{TemplateBinding Foreground}"
-                                               Placement="Top"
-                                               SnapsToDevicePixels="True"
-                                               Style="{StaticResource TextTickBarStyle}"
-                                               TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                               Ticks="{TemplateBinding MajorTicks}"
-                                               Visibility="{TemplateBinding ShowLabels}" />
+                            <DockPanel x:Name="TicksPanel">
+                                <Grid x:Name="TickMarksGrid">
+                                    <local:LinearTickBar x:Name="MajorTicks"
+                                                         Fill="{TemplateBinding Foreground}"
+                                                         IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                                                         Maximum="{TemplateBinding Maximum}"
+                                                         Minimum="{TemplateBinding Minimum}"
+                                                         Placement="Bottom"
+                                                         SnapsToDevicePixels="True"
+                                                         TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                         Ticks="{TemplateBinding MajorTicks}"
+                                                         Visibility="Visible" />
 
+                                    <local:LinearTickBar x:Name="MinorTicks"
+                                                         Fill="{TemplateBinding Foreground}"
+                                                         IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                                                         Maximum="{TemplateBinding Maximum}"
+                                                         Minimum="{TemplateBinding Minimum}"
+                                                         Placement="Bottom"
+                                                         SnapsToDevicePixels="True"
+                                                         TickFrequency="{TemplateBinding MinorTickFrequency}"
+                                                         Visibility="Visible" />
+                                </Grid>
+
+                                <local:TextTickBar x:Name="TickLabels"
+                                                   FontFamily="{TemplateBinding FontFamily}"
+                                                   FontSize="{TemplateBinding FontSize}"
+                                                   FontStretch="{TemplateBinding FontStretch}"
+                                                   FontStyle="{TemplateBinding FontStyle}"
+                                                   FontWeight="{TemplateBinding FontWeight}"
+                                                   Foreground="{TemplateBinding Foreground}"
+                                                   IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                                                   Maximum="{TemplateBinding Maximum}"
+                                                   Minimum="{TemplateBinding Minimum}"
+                                                   Placement="Top"
+                                                   SnapsToDevicePixels="True"
+                                                   TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                   Ticks="{TemplateBinding MajorTicks}"
+                                                   Visibility="Visible" />
+
+                            </DockPanel>
+                            <Grid x:Name="EmptySpace" />
                         </DockPanel>
-                        <Grid x:Name="EmptySpace" />
-                    </DockPanel>
+                    </Border>
+
                     <ControlTemplate.Triggers>
+                        <Trigger Property="ShowLabels" Value="False">
+                            <Setter TargetName="TickLabels" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+
                         <Trigger Property="Placement" Value="Top">
                             <Setter TargetName="TrackAndIndicatorPanel" Property="DockPanel.Dock" Value="Top" />
                             <Setter TargetName="TicksPanel" Property="DockPanel.Dock" Value="Top" />

@@ -9,7 +9,7 @@
 
     public class LinearGauge : RangeBase
     {
-        private static readonly DependencyPropertyKey ValueTransformPropertyKey = DependencyProperty.RegisterReadOnly( 
+        private static readonly DependencyPropertyKey ValueTransformPropertyKey = DependencyProperty.RegisterReadOnly(
             "ValueTransform",
             typeof(TranslateTransform),
             typeof(LinearGauge),
@@ -22,12 +22,6 @@
             typeof(Marker),
             typeof(LinearGauge),
             new PropertyMetadata(default(Marker)));
-
-        public static readonly DependencyProperty ShowTrackProperty = DependencyProperty.Register(
-            "ShowTrack",
-            typeof(bool),
-            typeof(LinearGauge),
-            new PropertyMetadata(true));
 
         public static readonly DependencyProperty ShowLabelsProperty = DependencyProperty.Register(
             "ShowLabels",
@@ -56,7 +50,7 @@
         public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
             typeof(LinearGauge),
             new PropertyMetadata(
-                default(TickBarPlacement), 
+                default(TickBarPlacement),
                 UpdateValuePos));
 
         /// <summary>
@@ -99,12 +93,6 @@
             set { this.SetValue(ShowLabelsProperty, value); }
         }
 
-        public bool ShowTrack
-        {
-            get { return (bool)this.GetValue(ShowTrackProperty); }
-            set { this.SetValue(ShowTrackProperty, value); }
-        }
-
         public double MajorTickFrequency
         {
             get { return (double)this.GetValue(MajorTickFrequencyProperty); }
@@ -144,7 +132,7 @@
         private static void UpdateValuePos(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var gauge = (LinearGauge)d;
-            var line = new Line(gauge.ActualWidth, gauge.ActualHeight, 0, gauge.Placement, gauge.IsDirectionReversed);
+            var line = new Line(gauge.ActualWidth - gauge.Padding.Left - gauge.Padding.Right, gauge.ActualHeight - gauge.Padding.Top - gauge.Padding.Bottom, 0, gauge.Placement, gauge.IsDirectionReversed);
             var pos = TickHelper.ToPos(gauge.Value, gauge.Minimum, gauge.Maximum, line);
             var xAnimation = new DoubleAnimation(pos.X, TimeSpan.FromMilliseconds(100));
             var yAnimation = new DoubleAnimation(pos.Y, TimeSpan.FromMilliseconds(100));

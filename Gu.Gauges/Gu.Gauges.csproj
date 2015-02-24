@@ -49,25 +49,26 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bars\AngularBlockBar.cs" />
     <Compile Include="AngularGauge.cs" />
-    <Compile Include="Arc.cs" />
-    <Compile Include="DrawingContextExt.cs" />
+    <Compile Include="Helpers\Arc.cs" />
+    <Compile Include="Dimensions\DimensionArrowHead.cs" />
+    <Compile Include="Dimensions\DimensionLine.cs" />
+    <Compile Include="Dimensions\LineExt.cs" />
+    <Compile Include="Dimensions\TwoPointDimension.cs" />
+    <Compile Include="Helpers\DrawingContextExt.cs" />
     <Compile Include="ITextFormat.cs" />
-    <Compile Include="Line.cs" />
-    <Compile Include="LinearTickBar.cs" />
-    <Compile Include="RotateTransformExt.cs" />
-    <Compile Include="TextHelper.cs" />
-    <Compile Include="TickHelper.cs" />
-    <Compile Include="AngularBar.cs" />
-    <Compile Include="AngularTextBar.cs" />
-    <Compile Include="AngularTickBar.cs" />
-    <Compile Include="BlockBar.cs" />
-    <Compile Include="GaugeIndicatorConverter.cs" />
-    <Compile Include="Marker.cs" />
+    <Compile Include="Helpers\Line.cs" />
+    <Compile Include="Bars\LinearTickBar.cs" />
+    <Compile Include="Helpers\RotateTransformExt.cs" />
+    <Compile Include="Helpers\TextHelper.cs" />
+    <Compile Include="Helpers\TickHelper.cs" />
+    <Compile Include="Bars\AngularBar.cs" />
+    <Compile Include="Bars\AngularTextBar.cs" />
+    <Compile Include="Bars\AngularTickBar.cs" />
+    <Compile Include="Bars\BlockBar.cs" />
     <Compile Include="LinearGauge.cs" />
-    <Compile Include="MakerDataTemplateSelector.cs" />
-    <Compile Include="GaugeLabel.cs" />
-    <Compile Include="TextTickBar.cs" />
+    <Compile Include="Bars\TextTickBar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
