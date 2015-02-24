@@ -84,7 +84,7 @@
         public static readonly DependencyProperty TickFrequencyProperty = Slider.TickFrequencyProperty.AddOwner(
             typeof(BlockBar),
             new FrameworkPropertyMetadata(
-                1.0,
+                0.0,
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
@@ -195,7 +195,7 @@
         /// Gets or sets the interval between tick marks.  
         /// </summary>
         /// <returns>
-        /// The distance between tick marks. The default is (1.0).
+        /// The distance between tick marks. The default is (0.0).
         /// </returns>
         public double TickFrequency
         {
@@ -265,7 +265,10 @@
             var pen = new Pen(this.Stroke, this.StrokeThickness);
             pen.Freeze();
 
-            var ticks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency).Concat(this.Ticks ?? Enumerable.Empty<double>()).OrderBy(t => t);
+            var ticks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency)
+                                  .Concat(this.Ticks ?? Enumerable.Empty<double>())
+                                  .Concat(new[] { this.Value })
+                                  .OrderBy(t => t);
             var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace, this.Placement, this.IsDirectionReversed);
             var previous = line.StartPoint;
             Vector offset = new Vector(0, 0);
