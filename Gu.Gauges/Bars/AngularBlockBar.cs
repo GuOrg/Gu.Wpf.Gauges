@@ -127,7 +127,7 @@ namespace Gu.Gauges
             var ticks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency).Concat(this.Ticks ?? Enumerable.Empty<double>()).OrderBy(t => t);
             var arc = new Arc(new Point(this.ActualWidth / 2, this.ActualHeight / 2), this.MinAngle, this.MaxAngle, this.ActualWidth / 2 - this.ReservedSpace / 2, this.IsDirectionReversed);
             var previous = arc.Start;
-            var gap = this.IsDirectionReversed ? this.Gap : -1 * this.Gap;
+            var gap = this.IsDirectionReversed ? -1 * this.Gap : this.Gap;
 
             foreach (var tick in ticks)
             {
@@ -137,16 +137,16 @@ namespace Gu.Gauges
                 }
                 if (tick > this.Value)
                 {
-                    var p = TickHelper.ToAngle(this.Value, this.Minimum, this.Maximum, arc);
-                    var block = ArcBlock(arc, previous, p, this.TickLength);
+                    var a = TickHelper.ToAngle(this.Value, this.Minimum, this.Maximum, arc);
+                    var block = ArcBlock(arc, previous, a, this.TickLength);
                     dc.DrawGeometry(this.Fill, pen, block);
                     break;
                 }
 
-                var pos = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
-                var arcBlock = ArcBlock(arc, previous, pos - gap, this.TickLength);
+                var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
+                var arcBlock = ArcBlock(arc, previous, angle - gap, this.TickLength);
                 dc.DrawGeometry(this.Fill, pen, arcBlock);
-                previous = pos + gap;
+                previous = angle + gap;
             }
         }
 
@@ -163,11 +163,16 @@ namespace Gu.Gauges
 
             figure.StartPoint = op1;
             var rotationAngle = toAngle - fromAngle;
-            figure.Segments.Add(new ArcSegment(op2, new Size(arc.Radius, arc.Radius), rotationAngle, false, SweepDirection.Clockwise, true));
+            var isLargeArc = arc.IsLargeAngle(fromAngle, toAngle);
+            var sweepDirection = arc.SweepDirection(fromAngle, toAngle);
+            figure.Segments.Add(new ArcSegment(op2, new Size(arc.Radius, arc.Radius), rotationAngle, isLargeArc, sweepDirection, true));
             figure.Segments.Add(new LineSegment(ip2, true));
-            figure.Segments.Add(new ArcSegment(ip1, new Size(arc.Radius-tickLength, arc.Radius- tickLength), rotationAngle, false, SweepDirection.Counterclockwise, true));
-            figure.Segments.Add(new LineSegment(op2, true));
+            sweepDirection = arc.SweepDirection(toAngle, fromAngle);
+            figure.Segments.Add(new ArcSegment(ip1, new Size(arc.Radius - tickLength, arc.Radius - tickLength), rotationAngle, isLargeArc, sweepDirection, true));
+            figure.Segments.Add(new LineSegment(op1, true));
             figure.IsClosed = true;
+            figure.Freeze();
+            geometry.Freeze();
             return geometry;
         }
     }

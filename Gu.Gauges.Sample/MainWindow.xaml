@@ -183,17 +183,21 @@
                     </GroupBox>
 
                     <GroupBox Background="LightGoldenrodYellow" Header="AngularBlockBar">
-                        <gauges:AngularBlockBar Width="100"
-                                                Height="100"
+                        <gauges:AngularBlockBar Width="400"
+                                                Height="400"
+                                                Gap="1"
                                                 IsDirectionReversed="{Binding AngularTickBarVm.IsDirectionReversed}"
                                                 MaxAngle="{Binding AngularTickBarVm.MaxAngle}"
                                                 Maximum="{Binding AngularTickBarVm.Maximum}"
                                                 MinAngle="{Binding AngularTickBarVm.MinAngle}"
                                                 Minimum="{Binding AngularTickBarVm.Minimum}"
                                                 ReservedSpace="{Binding AngularTickBarVm.ReservedSpace}"
+                                                Stroke="Chocolate"
+                                                StrokeThickness="1"
                                                 TickFrequency="{Binding AngularTickBarVm.TickFrequency}"
+                                                TickLength="50"
                                                 Ticks="{Binding AngularTickBarVm.Ticks}"
-                                                Value="{Binding Value}" />
+                                                Value="{Binding AngularTickBarVm.Value}" />
                     </GroupBox>
                 </WrapPanel>
 

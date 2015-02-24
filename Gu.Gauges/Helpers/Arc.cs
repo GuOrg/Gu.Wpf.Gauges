@@ -29,16 +29,36 @@
 
         public Point GetPoint(double angle)
         {
-            var p = new Point(this.Radius, 0);
+            var p0 = this.Centre + new Vector(this.Radius, 0);
             var transform = new RotateTransform(angle, this.Centre.X, this.Centre.Y);
-            return transform.Transform(p);
+            var p = transform.Transform(p0);
+            return p;
         }
 
         public Point GetPoint(double angle, double offset)
         {
-            var p = new Point(this.Radius + offset, 0);
+            var p0 = this.Centre + new Vector(this.Radius + offset, 0);
             var transform = new RotateTransform(angle, this.Centre.X, this.Centre.Y);
-            return transform.Transform(p);
+            var p = transform.Transform(p0);
+            return p;
+        }
+
+        public bool IsLargeAngle(double fromAngle, double toAngle)
+        {
+            var delta = toAngle - fromAngle;
+            if (delta < 180)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public SweepDirection SweepDirection(double fromAngle, double toAngle)
+        {
+            var delta = toAngle - fromAngle;
+            return delta >= 0
+                       ? System.Windows.Media.SweepDirection.Clockwise
+                       : System.Windows.Media.SweepDirection.Counterclockwise;
         }
     }
 }
