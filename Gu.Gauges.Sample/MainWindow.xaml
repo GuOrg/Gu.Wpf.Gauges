@@ -130,19 +130,6 @@
                                               Ticks="{Binding TickBarVm.Ticks}" />
                     </GroupBox>
 
-                    <!--<GroupBox Background="LightGray" Header="BlockBar">
-                        <gauges:BlockBar Width="100"
-                                              Height="100"
-                                              Fill="Black"
-                                              IsDirectionReversed="{Binding TickBarVm.IsDirectionReversed}"
-                                              Maximum="{Binding TickBarVm.Maximum}"
-                                              Minimum="{Binding TickBarVm.Minimum}"
-                                              Placement="{Binding TickBarVm.TickBarPlacement}"
-                                              ReservedSpace="{Binding TickBarVm.ReservedSpace}"
-                                              TickFrequency="{Binding TickBarVm.TickFrequency}"
-                                              Ticks="{Binding TickBarVm.Ticks}" />
-                    </GroupBox>-->
-
                     <GroupBox Background="Bisque" Header="TextTickBar">
                         <gauges:TextTickBar Width="100"
                                             Height="100"
@@ -155,8 +142,6 @@
                                             TickFrequency="{Binding TickBarVm.TickFrequency}"
                                             Ticks="{Binding TickBarVm.Ticks}" />
                     </GroupBox>
-
-
                 </WrapPanel>
                 <ContentPresenter Grid.Row="1" Content="{Binding TickBarVm}" />
             </Grid>
@@ -169,7 +154,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <WrapPanel>
-                    <Border Background="Bisque">
+                    <GroupBox Background="Bisque" Header="AngularTickBar">
                         <gauges:AngularTickBar Width="100"
                                                Height="100"
                                                Fill="Black"
@@ -182,9 +167,9 @@
                                                ReservedSpace="{Binding AngularTickBarVm.ReservedSpace}"
                                                TickFrequency="{Binding AngularTickBarVm.TickFrequency}"
                                                Ticks="{Binding AngularTickBarVm.Ticks}" />
-                    </Border>
+                    </GroupBox>
 
-                    <Border Background="Lavender">
+                    <GroupBox Background="Lavender" Header="AngularTextBar">
                         <gauges:AngularTextBar Width="100"
                                                Height="100"
                                                IsDirectionReversed="{Binding AngularTickBarVm.IsDirectionReversed}"
@@ -195,7 +180,21 @@
                                                ReservedSpace="{Binding AngularTickBarVm.ReservedSpace}"
                                                TickFrequency="{Binding AngularTickBarVm.TickFrequency}"
                                                Ticks="{Binding AngularTickBarVm.Ticks}" />
-                    </Border>
+                    </GroupBox>
+
+                    <GroupBox Background="LightGoldenrodYellow" Header="AngularBlockBar">
+                        <gauges:AngularBlockBar Width="100"
+                                                Height="100"
+                                                IsDirectionReversed="{Binding AngularTickBarVm.IsDirectionReversed}"
+                                                MaxAngle="{Binding AngularTickBarVm.MaxAngle}"
+                                                Maximum="{Binding AngularTickBarVm.Maximum}"
+                                                MinAngle="{Binding AngularTickBarVm.MinAngle}"
+                                                Minimum="{Binding AngularTickBarVm.Minimum}"
+                                                ReservedSpace="{Binding AngularTickBarVm.ReservedSpace}"
+                                                TickFrequency="{Binding AngularTickBarVm.TickFrequency}"
+                                                Ticks="{Binding AngularTickBarVm.Ticks}"
+                                                Value="{Binding Value}" />
+                    </GroupBox>
                 </WrapPanel>
 
                 <ContentPresenter Grid.Row="1" Content="{Binding AngularTickBarVm}" />

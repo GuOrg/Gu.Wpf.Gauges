@@ -17,12 +17,6 @@
 
         public static readonly DependencyProperty ValueTransformProperty = ValueTransformPropertyKey.DependencyProperty;
 
-        public static readonly DependencyProperty MarkerProperty = DependencyProperty.Register(
-            "Marker",
-            typeof(Marker),
-            typeof(LinearGauge),
-            new PropertyMetadata(default(Marker)));
-
         public static readonly DependencyProperty ShowLabelsProperty = DependencyProperty.Register(
             "ShowLabels",
             typeof(bool),
@@ -79,12 +73,6 @@
         {
             get { return (TranslateTransform)this.GetValue(ValueTransformProperty); }
             protected set { this.SetValue(ValueTransformPropertyKey, value); }
-        }
-
-        public Marker Marker
-        {
-            get { return (Marker)this.GetValue(MarkerProperty); }
-            set { this.SetValue(MarkerProperty, value); }
         }
 
         public bool ShowLabels

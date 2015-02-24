@@ -16,7 +16,6 @@
         private bool showLabels;
         private TickBarPlacement placement;
         private double majorTickFrequency;
-        private Marker marker;
         private double minorTickFrequency;
         private bool isDirectionReversed;
 
@@ -185,23 +184,6 @@
                     return;
                 }
                 this.placement = value;
-                this.OnPropertyChanged();
-            }
-        }
-
-        public Marker Marker
-        {
-            get
-            {
-                return this.marker;
-            }
-            set
-            {
-                if (value == this.marker)
-                {
-                    return;
-                }
-                this.marker = value;
                 this.OnPropertyChanged();
             }
         }

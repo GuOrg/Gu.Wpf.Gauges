@@ -3,7 +3,7 @@
                     xmlns:local="clr-namespace:Gu.Gauges">
 
 
-    <Style TargetType="{x:Type local:LinearDimension}">
+    <!--<Style TargetType="{x:Type local:LinearDimension}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:LinearDimension}">
@@ -36,7 +36,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
     <Style TargetType="{x:Type local:AngularGauge}">
         <Setter Property="Template">
