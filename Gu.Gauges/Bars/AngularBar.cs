@@ -73,7 +73,7 @@ namespace Gu.Gauges
         public static readonly DependencyProperty TickFrequencyProperty = Slider.TickFrequencyProperty.AddOwner(
             typeof(AngularBar),
             new FrameworkPropertyMetadata(
-                1.0,
+                0.0,
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace Gu.Gauges
         /// Gets or sets the interval between tick marks.  
         /// </summary>
         /// <returns>
-        /// The distance between tick marks. The default is (1.0).
+        /// The distance between tick marks. The default is (0).
         /// </returns>
         public double TickFrequency
         {
