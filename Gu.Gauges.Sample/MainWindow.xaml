@@ -98,7 +98,16 @@
                                          Value="{Binding Value}"
                                          >
                     </gauges:AngularGauge>
-               </WrapPanel>
+
+                    <gauges:LinearGauge IsDirectionReversed="False" MajorTickFrequency="25"
+                                         Maximum="100"
+                                         Minimum="0"
+                                         MinorTickFrequency="{Binding MinorTickFrequency}"
+                                         Style="{StaticResource FatHorizontal}"
+                                         Value="{Binding Value}"
+                                         >
+                    </gauges:LinearGauge>
+                </WrapPanel>
 
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
