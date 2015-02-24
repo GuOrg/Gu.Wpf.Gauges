@@ -10,6 +10,7 @@
             this.minAngle = -180;
             this.maxAngle = 0;
             this.Maximum = 100;
+            this.TickFrequency = 25;
         }
 
         public double MinAngle

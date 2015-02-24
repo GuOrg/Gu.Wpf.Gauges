@@ -59,6 +59,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="AngularTickBarTests.cs" />
+    <Compile Include="ArcTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TickHelperTests.cs" />
   </ItemGroup>
