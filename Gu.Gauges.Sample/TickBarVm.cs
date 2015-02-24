@@ -16,10 +16,13 @@
         private TickBarPlacement tickBarPlacement;
         private bool isDirectionReversed;
 
+        private double value;
+
         public TickBarVm()
         {
             this.Minimum = 0;
             this.Maximum = 100;
+            this.value = 50;
             this.TickFrequency = 10;
             this.ReservedSpace = 0;
             this.Ticks = new DoubleCollection(new[] { 5, 15, 25.0 });
@@ -46,6 +49,23 @@
             {
                 if (value.Equals(this.maximum)) return;
                 this.maximum = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public double Value
+        {
+            get
+            {
+                return this.value;
+            }
+            set
+            {
+                if (value.Equals(this.value))
+                {
+                    return;
+                }
+                this.value = value;
                 this.OnPropertyChanged();
             }
         }

@@ -7,6 +7,14 @@ namespace Gu.Gauges
 
     public class AngularBar : FrameworkElement
     {
+        private static readonly DependencyPropertyKey DiameterPropertyKey = DependencyProperty.RegisterReadOnly(
+                "Diameter",
+                typeof(double),
+                typeof(AngularTickBar),
+                new PropertyMetadata(default(double)));
+
+        public static readonly DependencyProperty DiameterProperty = DiameterPropertyKey.DependencyProperty;
+
         public static readonly DependencyProperty MinAngleProperty = DependencyProperty.Register(
             "MinAngle",
             typeof(double),
@@ -85,6 +93,16 @@ namespace Gu.Gauges
             new FrameworkPropertyMetadata(
                 false,
                 FrameworkPropertyMetadataOptions.AffectsRender));
+
+        /// <summary>
+        /// Gets or sets the effective diameter ie ActualWidth - ReservedSpace
+        /// The default is -180
+        /// </summary>
+        public double Diameter
+        {
+            get { return (double)this.GetValue(DiameterProperty); }
+            protected set { this.SetValue(DiameterPropertyKey, value); }
+        }
 
         /// <summary>
         /// Gets or sets the <see cref="P:AngularBar.MinAngle" />

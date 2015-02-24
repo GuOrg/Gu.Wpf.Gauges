@@ -222,6 +222,7 @@ namespace Gu.Gauges
                 dc.DrawText(text, p + offset);
                 dc.Pop();
             }
+            this.Diameter = this.ActualWidth - this.ReservedSpace;
         }
     }
 }

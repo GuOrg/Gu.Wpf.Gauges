@@ -5,40 +5,61 @@
              xmlns:sample="clr-namespace:Gu.Gauges.Sample"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+
+        <Style TargetType="{x:Type Slider}">
+            <Setter Property="TickFrequency" Value="1" />
+            <Setter Property="IsSnapToTickEnabled" Value="True" />
+        </Style>
+
         <DataTemplate x:Key="VmTemplate" DataType="{x:Type sample:Vm}">
             <Expander Header="Control the vm">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="150" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0"
                                Grid.Column="0"
-                               Text="{Binding Min,
-                                              StringFormat='Min:{0:F1}'}" />
+                               Text="Min" />
                     <TextBox Grid.Row="0"
                              Grid.Column="1"
                              Text="{Binding Min}" />
+                    <Slider Grid.Row="0"
+                            Grid.Column="2"
+                            Maximum="{Binding Max}"
+                            Minimum="-200"
+                            Value="{Binding Min}" />
 
                     <TextBlock Grid.Row="1"
                                Grid.Column="0"
-                               Text="{Binding Max,
-                                              StringFormat='Max:{0:F1}'}" />
+                               Text="Max" />
                     <TextBox Grid.Row="1"
                              Grid.Column="1"
                              Text="{Binding Max}" />
+                    <Slider Grid.Row="1"
+                            Grid.Column="2"
+                            Maximum="200"
+                            Minimum="{Binding Min}"
+                            Value="{Binding Max}" />
 
                     <TextBlock Grid.Row="2"
                                Grid.Column="0"
-                               Text="{Binding Value,
-                                              StringFormat='Value:{0:F1}'}" />
+                               Text="Value" />
+                    <TextBox Grid.Row="2"
+                             Grid.Column="1"
+                             Text="{Binding Value}" />
                     <Slider Grid.Row="2"
-                            Grid.Column="1"
+                            Grid.Column="2"
                             Maximum="{Binding Max}"
                             Minimum="{Binding Min}"
                             Value="{Binding Value}" />
@@ -77,25 +98,25 @@
 
                     <TextBlock Grid.Row="2"
                                Grid.Column="0"
-                               Text="ShowTrack" />
-                    <CheckBox Grid.Row="2"
-                              Grid.Column="1"
-                              IsChecked="{Binding ShowTrack}" />
-
-                    <TextBlock Grid.Row="3"
-                               Grid.Column="0"
                                Text="Placement" />
-                    <ComboBox Grid.Row="3"
+                    <ComboBox Grid.Row="2"
                               Grid.Column="1"
                               SelectedItem="{Binding Placement}"
                               sample:ItemsControlExt.EnumSource="{x:Type TickBarPlacement}" />
 
-                    <TextBlock Grid.Row="4"
+                    <TextBlock Grid.Row="3"
                                Grid.Column="0"
                                Text="MajorTickFrequency" />
-                    <TextBox Grid.Row="4"
+                    <TextBox Grid.Row="3"
                              Grid.Column="1"
                              Text="{Binding MajorTickFrequency}" />
+
+                    <TextBlock Grid.Row="4"
+                               Grid.Column="0"
+                               Text="MajorTicks" />
+                    <TextBox Grid.Row="4"
+                             Grid.Column="1"
+                             Text="{Binding MajorTicks}" />
 
                     <TextBlock Grid.Row="5"
                                Grid.Column="0"
@@ -149,7 +170,6 @@
                     <TextBox Grid.Row="1"
                              Grid.Column="1"
                              Text="{Binding Maximum}" />
-
                     <Slider Grid.Row="1"
                             Grid.Column="2"
                             Maximum="100"
@@ -158,47 +178,59 @@
 
                     <TextBlock Grid.Row="2"
                                Grid.Column="0"
-                               Text="TickFrequency" />
+                               Text="Value" />
                     <TextBox Grid.Row="2"
                              Grid.Column="1"
-                             Text="{Binding TickFrequency}" />
+                             Text="{Binding Value}" />
                     <Slider Grid.Row="2"
                             Grid.Column="2"
                             Maximum="{Binding Maximum}"
                             Minimum="{Binding Minimum}"
-                            Value="{Binding TickFrequency}" />
-                    
+                            Value="{Binding Value}" />
+
                     <TextBlock Grid.Row="3"
                                Grid.Column="0"
-                               Text="Ticks" />
+                               Text="TickFrequency" />
                     <TextBox Grid.Row="3"
                              Grid.Column="1"
-                             Text="{Binding Ticks}" />
-                    
+                             Text="{Binding TickFrequency}" />
+                    <Slider Grid.Row="3"
+                            Grid.Column="2"
+                            Maximum="{Binding Maximum}"
+                            Minimum="{Binding Minimum}"
+                            Value="{Binding TickFrequency}" />
+
                     <TextBlock Grid.Row="4"
                                Grid.Column="0"
-                               Text="ReservedSpace" />
+                               Text="Ticks" />
                     <TextBox Grid.Row="4"
                              Grid.Column="1"
+                             Text="{Binding Ticks}" />
+
+                    <TextBlock Grid.Row="5"
+                               Grid.Column="0"
+                               Text="ReservedSpace" />
+                    <TextBox Grid.Row="5"
+                             Grid.Column="1"
                              Text="{Binding ReservedSpace}" />
-                    <Slider Grid.Row="4"
+                    <Slider Grid.Row="5"
                             Grid.Column="2"
                             Maximum="50"
                             Minimum="0"
                             Value="{Binding ReservedSpace}" />
 
-                    <TextBlock Grid.Row="5"
+                    <TextBlock Grid.Row="6"
                                Grid.Column="0"
                                Text="TickBarPlacement" />
-                    <ComboBox Grid.Row="5"
+                    <ComboBox Grid.Row="6"
                               Grid.Column="1"
                               SelectedItem="{Binding TickBarPlacement}"
                               sample:ItemsControlExt.EnumSource="{x:Type TickBarPlacement}" />
 
-                    <TextBlock Grid.Row="6"
+                    <TextBlock Grid.Row="7"
                                Grid.Column="0"
                                Text="IsDirectionReversed" />
-                    <CheckBox Grid.Row="6"
+                    <CheckBox Grid.Row="7"
                               Grid.Column="1"
                               IsChecked="{Binding IsDirectionReversed}" />
                 </Grid>
@@ -277,7 +309,7 @@
                             Maximum="100"
                             Minimum="{Binding MinAngle}"
                             Value="{Binding MaxAngle}" />
-                    
+
                     <TextBlock Grid.Row="4"
                                Grid.Column="0"
                                Text="TickFrequency" />
