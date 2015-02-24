@@ -27,15 +27,15 @@
                                         VerticalAlignment="Stretch"
                                         IsDirectionReversed="{Binding IsDirectionReversed}"
                                         MajorTickFrequency="{Binding MajorTickFrequency}"
-                                        Marker="{Binding Marker}"
                                         Maximum="{Binding Max}"
                                         Minimum="{Binding Min}"
                                         MinorTickFrequency="{Binding MinorTickFrequency}"
                                         Placement="{Binding Placement}"
                                         ShowLabels="{Binding ShowLabels}"
                                         ShowTrack="{Binding ShowTrack}"
-                                        Value="{Binding Value}">
-                        <gauges:LinearGauge.Background>
+                                        Value="{Binding Value}"
+                                        Background="Black">
+                        <!--<gauges:LinearGauge.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
                                 <LinearGradientBrush.GradientStops>
                                     <GradientStopCollection>
@@ -48,7 +48,7 @@
                                     </GradientStopCollection>
                                 </LinearGradientBrush.GradientStops>
                             </LinearGradientBrush>
-                        </gauges:LinearGauge.Background>
+                        </gauges:LinearGauge.Background>-->
                     </gauges:LinearGauge>
                  
                     <gauges:AngularGauge Width="200"
@@ -56,7 +56,6 @@
                                          HorizontalAlignment="Stretch"
                                          VerticalAlignment="Stretch"
                                          MajorTickFrequency="{Binding MajorTickFrequency}"
-                                         Marker="{Binding Marker}"
                                          MaxAngle="0"
                                          Maximum="{Binding Max}"
                                          MinAngle="-180"
