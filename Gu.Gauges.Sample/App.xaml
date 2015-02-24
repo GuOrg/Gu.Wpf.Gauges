@@ -96,14 +96,6 @@
                     <TextBox Grid.Row="4"
                              Grid.Column="1"
                              Text="{Binding MajorTickFrequency}" />
-
-                    <TextBlock Grid.Row="5"
-                               Grid.Column="0"
-                               Text="Placement" />
-                    <ComboBox Grid.Row="5"
-                              Grid.Column="1"
-                              SelectedItem="{Binding Marker}"
-                              sample:ItemsControlExt.EnumSource="{x:Type gauges:Marker}" />
                 </Grid>
             </Expander>
         </DataTemplate>

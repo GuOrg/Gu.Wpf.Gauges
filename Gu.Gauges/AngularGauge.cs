@@ -1,24 +1,24 @@
-﻿using System.Runtime.CompilerServices;
-using System.Windows.Controls;
-using System.Windows.Media;
-
-namespace Gu.Gauges
+﻿namespace Gu.Gauges
 {
+    using System;
     using System.Windows;
+    using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
+    using System.Windows.Media;
+    using System.Windows.Media.Animation;
 
     public class AngularGauge : RangeBase
     {
-        private static readonly DependencyPropertyKey ValueAnglePropertyKey  = DependencyProperty.RegisterReadOnly(
-            "ValueAngleProperty",
-            typeof (double),
-            typeof (AngularGauge),
-            new PropertyMetadata(default(double)));
+        private static readonly DependencyPropertyKey AngleTransformPropertyKey = DependencyProperty.RegisterReadOnly(
+                "AngleTransform",
+                typeof(RotateTransform),
+                typeof(AngularGauge),
+                new PropertyMetadata(default(RotateTransform)));
 
-        public static readonly DependencyProperty ValueAngleProperty = ValueAnglePropertyKey.DependencyProperty;
+        public static readonly DependencyProperty AngleTransformProperty = AngleTransformPropertyKey.DependencyProperty;
 
         public static readonly DependencyProperty MinAngleProperty = AngularBar.MinAngleProperty.AddOwner(
-            typeof (AngularGauge),
+            typeof(AngularGauge),
             new PropertyMetadata(
                 -180.0,
                 UpdateValueAngle));
@@ -39,17 +39,28 @@ namespace Gu.Gauges
                 UpdateValueAngle));
 
         public static readonly DependencyProperty MajorTickFrequencyProperty = LinearGauge.MajorTickFrequencyProperty.AddOwner(typeof(AngularGauge));
-        
+
         public static readonly DependencyProperty MajorTicksProperty = LinearGauge.MajorTicksProperty.AddOwner(typeof(AngularGauge));
-        
+
         public static readonly DependencyProperty MinorTickFrequencyProperty = LinearGauge.MinorTickFrequencyProperty.AddOwner(typeof(AngularGauge));
 
         static AngularGauge()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(typeof(AngularGauge)));
-            MinimumProperty.OverrideMetadata(typeof(AngularGauge), new PropertyMetadata(0, UpdateValueAngle));
-            MaximumProperty.OverrideMetadata(typeof(AngularGauge), new PropertyMetadata(100, UpdateValueAngle));
-            ValueProperty.OverrideMetadata(typeof(AngularGauge), new PropertyMetadata(0, UpdateValueAngle));
+            MinimumProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(0.0, UpdateValueAngle));
+            MaximumProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(100.0, UpdateValueAngle));
+            ValueProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(0.0, UpdateValueAngle));
+        }
+
+        public AngularGauge()
+        {
+            this.AngleTransform = new RotateTransform(0, 0, 0);
+        }
+
+        public RotateTransform AngleTransform
+        {
+            get { return (RotateTransform)this.GetValue(AngleTransformProperty); }
+            protected set { this.SetValue(AngleTransformPropertyKey, value); }
         }
 
         /// <summary>
@@ -85,15 +96,6 @@ namespace Gu.Gauges
             set { this.SetValue(IsDirectionReversedProperty, value); }
         }
 
-        /// <summary>
-        /// The angle that corresponds to the current value
-        /// </summary>
-        public double ValueAngle
-        {
-            get { return (double)this.GetValue(ValueAngleProperty); }
-            protected set { this.SetValue(ValueAnglePropertyKey, value); }
-        }
-
         public double MajorTickFrequency
         {
             get { return (double)this.GetValue(MajorTickFrequencyProperty); }
@@ -114,11 +116,15 @@ namespace Gu.Gauges
 
         private static void UpdateValueAngle(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var gauge = (AngularGauge) d;
-            var arc = new Arc(new Point(gauge.ActualWidth/2, gauge.ActualHeight/2), gauge.MinAngle, gauge.MaxAngle, 1,
+            var gauge = (AngularGauge)d;
+            var arc = new Arc(new Point(gauge.ActualWidth / 2, gauge.ActualHeight / 2), gauge.MinAngle, gauge.MaxAngle, 1,
                 gauge.IsDirectionReversed);
             var angle = TickHelper.ToAngle(gauge.Value, gauge.Minimum, gauge.Maximum, arc);
-            gauge.ValueAngle = angle;
+            //gauge.AngleTransform.CenterX = gauge.ActualWidth / 2;
+            //gauge.AngleTransform.CenterY = gauge.ActualHeight / 2;
+            var angleAnimation = new DoubleAnimation(angle, TimeSpan.FromMilliseconds(100));
+            gauge.AngleTransform.BeginAnimation(RotateTransform.AngleProperty, angleAnimation);
+            //gauge.ValueAngle = angle;
         }
     }
 }
