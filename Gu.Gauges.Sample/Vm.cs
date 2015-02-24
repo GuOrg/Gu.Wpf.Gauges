@@ -27,9 +27,9 @@
             this.showLabels = true;
             this.showTicks = true;
             this.ShowTrack = true;
-            this.placement = TickBarPlacement.Bottom;
+            this.placement = TickBarPlacement.Top;
             this.majorTickFrequency = 100;
-            this.MinorTickFrequency = 25;
+            this.minorTickFrequency = 25;
             this.TickBarVm = new TickBarVm();
             this.AngularTickBarVm = new AngularTickBarVm();
         }

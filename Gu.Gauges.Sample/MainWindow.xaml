@@ -21,6 +21,7 @@
                 </Grid.RowDefinitions>
                 <WrapPanel Grid.Row="0">
                     <gauges:LinearGauge x:Name="Gauge"
+                                        Margin="25"
                                         Width="200"
                                         Height="200"
                                         HorizontalAlignment="Stretch"

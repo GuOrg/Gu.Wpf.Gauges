@@ -92,10 +92,17 @@
 
                     <TextBlock Grid.Row="4"
                                Grid.Column="0"
-                               Text="TickFrequency" />
+                               Text="MajorTickFrequency" />
                     <TextBox Grid.Row="4"
                              Grid.Column="1"
                              Text="{Binding MajorTickFrequency}" />
+
+                    <TextBlock Grid.Row="5"
+                               Grid.Column="0"
+                               Text="MinorTickFrequency" />
+                    <TextBox Grid.Row="5"
+                             Grid.Column="1"
+                             Text="{Binding MinorTickFrequency}" />
                 </Grid>
             </Expander>
         </DataTemplate>
