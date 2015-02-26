@@ -23,7 +23,21 @@
             typeof(LinearGauge),
             new FrameworkPropertyMetadata(default(double)));
 
+        // A proxy that is used for animating. Sets the value of the readonly property on change.
+        private static readonly DependencyProperty AnimatedValueProxyProperty = DependencyProperty.Register(
+            "AnimatedValueProxy",
+            typeof(double),
+            typeof(LinearGauge),
+            new PropertyMetadata(0.0, OnAnimatedValueProxyChanged));
+
         public static readonly DependencyProperty AnimatedValueProperty = AnimatedValuePropertyKey.DependencyProperty;
+
+        public static readonly DependencyProperty TextOrientationProperty =
+            DependencyProperty.Register(
+                "TextOrientation",
+                typeof(TextOrientation),
+                typeof(LinearGauge),
+                new FrameworkPropertyMetadata(TextOrientation.Horizontal));
 
         public static readonly DependencyProperty ShowLabelsProperty = DependencyProperty.Register(
             "ShowLabels",
@@ -101,6 +115,16 @@
             set { this.SetValue(ShowLabelsProperty, value); }
         }
 
+        /// <summary>
+        /// Gets or sets the <see cref="T:Gu.Gauges.TextOrientation" />
+        /// Default is Horizontal
+        /// </summary>
+        public TextOrientation TextOrientation
+        {
+            get { return (TextOrientation)this.GetValue(TextOrientationProperty); }
+            set { this.SetValue(TextOrientationProperty, value); }
+        }
+
         public double MajorTickFrequency
         {
             get { return (double)this.GetValue(MajorTickFrequencyProperty); }
@@ -146,10 +170,13 @@
             var yAnimation = new DoubleAnimation(pos.Y, TimeSpan.FromMilliseconds(100));
             gauge.ValueTransform.BeginAnimation(TranslateTransform.XProperty, xAnimation);
             gauge.ValueTransform.BeginAnimation(TranslateTransform.YProperty, yAnimation);
-            //var valueAnimation = new DoubleAnimation(gauge.Value, TimeSpan.FromMilliseconds(100));
-            //gauge.BeginAnimation(AnimatedValueProperty, valueAnimation);
-            //gauge.ValueTransform.X = pos.X;
-            //gauge.ValueTransform.Y = pos.Y;
+            var valueAnimation = new DoubleAnimation(gauge.Value, TimeSpan.FromMilliseconds(100));
+            gauge.BeginAnimation(AnimatedValueProxyProperty, valueAnimation);
+        }
+
+        private static void OnAnimatedValueProxyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            d.SetValue(AnimatedValuePropertyKey, e.NewValue);
         }
     }
 }

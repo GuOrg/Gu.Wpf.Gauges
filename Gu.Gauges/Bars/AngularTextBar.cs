@@ -223,7 +223,8 @@ namespace Gu.Gauges
         {
             var midPoint = new Point(this.ActualWidth / 2, this.ActualHeight / 2);
             var p = new Point(midPoint.X, midPoint.Y - this.ActualHeight / 2 - this.ReservedSpace / 2);
-            var arc = new Arc(midPoint, this.MinAngle, this.MaxAngle, this.ActualWidth - this.ReservedSpace, this.IsDirectionReversed);
+            var radius = (this.ActualWidth - this.ReservedSpace) / 2;
+            var arc = new Arc(midPoint, this.MinAngle, this.MaxAngle, radius, this.IsDirectionReversed);
             var ticks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency).Concat(this.Ticks ?? Enumerable.Empty<double>());
 
             foreach (var tick in ticks)
@@ -234,7 +235,8 @@ namespace Gu.Gauges
                 }
                 var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
                 var text = TextHelper.AsFormattedText(tick, this);
-                var textPosition = new TextPosition(text, TickBarPlacement.Top, this.TextOrientation, arc.GetPoint(angle), angle);
+                var point = arc.GetPoint(angle);
+                var textPosition = new TextPosition(text, TickBarPlacement.Top, this.TextOrientation, point, angle);
                 dc.DrawText(text, textPosition);
             }
             this.Diameter = this.ActualWidth - this.ReservedSpace;

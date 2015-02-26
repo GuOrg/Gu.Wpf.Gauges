@@ -56,14 +56,14 @@
                                          Height="200"
                                          HorizontalAlignment="Stretch"
                                          VerticalAlignment="Stretch"
-                                         IsDirectionReversed="{Binding IsDirectionReversed}"
-                                         MajorTickFrequency="{Binding MajorTickFrequency}"
-                                         MajorTicks="{Binding MajorTicks}"
-                                         MaxAngle="0"
+                                         IsDirectionReversed="{Binding AngularTickBarVm.IsDirectionReversed}"
+                                         MajorTickFrequency="{Binding AngularTickBarVm.TickFrequency}"
+                                         MajorTicks="{Binding AngularTickBarVm.Ticks}"
+                                         MaxAngle="{Binding AngularTickBarVm.MinAngle}"
                                          Maximum="{Binding Max}"
-                                         MinAngle="-180"
+                                         MinAngle="{Binding AngularTickBarVm.MaxAngle}"
                                          Minimum="{Binding Min}"
-                                         MinorTickFrequency="{Binding MinorTickFrequency}"
+                                         MinorTickFrequency="{Binding AngularTickBarVm.MinorTickFrequency}"
                                          Value="{Binding Value}" />
                 </WrapPanel>
 
@@ -75,9 +75,7 @@
                     <ContentPresenter Grid.Column="0"
                                       Content="{Binding}"
                                       ContentTemplate="{StaticResource VmTemplate}" />
-                    <ContentPresenter Grid.Column="1"
-                                      Content="{Binding}"
-                                      ContentTemplate="{StaticResource GaugeTemplate}" />
+                    <ContentPresenter Grid.Column="1" Content="{Binding AngularTickBarVm}" />
                 </Grid>
             </Grid>
         </TabItem>
@@ -118,8 +116,7 @@
                                       Content="{Binding}"
                                       ContentTemplate="{StaticResource VmTemplate}" />
                     <ContentPresenter Grid.Column="1"
-                                      Content="{Binding}"
-                                      ContentTemplate="{StaticResource GaugeTemplate}" />
+                                      Content="{Binding AngularTickBarVm}" />
                 </Grid>
             </Grid>
         </TabItem>

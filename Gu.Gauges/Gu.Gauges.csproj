@@ -58,9 +58,10 @@
     <Compile Include="Dimensions\TwoPointDimension.cs" />
     <Compile Include="Helpers\DrawingContextExt.cs" />
     <Compile Include="Bars\ITextFormat.cs" />
+    <Compile Include="Helpers\Horizontal.cs" />
     <Compile Include="Helpers\Line.cs" />
     <Compile Include="Bars\LinearTickBar.cs" />
-    <Compile Include="Helpers\RectExt.cs" />
+    <Compile Include="Helpers\SizeExt.cs" />
     <Compile Include="Helpers\RotateTransformExt.cs" />
     <Compile Include="Helpers\TextHelper.cs" />
     <Compile Include="Helpers\TextPosition.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Bars\AngularTickBar.cs" />
     <Compile Include="Bars\BlockBar.cs" />
     <Compile Include="Helpers\VectorExt.cs" />
+    <Compile Include="Helpers\Vertical.cs" />
     <Compile Include="LinearGauge.cs" />
     <Compile Include="Bars\TextTickBar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -19,6 +19,8 @@
         private double value;
         private TextOrientation textOrientation;
 
+        private double minorTickFrequency;
+
         public TickBarVm()
         {
             this.Minimum = 0;
@@ -78,6 +80,23 @@
             {
                 if (value.Equals(this.tickFrequency)) return;
                 this.tickFrequency = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public double MinorTickFrequency
+        {
+            get
+            {
+                return this.minorTickFrequency;
+            }
+            set
+            {
+                if (value.Equals(this.minorTickFrequency))
+                {
+                    return;
+                }
+                this.minorTickFrequency = value;
                 this.OnPropertyChanged();
             }
         }

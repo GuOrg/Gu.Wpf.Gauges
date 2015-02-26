@@ -7,15 +7,19 @@
 
     internal struct TextPosition
     {
-        internal readonly Rect TextRect;
+        internal readonly Size TextSize;
         internal readonly TickBarPlacement Placement;
         internal readonly TextOrientation Orientation;
         private readonly Point point;
         internal readonly double Angle;
-
         public TextPosition(FormattedText text, TickBarPlacement placement, TextOrientation orientation, Point point, double angle)
+            : this(new Size(text.Width, text.Height), placement, orientation, point, angle)
         {
-            this.TextRect = new Rect(point, new Vector(text.Width, -1 * text.Height));
+        }
+
+        public TextPosition(Size textSize, TickBarPlacement placement, TextOrientation orientation, Point point, double angle)
+        {
+            this.TextSize = textSize;
             this.Placement = placement;
             this.Orientation = orientation;
             this.point = point;
@@ -26,82 +30,8 @@
         {
             get
             {
-                var offset = this.Offset.Rotate(-1 * this.RotationAngle);
+                var offset = this.Offset.Rotate(this.RotationAngle);
                 return this.point + offset;
-                switch (this.Placement)
-                {
-                    case TickBarPlacement.Left:
-                        switch (this.Orientation)
-                        {
-                            case TextOrientation.Horizontal:
-                                return new Point(this.TextRect.Left, this.TextRect.Bottom - this.TextRect.Height / 2);
-                            case TextOrientation.VerticalUp:
-                                return new Point(this.TextRect.Left, this.TextRect.Bottom + this.TextRect.Width / 2);
-                            case TextOrientation.VerticalDown:
-                                return new Point(this.TextRect.Left, this.TextRect.Height / 2);
-                            case TextOrientation.Tangential:
-                                return new Point(this.TextRect.Left, this.TextRect.Height / 2);
-                            case TextOrientation.RadialOut:
-                                return new Point(this.TextRect.Left, this.TextRect.Height / 2);
-                            default:
-                                throw new ArgumentOutOfRangeException();
-                        }
-                        break;
-                    case TickBarPlacement.Top:
-                        switch (this.Orientation)
-                        {
-                            case TextOrientation.Horizontal:
-                                return new Point(this.TextRect.Left - this.TextRect.Width / 2, this.TextRect.Bottom);
-                            case TextOrientation.VerticalUp:
-                                return new Point(this.TextRect.Left - this.TextRect.Height / 2, this.TextRect.Bottom + this.TextRect.Width);
-                            case TextOrientation.VerticalDown:
-                                break;
-                            case TextOrientation.Tangential:
-                                break;
-                            case TextOrientation.RadialOut:
-                                break;
-                            default:
-                                throw new ArgumentOutOfRangeException();
-                        }
-                        break;
-                    case TickBarPlacement.Right:
-                        switch (this.Orientation)
-                        {
-                            case TextOrientation.Horizontal:
-                                return new Point(this.TextRect.Left - this.TextRect.Width, this.TextRect.Bottom - this.TextRect.Height / 2);
-                            case TextOrientation.VerticalUp:
-                                return new Point(this.TextRect.Right - this.TextRect.Height, this.TextRect.Bottom + this.TextRect.Width / 2);
-                            case TextOrientation.VerticalDown:
-                                break;
-                            case TextOrientation.Tangential:
-                                break;
-                            case TextOrientation.RadialOut:
-                                break;
-                            default:
-                                throw new ArgumentOutOfRangeException();
-                        }
-                        break;
-                    case TickBarPlacement.Bottom:
-                        switch (this.Orientation)
-                        {
-                            case TextOrientation.Horizontal:
-                                return new Point(this.TextRect.Left - this.TextRect.Width / 2, this.TextRect.Top);
-                            case TextOrientation.VerticalUp:
-                                return new Point(this.TextRect.Left - this.TextRect.Height / 2, this.TextRect.Bottom);
-                            case TextOrientation.VerticalDown:
-                                break;
-                            case TextOrientation.Tangential:
-                                break;
-                            case TextOrientation.RadialOut:
-                                break;
-                            default:
-                                throw new ArgumentOutOfRangeException();
-                        }
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-                return new Point(this.TextRect.Left, this.TextRect.Height / 2);
             }
         }
 
@@ -137,19 +67,44 @@
                 switch (this.Orientation)
                 {
                     case TextOrientation.VerticalDown:
-                        return new Vector(this.TextRect.Width, this.TextRect.Height / 2);
+                        switch (this.Placement)
+                        {
+                            case TickBarPlacement.Left:
+                                return this.TextSize.Offset(Vertical.Bottom, Horizontal.Center);
+                            case TickBarPlacement.Top:
+                                return this.TextSize.Offset(Vertical.Mid, Horizontal.Left);
+                            case TickBarPlacement.Right:
+                                return this.TextSize.Offset(Vertical.Top, Horizontal.Center);
+                            case TickBarPlacement.Bottom:
+                                return this.TextSize.Offset(Vertical.Mid, Horizontal.Right);
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
                     case TextOrientation.Tangential:
+                        switch (this.Placement)
+                        {
+                            case TickBarPlacement.Left:
+                                return this.TextSize.Offset(Vertical.Mid, Horizontal.Left);
+                            case TickBarPlacement.Top:
+                                return this.TextSize.Offset(Vertical.Top, Horizontal.Center);
+                            case TickBarPlacement.Right:
+                                return this.TextSize.Offset(Vertical.Mid, Horizontal.Right);
+                            case TickBarPlacement.Bottom:
+                                return this.TextSize.Offset(Vertical.Bottom, Horizontal.Center);
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
                     case TextOrientation.Horizontal:
                         switch (this.Placement)
                         {
                             case TickBarPlacement.Left:
-                                return this.Left.Mid;
+                                return this.TextSize.Offset(Vertical.Mid, Horizontal.Left);
                             case TickBarPlacement.Top:
-                                return this.Mid.Top;
+                                return this.TextSize.Offset(Vertical.Top, Horizontal.Center);
                             case TickBarPlacement.Right:
-                                return this.Right.Mid;
+                                return this.TextSize.Offset(Vertical.Mid, Horizontal.Right);
                             case TickBarPlacement.Bottom:
-                                return this.Mid.Bottom;
+                                return this.TextSize.Offset(Vertical.Bottom, Horizontal.Center);
                             default:
                                 throw new ArgumentOutOfRangeException();
                         }
@@ -158,13 +113,13 @@
                         switch (this.Placement)
                         {
                             case TickBarPlacement.Left:
-                                return this.Mid.Top;
+                                return this.TextSize.Offset(Vertical.Top, Horizontal.Center);
                             case TickBarPlacement.Top:
-                                return this.Right.Mid;
+                                return this.TextSize.Offset(Vertical.Mid, Horizontal.Right);
                             case TickBarPlacement.Right:
-                                return this.Mid.Bottom;
+                                return this.TextSize.Offset(Vertical.Bottom, Horizontal.Center);
                             case TickBarPlacement.Bottom:
-                                return this.Left.Mid;
+                                return this.TextSize.Offset(Vertical.Mid, Horizontal.Left);
                             default:
                                 throw new ArgumentOutOfRangeException();
                         }
@@ -193,49 +148,6 @@
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
-            }
-        }
-
-        private VectorBuilder Left
-        {
-            get { return new VectorBuilder(0, this); }
-        }
-
-        private VectorBuilder Mid
-        {
-            get { return new VectorBuilder(-this.TextRect.Width / 2, this); }
-        }
-
-        private VectorBuilder Right
-        {
-            get { return new VectorBuilder(-this.TextRect.Width, this); }
-        }
-
-        internal struct VectorBuilder
-        {
-            private readonly TextPosition textPosition;
-            private readonly double x;
-
-            public VectorBuilder(double x, TextPosition textPosition)
-                : this()
-            {
-                this.textPosition = textPosition;
-                this.x = x;
-            }
-
-            public Vector Top
-            {
-                get { return new Vector(this.x, this.textPosition.TextRect.Height); }
-            }
-
-            public Vector Mid
-            {
-                get { return new Vector(this.x, this.textPosition.TextRect.Height / 2); }
-            }
-
-            public Vector Bottom
-            {
-                get { return new Vector(this.x, 0); }
             }
         }
     }
