@@ -11,7 +11,7 @@
 
         internal static void DrawText(this DrawingContext dc, FormattedText text, TextPosition textPosition)
         {
-            dc.DrawEllipse(Brushes.Black, null, textPosition.Point, 2, 2);
+            //dc.DrawEllipse(Brushes.Black, null, textPosition.Point, 2, 2); // Used to debug
             if (textPosition.IsTransformed)
             {
                 dc.PushTransform(textPosition.Transform);

@@ -14,12 +14,6 @@
         private double min;
         private double value;
         private bool showLabels;
-        private TickBarPlacement placement;
-        private double majorTickFrequency;
-        private double minorTickFrequency;
-        private bool isDirectionReversed;
-
-        private DoubleCollection majorTicks;
 
         public Vm()
         {
@@ -27,12 +21,8 @@
             this.Max = 200;
             this.Value = 0.3;
             this.showLabels = true;
-            this.placement = TickBarPlacement.Top;
-            this.majorTickFrequency = 100;
-            this.minorTickFrequency = 25;
-            this.majorTicks = new DoubleCollection(new double[] { 50, 150 });
-            this.TickBarVm = new TickBarVm();
             this.AngularTickBarVm = new AngularTickBarVm();
+            this.TickBarVm = this.AngularTickBarVm;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -111,79 +101,6 @@
                     return;
                 }
                 this.showLabels = value;
-                this.OnPropertyChanged();
-            }
-        }
-
-        public double MajorTickFrequency
-        {
-            get
-            {
-                return this.majorTickFrequency;
-            }
-            set
-            {
-                if (value.Equals(this.majorTickFrequency))
-                {
-                    return;
-                }
-                this.majorTickFrequency = value;
-                this.OnPropertyChanged();
-            }
-        }
-
-        public DoubleCollection MajorTicks
-        {
-            get
-            {
-                return this.majorTicks;
-            }
-            set
-            {
-                if (Equals(value, this.majorTicks))
-                {
-                    return;
-                }
-                this.majorTicks = value;
-                this.OnPropertyChanged();
-            }
-        }
-
-        public double MinorTickFrequency
-        {
-            get { return this.minorTickFrequency; }
-            set
-            {
-                if (value.Equals(this.minorTickFrequency)) return;
-                this.minorTickFrequency = value;
-                this.OnPropertyChanged();
-            }
-        }
-
-        public bool IsDirectionReversed
-        {
-            get { return this.isDirectionReversed; }
-            set
-            {
-                if (value.Equals(this.isDirectionReversed)) return;
-                this.isDirectionReversed = value;
-                this.OnPropertyChanged();
-            }
-        }
-
-        public TickBarPlacement Placement
-        {
-            get
-            {
-                return this.placement;
-            }
-            set
-            {
-                if (value == this.placement)
-                {
-                    return;
-                }
-                this.placement = value;
                 this.OnPropertyChanged();
             }
         }
