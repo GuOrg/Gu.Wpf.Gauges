@@ -245,7 +245,7 @@
                                Text="TickBarPlacement" />
                     <ComboBox Grid.Row="6"
                               Grid.Column="1"
-                              SelectedItem="{Binding TickBarPlacement}"
+                              SelectedItem="{Binding Placement}"
                               sample:ItemsControlExt.EnumSource="{x:Type TickBarPlacement}" />
 
 
@@ -387,7 +387,7 @@
                                Text="TickBarPlacement" />
                     <ComboBox Grid.Row="8"
                               Grid.Column="1"
-                              SelectedItem="{Binding TickBarPlacement}"
+                              SelectedItem="{Binding Placement}"
                               sample:ItemsControlExt.EnumSource="{x:Type TickBarPlacement}" />
 
                     <TextBlock Grid.Row="9"
