@@ -29,17 +29,17 @@
 
         public Point GetPoint(double angle)
         {
-            var p0 = this.Centre + new Vector(this.Radius, 0);
-            var transform = new RotateTransform(angle, this.Centre.X, this.Centre.Y);
-            var p = transform.Transform(p0);
+            var v0 = new Vector(this.Radius, 0);
+            var rotate = v0.Rotate(angle);
+            var p = this.Centre + rotate;
             return p;
         }
 
         public Point GetPoint(double angle, double offset)
         {
-            var p0 = this.Centre + new Vector(this.Radius + offset, 0);
-            var transform = new RotateTransform(angle, this.Centre.X, this.Centre.Y);
-            var p = transform.Transform(p0);
+            var v0 = new Vector(this.Radius + offset, 0);
+            var rotate = v0.Rotate(angle);
+            var p = this.Centre + rotate;
             return p;
         }
 
@@ -59,6 +59,11 @@
             return delta >= 0
                        ? System.Windows.Media.SweepDirection.Clockwise
                        : System.Windows.Media.SweepDirection.Counterclockwise;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("Centre: {0}, Radius: {1}, Start: {2}, End: {3}", this.Centre, this.Radius, this.Start, this.End);
         }
     }
 }

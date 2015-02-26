@@ -1,10 +1,7 @@
 ﻿namespace Gu.Gauges.Sample
 {
-    using System;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
-    using System.Windows.Controls.Primitives;
-    using System.Windows.Media;
 
     using Gu.Gauges.Sample.Annotations;
 
@@ -18,7 +15,7 @@
             this.Value = 0.3;
             this.showLabels = true;
             this.AngularTickBarVm = new AngularTickBarVm();
-            this.TickBarVm = this.AngularTickBarVm;
+            this.TickBarVm = new TickBarVm();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
