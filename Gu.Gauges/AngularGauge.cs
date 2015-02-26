@@ -39,6 +39,11 @@
                 typeof(AngularGauge),
                 new FrameworkPropertyMetadata(TextOrientation.Tangential));
 
+        public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
+            typeof (AngularGauge),
+            new PropertyMetadata(
+                default(TickBarPlacement)));
+
         private static readonly DependencyPropertyKey TextSpacePropertyKey = DependencyProperty.RegisterReadOnly(
             "TextSpace",
             typeof(double),
@@ -115,6 +120,12 @@
         {
             get { return (TextOrientation)this.GetValue(TextOrientationProperty); }
             set { this.SetValue(TextOrientationProperty, value); }
+        }
+
+        public TickBarPlacement Placement
+        {
+            get { return (TickBarPlacement)this.GetValue(PlacementProperty); }
+            set { this.SetValue(PlacementProperty, value); }
         }
 
         /// <summary>

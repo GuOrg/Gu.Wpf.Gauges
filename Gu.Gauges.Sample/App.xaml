@@ -96,59 +96,6 @@
             </Setter>
         </Style>
 
-        <DataTemplate x:Key="VmTemplate" DataType="{x:Type sample:Vm}">
-            <GroupBox Header="Control the vm">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="150" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0"
-                               Grid.Column="0"
-                               Text="Min" />
-                    <TextBox Grid.Row="0"
-                             Grid.Column="1"
-                             Text="{Binding Min}" />
-                    <Slider Grid.Row="0"
-                            Grid.Column="2"
-                            Maximum="{Binding Max}"
-                            Minimum="-200"
-                            Value="{Binding Min}" />
-
-                    <TextBlock Grid.Row="1"
-                               Grid.Column="0"
-                               Text="Max" />
-                    <TextBox Grid.Row="1"
-                             Grid.Column="1"
-                             Text="{Binding Max}" />
-                    <Slider Grid.Row="1"
-                            Grid.Column="2"
-                            Maximum="200"
-                            Minimum="{Binding Min}"
-                            Value="{Binding Max}" />
-
-                    <TextBlock Grid.Row="2"
-                               Grid.Column="0"
-                               Text="Value" />
-                    <TextBox Grid.Row="2"
-                             Grid.Column="1"
-                             Text="{Binding Value}" />
-                    <Slider Grid.Row="2"
-                            Grid.Column="2"
-                            Maximum="{Binding Max}"
-                            Minimum="{Binding Min}"
-                            Value="{Binding Value}" />
-                </Grid>
-            </GroupBox>
-        </DataTemplate>
-
         <DataTemplate DataType="{x:Type sample:TickBarVm}">
             <GroupBox Header="Controls">
                 <Grid>
@@ -168,7 +115,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
@@ -286,7 +233,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
@@ -296,7 +243,6 @@
                     <TextBox Grid.Row="0"
                              Grid.Column="1"
                              Text="{Binding Minimum}" />
-
                     <Slider Grid.Row="0"
                             Grid.Column="2"
                             Maximum="{Binding Maximum}"
@@ -312,7 +258,7 @@
                     <Slider Grid.Row="1"
                             Grid.Column="2"
                             Maximum="{Binding MaxAngle}"
-                            Minimum="0"
+                            Minimum="-360"
                             Value="{Binding MinAngle}" />
 
                     <TextBlock Grid.Row="2"
@@ -347,7 +293,7 @@
                              Text="{Binding MaxAngle}" />
                     <Slider Grid.Row="4"
                             Grid.Column="2"
-                            Maximum="100"
+                            Maximum="360"
                             Minimum="{Binding MinAngle}"
                             Value="{Binding MaxAngle}" />
 
