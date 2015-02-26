@@ -89,7 +89,7 @@
                                   VerticalAlignment="Center"
                                   Data="M50,49L100,50 50,51z M0,50 L100,50 M50,0 L50,100"
                                   Fill="{TemplateBinding Foreground}"
-                                  RenderTransform="{TemplateBinding AngleTransform}"
+                                  RenderTransform="{TemplateBinding ValueTransform}"
                                   RenderTransformOrigin="0.5,0.5"
                                   Stretch="Fill" />
                         </Grid>
