@@ -13,7 +13,7 @@
         private double tickFrequency;
         private double reservedSpace;
         private DoubleCollection ticks;
-        private TickBarPlacement tickBarPlacement;
+        private TickBarPlacement placement;
         private bool isDirectionReversed;
 
         private double value;
@@ -29,7 +29,7 @@
             this.TickFrequency = 50;
             this.ReservedSpace = 0;
             //this.Ticks = new DoubleCollection(new[] { 5, 15, 25.0 });
-            this.TickBarPlacement = TickBarPlacement.Bottom;
+            this.Placement = TickBarPlacement.Bottom;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -123,13 +123,13 @@
             }
         }
 
-        public TickBarPlacement TickBarPlacement
+        public TickBarPlacement Placement
         {
-            get { return this.tickBarPlacement; }
+            get { return this.placement; }
             set
             {
-                if (value == this.tickBarPlacement) return;
-                this.tickBarPlacement = value;
+                if (value == this.placement) return;
+                this.placement = value;
                 this.OnPropertyChanged();
             }
         }
