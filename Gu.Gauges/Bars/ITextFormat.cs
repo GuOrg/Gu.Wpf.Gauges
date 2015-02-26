@@ -11,7 +11,7 @@ namespace Gu.Gauges
         /// <returns>
         /// A <see cref="T:System.Windows.Media.FontFamily" /> object that specifies the preferred font family, or a primary preferred font family with one or more fallback font families. The default is the font determined by the <see cref="P:System.Windows.SystemFonts.MessageFontFamily" /> value.
         /// </returns>
-        FontFamily FontFamily { get; set; }
+        FontFamily FontFamily { get; }
 
         /// <summary>
         /// Gets or sets the font style for the content of the element.  
@@ -19,7 +19,7 @@ namespace Gu.Gauges
         /// <returns>
         /// A member of the <see cref="T:System.Windows.FontStyles" /> class that specifies the desired font style. The default is determined by the <see cref="P:System.Windows.SystemFonts.MessageFontStyle" /> value.
         /// </returns>
-        FontStyle FontStyle { get; set; }
+        FontStyle FontStyle { get; }
 
         /// <summary>
         /// Gets or sets the top-level font weight for the content of the element.  
@@ -27,7 +27,7 @@ namespace Gu.Gauges
         /// <returns>
         /// A member of the <see cref="T:System.Windows.FontWeights" /> class that specifies the desired font weight. The default value is determined by the <see cref="P:System.Windows.SystemFonts.MessageFontWeight" /> value.
         /// </returns>
-        FontWeight FontWeight { get; set; }
+        FontWeight FontWeight { get; }
 
         /// <summary>
         /// Gets or sets the font-stretching characteristics for the content of the element.  
@@ -35,7 +35,7 @@ namespace Gu.Gauges
         /// <returns>
         /// A <see cref="T:System.Windows.FontStretch" /> structure that specifies the desired font-stretching characteristics to use. The default is <see cref="P:System.Windows.FontStretches.Normal" />.
         /// </returns>
-        FontStretch FontStretch { get; set; }
+        FontStretch FontStretch { get; }
 
         /// <summary>
         /// Gets or sets the font size for the content of the element.  
@@ -43,7 +43,7 @@ namespace Gu.Gauges
         /// <returns>
         /// The desired font size to use in device independent pixels,  greater than 0.001 and less than or equal to 35791.  The default depends on current system settings and depends on the <see cref="P:System.Windows.SystemFonts.MessageFontSize" /> value.
         /// </returns>
-        double FontSize { get; set; }
+        double FontSize { get; }
 
         /// <summary>
         /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> to apply to the content of the element.  
@@ -51,7 +51,7 @@ namespace Gu.Gauges
         /// <returns>
         /// The brush used to apply to the text contents. The default is <see cref="P:System.Windows.Media.Brushes.Black" />.
         /// </returns>
-        Brush Foreground { get; set; }
+        Brush Foreground { get; }
 
         /// <summary>
         /// Gets or sets a collection of text effects to apply to the content of the element.  
@@ -59,7 +59,7 @@ namespace Gu.Gauges
         /// <returns>
         /// A <see cref="T:System.Windows.Media.TextEffectCollection" /> containing one or more <see cref="T:System.Windows.Media.TextEffect" /> objects that define effects to apply to the content in this element. The default is null (not an empty collection).
         /// </returns>
-        TextEffectCollection TextEffects { get; set; }
+        TextEffectCollection TextEffects { get; }
 
         /// <summary>
         /// Gets or sets a composite string that specifies how to format the <see cref="P:TextTickBar.Content" /> property if it is displayed as a string.
@@ -67,6 +67,6 @@ namespace Gu.Gauges
         /// <returns>
         /// A composite string that specifies how to format the <see cref="P:TextTickBar.Content" /> property if it is displayed as a string.
         /// </returns>
-        string ContentStringFormat { get; set; }
+        string ContentStringFormat { get; }
     }
 }

@@ -1,15 +1,24 @@
+using System.Windows.Controls.Primitives;
+
 namespace Gu.Gauges
 {
     using System;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Controls.Primitives;
     using System.Windows.Documents;
     using System.Windows.Media;
 
     public class AngularTextBar : AngularBar, ITextFormat
     {
+        public static readonly DependencyProperty TextOrientationProperty = DependencyProperty.Register(
+            "TextOrientation",
+            typeof(TextOrientation),
+            typeof(AngularTextBar),
+            new FrameworkPropertyMetadata(
+                TextOrientation.Tangential,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+
         /// <summary>
         /// Identifies the <see cref="P:AngularTextBar.FontFamily" /> dependency property.
         /// </summary>
@@ -104,6 +113,15 @@ namespace Gu.Gauges
                 default(String),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
+        /// <summary>
+        /// Gets or sets the <see cref="T:Gu.Gauges.TextOrientation" />
+        /// Default is Tangential
+        /// </summary>
+        public TextOrientation TextOrientation
+        {
+            get { return (TextOrientation)this.GetValue(TextOrientationProperty); }
+            set { this.SetValue(TextOrientationProperty, value); }
+        }
 
         /// <summary>
         /// Gets or sets the preferred top-level font family for the content of the element.  
@@ -207,7 +225,7 @@ namespace Gu.Gauges
             var p = new Point(midPoint.X, midPoint.Y - this.ActualHeight / 2 - this.ReservedSpace / 2);
             var arc = new Arc(midPoint, this.MinAngle, this.MaxAngle, this.ActualWidth - this.ReservedSpace, this.IsDirectionReversed);
             var ticks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency).Concat(this.Ticks ?? Enumerable.Empty<double>());
-            
+
             foreach (var tick in ticks)
             {
                 if (tick < this.Minimum || tick > this.Maximum)
@@ -216,11 +234,8 @@ namespace Gu.Gauges
                 }
                 var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
                 var text = TextHelper.AsFormattedText(tick, this);
-                var offset = TextHelper.GetDrawOffset(text, TickBarPlacement.Top, 0, 0);
-                var textTransform = new RotateTransform(angle + 90, midPoint.X, midPoint.Y);
-                dc.PushTransform(textTransform);
-                dc.DrawText(text, p + offset);
-                dc.Pop();
+                var textPosition = new TextPosition(text, TickBarPlacement.Top, this.TextOrientation, arc.GetPoint(angle), angle);
+                dc.DrawText(text, textPosition);
             }
             this.Diameter = this.ActualWidth - this.ReservedSpace;
         }

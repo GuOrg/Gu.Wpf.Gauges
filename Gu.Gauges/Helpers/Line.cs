@@ -1,4 +1,6 @@
-﻿namespace Gu.Gauges
+﻿using System;
+
+namespace Gu.Gauges
 {
     using System.Windows.Controls.Primitives;
     using System.Windows;
@@ -19,16 +21,37 @@
         {
             Point p1;
             Point p2;
-            if (placement == TickBarPlacement.Bottom || placement == TickBarPlacement.Top)
+            switch (placement)
             {
-                p1 = new Point(reservedSpace / 2, 0);
-                p2 = new Point(actualWidth - reservedSpace / 2, 0);
+                case TickBarPlacement.Left:
+                    p1 = new Point(0, actualHeight - reservedSpace / 2);
+                    p2 = new Point(0, reservedSpace / 2);
+                    break;
+                case TickBarPlacement.Top:
+                    p1 = new Point(reservedSpace / 2, 0);
+                    p2 = new Point(actualWidth - reservedSpace / 2, 0);
+                    break;
+                case TickBarPlacement.Right:
+                    p1 = new Point(actualWidth, actualHeight - reservedSpace / 2);
+                    p2 = new Point(actualWidth, reservedSpace / 2);
+                    break;
+                case TickBarPlacement.Bottom:
+                    p1 = new Point(reservedSpace / 2, actualHeight);
+                    p2 = new Point(actualWidth - reservedSpace / 2, actualHeight);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("placement");
             }
-            else
-            {
-                p1 = new Point(0, actualHeight - reservedSpace / 2);
-                p2 = new Point(0, reservedSpace / 2);
-            }
+            //if (placement == TickBarPlacement.Bottom || placement == TickBarPlacement.Top)
+            //{
+            //    p1 = new Point(reservedSpace / 2, 0);
+            //    p2 = new Point(actualWidth - reservedSpace / 2, 0);
+            //}
+            //else
+            //{
+            //    p1 = new Point(0, actualHeight - reservedSpace / 2);
+            //    p2 = new Point(0, reservedSpace / 2);
+            //}
             if (isDirectionReversed)
             {
                 this.StartPoint = p2;

@@ -17,6 +17,14 @@
 
         public static readonly DependencyProperty ValueTransformProperty = ValueTransformPropertyKey.DependencyProperty;
 
+        private static readonly DependencyPropertyKey AnimatedValuePropertyKey = DependencyProperty.RegisterReadOnly(
+            "AnimatedValue",
+            typeof(double),
+            typeof(LinearGauge),
+            new FrameworkPropertyMetadata(default(double)));
+
+        public static readonly DependencyProperty AnimatedValueProperty = AnimatedValuePropertyKey.DependencyProperty;
+
         public static readonly DependencyProperty ShowLabelsProperty = DependencyProperty.Register(
             "ShowLabels",
             typeof(bool),
@@ -69,10 +77,22 @@
             this.ValueTransform = new TranslateTransform(0, 0);
         }
 
+        /// <summary>
+        /// Gets the transform to the position that corresponds to the current value
+        /// </summary>
         public TranslateTransform ValueTransform
         {
             get { return (TranslateTransform)this.GetValue(ValueTransformProperty); }
             protected set { this.SetValue(ValueTransformPropertyKey, value); }
+        }
+
+        /// <summary>
+        /// Gets the value with animated transitions.
+        /// </summary>
+        public double AnimatedValue
+        {
+            get { return (double)this.GetValue(AnimatedValueProperty); }
+            protected set { this.SetValue(AnimatedValuePropertyKey, value); }
         }
 
         public bool ShowLabels
@@ -126,6 +146,8 @@
             var yAnimation = new DoubleAnimation(pos.Y, TimeSpan.FromMilliseconds(100));
             gauge.ValueTransform.BeginAnimation(TranslateTransform.XProperty, xAnimation);
             gauge.ValueTransform.BeginAnimation(TranslateTransform.YProperty, yAnimation);
+            //var valueAnimation = new DoubleAnimation(gauge.Value, TimeSpan.FromMilliseconds(100));
+            //gauge.BeginAnimation(AnimatedValueProperty, valueAnimation);
             //gauge.ValueTransform.X = pos.X;
             //gauge.ValueTransform.Y = pos.Y;
         }

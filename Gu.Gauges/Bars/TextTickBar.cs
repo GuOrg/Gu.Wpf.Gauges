@@ -1,7 +1,6 @@
 ﻿namespace Gu.Gauges
 {
     using System;
-    using System.Globalization;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
@@ -14,6 +13,14 @@
     /// </summary>
     public class TextTickBar : FrameworkElement, ITextFormat
     {
+        public static readonly DependencyProperty TextOrientationProperty = DependencyProperty.Register(
+            "TextOrientation",
+            typeof(TextOrientation),
+            typeof(TextTickBar),
+            new FrameworkPropertyMetadata(
+                TextOrientation.Tangential,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.FontFamily" /> dependency property.
         /// </summary>
@@ -182,6 +189,17 @@
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.AffectsRender));
+
+        /// <summary>
+        /// Gets or sets the <see cref="T:Gu.Gauges.TextOrientation" />
+        /// Default is Tangential
+        /// </summary>
+        public TextOrientation TextOrientation
+        {
+            get { return (TextOrientation)this.GetValue(TextOrientationProperty); }
+            set { this.SetValue(TextOrientationProperty, value); }
+        }
+
 
         /// <summary>
         /// Gets or sets the preferred top-level font family for the content of the element.  
@@ -403,8 +421,8 @@
                 }
                 var pos = TickHelper.ToPos(tick, this.Minimum, this.Maximum, line);
                 var text = TextHelper.AsFormattedText(tick, this);
-                var offset = TextHelper.GetDrawOffset(text, this.Placement, this.ActualWidth, this.ActualHeight);
-                dc.DrawText(text, pos + offset);
+                var textPosition = new TextPosition(text, this.Placement, this.TextOrientation, pos, 0);
+                dc.DrawText(text, textPosition);
             }
         }
     }

@@ -304,10 +304,19 @@
                               sample:ItemsControlExt.EnumSource="{x:Type TickBarPlacement}"
                               />
 
+
                     <TextBlock Grid.Row="7" Grid.Column="0"
+                               Text="TextOrientation"
+                               />
+                    <ComboBox Grid.Row="7" Grid.Column="1"
+                              SelectedItem="{Binding TextOrientation}"
+                              sample:ItemsControlExt.EnumSource="{x:Type gauges:TextOrientation}"
+                              />
+
+                    <TextBlock Grid.Row="8" Grid.Column="0"
                                Text="IsDirectionReversed"
                                />
-                    <CheckBox Grid.Row="7" Grid.Column="1"
+                    <CheckBox Grid.Row="8" Grid.Column="1"
                               IsChecked="{Binding IsDirectionReversed}"
                               />
                 </Grid>
@@ -437,9 +446,17 @@
                               />
 
                     <TextBlock Grid.Row="9" Grid.Column="0"
+                               Text="TextOrientation"
+                               />
+                    <ComboBox Grid.Row="9" Grid.Column="1"
+                              SelectedItem="{Binding TextOrientation}"
+                              sample:ItemsControlExt.EnumSource="{x:Type gauges:TextOrientation}"
+                              />
+
+                    <TextBlock Grid.Row="10" Grid.Column="0"
                                Text="IsDirectionReversed"
                                />
-                    <CheckBox Grid.Row="9" Grid.Column="1"
+                    <CheckBox Grid.Row="10" Grid.Column="1"
                               IsChecked="{Binding IsDirectionReversed}"
                               />
                 </Grid>

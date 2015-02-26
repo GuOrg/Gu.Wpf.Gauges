@@ -51,5 +51,15 @@
             }
             return new Vector(offsetX, offsetY);
         }
+
+        internal static Vector MidHorizontalOffset(FormattedText text)
+        {
+            return new Vector(text.Width / 2, 0);
+        }
+
+        internal static Vector MidVerticalOffset(FormattedText text)
+        {
+            return new Vector(0, text.MaxTextHeight / 2);
+        }
     }
 }

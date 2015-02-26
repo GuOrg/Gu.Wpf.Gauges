@@ -1,0 +1,33 @@
+﻿namespace Gu.Gauges.Tests
+{
+    using System.Globalization;
+    using System.Windows;
+    using System.Windows.Controls.Primitives;
+    using System.Windows.Media;
+    using NUnit.Framework;
+
+    public class TextPositionTests
+    {
+        private readonly FormattedText text = new FormattedText("100", CultureInfo.InvariantCulture, FlowDirection.LeftToRight, new Typeface("Arial"), 12, Brushes.Black);
+
+        [TestCase(TickBarPlacement.Left, "0, -7")]
+        [TestCase(TickBarPlacement.Top, "-10, 0")]
+        [TestCase(TickBarPlacement.Right, "-20, -7")]
+        [TestCase(TickBarPlacement.Bottom, "-10, -14")]
+        public void HorizontalPoint(TickBarPlacement placement, string expected)
+        {
+            var textPosition = new TextPosition(this.text, placement, TextOrientation.Horizontal, new Point(0, 0), 0);
+            Assert.AreEqual(expected, textPosition.Point.ToString("F0"));
+        }
+
+        [TestCase(TickBarPlacement.Left, "0, -7")]
+        [TestCase(TickBarPlacement.Top, "-10, 0")]
+        [TestCase(TickBarPlacement.Right, "-20, -7")]
+        [TestCase(TickBarPlacement.Bottom, "-7, 0")]
+        public void VerticalUpPoint(TickBarPlacement placement, string expected)
+        {
+            var textPosition = new TextPosition(this.text, placement, TextOrientation.VerticalUp, new Point(0, 0), 0);
+            Assert.AreEqual(expected, textPosition.Point.ToString("F0"));
+        }
+    }
+}
