@@ -17,15 +17,16 @@
         private bool isDirectionReversed;
 
         private double value;
+        private TextOrientation textOrientation;
 
         public TickBarVm()
         {
             this.Minimum = 0;
             this.Maximum = 100;
             this.value = 50;
-            this.TickFrequency = 10;
+            this.TickFrequency = 50;
             this.ReservedSpace = 0;
-            this.Ticks = new DoubleCollection(new[] { 5, 15, 25.0 });
+            //this.Ticks = new DoubleCollection(new[] { 5, 15, 25.0 });
             this.TickBarPlacement = TickBarPlacement.Bottom;
         }
 
@@ -110,6 +111,17 @@
             {
                 if (value == this.tickBarPlacement) return;
                 this.tickBarPlacement = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public TextOrientation TextOrientation
+        {
+            get { return this.textOrientation; }
+            set
+            {
+                if (value == this.textOrientation) return;
+                this.textOrientation = value;
                 this.OnPropertyChanged();
             }
         }

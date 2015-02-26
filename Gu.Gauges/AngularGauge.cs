@@ -17,6 +17,14 @@
 
         public static readonly DependencyProperty AngleTransformProperty = AngleTransformPropertyKey.DependencyProperty;
 
+        private static readonly DependencyPropertyKey AnimatedValuePropertyKey = DependencyProperty.RegisterReadOnly(
+            "AnimatedValue",
+            typeof(double),
+            typeof(AngularGauge),
+            new PropertyMetadata(default(double)));
+
+        public static readonly DependencyProperty AnimatedValueProperty = AnimatedValuePropertyKey.DependencyProperty;
+
         private static readonly DependencyPropertyKey TextSpacePropertyKey = DependencyProperty.RegisterReadOnly(
             "TextSpace",
             typeof(double),
@@ -65,6 +73,12 @@
         {
             this.AngleTransform = new RotateTransform(0, 0, 0);
             this.TextSpace = 1.5 * this.FontSize;
+        }
+
+        public double AnimatedValue
+        {
+            get { return (double)this.GetValue(AnimatedValueProperty); }
+            protected set { this.SetValue(AnimatedValuePropertyKey, value); }
         }
 
         public double TextSpace
@@ -133,13 +147,14 @@
         private static void UpdateValueAngle(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var gauge = (AngularGauge)d;
-            var arc = new Arc(new Point(gauge.ActualWidth / 2, gauge.ActualHeight / 2), gauge.MinAngle, gauge.MaxAngle, 1,
-                gauge.IsDirectionReversed);
+            var arc = new Arc(new Point(gauge.ActualWidth / 2, gauge.ActualHeight / 2), gauge.MinAngle, gauge.MaxAngle, 1, gauge.IsDirectionReversed);
             var angle = TickHelper.ToAngle(gauge.Value, gauge.Minimum, gauge.Maximum, arc);
             //gauge.AngleTransform.CenterX = gauge.ActualWidth / 2;
             //gauge.AngleTransform.CenterY = gauge.ActualHeight / 2;
             var angleAnimation = new DoubleAnimation(angle, TimeSpan.FromMilliseconds(100));
             gauge.AngleTransform.BeginAnimation(RotateTransform.AngleProperty, angleAnimation);
+            //var valueAnimation = new DoubleAnimation(gauge.Value, TimeSpan.FromMilliseconds(100));
+            //gauge.BeginAnimation(AnimatedValueProperty, valueAnimation);
             //gauge.ValueAngle = angle;
         }
 

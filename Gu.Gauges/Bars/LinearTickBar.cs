@@ -222,12 +222,16 @@
             switch (this.Placement)
             {
                 case TickBarPlacement.Left:
-                case TickBarPlacement.Right:
                     offset = new Vector(this.ActualWidth, 0);
                     break;
+                case TickBarPlacement.Right:
+                    offset = new Vector(-1 * this.ActualWidth, 0);
+                    break;
                 case TickBarPlacement.Top:
-                case TickBarPlacement.Bottom:
                     offset = new Vector(0, this.ActualHeight);
+                    break;
+                case TickBarPlacement.Bottom:
+                    offset = new Vector(0, -1 * this.ActualHeight);
                     break;
             }
             foreach (var tick in ticks)
