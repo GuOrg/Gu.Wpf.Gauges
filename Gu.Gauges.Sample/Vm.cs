@@ -10,15 +10,11 @@
 
     public class Vm : INotifyPropertyChanged
     {
-        private double max;
-        private double min;
         private double value;
         private bool showLabels;
 
         public Vm()
         {
-            this.Min = -200;
-            this.Max = 200;
             this.Value = 0.3;
             this.showLabels = true;
             this.AngularTickBarVm = new AngularTickBarVm();
@@ -46,44 +42,6 @@
                 }
 
                 this.value = value;
-                this.OnPropertyChanged();
-            }
-        }
-
-        public double Min
-        {
-            get
-            {
-                return this.min;
-            }
-
-            set
-            {
-                if (value.Equals(this.min))
-                {
-                    return;
-                }
-
-                this.min = value;
-                this.OnPropertyChanged();
-            }
-        }
-
-        public double Max
-        {
-            get
-            {
-                return this.max;
-            }
-
-            set
-            {
-                if (value.Equals(this.max))
-                {
-                    return;
-                }
-
-                this.max = value;
                 this.OnPropertyChanged();
             }
         }

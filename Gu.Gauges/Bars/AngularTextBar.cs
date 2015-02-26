@@ -222,7 +222,6 @@ namespace Gu.Gauges
         protected override void OnRender(DrawingContext dc)
         {
             var midPoint = new Point(this.ActualWidth / 2, this.ActualHeight / 2);
-            var p = new Point(midPoint.X, midPoint.Y - this.ActualHeight / 2 - this.ReservedSpace / 2);
             var radius = (this.ActualWidth - this.ReservedSpace) / 2;
             var arc = new Arc(midPoint, this.MinAngle, this.MaxAngle, radius, this.IsDirectionReversed);
             var ticks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency).Concat(this.Ticks ?? Enumerable.Empty<double>());

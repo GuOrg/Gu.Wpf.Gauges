@@ -32,13 +32,6 @@
 
         public static readonly DependencyProperty AnimatedValueProperty = AnimatedValuePropertyKey.DependencyProperty;
 
-        public static readonly DependencyProperty TextOrientationProperty =
-            DependencyProperty.Register(
-                "TextOrientation",
-                typeof(TextOrientation),
-                typeof(LinearGauge),
-                new FrameworkPropertyMetadata(TextOrientation.Horizontal));
-
         public static readonly DependencyProperty ShowLabelsProperty = DependencyProperty.Register(
             "ShowLabels",
             typeof(bool),
@@ -62,6 +55,13 @@
             typeof(double),
             typeof(LinearGauge),
             new PropertyMetadata(default(double)));
+
+        public static readonly DependencyProperty TextOrientationProperty =
+            DependencyProperty.Register(
+                "TextOrientation",
+                typeof(TextOrientation),
+                typeof(LinearGauge),
+                new FrameworkPropertyMetadata(TextOrientation.Horizontal));
 
         public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
             typeof(LinearGauge),
@@ -125,6 +125,12 @@
             set { this.SetValue(TextOrientationProperty, value); }
         }
 
+        public TickBarPlacement Placement
+        {
+            get { return (TickBarPlacement)this.GetValue(PlacementProperty); }
+            set { this.SetValue(PlacementProperty, value); }
+        }
+
         public double MajorTickFrequency
         {
             get { return (double)this.GetValue(MajorTickFrequencyProperty); }
@@ -136,16 +142,11 @@
             get { return (DoubleCollection)this.GetValue(MajorTicksProperty); }
             set { this.SetValue(MajorTicksProperty, value); }
         }
+
         public double MinorTickFrequency
         {
             get { return (double)this.GetValue(MinorTickFrequencyProperty); }
             set { this.SetValue(MinorTickFrequencyProperty, value); }
-        }
-
-        public TickBarPlacement Placement
-        {
-            get { return (TickBarPlacement)this.GetValue(PlacementProperty); }
-            set { this.SetValue(PlacementProperty, value); }
         }
 
         /// <summary>
