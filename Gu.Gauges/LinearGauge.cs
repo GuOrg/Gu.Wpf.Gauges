@@ -1,9 +1,8 @@
-﻿using System.Windows.Controls.Primitives;
-
-namespace Gu.Gauges
+﻿namespace Gu.Gauges
 {
     using System;
     using System.Windows;
+    using System.Windows.Controls.Primitives;
     using System.Windows.Media;
     using System.Windows.Media.Animation;
 

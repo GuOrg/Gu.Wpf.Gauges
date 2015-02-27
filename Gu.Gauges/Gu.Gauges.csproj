@@ -49,6 +49,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AngularAxis.cs" />
+    <Compile Include="Axis.cs" />
     <Compile Include="Bars\AngularBlockBar.cs" />
     <Compile Include="AngularGauge.cs" />
     <Compile Include="Bars\Bar.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Bars\BlockBar.cs" />
     <Compile Include="Helpers\VectorExt.cs" />
     <Compile Include="Helpers\Vertical.cs" />
+    <Compile Include="LinearAxis.cs" />
     <Compile Include="LinearGauge.cs" />
     <Compile Include="Bars\TextTickBar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

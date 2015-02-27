@@ -1,107 +1,57 @@
-namespace Gu.Gauges
+﻿namespace Gu.Gauges
 {
-    using System;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
-    using System.Windows.Media.Animation;
 
-    public class Gauge : RangeBase
+    public class Axis : Control
     {
-        private static readonly DependencyPropertyKey ValueTransformPropertyKey = DependencyProperty.RegisterReadOnly(
-            "ValueTransform",
-            typeof(Transform),
-            typeof(Gauge),
-            new PropertyMetadata(default(TranslateTransform)));
-
-        public static readonly DependencyProperty ValueTransformProperty = ValueTransformPropertyKey.DependencyProperty;
-
-        private static readonly DependencyPropertyKey AnimatedValuePropertyKey = DependencyProperty.RegisterReadOnly(
-            "AnimatedValue",
-            typeof(double),
-            typeof(Gauge),
-            new FrameworkPropertyMetadata(default(double)));
-
-        // A proxy that is used for animating. Sets the value of the readonly property on change.
-        protected static readonly DependencyProperty AnimatedValueProxyProperty = DependencyProperty.Register(
-            "AnimatedValueProxy",
-            typeof(double),
-            typeof(Gauge),
-            new PropertyMetadata(0.0, OnAnimatedValueProxyChanged));
-
-        public static readonly DependencyProperty AnimatedValueProperty = AnimatedValuePropertyKey.DependencyProperty;
-
         public static readonly DependencyProperty ShowLabelsProperty = DependencyProperty.Register(
             "ShowLabels",
             typeof(bool),
-            typeof(Gauge),
+            typeof(Axis),
             new PropertyMetadata(true));
 
         public static readonly DependencyProperty MajorTickFrequencyProperty = DependencyProperty.Register(
             "MajorTickFrequency",
             typeof(double),
-            typeof(Gauge),
+            typeof(Axis),
             new FrameworkPropertyMetadata(default(double)));
 
         public static readonly DependencyProperty MajorTicksProperty = DependencyProperty.Register(
             "MajorTicks",
             typeof(DoubleCollection),
-            typeof(Gauge),
+            typeof(Axis),
             new PropertyMetadata(default(DoubleCollection)));
 
         public static readonly DependencyProperty MinorTickFrequencyProperty = DependencyProperty.Register(
             "MinorTickFrequency",
             typeof(double),
-            typeof(Gauge),
+            typeof(Axis),
             new PropertyMetadata(default(double)));
 
         public static readonly DependencyProperty TextOrientationProperty = DependencyProperty.Register(
             "TextOrientation",
             typeof(TextOrientation),
-            typeof(Gauge),
+            typeof(Axis),
             new FrameworkPropertyMetadata(TextOrientation.Horizontal, FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
-            typeof(Gauge),
+            typeof(Axis),
             new FrameworkPropertyMetadata(
                 default(TickBarPlacement),
-                FrameworkPropertyMetadataOptions.Inherits,
-                UpdateValuePos));
+                FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
-        /// Identifies the <see cref="P:Gauge.IsDirectionReversed" />�dependency property. 
+        /// Identifies the <see cref="P:Axis.IsDirectionReversed" /> dependency property. 
         /// </summary>
         public static readonly DependencyProperty IsDirectionReversedProperty = Slider.IsDirectionReversedProperty.AddOwner(
-            typeof(Gauge),
+            typeof(Axis),
             new FrameworkPropertyMetadata(
                 false,
-                FrameworkPropertyMetadataOptions.Inherits,
-                UpdateValuePos));
+                FrameworkPropertyMetadataOptions.Inherits));
 
-        public Gauge()
-        {
-            this.SizeChanged += (_, __) => this.UpdateValuePos();
-        }
-
-
-        /// <summary>
-        /// Gets the transform to the position that corresponds to the current value
-        /// </summary>
-        public Transform ValueTransform
-        {
-            get { return (Transform)this.GetValue(ValueTransformProperty); }
-            protected set { this.SetValue(ValueTransformPropertyKey, value); }
-        }
-
-        /// <summary>
-        /// Gets the value with animated transitions.
-        /// </summary>
-        public double AnimatedValue
-        {
-            get { return (double)this.GetValue(AnimatedValueProperty); }
-            protected set { this.SetValue(AnimatedValuePropertyKey, value); }
-        }
 
         /// <summary>
         /// Gets or sets if textlabels should be visible
@@ -160,27 +110,6 @@ namespace Gu.Gauges
         {
             get { return (bool)this.GetValue(IsDirectionReversedProperty); }
             set { this.SetValue(IsDirectionReversedProperty, value); }
-        }
-
-        protected static void UpdateValuePos(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var gauge = (Gauge)d;
-            gauge.UpdateValuePos();
-        }
-
-        protected virtual void UpdateValuePos()
-        {
-            if (double.IsNaN(this.Value))
-            {
-                return;
-            }
-            var valueAnimation = new DoubleAnimation(this.Value, TimeSpan.FromMilliseconds(100));
-            this.BeginAnimation(AnimatedValueProxyProperty, valueAnimation);
-        }
-
-        private static void OnAnimatedValueProxyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            d.SetValue(AnimatedValuePropertyKey, e.NewValue);
         }
     }
 }
