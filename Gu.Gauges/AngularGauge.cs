@@ -17,23 +17,26 @@
 
         public static readonly DependencyProperty MinAngleProperty = AngularBar.MinAngleProperty.AddOwner(
             typeof(AngularGauge),
-            new PropertyMetadata(
+            new FrameworkPropertyMetadata(
                 -180.0,
+                FrameworkPropertyMetadataOptions.Inherits,
                 UpdateValuePos));
 
         public static readonly DependencyProperty MaxAngleProperty = AngularBar.MaxAngleProperty.AddOwner(
-            typeof(AngularGauge),
-            new PropertyMetadata(
+            typeof (AngularGauge),
+            new FrameworkPropertyMetadata(
                 0.0,
+                FrameworkPropertyMetadataOptions.Inherits,
                 UpdateValuePos));
 
         static AngularGauge()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(typeof(AngularGauge)));
-            MinimumProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(0.0, UpdateValuePos));
-            MaximumProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(100.0, UpdateValuePos));
+            MinimumProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.Inherits, UpdateValuePos));
+            MaximumProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(100.0, FrameworkPropertyMetadataOptions.Inherits, UpdateValuePos));
             ValueProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(0.0, UpdateValuePos));
-            FontSizeProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(12.0, UpdateTextSpace));
+            FontSizeProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(12.0, FrameworkPropertyMetadataOptions.Inherits, UpdateTextSpace));
+            TextOrientationProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(TextOrientation.Tangential, FrameworkPropertyMetadataOptions.Inherits, UpdateTextSpace));
         }
 
         public AngularGauge()
