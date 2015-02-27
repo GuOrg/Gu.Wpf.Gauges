@@ -24,15 +24,20 @@
 
                             <gauges:AngularBlockBar Fill="LightGray"
                                                     MaxAngle="{TemplateBinding MaxAngle}"
-                                                    Maximum="1"
+                                                    Maximum="{TemplateBinding Maximum}"
                                                     MinAngle="{TemplateBinding MinAngle}"
-                                                    Minimum="0"
+                                                    Ticks="{TemplateBinding MajorTicks}"
+                                                    TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                    Gap="0"
                                                     Opacity="0.2"
                                                     ReservedSpace="72"
                                                     TickLength="50"
-                                                    Value="1" />
+                                                    Value="{TemplateBinding Maximum}" />
 
                             <gauges:AngularBlockBar Fill="White"
+                                                    Ticks="{TemplateBinding MajorTicks}"
+                                                    TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                    Gap="0"
                                                     MaxAngle="{TemplateBinding MaxAngle}"
                                                     Maximum="{TemplateBinding Maximum}"
                                                     MinAngle="{TemplateBinding MinAngle}"
@@ -73,10 +78,16 @@
                                                 TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                 Ticks="{TemplateBinding MajorTicks}" />
 
-                            <Rectangle Grid.Row="1"
-                                       Margin="25,0,25,0"
-                                       Fill="LightGray"
-                                       Opacity="0.2" />
+                            <gauges:BlockBar Grid.Row="1"
+                                             Fill="LightGray"
+                                             Gap="1"
+                                             Opacity="0.2"
+                                             Maximum="{TemplateBinding Maximum}"
+                                             Minimum="{TemplateBinding Minimum}"
+                                             Value="{TemplateBinding Maximum}"
+                                             ReservedSpace="50"
+                                             TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                             Ticks="{TemplateBinding MajorTicks}"/>
 
                             <gauges:BlockBar Grid.Row="1"
                                              Fill="White"
@@ -84,6 +95,8 @@
                                              Minimum="{TemplateBinding Minimum}"
                                              Placement="Top"
                                              ReservedSpace="50"
+                                             Gap="1"
+                                             TickFrequency="{TemplateBinding MajorTickFrequency}"
                                              Value="{TemplateBinding AnimatedValue}" />
                         </Grid>
                     </ControlTemplate>
