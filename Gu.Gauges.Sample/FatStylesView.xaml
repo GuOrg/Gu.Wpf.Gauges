@@ -4,8 +4,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:gauges="http://gu.se/Gauges"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="300"
-             d:DesignWidth="300"
              mc:Ignorable="d">
     <UserControl.Resources>
         <Style x:Key="FatAngular" TargetType="{x:Type gauges:AngularGauge}">
@@ -20,6 +18,7 @@
                                                    Maximum="{TemplateBinding Maximum}"
                                                    MinAngle="{TemplateBinding MinAngle}"
                                                    Minimum="{TemplateBinding Minimum}"
+                                                   ReservedSpace="28"
                                                    TextOrientation="Horizontal"
                                                    TickFrequency="{TemplateBinding MajorTickFrequency}" />
 
@@ -29,8 +28,8 @@
                                                     MinAngle="{TemplateBinding MinAngle}"
                                                     Minimum="0"
                                                     Opacity="0.2"
-                                                    ReservedSpace="50"
-                                                    TickLength="55"
+                                                    ReservedSpace="72"
+                                                    TickLength="50"
                                                     Value="1" />
 
                             <gauges:AngularBlockBar Fill="White"
@@ -38,8 +37,8 @@
                                                     Maximum="{TemplateBinding Maximum}"
                                                     MinAngle="{TemplateBinding MinAngle}"
                                                     Minimum="{TemplateBinding Minimum}"
-                                                    ReservedSpace="50"
-                                                    TickLength="55"
+                                                    ReservedSpace="72"
+                                                    TickLength="50"
                                                     Value="{TemplateBinding AnimatedValue}" />
 
                             <TextBlock HorizontalAlignment="Center"
@@ -92,6 +91,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
+
     <Grid Background="#FF1D1D1D" TextElement.Foreground="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -125,6 +125,6 @@
                 Grid.Row="2"
                 Maximum="100"
                 Minimum="0"
-                Value="30" />
+                Value="14" />
     </Grid>
 </UserControl>
