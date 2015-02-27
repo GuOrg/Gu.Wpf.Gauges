@@ -1,6 +1,7 @@
-﻿namespace Gu.Gauges.Tests
+﻿namespace Gu.Gauges.Tests.Helpers
 {
     using System.Windows.Media;
+
     using NUnit.Framework;
 
     public class VextorExtTests

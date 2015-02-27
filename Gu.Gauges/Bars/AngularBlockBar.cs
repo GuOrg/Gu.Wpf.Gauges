@@ -1,8 +1,8 @@
 namespace Gu.Gauges
 {
+    using System;
     using System.Linq;
     using System.Windows;
-    using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
     using System.Windows.Shapes;
@@ -146,6 +146,24 @@ namespace Gu.Gauges
                 dc.DrawGeometry(this.Fill, pen, arcBlock);
                 previous = angle + gap;
             }
+        }
+
+        protected override Size MeasureOverride(Size availableSize)
+        {
+            var rect = new Rect();
+            var arc = new Arc(new Point(0, 0), this.MinAngle, this.MaxAngle, 1, this.IsDirectionReversed);
+            rect.Union(arc.GetPoint(arc.Start));
+            var a = TickHelper.ToAngle(this.Value, this.Minimum, this.Maximum, arc);
+            rect.Union(arc.GetPoint(a));
+            foreach (var p in arc.GetQuadrants(arc.Start, a))
+            {
+                rect.Union(p);
+            }
+            var wf = availableSize.Width / rect.Width;
+            var hf = availableSize.Height / rect.Height;
+            var min = Math.Min(wf, hf);
+            rect.Scale(min, min);
+            return rect.Size;
         }
 
         private static PathGeometry ArcBlock(Arc arc, double fromAngle, double toAngle, double tickLength)

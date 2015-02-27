@@ -59,7 +59,6 @@
             <GroupBox Header="AngularBlockBar">
                 <Grid Background="LightGray">
                     <gauges:AngularBlockBar Width="100"
-                                            Height="100"
                                             Fill="Olive"
                                             Gap="1"
                                             IsDirectionReversed="{Binding IsDirectionReversed}"

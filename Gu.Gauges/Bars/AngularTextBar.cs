@@ -1,9 +1,6 @@
-using System.Windows.Controls.Primitives;
-
 namespace Gu.Gauges
 {
     using System;
-    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Documents;
@@ -234,6 +231,22 @@ namespace Gu.Gauges
                 dc.DrawText(text, textPosition);
             }
             this.Diameter = this.ActualWidth - this.ReservedSpace;
+        }
+
+        protected override Size MeasureOverride(Size availableSize)
+        {
+            //Rect bonds = new Rect();
+            //var arc = new Arc(new Point(0, 0), this.MinAngle, this.MaxAngle, 0, this.IsDirectionReversed);
+            //foreach (var tick in this.AllTicks)
+            //{
+            //    var text = TextHelper.AsFormattedText(tick, this);
+            //    var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
+
+            //    var point = arc.GetPoint(angle);
+            //    var textPosition = new TextPosition(text, this.Placement, this.TextOrientation, point, angle);
+            //    throw new NotImplementedException();
+            //}
+            return base.MeasureOverride(availableSize);
         }
     }
 }

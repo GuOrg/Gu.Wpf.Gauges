@@ -1,4 +1,4 @@
-﻿namespace Gu.Gauges.Tests
+﻿namespace Gu.Gauges.Tests.Helpers
 {
     using System.Linq;
     using System.Windows;
