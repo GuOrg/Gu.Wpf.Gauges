@@ -9,7 +9,15 @@
              d:DesignWidth="300"
              mc:Ignorable="d">
     <UserControl.DataContext>
-        <sample:TickBarVm />
+        <sample:TickBarVm IsDirectionReversed="False"
+                          Maximum="100"
+                          Minimum="0"
+                          Placement="Bottom"
+                          ReservedSpace="0"
+                          TextOrientation="Horizontal"
+                          TickFrequency="50"
+                          Ticks="75"
+                          Value="14" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>

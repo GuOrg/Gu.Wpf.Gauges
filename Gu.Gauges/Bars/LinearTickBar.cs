@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using System.Windows;
-    using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
 
@@ -17,18 +16,6 @@
             typeof(LinearTickBar),
             new FrameworkPropertyMetadata(
                 1.0,
-                FrameworkPropertyMetadataOptions.AffectsRender));
-
-        /// <summary>
-        /// Identifies the <see cref="P:LinearTickBar.Placement" /> dependency property. This property is read-only.
-        /// </summary>
-        /// <returns>
-        /// The identifier for the <see cref="P:LinearTickBar.Placement" /> dependency property.
-        /// </returns>
-        public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
-            typeof(LinearTickBar),
-            new FrameworkPropertyMetadata(
-                TickBarPlacement.Bottom,
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
@@ -51,18 +38,6 @@
         }
 
         /// <summary>
-        /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.  
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:LinearTickBarPlacement" /> enumeration value that identifies the position of the <see cref="T:LinearTickBar" /> in the <see cref="T:System.Windows.Style" /> layout of a <see cref="T:System.Windows.Controls.Slider" />. The default value is <see cref="F:LinearTickBarPlacement.Top" />.
-        /// </returns>
-        public TickBarPlacement Placement
-        {
-            get { return (TickBarPlacement)this.GetValue(PlacementProperty); }
-            set { this.SetValue(PlacementProperty, value); }
-        }
-
-        /// <summary>
         /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> that is used to draw the tick marks.  
         /// </summary>
         /// <returns>
@@ -82,7 +57,6 @@
             }
             var pen = new Pen(this.Fill, this.PenWidth);
             pen.Freeze();
-            var ticks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency).Concat(this.Ticks ?? Enumerable.Empty<double>());
             var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace, this.Placement, this.IsDirectionReversed);
             Vector offset = new Vector(0, 0);
             switch (this.Placement)
@@ -100,12 +74,8 @@
                     offset = new Vector(0, -1 * this.ActualHeight);
                     break;
             }
-            foreach (var tick in ticks)
+            foreach (var tick in this.AllTicks)
             {
-                if (tick < this.Minimum || tick > this.Maximum)
-                {
-                    continue;
-                }
                 var pos = TickHelper.ToPos(tick, this.Minimum, this.Maximum, line);
                 dc.DrawLine(pen, pos, pos + offset);
             }

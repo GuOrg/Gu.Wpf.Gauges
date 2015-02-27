@@ -75,15 +75,10 @@ namespace Gu.Gauges
             var pi = new Point(this.ActualWidth - this.ReservedSpace - this.TickLength, midPoint.Y);
             var po = new Point(this.ActualWidth - this.ReservedSpace, midPoint.Y);
             var tickLine = new Line(pi, po);
-            var ticks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency).Concat(this.Ticks ?? Enumerable.Empty<double>());
             var arc = new Arc(midPoint, this.MinAngle, this.MaxAngle, this.ActualWidth - this.ReservedSpace, this.IsDirectionReversed);
             var transform = new RotateTransform(0, midPoint.X, midPoint.Y);
-            foreach (var tick in ticks)
+            foreach (var tick in this.AllTicks)
             {
-                if (tick < this.Minimum || tick > this.Maximum)
-                {
-                    continue;
-                }
                 var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
                 transform.Angle = angle;
                 var l = transform.Transform(tickLine);

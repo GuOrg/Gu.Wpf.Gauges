@@ -9,7 +9,15 @@
              d:DesignWidth="300"
              mc:Ignorable="d">
     <UserControl.DataContext>
-        <sample:AngularTickBarVm />
+        <sample:AngularTickBarVm MaxAngle="0"
+                                 Maximum="100"
+                                 MinAngle="-180"
+                                 Minimum="0"
+                                 Placement="Top"
+                                 ReservedSpace="1"
+                                 TextOrientation="Horizontal"
+                                 TickFrequency="25"
+                                 Ticks="85" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -19,14 +27,14 @@
         <WrapPanel>
             <GroupBox Header="AngularTickBar">
                 <Grid Background="Bisque">
-                    <gauges:AngularTickBar Width="100"
-                                           Height="100"
-                                           Fill="Black"
+                    <gauges:AngularTickBar Fill="Black"
                                            IsDirectionReversed="{Binding IsDirectionReversed}"
                                            MaxAngle="{Binding MaxAngle}"
                                            Maximum="{Binding Maximum}"
                                            MinAngle="{Binding MinAngle}"
                                            Minimum="{Binding Minimum}"
+                                           Opacity="1"
+                                           SnapsToDevicePixels="True"
                                            PenWidth="1"
                                            ReservedSpace="{Binding ReservedSpace}"
                                            TickFrequency="{Binding TickFrequency}"
@@ -36,9 +44,7 @@
 
             <GroupBox Header="AngularTextBar">
                 <Grid Background="Lavender">
-                    <gauges:AngularTextBar Width="100"
-                                           Height="100"
-                                           IsDirectionReversed="{Binding IsDirectionReversed}"
+                    <gauges:AngularTextBar Width="100" IsDirectionReversed="{Binding IsDirectionReversed}"
                                            MaxAngle="{Binding MaxAngle}"
                                            Maximum="{Binding Maximum}"
                                            MinAngle="{Binding MinAngle}"

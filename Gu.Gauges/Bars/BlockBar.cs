@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using System.Windows;
-    using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
     using System.Windows.Shapes;
@@ -19,18 +18,6 @@
             typeof(BlockBar),
             new FrameworkPropertyMetadata(
                 0.0,
-                FrameworkPropertyMetadataOptions.AffectsRender));
-
-        /// <summary>
-        /// Identifies the <see cref="P:BlockBar.Placement" /> dependency property. This property is read-only.
-        /// </summary>
-        /// <returns>
-        /// The identifier for the <see cref="P:BlockBar.Placement" /> dependency property.
-        /// </returns>
-        public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
-            typeof(BlockBar),
-            new FrameworkPropertyMetadata(
-                TickBarPlacement.Bottom,
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty FillProperty = Shape.FillProperty.AddOwner(
@@ -67,18 +54,6 @@
         {
             get { return (double)this.GetValue(ValueProperty); }
             set { this.SetValue(ValueProperty, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.  
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:BlockBarPlacement" /> enumeration value that identifies the position of the <see cref="T:BlockBar" /> in the <see cref="T:System.Windows.Style" /> layout of a <see cref="T:System.Windows.Controls.Slider" />. The default value is <see cref="F:BlockBarPlacement.Top" />.
-        /// </returns>
-        public TickBarPlacement Placement
-        {
-            get { return (TickBarPlacement)this.GetValue(PlacementProperty); }
-            set { this.SetValue(PlacementProperty, value); }
         }
 
         /// <summary>
@@ -171,7 +146,7 @@
                 if (tick > this.Value)
                 {
                     var p = TickHelper.ToPos(this.Value, this.Minimum, this.Maximum, line);
-                    var r = new Rect(previous, p + offset);
+                    var r = new Rect(previous, p);
                     dc.DrawRectangle(this.Fill, pen, r);
                     break;
                 }
