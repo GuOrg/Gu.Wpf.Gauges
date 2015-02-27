@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Gu.Gauges.Sample
 {
     /// <summary>
-    /// Interaction logic for FatStyles.xaml
+    /// Interaction logic for AngularBarsView.xaml
     /// </summary>
-    public partial class FatStyles : UserControl
+    public partial class AngularBarsView : UserControl
     {
-        public FatStyles()
+        public AngularBarsView()
         {
             InitializeComponent();
         }

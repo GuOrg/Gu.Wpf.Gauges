@@ -50,9 +50,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AngularBarsView.xaml.cs">
+      <DependentUpon>AngularBarsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AngularTickBarVm.cs" />
-    <Compile Include="FatStyles.xaml.cs">
-      <DependentUpon>FatStyles.xaml</DependentUpon>
+    <Compile Include="DefaultStyleAngularGaugeView.xaml.cs">
+      <DependentUpon>DefaultStyleAngularGaugeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DefaultStyleLinearGaugeView.xaml.cs">
+      <DependentUpon>DefaultStyleLinearGaugeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FatStylesView.xaml.cs">
+      <DependentUpon>FatStylesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LinearBarsView.xaml.cs">
+      <DependentUpon>LinearBarsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
@@ -60,7 +72,23 @@
     <Compile Include="TickBarVm.cs" />
     <Compile Include="Vm.cs" />
     <Compile Include="WpfStuff\ItemsControlExt.cs" />
-    <Page Include="FatStyles.xaml">
+    <Page Include="AngularBarsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DefaultStyleAngularGaugeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DefaultStyleLinearGaugeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FatStylesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LinearBarsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
