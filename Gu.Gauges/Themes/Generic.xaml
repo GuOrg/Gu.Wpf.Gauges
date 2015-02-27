@@ -65,7 +65,7 @@
                                                  TickFrequency="{TemplateBinding MinorTickFrequency}" />
                         </Grid>
 
-                        <Rectangle x:Name="Line" Fill="{TemplateBinding Foreground}" />
+                        <Rectangle x:Name="Line" Fill="{TemplateBinding Foreground}" Margin="{TemplateBinding ReservedSpaceMargin}"/>
 
                         <local:TextTickBar x:Name="TickLabels"
                                            FontFamily="{TemplateBinding FontFamily}"
@@ -96,6 +96,7 @@
 
                             <Setter TargetName="MajorTicks" Property="Height" Value="10" />
                             <Setter TargetName="MinorTicks" Property="Height" Value="5" />
+                            <Setter TargetName="Line" Property="Height" Value="1" />
                             <Setter TargetName="MinorTicks" Property="VerticalAlignment" Value="Bottom" />
                         </Trigger>
 
@@ -106,6 +107,7 @@
 
                             <Setter TargetName="MajorTicks" Property="Height" Value="10" />
                             <Setter TargetName="MinorTicks" Property="Height" Value="5" />
+                            <Setter TargetName="Line" Property="Height" Value="1" />
                             <Setter TargetName="MinorTicks" Property="VerticalAlignment" Value="Top" />
                         </Trigger>
 
@@ -116,6 +118,7 @@
 
                             <Setter TargetName="MajorTicks" Property="Width" Value="10" />
                             <Setter TargetName="MinorTicks" Property="Width" Value="5" />
+                            <Setter TargetName="Line" Property="Width" Value="1" />
                             <Setter TargetName="MinorTicks" Property="HorizontalAlignment" Value="Right" />
                         </Trigger>
 
@@ -126,6 +129,7 @@
 
                             <Setter TargetName="MajorTicks" Property="Width" Value="10" />
                             <Setter TargetName="MinorTicks" Property="Width" Value="5" />
+                            <Setter TargetName="Line" Property="Width" Value="1" />
                             <Setter TargetName="MinorTicks" Property="HorizontalAlignment" Value="Left" />
                         </Trigger>
                     </ControlTemplate.Triggers>
