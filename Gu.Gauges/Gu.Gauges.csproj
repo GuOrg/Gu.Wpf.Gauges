@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Bars\AngularBlockBar.cs" />
     <Compile Include="AngularGauge.cs" />
+    <Compile Include="Bars\Bar.cs" />
     <Compile Include="Gauge.cs" />
     <Compile Include="Helpers\Arc.cs" />
     <Compile Include="Dimensions\DimensionArrowHead.cs" />

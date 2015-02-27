@@ -103,34 +103,22 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:LinearGauge}">
-                    <ControlTemplate.Resources>
-
-                        <Style x:Key="IndicatorStyle" TargetType="{x:Type Shape}">
-                            <Setter Property="VerticalAlignment" Value="Center" />
-                            <Setter Property="HorizontalAlignment" Value="Center" />
-                            <Setter Property="Fill" Value="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:LinearGauge}}}" />
-                            <Setter Property="Stretch" Value="Uniform" />
-                        </Style>
-                    </ControlTemplate.Resources>
                     <Border Margin="{TemplateBinding Padding}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
                         <DockPanel>
                             <Grid x:Name="TrackAndIndicatorPanel">
-                                <Border MinWidth="2"
-                                        MinHeight="2"
-                                        HorizontalAlignment="Stretch"
+                                <Border HorizontalAlignment="Stretch"
                                         VerticalAlignment="Stretch"
                                         BorderBrush="{TemplateBinding Background}"
-                                        BorderThickness="2"
-                                        CornerRadius="4" />
+                                        BorderThickness="1" />
                                 <Ellipse x:Name="Indicator"
-                                         Width="10"
-                                         Height="10"
+                                         Width="6"
+                                         Height="6"
+                                         Fill="{TemplateBinding Foreground}"
                                          HorizontalAlignment="Left"
                                          VerticalAlignment="Top"
-                                         RenderTransform="{TemplateBinding ValueTransform}"
-                                         Style="{StaticResource IndicatorStyle}" />
+                                         RenderTransform="{TemplateBinding ValueTransform}" />
                             </Grid>
 
                             <DockPanel x:Name="TicksPanel">
@@ -140,7 +128,7 @@
                                                          IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
                                                          Maximum="{TemplateBinding Maximum}"
                                                          Minimum="{TemplateBinding Minimum}"
-                                                         Placement="Bottom"
+                                                         Placement="{TemplateBinding Placement}"
                                                          SnapsToDevicePixels="True"
                                                          TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                          Ticks="{TemplateBinding MajorTicks}"
@@ -151,7 +139,7 @@
                                                          IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
                                                          Maximum="{TemplateBinding Maximum}"
                                                          Minimum="{TemplateBinding Minimum}"
-                                                         Placement="Bottom"
+                                                         Placement="{TemplateBinding Placement}"
                                                          SnapsToDevicePixels="True"
                                                          TickFrequency="{TemplateBinding MinorTickFrequency}"
                                                          Visibility="Visible" />
@@ -167,13 +155,12 @@
                                                    IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
                                                    Maximum="{TemplateBinding Maximum}"
                                                    Minimum="{TemplateBinding Minimum}"
-                                                   Placement="Top"
+                                                   Placement="{TemplateBinding Placement}"
                                                    SnapsToDevicePixels="True"
                                                    TextOrientation="{TemplateBinding TextOrientation}"
                                                    TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                    Ticks="{TemplateBinding MajorTicks}"
                                                    Visibility="Visible" />
-
                             </DockPanel>
                             <Grid x:Name="EmptySpace" />
                         </DockPanel>
@@ -190,14 +177,12 @@
                             <Setter TargetName="TickMarksGrid" Property="DockPanel.Dock" Value="Top" />
                             <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Top" />
 
-
-                            <Setter TargetName="MajorTicks" Property="Height" Value="15" />
+                            <Setter TargetName="MajorTicks" Property="Height" Value="10" />
                             <Setter TargetName="MinorTicks" Property="Height" Value="5" />
+                            <Setter TargetName="MinorTicks" Property="VerticalAlignment" Value="Bottom" />
+
                             <Setter TargetName="TrackAndIndicatorPanel" Property="Height" Value="8" />
 
-                            <Setter TargetName="MajorTicks" Property="Placement" Value="Top" />
-                            <Setter TargetName="MinorTicks" Property="Placement" Value="Top" />
-                            <Setter TargetName="TickLabels" Property="Placement" Value="Top" />
                             <Setter TargetName="Indicator" Property="Margin" Value="-5,0,0,0" />
                         </Trigger>
 
@@ -208,8 +193,9 @@
                             <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Bottom" />
 
 
-                            <Setter TargetName="MajorTicks" Property="Height" Value="15" />
+                            <Setter TargetName="MajorTicks" Property="Height" Value="10" />
                             <Setter TargetName="MinorTicks" Property="Height" Value="5" />
+                            <Setter TargetName="MinorTicks" Property="VerticalAlignment" Value="Bottom" />
                             <Setter TargetName="TrackAndIndicatorPanel" Property="Height" Value="8" />
 
                             <Setter TargetName="MajorTicks" Property="Placement" Value="Bottom" />
@@ -224,13 +210,10 @@
                             <Setter TargetName="TickMarksGrid" Property="DockPanel.Dock" Value="Left" />
                             <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Left" />
 
-                            <Setter TargetName="MajorTicks" Property="Width" Value="15" />
+                            <Setter TargetName="MajorTicks" Property="Width" Value="10" />
                             <Setter TargetName="MinorTicks" Property="Width" Value="5" />
                             <Setter TargetName="TrackAndIndicatorPanel" Property="Width" Value="8" />
 
-                            <Setter TargetName="MajorTicks" Property="Placement" Value="Left" />
-                            <Setter TargetName="MinorTicks" Property="Placement" Value="Left" />
-                            <Setter TargetName="TickLabels" Property="Placement" Value="Left" />
                             <Setter TargetName="Indicator" Property="Margin" Value="0,-5,0,0" />
                         </Trigger>
 
@@ -240,13 +223,10 @@
                             <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Right" />
                             <Setter TargetName="TickMarksGrid" Property="DockPanel.Dock" Value="Right" />
 
-                            <Setter TargetName="MajorTicks" Property="Width" Value="15" />
+                            <Setter TargetName="MajorTicks" Property="Width" Value="10" />
                             <Setter TargetName="MinorTicks" Property="Width" Value="5" />
                             <Setter TargetName="TrackAndIndicatorPanel" Property="Width" Value="8" />
 
-                            <Setter TargetName="MajorTicks" Property="Placement" Value="Right" />
-                            <Setter TargetName="MinorTicks" Property="Placement" Value="Right" />
-                            <Setter TargetName="TickLabels" Property="Placement" Value="Right" />
                             <Setter TargetName="Indicator" Property="Margin" Value="0,-5,0,0" />
                         </Trigger>
                     </ControlTemplate.Triggers>
