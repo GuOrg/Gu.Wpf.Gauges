@@ -5,7 +5,7 @@
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
 
-    public class Axis : Control
+    public class Axis : RangeBase
     {
         public static readonly DependencyProperty ShowLabelsProperty = DependencyProperty.Register(
             "ShowLabels",
@@ -44,6 +44,18 @@
                 FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
+        /// Identifies the <see cref="P:Axis.ReservedSpace" /> dependency property. This property is read-only.
+        /// </summary>
+        /// <returns>
+        /// The identifier for the <see cref="P:Axis.ReservedSpace" /> dependency property.
+        /// </returns>
+        public static readonly DependencyProperty ReservedSpaceProperty = TickBar.ReservedSpaceProperty.AddOwner(
+            typeof(Axis),
+            new FrameworkPropertyMetadata(
+                0.0,
+                FrameworkPropertyMetadataOptions.Inherits));
+
+        /// <summary>
         /// Identifies the <see cref="P:Axis.IsDirectionReversed" /> dependency property. 
         /// </summary>
         public static readonly DependencyProperty IsDirectionReversedProperty = Slider.IsDirectionReversedProperty.AddOwner(
@@ -79,6 +91,18 @@
         {
             get { return (TickBarPlacement)this.GetValue(PlacementProperty); }
             set { this.SetValue(PlacementProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets a space buffer for the area that contains the tick marks that are specified for a <see cref="T:Bar" />.  
+        /// </summary>
+        /// <returns>
+        /// A value that represents the total buffer area on either side of the row or column of tick marks. The default value is zero (0.0).
+        /// </returns>
+        public double ReservedSpace
+        {
+            get { return (double)this.GetValue(ReservedSpaceProperty); }
+            set { this.SetValue(ReservedSpaceProperty, value); }
         }
 
         public double MajorTickFrequency
