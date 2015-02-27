@@ -1,6 +1,5 @@
-﻿namespace Gu.Gauges.Tests
+﻿namespace Gu.Gauges.Tests.Helpers
 {
-    using System;
     using NUnit.Framework;
 
     public class ArcTests

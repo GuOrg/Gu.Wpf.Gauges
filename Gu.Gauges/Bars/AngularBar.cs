@@ -1,7 +1,7 @@
-using System.Windows;
-
 namespace Gu.Gauges
 {
+    using System.Windows;
+
     public class AngularBar : Bar
     {
         private static readonly DependencyPropertyKey DiameterPropertyKey = DependencyProperty.RegisterReadOnly(

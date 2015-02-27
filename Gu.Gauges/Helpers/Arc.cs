@@ -1,5 +1,6 @@
 ﻿namespace Gu.Gauges
 {
+    using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Media;
 
@@ -59,6 +60,16 @@
             return delta >= 0
                        ? System.Windows.Media.SweepDirection.Clockwise
                        : System.Windows.Media.SweepDirection.Counterclockwise;
+        }
+
+        public IEnumerable<Point> GetQuadrants(double start, double end)
+        {
+            var q = start - start % 90;
+            while (q<end)
+            {
+                yield return GetPoint(q);
+                q += 90;
+            }
         }
 
         public override string ToString()

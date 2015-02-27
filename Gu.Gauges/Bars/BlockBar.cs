@@ -1,5 +1,6 @@
 ﻿namespace Gu.Gauges
 {
+    using System;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls.Primitives;
@@ -106,10 +107,8 @@
             var pen = new Pen(this.Stroke, this.StrokeThickness);
             pen.Freeze();
 
-            var ticks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency)
-                                  .Concat(this.Ticks ?? Enumerable.Empty<double>())
-                                  .Concat(new[] { this.Value })
-                                  .OrderBy(t => t);
+            var ticks = this.AllTicks.Concat(new[] { this.Value })
+                            .OrderBy(t => t);
             var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace, this.Placement, this.IsDirectionReversed);
             var previous = line.StartPoint;
             Vector offset = new Vector(0, 0);
@@ -139,10 +138,6 @@
             }
             foreach (var tick in ticks)
             {
-                if (tick <= this.Minimum || tick > this.Maximum)
-                {
-                    continue;
-                }
                 if (tick > this.Value)
                 {
                     var p = TickHelper.ToPos(this.Value, this.Minimum, this.Maximum, line);
@@ -156,6 +151,11 @@
                 dc.DrawRectangle(this.Fill, pen, rect);
                 previous = pos + gap;
             }
+        }
+
+        protected override Size MeasureOverride(Size availableSize)
+        {
+            return availableSize;
         }
     }
 }
