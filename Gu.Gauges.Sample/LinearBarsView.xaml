@@ -25,6 +25,21 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <WrapPanel>
+            <!--<GroupBox Header="LinearAxis">
+                <Grid Background="Lavender">
+                    <gauges:LinearAxis Width="100"
+                             Height="100"
+                             Fill="Black"
+                             IsDirectionReversed="{Binding IsDirectionReversed}"
+                             Maximum="{Binding Maximum}"
+                             Minimum="{Binding Minimum}"
+                             Placement="{Binding Placement}"
+                             ReservedSpace="{Binding ReservedSpace}"
+                             TickFrequency="{Binding TickFrequency}"
+                             Ticks="{Binding Ticks}" />
+                </Grid>
+            </GroupBox>-->
+            
             <GroupBox Header="Framework TickBar">
                 <Grid Background="Lavender">
                     <TickBar Width="100"
@@ -38,7 +53,6 @@
                              TickFrequency="{Binding TickFrequency}"
                              Ticks="{Binding Ticks}" />
                 </Grid>
-
             </GroupBox>
 
             <GroupBox Header="BlockBar">
