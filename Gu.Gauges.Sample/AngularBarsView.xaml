@@ -34,9 +34,9 @@
                                            MinAngle="{Binding MinAngle}"
                                            Minimum="{Binding Minimum}"
                                            Opacity="1"
-                                           SnapsToDevicePixels="True"
                                            PenWidth="1"
                                            ReservedSpace="{Binding ReservedSpace}"
+                                           SnapsToDevicePixels="True"
                                            TickFrequency="{Binding TickFrequency}"
                                            Ticks="{Binding Ticks}" />
                 </Grid>
@@ -44,7 +44,8 @@
 
             <GroupBox Header="AngularTextBar">
                 <Grid Background="Lavender">
-                    <gauges:AngularTextBar Width="100" IsDirectionReversed="{Binding IsDirectionReversed}"
+                    <gauges:AngularTextBar Width="100"
+                                           IsDirectionReversed="{Binding IsDirectionReversed}"
                                            MaxAngle="{Binding MaxAngle}"
                                            Maximum="{Binding Maximum}"
                                            MinAngle="{Binding MinAngle}"

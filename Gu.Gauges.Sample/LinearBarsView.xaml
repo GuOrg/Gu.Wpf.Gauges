@@ -12,8 +12,9 @@
         <sample:TickBarVm IsDirectionReversed="False"
                           Maximum="100"
                           Minimum="0"
+                          MinorTickFrequency="5"
                           Placement="Bottom"
-                          ReservedSpace="0"
+                          ReservedSpace="10"
                           TextOrientation="Horizontal"
                           TickFrequency="50"
                           Ticks="75"
@@ -25,21 +26,20 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <WrapPanel>
-            <!--<GroupBox Header="LinearAxis">
+            <GroupBox Header="LinearAxis">
                 <Grid Background="Lavender">
-                    <gauges:LinearAxis Width="100"
-                             Height="100"
-                             Fill="Black"
-                             IsDirectionReversed="{Binding IsDirectionReversed}"
-                             Maximum="{Binding Maximum}"
-                             Minimum="{Binding Minimum}"
-                             Placement="{Binding Placement}"
-                             ReservedSpace="{Binding ReservedSpace}"
-                             TickFrequency="{Binding TickFrequency}"
-                             Ticks="{Binding Ticks}" />
+                    <gauges:LinearAxis Foreground="Black"
+                                       IsDirectionReversed="{Binding IsDirectionReversed}"
+                                       MajorTickFrequency="{Binding TickFrequency}"
+                                       MajorTicks="{Binding Ticks}"
+                                       Maximum="{Binding Maximum}"
+                                       Minimum="{Binding Minimum}"
+                                       MinorTickFrequency="{Binding MinorTickFrequency}"
+                                       Placement="{Binding Placement}"
+                                       ReservedSpace="{Binding ReservedSpace}" />
                 </Grid>
-            </GroupBox>-->
-            
+            </GroupBox>
+
             <GroupBox Header="Framework TickBar">
                 <Grid Background="Lavender">
                     <TickBar Width="100"

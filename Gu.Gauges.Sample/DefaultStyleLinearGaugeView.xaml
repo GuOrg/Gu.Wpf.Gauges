@@ -9,13 +9,13 @@
     <UserControl.DataContext>
         <sample:TickBarVm Maximum="100"
                           Minimum="0"
-                          TickFrequency="25"
                           MinorTickFrequency="5"
                           Placement="Bottom"
-                          Value="14"
-                          TextOrientation="Horizontal"
                           ShowLabels="True"
-                          Ticks="60 85" />
+                          TextOrientation="Horizontal"
+                          TickFrequency="25"
+                          Ticks="60 85"
+                          Value="14" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
