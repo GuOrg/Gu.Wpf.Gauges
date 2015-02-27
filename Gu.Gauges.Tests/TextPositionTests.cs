@@ -20,9 +20,9 @@
             Assert.AreEqual(expected, textPosition.Point.ToString("F0"));
         }
 
-        [TestCase(TickBarPlacement.Left, "0, -7")]
-        [TestCase(TickBarPlacement.Top, "-10, 0")]
-        [TestCase(TickBarPlacement.Right, "-20, -7")]
+        [TestCase(TickBarPlacement.Left, "0, 10")]
+        [TestCase(TickBarPlacement.Top, "-7, 20")]
+        [TestCase(TickBarPlacement.Right, "-14, 10")]
         [TestCase(TickBarPlacement.Bottom, "-7, 0")]
         public void VerticalUpPoint(TickBarPlacement placement, string expected)
         {

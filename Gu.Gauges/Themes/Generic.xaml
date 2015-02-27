@@ -168,8 +168,8 @@
                                                    Maximum="{TemplateBinding Maximum}"
                                                    Minimum="{TemplateBinding Minimum}"
                                                    Placement="Top"
-                                                   TextOrientation="{TemplateBinding TextOrientation}"
                                                    SnapsToDevicePixels="True"
+                                                   TextOrientation="{TemplateBinding TextOrientation}"
                                                    TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                    Ticks="{TemplateBinding MajorTicks}"
                                                    Visibility="Visible" />

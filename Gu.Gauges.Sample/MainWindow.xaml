@@ -68,35 +68,9 @@
         </TabItem>
 
         <TabItem Header="Styles">
-            <Grid Background="#FF1D1D1D" TextElement.Foreground="White">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <WrapPanel Grid.Row="0">
-                    <gauges:AngularGauge IsDirectionReversed="False"
-                                         MajorTickFrequency="25"
-                                         MaxAngle="0"
-                                         Maximum="100"
-                                         MinAngle="-180"
-                                         Minimum="0"
-                                         MinorTickFrequency="{Binding AngularTickBarVm.MinorTickFrequency}"
-                                         Style="{StaticResource FatAngular}"
-                                         Value="{Binding Value}" />
-
-                    <gauges:LinearGauge Margin="25"
-                                        IsDirectionReversed="False"
-                                        MajorTickFrequency="25"
-                                        Maximum="100"
-                                        Minimum="0"
-                                        MinorTickFrequency="{Binding AngularTickBarVm.MinorTickFrequency}"
-                                        Style="{StaticResource FatHorizontal}"
-                                        Value="{Binding Value}" />
-                </WrapPanel>
-                <ContentPresenter Grid.Row="1" Content="{Binding AngularTickBarVm}" />
-            </Grid>
+            <sample:FatStyles />
         </TabItem>
-        
+
         <TabItem Header="LinearBars">
             <Grid>
                 <Grid.RowDefinitions>
