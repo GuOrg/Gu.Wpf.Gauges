@@ -162,6 +162,10 @@ namespace Gu.Gauges
 
         protected virtual void UpdateValuePos()
         {
+            if (double.IsNaN(this.Value))
+            {
+                return;
+            }
             var valueAnimation = new DoubleAnimation(this.Value, TimeSpan.FromMilliseconds(100));
             this.BeginAnimation(AnimatedValueProxyProperty, valueAnimation);
         }

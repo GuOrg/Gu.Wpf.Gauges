@@ -20,6 +20,7 @@
         private TextOrientation textOrientation;
 
         private double minorTickFrequency;
+        private bool showLabels;
 
         public TickBarVm()
         {
@@ -152,6 +153,17 @@
             {
                 if (value.Equals(this.isDirectionReversed)) return;
                 this.isDirectionReversed = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public bool ShowLabels
+        {
+            get { return this.showLabels; }
+            set
+            {
+                if (value.Equals(this.showLabels)) return;
+                this.showLabels = value;
                 this.OnPropertyChanged();
             }
         }
