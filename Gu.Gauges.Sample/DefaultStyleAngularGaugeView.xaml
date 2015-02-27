@@ -8,8 +8,12 @@
              mc:Ignorable="d">
     <UserControl.DataContext>
         <sample:AngularTickBarVm MaxAngle="0"
-                                 MinAngle="-270"
-                                 TextOrientation="Tangential" />
+                                 Maximum="100"
+                                 MinAngle="-180"
+                                 Minimum="0"
+                                 MinorTickFrequency="5"
+                                 TextOrientation="Tangential"
+                                 Ticks="85" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -20,8 +24,6 @@
         <gauges:AngularGauge Grid.Row="0"
                              Width="150"
                              Height="150"
-                             HorizontalAlignment="Stretch"
-                             VerticalAlignment="Stretch"
                              IsDirectionReversed="{Binding IsDirectionReversed}"
                              MajorTickFrequency="{Binding TickFrequency}"
                              MajorTicks="{Binding Ticks}"
@@ -31,6 +33,7 @@
                              Minimum="{Binding Minimum}"
                              MinorTickFrequency="{Binding MinorTickFrequency}"
                              Placement="{Binding Placement}"
+                             ShowLabels="{Binding ShowLabels}"
                              TextOrientation="{Binding TextOrientation}"
                              Value="{Binding Value}" />
 

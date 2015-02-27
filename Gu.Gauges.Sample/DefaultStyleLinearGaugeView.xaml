@@ -7,7 +7,15 @@
              xmlns:sample="clr-namespace:Gu.Gauges.Sample"
              mc:Ignorable="d">
     <UserControl.DataContext>
-        <sample:TickBarVm Placement="Bottom" />
+        <sample:TickBarVm Maximum="100"
+                          Minimum="0"
+                          TickFrequency="25"
+                          MinorTickFrequency="5"
+                          Placement="Bottom"
+                          Value="14"
+                          TextOrientation="Horizontal"
+                          ShowLabels="True"
+                          Ticks="60 85" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
