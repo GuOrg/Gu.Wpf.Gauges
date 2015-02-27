@@ -51,12 +51,19 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AngularTickBarVm.cs" />
+    <Compile Include="FatStyles.xaml.cs">
+      <DependentUpon>FatStyles.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Annotations.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="TickBarVm.cs" />
     <Compile Include="Vm.cs" />
     <Compile Include="WpfStuff\ItemsControlExt.cs" />
+    <Page Include="FatStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
