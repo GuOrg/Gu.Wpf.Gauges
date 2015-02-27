@@ -12,8 +12,8 @@ namespace Gu.Gauges
         static LinearGauge()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(LinearGauge), new FrameworkPropertyMetadata(typeof(LinearGauge)));
-            MinimumProperty.OverrideMetadata(typeof(LinearGauge), new FrameworkPropertyMetadata(0.0, UpdateValuePos));
-            MaximumProperty.OverrideMetadata(typeof(LinearGauge), new FrameworkPropertyMetadata(100.0, UpdateValuePos));
+            MinimumProperty.OverrideMetadata(typeof(LinearGauge), new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.Inherits, UpdateValuePos));
+            MaximumProperty.OverrideMetadata(typeof(LinearGauge), new FrameworkPropertyMetadata(100.0, FrameworkPropertyMetadataOptions.Inherits, UpdateValuePos));
             ValueProperty.OverrideMetadata(typeof(LinearGauge), new FrameworkPropertyMetadata(0.0, UpdateValuePos));
         }
 

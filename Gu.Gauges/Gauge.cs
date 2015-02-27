@@ -42,7 +42,7 @@ namespace Gu.Gauges
             "MajorTickFrequency",
             typeof(double),
             typeof(Gauge),
-            new PropertyMetadata(default(double)));
+            new FrameworkPropertyMetadata(default(double)));
 
         public static readonly DependencyProperty MajorTicksProperty = DependencyProperty.Register(
             "MajorTicks",
@@ -60,12 +60,13 @@ namespace Gu.Gauges
             "TextOrientation",
             typeof(TextOrientation),
             typeof(Gauge),
-            new PropertyMetadata(TextOrientation.Horizontal));
+            new FrameworkPropertyMetadata(TextOrientation.Horizontal, FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
             typeof(Gauge),
-            new PropertyMetadata(
+            new FrameworkPropertyMetadata(
                 default(TickBarPlacement),
+                FrameworkPropertyMetadataOptions.Inherits,
                 UpdateValuePos));
 
         /// <summary>
@@ -75,6 +76,7 @@ namespace Gu.Gauges
             typeof(Gauge),
             new FrameworkPropertyMetadata(
                 false,
+                FrameworkPropertyMetadataOptions.Inherits,
                 UpdateValuePos));
 
         /// <summary>
