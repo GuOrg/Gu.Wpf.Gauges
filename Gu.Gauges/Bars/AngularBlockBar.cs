@@ -124,20 +124,15 @@ namespace Gu.Gauges
             var pen = new Pen(this.Stroke, this.StrokeThickness);
             pen.Freeze();
 
-            var ticks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency)
-                                  .Concat(this.Ticks ?? Enumerable.Empty<double>())
-                                  .Concat(new[] { this.Value })
-                                  .OrderBy(t => t);
+            var ticks = this.AllTicks
+                            .Concat(new[] { this.Value })
+                            .OrderBy(t => t);
             var arc = new Arc(new Point(this.ActualWidth / 2, this.ActualHeight / 2), this.MinAngle, this.MaxAngle, this.ActualWidth / 2 - this.ReservedSpace / 2, this.IsDirectionReversed);
             var previous = arc.Start;
             var gap = this.IsDirectionReversed ? -1 * this.Gap : this.Gap;
 
             foreach (var tick in ticks)
             {
-                if (tick <= this.Minimum || tick > this.Maximum)
-                {
-                    continue;
-                }
                 if (tick > this.Value)
                 {
                     var a = TickHelper.ToAngle(this.Value, this.Minimum, this.Maximum, arc);

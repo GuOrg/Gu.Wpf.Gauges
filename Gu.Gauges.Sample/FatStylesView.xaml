@@ -23,27 +23,27 @@
                                                    TickFrequency="{TemplateBinding MajorTickFrequency}" />
 
                             <gauges:AngularBlockBar Fill="LightGray"
+                                                    Gap="0"
                                                     MaxAngle="{TemplateBinding MaxAngle}"
                                                     Maximum="{TemplateBinding Maximum}"
                                                     MinAngle="{TemplateBinding MinAngle}"
-                                                    Ticks="{TemplateBinding MajorTicks}"
-                                                    TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                                    Gap="0"
                                                     Opacity="0.2"
                                                     ReservedSpace="72"
+                                                    TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                     TickLength="50"
+                                                    Ticks="{TemplateBinding MajorTicks}"
                                                     Value="{TemplateBinding Maximum}" />
 
                             <gauges:AngularBlockBar Fill="White"
-                                                    Ticks="{TemplateBinding MajorTicks}"
-                                                    TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                     Gap="0"
                                                     MaxAngle="{TemplateBinding MaxAngle}"
                                                     Maximum="{TemplateBinding Maximum}"
                                                     MinAngle="{TemplateBinding MinAngle}"
                                                     Minimum="{TemplateBinding Minimum}"
                                                     ReservedSpace="72"
+                                                    TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                     TickLength="50"
+                                                    Ticks="{TemplateBinding MajorTicks}"
                                                     Value="{TemplateBinding AnimatedValue}" />
 
                             <TextBlock HorizontalAlignment="Center"
@@ -68,7 +68,12 @@
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
                             <gauges:TextTickBar Grid.Row="0"
+                                                Grid.Column="0"
                                                 Foreground="LightGray"
                                                 Maximum="{TemplateBinding Maximum}"
                                                 Minimum="{TemplateBinding Minimum}"
@@ -79,25 +84,36 @@
                                                 Ticks="{TemplateBinding MajorTicks}" />
 
                             <gauges:BlockBar Grid.Row="1"
+                                             Grid.Column="0"
                                              Fill="LightGray"
                                              Gap="1"
-                                             Opacity="0.2"
                                              Maximum="{TemplateBinding Maximum}"
                                              Minimum="{TemplateBinding Minimum}"
-                                             Value="{TemplateBinding Maximum}"
+                                             Opacity="0.2"
                                              ReservedSpace="50"
                                              TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                             Ticks="{TemplateBinding MajorTicks}"/>
+                                             Ticks="{TemplateBinding MajorTicks}"
+                                             Value="{TemplateBinding Maximum}" />
 
                             <gauges:BlockBar Grid.Row="1"
+                                             Grid.Column="0"
                                              Fill="White"
+                                             Gap="1"
                                              Maximum="{TemplateBinding Maximum}"
                                              Minimum="{TemplateBinding Minimum}"
                                              Placement="Top"
                                              ReservedSpace="50"
-                                             Gap="1"
                                              TickFrequency="{TemplateBinding MajorTickFrequency}"
                                              Value="{TemplateBinding AnimatedValue}" />
+
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="1"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"
+                                       Margin="-14,0,0,0"
+                                       Text="{Binding Value,
+                                                      RelativeSource={RelativeSource TemplatedParent}}" />
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -105,10 +121,11 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid Background="#FF1D1D1D" TextElement.Foreground="White">
+    <Grid Background="#FF1D1D1D" TextElement.Foreground="White" ShowGridLines="True">
         <Grid.RowDefinitions>
+            <RowDefinition Height="*" MinHeight="100"/>
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <gauges:AngularGauge IsDirectionReversed="False"
@@ -135,7 +152,8 @@
                                             ElementName=ValueSlider}" />
 
         <Slider x:Name="ValueSlider"
-                Grid.Row="2"
+                Width="200"
+                Grid.Row="3"
                 Maximum="100"
                 Minimum="0"
                 Value="14" />

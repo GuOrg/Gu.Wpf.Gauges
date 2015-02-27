@@ -116,18 +116,6 @@
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
-        /// Identifies the <see cref="P:TextTickBar.Placement" /> dependency property. This property is read-only.
-        /// </summary>
-        /// <returns>
-        /// The identifier for the <see cref="P:TextTickBar.Placement" /> dependency property.
-        /// </returns>
-        public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
-            typeof(TextTickBar),
-            new FrameworkPropertyMetadata(
-                TickBarPlacement.Bottom,
-                FrameworkPropertyMetadataOptions.AffectsRender));
-
-        /// <summary>
         /// Gets or sets the <see cref="T:Gu.Gauges.TextOrientation" />
         /// Default is Tangential
         /// </summary>
@@ -234,21 +222,9 @@
             set { this.SetValue(ContentStringFormatProperty, value); }
         }
 
-        /// <summary>
-        /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.  
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:TextTickBar.Placement" /> enumeration value that identifies the position of the <see cref="T:TextTickBar" /> in the <see cref="T:System.Windows.Style" /> layout of a <see cref="T:System.Windows.Controls.Slider" />. The default value is <see cref="F:TextTickBarPlacement.Top" />.
-        /// </returns>
-        public TickBarPlacement Placement
-        {
-            get { return (TickBarPlacement)this.GetValue(PlacementProperty); }
-            set { this.SetValue(PlacementProperty, value); }
-        }
-
         protected override Size MeasureOverride(Size availableSize)
         {
-            if (this.TickFrequency <= 0 && (this.Ticks == null || !this.Ticks.Any()))
+            if (!this.AllTicks.Any())
             {
                 return new Size(0, 0);
             }
@@ -261,9 +237,8 @@
             }
             else
             {
-                var ticks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency).Concat(this.Ticks ?? Enumerable.Empty<double>());
-                w = ticks.Select(x => TextHelper.AsFormattedText(x, this))
-                              .Max(t => t.Width);
+                w = this.AllTicks.Select(x => TextHelper.AsFormattedText(x, this))
+                                 .Max(t => t.Width);
                 h = availableSize.Height;
             }
 
@@ -277,14 +252,9 @@
                 return;
             }
 
-            var ticks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency).Concat(this.Ticks ?? Enumerable.Empty<double>());
             var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace, this.Placement, this.IsDirectionReversed);
-            foreach (var tick in ticks)
+            foreach (var tick in this.AllTicks)
             {
-                if (tick < this.Minimum || tick > this.Maximum)
-                {
-                    continue;
-                }
                 var pos = TickHelper.ToPos(tick, this.Minimum, this.Maximum, line);
                 var text = TextHelper.AsFormattedText(tick, this);
                 var textPosition = new TextPosition(text, this.Placement, this.TextOrientation, pos, 0);

@@ -69,6 +69,11 @@ namespace Gu.Gauges
                 FrameworkPropertyMetadataOptions.Inherits,
                 UpdateValuePos));
 
+        public Gauge()
+        {
+            this.SizeChanged += (_, __) => this.UpdateValuePos();
+        }
+
         /// <summary>
         /// Identifies the <see cref="P:Gauge.IsDirectionReversed" /> dependency property. 
         /// </summary>

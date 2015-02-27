@@ -1,5 +1,7 @@
 namespace Gu.Gauges
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
@@ -17,7 +19,7 @@ namespace Gu.Gauges
             typeof(Bar),
             new FrameworkPropertyMetadata(
                 0.0,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Identifies the <see cref="P:Bar.Maximum" /> dependency property. 
@@ -29,7 +31,19 @@ namespace Gu.Gauges
             typeof(Bar),
             new FrameworkPropertyMetadata(
                 1.0,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
+
+        /// <summary>
+        /// Identifies the <see cref="P:BlockBar.Placement" /> dependency property. This property is read-only.
+        /// </summary>
+        /// <returns>
+        /// The identifier for the <see cref="P:BlockBar.Placement" /> dependency property.
+        /// </returns>
+        public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
+            typeof(Bar),
+            new FrameworkPropertyMetadata(
+                TickBarPlacement.Bottom,
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         /// <summary>
         /// Identifies the <see cref="P:Bar.ReservedSpace" /> dependency property. This property is read-only.
@@ -50,7 +64,7 @@ namespace Gu.Gauges
             typeof(Bar),
             new FrameworkPropertyMetadata(
                 0.0,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Identifies the <see cref="P:Bar.Ticks" /> dependency property. 
@@ -59,7 +73,7 @@ namespace Gu.Gauges
             typeof(Bar),
             new FrameworkPropertyMetadata(
                 null,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Identifies the <see cref="P:LinearTickBar.IsDirectionReversed" /> dependency property. 
@@ -90,6 +104,18 @@ namespace Gu.Gauges
         {
             get { return (double)this.GetValue(MaximumProperty); }
             set { this.SetValue(MaximumProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.  
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:BlockBarPlacement" /> enumeration value that identifies the position of the <see cref="T:BlockBar" /> in the <see cref="T:System.Windows.Style" /> layout of a <see cref="T:System.Windows.Controls.Slider" />. The default value is <see cref="F:BlockBarPlacement.Top" />.
+        /// </returns>
+        public TickBarPlacement Placement
+        {
+            get { return (TickBarPlacement)this.GetValue(PlacementProperty); }
+            set { this.SetValue(PlacementProperty, value); }
         }
 
         /// <summary>
@@ -139,6 +165,16 @@ namespace Gu.Gauges
         {
             get { return (DoubleCollection)this.GetValue(TicksProperty); }
             set { this.SetValue(TicksProperty, value); }
+        }
+
+        protected IEnumerable<double> AllTicks
+        {
+            get
+            {
+                return TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency)
+                                 .Concat(this.Ticks ?? Enumerable.Empty<double>())
+                                 .Where(x => x >= this.Minimum && x <= this.Maximum);
+            }
         }
     }
 }
