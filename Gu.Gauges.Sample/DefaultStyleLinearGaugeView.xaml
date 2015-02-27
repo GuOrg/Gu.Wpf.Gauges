@@ -5,8 +5,6 @@
              xmlns:gauges="http://gu.se/Gauges"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sample="clr-namespace:Gu.Gauges.Sample"
-             d:DesignHeight="300"
-             d:DesignWidth="300"
              mc:Ignorable="d">
     <UserControl.DataContext>
         <sample:TickBarVm Placement="Bottom" />
@@ -17,8 +15,6 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <gauges:LinearGauge Grid.Row="0"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
                             Background="Black"
                             IsDirectionReversed="{Binding IsDirectionReversed}"
                             MajorTickFrequency="{Binding TickFrequency}"
