@@ -49,5 +49,12 @@
 
             return new Vector(-x, -y);
         }
+
+        internal static bool IsInvalid(this Size size)
+        {
+            return (double.IsNaN(size.Width) ||
+                    double.IsNaN(size.Height) ||
+                    size.IsEmpty);
+        }
     }
 }

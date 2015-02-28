@@ -8,17 +8,22 @@
 
     internal static class TextHelper
     {
-        internal static FormattedText AsFormattedText(double value, ITextFormat textFormat)
+        internal static Typeface TypeFace(this ITextFormat textFormat)
+        {
+            return new Typeface(
+                textFormat.FontFamily,
+                textFormat.FontStyle,
+                textFormat.FontWeight,
+                textFormat.FontStretch);
+        }
+
+        internal static FormattedText AsFormattedText(double value, ITextFormat textFormat, Typeface typeface)
         {
             var formattedText = new FormattedText(
                 value.ToString(textFormat.ContentStringFormat, CultureInfo.CurrentUICulture),
                 CultureInfo.CurrentUICulture,
                 FlowDirection.LeftToRight,
-                new Typeface(
-                    textFormat.FontFamily,
-                    textFormat.FontStyle,
-                    textFormat.FontWeight,
-                    textFormat.FontStretch),
+                typeface,
                 textFormat.FontSize,
                 textFormat.Foreground);
             return formattedText;

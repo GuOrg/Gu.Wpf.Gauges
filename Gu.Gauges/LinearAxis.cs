@@ -45,7 +45,7 @@
 
         private void UpdateReservedSpaceMargin()
         {
-            var margin = this.ReservedSpace + this.PenWidth;
+            var margin = (this.ReservedSpace + this.PenWidth) / 2;
 
             switch (this.Placement)
             {
