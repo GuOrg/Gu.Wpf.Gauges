@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Controls.Primitives;
     using System.Windows.Documents;
     using System.Windows.Media;
 
@@ -115,6 +114,16 @@
                 default(String),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
+        private static readonly DependencyPropertyKey TextSpacePropertyKey = DependencyProperty.RegisterReadOnly(
+            "TextSpace",
+            typeof(double),
+            typeof(TextTickBar),
+            new PropertyMetadata(default(double)));
+
+        public static readonly DependencyProperty TextSpaceProperty = TextSpacePropertyKey.DependencyProperty;
+
+        private FormattedText[] allTexts;
+
         /// <summary>
         /// Gets or sets the <see cref="T:Gu.Gauges.TextOrientation" />
         /// Default is Tangential
@@ -124,7 +133,6 @@
             get { return (TextOrientation)this.GetValue(TextOrientationProperty); }
             set { this.SetValue(TextOrientationProperty, value); }
         }
-
 
         /// <summary>
         /// Gets or sets the preferred top-level font family for the content of the element.  
@@ -222,17 +230,44 @@
             set { this.SetValue(ContentStringFormatProperty, value); }
         }
 
+        /// <summary>
+        /// Gets the Reserved space due to the text
+        /// </summary>
+        public double TextSpace
+        {
+            get { return (double)this.GetValue(TextSpaceProperty); }
+            protected set { this.SetValue(TextSpacePropertyKey, value); }
+        }
+
         protected override Size MeasureOverride(Size availableSize)
         {
-            if (!this.AllTicks.Any())
+            if (this.allTexts == null || !this.allTexts.Any())
             {
                 return new Size(0, 0);
             }
-            var typeFace = this.TypeFace();
-            var w = this.AllTicks.Select(x => TextHelper.AsFormattedText(x, this, typeFace))
-                             .Max(t => t.Width);
+            var textHeight = Math.Ceiling(this.FontSize * this.FontFamily.LineSpacing);
 
-            double h = Math.Ceiling(this.FontSize * this.FontFamily.LineSpacing);
+            double w = 0;
+            double h = 0;
+            switch (this.TextOrientation)
+            {
+
+                case TextOrientation.VerticalUp:
+                case TextOrientation.VerticalDown:
+                    w = textHeight;
+                    h = this.allTexts.Max(t => t.Width);
+                    this.TextSpace = textHeight;
+                    break;
+                case TextOrientation.Horizontal:
+                case TextOrientation.Tangential:
+                case TextOrientation.RadialOut:
+                    w = this.allTexts.Max(x => x.Width);
+                    h = textHeight;
+                    this.TextSpace = w;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
             var size = new Size(w, h);
             if (size.IsInvalid())
             {
@@ -247,15 +282,23 @@
             {
                 return;
             }
-            var typeFace = this.TypeFace();
             var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace, this.Placement, this.IsDirectionReversed);
-            foreach (var tick in this.AllTicks)
+            for (int i = 0; i < this.AllTicks.Count; i++)
             {
+                var tick = this.AllTicks[i];
                 var pos = TickHelper.ToPos(tick, this.Minimum, this.Maximum, line);
-                var text = TextHelper.AsFormattedText(tick, this, typeFace);
+                var text = this.allTexts[i];
                 var textPosition = new TextPosition(text, this.Placement, this.TextOrientation, pos, 0);
                 dc.DrawText(text, textPosition);
             }
+        }
+
+        protected override void OnTicksChanged()
+        {
+            base.OnTicksChanged();
+            var typeFace = this.TypeFace();
+            this.allTexts = this.AllTicks.Select(x => TextHelper.AsFormattedText(x, this, typeFace))
+                                         .ToArray();
         }
     }
 }

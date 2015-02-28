@@ -7,14 +7,6 @@
 
     public class AngularGauge : Gauge
     {
-        private static readonly DependencyPropertyKey TextSpacePropertyKey = DependencyProperty.RegisterReadOnly(
-            "TextSpace",
-            typeof(double),
-            typeof(AngularGauge),
-            new PropertyMetadata(default(double)));
-
-        public static readonly DependencyProperty TextSpaceProperty = TextSpacePropertyKey.DependencyProperty;
-
         public static readonly DependencyProperty MinAngleProperty = AngularBar.MinAngleProperty.AddOwner(
             typeof(AngularGauge),
             new FrameworkPropertyMetadata(
@@ -35,20 +27,13 @@
             MinimumProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.Inherits, UpdateValuePos));
             MaximumProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(100.0, FrameworkPropertyMetadataOptions.Inherits, UpdateValuePos));
             ValueProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(0.0, UpdateValuePos));
-            FontSizeProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(12.0, FrameworkPropertyMetadataOptions.Inherits, UpdateTextSpace));
-            TextOrientationProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(TextOrientation.Tangential, FrameworkPropertyMetadataOptions.Inherits, UpdateTextSpace));
+            FontSizeProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(12.0, FrameworkPropertyMetadataOptions.Inherits));
+            TextOrientationProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(TextOrientation.Tangential, FrameworkPropertyMetadataOptions.Inherits));
         }
 
         public AngularGauge()
         {
             this.ValueTransform = new RotateTransform(0, 0, 0);
-            this.TextSpace = 1.5 * this.FontSize;
-        }
-
-        public double TextSpace
-        {
-            get { return (double)this.GetValue(TextSpaceProperty); }
-            protected set { this.SetValue(TextSpacePropertyKey, value); }
         }
 
         /// <summary>
@@ -81,12 +66,6 @@
             this.ValueTransform.BeginAnimation(RotateTransform.AngleProperty, angleAnimation);
             var valueAnimation = new DoubleAnimation(this.Value, TimeSpan.FromMilliseconds(100));
             this.BeginAnimation(AnimatedValueProxyProperty, valueAnimation);
-        }
-
-        private static void UpdateTextSpace(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var gauge = (AngularGauge)d;
-            gauge.TextSpace = gauge.FontSize * 1.5;
         }
     }
 }

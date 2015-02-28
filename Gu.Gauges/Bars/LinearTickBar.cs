@@ -87,34 +87,6 @@
         protected override void OnRender(DrawingContext dc)
         {
             dc.DrawGeometry(null, new Pen(this.Fill, this.PenWidth), this.RenderedGeometry);
-            //if (this.Fill == null)
-            //{
-            //    return;
-            //}
-            //var pen = new Pen(this.Fill, this.PenWidth);
-            //pen.Freeze();
-            //var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace, this.Placement, this.IsDirectionReversed);
-            //Vector offset = new Vector(0, 0);
-            //switch (this.Placement)
-            //{
-            //    case TickBarPlacement.Left:
-            //        offset = new Vector(this.ActualWidth, 0);
-            //        break;
-            //    case TickBarPlacement.Right:
-            //        offset = new Vector(-1 * this.ActualWidth, 0);
-            //        break;
-            //    case TickBarPlacement.Top:
-            //        offset = new Vector(0, this.ActualHeight);
-            //        break;
-            //    case TickBarPlacement.Bottom:
-            //        offset = new Vector(0, -1 * this.ActualHeight);
-            //        break;
-            //}
-            //foreach (var tick in this.AllTicks)
-            //{
-            //    var pos = TickHelper.ToPos(tick, this.Minimum, this.Maximum, line);
-            //    dc.DrawLine(pen, pos, pos + offset);
-            //}
         }
     }
 }
