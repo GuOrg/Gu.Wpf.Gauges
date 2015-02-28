@@ -77,7 +77,8 @@ namespace Gu.Gauges
                 var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
                 var po = arc.GetPoint(angle, -this.ReservedSpace / 2);
                 var pi = arc.GetPoint(angle, -this.ReservedSpace / 2 - this.TickLength);
-                dc.DrawLine(pen, new Line(po, pi));
+                var line = new Line(po, pi);
+                dc.DrawLine(pen, line);
             }
         }
     }

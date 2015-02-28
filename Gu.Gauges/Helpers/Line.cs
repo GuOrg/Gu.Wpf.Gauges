@@ -17,6 +17,13 @@ namespace Gu.Gauges
             this.EndPoint = endPoint;
         }
 
+        public Line(Point startPoint, Point endPoint, int decimals = 0)
+            : this()
+        {
+            this.StartPoint = startPoint.Round(decimals);
+            this.EndPoint = endPoint.Round(decimals);
+        }
+
         public Line(double actualWidth, double actualHeight, double reservedSpace, TickBarPlacement placement, bool isDirectionReversed)
         {
             Point p1;
