@@ -1,8 +1,6 @@
 ﻿namespace Gu.Gauges
 {
-    using System;
     using System.Windows;
-    using System.Windows.Controls.Primitives;
 
     public class LinearAxis : Axis
     {

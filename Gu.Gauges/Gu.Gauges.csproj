@@ -78,8 +78,10 @@
     <Compile Include="Bars\BlockBar.cs" />
     <Compile Include="Helpers\VectorExt.cs" />
     <Compile Include="Helpers\Vertical.cs" />
-    <Compile Include="Indicators\AngularIndicator.cs" />
+    <Compile Include="Indicators\AngularRange.cs" />
     <Compile Include="Indicators\Indicator.cs" />
+    <Compile Include="Indicators\LinearRange.cs" />
+    <Compile Include="Indicators\RangeIndicator.cs" />
     <Compile Include="LinearAxis.cs" />
     <Compile Include="LinearGauge.cs" />
     <Compile Include="Bars\TextTickBar.cs" />
