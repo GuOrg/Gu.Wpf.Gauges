@@ -1,5 +1,10 @@
 ﻿namespace Gu.Gauges.Tests.Bars
 {
+    using System;
+    using System.Windows;
+    using System.Windows.Media;
+    using System.Windows.Shapes;
+
     using Helpers;
 
     using NUnit.Framework;

@@ -228,21 +228,17 @@
             {
                 return new Size(0, 0);
             }
-            double w;
-            double h;
-            if (this.Placement == TickBarPlacement.Bottom || this.Placement == TickBarPlacement.Top)
-            {
-                w = availableSize.Width;
-                h = Math.Ceiling(this.FontSize * this.FontFamily.LineSpacing);
-            }
-            else
-            {
-                w = this.AllTicks.Select(x => TextHelper.AsFormattedText(x, this))
-                                 .Max(t => t.Width);
-                h = availableSize.Height;
-            }
+            var typeFace = this.TypeFace();
+            var w = this.AllTicks.Select(x => TextHelper.AsFormattedText(x, this, typeFace))
+                             .Max(t => t.Width);
 
-            return new Size(w, h);
+            double h = Math.Ceiling(this.FontSize * this.FontFamily.LineSpacing);
+            var size = new Size(w, h);
+            if (size.IsInvalid())
+            {
+                return new Size(0, 0);
+            }
+            return size;
         }
 
         protected override void OnRender(DrawingContext dc)
@@ -251,12 +247,12 @@
             {
                 return;
             }
-
+            var typeFace = this.TypeFace();
             var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace, this.Placement, this.IsDirectionReversed);
             foreach (var tick in this.AllTicks)
             {
                 var pos = TickHelper.ToPos(tick, this.Minimum, this.Maximum, line);
-                var text = TextHelper.AsFormattedText(tick, this);
+                var text = TextHelper.AsFormattedText(tick, this, typeFace);
                 var textPosition = new TextPosition(text, this.Placement, this.TextOrientation, pos, 0);
                 dc.DrawText(text, textPosition);
             }

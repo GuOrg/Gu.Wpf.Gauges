@@ -23,7 +23,6 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <gauges:LinearGauge Grid.Row="0"
-                            Background="Black"
                             IsDirectionReversed="{Binding IsDirectionReversed}"
                             MajorTickFrequency="{Binding TickFrequency}"
                             MajorTicks="{Binding Ticks}"
