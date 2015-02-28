@@ -1,16 +1,12 @@
 ﻿namespace Gu.Gauges.Tests.Bars
 {
-    using System.Reflection;
-    using System.Windows;
-
-    using Gu.Gauges.Tests.Helpers;
+    using Helpers;
 
     using NUnit.Framework;
 
     [RequiresSTA]
     public class AngularBlockBarTests
     {
-        private static readonly MethodInfo MeasureOverrideMethod = typeof(AngularBlockBar).GetMethod("MeasureOverride", BindingFlags.NonPublic | BindingFlags.Instance);
 
         [TestCase("100, 100", -90, 0, 100, false, "100, 100")]
         [TestCase("100, 100", -90, 0, 100, true, "100, 100")]
@@ -28,7 +24,8 @@
                                   Value = value,
                                   IsDirectionReversed = isDirectionReversed
                               };
-            var desiredSize = (Size)MeasureOverrideMethod.Invoke(bar, new object[] { size.AsSize() });
+            var availableSize = size.AsSize();
+            var desiredSize = bar.MeasureOverride(availableSize);
             Assert.AreEqual(expected, desiredSize.ToString("F0"));
         }
     }
