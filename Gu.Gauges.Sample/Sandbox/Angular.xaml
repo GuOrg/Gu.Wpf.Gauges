@@ -7,13 +7,30 @@
              d:DesignWidth="300"
              mc:Ignorable="d">
     <Grid>
-        <TextBlock Text="1">
+        <Path Stroke="Black">
+            <Path.Data>
+                <PathGeometry>
+                    <PathGeometry.Figures>
+                        <PathFigureCollection>
+                            <PathFigure StartPoint="10,100">
+                                <LineSegment Point="10 30" />
+                            </PathFigure>
+                            <PathFigure StartPoint="20,100">
+                                <LineSegment Point="20 30" />
+                            </PathFigure>
+                        </PathFigureCollection>
+                    </PathGeometry.Figures>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+
+        <!--<TextBlock Text="1">
             <TextBlock.LayoutTransform>
                 <TransformGroup>
                     <RotateTransform Angle="45" />
                     <TranslateTransform X="50"/>
                 </TransformGroup>
             </TextBlock.LayoutTransform>
-        </TextBlock>
+        </TextBlock>-->
     </Grid>
 </UserControl>
