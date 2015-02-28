@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Bars\AngularBlockBarTests.cs" />
     <Compile Include="Bars\AngularTickBarTests.cs" />
+    <Compile Include="Bars\FrameworkElementExt.cs" />
     <Compile Include="Helpers\ArcTests.cs" />
     <Compile Include="Helpers\GeometryExt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
