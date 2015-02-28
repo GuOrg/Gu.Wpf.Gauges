@@ -60,6 +60,19 @@
             }
         }
 
+        public Rect Bounds
+        {
+            get
+            {
+                var rect = new Rect(this.Point, this.TextSize);
+                if (this.IsTransformed)
+                {
+                    rect.Transform(this.Transform.Value);
+                }
+                return rect;
+            }
+        }
+
         private Vector Offset
         {
             get

@@ -65,6 +65,7 @@
     <Compile Include="Helpers\Horizontal.cs" />
     <Compile Include="Helpers\Line.cs" />
     <Compile Include="Bars\LinearTickBar.cs" />
+    <Compile Include="Helpers\RectExt.cs" />
     <Compile Include="Helpers\SizeExt.cs" />
     <Compile Include="Helpers\RotateTransformExt.cs" />
     <Compile Include="Helpers\TextHelper.cs" />

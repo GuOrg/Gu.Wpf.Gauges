@@ -127,7 +127,7 @@ namespace Gu.Gauges
             var ticks = this.AllTicks
                             .Concat(new[] { this.Value })
                             .OrderBy(t => t);
-            var arc = new Arc(new Point(this.ActualWidth / 2, this.ActualHeight / 2), this.MinAngle, this.MaxAngle, this.ActualWidth / 2 - this.ReservedSpace / 2, this.IsDirectionReversed);
+            var arc = Arc.Fill(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
             var previous = arc.Start;
             var gap = this.IsDirectionReversed ? -1 * this.Gap : this.Gap;
 

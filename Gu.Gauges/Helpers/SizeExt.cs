@@ -56,5 +56,10 @@
                     double.IsNaN(size.Height) ||
                     size.IsEmpty);
         }
+
+        internal static Point MidPoint(this Size size)
+        {
+            return new Point(size.Width / 2, size.Height / 2);
+        }
     }
 }

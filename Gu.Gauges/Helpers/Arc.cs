@@ -1,8 +1,11 @@
 ﻿namespace Gu.Gauges
 {
+    using System;
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Media;
+
+    using Gu.Gauges.Helpers;
 
     internal struct Arc
     {
@@ -65,9 +68,9 @@
         public IEnumerable<Point> GetQuadrants(double start, double end)
         {
             var q = start - start % 90;
-            while (q<end)
+            while (q < end)
             {
-                yield return GetPoint(q);
+                yield return this.GetPoint(q);
                 q += 90;
             }
         }
@@ -75,6 +78,39 @@
         public override string ToString()
         {
             return string.Format("Centre: {0}, Radius: {1}, Start: {2}, End: {3}", this.Centre, this.Radius, this.Start, this.End);
+        }
+
+        public static Arc Fill(Size availableSize, double start, double end, bool isDirectionReversed)
+        {
+            var fill = Fill(availableSize, start, end);
+            return new Arc(fill.Centre, start, end, fill.Radius, isDirectionReversed);
+        }
+
+        internal static Arc Fill(Size availableSize, double start, double end)
+        {
+            if (availableSize.Width == 0 ||
+                double.IsNaN(availableSize.Width) ||
+                availableSize.Height == 0 ||
+                double.IsNaN(availableSize.Height))
+            {
+                return new Arc(new Point(0, 0), start, end, 0, false);
+            }
+
+            var p0 = new Point(0, 0);
+            var arc = new Arc(p0, start, end, 1, false);
+            var rect = new Rect();
+            var ps = arc.GetPoint(start);
+            rect.Union(ps);
+            rect.Union(arc.GetPoint(end));
+            foreach (var quadrant in arc.GetQuadrants(start, end))
+            {
+                rect.Union(quadrant);
+            }
+            var wf = availableSize.Width / rect.Width;
+            var hf = availableSize.Height / rect.Height;
+            var r = Math.Min(wf, hf);
+            var v = rect.FindTranslationToCenter(availableSize);
+            return new Arc(p0 + v, start, end, r, false);
         }
     }
 }

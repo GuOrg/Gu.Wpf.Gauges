@@ -70,20 +70,15 @@ namespace Gu.Gauges
         {
             var pen = new Pen(this.Fill, this.PenWidth);
             pen.Freeze();
-            var midPoint = new Point(this.ActualWidth / 2, this.ActualHeight / 2);
-            var pi = new Point(this.ActualWidth - this.ReservedSpace - this.TickLength, midPoint.Y);
-            var po = new Point(this.ActualWidth - this.ReservedSpace, midPoint.Y);
-            var tickLine = new Line(pi, po);
-            var arc = new Arc(midPoint, this.MinAngle, this.MaxAngle, this.ActualWidth - this.ReservedSpace, this.IsDirectionReversed);
-            var transform = new RotateTransform(0, midPoint.X, midPoint.Y);
-            foreach (var tick in this.AllTicks)
+            var arc = Arc.Fill(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
+            for (int i = 0; i < this.AllTicks.Count; i++)
             {
+                var tick = this.AllTicks[i];
                 var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
-                transform.Angle = angle;
-                var l = transform.Transform(tickLine);
-                dc.DrawLine(pen, l);
+                var po = arc.GetPoint(angle, -this.ReservedSpace / 2);
+                var pi = arc.GetPoint(angle, -this.ReservedSpace / 2 - this.TickLength);
+                dc.DrawLine(pen, new Line(po, pi));
             }
-            this.Diameter = 2 * (midPoint - po).Length;
         }
     }
 }

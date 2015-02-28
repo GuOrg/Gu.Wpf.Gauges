@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Gu.Gauges"
-                    >
+                    xmlns:local="clr-namespace:Gu.Gauges">
 
 
     <!--<Style TargetType="{x:Type local:LinearDimension}">
@@ -54,12 +53,12 @@
                                            Maximum="{TemplateBinding Maximum}"
                                            Minimum="{TemplateBinding Minimum}"
                                            Placement="{TemplateBinding Placement}"
-                                           ReservedSpace="{Binding TextSpace,RelativeSource={RelativeSource Self}}"
+                                           ReservedSpace="{Binding TextSpace,
+                                                                   RelativeSource={RelativeSource Self}}"
                                            SnapsToDevicePixels="True"
                                            TextOrientation="{TemplateBinding TextOrientation}"
                                            TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                           Ticks="{TemplateBinding MajorTicks}"
-                                           />
+                                           Ticks="{TemplateBinding MajorTicks}" />
                         <Grid x:Name="Ticks">
                             <local:LinearTickBar x:Name="MajorTicks"
                                                  Fill="{TemplateBinding Foreground}"
@@ -72,8 +71,7 @@
                                                  SnapsToDevicePixels="True"
                                                  TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                  Ticks="{TemplateBinding MajorTicks}"
-                                                 UseLayoutRounding="True"
-                                                 />
+                                                 UseLayoutRounding="True" />
 
                             <local:LinearTickBar x:Name="MinorTicks"
                                                  Fill="{TemplateBinding Foreground}"
@@ -85,14 +83,12 @@
                                                                          ElementName=TickLabels}"
                                                  SnapsToDevicePixels="True"
                                                  TickFrequency="{TemplateBinding MinorTickFrequency}"
-                                                 UseLayoutRounding="True"
-                                                 />
+                                                 UseLayoutRounding="True" />
                         </Grid>
 
                         <Rectangle x:Name="Line"
                                    Margin="{TemplateBinding ReservedSpaceMargin}"
-                                   Fill="{TemplateBinding Foreground}"
-                                   />
+                                   Fill="{TemplateBinding Foreground}" />
 
                     </DockPanel>
                     <ControlTemplate.Triggers>
@@ -161,9 +157,9 @@
                         <Grid>
                             <Ellipse Fill="{TemplateBinding Background}"
                                      Stroke="{TemplateBinding BorderBrush}"
-                                     StrokeThickness="{TemplateBinding BorderThickness}"
-                                     />
-                            <local:AngularTextBar FontFamily="{TemplateBinding FontFamily}"
+                                     StrokeThickness="{TemplateBinding BorderThickness}" />
+                            <local:AngularTextBar x:Name="TextBar"
+                                                  FontFamily="{TemplateBinding FontFamily}"
                                                   FontSize="{TemplateBinding FontSize}"
                                                   FontStretch="{TemplateBinding FontStretch}"
                                                   FontStyle="{TemplateBinding FontStyle}"
@@ -176,8 +172,7 @@
                                                   Minimum="{TemplateBinding Minimum}"
                                                   TextOrientation="{TemplateBinding TextOrientation}"
                                                   TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                                  Ticks="{TemplateBinding MajorTicks}"
-                                                  />
+                                                  Ticks="{TemplateBinding MajorTicks}" />
                             <local:AngularTickBar x:Name="MajorTicks"
                                                   Fill="{TemplateBinding Foreground}"
                                                   IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
@@ -185,29 +180,28 @@
                                                   Maximum="{TemplateBinding Maximum}"
                                                   MinAngle="{TemplateBinding MinAngle}"
                                                   Minimum="{TemplateBinding Minimum}"
+                                                  ReservedSpace="{Binding TextSpace,
+                                                                          ElementName=TextBar}"
                                                   TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                   TickLength="10"
-                                                  Ticks="{TemplateBinding MajorTicks}"
-                                                  />
+                                                  Ticks="{TemplateBinding MajorTicks}" />
                             <local:AngularTickBar Fill="{TemplateBinding Foreground}"
                                                   IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
                                                   MaxAngle="{TemplateBinding MaxAngle}"
                                                   Maximum="{TemplateBinding Maximum}"
                                                   MinAngle="{TemplateBinding MinAngle}"
                                                   Minimum="{TemplateBinding Minimum}"
+                                                  ReservedSpace="{Binding TextSpace,
+                                                                          ElementName=TextBar}"
                                                   TickFrequency="{TemplateBinding MinorTickFrequency}"
-                                                  TickLength="5"
-                                                  />
-                            <Path Width="{Binding Diameter,
-                                                  ElementName=MajorTicks}"
-                                  Height="{Binding Diameter,
-                                                   ElementName=MajorTicks}"
-                                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                  TickLength="5" />
+                            <Path HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
                                   Data="M50,49L100,50 50,51z M0,50 L100,50 M50,0 L50,100"
                                   Fill="{TemplateBinding Foreground}"
                                   RenderTransform="{TemplateBinding ValueTransform}"
-                                  RenderTransformOrigin="0.5,0.5" Stretch="Fill"
-                                  />
+                                  RenderTransformOrigin="0.5,0.5"
+                                  Stretch="Fill" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -222,8 +216,7 @@
                     <Border Margin="{TemplateBinding Padding}"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            >
+                            BorderThickness="{TemplateBinding BorderThickness}">
                         <DockPanel>
                             <local:LinearAxis Foreground="{TemplateBinding Foreground}"
                                               IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
@@ -235,8 +228,7 @@
                                               PenWidth="1"
                                               Placement="{TemplateBinding Placement}"
                                               ShowLabels="{TemplateBinding ShowLabels}"
-                                              TextOrientation="{TemplateBinding TextOrientation}"
-                                              />
+                                              TextOrientation="{TemplateBinding TextOrientation}" />
                         </DockPanel>
                     </Border>
                 </ControlTemplate>
