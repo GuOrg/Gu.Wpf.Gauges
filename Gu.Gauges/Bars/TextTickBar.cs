@@ -122,7 +122,7 @@
 
         public static readonly DependencyProperty TextSpaceProperty = TextSpacePropertyKey.DependencyProperty;
 
-        private FormattedText[] allTexts;
+        protected FormattedText[] AllTexts { get; private set; }
 
         /// <summary>
         /// Gets or sets the <see cref="T:Gu.Gauges.TextOrientation" />
@@ -241,7 +241,7 @@
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            if (this.allTexts == null || !this.allTexts.Any())
+            if (this.AllTexts == null || !this.AllTexts.Any())
             {
                 return new Size(0, 0);
             }
@@ -255,13 +255,13 @@
                 case TextOrientation.VerticalUp:
                 case TextOrientation.VerticalDown:
                     w = textHeight;
-                    h = this.allTexts.Max(t => t.Width);
+                    h = this.AllTexts.Max(t => t.Width);
                     this.TextSpace = textHeight;
                     break;
                 case TextOrientation.Horizontal:
                 case TextOrientation.Tangential:
                 case TextOrientation.RadialOut:
-                    w = this.allTexts.Max(x => x.Width);
+                    w = this.AllTexts.Max(x => x.Width);
                     h = textHeight;
                     this.TextSpace = w;
                     break;
@@ -287,7 +287,7 @@
             {
                 var tick = this.AllTicks[i];
                 var pos = TickHelper.ToPos(tick, this.Minimum, this.Maximum, line);
-                var text = this.allTexts[i];
+                var text = this.AllTexts[i];
                 var textPosition = new TextPosition(text, this.Placement, this.TextOrientation, pos, 0);
                 dc.DrawText(text, textPosition);
             }
@@ -297,7 +297,7 @@
         {
             base.OnTicksChanged();
             var typeFace = this.TypeFace();
-            this.allTexts = this.AllTicks.Select(x => TextHelper.AsFormattedText(x, this, typeFace))
+            this.AllTexts = this.AllTicks.Select(x => TextHelper.AsFormattedText(x, this, typeFace))
                                          .ToArray();
         }
     }

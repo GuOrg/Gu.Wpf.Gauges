@@ -89,6 +89,7 @@ namespace Gu.Gauges
                 false,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits));
 
+        private static readonly double[] EmptyTicks = new double[0];
         private double[] allTicks;
 
         /// <summary>
@@ -178,7 +179,7 @@ namespace Gu.Gauges
         {
             get
             {
-                return this.allTicks;
+                return this.allTicks ?? EmptyTicks;
             }
         }
 

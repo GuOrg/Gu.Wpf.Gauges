@@ -1,5 +1,7 @@
 ﻿namespace Gu.Gauges.Tests.Helpers
 {
+    using System.Windows;
+
     using NUnit.Framework;
 
     public class ArcTests
@@ -39,6 +41,15 @@
             var arc = new Arc(centre, 0, 0, radius, false);
             var actual = arc.GetPoint(angle, offset);
             Assert.AreEqual(expected, actual.ToString("F0"));
+        }
+
+        [TestCase("100,100", -180, 0, "50,50", 50)]
+        public void Create(string ss, double start, double end, string expectedCentre, double expectedRadius)
+        {
+            var availableSize = ss.AsSize();
+            var arc = Arc.Fill(availableSize, start, end, false);
+            Assert.AreEqual(expectedCentre, arc.Centre.ToString("F0"));
+            Assert.AreEqual(expectedRadius, arc.Radius, 1e-6);
         }
     }
 }
