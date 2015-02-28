@@ -46,7 +46,7 @@ namespace Gu.Gauges
                 var tick = this.AllTicks[i];
                 var text = this.AllTexts[i];
                 var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
-                var point = arc.GetPoint(angle, -this.ReservedSpace / 2);
+                var point = arc.GetPoint(angle, -this.ReservedSpace / 2 - this.TextSpace / 2);
                 var textPosition = new TextPosition(text, this.Placement, this.TextOrientation, point, angle);
                 dc.DrawText(text, textPosition);
             }

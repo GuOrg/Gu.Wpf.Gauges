@@ -109,6 +109,7 @@
             var wf = availableSize.Width / rect.Width;
             var hf = availableSize.Height / rect.Height;
             var r = Math.Min(wf, hf);
+            rect.Scale(r, r);
             var v = rect.FindTranslationToCenter(availableSize);
             return new Arc(p0 + v, start, end, r, false);
         }

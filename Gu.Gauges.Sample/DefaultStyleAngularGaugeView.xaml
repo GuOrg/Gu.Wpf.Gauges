@@ -13,6 +13,10 @@
                                  Minimum="0"
                                  MinorTickFrequency="5"
                                  TextOrientation="Tangential"
+                                 IsDirectionReversed="False"
+                                 ShowLabels="True"
+                                 TickFrequency="25"
+                                 ReservedSpace="10"
                                  Ticks="85" />
     </UserControl.DataContext>
     <Grid>
@@ -22,8 +26,6 @@
         </Grid.RowDefinitions>
 
         <gauges:AngularGauge Grid.Row="0"
-                             Width="150"
-                             Height="150"
                              IsDirectionReversed="{Binding IsDirectionReversed}"
                              MajorTickFrequency="{Binding TickFrequency}"
                              MajorTicks="{Binding Ticks}"
