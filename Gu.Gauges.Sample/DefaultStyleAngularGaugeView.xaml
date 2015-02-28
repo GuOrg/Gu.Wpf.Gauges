@@ -7,16 +7,16 @@
              xmlns:sample="clr-namespace:Gu.Gauges.Sample"
              mc:Ignorable="d">
     <UserControl.DataContext>
-        <sample:AngularTickBarVm MaxAngle="0"
+        <sample:AngularTickBarVm IsDirectionReversed="False"
+                                 MaxAngle="0"
                                  Maximum="100"
                                  MinAngle="-180"
                                  Minimum="0"
                                  MinorTickFrequency="5"
-                                 TextOrientation="Tangential"
-                                 IsDirectionReversed="False"
-                                 ShowLabels="True"
-                                 TickFrequency="25"
                                  ReservedSpace="10"
+                                 ShowLabels="True"
+                                 TextOrientation="Tangential"
+                                 TickFrequency="25"
                                  Ticks="85" />
     </UserControl.DataContext>
     <Grid>

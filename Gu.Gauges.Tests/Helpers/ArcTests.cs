@@ -43,7 +43,7 @@
             Assert.AreEqual(expected, actual.ToString("F0"));
         }
 
-        [TestCase("100,100", -180, 0, "50,50", 50)]
+        [TestCase("100, 100", -180, 0, "50, 75", 50)]
         public void Create(string ss, double start, double end, string expectedCentre, double expectedRadius)
         {
             var availableSize = ss.AsSize();
