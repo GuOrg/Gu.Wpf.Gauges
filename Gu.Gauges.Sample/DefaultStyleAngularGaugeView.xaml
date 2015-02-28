@@ -26,6 +26,7 @@
         </Grid.RowDefinitions>
 
         <gauges:AngularGauge Grid.Row="0"
+                             VerticalAlignment="Bottom"
                              IsDirectionReversed="{Binding IsDirectionReversed}"
                              MajorTickFrequency="{Binding TickFrequency}"
                              MajorTicks="{Binding Ticks}"

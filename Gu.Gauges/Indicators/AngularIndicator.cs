@@ -1,28 +1,23 @@
-﻿namespace Gu.Gauges
+﻿namespace Gu.Gauges.Indicators
 {
     using System.Windows;
 
-    public class AngularAxis : Axis
+    public class AngularIndicator : Indicator
     {
         public static readonly DependencyProperty MinAngleProperty = AngularBar.MinAngleProperty.AddOwner(
-                typeof(AngularAxis),
-                new FrameworkPropertyMetadata(
-                    -180.0,
-                    FrameworkPropertyMetadataOptions.Inherits));
+            typeof(AngularIndicator),
+            new FrameworkPropertyMetadata(
+                -180.0,
+                FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty MaxAngleProperty = AngularBar.MaxAngleProperty.AddOwner(
-                typeof(AngularAxis),
+                typeof(AngularIndicator),
                 new FrameworkPropertyMetadata(
-                    0.0, 
+                    0.0,
                     FrameworkPropertyMetadataOptions.Inherits));
 
-        static AngularAxis()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(AngularAxis), new FrameworkPropertyMetadata(typeof(AngularAxis)));
-        }
-
         /// <summary>
-        /// Gets or sets the <see cref="P:AngularAxis.MinAngle" />
+        /// Gets or sets the <see cref="P:AngularIndicator.MinAngle" />
         /// The default is -180
         /// </summary>
         public double MinAngle
@@ -38,7 +33,7 @@
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="P:AngularAxis.MaxAngle" />
+        /// Gets or sets the <see cref="P:AngularIndicator.MaxAngle" />
         /// The default is 0
         /// </summary>
         public double MaxAngle

@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Controls.Primitives;
     using System.Windows.Documents;
     using System.Windows.Media;
 
@@ -122,6 +123,14 @@
 
         public static readonly DependencyProperty TextSpaceProperty = TextSpacePropertyKey.DependencyProperty;
 
+        private static readonly DependencyPropertyKey TextSpaceMarginPropertyKey = DependencyProperty.RegisterReadOnly(
+            "TextSpaceMargin",
+            typeof(Thickness),
+            typeof(TextTickBar),
+            new PropertyMetadata(default(Thickness)));
+
+        public static readonly DependencyProperty TextSpaceMarginProperty = TextSpaceMarginPropertyKey.DependencyProperty;
+
         protected FormattedText[] AllTexts { get; private set; }
 
         /// <summary>
@@ -239,6 +248,12 @@
             protected set { this.SetValue(TextSpacePropertyKey, value); }
         }
 
+        public Thickness TextSpaceMargin
+        {
+            get { return (Thickness)this.GetValue(TextSpaceMarginProperty); }
+            protected set { this.SetValue(TextSpaceMarginPropertyKey, value); }
+        }
+
         protected override Size MeasureOverride(Size availableSize)
         {
             if (this.AllTexts == null || !this.AllTexts.Any())
@@ -264,6 +279,20 @@
                     w = this.AllTexts.Max(x => x.Width);
                     h = textHeight;
                     this.TextSpace = w;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            var margin = this.TextSpace / 2;
+            switch (this.Placement)
+            {
+                case TickBarPlacement.Left:
+                case TickBarPlacement.Right:
+                    this.TextSpaceMargin = new Thickness(0, margin, 0, margin);
+                    break;
+                case TickBarPlacement.Top:
+                case TickBarPlacement.Bottom:
+                    this.TextSpaceMargin = new Thickness(margin, 0, margin, 0);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

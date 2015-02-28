@@ -68,7 +68,7 @@ namespace Gu.Gauges
             }
             var points = new[] { bounds.TopLeft, bounds.TopRight, bounds.BottomRight, bounds.BottomLeft };
 
-            this.TextSpace = points.Max(p => (p - midPoint).Length);
+            this.TextSpace = 2 * points.Max(p => (p - midPoint).Length);
             return bounds.Size;
         }
     }

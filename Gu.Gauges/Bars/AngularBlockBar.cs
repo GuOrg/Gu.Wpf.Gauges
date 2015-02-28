@@ -128,6 +128,7 @@ namespace Gu.Gauges
                             .Concat(new[] { this.Value })
                             .OrderBy(t => t);
             var arc = Arc.Fill(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
+            arc = arc.OffsetWith(-1 * this.ReservedSpace / 2);
             var previous = arc.Start;
             var gap = this.IsDirectionReversed ? -1 * this.Gap : this.Gap;
 
@@ -151,7 +152,7 @@ namespace Gu.Gauges
         protected override Size MeasureOverride(Size availableSize)
         {
             var rect = new Rect();
-            var arc = new Arc(new Point(0, 0), this.MinAngle, this.MaxAngle, 1, this.IsDirectionReversed);
+            var arc = new Arc(new Point(0, 0), this.MinAngle, this.MaxAngle, this.ReservedSpace / 2 + this.TickLength, this.IsDirectionReversed);
             rect.Union(arc.GetPoint(arc.Start));
             var a = TickHelper.ToAngle(this.Value, this.Minimum, this.Maximum, arc);
             rect.Union(arc.GetPoint(a));

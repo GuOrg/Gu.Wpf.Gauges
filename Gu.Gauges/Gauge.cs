@@ -84,7 +84,6 @@ namespace Gu.Gauges
             this.SizeChanged += (_, __) => this.UpdateValuePos();
         }
 
-
         /// <summary>
         /// Gets the transform to the position that corresponds to the current value
         /// </summary>
