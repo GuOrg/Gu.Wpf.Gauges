@@ -15,7 +15,7 @@
                                  Minimum="0"
                                  Placement="Top"
                                  ReservedSpace="1"
-                                 TextOrientation="Horizontal"
+                                 TextOrientation="Tangential"
                                  TickFrequency="25"
                                  Ticks="85" />
     </UserControl.DataContext>
@@ -25,6 +25,24 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <WrapPanel>
+
+            <GroupBox Header="AngularAxis">
+                <Grid Background="Bisque">
+                    <gauges:AngularAxis Foreground="Black"
+                                        IsDirectionReversed="{Binding IsDirectionReversed}"
+                                        MajorTickFrequency="{Binding TickFrequency}"
+                                        MajorTicks="{Binding Ticks}"
+                                        MaxAngle="{Binding MaxAngle}"
+                                        Maximum="{Binding Maximum}"
+                                        MinAngle="{Binding MinAngle}"
+                                        Minimum="{Binding Minimum}"
+                                        TextOrientation="{Binding TextOrientation}"
+                                        MinorTickFrequency="{Binding MinorTickFrequency}"
+                                        ReservedSpace="{Binding ReservedSpace}"
+                                        SnapsToDevicePixels="True" />
+                </Grid>
+            </GroupBox>
+
             <GroupBox Header="AngularTickBar">
                 <Grid Background="Bisque">
                     <gauges:AngularTickBar Fill="Black"

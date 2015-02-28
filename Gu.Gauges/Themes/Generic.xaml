@@ -87,7 +87,8 @@
                         </Grid>
 
                         <Rectangle x:Name="Line"
-                                   Margin="{TemplateBinding ReservedSpaceMargin}"
+                                   Margin="{Binding TextSpaceMargin,
+                                                    ElementName=TickLabels}"
                                    Fill="{TemplateBinding Foreground}" />
 
                     </DockPanel>
@@ -149,6 +150,55 @@
         </Setter>
     </Style>
 
+
+    <Style TargetType="{x:Type local:AngularAxis}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:AngularAxis}">
+                    <Grid>
+                        <local:AngularTextBar x:Name="TextBar"
+                                              FontFamily="{TemplateBinding FontFamily}"
+                                              FontSize="{TemplateBinding FontSize}"
+                                              FontStretch="{TemplateBinding FontStretch}"
+                                              FontStyle="{TemplateBinding FontStyle}"
+                                              FontWeight="{TemplateBinding FontWeight}"
+                                              Foreground="{TemplateBinding Foreground}"
+                                              IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                                              MaxAngle="{TemplateBinding MaxAngle}"
+                                              Maximum="{TemplateBinding Maximum}"
+                                              MinAngle="{TemplateBinding MinAngle}"
+                                              Minimum="{TemplateBinding Minimum}"
+                                              TextOrientation="{TemplateBinding TextOrientation}"
+                                              TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                              Ticks="{TemplateBinding MajorTicks}" />
+                        <local:AngularTickBar x:Name="MajorTicks"
+                                              Fill="{TemplateBinding Foreground}"
+                                              IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                                              MaxAngle="{TemplateBinding MaxAngle}"
+                                              Maximum="{TemplateBinding Maximum}"
+                                              MinAngle="{TemplateBinding MinAngle}"
+                                              Minimum="{TemplateBinding Minimum}"
+                                              ReservedSpace="{Binding TextSpace,
+                                                                      ElementName=TextBar}"
+                                              TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                              TickLength="10"
+                                              Ticks="{TemplateBinding MajorTicks}" />
+                        <local:AngularTickBar Fill="{TemplateBinding Foreground}"
+                                              IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                                              MaxAngle="{TemplateBinding MaxAngle}"
+                                              Maximum="{TemplateBinding Maximum}"
+                                              MinAngle="{TemplateBinding MinAngle}"
+                                              Minimum="{TemplateBinding Minimum}"
+                                              ReservedSpace="{Binding TextSpace,
+                                                                      ElementName=TextBar}"
+                                              TickFrequency="{TemplateBinding MinorTickFrequency}"
+                                              TickLength="5" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type local:AngularGauge}">
         <Setter Property="Template">
             <Setter.Value>
@@ -158,43 +208,22 @@
                             <Ellipse Fill="{TemplateBinding Background}"
                                      Stroke="{TemplateBinding BorderBrush}"
                                      StrokeThickness="{TemplateBinding BorderThickness}" />
-                            <local:AngularTextBar x:Name="TextBar"
-                                                  FontFamily="{TemplateBinding FontFamily}"
-                                                  FontSize="{TemplateBinding FontSize}"
-                                                  FontStretch="{TemplateBinding FontStretch}"
-                                                  FontStyle="{TemplateBinding FontStyle}"
-                                                  FontWeight="{TemplateBinding FontWeight}"
-                                                  Foreground="{TemplateBinding Foreground}"
-                                                  IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
-                                                  MaxAngle="{TemplateBinding MaxAngle}"
-                                                  Maximum="{TemplateBinding Maximum}"
-                                                  MinAngle="{TemplateBinding MinAngle}"
-                                                  Minimum="{TemplateBinding Minimum}"
-                                                  TextOrientation="{TemplateBinding TextOrientation}"
-                                                  TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                                  Ticks="{TemplateBinding MajorTicks}" />
-                            <local:AngularTickBar x:Name="MajorTicks"
-                                                  Fill="{TemplateBinding Foreground}"
-                                                  IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
-                                                  MaxAngle="{TemplateBinding MaxAngle}"
-                                                  Maximum="{TemplateBinding Maximum}"
-                                                  MinAngle="{TemplateBinding MinAngle}"
-                                                  Minimum="{TemplateBinding Minimum}"
-                                                  ReservedSpace="{Binding TextSpace,
-                                                                          ElementName=TextBar}"
-                                                  TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                                  TickLength="10"
-                                                  Ticks="{TemplateBinding MajorTicks}" />
-                            <local:AngularTickBar Fill="{TemplateBinding Foreground}"
-                                                  IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
-                                                  MaxAngle="{TemplateBinding MaxAngle}"
-                                                  Maximum="{TemplateBinding Maximum}"
-                                                  MinAngle="{TemplateBinding MinAngle}"
-                                                  Minimum="{TemplateBinding Minimum}"
-                                                  ReservedSpace="{Binding TextSpace,
-                                                                          ElementName=TextBar}"
-                                                  TickFrequency="{TemplateBinding MinorTickFrequency}"
-                                                  TickLength="5" />
+                            <local:AngularAxis x:Name="TextBar"
+                                               FontFamily="{TemplateBinding FontFamily}"
+                                               FontSize="{TemplateBinding FontSize}"
+                                               FontStretch="{TemplateBinding FontStretch}"
+                                               FontStyle="{TemplateBinding FontStyle}"
+                                               FontWeight="{TemplateBinding FontWeight}"
+                                               Foreground="{TemplateBinding Foreground}"
+                                               IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                                               MajorTickFrequency="{TemplateBinding MajorTickFrequency}"
+                                               MajorTicks="{TemplateBinding MajorTicks}"
+                                               MaxAngle="{TemplateBinding MaxAngle}"
+                                               Maximum="{TemplateBinding Maximum}"
+                                               MinAngle="{TemplateBinding MinAngle}"
+                                               Minimum="{TemplateBinding Minimum}"
+                                               MinorTickFrequency="{TemplateBinding MinorTickFrequency}"
+                                               TextOrientation="{TemplateBinding TextOrientation}" />
                             <Path HorizontalAlignment="Center"
                                   VerticalAlignment="Center"
                                   Data="M50,49L100,50 50,51z M0,50 L100,50 M50,0 L50,100"

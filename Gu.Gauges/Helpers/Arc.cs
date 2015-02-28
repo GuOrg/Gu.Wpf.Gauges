@@ -75,6 +75,11 @@
             }
         }
 
+        public Arc OffsetWith(double offset)
+        {
+            return new Arc(this.Centre, this.Start, this.End, this.Radius + offset, false);
+        }
+
         public override string ToString()
         {
             return string.Format("Centre: {0}, Radius: {1}, Start: {2}, End: {3}", this.Centre, this.Radius, this.Start, this.End);
