@@ -4,18 +4,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:gauges="http://gu.se/Gauges"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:sample="clr-namespace:Gu.Gauges.Sample"
-             mc:Ignorable="d">
+             xmlns:sample="clr-namespace:Gu.Gauges.Sample" mc:Ignorable="d"
+             >
     <UserControl.DataContext>
-        <sample:TickBarVm Maximum="100"
-                          Minimum="0"
-                          MinorTickFrequency="5"
-                          Placement="Bottom"
-                          ShowLabels="True"
-                          TextOrientation="Horizontal"
-                          TickFrequency="25"
-                          Ticks="60 85"
-                          Value="14" />
+        <sample:TickBarVm Maximum="100" Minimum="0"
+                          MinorTickFrequency="5" Placement="Bottom"
+                          ShowLabels="True" TextOrientation="Horizontal"
+                          TickFrequency="25" Ticks="60 85"
+                          Value="14"
+                          />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -33,24 +30,37 @@
                                    Padding="25"
                                    Placement="{Binding Placement}"
                                    ShowLabels="{Binding ShowLabels}"
-                                   TextOrientation="{Binding TextOrientation}" />
+                                   TextOrientation="{Binding TextOrientation}"
+                                   />
             </gauges:LinearGauge.Axis>
             <gauges:LinearGauge.Indicators>
-                <gauges:LinearRange Background="Green"
-                                    End="20"
-                                    Start="0">
-                    <TextBlock Text="Good" />
-                </gauges:LinearRange>
-                <gauges:LinearValue>
-                    <Ellipse Width="10"
-                             Height="10"
-                             Fill="Black" />
-                </gauges:LinearValue>
+                <gauges:LinearIndicators>
+                    <gauges:LinearRange Background="Green" End="20"
+                                        Start="0"
+                                        >
+                        <TextBlock Text="Good" />
+                    </gauges:LinearRange>
+                    <gauges:LinearRange Background="Blue" End="820"
+                                        Start="20"
+                                        >
+                        <TextBlock Text="Bad" />
+                    </gauges:LinearRange>
+                    <gauges:LinearRange Background="Red" End="820"
+                                        Start="20"
+                                        >
+                        <TextBlock Text="Ugly" />
+                    </gauges:LinearRange>
+                    <!--<gauges:LinearValue>
+                        <Ellipse Width="10" Height="10"
+                                 Fill="Black"
+                                 />
+                    </gauges:LinearValue>-->
+                </gauges:LinearIndicators>
             </gauges:LinearGauge.Indicators>
         </gauges:LinearGauge>
 
-        <ContentPresenter Grid.Row="1"
-                          Grid.Column="0"
-                          Content="{Binding}" />
+        <ContentPresenter Grid.Row="1" Grid.Column="0"
+                          Content="{Binding}"
+                          />
     </Grid>
 </UserControl>

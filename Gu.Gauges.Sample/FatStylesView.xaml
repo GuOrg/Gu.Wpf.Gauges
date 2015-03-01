@@ -164,9 +164,9 @@
                                    Minimum="0"
                                    Style="{StaticResource FatHorizontalAxisStyle}" />
             </gauges:LinearGauge.Axis>
-            <gauges:LinearGauge.Indicators>
+            <!--<gauges:LinearGauge.Indicators>
                 <gauges:LinearValue Style="{StaticResource FatHorizontalIndicatorStyle}" />
-            </gauges:LinearGauge.Indicators>
+            </gauges:LinearGauge.Indicators>-->
             <gauges:LinearGauge.Template>
                 <ControlTemplate TargetType="{x:Type gauges:LinearGauge}">
                     <Grid>

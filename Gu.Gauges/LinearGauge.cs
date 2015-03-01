@@ -8,5 +8,10 @@
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(LinearGauge), new FrameworkPropertyMetadata(typeof(LinearGauge)));
         }
+
+        public LinearGauge()
+        {
+            this.Indicators = new LinearIndicators();
+        }
     }
 }

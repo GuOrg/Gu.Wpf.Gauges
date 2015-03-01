@@ -1,4 +1,5 @@
-﻿namespace Gu.Gauges
+﻿// ReSharper disable StaticMemberInGenericType
+namespace Gu.Gauges
 {
     using System.Collections.ObjectModel;
     using System.Windows;
@@ -19,7 +20,19 @@
                 OnGaugeChanged));
 
         public static readonly DependencyProperty GaugeProperty = GaugePropertyKey.DependencyProperty;
-        private readonly ObservableCollection<Indicator<T>> items = new ObservableCollection<Indicator<T>>();
+
+        private static readonly DependencyPropertyKey ItemsPropertyKey = DependencyProperty.RegisterReadOnly(
+            "Items",
+            typeof(ObservableCollection<Indicator<T>>),
+            typeof(Indicators<T>),
+            new PropertyMetadata(default(ObservableCollection<Indicator<T>>)));
+
+        public static readonly DependencyProperty ItemsProperty = ItemsPropertyKey.DependencyProperty;
+
+        public Indicators()
+        {
+            this.Items = new ObservableCollection<Indicator<T>>();
+        }
 
         public Gauge<T> Gauge
         {
@@ -29,10 +42,9 @@
 
         public ObservableCollection<Indicator<T>> Items
         {
-            get
-            {
-                return this.items;
-            }
+            get { return (ObservableCollection<Indicator<T>>)this.GetValue(ItemsProperty); }
+            protected set {
+                this.SetValue(ItemsPropertyKey, value); }
         }
 
         protected override void OnVisualParentChanged(DependencyObject oldParent)
