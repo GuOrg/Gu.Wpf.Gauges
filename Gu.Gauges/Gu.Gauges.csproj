@@ -52,7 +52,7 @@
     <Compile Include="AngularAxis.cs" />
     <Compile Include="Axis.cs" />
     <Compile Include="Indicators\Indicators.cs" />
-    <Compile Include="Indicators\LinearValue.cs" />
+    <Compile Include="Indicators\CenteredIndicator.cs" />
     <Compile Include="Indicators\LinearIndicators.cs" />
     <Compile Include="Primitives\AngularBlockBar.cs" />
     <Compile Include="AngularGauge.cs" />
@@ -67,6 +67,7 @@
     <Compile Include="Primitives\ITextFormat.cs" />
     <Compile Include="Helpers\Horizontal.cs" />
     <Compile Include="Helpers\Line.cs" />
+    <Compile Include="Primitives\LinearPanel.cs" />
     <Compile Include="Primitives\LinearTickBar.cs" />
     <Compile Include="Helpers\PointExt.cs" />
     <Compile Include="Helpers\RectExt.cs" />

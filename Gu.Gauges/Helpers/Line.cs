@@ -24,6 +24,11 @@ namespace Gu.Gauges
             this.EndPoint = endPoint.Round(decimals);
         }
 
+        public Line(Size size, double reservedSpace, TickBarPlacement placement, bool isDirectionReversed)
+            :this(size.Width, size.Height,reservedSpace, placement, isDirectionReversed)
+        {
+        }
+
         public Line(double actualWidth, double actualHeight, double reservedSpace, TickBarPlacement placement, bool isDirectionReversed)
         {
             Point p1;
@@ -49,16 +54,6 @@ namespace Gu.Gauges
                 default:
                     throw new ArgumentOutOfRangeException("placement");
             }
-            //if (placement == TickBarPlacement.Bottom || placement == TickBarPlacement.Top)
-            //{
-            //    p1 = new Point(reservedSpace / 2, 0);
-            //    p2 = new Point(actualWidth - reservedSpace / 2, 0);
-            //}
-            //else
-            //{
-            //    p1 = new Point(0, actualHeight - reservedSpace / 2);
-            //    p2 = new Point(0, reservedSpace / 2);
-            //}
             if (isDirectionReversed)
             {
                 this.StartPoint = p2;
@@ -78,6 +73,13 @@ namespace Gu.Gauges
                 var v = this.EndPoint - this.StartPoint;
                 return v.Length;
             }
+        }
+
+        public Point Interpolate(double tick, double minimum, double maximum)
+        {
+            var dv = (tick - minimum) / (maximum - minimum);
+            var v = this.EndPoint - this.StartPoint;
+            return this.StartPoint + dv * v;
         }
 
         public override string ToString()

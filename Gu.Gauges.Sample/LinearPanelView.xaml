@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Gu.Gauges.Sample.LinearPanelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:gauges="http://gu.se/Gauges"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <Border BorderBrush="Black" BorderThickness="1">
+        <gauges:LinearPanel IsDirectionReversed="False"
+                        Maximum="100"
+                        Minimum="0"
+                        Placement="Bottom" Background="Bisque">
+            <gauges:LinearRange End="40" Start="20">
+                <Border Background="Orange">
+                    <TextBlock HorizontalAlignment="Center" Text="Good" />
+                </Border>
+            </gauges:LinearRange>
+
+            <gauges:LinearRange End="80" Start="60">
+                <Border Background="GreenYellow">
+                    <TextBlock HorizontalAlignment="Center" Text="Bad" />
+                </Border>
+            </gauges:LinearRange>
+
+            <gauges:LinearValue Value="50" >
+                <Border Background="DeepSkyBlue" VerticalAlignment="Stretch">
+                    <TextBlock HorizontalAlignment="Center" Text="Bad" />
+                </Border>
+            </gauges:LinearValue>
+        </gauges:LinearPanel>
+    </Border>
+
+</UserControl>

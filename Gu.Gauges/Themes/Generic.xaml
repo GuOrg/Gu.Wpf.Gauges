@@ -68,10 +68,10 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type local:LinearValue}">
+    <Style TargetType="{x:Type local:CenteredIndicator}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:LinearValue}">
+                <ControlTemplate TargetType="{x:Type local:CenteredIndicator}">
                     <ContentPresenter />
                 </ControlTemplate>
             </Setter.Value>
@@ -288,7 +288,7 @@
                             >
                         <Grid>
                             <ContentPresenter Content="{TemplateBinding Axis}" />
-                            <ContentPresenter Content="{TemplateBinding Indicators}" />
+                            <!--<ContentPresenter Content="{TemplateBinding Indicators}" />-->
                         </Grid>
                     </Border>
                 </ControlTemplate>

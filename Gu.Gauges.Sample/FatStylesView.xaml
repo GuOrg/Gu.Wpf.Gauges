@@ -111,10 +111,10 @@
             </Setter>
         </Style>
 
-        <Style x:Key="FatHorizontalIndicatorStyle" TargetType="{x:Type gauges:LinearValue}">
+        <Style x:Key="FatHorizontalIndicatorStyle" TargetType="{x:Type gauges:CenteredIndicator}">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type gauges:LinearValue}">
+                    <ControlTemplate TargetType="{x:Type gauges:CenteredIndicator}">
                         <gauges:BlockBar Fill="White"
                                          Gap="1"
                                          Maximum="{Binding Gauge.Axis.Maximum,

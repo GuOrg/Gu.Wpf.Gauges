@@ -20,7 +20,7 @@ namespace Gu.Gauges
             typeof(Bar),
             new FrameworkPropertyMetadata(
                 0.0,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits,
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits,
                 OnMinimumChanged));
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Gu.Gauges
             typeof(Bar),
             new FrameworkPropertyMetadata(
                 1.0,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits,
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits,
                 OnMaximumChanged));
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Gu.Gauges
             typeof(Bar),
             new FrameworkPropertyMetadata(
                 TickBarPlacement.Bottom,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         /// <summary>
         /// Identifies the <see cref="P:Bar.ReservedSpace" /> dependency property. This property is read-only.
@@ -58,7 +58,7 @@ namespace Gu.Gauges
             typeof(Bar),
             new FrameworkPropertyMetadata(
                 0.0,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         /// <summary>
         /// Identifies the <see cref="P:Bar.TickFrequency" /> dependency property. 
@@ -87,7 +87,7 @@ namespace Gu.Gauges
             typeof(Bar),
             new FrameworkPropertyMetadata(
                 false,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
         private static readonly double[] EmptyTicks = new double[0];
         private double[] allTicks;

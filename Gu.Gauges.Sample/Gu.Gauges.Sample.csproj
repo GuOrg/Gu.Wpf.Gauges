@@ -69,8 +69,8 @@
     <Compile Include="Properties\Annotations.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="Sandbox\Angular.xaml.cs">
-      <DependentUpon>Angular.xaml</DependentUpon>
+    <Compile Include="LinearPanelView.xaml.cs">
+      <DependentUpon>LinearPanelView.xaml</DependentUpon>
     </Compile>
     <Compile Include="TickBarVm.cs" />
     <Compile Include="Vm.cs" />
@@ -107,7 +107,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Sandbox\Angular.xaml">
+    <Page Include="LinearPanelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -148,6 +148,9 @@
       <Project>{02c21720-28af-4a11-8b4e-ad4d71668883}</Project>
       <Name>Gu.Gauges</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Sandbox\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

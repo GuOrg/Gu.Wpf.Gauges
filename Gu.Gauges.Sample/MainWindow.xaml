@@ -34,5 +34,9 @@
         <TabItem Header="AngularBars">
             <sample:AngularBarsView />
         </TabItem>
+
+        <TabItem Header="Linear panel">
+            <sample:LinearPanelView />
+        </TabItem>
     </TabControl>
 </Window>
