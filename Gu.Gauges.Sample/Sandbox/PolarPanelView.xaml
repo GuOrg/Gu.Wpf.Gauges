@@ -4,13 +4,52 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:gauges="http://gu.se/Gauges"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="300" d:DesignWidth="300"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
              mc:Ignorable="d"
              >
     <gauges:PolarPanel SnapsToDevicePixels="False">
-        <Ellipse gauges:PolarPanel.Angle="0" gauges:PolarPanel.Radius="0" Height="10" Width="10" Fill="HotPink" />
-        <Ellipse gauges:PolarPanel.Angle="0" gauges:PolarPanel.Radius="0" Height="8" Width="8" Fill="Black" />
-        <Ellipse gauges:PolarPanel.Angle="0" gauges:PolarPanel.Radius="0" Height="4" Width="4" Fill="Blue" />
-        <Ellipse gauges:PolarPanel.Angle="0" gauges:PolarPanel.Radius="100" Height="10" Width="10" Fill="HotPink" />
+        <Ellipse Width="10"
+                 Height="10"
+                 Fill="HotPink"
+                 gauges:PolarPanel.Angle="0"
+                 gauges:PolarPanel.Radius="0"
+                 />
+        <Ellipse Width="8"
+                 Height="8"
+                 Fill="Black"
+                 gauges:PolarPanel.Angle="0"
+                 gauges:PolarPanel.Radius="0"
+                 />
+        <Ellipse Width="4"
+                 Height="4"
+                 Fill="Blue"
+                 gauges:PolarPanel.Angle="0"
+                 gauges:PolarPanel.Radius="0"
+                 />
+        <Ellipse Width="10"
+                 Height="10"
+                 Fill="HotPink"
+                 gauges:PolarPanel.Angle="0"
+                 gauges:PolarPanel.Radius="50"
+                 />
+        <Ellipse Width="10"
+                 Height="10"
+                 Fill="HotPink"
+                 gauges:PolarPanel.Angle="90"
+                 gauges:PolarPanel.Radius="50"
+                 />
+        <Ellipse Width="10"
+                 Height="10"
+                 Fill="HotPink"
+                 gauges:PolarPanel.Angle="180"
+                 gauges:PolarPanel.Radius="50"
+                 />
+        <Ellipse Width="10"
+                 Height="10"
+                 Fill="HotPink"
+                 gauges:PolarPanel.Angle="270"
+                 gauges:PolarPanel.Radius="50"
+                 />
     </gauges:PolarPanel>
 </UserControl>
