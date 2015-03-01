@@ -17,9 +17,9 @@ namespace Gu.Gauges
 
         public static readonly DependencyProperty IndicatorsProperty = DependencyProperty.Register(
             "Indicators",
-            typeof(ObservableCollection<Indicator<T>>),
+            typeof(Indicators<T>),
             typeof(Gauge<T>),
-            new PropertyMetadata(default(ObservableCollection<Indicator<T>>)));
+            new PropertyMetadata(default(Indicators<T>)));
 
         /// <summary>
         /// Identifies the <see cref="P:Gauge.Value" /> dependency property. 
@@ -46,21 +46,15 @@ namespace Gu.Gauges
 
         public static readonly DependencyProperty AnimatedValueProperty = AnimatedValuePropertyKey.DependencyProperty;
 
-
-        public Gauge()
+        public T Axis
         {
-            this.Indicators = new ObservableCollection<Indicator<T>>();
-        }
-
-        public AngularAxis Axis
-        {
-            get { return (AngularAxis)this.GetValue(AxisProperty); }
+            get { return (T)this.GetValue(AxisProperty); }
             set { this.SetValue(AxisProperty, value); }
         }
 
-        public ObservableCollection<Indicator<T>> Indicators
+        public Indicators<T> Indicators
         {
-            get { return (ObservableCollection<Indicator<T>>)this.GetValue(IndicatorsProperty); }
+            get { return (Indicators<T>)this.GetValue(IndicatorsProperty); }
             set { this.SetValue(IndicatorsProperty, value); }
         }
 

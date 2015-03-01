@@ -51,8 +51,9 @@
   <ItemGroup>
     <Compile Include="AngularAxis.cs" />
     <Compile Include="Axis.cs" />
+    <Compile Include="Indicators\Indicators.cs" />
     <Compile Include="Indicators\LinearValue.cs" />
-    <Compile Include="Indicators\LinearContainer.cs" />
+    <Compile Include="Indicators\LinearIndicators.cs" />
     <Compile Include="Primitives\AngularBlockBar.cs" />
     <Compile Include="AngularGauge.cs" />
     <Compile Include="Primitives\Bar.cs" />
