@@ -138,6 +138,10 @@
             }
             foreach (var tick in ticks)
             {
+                if (tick == this.Minimum)
+                {
+                    continue;
+                }
                 if (tick > this.Value)
                 {
                     var p = TickHelper.ToPos(this.Value, this.Minimum, this.Maximum, line);

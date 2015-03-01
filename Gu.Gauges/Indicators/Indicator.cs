@@ -4,7 +4,7 @@
     using System.Windows.Controls;
     using System.Windows.Media;
 
-    public class Indicator<T> : Control where T : Axis
+    public class Indicator<T> : ContentControl where T : Axis
     {
         private static readonly DependencyPropertyKey GaugePropertyKey = DependencyProperty.RegisterReadOnly(
             "Gauge",
