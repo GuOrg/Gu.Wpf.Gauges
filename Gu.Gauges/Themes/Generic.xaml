@@ -60,7 +60,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:LinearRange}">
-                    <Border Background="{TemplateBinding Background}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            >
                         <ContentPresenter />
                     </Border>
                 </ControlTemplate>
@@ -68,11 +71,16 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type local:CenteredIndicator}">
+    <Style TargetType="{x:Type local:LinearValue}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:CenteredIndicator}">
-                    <ContentPresenter />
+                <ControlTemplate TargetType="{x:Type local:LinearValue}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            >
+                        <ContentPresenter />
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -85,7 +93,12 @@
                     <ItemsControl ItemsSource="{TemplateBinding Items}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <Grid />
+                                <local:LinearPanel Minimum="{Binding Gauge.Axis.Minimum, RelativeSource={RelativeSource TemplatedParent}}"
+                                                   Maximum="{Binding Gauge.Axis.Maximum, RelativeSource={RelativeSource TemplatedParent}}"
+                                                   Placement="{Binding Gauge.Axis.Placement, RelativeSource={RelativeSource TemplatedParent}}"
+                                                   IsDirectionReversed="{Binding Gauge.Axis.IsDirectionReversed, RelativeSource={RelativeSource TemplatedParent}}"
+                                                   ReservedSpace="{Binding Gauge.Axis.ReservedSpace, RelativeSource={RelativeSource TemplatedParent}}"
+                                                   />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                     </ItemsControl>
@@ -288,7 +301,7 @@
                             >
                         <Grid>
                             <ContentPresenter Content="{TemplateBinding Axis}" />
-                            <!--<ContentPresenter Content="{TemplateBinding Indicators}" />-->
+                            <ContentPresenter Content="{TemplateBinding Indicators}" />
                         </Grid>
                     </Border>
                 </ControlTemplate>

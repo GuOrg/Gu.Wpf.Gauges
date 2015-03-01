@@ -33,30 +33,30 @@
                                    TextOrientation="{Binding TextOrientation}"
                                    />
             </gauges:LinearGauge.Axis>
-            <gauges:LinearGauge.Indicators>
+            <!--<gauges:LinearGauge.Indicators>
                 <gauges:LinearIndicators>
                     <gauges:LinearRange Background="Green" End="20"
                                         Start="0"
                                         >
                         <TextBlock Text="Good" />
                     </gauges:LinearRange>
-                    <gauges:LinearRange Background="Blue" End="820"
+                    <gauges:LinearRange Background="Blue" End="80"
                                         Start="20"
                                         >
                         <TextBlock Text="Bad" />
                     </gauges:LinearRange>
-                    <gauges:LinearRange Background="Red" End="820"
-                                        Start="20"
+                    <gauges:LinearRange Background="Red" End="80"
+                                        Start="60"
                                         >
                         <TextBlock Text="Ugly" />
                     </gauges:LinearRange>
-                    <!--<gauges:LinearValue>
+                    <gauges:LinearValue Value="{Binding Value}">
                         <Ellipse Width="10" Height="10"
                                  Fill="Black"
                                  />
-                    </gauges:LinearValue>-->
+                    </gauges:LinearValue>
                 </gauges:LinearIndicators>
-            </gauges:LinearGauge.Indicators>
+            </gauges:LinearGauge.Indicators>-->
         </gauges:LinearGauge>
 
         <ContentPresenter Grid.Row="1" Grid.Column="0"

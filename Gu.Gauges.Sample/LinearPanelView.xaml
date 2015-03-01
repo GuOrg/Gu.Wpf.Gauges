@@ -12,21 +12,21 @@
                         Maximum="100"
                         Minimum="0"
                         Placement="Bottom" Background="Bisque">
-            <gauges:LinearRange End="40" Start="20">
-                <Border Background="Orange">
-                    <TextBlock HorizontalAlignment="Center" Text="Good" />
-                </Border>
+            <gauges:LinearRange End="20" Start="0" Background="Green">
+                <TextBlock HorizontalAlignment="Center" Text="Good" />
             </gauges:LinearRange>
 
-            <gauges:LinearRange End="80" Start="60">
-                <Border Background="GreenYellow">
-                    <TextBlock HorizontalAlignment="Center" Text="Bad" />
-                </Border>
+            <gauges:LinearRange End="80" Start="20" Background="Blue">
+                <TextBlock HorizontalAlignment="Center" Text="Bad" />
             </gauges:LinearRange>
 
-            <gauges:LinearValue Value="50" >
-                <Border Background="DeepSkyBlue" VerticalAlignment="Stretch">
-                    <TextBlock HorizontalAlignment="Center" Text="Bad" />
+            <gauges:LinearRange End="100" Start="80" Background="Red">
+                <TextBlock HorizontalAlignment="Center" Text="Ugly" />
+            </gauges:LinearRange>
+
+            <gauges:LinearValue Value="50">
+                <Border Background="DeepSkyBlue" VerticalAlignment="Top">
+                    <TextBlock HorizontalAlignment="Center" Text="Value" />
                 </Border>
             </gauges:LinearValue>
         </gauges:LinearPanel>
