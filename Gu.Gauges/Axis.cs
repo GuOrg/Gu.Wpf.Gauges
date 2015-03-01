@@ -5,8 +5,28 @@
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
 
-    public class Axis : RangeBase
+    public class Axis : Control
     {
+        /// <summary>
+        /// Identifies the <see cref="P:Axis.Minimum" /> dependency property. 
+        /// </summary>
+        /// <returns>
+        /// The identifier for the <see cref="P:Axis.Minimum" /> dependency property.
+        /// </returns>
+        public static readonly DependencyProperty MinimumProperty = RangeBase.MinimumProperty.AddOwner(
+            typeof(Axis),
+            new PropertyMetadata(0.0));
+
+        /// <summary>
+        /// Identifies the <see cref="P:Axis.Maximum" /> dependency property. 
+        /// </summary>
+        /// <returns>
+        /// The identifier for the <see cref="P:Axis.Maximum" /> dependency property.
+        /// </returns>
+        public static readonly DependencyProperty MaximumProperty = RangeBase.MaximumProperty.AddOwner(
+            typeof(Axis),
+            new PropertyMetadata(1.0));
+
         public static readonly DependencyProperty ShowLabelsProperty = DependencyProperty.Register(
             "ShowLabels",
             typeof(bool),
@@ -64,6 +84,29 @@
                 false,
                 FrameworkPropertyMetadataOptions.Inherits));
 
+        /// <summary>
+        /// Gets or sets the <see cref="P:Axis.Minimum" /> possible <see cref="P:Axis.Value" /> of the range element.  
+        /// </summary>
+        /// <returns>
+        /// <see cref="P:Axis.Minimum" /> possible <see cref="P:Axis.Value" /> of the range element. The default is 0.
+        /// </returns>
+        public double Minimum
+        {
+            get { return (double) this.GetValue(MinimumProperty); }
+            set { this.SetValue(MinimumProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the highest possible <see cref="P:Axis.Value" /> of the range element.  
+        /// </summary>
+        /// <returns>
+        /// The highest possible <see cref="P:Axis.Value" /> of the range element. The default is 1.
+        /// </returns>
+        public double Maximum
+        {
+            get { return (double) this.GetValue(MaximumProperty); }
+            set { this.SetValue(MaximumProperty, value); }
+        }
 
         /// <summary>
         /// Gets or sets if textlabels should be visible

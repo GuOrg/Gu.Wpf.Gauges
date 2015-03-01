@@ -1,4 +1,4 @@
-﻿namespace Gu.Gauges.Indicators
+﻿namespace Gu.Gauges
 {
     public class LinearRange : RangeIndicator<LinearAxis>
     {
