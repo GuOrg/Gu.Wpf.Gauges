@@ -93,11 +93,16 @@
                     <ItemsControl ItemsSource="{TemplateBinding Items}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <local:LinearPanel Minimum="{Binding Gauge.Axis.Minimum, RelativeSource={RelativeSource TemplatedParent}}"
-                                                   Maximum="{Binding Gauge.Axis.Maximum, RelativeSource={RelativeSource TemplatedParent}}"
-                                                   Placement="{Binding Gauge.Axis.Placement, RelativeSource={RelativeSource TemplatedParent}}"
-                                                   IsDirectionReversed="{Binding Gauge.Axis.IsDirectionReversed, RelativeSource={RelativeSource TemplatedParent}}"
-                                                   ReservedSpace="{Binding Gauge.Axis.ReservedSpace, RelativeSource={RelativeSource TemplatedParent}}"
+                                <local:LinearPanel IsDirectionReversed="{Binding Axis.IsDirectionReversed,
+                                                                                 RelativeSource={RelativeSource AncestorType={x:Type local:LinearGauge}}}"
+                                                   Maximum="{Binding Axis.Maximum,
+                                                                     RelativeSource={RelativeSource AncestorType={x:Type local:LinearGauge}}}"
+                                                   Minimum="{Binding Axis.Minimum,
+                                                                     RelativeSource={RelativeSource AncestorType={x:Type local:LinearGauge}}}"
+                                                   Placement="{Binding Axis.Placement,
+                                                                       RelativeSource={RelativeSource AncestorType={x:Type local:LinearGauge}}}"
+                                                   ReservedSpace="{Binding Axis.ReservedSpace,
+                                                                           RelativeSource={RelativeSource AncestorType={x:Type local:LinearGauge}}}"
                                                    />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
@@ -123,10 +128,11 @@
                                            Maximum="{TemplateBinding Maximum}"
                                            Minimum="{TemplateBinding Minimum}"
                                            Placement="{TemplateBinding Placement}"
-                                           ReservedSpace="{Binding TextSpace,
-                                                                   RelativeSource={RelativeSource Self}}"
                                            SnapsToDevicePixels="True"
                                            TextOrientation="{TemplateBinding TextOrientation}"
+                                           TextSpace="{Binding ReservedSpace,
+                                                               Mode=OneWayToSource,
+                                                               RelativeSource={RelativeSource AncestorType={x:Type local:LinearAxis}}}"
                                            TickFrequency="{TemplateBinding MajorTickFrequency}"
                                            Ticks="{TemplateBinding MajorTicks}"
                                            />

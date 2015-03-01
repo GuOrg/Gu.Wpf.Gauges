@@ -12,13 +12,13 @@ namespace Gu.Gauges
             "Axis",
             typeof(T),
             typeof(Gauge<T>),
-            new PropertyMetadata(default(T)));
+            new FrameworkPropertyMetadata(default(T),FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         public static readonly DependencyProperty IndicatorsProperty = DependencyProperty.Register(
             "Indicators",
             typeof(Indicators<T>),
             typeof(Gauge<T>),
-            new PropertyMetadata(default(Indicators<T>)));
+            new FrameworkPropertyMetadata(default(Indicators<T>), FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         /// <summary>
         /// Identifies the <see cref="P:Gauge.Value" /> dependency property. 
@@ -28,7 +28,9 @@ namespace Gu.Gauges
         /// </returns>
         public static readonly DependencyProperty ValueProperty = RangeBase.ValueProperty.AddOwner(
             typeof(Gauge<T>),
-            new PropertyMetadata(0.0, AnimateValue));
+            new PropertyMetadata(
+                0.0, 
+                AnimateValue));
 
         private static readonly DependencyPropertyKey AnimatedValuePropertyKey = DependencyProperty.RegisterReadOnly(
             "AnimatedValue",

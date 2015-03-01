@@ -43,8 +43,7 @@ namespace Gu.Gauges
         public ObservableCollection<Indicator<T>> Items
         {
             get { return (ObservableCollection<Indicator<T>>)this.GetValue(ItemsProperty); }
-            protected set {
-                this.SetValue(ItemsPropertyKey, value); }
+            protected set { this.SetValue(ItemsPropertyKey, value); }
         }
 
         protected override void OnVisualParentChanged(DependencyObject oldParent)
