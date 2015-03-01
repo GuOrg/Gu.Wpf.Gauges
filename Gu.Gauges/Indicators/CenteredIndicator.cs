@@ -25,12 +25,4 @@ namespace Gu.Gauges
             ((CenteredIndicator)d).OnValueChanged((double)e.NewValue);
         }
     }
-
-    public class LinearValue : CenteredIndicator
-    {
-        protected override void OnValueChanged(double newValue)
-        {
-            LinearPanel.SetAtValue(this, newValue);
-        }
-    }
 }

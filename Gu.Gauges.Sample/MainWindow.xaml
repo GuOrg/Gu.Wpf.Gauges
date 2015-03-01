@@ -5,6 +5,7 @@
         xmlns:gauges="http://gu.se/Gauges"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sample="clr-namespace:Gu.Gauges.Sample"
+        xmlns:sandbox="clr-namespace:Gu.Gauges.Sample.Sandbox"
         Title="MainWindow"
         Width="525"
         Height="350"
@@ -37,6 +38,10 @@
 
         <TabItem Header="Linear panel">
             <sample:LinearPanelView />
+        </TabItem>
+
+        <TabItem Header="Polar panel">
+            <sandbox:PolarPanelView />
         </TabItem>
     </TabControl>
 </Window>

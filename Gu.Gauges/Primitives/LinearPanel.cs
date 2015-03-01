@@ -1,8 +1,7 @@
-﻿using System;
-using System.Windows.Media;
-
-namespace Gu.Gauges
+﻿namespace Gu.Gauges
 {
+    using System;
+    using System.Windows.Media;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
@@ -195,12 +194,9 @@ namespace Gu.Gauges
         }
 
         /// <summary>
-        /// Canvas computes a position for each of its children taking into account their margin and
-        /// attached Canvas properties: Top, Left.  
-        /// 
-        /// Canvas will also arrange each of its children.
+        /// LinearPanel computes a position for each of its children taking into account their  
         /// </summary>
-        /// <param name="arrangeSize">Size that Canvas will assume to position children.</param>
+        /// <param name="arrangeSize">Size that LinearPanel will assume to position children.</param>
         protected override Size ArrangeOverride(Size arrangeSize)
         {
             Line l1;
@@ -247,7 +243,14 @@ namespace Gu.Gauges
                         var rect = new Rect(arrangeSize);
                         var rect1 = new Rect(ps, pe);
                         rect.Intersect(rect1);
-                        child.Arrange(rect);
+                        if (rect.IsEmpty)
+                        {
+                            child.Arrange(new Rect());
+                        }
+                        else
+                        {
+                            child.Arrange(rect);
+                        }
                     }
                 }
                 else
