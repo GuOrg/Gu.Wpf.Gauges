@@ -51,9 +51,9 @@
   <ItemGroup>
     <Compile Include="AngularAxis.cs" />
     <Compile Include="Axis.cs" />
-    <Compile Include="Bars\AngularBlockBar.cs" />
+    <Compile Include="Primitives\AngularBlockBar.cs" />
     <Compile Include="AngularGauge.cs" />
-    <Compile Include="Bars\Bar.cs" />
+    <Compile Include="Primitives\Bar.cs" />
     <Compile Include="Gauge.cs" />
     <Compile Include="Helpers\Arc.cs" />
     <Compile Include="Dimensions\DimensionArrowHead.cs" />
@@ -61,10 +61,10 @@
     <Compile Include="Dimensions\LineExt.cs" />
     <Compile Include="Dimensions\TwoPointDimension.cs" />
     <Compile Include="Helpers\DrawingContextExt.cs" />
-    <Compile Include="Bars\ITextFormat.cs" />
+    <Compile Include="Primitives\ITextFormat.cs" />
     <Compile Include="Helpers\Horizontal.cs" />
     <Compile Include="Helpers\Line.cs" />
-    <Compile Include="Bars\LinearTickBar.cs" />
+    <Compile Include="Primitives\LinearTickBar.cs" />
     <Compile Include="Helpers\PointExt.cs" />
     <Compile Include="Helpers\RectExt.cs" />
     <Compile Include="Helpers\SizeExt.cs" />
@@ -72,10 +72,10 @@
     <Compile Include="Helpers\TextHelper.cs" />
     <Compile Include="Helpers\TextPosition.cs" />
     <Compile Include="Helpers\TickHelper.cs" />
-    <Compile Include="Bars\AngularBar.cs" />
-    <Compile Include="Bars\AngularTextBar.cs" />
-    <Compile Include="Bars\AngularTickBar.cs" />
-    <Compile Include="Bars\BlockBar.cs" />
+    <Compile Include="Primitives\AngularBar.cs" />
+    <Compile Include="Primitives\AngularTextBar.cs" />
+    <Compile Include="Primitives\AngularTickBar.cs" />
+    <Compile Include="Primitives\BlockBar.cs" />
     <Compile Include="Helpers\VectorExt.cs" />
     <Compile Include="Helpers\Vertical.cs" />
     <Compile Include="Indicators\AngularRange.cs" />
@@ -84,7 +84,7 @@
     <Compile Include="Indicators\RangeIndicator.cs" />
     <Compile Include="LinearAxis.cs" />
     <Compile Include="LinearGauge.cs" />
-    <Compile Include="Bars\TextTickBar.cs" />
+    <Compile Include="Primitives\TextTickBar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>

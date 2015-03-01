@@ -21,24 +21,30 @@
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
+            <RowDefinition Height="*" MinHeight="60" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <gauges:AngularGauge Grid.Row="0"
-                             VerticalAlignment="Bottom"
-                             IsDirectionReversed="{Binding IsDirectionReversed}"
-                             MajorTickFrequency="{Binding TickFrequency}"
-                             MajorTicks="{Binding Ticks}"
-                             MaxAngle="{Binding MaxAngle}"
-                             Maximum="{Binding Maximum}"
-                             MinAngle="{Binding MinAngle}"
-                             Minimum="{Binding Minimum}"
-                             MinorTickFrequency="{Binding MinorTickFrequency}"
-                             Placement="{Binding Placement}"
-                             ShowLabels="{Binding ShowLabels}"
-                             TextOrientation="{Binding TextOrientation}"
-                             Value="{Binding Value}" />
+        <gauges:AngularGauge Grid.Row="0">
+            <gauges:AngularGauge.Axis>
+                <gauges:AngularAxis IsDirectionReversed="{Binding IsDirectionReversed}"
+                                    MajorTickFrequency="{Binding TickFrequency}"
+                                    MajorTicks="{Binding Ticks}"
+                                    MaxAngle="{Binding MaxAngle}"
+                                    Maximum="{Binding Maximum}"
+                                    MinAngle="{Binding MinAngle}"
+                                    Minimum="{Binding Minimum}"
+                                    MinorTickFrequency="{Binding MinorTickFrequency}"
+                                    Placement="{Binding Placement}"
+                                    ShowLabels="{Binding ShowLabels}"
+                                    TextOrientation="{Binding TextOrientation}" />
+            </gauges:AngularGauge.Axis>
+            <gauges:AngularGauge.Indicators>
+                <gauges:AngularRange End="50"
+                                     Foreground="Blue"
+                                     Start="10" />
+            </gauges:AngularGauge.Indicators>
+        </gauges:AngularGauge>
 
         <ContentPresenter Grid.Row="1" Content="{Binding}" />
     </Grid>

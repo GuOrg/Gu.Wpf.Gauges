@@ -1,7 +1,7 @@
-﻿namespace Gu.Gauges.Indicators
-{
-    using System.Windows;
+﻿using System.Windows;
 
+namespace Gu.Gauges
+{
     public class RangeIndicator<T> : Indicator<T>
         where T : Axis
     {
