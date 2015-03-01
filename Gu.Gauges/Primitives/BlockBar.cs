@@ -156,10 +156,5 @@
                 previous = pos + gap;
             }
         }
-
-        protected override Size MeasureOverride(Size availableSize)
-        {
-            return availableSize;
-        }
     }
 }
