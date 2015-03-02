@@ -1,4 +1,8 @@
-﻿namespace Gu.Gauges
+﻿using System.Linq;
+using System.Runtime.CompilerServices;
+using Gu.Gauges.Helpers;
+
+namespace Gu.Gauges
 {
     using System.Windows;
     using System.Windows.Controls;
@@ -75,6 +79,12 @@
                 0.0,
                 FrameworkPropertyMetadataOptions.Inherits));
 
+        public static readonly DependencyProperty MinReservedSpaceProperty = DependencyProperty.RegisterAttached(
+            "MinReservedSpace", 
+            typeof (double),
+            typeof (Axis), 
+            new PropertyMetadata(default(double), OnMinReservedSpaceChanged));
+
         /// <summary>
         /// Identifies the <see cref="P:Axis.IsDirectionReversed" /> dependency property. 
         /// </summary>
@@ -83,6 +93,8 @@
             new FrameworkPropertyMetadata(
                 false,
                 FrameworkPropertyMetadataOptions.Inherits));
+
+        private readonly WeakDictionary<DependencyObject,double> minReservedSpaces = new WeakDictionary<DependencyObject, double>(); 
 
         /// <summary>
         /// Gets or sets the <see cref="P:Axis.Minimum" /> possible <see cref="P:Axis.Value" /> of the range element.  
@@ -177,6 +189,26 @@
         {
             get { return (bool)this.GetValue(IsDirectionReversedProperty); }
             set { this.SetValue(IsDirectionReversedProperty, value); }
+        }
+
+        public static void SetMinReservedSpace(DependencyObject element, double value)
+        {
+            element.SetValue(MinReservedSpaceProperty, value);
+        }
+
+        public static double GetMinReservedSpace(DependencyObject element)
+        {
+            return (double)element.GetValue(MinReservedSpaceProperty);
+        }
+
+        private static void OnMinReservedSpaceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var axis = d.VisualAncestors().OfType<Axis>().FirstOrDefault();
+            if (axis != null)
+            {
+                axis.minReservedSpaces.AddOrUpdate(d,(double) e.NewValue);
+                axis.ReservedSpace = axis.minReservedSpaces.Max(x => x.Value);
+            }
         }
     }
 }
