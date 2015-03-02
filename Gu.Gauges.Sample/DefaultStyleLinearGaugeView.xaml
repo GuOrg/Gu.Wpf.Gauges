@@ -22,7 +22,9 @@
             <RowDefinition Height="*" MinHeight="100" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <gauges:LinearGauge Grid.Row="0" Value="{Binding Value}">
+        <gauges:LinearGauge Grid.Row="0"
+                            Background="AntiqueWhite"
+                            Value="{Binding Value}">
             <gauges:LinearGauge.Axis>
                 <gauges:LinearAxis IsDirectionReversed="{Binding IsDirectionReversed}"
                                    MajorTickFrequency="{Binding TickFrequency}"
@@ -37,25 +39,12 @@
             </gauges:LinearGauge.Axis>
             <gauges:LinearGauge.Indicators>
                 <gauges:LinearIndicators>
-                    <gauges:LinearRange End="20" Start="0">
-                        <Border VerticalAlignment="Top" Background="Green">
-                            <TextBlock HorizontalAlignment="Center" Text="Good" />
-                        </Border>
-                    </gauges:LinearRange>
-                    <gauges:LinearRange End="80" Start="20">
-                        <Border VerticalAlignment="Top" Background="Blue">
-                            <TextBlock HorizontalAlignment="Center" Text="Bad" />
-                        </Border>
-                    </gauges:LinearRange>
-                    <gauges:LinearRange End="100" Start="80">
-                        <Border VerticalAlignment="Top" Background="Red">
-                            <TextBlock HorizontalAlignment="Center" Text="Ugly" />
-                        </Border>
-                    </gauges:LinearRange>
                     <gauges:LinearValue Value="{Binding AnimatedValue, RelativeSource={RelativeSource AncestorType={x:Type gauges:LinearGauge}}}">
-                        <Ellipse Width="10"
-                                 Height="10"
-                                 Fill="Black" />
+                        <Path Width="10"
+                              Height="10"
+                              Data="M0,0 L0.5,1 1,0z"
+                              Fill="Black"
+                              Stretch="Fill" />
                     </gauges:LinearValue>
                 </gauges:LinearIndicators>
             </gauges:LinearGauge.Indicators>

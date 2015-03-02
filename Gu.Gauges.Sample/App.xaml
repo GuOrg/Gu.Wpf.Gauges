@@ -245,7 +245,7 @@
                             Maximum="{Binding Maximum}"
                             Minimum="{Binding Minimum}"
                             Value="{Binding MinorTickFrequency}" />
-                    
+
                     <TextBlock Grid.Row="8"
                                Grid.Column="0"
                                Text="ReservedSpace" />

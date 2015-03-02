@@ -51,23 +51,23 @@
                                                 Gap="0"
                                                 IsDirectionReversed="{Binding Axis.IsDirectionReversed,
                                                                               RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"
+                                                MaxAngle="{Binding Axis.MaxAngle,
+                                                                   RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"
+                                                Maximum="{Binding Axis.Maximum,
+                                                                  RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"
+                                                MinAngle="{Binding Axis.MinAngle,
+                                                                   RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"
                                                 Minimum="{Binding Axis.Minimum,
                                                                   RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"
-                                                Maximum="{Binding Axis.Maximum,
-                                                                  RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"    
-                                                MinAngle="{Binding Axis.MinAngle,
-                                                                  RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"
-                                                MaxAngle="{Binding Axis.MaxAngle,
-                                                                  RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"    
                                                 ReservedSpace="{Binding Axis.ReservedSpace,
-                                                                  RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"                                                  
+                                                                        RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"
                                                 TickFrequency="{Binding Axis.MajorTickFrequency,
                                                                         RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"
+                                                TickLength="50"
                                                 Ticks="{Binding Axis.MajorTicks,
                                                                 RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"
                                                 Value="{Binding AnimatedValue,
-                                                                RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"
-                                                TickLength="50"/>
+                                                                RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}" />
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -159,7 +159,8 @@
                                     Maximum="100"
                                     MinAngle="-180"
                                     Minimum="0"
-                                    Style="{StaticResource FatAngularAxisStyle}" />
+                                    Style="{StaticResource FatAngularAxisStyle}"
+                                    TextOrientation="Horizontal" />
             </gauges:AngularGauge.Axis>
             <gauges:AngularGauge.Indicators>
                 <gauges:AngularIndicators>

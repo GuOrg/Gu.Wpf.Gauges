@@ -13,17 +13,13 @@
                                          IsDesignTimeCreatable=True}"
         mc:Ignorable="d">
     <TabControl>
-        <TabItem Header="Default styles">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <sample:DefaultStyleLinearGaugeView />
-                <sample:DefaultStyleAngularGaugeView Grid.Column="1" />
-            </Grid>
+        <TabItem Header="Linear default style">
+            <sample:DefaultStyleLinearGaugeView />
         </TabItem>
 
+        <TabItem Header="Linear default style">
+            <sample:DefaultStyleAngularGaugeView />
+        </TabItem>
         <TabItem Header="Styles">
             <sample:FatStylesView />
         </TabItem>

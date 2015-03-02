@@ -25,10 +25,10 @@
         </Grid.RowDefinitions>
         <WrapPanel>
             <GroupBox Header="LinearAxis">
-                <Grid Background="Lavender">
-                    <gauges:LinearAxis Width="100"
-                                       Height="100"
-                                       Foreground="Black"
+                <Grid Width="200"
+                      Height="100"
+                      Background="Lavender">
+                    <gauges:LinearAxis Foreground="Black"
                                        IsDirectionReversed="{Binding IsDirectionReversed}"
                                        MajorTickFrequency="{Binding TickFrequency}"
                                        MajorTicks="{Binding Ticks}"
