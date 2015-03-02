@@ -52,6 +52,7 @@
     <Compile Include="AngularAxis.cs" />
     <Compile Include="Axis.cs" />
     <Compile Include="Helpers\DependencyObjectExt.cs" />
+    <Compile Include="Helpers\NameOf.cs" />
     <Compile Include="Helpers\WeakKeyValuePair.cs" />
     <Compile Include="IGauge.cs" />
     <Compile Include="Indicators\AngularIndicator.cs" />
