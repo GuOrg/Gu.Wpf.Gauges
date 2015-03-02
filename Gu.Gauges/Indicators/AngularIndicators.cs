@@ -1,6 +1,5 @@
 ﻿namespace Gu.Gauges
 {
-    using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Markup;
 
@@ -9,7 +8,7 @@
     {
         private static readonly DependencyPropertyKey ItemsPropertyKey = DependencyProperty.RegisterReadOnly(
             "Items",
-            typeof(ObservableCollection<AngularIndicator>),
+            typeof(AngularIndicatorsCollection),
             typeof(AngularIndicators),
             new FrameworkPropertyMetadata(null));
 
@@ -30,12 +29,12 @@
 
         public AngularIndicators()
         {
-            this.Items = new ObservableCollection<AngularIndicator>();
+            this.Items = new AngularIndicatorsCollection();
         }
 
-        public ObservableCollection<AngularIndicator> Items
+        public AngularIndicatorsCollection Items
         {
-            get { return (ObservableCollection<AngularIndicator>)this.GetValue(ItemsProperty); }
+            get { return (AngularIndicatorsCollection)this.GetValue(ItemsProperty); }
             protected set { this.SetValue(ItemsPropertyKey, value); }
         }
 
@@ -47,7 +46,7 @@
 
         protected override void OnGaugeChanged(AngularGauge newValue)
         {
-            this.Gauge = (AngularGauge)newValue;
+            this.Gauge = newValue;
         }
     }
 }
