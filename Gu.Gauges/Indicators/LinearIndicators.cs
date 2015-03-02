@@ -1,6 +1,5 @@
 ﻿namespace Gu.Gauges
 {
-    using System.Collections.ObjectModel;
     using System.Windows;
     using System.Windows.Markup;
 
@@ -9,7 +8,7 @@
     {
         private static readonly DependencyPropertyKey ItemsPropertyKey = DependencyProperty.RegisterReadOnly(
             "Items",
-            typeof(ObservableCollection<LinearIndicator>),
+            typeof(LinearIndicatorsCollection),
             typeof(LinearIndicators),
             new FrameworkPropertyMetadata(null));
 
@@ -30,12 +29,12 @@
 
         public LinearIndicators()
         {
-            this.Items = new ObservableCollection<LinearIndicator>();
+            this.Items = new LinearIndicatorsCollection();
         }
 
-        public ObservableCollection<LinearIndicator> Items
+        public LinearIndicatorsCollection Items
         {
-            get { return (ObservableCollection<LinearIndicator>)this.GetValue(ItemsProperty); }
+            get { return (LinearIndicatorsCollection)this.GetValue(ItemsProperty); }
             protected set { this.SetValue(ItemsPropertyKey, value); }
         }
 

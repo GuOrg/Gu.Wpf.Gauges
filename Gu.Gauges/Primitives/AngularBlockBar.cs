@@ -181,7 +181,12 @@ namespace Gu.Gauges
             figure.Segments.Add(new ArcSegment(op2, new Size(arc.Radius, arc.Radius), rotationAngle, isLargeArc, sweepDirection, true));
             figure.Segments.Add(new LineSegment(ip2, true));
             sweepDirection = arc.SweepDirection(toAngle, fromAngle);
-            figure.Segments.Add(new ArcSegment(ip1, new Size(arc.Radius - tickLength, arc.Radius - tickLength), rotationAngle, isLargeArc, sweepDirection, true));
+            var ri = arc.Radius - tickLength;
+            if (ri < 0)
+            {
+                ri = 0;
+            }
+            figure.Segments.Add(new ArcSegment(ip1, new Size(ri, ri), rotationAngle, isLargeArc, sweepDirection, true));
             figure.Segments.Add(new LineSegment(op1, true));
             figure.IsClosed = true;
             figure.Freeze();

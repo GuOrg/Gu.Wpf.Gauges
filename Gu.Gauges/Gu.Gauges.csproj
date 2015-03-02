@@ -57,8 +57,10 @@
     <Compile Include="IGauge.cs" />
     <Compile Include="Indicators\AngularIndicator.cs" />
     <Compile Include="Indicators\AngularIndicators.cs" />
+    <Compile Include="Indicators\AngularIndicatorsCollection.cs" />
     <Compile Include="Indicators\Indicators.cs" />
     <Compile Include="Indicators\LinearIndicators.cs" />
+    <Compile Include="Indicators\LinearIndicatorsCollection.cs" />
     <Compile Include="Indicators\LinearValue.cs" />
     <Compile Include="Primitives\AngularBlockBar.cs" />
     <Compile Include="AngularGauge.cs" />
