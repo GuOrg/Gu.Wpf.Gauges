@@ -157,6 +157,7 @@
                                            Ticks="{TemplateBinding MajorTicks}"
                                            local:Axis.MinReservedSpace="{Binding TextSpace,
                                                                                  RelativeSource={RelativeSource Self}}" />
+
                         <Grid x:Name="Ticks">
                             <local:LinearTickBar x:Name="MajorTicks"
                                                  Fill="{TemplateBinding Foreground}"
@@ -319,11 +320,24 @@
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid>
-                            <ContentPresenter Content="{TemplateBinding Axis}" />
-                            <ContentPresenter Content="{TemplateBinding Indicators}" />
-                        </Grid>
+                        <DockPanel SnapsToDevicePixels="True">
+                            <ContentPresenter x:Name="Axis" Content="{TemplateBinding Axis}" />
+                            <ContentPresenter x:Name="Indicators" Content="{TemplateBinding Indicators}" />
+                        </DockPanel>
                     </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Axis.Placement, RelativeSource={RelativeSource TemplatedParent}}" Value="Top">
+                            <Setter TargetName="Axis" Property="DockPanel.Dock" Value="Top" />
+                            <Setter TargetName="Indicators" Property="DockPanel.Dock" Value="Bottom" />
+                            <Setter TargetName="Indicators" Property="VerticalAlignment" Value="Top" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Axis.Placement, RelativeSource={RelativeSource TemplatedParent}}" Value="Bottom">
+                            <Setter TargetName="Axis" Property="DockPanel.Dock" Value="Bottom" />
+                            <Setter TargetName="Indicators" Property="DockPanel.Dock" Value="Top" />
+                            <Setter TargetName="Indicators" Property="VerticalAlignment" Value="Bottom" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

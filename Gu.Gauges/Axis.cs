@@ -203,7 +203,7 @@
             var axis = ((Axis)d);
             var min = axis.minReservedSpaces.Any() ? axis.minReservedSpaces.Min(x => x.Value) : 0;
             var value = (double)basevalue;
-            return Math.Min(value, min);
+            return Math.Max(value, min);
         }
     }
 }

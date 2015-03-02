@@ -228,10 +228,10 @@
         }
 
         /// <summary>
-        /// Gets or sets a composite string that specifies how to format the <see cref="P:TextTickBar.Content" /> property if it is displayed as a string.
+        /// Gets or sets a composite string that specifies how to format the <see cref="P:TextTickBar.ContentStringFormat" /> property if it is displayed as a string.
         /// </summary>
         /// <returns>
-        /// A composite string that specifies how to format the <see cref="P:TextTickBar.Content" /> property if it is displayed as a string.
+        /// A composite string that specifies how to format the <see cref="P:TextTickBar.ContentStringFormat" /> property if it is displayed as a string.
         /// </returns>
         public string ContentStringFormat
         {
