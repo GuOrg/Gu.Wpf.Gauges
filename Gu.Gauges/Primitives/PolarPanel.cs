@@ -1,10 +1,7 @@
 ﻿namespace Gu.Gauges
 {
-    using System;
-    using System.Security.AccessControl;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Controls.Primitives;
     using System.Windows.Media;
 
     public class PolarPanel : Panel

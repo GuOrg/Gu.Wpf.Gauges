@@ -30,8 +30,8 @@
         <Ellipse Width="10"
                  Height="10"
                  Fill="HotPink"
-                 gauges:PolarPanel.Angle="0"
-                 gauges:PolarPanel.Radius="50"
+                 gauges:PolarPanel.Angle="45"
+                 gauges:PolarPanel.Radius="100"
                  />
         <Ellipse Width="10"
                  Height="10"

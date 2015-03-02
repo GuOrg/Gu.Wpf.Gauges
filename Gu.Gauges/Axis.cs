@@ -1,13 +1,12 @@
-﻿using System.Linq;
-using System.Runtime.CompilerServices;
-using Gu.Gauges.Helpers;
-
-namespace Gu.Gauges
+﻿namespace Gu.Gauges
 {
+    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
+
+    using Gu.Gauges.Helpers;
 
     public class Axis : Control
     {
@@ -60,12 +59,6 @@ namespace Gu.Gauges
             typeof(TextOrientation),
             typeof(Axis),
             new FrameworkPropertyMetadata(TextOrientation.Horizontal, FrameworkPropertyMetadataOptions.Inherits));
-
-        public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
-            typeof(Axis),
-            new FrameworkPropertyMetadata(
-                default(TickBarPlacement),
-                FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Identifies the <see cref="P:Axis.ReservedSpace" /> dependency property. This property is read-only.
@@ -137,15 +130,6 @@ namespace Gu.Gauges
         {
             get { return (TextOrientation)this.GetValue(TextOrientationProperty); }
             set { this.SetValue(TextOrientationProperty, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets the textplacement
-        /// </summary>
-        public TickBarPlacement Placement
-        {
-            get { return (TickBarPlacement)this.GetValue(PlacementProperty); }
-            set { this.SetValue(PlacementProperty, value); }
         }
 
         /// <summary>

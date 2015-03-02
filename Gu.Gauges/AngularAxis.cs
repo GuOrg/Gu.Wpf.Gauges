@@ -27,14 +27,8 @@
         /// </summary>
         public double MinAngle
         {
-            get
-            {
-                return (double)this.GetValue(MinAngleProperty);
-            }
-            set
-            {
-                this.SetValue(MinAngleProperty, value);
-            }
+            get { return (double)this.GetValue(MinAngleProperty); }
+            set { this.SetValue(MinAngleProperty, value); }
         }
 
         /// <summary>
@@ -43,14 +37,8 @@
         /// </summary>
         public double MaxAngle
         {
-            get
-            {
-                return (double)this.GetValue(MaxAngleProperty);
-            }
-            set
-            {
-                this.SetValue(MaxAngleProperty, value);
-            }
+            get { return (double)this.GetValue(MaxAngleProperty); }
+            set { this.SetValue(MaxAngleProperty, value); }
         }
     }
 }

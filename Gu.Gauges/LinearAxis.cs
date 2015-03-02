@@ -1,9 +1,16 @@
 ﻿namespace Gu.Gauges
 {
     using System.Windows;
+    using System.Windows.Controls.Primitives;
 
     public class LinearAxis : Axis
     {
+        public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
+            typeof(LinearAxis),
+            new FrameworkPropertyMetadata(
+                default(TickBarPlacement),
+                FrameworkPropertyMetadataOptions.Inherits));
+
         public static readonly DependencyProperty PenWidthProperty = LinearTickBar.PenWidthProperty.AddOwner(
             typeof(LinearAxis),
             new FrameworkPropertyMetadata(
@@ -19,6 +26,15 @@
         {
             get { return (double)this.GetValue(PenWidthProperty); }
             set { this.SetValue(PenWidthProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the textplacement
+        /// </summary>
+        public TickBarPlacement Placement
+        {
+            get { return (TickBarPlacement)this.GetValue(PlacementProperty); }
+            set { this.SetValue(PlacementProperty, value); }
         }
     }
 }

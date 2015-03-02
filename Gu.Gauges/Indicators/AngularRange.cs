@@ -1,12 +1,59 @@
-﻿using System.Windows;
-
-namespace Gu.Gauges
+﻿namespace Gu.Gauges
 {
-    public class AngularRange : RangeIndicator<AngularAxis>
+    using System.Windows;
+
+    public class AngularRange : AngularIndicator
     {
+       public static readonly DependencyProperty StartProperty = DependencyProperty.Register(
+            "Start", typeof(double),
+            typeof(AngularRange),
+            new PropertyMetadata(
+                double.NaN, 
+                OnStartChanged));
+
+        public static readonly DependencyProperty EndProperty = DependencyProperty.Register(
+            "End",
+            typeof(double),
+            typeof(AngularRange),
+            new PropertyMetadata(
+                double.NaN, 
+                OnEndChanged));
+
         static AngularRange()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(AngularRange),new FrameworkPropertyMetadata(typeof(AngularRange)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(AngularRange), new FrameworkPropertyMetadata(typeof(AngularRange)));
+        }
+
+        public double Start
+        {
+            get { return (double)this.GetValue(StartProperty); }
+            set { this.SetValue(StartProperty, value); }
+        }
+
+        public double End
+        {
+            get { return (double)this.GetValue(EndProperty); }
+            set { this.SetValue(EndProperty, value); }
+        }
+
+        protected virtual void OnEndChanged(double newValue)
+        {
+            AngularPanel.SetEndAngle(this, newValue);
+        }
+
+        protected virtual void OnStartChanged(double newValue)
+        {
+            AngularPanel.SetStartAngle(this, newValue);
+        }
+
+        private static void OnStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((AngularRange)d).OnStartChanged((double)e.NewValue);
+        }
+
+        private static void OnEndChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((AngularRange)d).OnEndChanged((double)e.NewValue);
         }
     }
 }
