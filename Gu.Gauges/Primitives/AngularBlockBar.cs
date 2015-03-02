@@ -160,10 +160,6 @@ namespace Gu.Gauges
             {
                 rect.Union(p);
             }
-            var wf = availableSize.Width / rect.Width;
-            var hf = availableSize.Height / rect.Height;
-            var min = Math.Min(wf, hf);
-            rect.Scale(min, min);
             return rect.Size;
         }
 

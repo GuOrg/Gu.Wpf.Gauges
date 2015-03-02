@@ -236,23 +236,27 @@
 
                     <TextBlock Grid.Row="7"
                                Grid.Column="0"
-                               Text="ReservedSpace" />
+                               Text="MinorTickFrequency" />
                     <TextBox Grid.Row="7"
                              Grid.Column="1"
-                             Text="{Binding ReservedSpace}" />
+                             Text="{Binding MinorTickFrequency}" />
                     <Slider Grid.Row="7"
+                            Grid.Column="2"
+                            Maximum="{Binding Maximum}"
+                            Minimum="{Binding Minimum}"
+                            Value="{Binding MinorTickFrequency}" />
+                    
+                    <TextBlock Grid.Row="8"
+                               Grid.Column="0"
+                               Text="ReservedSpace" />
+                    <TextBox Grid.Row="8"
+                             Grid.Column="1"
+                             Text="{Binding ReservedSpace}" />
+                    <Slider Grid.Row="8"
                             Grid.Column="2"
                             Maximum="50"
                             Minimum="0"
                             Value="{Binding ReservedSpace}" />
-
-                    <TextBlock Grid.Row="8"
-                               Grid.Column="0"
-                               Text="TickBarPlacement" />
-                    <ComboBox Grid.Row="8"
-                              Grid.Column="1"
-                              SelectedItem="{Binding Placement}"
-                              sample:ItemsControlExt.EnumSource="{x:Type TickBarPlacement}" />
 
                     <TextBlock Grid.Row="9"
                                Grid.Column="0"

@@ -35,7 +35,6 @@
                                     MinAngle="{Binding MinAngle}"
                                     Minimum="{Binding Minimum}"
                                     MinorTickFrequency="{Binding MinorTickFrequency}"
-                                    Placement="{Binding Placement}"
                                     ShowLabels="{Binding ShowLabels}"
                                     TextOrientation="{Binding TextOrientation}" />
             </gauges:AngularGauge.Axis>

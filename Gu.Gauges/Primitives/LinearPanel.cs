@@ -179,18 +179,19 @@
         /// <returns>LinearPanel's desired size.</returns>
         protected override Size MeasureOverride(Size constraint)
         {
-            Size childConstraint = new Size(double.PositiveInfinity, double.PositiveInfinity);
-
-            foreach (UIElement child in this.InternalChildren)
+            UIElementCollection children = this.InternalChildren;
+            var desiredSize = new Size();
+            for (int i = 0, count = children.Count; i < count; ++i)
             {
-                if (child == null)
+                UIElement child = children[i];
+                if (child != null)
                 {
-                    continue;
+                    child.Measure(constraint);
+                    desiredSize.Width = Math.Max(desiredSize.Width, child.DesiredSize.Width);
+                    desiredSize.Height = Math.Max(desiredSize.Height, child.DesiredSize.Height);
                 }
-                child.Measure(childConstraint);
             }
-
-            return new Size();
+            return desiredSize;
         }
 
         /// <summary>

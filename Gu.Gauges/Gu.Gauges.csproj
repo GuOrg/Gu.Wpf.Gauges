@@ -52,12 +52,16 @@
     <Compile Include="AngularAxis.cs" />
     <Compile Include="Axis.cs" />
     <Compile Include="Helpers\DependencyObjectExt.cs" />
+    <Compile Include="Helpers\WeakKeyValuePair.cs" />
+    <Compile Include="IGauge.cs" />
+    <Compile Include="Indicators\AngularIndicator.cs" />
+    <Compile Include="Indicators\AngularIndicators.cs" />
     <Compile Include="Indicators\Indicators.cs" />
-    <Compile Include="Indicators\CenteredIndicator.cs" />
     <Compile Include="Indicators\LinearIndicators.cs" />
     <Compile Include="Indicators\LinearValue.cs" />
     <Compile Include="Primitives\AngularBlockBar.cs" />
     <Compile Include="AngularGauge.cs" />
+    <Compile Include="Primitives\AngularPanel.cs" />
     <Compile Include="Primitives\Bar.cs" />
     <Compile Include="Gauge.cs" />
     <Compile Include="Helpers\Arc.cs" />
@@ -85,9 +89,8 @@
     <Compile Include="Helpers\VectorExt.cs" />
     <Compile Include="Helpers\Vertical.cs" />
     <Compile Include="Indicators\AngularRange.cs" />
-    <Compile Include="Indicators\Indicator.cs" />
+    <Compile Include="Indicators\LinearIndicator.cs" />
     <Compile Include="Indicators\LinearRange.cs" />
-    <Compile Include="Indicators\RangeIndicator.cs" />
     <Compile Include="LinearAxis.cs" />
     <Compile Include="LinearGauge.cs" />
     <Compile Include="Primitives\PolarPanel.cs" />
@@ -107,7 +110,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="TextOrientation.cs" />
-    <Compile Include="WeakDictionary.cs" />
+    <Compile Include="Helpers\WeakDictionary.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

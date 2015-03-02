@@ -147,6 +147,7 @@
                                                  TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                  Ticks="{TemplateBinding MajorTicks}"
                                                  UseLayoutRounding="True"
+                                                 PenWidth="{TemplateBinding PenWidth}"
                                                  />
 
                             <local:LinearTickBar x:Name="MinorTicks"
@@ -158,6 +159,7 @@
                                                  ReservedSpace="{TemplateBinding ReservedSpace}"
                                                  SnapsToDevicePixels="True"
                                                  TickFrequency="{TemplateBinding MinorTickFrequency}"
+                                                 PenWidth="{TemplateBinding PenWidth}"
                                                  UseLayoutRounding="True"
                                                  />
                         </Grid>

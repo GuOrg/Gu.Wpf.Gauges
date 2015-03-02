@@ -6,20 +6,9 @@ namespace Gu.Gauges
     using System.Windows.Controls.Primitives;
     using System.Windows.Media.Animation;
 
-    public class Gauge<T> : Control where T : Axis
+    public abstract class Gauge<T> : Control, IGauge
+        where T : Axis
     {
-        public static readonly DependencyProperty AxisProperty = DependencyProperty.Register(
-            "Axis",
-            typeof(T),
-            typeof(Gauge<T>),
-            new FrameworkPropertyMetadata(default(T),FrameworkPropertyMetadataOptions.AffectsMeasure));
-
-        public static readonly DependencyProperty IndicatorsProperty = DependencyProperty.Register(
-            "Indicators",
-            typeof(Indicators<T>),
-            typeof(Gauge<T>),
-            new FrameworkPropertyMetadata(default(Indicators<T>), FrameworkPropertyMetadataOptions.AffectsMeasure));
-
         /// <summary>
         /// Identifies the <see cref="P:Gauge.Value" /> dependency property. 
         /// </summary>
@@ -29,7 +18,7 @@ namespace Gu.Gauges
         public static readonly DependencyProperty ValueProperty = RangeBase.ValueProperty.AddOwner(
             typeof(Gauge<T>),
             new PropertyMetadata(
-                0.0, 
+                0.0,
                 AnimateValue));
 
         private static readonly DependencyPropertyKey AnimatedValuePropertyKey = DependencyProperty.RegisterReadOnly(
@@ -43,21 +32,11 @@ namespace Gu.Gauges
             "AnimatedValueProxy",
             typeof(double),
             typeof(Gauge<T>),
-            new PropertyMetadata(0.0, OnAnimatedValueProxyChanged));
+            new PropertyMetadata(
+                0.0, 
+                OnAnimatedValueProxyChanged));
 
         public static readonly DependencyProperty AnimatedValueProperty = AnimatedValuePropertyKey.DependencyProperty;
-
-        public T Axis
-        {
-            get { return (T)this.GetValue(AxisProperty); }
-            set { this.SetValue(AxisProperty, value); }
-        }
-
-        public Indicators<T> Indicators
-        {
-            get { return (Indicators<T>)this.GetValue(IndicatorsProperty); }
-            set { this.SetValue(IndicatorsProperty, value); }
-        }
 
         /// <summary>
         /// Gets or sets the current magnitude of the range control.  
