@@ -2,7 +2,7 @@
 {
     using System.Windows;
 
-    public class LinearGauge : Gauge<LinearAxis>
+    public class LinearGauge : Gauge
     {
         public static readonly DependencyProperty AxisProperty = DependencyProperty.Register(
             "Axis",

@@ -1,5 +1,6 @@
 ﻿namespace Gu.Gauges
 {
+    using System;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
@@ -70,12 +71,14 @@
             typeof(Axis),
             new FrameworkPropertyMetadata(
                 0.0,
-                FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.Inherits,
+                null,
+                CoerceReservedSpace));
 
         public static readonly DependencyProperty MinReservedSpaceProperty = DependencyProperty.RegisterAttached(
-            "MinReservedSpace", 
-            typeof (double),
-            typeof (Axis), 
+            "MinReservedSpace",
+            typeof(double),
+            typeof(Axis),
             new PropertyMetadata(default(double), OnMinReservedSpaceChanged));
 
         /// <summary>
@@ -87,7 +90,7 @@
                 false,
                 FrameworkPropertyMetadataOptions.Inherits));
 
-        private readonly WeakDictionary<DependencyObject,double> minReservedSpaces = new WeakDictionary<DependencyObject, double>(); 
+        private readonly WeakDictionary<DependencyObject, double> minReservedSpaces = new WeakDictionary<DependencyObject, double>();
 
         /// <summary>
         /// Gets or sets the <see cref="P:Axis.Minimum" /> possible <see cref="P:Axis.Value" /> of the range element.  
@@ -97,7 +100,7 @@
         /// </returns>
         public double Minimum
         {
-            get { return (double) this.GetValue(MinimumProperty); }
+            get { return (double)this.GetValue(MinimumProperty); }
             set { this.SetValue(MinimumProperty, value); }
         }
 
@@ -109,7 +112,7 @@
         /// </returns>
         public double Maximum
         {
-            get { return (double) this.GetValue(MaximumProperty); }
+            get { return (double)this.GetValue(MaximumProperty); }
             set { this.SetValue(MaximumProperty, value); }
         }
 
@@ -190,9 +193,17 @@
             var axis = d.VisualAncestors().OfType<Axis>().FirstOrDefault();
             if (axis != null)
             {
-                axis.minReservedSpaces.AddOrUpdate(d,(double) e.NewValue);
+                axis.minReservedSpaces.AddOrUpdate(d, (double)e.NewValue);
                 axis.ReservedSpace = axis.minReservedSpaces.Max(x => x.Value);
             }
+        }
+
+        private static object CoerceReservedSpace(DependencyObject d, object basevalue)
+        {
+            var axis = ((Axis)d);
+            var min = axis.minReservedSpaces.Any() ? axis.minReservedSpaces.Min(x => x.Value) : 0;
+            var value = (double)basevalue;
+            return Math.Min(value, min);
         }
     }
 }

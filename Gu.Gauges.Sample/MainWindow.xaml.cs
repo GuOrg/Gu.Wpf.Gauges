@@ -1,7 +1,7 @@
-﻿using System.Windows;
-
-namespace Gu.Gauges.Sample
+﻿namespace Gu.Gauges.Sample
 {
+    using System.Windows;
+
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
     /// </summary>

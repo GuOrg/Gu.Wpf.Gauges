@@ -41,35 +41,36 @@
             </Setter>
         </Style>
 
-        <Style TargetType="{x:Type gauges:AngularRange}">
-            <!--<Setter Property="Template">
+        <Style x:Key="FatAngularIndicatorStyle" TargetType="{x:Type gauges:AngularRange}">
+            <Setter Property="Start" Value="{Binding Axis.Maximum, RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}" />
+            <Setter Property="End" Value="{Binding Axis.Minimum, RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}" />
+            <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type gauges:AngularGauge}">
-                        <Grid TextElement.FontSize="20">
-
-
-                            <gauges:AngularBlockBar Fill="White" Gap="0"
-                                                    MaxAngle="{TemplateBinding MaxAngle}"
-                                                    Maximum="{TemplateBinding Maximum}"
-                                                    MinAngle="{TemplateBinding MinAngle}"
-                                                    Minimum="{TemplateBinding Minimum}"
-                                                    ReservedSpace="{Binding TextSpace,
-                                                                            ElementName=TextBar}"
-                                                    TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                                    TickLength="50"
-                                                    Ticks="{TemplateBinding MajorTicks}"
-                                                    Value="{TemplateBinding AnimatedValue}"
-                                                    />
-
-                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom"
-                                       Foreground="White"
-                                       Text="{Binding Value,
-                                                      RelativeSource={RelativeSource TemplatedParent}}"
-                                       />
-                        </Grid>
+                    <ControlTemplate TargetType="{x:Type gauges:AngularRange}">
+                        <gauges:AngularBlockBar Fill="White"
+                                                Gap="0"
+                                                IsDirectionReversed="{Binding Axis.IsDirectionReversed,
+                                                                              RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"
+                                                Minimum="{Binding Axis.Minimum,
+                                                                  RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"
+                                                Maximum="{Binding Axis.Maximum,
+                                                                  RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"    
+                                                MinAngle="{Binding Axis.MinAngle,
+                                                                  RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"
+                                                MaxAngle="{Binding Axis.MaxAngle,
+                                                                  RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"    
+                                                ReservedSpace="{Binding Axis.ReservedSpace,
+                                                                  RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"                                                  
+                                                TickFrequency="{Binding Axis.MajorTickFrequency,
+                                                                        RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"
+                                                Ticks="{Binding Axis.MajorTicks,
+                                                                RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"
+                                                Value="{Binding AnimatedValue,
+                                                                RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}"
+                                                TickLength="50"/>
                     </ControlTemplate>
                 </Setter.Value>
-            </Setter>-->
+            </Setter>
         </Style>
 
         <Style x:Key="FatLinearAxisStyle" TargetType="{x:Type gauges:LinearAxis}">
@@ -160,6 +161,11 @@
                                     Minimum="0"
                                     Style="{StaticResource FatAngularAxisStyle}" />
             </gauges:AngularGauge.Axis>
+            <gauges:AngularGauge.Indicators>
+                <gauges:AngularIndicators>
+                    <gauges:AngularRange Style="{StaticResource FatAngularIndicatorStyle}" />
+                </gauges:AngularIndicators>
+            </gauges:AngularGauge.Indicators>
             <gauges:AngularGauge.Template>
                 <ControlTemplate TargetType="{x:Type gauges:AngularGauge}">
                     <Grid>
@@ -223,6 +229,6 @@
                 Width="200"
                 Maximum="100"
                 Minimum="0"
-                Value="28" />
+                Value="35" />
     </Grid>
 </UserControl>
