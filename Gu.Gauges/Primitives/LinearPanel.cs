@@ -18,7 +18,7 @@
             typeof(LinearPanel),
             new FrameworkPropertyMetadata(
                 0.0,
-                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Identifies the <see cref="P:LinearPanel.Maximum" /> dependency property. 
@@ -30,7 +30,7 @@
             typeof(LinearPanel),
             new FrameworkPropertyMetadata(
                 1.0,
-                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Identifies the <see cref="P:BlockLinearPanel.Placement" /> dependency property. This property is read-only.
@@ -42,7 +42,7 @@
             typeof(LinearPanel),
             new FrameworkPropertyMetadata(
                 TickBarPlacement.Bottom,
-                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Identifies the <see cref="P:LinearPanel.IsDirectionReversed" /> dependency property. 
@@ -51,7 +51,7 @@
             typeof(LinearPanel),
             new FrameworkPropertyMetadata(
                 false,
-                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Identifies the <see cref="P:LinearPanel.ReservedSpace" /> dependency property. This property is read-only.
@@ -63,7 +63,7 @@
             typeof(LinearPanel),
             new FrameworkPropertyMetadata(
                 0.0,
-                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty StartProperty = DependencyProperty.RegisterAttached(
             "Start",
