@@ -10,15 +10,15 @@
             typeof(LinearValue),
             new PropertyMetadata(double.NaN, OnValueChanged));
 
+        static LinearValue()
+        {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(LinearValue), new FrameworkPropertyMetadata(typeof(LinearValue)));
+        }
+
         public double Value
         {
             get { return (double)this.GetValue(ValueProperty); }
             set { this.SetValue(ValueProperty, value); }
-        }
-
-        static LinearValue()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(LinearValue), new FrameworkPropertyMetadata(typeof(LinearValue)));
         }
 
         protected virtual void OnValueChanged(double newValue)
