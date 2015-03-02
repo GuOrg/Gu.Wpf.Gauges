@@ -130,9 +130,8 @@
                                            Placement="{TemplateBinding Placement}"
                                            SnapsToDevicePixels="True"
                                            TextOrientation="{TemplateBinding TextOrientation}"
-                                           TextSpace="{Binding ReservedSpace,
-                                                               Mode=OneWayToSource,
-                                                               RelativeSource={RelativeSource AncestorType={x:Type local:LinearAxis}}}"
+                                           ReservedSpace="{TemplateBinding ReservedSpace}"
+                                           local:Axis.MinReservedSpace="{Binding TextSpace,RelativeSource={RelativeSource Self}}"
                                            TickFrequency="{TemplateBinding MajorTickFrequency}"
                                            Ticks="{TemplateBinding MajorTicks}"
                                            />
@@ -143,8 +142,7 @@
                                                  Maximum="{TemplateBinding Maximum}"
                                                  Minimum="{TemplateBinding Minimum}"
                                                  Placement="{TemplateBinding Placement}"
-                                                 ReservedSpace="{Binding TextSpace,
-                                                                         ElementName=TickLabels}"
+                                                 ReservedSpace="{TemplateBinding ReservedSpace}"
                                                  SnapsToDevicePixels="True"
                                                  TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                  Ticks="{TemplateBinding MajorTicks}"
@@ -157,8 +155,7 @@
                                                  Maximum="{TemplateBinding Maximum}"
                                                  Minimum="{TemplateBinding Minimum}"
                                                  Placement="{TemplateBinding Placement}"
-                                                 ReservedSpace="{Binding TextSpace,
-                                                                         ElementName=TickLabels}"
+                                                 ReservedSpace="{TemplateBinding ReservedSpace}"
                                                  SnapsToDevicePixels="True"
                                                  TickFrequency="{TemplateBinding MinorTickFrequency}"
                                                  UseLayoutRounding="True"

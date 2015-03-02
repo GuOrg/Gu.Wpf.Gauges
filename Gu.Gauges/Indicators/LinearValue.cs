@@ -8,6 +8,7 @@
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(LinearValue), new FrameworkPropertyMetadata(typeof(LinearValue)));
         }
+
         protected override void OnValueChanged(double newValue)
         {
             LinearPanel.SetAtValue(this, newValue);

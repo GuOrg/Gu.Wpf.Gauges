@@ -5,8 +5,7 @@
              xmlns:gauges="http://gu.se/Gauges"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sample="clr-namespace:Gu.Gauges.Sample"
-             mc:Ignorable="d"
-             >
+             mc:Ignorable="d">
     <UserControl.DataContext>
         <sample:TickBarVm Maximum="100"
                           Minimum="0"
@@ -16,8 +15,7 @@
                           TextOrientation="Horizontal"
                           TickFrequency="25"
                           Ticks="60 85"
-                          Value="14"
-                          />
+                          Value="14" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -35,35 +33,29 @@
                                    Padding="25"
                                    Placement="{Binding Placement}"
                                    ShowLabels="{Binding ShowLabels}"
-                                   TextOrientation="{Binding TextOrientation}"
-                                   />
+                                   TextOrientation="{Binding TextOrientation}" />
             </gauges:LinearGauge.Axis>
             <gauges:LinearGauge.Indicators>
                 <gauges:LinearIndicators>
                     <gauges:LinearRange End="20" Start="0">
                         <Border VerticalAlignment="Top" Background="Green">
-                            <TextBlock Text="Good" HorizontalAlignment="Center" />
+                            <TextBlock HorizontalAlignment="Center" Text="Good" />
                         </Border>
                     </gauges:LinearRange>
-                    <gauges:LinearRange End="80"
-                                        Start="20"
-                                        >
+                    <gauges:LinearRange End="80" Start="20">
                         <Border VerticalAlignment="Top" Background="Blue">
-                            <TextBlock Text="Bad" HorizontalAlignment="Center"/>
+                            <TextBlock HorizontalAlignment="Center" Text="Bad" />
                         </Border>
                     </gauges:LinearRange>
-                    <gauges:LinearRange End="100"
-                                        Start="80"
-                                        >
+                    <gauges:LinearRange End="100" Start="80">
                         <Border VerticalAlignment="Top" Background="Red">
-                            <TextBlock Text="Ugly" HorizontalAlignment="Center"/>
+                            <TextBlock HorizontalAlignment="Center" Text="Ugly" />
                         </Border>
                     </gauges:LinearRange>
-                    <gauges:LinearValue Value="{Binding Value}">
+                    <gauges:LinearValue Value="{Binding AnimatedValue, RelativeSource={RelativeSource AncestorType={x:Type gauges:LinearGauge}}}">
                         <Ellipse Width="10"
                                  Height="10"
-                                 Fill="Black"
-                                 />
+                                 Fill="Black" />
                     </gauges:LinearValue>
                 </gauges:LinearIndicators>
             </gauges:LinearGauge.Indicators>
@@ -71,7 +63,6 @@
 
         <ContentPresenter Grid.Row="1"
                           Grid.Column="0"
-                          Content="{Binding}"
-                          />
+                          Content="{Binding}" />
     </Grid>
 </UserControl>

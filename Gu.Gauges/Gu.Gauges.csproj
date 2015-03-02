@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="AngularAxis.cs" />
     <Compile Include="Axis.cs" />
+    <Compile Include="Helpers\DependencyObjectExt.cs" />
     <Compile Include="Indicators\Indicators.cs" />
     <Compile Include="Indicators\CenteredIndicator.cs" />
     <Compile Include="Indicators\LinearIndicators.cs" />
@@ -106,6 +107,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="TextOrientation.cs" />
+    <Compile Include="WeakDictionary.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

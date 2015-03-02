@@ -1,4 +1,7 @@
-﻿namespace Gu.Gauges
+﻿using System.Linq;
+using Gu.Gauges.Helpers;
+
+namespace Gu.Gauges
 {
     using System.Windows;
     using System.Windows.Controls;
@@ -22,19 +25,7 @@
 
         protected override void OnVisualParentChanged(DependencyObject oldParent)
         {
-            this.Gauge = null;
-            var parent = VisualTreeHelper.GetParent(this);
-            while (parent != null)
-            {
-                var gauge = parent as Gauge<T>;
-                if (gauge != null)
-                {
-                    this.Gauge = gauge;
-                    break;
-                }
-                parent = VisualTreeHelper.GetParent(parent);
-            }
-
+            this.Gauge = this.VisualAncestors().OfType<Gauge<T>>().FirstOrDefault();
             base.OnVisualParentChanged(oldParent);
         }
 
