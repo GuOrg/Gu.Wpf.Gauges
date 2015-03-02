@@ -6,8 +6,7 @@ namespace Gu.Gauges
     using System.Windows.Controls.Primitives;
     using System.Windows.Media.Animation;
 
-    public abstract class Gauge<T> : Control, IGauge
-        where T : Axis
+    public abstract class Gauge : Control, IGauge
     {
         /// <summary>
         /// Identifies the <see cref="P:Gauge.Value" /> dependency property. 
@@ -16,7 +15,7 @@ namespace Gu.Gauges
         /// The identifier for the <see cref="P:Gauge.Value" /> dependency property.
         /// </returns>
         public static readonly DependencyProperty ValueProperty = RangeBase.ValueProperty.AddOwner(
-            typeof(Gauge<T>),
+            typeof(Gauge),
             new PropertyMetadata(
                 0.0,
                 AnimateValue));
@@ -24,14 +23,14 @@ namespace Gu.Gauges
         private static readonly DependencyPropertyKey AnimatedValuePropertyKey = DependencyProperty.RegisterReadOnly(
             "AnimatedValue",
             typeof(double),
-            typeof(Gauge<T>),
+            typeof(Gauge),
             new FrameworkPropertyMetadata(default(double)));
 
         // A proxy that is used for animating. Sets the value of the readonly property on change.
         protected static readonly DependencyProperty AnimatedValueProxyProperty = DependencyProperty.Register(
             "AnimatedValueProxy",
             typeof(double),
-            typeof(Gauge<T>),
+            typeof(Gauge),
             new PropertyMetadata(
                 0.0, 
                 OnAnimatedValueProxyChanged));
@@ -61,7 +60,7 @@ namespace Gu.Gauges
 
         private static void AnimateValue(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var gauge = (Gauge<T>)d;
+            var gauge = (Gauge)d;
             gauge.AnimateValue();
         }
 

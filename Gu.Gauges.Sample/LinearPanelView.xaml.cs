@@ -1,7 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace Gu.Gauges.Sample
+﻿namespace Gu.Gauges.Sample
 {
+    using System.Windows.Controls;
+
     /// <summary>
     /// Interaction logic for LinearPanelView.xaml
     /// </summary>

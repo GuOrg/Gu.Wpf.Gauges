@@ -2,7 +2,7 @@
 {
     using System.Windows;
 
-    public class AngularGauge : Gauge<AngularAxis>
+    public class AngularGauge : Gauge
     {
         public static readonly DependencyProperty AxisProperty = DependencyProperty.Register(
             "Axis",

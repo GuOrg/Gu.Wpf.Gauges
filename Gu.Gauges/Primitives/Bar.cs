@@ -190,6 +190,7 @@ namespace Gu.Gauges
                                       .Where(x => x >= this.Minimum && x <= this.Maximum)
                                       .OrderBy(x => x)
                                       .ToArray();
+            this.InvalidateMeasure();
         }
 
         private static void OnMinimumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
