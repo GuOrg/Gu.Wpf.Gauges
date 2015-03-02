@@ -17,13 +17,18 @@
             <sample:DefaultStyleLinearGaugeView />
         </TabItem>
 
-        <TabItem Header="Linear default style">
+        <TabItem Header="Angular default style">
             <sample:DefaultStyleAngularGaugeView />
         </TabItem>
-        <TabItem Header="Styles">
+        
+        <TabItem Header="FatStyles">
             <sample:FatStylesView />
         </TabItem>
-
+        
+        <TabItem Header="Linear ranges">
+            <sample:LinearRangesView />
+        </TabItem>
+        
         <TabItem Header="LinearBars">
             <sample:LinearBarsView />
         </TabItem>

@@ -60,7 +60,7 @@
             }
         }
 
-        public Rect Bounds
+        public Rect TransformedBounds
         {
             get
             {

@@ -19,7 +19,7 @@
         /// </returns>
         public static readonly DependencyProperty MinimumProperty = RangeBase.MinimumProperty.AddOwner(
             typeof(Axis),
-            new PropertyMetadata(0.0));
+            new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Identifies the <see cref="P:Axis.Maximum" /> dependency property. 
@@ -29,7 +29,7 @@
         /// </returns>
         public static readonly DependencyProperty MaximumProperty = RangeBase.MaximumProperty.AddOwner(
             typeof(Axis),
-            new PropertyMetadata(1.0));
+            new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty ShowLabelsProperty = DependencyProperty.Register(
             "ShowLabels",

@@ -1,13 +1,12 @@
-﻿using System;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Media;
-
-namespace Gu.Gauges
+﻿namespace Gu.Gauges
 {
+    using System;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Controls.Primitives;
+    using System.Windows.Data;
+    using System.Windows.Media;
 
     using Helpers;
 
@@ -21,8 +20,8 @@ namespace Gu.Gauges
 
         public static readonly DependencyProperty GaugeProperty = GaugePropertyKey.DependencyProperty;
 
-        private static readonly DependencyProperty PlacementProperty = DependencyProperty.Register(
-            "Placement",
+        private static readonly DependencyProperty PlacementProxyProperty = DependencyProperty.Register(
+            "PlacementProxy",
             typeof(TickBarPlacement),
             typeof(LinearIndicator),
             new PropertyMetadata(default(TickBarPlacement), OnPlacementChanged));
@@ -44,7 +43,7 @@ namespace Gu.Gauges
                 Source = this,
                 Mode = BindingMode.OneWay
             };
-            BindingOperations.SetBinding(this, PlacementProperty, placementBinding);
+            BindingOperations.SetBinding(this, PlacementProxyProperty, placementBinding);
         }
 
         public LinearGauge Gauge

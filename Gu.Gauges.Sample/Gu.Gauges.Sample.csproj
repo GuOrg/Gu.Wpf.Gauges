@@ -66,6 +66,9 @@
     <Compile Include="LinearBarsView.xaml.cs">
       <DependentUpon>LinearBarsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LinearRangesView.xaml.cs">
+      <DependentUpon>LinearRangesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Annotations.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
@@ -95,6 +98,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LinearBarsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LinearRangesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
