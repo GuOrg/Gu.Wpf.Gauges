@@ -326,16 +326,28 @@
                         </DockPanel>
                     </Border>
                     <ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Axis.Placement, RelativeSource={RelativeSource TemplatedParent}}" Value="Top">
+                        <DataTrigger Binding="{Binding Axis.Placement, RelativeSource={RelativeSource Self}}" Value="Top">
                             <Setter TargetName="Axis" Property="DockPanel.Dock" Value="Top" />
                             <Setter TargetName="Indicators" Property="DockPanel.Dock" Value="Bottom" />
                             <Setter TargetName="Indicators" Property="VerticalAlignment" Value="Top" />
                         </DataTrigger>
 
-                        <DataTrigger Binding="{Binding Axis.Placement, RelativeSource={RelativeSource TemplatedParent}}" Value="Bottom">
+                        <DataTrigger Binding="{Binding Axis.Placement, RelativeSource={RelativeSource Self}}" Value="Bottom">
                             <Setter TargetName="Axis" Property="DockPanel.Dock" Value="Bottom" />
                             <Setter TargetName="Indicators" Property="DockPanel.Dock" Value="Top" />
                             <Setter TargetName="Indicators" Property="VerticalAlignment" Value="Bottom" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Axis.Placement, RelativeSource={RelativeSource Self}}" Value="Left">
+                            <Setter TargetName="Axis" Property="DockPanel.Dock" Value="Left" />
+                            <Setter TargetName="Indicators" Property="DockPanel.Dock" Value="Right" />
+                            <Setter TargetName="Indicators" Property="HorizontalAlignment" Value="Left" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Axis.Placement, RelativeSource={RelativeSource Self}}" Value="Right">
+                            <Setter TargetName="Axis" Property="DockPanel.Dock" Value="Right" />
+                            <Setter TargetName="Indicators" Property="DockPanel.Dock" Value="Left" />
+                            <Setter TargetName="Indicators" Property="HorizontalAlignment" Value="Right" />
                         </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
