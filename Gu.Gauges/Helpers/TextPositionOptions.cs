@@ -114,27 +114,27 @@
                 case TextOrientation.VerticalDown:
                     if (rotate.X > Treshold)
                     {
-                        this.Horizontal = Horizontal.Left;
+                        this.Vertical = Vertical.Bottom;
                     }
                     else if (Math.Abs(rotate.X) < Treshold)
+                    {
+                        this.Vertical = Vertical.Mid;
+                    }
+                    else
+                    {
+                        this.Vertical = Vertical.Top;
+                    }
+                    if (rotate.Y > Treshold)
+                    {
+                        this.Horizontal = Horizontal.Left;
+                    }
+                    else if (Math.Abs(rotate.Y) < Treshold)
                     {
                         this.Horizontal = Horizontal.Center;
                     }
                     else
                     {
                         this.Horizontal = Horizontal.Right;
-                    }
-                    if (rotate.Y > Treshold)
-                    {
-                        this.Vertical = Vertical.Top;
-                    }
-                    else if (Math.Abs(rotate.Y) < Treshold)
-                    {
-                        this.Vertical = Vertical.Mid;
-                    }
-                    else
-                    {
-                        this.Vertical = Vertical.Bottom;
                     }
                     break;
                 case TextOrientation.Tangential:
@@ -175,27 +175,27 @@
                 case TextOrientation.VerticalUp:
                     if (rotate.X > Treshold)
                     {
-                        this.Horizontal = Horizontal.Left;
-                    }
-                    else if (Math.Abs(rotate.X) < Treshold)
-                    {
-                        this.Horizontal = Horizontal.Center;
-                    }
-                    else
-                    {
-                        this.Horizontal = Horizontal.Right;
-                    }
-                    if (rotate.Y > Treshold)
-                    {
                         this.Vertical = Vertical.Top;
                     }
-                    else if (Math.Abs(rotate.Y) < Treshold)
+                    else if (Math.Abs(rotate.X) < Treshold)
                     {
                         this.Vertical = Vertical.Mid;
                     }
                     else
                     {
                         this.Vertical = Vertical.Bottom;
+                    }
+                    if (rotate.Y > Treshold)
+                    {
+                        this.Horizontal = Horizontal.Right;
+                    }
+                    else if (Math.Abs(rotate.Y) < Treshold)
+                    {
+                        this.Horizontal = Horizontal.Center;
+                    }
+                    else
+                    {
+                        this.Horizontal = Horizontal.Left;
                     }
                     break;
                 default:

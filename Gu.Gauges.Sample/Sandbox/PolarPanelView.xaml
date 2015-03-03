@@ -6,50 +6,42 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DesignHeight="300"
              d:DesignWidth="300"
-             mc:Ignorable="d"
-             >
-    <gauges:PolarPanel SnapsToDevicePixels="False">
+             mc:Ignorable="d">
+    <gauges:PolarCanvas SnapsToDevicePixels="False">
         <Ellipse Width="10"
                  Height="10"
                  Fill="HotPink"
-                 gauges:PolarPanel.Angle="0"
-                 gauges:PolarPanel.Radius="0"
-                 />
+                 gauges:PolarCanvas.Angle="0"
+                 gauges:PolarCanvas.Radius="0" />
         <Ellipse Width="8"
                  Height="8"
                  Fill="Black"
-                 gauges:PolarPanel.Angle="0"
-                 gauges:PolarPanel.Radius="0"
-                 />
+                 gauges:PolarCanvas.Angle="0"
+                 gauges:PolarCanvas.Radius="0" />
         <Ellipse Width="4"
                  Height="4"
                  Fill="Blue"
-                 gauges:PolarPanel.Angle="0"
-                 gauges:PolarPanel.Radius="0"
-                 />
+                 gauges:PolarCanvas.Angle="0"
+                 gauges:PolarCanvas.Radius="0" />
         <Ellipse Width="10"
                  Height="10"
                  Fill="HotPink"
-                 gauges:PolarPanel.Angle="45"
-                 gauges:PolarPanel.Radius="100"
-                 />
+                 gauges:PolarCanvas.Angle="45"
+                 gauges:PolarCanvas.Radius="100" />
         <Ellipse Width="10"
                  Height="10"
                  Fill="HotPink"
-                 gauges:PolarPanel.Angle="90"
-                 gauges:PolarPanel.Radius="50"
-                 />
+                 gauges:PolarCanvas.Angle="90"
+                 gauges:PolarCanvas.Radius="50" />
         <Ellipse Width="10"
                  Height="10"
                  Fill="HotPink"
-                 gauges:PolarPanel.Angle="180"
-                 gauges:PolarPanel.Radius="50"
-                 />
+                 gauges:PolarCanvas.Angle="180"
+                 gauges:PolarCanvas.Radius="50" />
         <Ellipse Width="10"
                  Height="10"
                  Fill="HotPink"
-                 gauges:PolarPanel.Angle="270"
-                 gauges:PolarPanel.Radius="50"
-                 />
-    </gauges:PolarPanel>
+                 gauges:PolarCanvas.Angle="270"
+                 gauges:PolarCanvas.Radius="50" />
+    </gauges:PolarCanvas>
 </UserControl>

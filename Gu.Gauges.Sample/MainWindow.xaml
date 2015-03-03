@@ -44,5 +44,9 @@
         <TabItem Header="Polar panel">
             <sandbox:PolarPanelView />
         </TabItem>
+
+        <TabItem Header="Angular panel">
+            <sample:AngularPanelView />
+        </TabItem>
     </TabControl>
 </Window>

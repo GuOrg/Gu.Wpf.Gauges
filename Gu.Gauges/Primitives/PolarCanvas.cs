@@ -4,18 +4,18 @@
     using System.Windows.Controls;
     using System.Windows.Media;
 
-    public class PolarPanel : Panel
+    public class PolarCanvas : Panel
     {
         public static readonly DependencyProperty RadiusProperty = DependencyProperty.RegisterAttached(
             "Radius",
             typeof(double),
-            typeof(PolarPanel),
+            typeof(PolarCanvas),
             new PropertyMetadata(double.NaN, OnPositionChanged));
 
         public static readonly DependencyProperty AngleProperty = DependencyProperty.RegisterAttached(
             "Angle",
             typeof(double),
-            typeof(PolarPanel),
+            typeof(PolarCanvas),
             new PropertyMetadata(double.NaN, OnPositionChanged));
 
         public static void SetRadius(DependencyObject element, double value)
@@ -88,7 +88,7 @@
             var uie = d as UIElement;
             if (uie != null)
             {
-                var panel = VisualTreeHelper.GetParent(uie) as PolarPanel;
+                var panel = VisualTreeHelper.GetParent(uie) as PolarCanvas;
                 if (panel != null)
                 {
                     panel.InvalidateArrange();

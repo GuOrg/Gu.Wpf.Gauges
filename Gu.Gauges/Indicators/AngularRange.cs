@@ -38,12 +38,12 @@
 
         protected virtual void OnEndChanged(double newValue)
         {
-            AngularPanel.SetEndAngle(this, newValue);
+            AngularPanel.SetEnd(this, newValue);
         }
 
         protected virtual void OnStartChanged(double newValue)
         {
-            AngularPanel.SetStartAngle(this, newValue);
+            AngularPanel.SetStart(this, newValue);
         }
 
         private static void OnStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
