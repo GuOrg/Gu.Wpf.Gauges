@@ -2,6 +2,11 @@ namespace Gu.Gauges
 {
     using System;
 
+    /// <summary>
+    /// Weak reference to the key
+    /// </summary>
+    /// <typeparam name="TKey"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     public class WeakKeyValuePair<TKey, TValue> where TKey : class
     {
         private readonly WeakReference<TKey> keyRef = new WeakReference<TKey>(null);
@@ -22,6 +27,7 @@ namespace Gu.Gauges
                 }
             }
         }
+
         public TValue Value { get; internal set; }
     }
 }

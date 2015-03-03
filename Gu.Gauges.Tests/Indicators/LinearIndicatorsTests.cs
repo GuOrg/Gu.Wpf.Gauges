@@ -17,5 +17,14 @@
             indicators.Gauge.Axis.Maximum = 2;
             Assert.AreEqual(2, indicators.Panel.Maximum);
         }
+
+        [Test]
+        public void BindsPanelToAxisWhenGivenACompleteGauge()
+        {
+            var indicators = new LinearIndicators();
+            Assert.AreEqual(1, indicators.Panel.Maximum);
+            indicators.Gauge = new LinearGauge { Axis = new LinearAxis { Maximum = 2 } };
+            Assert.AreEqual(2, indicators.Panel.Maximum);
+        }
     }
 }

@@ -119,7 +119,6 @@
                                    Text="Ugly" />
                     </gauges:LinearRange>
                     <gauges:LinearValue Value="{Binding AnimatedValue, RelativeSource={RelativeSource AncestorType={x:Type gauges:LinearGauge}}}">
-
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30" />

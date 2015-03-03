@@ -54,6 +54,16 @@
         </Setter>
     </Style>
 
+    <Style TargetType="{x:Type local:AngularValue}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:AngularValue}">
+                    <ContentPresenter />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type local:LinearRange}">
         <Setter Property="Template">
             <Setter.Value>

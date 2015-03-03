@@ -12,7 +12,8 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <gauges:AngularPanel IsDirectionReversed="False"
+        <gauges:AngularPanel Grid.Row="0"
+                             IsDirectionReversed="False"
                              MaxAngle="0"
                              Maximum="{Binding Maximum,
                                                ElementName=Slider}"
@@ -21,15 +22,30 @@
                                                ElementName=Slider}">
             <gauges:AngularValue Value="{Binding Value, ElementName=Slider}">
                 <Rectangle Width="10"
-                           Height="50"
-                           Fill="Black"
-                           Stretch="Fill" />
+                           Height="10"
+                           Fill="Black" />
             </gauges:AngularValue>
         </gauges:AngularPanel>
-        <Slider x:Name="Slider"
-                Grid.Row="1"
-                Maximum="100"
-                Minimum="0"
-                Value="50" />
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="Min"
+                     MinWidth="25"
+                     Text="0" />
+            <Slider x:Name="Slider"
+                    Grid.Column="1"
+                    Maximum="100"
+                    Minimum="0"
+                    Value="50" />
+            <TextBox x:Name="Max"
+                     Grid.Column="2"
+                     MinWidth="25"
+                     Text="100" />
+
+        </Grid>
+
     </Grid>
 </UserControl>
