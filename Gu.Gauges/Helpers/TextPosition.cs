@@ -108,19 +108,40 @@
                                 throw new ArgumentOutOfRangeException();
                         }
                     case TextOrientation.Horizontal:
-                        switch (this.Placement)
+                        var rotate = new Vector(1, 0).Rotate(this.Angle);
+                        if (rotate.X > 0.99)
                         {
-                            case TickBarPlacement.Left:
-                                return this.TextSize.Offset(Vertical.Mid, Horizontal.Left);
-                            case TickBarPlacement.Top:
-                                return this.TextSize.Offset(Vertical.Top, Horizontal.Center);
-                            case TickBarPlacement.Right:
-                                return this.TextSize.Offset(Vertical.Mid, Horizontal.Right);
-                            case TickBarPlacement.Bottom:
-                                return this.TextSize.Offset(Vertical.Bottom, Horizontal.Center);
-                            default:
-                                throw new ArgumentOutOfRangeException();
+                            return this.TextSize.Offset(Vertical.Mid, Horizontal.Left);
                         }
+                        if (rotate.X < -0.99)
+                        {
+                            return this.TextSize.Offset(Vertical.Mid, Horizontal.Right);
+                        }
+                        if (rotate.Y > 0.99)
+                        {
+                            return this.TextSize.Offset(Vertical.Top, Horizontal.Center);
+                        }
+                        if (rotate.Y < -0.99)
+                        {
+                            return this.TextSize.Offset(Vertical.Bottom, Horizontal.Center);
+                        }
+                        if (rotate.X > 0 && rotate.Y < 0)
+                        {
+                            return this.TextSize.Offset(Vertical.Bottom, Horizontal.Left);
+                        }
+                        if (rotate.X < 0 && rotate.Y < 0)
+                        {
+                            return this.TextSize.Offset(Vertical.Bottom, Horizontal.Right);
+                        }
+                        if (rotate.X > 0 && rotate.Y > 0)
+                        {
+                            return this.TextSize.Offset(Vertical.Top, Horizontal.Left);
+                        }
+                        if (rotate.X < 0 && rotate.Y > 0)
+                        {
+                            return this.TextSize.Offset(Vertical.Top, Horizontal.Right);
+                        }
+                        throw new ArgumentOutOfRangeException();
                     case TextOrientation.RadialOut:
                     case TextOrientation.VerticalUp:
                         switch (this.Placement)
