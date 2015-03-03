@@ -160,7 +160,7 @@
                                     MinAngle="-180"
                                     Minimum="0"
                                     Style="{StaticResource FatAngularAxisStyle}"
-                                    TextOrientation="Tangential" />
+                                    TextOrientation="Horizontal" />
             </gauges:AngularGauge.Axis>
             <gauges:AngularGauge.Indicators>
                 <gauges:AngularIndicators>
