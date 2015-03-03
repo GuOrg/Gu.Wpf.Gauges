@@ -11,7 +11,7 @@
     /// <summary>
     /// http://stackoverflow.com/a/3578214/1069200
     /// </summary>
-    public class TextTickBar : Bar, ITextFormat
+    public class TextTickBar : TickBarBase, ITextFormat
     {
         public static readonly DependencyProperty TextOrientationProperty = DependencyProperty.Register(
             "TextOrientation",
@@ -252,74 +252,6 @@
         {
             get { return (Thickness)this.GetValue(TextSpaceMarginProperty); }
             protected set { this.SetValue(TextSpaceMarginPropertyKey, value); }
-        }
-
-        protected override Size MeasureOverride(Size availableSize)
-        {
-            if (this.AllTexts == null || !this.AllTexts.Any())
-            {
-                return new Size(0, 0);
-            }
-            var textHeight = Math.Ceiling(this.FontSize * this.FontFamily.LineSpacing);
-
-            double w = 0;
-            double h = 0;
-            switch (this.TextOrientation)
-            {
-
-                case TextOrientation.VerticalUp:
-                case TextOrientation.VerticalDown:
-                    w = textHeight;
-                    h = this.AllTexts.Max(t => t.Width);
-                    this.TextSpace = textHeight;
-                    break;
-                case TextOrientation.Horizontal:
-                case TextOrientation.Tangential:
-                case TextOrientation.RadialOut:
-                    w = this.AllTexts.Max(x => x.Width);
-                    h = textHeight;
-                    this.TextSpace = w;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-            var margin = this.TextSpace / 2;
-            switch (this.Placement)
-            {
-                case TickBarPlacement.Left:
-                case TickBarPlacement.Right:
-                    this.TextSpaceMargin = new Thickness(0, margin, 0, margin);
-                    break;
-                case TickBarPlacement.Top:
-                case TickBarPlacement.Bottom:
-                    this.TextSpaceMargin = new Thickness(margin, 0, margin, 0);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-            var size = new Size(w, h);
-            if (size.IsInvalid())
-            {
-                return new Size(0, 0);
-            }
-            return size;
-        }
-
-        protected override void OnRender(DrawingContext dc)
-        {
-            if (this.Foreground == null)
-            {
-                return;
-            }
-            var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace, this.Placement, this.IsDirectionReversed);
-            for (int i = 0; i < this.AllTicks.Count; i++)
-            {
-                var tick = this.AllTicks[i];
-                var pos = TickHelper.ToPos(tick, this.Minimum, this.Maximum, line);
-                var text = this.AllTexts[i];
-                var textPosition = new TextPosition(text, this.Placement, this.TextOrientation, pos, 0);
-                dc.DrawText(text, textPosition);
-            }
         }
 
         protected override void OnTicksChanged()

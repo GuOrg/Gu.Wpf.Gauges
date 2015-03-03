@@ -1,14 +1,25 @@
 ﻿namespace Gu.Gauges
 {
-    using System;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
     using System.Windows.Shapes;
 
-    public class BlockBar : Bar
+    public class LinearBlockBar : TickBarBase
     {
+        /// <summary>
+        /// Identifies the <see cref="P:LinearBlockBar.Placement" /> dependency property. This property is read-only.
+        /// </summary>
+        /// <returns>
+        /// The identifier for the <see cref="P:LinearBlockBar.Placement" /> dependency property.
+        /// </returns>
+        public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
+            typeof(LinearBlockBar),
+            new FrameworkPropertyMetadata(
+                TickBarPlacement.Bottom,
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure));
+
         /// <summary>
         /// Identifies the <see cref="P:BlockBar.Value" /> dependency property. 
         /// </summary>
@@ -16,25 +27,25 @@
         /// The identifier for the <see cref="P:BlockBar.Value" /> dependency property.
         /// </returns>
         public static readonly DependencyProperty ValueProperty = RangeBase.ValueProperty.AddOwner(
-            typeof(BlockBar),
+            typeof(LinearBlockBar),
             new FrameworkPropertyMetadata(
                 0.0,
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty FillProperty = Shape.FillProperty.AddOwner(
-            typeof(BlockBar),
+            typeof(LinearBlockBar),
             new FrameworkPropertyMetadata(
                 Brushes.HotPink,
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty StrokeProperty = Shape.StrokeProperty.AddOwner(
-            typeof(BlockBar),
+            typeof(LinearBlockBar),
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty StrokeThicknessProperty = Shape.StrokeThicknessProperty.AddOwner(
-            typeof(BlockBar),
+            typeof(LinearBlockBar),
             new FrameworkPropertyMetadata(
                 default(double),
                 FrameworkPropertyMetadataOptions.AffectsRender));
@@ -42,8 +53,20 @@
         public static readonly DependencyProperty GapProperty = DependencyProperty.Register(
             "Gap",
             typeof(double),
-            typeof(BlockBar),
+            typeof(LinearBlockBar),
             new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.AffectsRender));
+
+        /// <summary>
+        /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.  
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:TickBarPlacement" /> enumeration value that identifies the position of the <see cref="T:LinearTextTickBar" /> in the <see cref="T:System.Windows.Style" /> layout of a <see cref="T:System.Windows.Controls.Slider" />. The default value is <see cref="F:LinearBlockBar.Top" />.
+        /// </returns>
+        public TickBarPlacement Placement
+        {
+            get { return (TickBarPlacement)this.GetValue(PlacementProperty); }
+            set { this.SetValue(PlacementProperty, value); }
+        }
 
         /// <summary>
         /// Gets or sets the current magnitude of the range control.  

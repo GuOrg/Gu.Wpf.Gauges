@@ -2,28 +2,26 @@
 {
     using System;
     using System.Windows;
-    using System.Windows.Controls.Primitives;
     using System.Windows.Media;
 
     internal struct TextPosition
     {
-        internal readonly Size TextSize;
-        internal readonly TickBarPlacement Placement;
-        internal readonly TextOrientation Orientation;
+        private readonly Size textSize;
+        private readonly TextPositionOptions textPositionOptions;
         private readonly Point point;
-        internal readonly double Angle;
-        public TextPosition(FormattedText text, TickBarPlacement placement, TextOrientation orientation, Point point, double angle)
-            : this(new Size(text.Width, text.Height), placement, orientation, point, angle)
+        private readonly double angle;
+
+        public TextPosition(FormattedText text, TextPositionOptions textPositionOptions, Point point, double angle)
+            : this(new Size(text.Width, text.Height), textPositionOptions, point, angle)
         {
         }
 
-        public TextPosition(Size textSize, TickBarPlacement placement, TextOrientation orientation, Point point, double angle)
+        public TextPosition(Size textSize, TextPositionOptions textPositionOptions, Point point, double angle)
         {
-            this.TextSize = textSize;
-            this.Placement = placement;
-            this.Orientation = orientation;
+            this.textSize = textSize;
+            this.textPositionOptions = textPositionOptions;
             this.point = point;
-            this.Angle = angle;
+            this.angle = angle;
         }
 
         public Point Point
@@ -37,7 +35,7 @@
 
         public bool IsTransformed
         {
-            get { return this.Orientation != TextOrientation.Horizontal; }
+            get { return this.textPositionOptions.Orientation != TextOrientation.Horizontal; }
         }
 
         public Transform Transform
@@ -45,7 +43,7 @@
             get
             {
                 //return Transform.Identity;
-                switch (this.Orientation)
+                switch (this.textPositionOptions.Orientation)
                 {
                     case TextOrientation.Horizontal:
                         return Transform.Identity;
@@ -64,7 +62,7 @@
         {
             get
             {
-                var rect = new Rect(this.Point, this.TextSize);
+                var rect = new Rect(this.Point, this.textSize);
                 if (this.IsTransformed)
                 {
                     rect.Transform(this.Transform.Value);
@@ -77,89 +75,7 @@
         {
             get
             {
-                switch (this.Orientation)
-                {
-                    case TextOrientation.VerticalDown:
-                        switch (this.Placement)
-                        {
-                            case TickBarPlacement.Left:
-                                return this.TextSize.Offset(Vertical.Bottom, Horizontal.Center);
-                            case TickBarPlacement.Top:
-                                return this.TextSize.Offset(Vertical.Mid, Horizontal.Left);
-                            case TickBarPlacement.Right:
-                                return this.TextSize.Offset(Vertical.Top, Horizontal.Center);
-                            case TickBarPlacement.Bottom:
-                                return this.TextSize.Offset(Vertical.Mid, Horizontal.Right);
-                            default:
-                                throw new ArgumentOutOfRangeException();
-                        }
-                    case TextOrientation.Tangential:
-                        switch (this.Placement)
-                        {
-                            case TickBarPlacement.Left:
-                                return this.TextSize.Offset(Vertical.Mid, Horizontal.Left);
-                            case TickBarPlacement.Top:
-                                return this.TextSize.Offset(Vertical.Top, Horizontal.Center);
-                            case TickBarPlacement.Right:
-                                return this.TextSize.Offset(Vertical.Mid, Horizontal.Right);
-                            case TickBarPlacement.Bottom:
-                                return this.TextSize.Offset(Vertical.Bottom, Horizontal.Center);
-                            default:
-                                throw new ArgumentOutOfRangeException();
-                        }
-                    case TextOrientation.Horizontal:
-                        var rotate = new Vector(1, 0).Rotate(this.Angle);
-                        if (rotate.X > 0.99)
-                        {
-                            return this.TextSize.Offset(Vertical.Mid, Horizontal.Left);
-                        }
-                        if (rotate.X < -0.99)
-                        {
-                            return this.TextSize.Offset(Vertical.Mid, Horizontal.Right);
-                        }
-                        if (rotate.Y > 0.99)
-                        {
-                            return this.TextSize.Offset(Vertical.Top, Horizontal.Center);
-                        }
-                        if (rotate.Y < -0.99)
-                        {
-                            return this.TextSize.Offset(Vertical.Bottom, Horizontal.Center);
-                        }
-                        if (rotate.X > 0 && rotate.Y < 0)
-                        {
-                            return this.TextSize.Offset(Vertical.Bottom, Horizontal.Left);
-                        }
-                        if (rotate.X < 0 && rotate.Y < 0)
-                        {
-                            return this.TextSize.Offset(Vertical.Bottom, Horizontal.Right);
-                        }
-                        if (rotate.X > 0 && rotate.Y > 0)
-                        {
-                            return this.TextSize.Offset(Vertical.Top, Horizontal.Left);
-                        }
-                        if (rotate.X < 0 && rotate.Y > 0)
-                        {
-                            return this.TextSize.Offset(Vertical.Top, Horizontal.Right);
-                        }
-                        throw new ArgumentOutOfRangeException();
-                    case TextOrientation.RadialOut:
-                    case TextOrientation.VerticalUp:
-                        switch (this.Placement)
-                        {
-                            case TickBarPlacement.Left:
-                                return this.TextSize.Offset(Vertical.Top, Horizontal.Center);
-                            case TickBarPlacement.Top:
-                                return this.TextSize.Offset(Vertical.Mid, Horizontal.Right);
-                            case TickBarPlacement.Right:
-                                return this.TextSize.Offset(Vertical.Bottom, Horizontal.Center);
-                            case TickBarPlacement.Bottom:
-                                return this.TextSize.Offset(Vertical.Mid, Horizontal.Left);
-                            default:
-                                throw new ArgumentOutOfRangeException();
-                        }
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                return this.textSize.Offset(this.textPositionOptions.Vertical, this.textPositionOptions.Horizontal);
             }
         }
 
@@ -167,18 +83,18 @@
         {
             get
             {
-                switch (this.Orientation)
+                switch (this.textPositionOptions.Orientation)
                 {
                     case TextOrientation.VerticalDown:
                         return 90;
                     case TextOrientation.VerticalUp:
                         return -90;
                     case TextOrientation.Tangential:
-                        return this.Angle + 90;
+                        return this.angle + 90;
                     case TextOrientation.Horizontal:
                         return 0;
                     case TextOrientation.RadialOut:
-                        return this.Angle;
+                        return this.angle;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }

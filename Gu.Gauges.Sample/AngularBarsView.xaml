@@ -36,10 +36,10 @@
                                         Maximum="{Binding Maximum}"
                                         MinAngle="{Binding MinAngle}"
                                         Minimum="{Binding Minimum}"
-                                        TextOrientation="{Binding TextOrientation}"
                                         MinorTickFrequency="{Binding MinorTickFrequency}"
                                         ReservedSpace="{Binding ReservedSpace}"
-                                        SnapsToDevicePixels="True" />
+                                        SnapsToDevicePixels="True"
+                                        TextOrientation="{Binding TextOrientation}" />
                 </Grid>
             </GroupBox>
 
@@ -76,9 +76,10 @@
             </GroupBox>
 
             <GroupBox Header="AngularBlockBar">
-                <Grid Background="LightGray">
-                    <gauges:AngularBlockBar Width="100"
-                                            Fill="Olive"
+                <Grid Width="100"
+                      Height="100"
+                      Background="LightGray">
+                    <gauges:AngularBlockBar Fill="Olive"
                                             Gap="1"
                                             IsDirectionReversed="{Binding IsDirectionReversed}"
                                             MaxAngle="{Binding MaxAngle}"
