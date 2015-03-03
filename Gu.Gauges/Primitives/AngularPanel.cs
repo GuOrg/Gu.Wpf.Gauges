@@ -231,14 +231,10 @@ namespace Gu.Gauges
 
                     if (!double.IsNaN(center))
                     {
-                        var p1 = arc.GetPoint(center);
-                        var mp = child.DesiredSize.MidPoint();
-                        var v1 = p1 - arc.Centre;
-                        var v2 = mp - arc.Centre;
-                        var angleBetween = Vector.AngleBetween(v1, v2);
-                        rotateTransform.Angle = angleBetween;
+                        var angle = TickHelper.ToAngle(center, this.Minimum, this.Maximum, arc);
+                        var p1 = arc.GetPoint(angle);
                         var rect = new Rect(child.DesiredSize);
-                        rect.Transform(rotateTransform.Value);
+                        rect.Offset(new Vector(p1.X, p1.Y));
                         child.Arrange(rect);
                     }
                 }

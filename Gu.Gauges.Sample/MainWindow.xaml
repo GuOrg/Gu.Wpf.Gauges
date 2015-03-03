@@ -20,21 +20,25 @@
         <TabItem Header="Angular default style">
             <sample:DefaultStyleAngularGaugeView />
         </TabItem>
-        
+
         <TabItem Header="FatStyles">
             <sample:FatStylesView />
         </TabItem>
-        
+
         <TabItem Header="Linear ranges">
             <sample:LinearRangesView />
         </TabItem>
-        
+
         <TabItem Header="LinearBars">
             <sample:LinearBarsView />
         </TabItem>
 
         <TabItem Header="AngularBars">
             <sample:AngularBarsView />
+        </TabItem>
+
+        <TabItem Header="Linear indicators">
+            <sample:LinearIndicatorsView />
         </TabItem>
 
         <TabItem Header="Linear panel">

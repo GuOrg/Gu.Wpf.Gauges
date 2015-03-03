@@ -8,15 +8,60 @@
              d:DesignWidth="300"
              mc:Ignorable="d">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <gauges:LinearIndicators>
-            <gauges:LinearValue Background="Aquamarine" Value="0.5">
-                <TextBlock Text="0.5" />
-            </gauges:LinearValue>
-            <gauges:LinearRange Background="Bisque"
-                                End="0.4"
+            <gauges:LinearRange Height="25"
+                                VerticalAlignment="Top"
+                                Background="GreenYellow"
+                                End="0.20"
                                 Start="0">
-                <TextBlock HorizontalAlignment="Center" Text="0 - 0.4" />
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="Good" />
             </gauges:LinearRange>
+            <gauges:LinearRange Height="25"
+                                VerticalAlignment="Top"
+                                Background="Yellow"
+                                End="0.80"
+                                Start="0.20">
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="Bad" />
+            </gauges:LinearRange>
+            <gauges:LinearRange Height="25"
+                                VerticalAlignment="Top"
+                                Background="Orange"
+                                End="1.00"
+                                Start="0.80">
+                <TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Text="Ugly" />
+            </gauges:LinearRange>
+            <gauges:LinearValue Value="{Binding Value, Mode=OneWay, ElementName=Slider}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="25" />
+                    </Grid.RowDefinitions>
+                    <Rectangle Grid.Row="0"
+                               Width="3"
+                               Height="30"
+                               Fill="Black" />
+                    <TextBlock Grid.Row="1"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Top"
+                               Text="{Binding Value,
+                                              ElementName=Slider}" />
+                </Grid>
+            </gauges:LinearValue>
         </gauges:LinearIndicators>
+        <Slider x:Name="Slider"
+                Grid.Row="1"
+                Maximum="1"
+                Minimum="0"
+                Value="0.35" />
     </Grid>
 </UserControl>
