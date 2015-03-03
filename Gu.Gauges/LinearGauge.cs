@@ -19,7 +19,8 @@
             typeof(LinearGauge),
             new FrameworkPropertyMetadata(
                 null,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
+                OnIndicatorsChanged));
 
         static LinearGauge()
         {
@@ -38,8 +39,22 @@
             set { this.SetValue(IndicatorsProperty, value); }
         }
 
+        protected virtual void OnAxisChanged(LinearAxis old, LinearAxis newAxis)
+        {
+        }
+
+        protected virtual void OnIndicatorsChanged(LinearIndicators old, LinearIndicators newAxis)
+        {
+        }
+
         private static void OnAxisChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            ((LinearGauge)d).OnAxisChanged((LinearAxis)e.OldValue, (LinearAxis)e.NewValue);
+        }
+
+        private static void OnIndicatorsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((LinearGauge)d).OnIndicatorsChanged((LinearIndicators)e.OldValue, (LinearIndicators)e.NewValue);
         }
     }
 }
