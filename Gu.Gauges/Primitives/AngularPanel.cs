@@ -1,5 +1,6 @@
 namespace Gu.Gauges
 {
+    using System;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
@@ -7,6 +8,18 @@ namespace Gu.Gauges
 
     public class AngularPanel : Panel
     {
+        public static readonly DependencyProperty MinAngleProperty = AngularBar.MinAngleProperty.AddOwner(
+        typeof(AngularPanel),
+        new FrameworkPropertyMetadata(
+            -180.0,
+            FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits));
+
+        public static readonly DependencyProperty MaxAngleProperty = AngularBar.MaxAngleProperty.AddOwner(
+                typeof(AngularPanel),
+                new FrameworkPropertyMetadata(
+                    0.0,
+                    FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits));
+
         /// <summary>
         /// Identifies the <see cref="P:AngularPanel.Minimum" /> dependency property. 
         /// </summary>
@@ -52,24 +65,44 @@ namespace Gu.Gauges
                 0.0,
                 FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits));
 
-        public static readonly DependencyProperty StartAngleProperty = DependencyProperty.RegisterAttached(
-            "StartAngle",
+        public static readonly DependencyProperty Start = DependencyProperty.RegisterAttached(
+            "Start",
             typeof(double),
             typeof(AngularPanel),
             new PropertyMetadata(double.NaN, OnPositionChanged));
 
-        public static readonly DependencyProperty EndAngleProperty = DependencyProperty.RegisterAttached(
-            "EndAngle",
+        public static readonly DependencyProperty End = DependencyProperty.RegisterAttached(
+            "End",
             typeof(double),
             typeof(AngularPanel),
             new PropertyMetadata(double.NaN, OnPositionChanged));
-
 
         public static readonly DependencyProperty AtValueProperty = DependencyProperty.RegisterAttached(
             "AtValue",
             typeof(double),
             typeof(AngularPanel),
             new PropertyMetadata(double.NaN, OnPositionChanged));
+
+
+        /// <summary>
+        /// Gets or sets the <see cref="P:AngularPanel.MinAngle" />
+        /// The default is -180
+        /// </summary>
+        public double MinAngle
+        {
+            get { return (double)this.GetValue(MinAngleProperty); }
+            set { this.SetValue(MinAngleProperty, value); }
+        }
+
+        /// <summary>
+        /// Gets or sets the <see cref="P:AngularPanel.MaxAngle" />
+        /// The default is 0
+        /// </summary>
+        public double MaxAngle
+        {
+            get { return (double)this.GetValue(MaxAngleProperty); }
+            set { this.SetValue(MaxAngleProperty, value); }
+        }
 
         /// <summary>
         /// Gets or sets the <see cref="P:AngularPanel.Minimum" />
@@ -106,24 +139,36 @@ namespace Gu.Gauges
             set { this.SetValue(IsDirectionReversedProperty, value); }
         }
 
-        public static void SetStartAngle(DependencyObject element, double value)
+        /// <summary>
+        /// Gets or sets a space buffer for the area that contains the tick marks that are specified for a <see cref="T:AngularPanel" />.  
+        /// </summary>
+        /// <returns>
+        /// A value that represents the total buffer area on either side of the row or column of tick marks. The default value is zero (0.0).
+        /// </returns>
+        public double ReservedSpace
         {
-            element.SetValue(StartAngleProperty, value);
+            get { return (double)this.GetValue(ReservedSpaceProperty); }
+            set { this.SetValue(ReservedSpaceProperty, value); }
         }
 
-        public static double GetStartAngle(DependencyObject element)
+        public static void SetStart(DependencyObject element, double value)
         {
-            return (double)element.GetValue(StartAngleProperty);
+            element.SetValue(Start, value);
         }
 
-        public static void SetEndAngle(DependencyObject element, double value)
+        public static double GetStart(DependencyObject element)
         {
-            element.SetValue(EndAngleProperty, value);
+            return (double)element.GetValue(Start);
         }
 
-        public static double GetEndAngle(DependencyObject element)
+        public static void SetEnd(DependencyObject element, double value)
         {
-            return (double)element.GetValue(EndAngleProperty);
+            element.SetValue(End, value);
+        }
+
+        public static double GetEnd(DependencyObject element)
+        {
+            return (double)element.GetValue(End);
         }
 
         public static void SetAtValue(DependencyObject element, double value)
@@ -134,6 +179,77 @@ namespace Gu.Gauges
         public static double GetAtValue(DependencyObject element)
         {
             return (double)element.GetValue(AtValueProperty);
+        }
+
+
+        /// <summary>
+        /// Updates DesiredSize of the LinearPanel.
+        /// </summary>
+        /// <param name="constraint">Constraint size is an "upper limit" that LinearPanel should not exceed.</param>
+        /// <returns>LinearPanel's desired size.</returns>
+        protected override Size MeasureOverride(Size constraint)
+        {
+            UIElementCollection children = this.InternalChildren;
+            var desiredSize = new Size();
+            for (int i = 0, count = children.Count; i < count; ++i)
+            {
+                UIElement child = children[i];
+                if (child != null)
+                {
+                    child.Measure(constraint);
+                    desiredSize.Width = Math.Max(desiredSize.Width, child.DesiredSize.Width);
+                    desiredSize.Height = Math.Max(desiredSize.Height, child.DesiredSize.Height);
+                }
+            }
+            return desiredSize;
+        }
+
+        /// <summary>
+        /// LinearPanel computes a position for each of its children taking into account their  
+        /// </summary>
+        /// <param name="arrangeSize">Size that LinearPanel will assume to position children.</param>
+        protected override Size ArrangeOverride(Size arrangeSize)
+        {
+            var arc = Arc.Fill(arrangeSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
+            var rotateTransform = new RotateTransform(0, arc.Centre.X, arc.Centre.Y);
+            foreach (UIElement child in this.InternalChildren)
+            {
+                if (child == null)
+                {
+                    continue;
+                }
+
+                Point ps;
+                Point pe;
+
+                double start = GetStart(child);
+                double end = GetEnd(child);
+
+                if (double.IsNaN(start) || double.IsNaN(end))
+                {
+                    double center = GetAtValue(child);
+
+                    if (!double.IsNaN(center))
+                    {
+                        var p1 = arc.GetPoint(center);
+                        var mp = child.DesiredSize.MidPoint();
+                        var v1 = p1 - arc.Centre;
+                        var v2 = mp - arc.Centre;
+                        var angleBetween = Vector.AngleBetween(v1, v2);
+                        rotateTransform.Angle = angleBetween;
+                        var rect = new Rect(child.DesiredSize);
+                        rect.Transform(rotateTransform.Value);
+                        child.Arrange(rect);
+                    }
+                }
+                else
+                {
+                    ps = arc.GetPoint(start);
+                    pe = arc.GetPoint(end);
+                    child.Arrange(new Rect(ps, pe));
+                }
+            }
+            return arrangeSize;
         }
 
         private static void OnPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

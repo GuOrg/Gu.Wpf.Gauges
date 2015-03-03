@@ -10,7 +10,8 @@
             typeof(LinearGauge),
             new FrameworkPropertyMetadata(
                 null,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
+                OnAxisChanged));
 
         public static readonly DependencyProperty IndicatorsProperty = DependencyProperty.Register(
             "Indicators",
@@ -35,6 +36,10 @@
         {
             get { return (LinearIndicators)this.GetValue(IndicatorsProperty); }
             set { this.SetValue(IndicatorsProperty, value); }
+        }
+
+        private static void OnAxisChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
         }
     }
 }

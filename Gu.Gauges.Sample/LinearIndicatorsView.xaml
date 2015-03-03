@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="Gu.Gauges.Sample.LinearIndicatorsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:gauges="http://gu.se/Gauges"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <Grid>
+        <gauges:LinearIndicators>
+            <gauges:LinearValue Background="Aquamarine" Value="0.5">
+                <TextBlock Text="0.5" />
+            </gauges:LinearValue>
+            <gauges:LinearRange Background="Bisque"
+                                End="0.4"
+                                Start="0">
+                <TextBlock HorizontalAlignment="Center" Text="0 - 0.4" />
+            </gauges:LinearRange>
+        </gauges:LinearIndicators>
+    </Grid>
+</UserControl>

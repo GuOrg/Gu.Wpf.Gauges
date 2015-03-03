@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="AngularAxis.cs" />
     <Compile Include="Axis.cs" />
+    <Compile Include="Helpers\BindingHelper.cs" />
     <Compile Include="Helpers\DependencyObjectExt.cs" />
     <Compile Include="Helpers\NameOf.cs" />
     <Compile Include="Helpers\TextPositionOptions.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Indicators\AngularIndicator.cs" />
     <Compile Include="Indicators\AngularIndicators.cs" />
     <Compile Include="Indicators\AngularIndicatorsCollection.cs" />
+    <Compile Include="Indicators\AngularValue.cs" />
     <Compile Include="Indicators\Indicators.cs" />
     <Compile Include="Indicators\LinearIndicators.cs" />
     <Compile Include="Indicators\LinearIndicatorsCollection.cs" />
@@ -98,7 +100,7 @@
     <Compile Include="Indicators\LinearRange.cs" />
     <Compile Include="LinearAxis.cs" />
     <Compile Include="LinearGauge.cs" />
-    <Compile Include="Primitives\PolarPanel.cs" />
+    <Compile Include="Primitives\PolarCanvas.cs" />
     <Compile Include="Primitives\TextTickBar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

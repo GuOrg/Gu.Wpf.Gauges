@@ -53,6 +53,9 @@
     <Compile Include="AngularBarsView.xaml.cs">
       <DependentUpon>AngularBarsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AngularPanelView.xaml.cs">
+      <DependentUpon>AngularPanelView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AngularTickBarVm.cs" />
     <Compile Include="DefaultStyleAngularGaugeView.xaml.cs">
       <DependentUpon>DefaultStyleAngularGaugeView.xaml</DependentUpon>
@@ -65,6 +68,9 @@
     </Compile>
     <Compile Include="LinearBarsView.xaml.cs">
       <DependentUpon>LinearBarsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LinearIndicatorsView.xaml.cs">
+      <DependentUpon>LinearIndicatorsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="LinearRangesView.xaml.cs">
       <DependentUpon>LinearRangesView.xaml</DependentUpon>
@@ -85,6 +91,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AngularPanelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DefaultStyleAngularGaugeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -98,6 +108,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LinearBarsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LinearIndicatorsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
