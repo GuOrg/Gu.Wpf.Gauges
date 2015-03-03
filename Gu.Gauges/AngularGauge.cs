@@ -10,7 +10,8 @@
             typeof(AngularGauge),
             new FrameworkPropertyMetadata(
                 null,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
+                OnAxisChanged));
 
         public static readonly DependencyProperty IndicatorsProperty = DependencyProperty.Register(
             "Indicators",
@@ -18,7 +19,8 @@
             typeof(AngularGauge),
             new FrameworkPropertyMetadata(
                 null,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange));
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
+                OnIndicatorsChanged));
 
         static AngularGauge()
         {
@@ -35,6 +37,24 @@
         {
             get { return (AngularIndicators)this.GetValue(IndicatorsProperty); }
             set { this.SetValue(IndicatorsProperty, value); }
+        }
+
+        protected virtual void OnAxisChanged(AngularAxis old, AngularAxis newAxis)
+        {
+        }
+
+        protected virtual void OnIndicatorsChanged(AngularIndicators old, AngularIndicators newAxis)
+        {
+        }
+
+        private static void OnAxisChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((AngularGauge)d).OnAxisChanged((AngularAxis)e.OldValue, (AngularAxis)e.NewValue);
+        }
+
+        private static void OnIndicatorsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((AngularGauge)d).OnIndicatorsChanged((AngularIndicators)e.OldValue, (AngularIndicators)e.NewValue);
         }
     }
 }
