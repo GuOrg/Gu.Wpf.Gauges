@@ -53,6 +53,7 @@
     <Compile Include="Axis.cs" />
     <Compile Include="Helpers\DependencyObjectExt.cs" />
     <Compile Include="Helpers\NameOf.cs" />
+    <Compile Include="Helpers\TextPositionOptions.cs" />
     <Compile Include="Helpers\WeakKeyValuePair.cs" />
     <Compile Include="IGauge.cs" />
     <Compile Include="Indicators\AngularIndicator.cs" />
@@ -65,7 +66,8 @@
     <Compile Include="Primitives\AngularBlockBar.cs" />
     <Compile Include="AngularGauge.cs" />
     <Compile Include="Primitives\AngularPanel.cs" />
-    <Compile Include="Primitives\Bar.cs" />
+    <Compile Include="Primitives\LinearTextTickBar.cs" />
+    <Compile Include="Primitives\TickBarBase.cs" />
     <Compile Include="Gauge.cs" />
     <Compile Include="Helpers\Arc.cs" />
     <Compile Include="Dimensions\DimensionArrowHead.cs" />
@@ -88,7 +90,7 @@
     <Compile Include="Primitives\AngularBar.cs" />
     <Compile Include="Primitives\AngularTextBar.cs" />
     <Compile Include="Primitives\AngularTickBar.cs" />
-    <Compile Include="Primitives\BlockBar.cs" />
+    <Compile Include="Primitives\LinearBlockBar.cs" />
     <Compile Include="Helpers\VectorExt.cs" />
     <Compile Include="Helpers\Vertical.cs" />
     <Compile Include="Indicators\AngularRange.cs" />

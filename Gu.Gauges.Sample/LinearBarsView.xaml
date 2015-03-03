@@ -12,7 +12,7 @@
                           Minimum="0"
                           MinorTickFrequency="5"
                           Placement="Bottom"
-                          ReservedSpace="10"
+                          ReservedSpace="0"
                           TextOrientation="Horizontal"
                           TickFrequency="50"
                           Ticks="75"
@@ -58,18 +58,18 @@
 
             <GroupBox Header="BlockBar">
                 <Grid Background="LightYellow">
-                    <gauges:BlockBar Width="100"
-                                     Height="100"
-                                     Fill="CornflowerBlue"
-                                     Gap="2"
-                                     IsDirectionReversed="{Binding IsDirectionReversed}"
-                                     Maximum="{Binding Maximum}"
-                                     Minimum="{Binding Minimum}"
-                                     Placement="{Binding Placement}"
-                                     ReservedSpace="{Binding ReservedSpace}"
-                                     TickFrequency="{Binding TickFrequency}"
-                                     Ticks="{Binding Ticks}"
-                                     Value="{Binding Value}" />
+                    <gauges:LinearBlockBar Width="100"
+                                           Height="100"
+                                           Fill="CornflowerBlue"
+                                           Gap="2"
+                                           IsDirectionReversed="{Binding IsDirectionReversed}"
+                                           Maximum="{Binding Maximum}"
+                                           Minimum="{Binding Minimum}"
+                                           Placement="{Binding Placement}"
+                                           ReservedSpace="{Binding ReservedSpace}"
+                                           TickFrequency="{Binding TickFrequency}"
+                                           Ticks="{Binding Ticks}"
+                                           Value="{Binding Value}" />
                 </Grid>
             </GroupBox>
 
@@ -102,19 +102,19 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <gauges:TextTickBar Grid.Row="0"
-                                        Grid.RowSpan="2"
-                                        Grid.Column="0"
-                                        Grid.ColumnSpan="2"
-                                        Foreground="Black"
-                                        IsDirectionReversed="{Binding IsDirectionReversed}"
-                                        Maximum="{Binding Maximum}"
-                                        Minimum="{Binding Minimum}"
-                                        Placement="{Binding Placement}"
-                                        ReservedSpace="{Binding ReservedSpace}"
-                                        TextOrientation="{Binding TextOrientation}"
-                                        TickFrequency="{Binding TickFrequency}"
-                                        Ticks="{Binding Ticks}" />
+                    <gauges:LinearTextTickBar Grid.Row="0"
+                                              Grid.RowSpan="2"
+                                              Grid.Column="0"
+                                              Grid.ColumnSpan="2"
+                                              Foreground="Black"
+                                              IsDirectionReversed="{Binding IsDirectionReversed}"
+                                              Maximum="{Binding Maximum}"
+                                              Minimum="{Binding Minimum}"
+                                              Placement="{Binding Placement}"
+                                              ReservedSpace="{Binding ReservedSpace}"
+                                              TextOrientation="{Binding TextOrientation}"
+                                              TickFrequency="{Binding TickFrequency}"
+                                              Ticks="{Binding Ticks}" />
                     <Rectangle Grid.Row="0"
                                Grid.RowSpan="2"
                                Grid.Column="0"

@@ -8,7 +8,7 @@ namespace Gu.Gauges
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
 
-    public class Bar : FrameworkElement
+    public class TickBarBase : FrameworkElement
     {
         /// <summary>
         /// Identifies the <see cref="P:Bar.Minimum" /> dependency property. 
@@ -17,7 +17,7 @@ namespace Gu.Gauges
         /// The identifier for the <see cref="P:Bar.Minimum" /> dependency property.
         /// </returns>
         public static readonly DependencyProperty MinimumProperty = RangeBase.MinimumProperty.AddOwner(
-            typeof(Bar),
+            typeof(TickBarBase),
             new FrameworkPropertyMetadata(
                 0.0,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits,
@@ -30,23 +30,11 @@ namespace Gu.Gauges
         /// The identifier for the <see cref="P:Bar.Maximum" /> dependency property.
         /// </returns>
         public static readonly DependencyProperty MaximumProperty = RangeBase.MaximumProperty.AddOwner(
-            typeof(Bar),
+            typeof(TickBarBase),
             new FrameworkPropertyMetadata(
                 1.0,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits,
                 OnMaximumChanged));
-
-        /// <summary>
-        /// Identifies the <see cref="P:BlockBar.Placement" /> dependency property. This property is read-only.
-        /// </summary>
-        /// <returns>
-        /// The identifier for the <see cref="P:BlockBar.Placement" /> dependency property.
-        /// </returns>
-        public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
-            typeof(Bar),
-            new FrameworkPropertyMetadata(
-                TickBarPlacement.Bottom,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         /// <summary>
         /// Identifies the <see cref="P:Bar.ReservedSpace" /> dependency property. This property is read-only.
@@ -55,7 +43,7 @@ namespace Gu.Gauges
         /// The identifier for the <see cref="P:Bar.ReservedSpace" /> dependency property.
         /// </returns>
         public static readonly DependencyProperty ReservedSpaceProperty = TickBar.ReservedSpaceProperty.AddOwner(
-            typeof(Bar),
+            typeof(TickBarBase),
             new FrameworkPropertyMetadata(
                 0.0,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure));
@@ -64,7 +52,7 @@ namespace Gu.Gauges
         /// Identifies the <see cref="P:Bar.TickFrequency" /> dependency property. 
         /// </summary>
         public static readonly DependencyProperty TickFrequencyProperty = Slider.TickFrequencyProperty.AddOwner(
-            typeof(Bar),
+            typeof(TickBarBase),
             new FrameworkPropertyMetadata(
                 0.0,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits,
@@ -74,17 +62,17 @@ namespace Gu.Gauges
         /// Identifies the <see cref="P:Bar.Ticks" /> dependency property. 
         /// </summary>
         public static readonly DependencyProperty TicksProperty = Slider.TicksProperty.AddOwner(
-            typeof(Bar),
+            typeof(TickBarBase),
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits,
                 OnTicksChanged));
 
         /// <summary>
-        /// Identifies the <see cref="P:LinearTickBar.IsDirectionReversed" /> dependency property. 
+        /// Identifies the <see cref="P:Bar.IsDirectionReversed" /> dependency property. 
         /// </summary>
         public static readonly DependencyProperty IsDirectionReversedProperty = Slider.IsDirectionReversedProperty.AddOwner(
-            typeof(Bar),
+            typeof(TickBarBase),
             new FrameworkPropertyMetadata(
                 false,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
@@ -103,27 +91,15 @@ namespace Gu.Gauges
         }
 
         /// <summary>
-        /// Gets or sets the highest possible <see cref="P:Bar.Value" /> of the range element.  
+        /// Gets or sets the highest possible <see cref="P:Bar.Maximum" /> of the range element.  
         /// </summary>
         /// <returns>
-        /// The highest possible <see cref="P:Bar.Value" /> of the range element. The default is 1.
+        /// The highest possible <see cref="P:Bar.Maximum" /> of the range element. The default is 1.
         /// </returns>
         public double Maximum
         {
             get { return (double)this.GetValue(MaximumProperty); }
             set { this.SetValue(MaximumProperty, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.  
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:BlockBarPlacement" /> enumeration value that identifies the position of the <see cref="T:BlockBar" /> in the <see cref="T:System.Windows.Style" /> layout of a <see cref="T:System.Windows.Controls.Slider" />. The default value is <see cref="F:BlockBarPlacement.Top" />.
-        /// </returns>
-        public TickBarPlacement Placement
-        {
-            get { return (TickBarPlacement)this.GetValue(PlacementProperty); }
-            set { this.SetValue(PlacementProperty, value); }
         }
 
         /// <summary>
@@ -195,19 +171,19 @@ namespace Gu.Gauges
 
         private static void OnMinimumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var bar = (Bar)d;
+            var bar = (TickBarBase)d;
             bar.OnTicksChanged();
         }
 
         private static void OnMaximumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var bar = (Bar)d;
+            var bar = (TickBarBase)d;
             bar.OnTicksChanged();
         }
 
         private static void OnTicksChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var bar = (Bar)d;
+            var bar = (TickBarBase)d;
             var oldTicks = e.OldValue as DoubleCollection;
             if (oldTicks != null)
             {
@@ -228,7 +204,7 @@ namespace Gu.Gauges
 
         private static void OnTickFrequencyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var bar = (Bar)d;
+            var bar = (TickBarBase)d;
             bar.OnTicksChanged();
         }
     }

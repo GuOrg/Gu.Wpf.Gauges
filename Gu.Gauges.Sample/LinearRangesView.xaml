@@ -6,10 +6,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DesignHeight="300"
              d:DesignWidth="300"
-             mc:Ignorable="d"
-             >
+             mc:Ignorable="d">
     <UserControl.Resources>
-        <Style TargetType="{x:Type gauges:LinearAxis}">
+        <Style x:Key="RangeAxisStyle" TargetType="{x:Type gauges:LinearAxis}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type gauges:LinearAxis}">
@@ -22,42 +21,43 @@
                             <gauges:TextTickBar Grid.Row="0"
                                                 FontSize="20"
                                                 Foreground="Black"
+                                                IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                                                Maximum="{TemplateBinding Maximum}"
+                                                Minimum="{TemplateBinding Minimum}"
                                                 TextOrientation="Horizontal"
-                                                Ticks="{TemplateBinding MajorTicks}"
-                                                />
+                                                Ticks="{TemplateBinding MajorTicks}" />
 
                             <gauges:LinearTickBar Grid.Row="1"
                                                   Fill="Black"
-                                                  TickFrequency="{TemplateBinding MinorTickFrequency}"
-                                                  />
-                          
-                            <gauges:LinearPanel Grid.Row="2">
+                                                  IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                                                  Maximum="{TemplateBinding Maximum}"
+                                                  Minimum="{TemplateBinding Minimum}"
+                                                  TickFrequency="{TemplateBinding MinorTickFrequency}" />
+
+                            <gauges:LinearPanel Grid.Row="2"
+                                                IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                                                Maximum="{TemplateBinding Maximum}"
+                                                Minimum="{TemplateBinding Minimum}">
                                 <gauges:LinearRange Background="GreenYellow"
                                                     End="20"
-                                                    Start="0"
-                                                    >
+                                                    Start="0">
                                     <TextBlock HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
-                                               Text="Good"
-                                               />
+                                               Text="Good" />
                                 </gauges:LinearRange>
                                 <gauges:LinearRange Background="Yellow"
                                                     End="80"
-                                                    Start="20"
-                                                    >
+                                                    Start="20">
                                     <TextBlock HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
-                                               Text="Bad"
-                                               />
+                                               Text="Bad" />
                                 </gauges:LinearRange>
                                 <gauges:LinearRange Background="Orange"
                                                     End="100"
-                                                    Start="80"
-                                                    >
+                                                    Start="80">
                                     <TextBlock HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
-                                               Text="Ugly"
-                                               />
+                                               Text="Ugly" />
                                 </gauges:LinearRange>
                             </gauges:LinearPanel>
                         </Grid>
@@ -83,7 +83,7 @@
                                                      ElementName=ValueSlider}"
                                    MinorTickFrequency="10"
                                    Placement="Bottom"
-                                   />
+                                   Style="{StaticResource RangeAxisStyle}" />
             </gauges:LinearGauge.Axis>
             <gauges:LinearGauge.Indicators>
                 <gauges:LinearIndicators>
@@ -99,14 +99,12 @@
                                        Fill="Black"
                                        RenderTransform="{Binding PlacementTransform,
                                                                  RelativeSource={RelativeSource AncestorType={x:Type gauges:LinearValue}}}"
-                                       RenderTransformOrigin="0.5,0.5"
-                                       />
+                                       RenderTransformOrigin="0.5,0.5" />
                             <TextBlock Grid.Row="1"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Top"
                                        Text="{Binding Value,
-                                                      RelativeSource={RelativeSource AncestorType={x:Type gauges:LinearGauge}}}"
-                                       />
+                                                      RelativeSource={RelativeSource AncestorType={x:Type gauges:LinearGauge}}}" />
                         </Grid>
 
                     </gauges:LinearValue>
@@ -124,8 +122,7 @@
                         <ContentPresenter Grid.Row="0"
                                           Grid.RowSpan="2"
                                           VerticalAlignment="Bottom"
-                                          Content="{TemplateBinding Indicators}"
-                                          />
+                                          Content="{TemplateBinding Indicators}" />
                     </Grid>
                 </ControlTemplate>
             </gauges:LinearGauge.Template>
@@ -136,7 +133,6 @@
                 Width="200"
                 Maximum="100"
                 Minimum="0"
-                Value="35"
-                />
+                Value="35" />
     </Grid>
 </UserControl>
