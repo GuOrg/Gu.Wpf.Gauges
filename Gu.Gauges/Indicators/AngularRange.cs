@@ -5,18 +5,18 @@
     public class AngularRange : AngularIndicator
     {
        public static readonly DependencyProperty StartProperty = DependencyProperty.Register(
-            "Start", typeof(double),
+nameof(Start), typeof(double),
             typeof(AngularRange),
             new PropertyMetadata(
-                double.NaN, 
+                double.NaN,
                 OnStartChanged));
 
         public static readonly DependencyProperty EndProperty = DependencyProperty.Register(
-            "End",
+nameof(End),
             typeof(double),
             typeof(AngularRange),
             new PropertyMetadata(
-                double.NaN, 
+                double.NaN,
                 OnEndChanged));
 
         static AngularRange()
@@ -26,14 +26,14 @@
 
         public double Start
         {
-            get { return (double)this.GetValue(StartProperty); }
-            set { this.SetValue(StartProperty, value); }
+            get => (double)this.GetValue(StartProperty);
+            set => this.SetValue(StartProperty, value);
         }
 
         public double End
         {
-            get { return (double)this.GetValue(EndProperty); }
-            set { this.SetValue(EndProperty, value); }
+            get => (double)this.GetValue(EndProperty);
+            set => this.SetValue(EndProperty, value);
         }
 
         protected virtual void OnEndChanged(double newValue)

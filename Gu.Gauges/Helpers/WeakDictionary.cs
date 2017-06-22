@@ -4,9 +4,11 @@ namespace Gu.Gauges
     using System.Collections.Generic;
     using System.Linq;
 
-    public class WeakDictionary<TKey, TValue> : IEnumerable<WeakKeyValuePair<TKey, TValue>> where TKey : class
+    public class WeakDictionary<TKey, TValue> : IEnumerable<WeakKeyValuePair<TKey, TValue>>
+        where TKey : class
     {
         private readonly List<WeakKeyValuePair<TKey, TValue>> inner = new List<WeakKeyValuePair<TKey, TValue>>();
+
         public IEnumerator<WeakKeyValuePair<TKey, TValue>> GetEnumerator()
         {
             this.inner.RemoveAll(x => x.Key == null);
@@ -29,6 +31,7 @@ namespace Gu.Gauges
             {
                 this.inner.Add(new WeakKeyValuePair<TKey, TValue>(key, value));
             }
+
             this.inner.RemoveAll(x => x.Key == null);
         }
 

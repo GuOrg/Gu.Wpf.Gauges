@@ -16,7 +16,7 @@
         {
             var ca = Math.Cos(radians);
             var sa = Math.Sin(radians);
-            return new Vector(ca * v.X - sa * v.Y, sa * v.X + ca * v.Y);
+            return new Vector((ca * v.X) - (sa * v.Y), (sa * v.X) + (ca * v.Y));
         }
 
         internal static Vector Round(this Vector v, int decimals)

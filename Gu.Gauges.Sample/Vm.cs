@@ -24,10 +24,7 @@
 
         public double Value
         {
-            get
-            {
-                return this.value;
-            }
+            get => this.value;
 
             set
             {
@@ -43,16 +40,14 @@
 
         public bool ShowLabels
         {
-            get
-            {
-                return this.showLabels;
-            }
+            get => this.showLabels;
             set
             {
                 if (value.Equals(this.showLabels))
                 {
                     return;
                 }
+
                 this.showLabels = value;
                 this.OnPropertyChanged();
             }

@@ -6,7 +6,7 @@
     internal static class SizeExt
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="size"></param>
         /// <param name="vertical"></param>
@@ -28,7 +28,7 @@
                     x = size.Width;
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException("horizontal");
+                    throw new ArgumentOutOfRangeException(nameof(horizontal));
             }
 
             switch (vertical)
@@ -43,18 +43,17 @@
                     y = size.Height;
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException("vertical");
+                    throw new ArgumentOutOfRangeException(nameof(vertical));
             }
-
 
             return new Vector(-x, -y);
         }
 
         internal static bool IsInvalid(this Size size)
         {
-            return (double.IsNaN(size.Width) ||
+            return double.IsNaN(size.Width) ||
                     double.IsNaN(size.Height) ||
-                    size.IsEmpty);
+                    size.IsEmpty;
         }
 
         internal static Point MidPoint(this Size size)

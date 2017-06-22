@@ -24,8 +24,8 @@ namespace Gu.Gauges
         /// </summary>
         public double MinAngle
         {
-            get { return (double)this.GetValue(MinAngleProperty); }
-            set { this.SetValue(MinAngleProperty, value); }
+            get => (double)this.GetValue(MinAngleProperty);
+            set => this.SetValue(MinAngleProperty, value);
         }
 
         /// <summary>
@@ -34,8 +34,8 @@ namespace Gu.Gauges
         /// </summary>
         public double MaxAngle
         {
-            get { return (double)this.GetValue(MaxAngleProperty); }
-            set { this.SetValue(MaxAngleProperty, value); }
+            get => (double)this.GetValue(MaxAngleProperty);
+            set => this.SetValue(MaxAngleProperty, value);
         }
 
         protected override void OnRender(DrawingContext dc)
@@ -46,7 +46,7 @@ namespace Gu.Gauges
                 var tick = this.AllTicks[i];
                 var text = this.AllTexts[i];
                 var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
-                var point = arc.GetPoint(angle, -this.ReservedSpace / 2 - this.TextSpace / 2);
+                var point = arc.GetPoint(angle, (-this.ReservedSpace / 2) - (this.TextSpace / 2));
                 var textPosition = new TextPosition(text, new TextPositionOptions(this.TextOrientation, angle), point, angle);
                 dc.DrawText(text, textPosition);
             }
@@ -54,7 +54,7 @@ namespace Gu.Gauges
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            var bounds = new Rect();
+            var bounds = default(Rect);
             var midPoint = new Point(0, 0);
             var arc = new Arc(midPoint, this.MinAngle, this.MaxAngle, this.ReservedSpace, this.IsDirectionReversed);
             for (int i = 0; i < this.AllTicks.Count; i++)
@@ -66,6 +66,7 @@ namespace Gu.Gauges
                 var textPosition = new TextPosition(text, new TextPositionOptions(this.TextOrientation, angle), point, angle);
                 bounds.Union(textPosition.TransformedBounds);
             }
+
             var points = new[] { bounds.TopLeft, bounds.TopRight, bounds.BottomRight, bounds.BottomLeft };
 
             this.TextSpace = 2 * points.Max(p => (p - midPoint).Length);

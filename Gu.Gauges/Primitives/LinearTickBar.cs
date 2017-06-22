@@ -19,10 +19,10 @@
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         /// <summary>
-        /// Identifies the <see cref="P:LinearTickBar.PenWidth" /> dependency property. 
+        /// Identifies the <see cref="P:LinearTickBar.PenWidth" /> dependency property.
         /// </summary>
         public static readonly DependencyProperty PenWidthProperty = DependencyProperty.Register(
-            "PenWidth",
+nameof(PenWidth),
             typeof(double),
             typeof(LinearTickBar),
             new FrameworkPropertyMetadata(
@@ -39,15 +39,15 @@
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
-        /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.  
+        /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.
         /// </summary>
         /// <returns>
         /// A <see cref="T:TickBarPlacement" /> enumeration value that identifies the position of the <see cref="T:LinearTickBar" /> in the <see cref="T:System.Windows.Style" /> layout of a <see cref="T:System.Windows.Controls.Slider" />. The default value is <see cref="F:Bar.Top" />.
         /// </returns>
         public TickBarPlacement Placement
         {
-            get { return (TickBarPlacement)this.GetValue(PlacementProperty); }
-            set { this.SetValue(PlacementProperty, value); }
+            get => (TickBarPlacement)this.GetValue(PlacementProperty);
+            set => this.SetValue(PlacementProperty, value);
         }
 
         /// <summary>
@@ -56,20 +56,20 @@
         /// </summary>
         public double PenWidth
         {
-            get { return (double)this.GetValue(PenWidthProperty); }
-            set { this.SetValue(PenWidthProperty, value); }
+            get => (double)this.GetValue(PenWidthProperty);
+            set => this.SetValue(PenWidthProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> that is used to draw the tick marks.  
+        /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> that is used to draw the tick marks.
         /// </summary>
         /// <returns>
         /// A <see cref="T:System.Windows.Media.Brush" /> to use to draw tick marks. The default value is null.
         /// </returns>
         public Brush Fill
         {
-            get { return (Brush)this.GetValue(FillProperty); }
-            set { this.SetValue(FillProperty, value); }
+            get => (Brush)this.GetValue(FillProperty);
+            set => this.SetValue(FillProperty, value);
         }
 
         protected override void OnRender(DrawingContext dc)
@@ -93,6 +93,7 @@
                     offset = new Vector(0, -1 * this.ActualHeight);
                     break;
             }
+
             foreach (var tick in this.AllTicks)
             {
                 var p = TickHelper.ToPos(tick, this.Minimum, this.Maximum, line).Round(0);

@@ -28,7 +28,6 @@
             this.value = 50;
             this.TickFrequency = 50;
             this.ReservedSpace = 0;
-            //this.Ticks = new DoubleCollection(new[] { 5, 15, 25.0 });
             this.Placement = TickBarPlacement.Bottom;
         }
 
@@ -36,10 +35,14 @@
 
         public double Minimum
         {
-            get { return this.minimum; }
+            get => this.minimum;
             set
             {
-                if (value.Equals(this.minimum)) return;
+                if (value.Equals(this.minimum))
+                {
+                    return;
+                }
+
                 this.minimum = value;
                 this.OnPropertyChanged();
             }
@@ -47,10 +50,14 @@
 
         public double Maximum
         {
-            get { return this.maximum; }
+            get => this.maximum;
             set
             {
-                if (value.Equals(this.maximum)) return;
+                if (value.Equals(this.maximum))
+                {
+                    return;
+                }
+
                 this.maximum = value;
                 this.OnPropertyChanged();
             }
@@ -58,16 +65,14 @@
 
         public double Value
         {
-            get
-            {
-                return this.value;
-            }
+            get => this.value;
             set
             {
                 if (value.Equals(this.value))
                 {
                     return;
                 }
+
                 this.value = value;
                 this.OnPropertyChanged();
             }
@@ -75,10 +80,14 @@
 
         public double TickFrequency
         {
-            get { return this.tickFrequency; }
+            get => this.tickFrequency;
             set
             {
-                if (value.Equals(this.tickFrequency)) return;
+                if (value.Equals(this.tickFrequency))
+                {
+                    return;
+                }
+
                 this.tickFrequency = value;
                 this.OnPropertyChanged();
             }
@@ -86,16 +95,14 @@
 
         public double MinorTickFrequency
         {
-            get
-            {
-                return this.minorTickFrequency;
-            }
+            get => this.minorTickFrequency;
             set
             {
                 if (value.Equals(this.minorTickFrequency))
                 {
                     return;
                 }
+
                 this.minorTickFrequency = value;
                 this.OnPropertyChanged();
             }
@@ -103,10 +110,14 @@
 
         public double ReservedSpace
         {
-            get { return this.reservedSpace; }
+            get => this.reservedSpace;
             set
             {
-                if (value.Equals(this.reservedSpace)) return;
+                if (value.Equals(this.reservedSpace))
+                {
+                    return;
+                }
+
                 this.reservedSpace = value;
                 this.OnPropertyChanged();
             }
@@ -114,10 +125,14 @@
 
         public DoubleCollection Ticks
         {
-            get { return this.ticks; }
+            get => this.ticks;
             set
             {
-                if (Equals(value, this.ticks)) return;
+                if (Equals(value, this.ticks))
+                {
+                    return;
+                }
+
                 this.ticks = value;
                 this.OnPropertyChanged();
             }
@@ -125,10 +140,14 @@
 
         public TickBarPlacement Placement
         {
-            get { return this.placement; }
+            get => this.placement;
             set
             {
-                if (value == this.placement) return;
+                if (value == this.placement)
+                {
+                    return;
+                }
+
                 this.placement = value;
                 this.OnPropertyChanged();
             }
@@ -136,10 +155,14 @@
 
         public TextOrientation TextOrientation
         {
-            get { return this.textOrientation; }
+            get => this.textOrientation;
             set
             {
-                if (value == this.textOrientation) return;
+                if (value == this.textOrientation)
+                {
+                    return;
+                }
+
                 this.textOrientation = value;
                 this.OnPropertyChanged();
             }
@@ -147,10 +170,14 @@
 
         public bool IsDirectionReversed
         {
-            get { return this.isDirectionReversed; }
+            get => this.isDirectionReversed;
             set
             {
-                if (value.Equals(this.isDirectionReversed)) return;
+                if (value.Equals(this.isDirectionReversed))
+                {
+                    return;
+                }
+
                 this.isDirectionReversed = value;
                 this.OnPropertyChanged();
             }
@@ -158,10 +185,14 @@
 
         public bool ShowLabels
         {
-            get { return this.showLabels; }
+            get => this.showLabels;
             set
             {
-                if (value.Equals(this.showLabels)) return;
+                if (value.Equals(this.showLabels))
+                {
+                    return;
+                }
+
                 this.showLabels = value;
                 this.OnPropertyChanged();
             }
