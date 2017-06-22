@@ -14,10 +14,12 @@
     public class LinearIndicators : FrameworkElement
     {
         private static readonly DependencyPropertyKey GaugePropertyKey = DependencyProperty.RegisterReadOnly(
-nameof(Gauge),
+            nameof(Gauge),
             typeof(LinearGauge),
             typeof(LinearIndicators),
-            new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure));
+            new FrameworkPropertyMetadata(
+                null,
+                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
 #pragma warning disable SA1202 // Elements must be ordered by access
         public static readonly DependencyProperty GaugeProperty = GaugePropertyKey.DependencyProperty;

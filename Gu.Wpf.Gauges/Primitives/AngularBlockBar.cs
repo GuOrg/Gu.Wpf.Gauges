@@ -23,7 +23,7 @@ namespace Gu.Wpf.Gauges
         public static readonly DependencyProperty FillProperty = Shape.FillProperty.AddOwner(
             typeof(AngularBlockBar),
             new FrameworkPropertyMetadata(
-                Brushes.HotPink,
+                default(Brush),
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty StrokeProperty = Shape.StrokeProperty.AddOwner(
@@ -39,7 +39,7 @@ namespace Gu.Wpf.Gauges
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty GapProperty = DependencyProperty.Register(
-nameof(Gap),
+            nameof(Gap),
             typeof(double),
             typeof(AngularBlockBar),
             new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.AffectsRender));

@@ -1,8 +1,8 @@
 ﻿<Application x:Class="Gu.Wpf.Gauges.Sample.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:gauges="http://gu.se/Gauges"
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
+             xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <Style TargetType="{x:Type TextBlock}">

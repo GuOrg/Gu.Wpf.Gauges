@@ -5,7 +5,7 @@
     public class LinearGauge : Gauge
     {
         public static readonly DependencyProperty AxisProperty = DependencyProperty.Register(
-nameof(Axis),
+            nameof(Axis),
             typeof(LinearAxis),
             typeof(LinearGauge),
             new FrameworkPropertyMetadata(
@@ -14,7 +14,7 @@ nameof(Axis),
                 OnAxisChanged));
 
         public static readonly DependencyProperty IndicatorsProperty = DependencyProperty.Register(
-nameof(Indicators),
+            nameof(Indicators),
             typeof(LinearIndicators),
             typeof(LinearGauge),
             new FrameworkPropertyMetadata(
@@ -39,11 +39,11 @@ nameof(Indicators),
             set => this.SetValue(IndicatorsProperty, value);
         }
 
-        protected virtual void OnAxisChanged(LinearAxis old, LinearAxis newAxis)
+        protected virtual void OnAxisChanged(LinearAxis oldAxis, LinearAxis newAxis)
         {
         }
 
-        protected virtual void OnIndicatorsChanged(LinearIndicators old, LinearIndicators newAxis)
+        protected virtual void OnIndicatorsChanged(LinearIndicators oldIndicators, LinearIndicators newIndicators)
         {
         }
 

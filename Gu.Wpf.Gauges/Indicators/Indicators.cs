@@ -9,7 +9,7 @@ namespace Gu.Wpf.Gauges
     using Gu.Wpf.Gauges.Helpers;
 
     public abstract class Indicators<TGauge> : Control
-        where TGauge : IGauge
+        where TGauge : Gauge
     {
         protected override void OnInitialized(EventArgs e)
         {

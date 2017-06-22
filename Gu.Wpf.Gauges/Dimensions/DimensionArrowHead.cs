@@ -8,7 +8,7 @@ namespace Gu.Wpf.Gauges
     public class DimensionArrowHead : Shape
     {
         public static readonly DependencyProperty PointProperty = DependencyProperty.Register(
-nameof(Point),
+            nameof(Point),
             typeof(Point),
             typeof(DimensionArrowHead),
             new FrameworkPropertyMetadata(
@@ -16,7 +16,7 @@ nameof(Point),
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty DirectionProperty = DependencyProperty.Register(
-nameof(Direction),
+            nameof(Direction),
             typeof(Vector),
             typeof(DimensionArrowHead),
             new FrameworkPropertyMetadata(
@@ -24,7 +24,7 @@ nameof(Direction),
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty ScaleProperty = DependencyProperty.Register(
-nameof(Scale),
+            nameof(Scale),
             typeof(double),
             typeof(DimensionArrowHead),
             new FrameworkPropertyMetadata(
@@ -65,7 +65,7 @@ nameof(Scale),
                                    FillRule = FillRule.EvenOdd
                                };
 
-                using (StreamGeometryContext context = geometry.Open())
+                using (var context = geometry.Open())
                 {
                     var tp = this.Point - (this.Scale * TerminatorLength * this.Direction);
                     var dir = Vector.Multiply(this.Direction, Rotate90Cw.Value);
@@ -78,7 +78,6 @@ nameof(Scale),
                 }
 
                 geometry.Freeze();
-
                 return geometry;
             }
         }

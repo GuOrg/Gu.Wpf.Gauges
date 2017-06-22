@@ -5,7 +5,7 @@
     public class AngularGauge : Gauge
     {
         public static readonly DependencyProperty AxisProperty = DependencyProperty.Register(
-nameof(Axis),
+            nameof(Axis),
             typeof(AngularAxis),
             typeof(AngularGauge),
             new FrameworkPropertyMetadata(
@@ -14,7 +14,7 @@ nameof(Axis),
                 OnAxisChanged));
 
         public static readonly DependencyProperty IndicatorsProperty = DependencyProperty.Register(
-nameof(Indicators),
+            nameof(Indicators),
             typeof(AngularIndicators),
             typeof(AngularGauge),
             new FrameworkPropertyMetadata(
@@ -39,11 +39,11 @@ nameof(Indicators),
             set => this.SetValue(IndicatorsProperty, value);
         }
 
-        protected virtual void OnAxisChanged(AngularAxis old, AngularAxis newAxis)
+        protected virtual void OnAxisChanged(AngularAxis oldAxis, AngularAxis newAxis)
         {
         }
 
-        protected virtual void OnIndicatorsChanged(AngularIndicators old, AngularIndicators newAxis)
+        protected virtual void OnIndicatorsChanged(AngularIndicators oldIndicators, AngularIndicators newIndicators)
         {
         }
 

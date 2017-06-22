@@ -8,7 +8,7 @@
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
         private static readonly DependencyPropertyKey ItemsPropertyKey = DependencyProperty.RegisterReadOnly(
-nameof(Items),
+            nameof(Items),
             typeof(AngularIndicatorsCollection),
             typeof(AngularIndicators),
             new FrameworkPropertyMetadata(null));
@@ -16,10 +16,12 @@ nameof(Items),
         public static readonly DependencyProperty ItemsProperty = ItemsPropertyKey.DependencyProperty;
 
         private static readonly DependencyPropertyKey GaugePropertyKey = DependencyProperty.RegisterReadOnly(
-nameof(Gauge),
+            nameof(Gauge),
             typeof(AngularGauge),
             typeof(AngularIndicators),
-            new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure));
+            new FrameworkPropertyMetadata(
+                null,
+                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         public static readonly DependencyProperty GaugeProperty = GaugePropertyKey.DependencyProperty;
 #pragma warning restore SA1202 // Elements must be ordered by access

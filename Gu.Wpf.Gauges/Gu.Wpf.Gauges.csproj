@@ -58,7 +58,6 @@
     <Compile Include="Helpers\NameOf.cs" />
     <Compile Include="Helpers\TextPositionOptions.cs" />
     <Compile Include="Helpers\WeakKeyValuePair.cs" />
-    <Compile Include="IGauge.cs" />
     <Compile Include="Indicators\AngularIndicator.cs" />
     <Compile Include="Indicators\AngularIndicators.cs" />
     <Compile Include="Indicators\AngularIndicatorsCollection.cs" />

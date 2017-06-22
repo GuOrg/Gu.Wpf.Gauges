@@ -35,7 +35,7 @@
         public static readonly DependencyProperty FillProperty = Shape.FillProperty.AddOwner(
             typeof(LinearBlockBar),
             new FrameworkPropertyMetadata(
-                Brushes.HotPink,
+                default(Brush),
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty StrokeProperty = Shape.StrokeProperty.AddOwner(

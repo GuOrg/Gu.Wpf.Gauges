@@ -18,6 +18,6 @@ using System.Windows.Markup;
 [assembly: AssemblyVersion("0.1.0.0")]
 [assembly: AssemblyFileVersion("0.1.0.0")]
 [assembly: NeutralResourcesLanguageAttribute("en")]
-[assembly: XmlnsDefinition("http://gu.se/Gauges", "Gu.Wpf.Gauges")]
-[assembly: XmlnsPrefix("http://gu.se/Gauges", "gauges")]
+[assembly: XmlnsDefinition("https://github.com/JohanLarsson/Gu.Wpf.Gauges", "Gu.Wpf.Gauges")]
+[assembly: XmlnsPrefix("https://github.com/JohanLarsson/Gu.Wpf.Gauges", "gauges")]
 [assembly: InternalsVisibleTo("Gu.Wpf.Gauges.Tests", AllInternalsVisible = true)]

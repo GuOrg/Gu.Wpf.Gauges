@@ -10,7 +10,7 @@ namespace Gu.Wpf.Gauges
         /// Identifies the <see cref="P:AngularTickBar.PenWidth" /> dependency property.
         /// </summary>
         public static readonly DependencyProperty PenWidthProperty = DependencyProperty.Register(
-nameof(PenWidth),
+            nameof(PenWidth),
             typeof(double),
             typeof(AngularTickBar),
             new FrameworkPropertyMetadata(
@@ -27,7 +27,7 @@ nameof(PenWidth),
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty TickLengthProperty = DependencyProperty.Register(
-nameof(TickLength),
+            nameof(TickLength),
             typeof(double),
             typeof(AngularTickBar),
             new FrameworkPropertyMetadata(
