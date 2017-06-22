@@ -1,6 +1,7 @@
+RESTRICTION: == net45
 NUGET
   remote: https://api.nuget.org/v3/index.json
     Gu.Analyzers (0.1.11.25-dev)
-    NUnit (2.6.4) - restriction: >= net45
+    NUnit (3.7.1)
     StyleCop.Analyzers (1.0.2)
     WpfAnalyzers (0.2.7.10)

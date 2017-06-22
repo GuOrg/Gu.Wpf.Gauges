@@ -1,0 +1,56 @@
+﻿<Window x:Class="Gu.Wpf.Gauges.Sample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:gauges="http://gu.se/Gauges"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
+        xmlns:sandbox="clr-namespace:Gu.Wpf.Gauges.Sample.Sandbox"
+        Title="MainWindow"
+        Width="525"
+        Height="350"
+        d:DataContext="{d:DesignInstance sample:Vm,
+                                         IsDesignTimeCreatable=True}"
+        mc:Ignorable="d">
+    <TabControl>
+        <TabItem Header="Linear default style">
+            <sample:DefaultStyleLinearGaugeView />
+        </TabItem>
+
+        <TabItem Header="Angular default style">
+            <sample:DefaultStyleAngularGaugeView />
+        </TabItem>
+
+        <TabItem Header="FatStyles">
+            <sample:FatStylesView />
+        </TabItem>
+
+        <TabItem Header="Linear ranges">
+            <sample:LinearRangesView />
+        </TabItem>
+
+        <TabItem Header="LinearBars">
+            <sample:LinearBarsView />
+        </TabItem>
+
+        <TabItem Header="AngularBars">
+            <sample:AngularBarsView />
+        </TabItem>
+
+        <TabItem Header="Linear indicators">
+            <sample:LinearIndicatorsView />
+        </TabItem>
+
+        <TabItem Header="Linear panel">
+            <sample:LinearPanelView />
+        </TabItem>
+
+        <TabItem Header="Polar panel">
+            <sandbox:PolarPanelView />
+        </TabItem>
+
+        <TabItem Header="Angular panel">
+            <sample:AngularPanelView />
+        </TabItem>
+    </TabControl>
+</Window>
