@@ -12,6 +12,7 @@
 
     public class LinearIndicator : ContentControl
     {
+#pragma warning disable SA1202 // Elements must be ordered by access
         private static readonly DependencyPropertyKey GaugePropertyKey = DependencyProperty.RegisterReadOnly(
 nameof(Gauge),
             typeof(LinearGauge),
@@ -24,7 +25,7 @@ nameof(Gauge),
             "PlacementProxy",
             typeof(TickBarPlacement),
             typeof(LinearIndicator),
-            new PropertyMetadata(default(TickBarPlacement), OnPlacementChanged));
+            new PropertyMetadata(default(TickBarPlacement), OnPlacementProxyChanged));
 
         private static readonly DependencyPropertyKey PlacementTransformPropertyKey = DependencyProperty.RegisterReadOnly(
 nameof(PlacementTransform),
@@ -33,6 +34,7 @@ nameof(PlacementTransform),
             new PropertyMetadata(default(RotateTransform)));
 
         public static readonly DependencyProperty PlacementTransformProperty = PlacementTransformPropertyKey.DependencyProperty;
+#pragma warning restore SA1202 // Elements must be ordered by access
 
         public LinearIndicator()
         {
@@ -73,16 +75,16 @@ nameof(PlacementTransform),
             switch (placement)
             {
                 case TickBarPlacement.Left:
-                    this.PlacementTransform.Angle = 90;
+                    this.PlacementTransform.SetCurrentValue(RotateTransform.AngleProperty, (double)90);
                     break;
                 case TickBarPlacement.Top:
-                    this.PlacementTransform.Angle = 180;
+                    this.PlacementTransform.SetCurrentValue(RotateTransform.AngleProperty, (double)180);
                     break;
                 case TickBarPlacement.Right:
-                    this.PlacementTransform.Angle = -90;
+                    this.PlacementTransform.SetCurrentValue(RotateTransform.AngleProperty, (double)-90);
                     break;
                 case TickBarPlacement.Bottom:
-                    this.PlacementTransform.Angle = 0;
+                    this.PlacementTransform.SetCurrentValue(RotateTransform.AngleProperty, (double)0);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -94,7 +96,7 @@ nameof(PlacementTransform),
             ((LinearIndicator)d).OnGaugeChanged((LinearGauge)e.OldValue, (LinearGauge)e.NewValue);
         }
 
-        private static void OnPlacementChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnPlacementProxyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((LinearIndicator)d).OnPlacementChanged((TickBarPlacement)e.NewValue);
         }

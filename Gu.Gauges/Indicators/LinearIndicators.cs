@@ -19,8 +19,12 @@ nameof(Gauge),
             typeof(LinearIndicators),
             new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+#pragma warning disable SA1202 // Elements must be ordered by access
         public static readonly DependencyProperty GaugeProperty = GaugePropertyKey.DependencyProperty;
-        private readonly LinearPanel panel;
+#pragma warning restore SA1202 // Elements must be ordered by access
+#pragma warning disable SA1401 // Fields must be private
+        internal readonly LinearPanel Panel;
+#pragma warning restore SA1401 // Fields must be private
 
         static LinearIndicators()
         {
@@ -29,12 +33,12 @@ nameof(Gauge),
 
         public LinearIndicators()
         {
-            this.panel = new LinearPanel();
-            this.AddVisualChild(this.panel);
-            this.AddLogicalChild(this.panel);
+            this.Panel = new LinearPanel();
+            this.AddVisualChild(this.Panel);
+            this.AddLogicalChild(this.Panel);
         }
 
-        public UIElementCollection Items => this.panel.Children;
+        public UIElementCollection Items => this.Panel.Children;
 
         public LinearGauge Gauge
         {
@@ -47,11 +51,11 @@ nameof(Gauge),
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
-            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.Minimum, this.panel, LinearPanel.MinimumProperty);
-            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.Maximum, this.panel, LinearPanel.MaximumProperty);
-            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.IsDirectionReversed, this.panel, LinearPanel.IsDirectionReversedProperty);
-            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.Placement, this.panel, LinearPanel.PlacementProperty);
-            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.ReservedSpace, this.panel, LinearPanel.ReservedSpaceProperty);
+            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.Minimum, this.Panel, LinearPanel.MinimumProperty);
+            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.Maximum, this.Panel, LinearPanel.MaximumProperty);
+            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.IsDirectionReversed, this.Panel, LinearPanel.IsDirectionReversedProperty);
+            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.Placement, this.Panel, LinearPanel.PlacementProperty);
+            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.ReservedSpace, this.Panel, LinearPanel.ReservedSpaceProperty);
         }
 
         protected override void OnVisualParentChanged(DependencyObject oldParent)
@@ -66,7 +70,7 @@ nameof(Gauge),
 
         protected override Visual GetVisualChild(int index)
         {
-            return index == 0 ? this.panel : null;
+            return index == 0 ? this.Panel : null;
         }
 
         /// <summary>
@@ -80,8 +84,8 @@ nameof(Gauge),
         /// <returns>The desired size of the control.</returns>
         protected override Size MeasureOverride(Size constraint)
         {
-            this.panel.Measure(constraint);
-            return this.panel.DesiredSize;
+            this.Panel.Measure(constraint);
+            return this.Panel.DesiredSize;
         }
 
         /// <summary>
@@ -91,13 +95,13 @@ nameof(Gauge),
         /// <param name="arrangeBounds">The computed size.</param>
         protected override Size ArrangeOverride(Size arrangeBounds)
         {
-            this.panel.Arrange(new Rect(arrangeBounds));
+            this.Panel.Arrange(new Rect(arrangeBounds));
             return arrangeBounds;
         }
 
         private void OnGaugeChanged(LinearGauge newGauge)
         {
-            BindingOperations.ClearAllBindings(this.panel);
+            BindingOperations.ClearAllBindings(this.Panel);
             this.Gauge = newGauge;
         }
     }

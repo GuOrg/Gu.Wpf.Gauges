@@ -193,15 +193,15 @@ namespace Gu.Gauges
             bar.OnTicksChanged();
         }
 
-        private void OnTickCollectionChanged(object sender, EventArgs eventArgs)
-        {
-            this.OnTicksChanged();
-        }
-
         private static void OnTickFrequencyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var bar = (TickBarBase)d;
             bar.OnTicksChanged();
+        }
+
+        private void OnTickCollectionChanged(object sender, EventArgs eventArgs)
+        {
+            this.OnTicksChanged();
         }
     }
 }

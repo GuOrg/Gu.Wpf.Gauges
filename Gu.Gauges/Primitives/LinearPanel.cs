@@ -222,7 +222,10 @@
 
             foreach (UIElement child in this.InternalChildren)
             {
-                if (child == null) { continue; }
+                if (child == null)
+                {
+                    continue;
+                }
 
                 Point ps = default(Point);
                 Point pe = default(Point);
