@@ -18,9 +18,9 @@
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public TickBarVm TickBarVm { get; private set; }
+        public TickBarVm TickBarVm { get; }
 
-        public AngularTickBarVm AngularTickBarVm { get; private set; }
+        public AngularTickBarVm AngularTickBarVm { get; }
 
         public double Value
         {
@@ -60,11 +60,7 @@
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

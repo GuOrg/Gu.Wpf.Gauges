@@ -45,7 +45,7 @@ namespace Gu.Gauges
             typeof(AngularBlockBar),
             new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.AffectsRender));
 
-        public static DependencyProperty TickLengthProperty =
+        public static readonly DependencyProperty TickLengthProperty =
             AngularTickBar.TickLengthProperty.AddOwner(
                 typeof(AngularBlockBar),
                 new FrameworkPropertyMetadata(
