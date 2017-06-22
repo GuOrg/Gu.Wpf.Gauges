@@ -1,0 +1,8 @@
+source https://dotnet.myget.org/F/dotnet-core/api/v3/index.json
+source https://dotnet.myget.org/F/cli-deps/api/v3/index.json
+source https://api.nuget.org/v3/index.json
+
+nuget Gu.Analyzers 0.1.11.25-dev
+nuget NUnit 2.6.4 restriction: >= net45
+nuget StyleCop.Analyzers 1.0.2
+nuget WpfAnalyzers 0.2.7.10

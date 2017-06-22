@@ -111,16 +111,8 @@
     <Compile Include="TextOrientation.cs" />
     <Compile Include="Helpers\WeakDictionary.cs" />
     <None Include="Gu.Gauges.ruleset" />
-    <None Include="packages.config" />
+    <None Include="paket.references" />
     <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\packages\Gu.Analyzers.0.1.11.25-dev\analyzers\dotnet\cs\Gu.Analyzers.Analyzers.dll" />
-    <Analyzer Include="..\packages\Gu.Analyzers.0.1.11.25-dev\analyzers\dotnet\cs\Gu.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
-    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
-    <Analyzer Include="..\packages\WpfAnalyzers.0.2.7.10\analyzers\dotnet\cs\WpfAnalyzers.Analyzers.dll" />
-    <Analyzer Include="..\packages\WpfAnalyzers.0.2.7.10\analyzers\dotnet\cs\WpfAnalyzers.CodeFixes.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -130,4 +122,29 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Analyzer Include="..\packages\Gu.Analyzers\analyzers\dotnet\cs\Gu.Analyzers.Analyzers.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\Gu.Analyzers\analyzers\dotnet\cs\Gu.Analyzers.CodeFixes.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\StyleCop.Analyzers\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\StyleCop.Analyzers\analyzers\dotnet\cs\StyleCop.Analyzers.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\WpfAnalyzers\analyzers\dotnet\cs\WpfAnalyzers.Analyzers.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+    <Analyzer Include="..\packages\WpfAnalyzers\analyzers\dotnet\cs\WpfAnalyzers.CodeFixes.dll">
+      <Paket>True</Paket>
+    </Analyzer>
+  </ItemGroup>
+  <Import Project="..\.paket\paket.targets" />
 </Project>
