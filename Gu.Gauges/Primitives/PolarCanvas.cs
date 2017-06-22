@@ -10,13 +10,13 @@
             "Radius",
             typeof(double),
             typeof(PolarCanvas),
-            new PropertyMetadata(double.NaN, OnPositionChanged));
+            new PropertyMetadata(double.NaN, OnRadiusChanged));
 
         public static readonly DependencyProperty AngleProperty = DependencyProperty.RegisterAttached(
             "Angle",
             typeof(double),
             typeof(PolarCanvas),
-            new PropertyMetadata(double.NaN, OnPositionChanged));
+            new PropertyMetadata(double.NaN, OnAngleChanged));
 
         public static void SetRadius(DependencyObject element, double value)
         {
@@ -44,11 +44,7 @@
 
             foreach (UIElement child in this.InternalChildren)
             {
-                if (child == null)
-                {
-                    continue;
-                }
-                child.Measure(childConstraint);
+                child?.Measure(childConstraint);
             }
 
             return new Size();
@@ -83,17 +79,25 @@
             return arrangeSize;
         }
 
-        private static void OnPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnAngleChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            OnPositionChanged(dependencyObject);
+        }
+
+        private static void OnRadiusChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            OnPositionChanged(dependencyObject);
+        }
+
+        private static void OnPositionChanged(DependencyObject d)
         {
             var uie = d as UIElement;
-            if (uie != null)
+            if (uie == null)
             {
-                var panel = VisualTreeHelper.GetParent(uie) as PolarCanvas;
-                if (panel != null)
-                {
-                    panel.InvalidateArrange();
-                }
+                return;
             }
+            var panel = VisualTreeHelper.GetParent(uie) as PolarCanvas;
+            panel?.InvalidateArrange();
         }
     }
 }
