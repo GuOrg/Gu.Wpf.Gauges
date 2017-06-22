@@ -15,9 +15,11 @@
             return string.Join(".", pathVisitor.Properties.Select(x => x.Name));
         }
 
-        internal class PathVisitor : ExpressionVisitor
+        private class PathVisitor : ExpressionVisitor
         {
+#pragma warning disable SA1401 // Fields must be private
             internal readonly List<PropertyInfo> Properties = new List<PropertyInfo>();
+#pragma warning restore SA1401 // Fields must be private
 
             protected override Expression VisitMember(MemberExpression node)
             {

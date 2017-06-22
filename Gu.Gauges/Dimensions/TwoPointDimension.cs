@@ -9,8 +9,9 @@ namespace Gu.Gauges
     public abstract class TwoPointDimension : Control
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
+
         public static readonly DependencyProperty P1Property = DependencyProperty.Register(
-nameof(P1),
+            nameof(P1),
             typeof(Point),
             typeof(TwoPointDimension),
             new FrameworkPropertyMetadata(
@@ -18,7 +19,7 @@ nameof(P1),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty P2Property = DependencyProperty.Register(
-nameof(P2),
+            nameof(P2),
             typeof(Point),
             typeof(TwoPointDimension),
             new FrameworkPropertyMetadata(
@@ -26,7 +27,7 @@ nameof(P2),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty OffsetPointProperty = DependencyProperty.Register(
-nameof(OffsetPoint),
+            nameof(OffsetPoint),
             typeof(Point?),
             typeof(TwoPointDimension),
             new FrameworkPropertyMetadata(
@@ -34,7 +35,7 @@ nameof(OffsetPoint),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty OffsetProperty = DependencyProperty.Register(
-nameof(Offset),
+            nameof(Offset),
             typeof(double),
             typeof(TwoPointDimension),
             new FrameworkPropertyMetadata(
@@ -42,7 +43,7 @@ nameof(Offset),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty OffsetDirectionProperty = DependencyProperty.Register(
-nameof(OffsetDirection),
+            nameof(OffsetDirection),
             typeof(Vector),
             typeof(TwoPointDimension),
             new FrameworkPropertyMetadata(
@@ -50,7 +51,7 @@ nameof(OffsetDirection),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty ScaleProperty = DependencyProperty.Register(
-nameof(Scale),
+            nameof(Scale),
             typeof(double),
             typeof(TwoPointDimension),
             new FrameworkPropertyMetadata(
@@ -58,85 +59,94 @@ nameof(Scale),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
         private static readonly DependencyPropertyKey DimensionLineP1PropertyKey = DependencyProperty.RegisterReadOnly(
-nameof(DimensionLineP1),
+            nameof(DimensionLineP1),
             typeof(Point),
             typeof(TwoPointDimension),
             new FrameworkPropertyMetadata(
                 default(Point),
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
-        public static readonly DependencyProperty DimensionLineP1Property = DimensionLineP1PropertyKey.DependencyProperty;
+        public static readonly DependencyProperty DimensionLineP1Property =
+            DimensionLineP1PropertyKey.DependencyProperty;
 
         private static readonly DependencyPropertyKey DimensionLineP2PropertyKey = DependencyProperty.RegisterReadOnly(
-nameof(DimensionLineP2),
+            nameof(DimensionLineP2),
             typeof(Point),
             typeof(TwoPointDimension),
             new FrameworkPropertyMetadata(
                 default(Point),
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
-        public static readonly DependencyProperty DimensionLineP2Property = DimensionLineP2PropertyKey.DependencyProperty;
+        public static readonly DependencyProperty DimensionLineP2Property =
+            DimensionLineP2PropertyKey.DependencyProperty;
 
         private static readonly DependencyPropertyKey BoundaryLine1P1PropertyKey = DependencyProperty.RegisterReadOnly(
-nameof(BoundaryLine1P1),
+            nameof(BoundaryLine1P1),
             typeof(Point),
             typeof(TwoPointDimension),
             new FrameworkPropertyMetadata(
                 default(Point),
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
-        public static readonly DependencyProperty BoundaryLine1P1Property = BoundaryLine1P1PropertyKey.DependencyProperty;
+        public static readonly DependencyProperty BoundaryLine1P1Property =
+            BoundaryLine1P1PropertyKey.DependencyProperty;
 
         private static readonly DependencyPropertyKey BoundaryLine1P2PropertyKey = DependencyProperty.RegisterReadOnly(
-nameof(BoundaryLine1P2),
+            nameof(BoundaryLine1P2),
             typeof(Point),
             typeof(TwoPointDimension),
             new FrameworkPropertyMetadata(
                 default(Point),
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
-        public static readonly DependencyProperty BoundaryLine1P2Property = BoundaryLine1P2PropertyKey.DependencyProperty;
+        public static readonly DependencyProperty BoundaryLine1P2Property =
+            BoundaryLine1P2PropertyKey.DependencyProperty;
 
         private static readonly DependencyPropertyKey BoundaryLine2P1PropertyKey = DependencyProperty.RegisterReadOnly(
-nameof(BoundaryLine2P1),
+            nameof(BoundaryLine2P1),
             typeof(Point),
             typeof(TwoPointDimension),
             new FrameworkPropertyMetadata(
                 default(Point),
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
-        public static readonly DependencyProperty BoundaryLine2P1Property = BoundaryLine2P1PropertyKey.DependencyProperty;
+        public static readonly DependencyProperty BoundaryLine2P1Property =
+            BoundaryLine2P1PropertyKey.DependencyProperty;
 
         private static readonly DependencyPropertyKey BoundaryLine2P2PropertyKey = DependencyProperty.RegisterReadOnly(
-nameof(BoundaryLine2P2),
+            nameof(BoundaryLine2P2),
             typeof(Point),
             typeof(TwoPointDimension),
             new FrameworkPropertyMetadata(
                 default(Point),
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
-        public static readonly DependencyProperty BoundaryLine2P2Property = BoundaryLine2P2PropertyKey.DependencyProperty;
+        public static readonly DependencyProperty BoundaryLine2P2Property =
+            BoundaryLine2P2PropertyKey.DependencyProperty;
 
         private static readonly DependencyPropertyKey ArrowHead1DirectionPropertyKey = DependencyProperty
             .RegisterReadOnly(
-nameof(ArrowHead1Direction),
+                nameof(ArrowHead1Direction),
                 typeof(Vector),
                 typeof(TwoPointDimension),
                 new FrameworkPropertyMetadata(
                     default(Vector),
                     FrameworkPropertyMetadataOptions.AffectsMeasure));
 
-        public static readonly DependencyProperty ArrowHead1DirectionProperty = ArrowHead1DirectionPropertyKey.DependencyProperty;
+        public static readonly DependencyProperty ArrowHead1DirectionProperty =
+            ArrowHead1DirectionPropertyKey.DependencyProperty;
 
-        private static readonly DependencyPropertyKey ArrowHead2DirectionPropertyKey = DependencyProperty.RegisterReadOnly(
-nameof(ArrowHead2Direction),
+        private static readonly DependencyPropertyKey ArrowHead2DirectionPropertyKey =
+            DependencyProperty.RegisterReadOnly(
+                nameof(ArrowHead2Direction),
                 typeof(Vector),
                 typeof(TwoPointDimension),
                 new FrameworkPropertyMetadata(
                     default(Vector),
                     FrameworkPropertyMetadataOptions.AffectsMeasure));
 
-        public static readonly DependencyProperty ArrowHead2DirectionProperty = ArrowHead2DirectionPropertyKey.DependencyProperty;
+        public static readonly DependencyProperty ArrowHead2DirectionProperty =
+            ArrowHead2DirectionPropertyKey.DependencyProperty;
 
         protected const double OriginOffset = 1;
         protected const double Extension = 2;
@@ -169,7 +179,7 @@ nameof(ArrowHead2Direction),
         }
 
         [TypeConverter(typeof(PointConverter))]
-        public Point OffsetPoint
+        public Point? OffsetPoint
         {
             get => (Point)this.GetValue(OffsetPointProperty);
             set => this.SetValue(OffsetPointProperty, value);

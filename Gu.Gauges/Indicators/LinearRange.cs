@@ -20,19 +20,20 @@
 
         static LinearRange()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(LinearRange),
+            DefaultStyleKeyProperty.OverrideMetadata(
+                typeof(LinearRange),
                 new FrameworkPropertyMetadata(typeof(LinearRange)));
         }
 
         public double Start
         {
-            get => (double) this.GetValue(StartProperty);
+            get => (double)this.GetValue(StartProperty);
             set => this.SetValue(StartProperty, value);
         }
 
         public double End
         {
-            get => (double) this.GetValue(EndProperty);
+            get => (double)this.GetValue(EndProperty);
             set => this.SetValue(EndProperty, value);
         }
 
@@ -48,12 +49,12 @@
 
         private static void OnStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((LinearRange) d).OnStartChanged((double) e.NewValue);
+            ((LinearRange)d).OnStartChanged((double)e.NewValue);
         }
 
         private static void OnEndChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((LinearRange) d).OnEndChanged((double) e.NewValue);
+            ((LinearRange)d).OnEndChanged((double)e.NewValue);
         }
     }
 }

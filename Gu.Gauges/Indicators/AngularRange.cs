@@ -4,15 +4,16 @@
 
     public class AngularRange : AngularIndicator
     {
-       public static readonly DependencyProperty StartProperty = DependencyProperty.Register(
-nameof(Start), typeof(double),
+        public static readonly DependencyProperty StartProperty = DependencyProperty.Register(
+            nameof(Start),
+            typeof(double),
             typeof(AngularRange),
             new PropertyMetadata(
                 double.NaN,
                 OnStartChanged));
 
         public static readonly DependencyProperty EndProperty = DependencyProperty.Register(
-nameof(End),
+            nameof(End),
             typeof(double),
             typeof(AngularRange),
             new PropertyMetadata(
@@ -21,7 +22,9 @@ nameof(End),
 
         static AngularRange()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(AngularRange), new FrameworkPropertyMetadata(typeof(AngularRange)));
+            DefaultStyleKeyProperty.OverrideMetadata(
+                typeof(AngularRange),
+                new FrameworkPropertyMetadata(typeof(AngularRange)));
         }
 
         public double Start
