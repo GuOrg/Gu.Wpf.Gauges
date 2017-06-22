@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
+MinimumVisualStudioVersion = 15.0.0.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Gauges", "Gu.Gauges\Gu.Gauges.csproj", "{02C21720-28AF-4A11-8B4E-AD4D71668883}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Gauges.Sample", "Gu.Gauges.Sample\Gu.Gauges.Sample.csproj", "{89497D9C-CE65-4104-B64B-E4F3ECE49A51}"
