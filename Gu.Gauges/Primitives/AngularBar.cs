@@ -4,16 +4,18 @@ namespace Gu.Gauges
 
     public class AngularBar : TickBarBase
     {
+#pragma warning disable SA1202 // Elements must be ordered by access
+
         private static readonly DependencyPropertyKey DiameterPropertyKey = DependencyProperty.RegisterReadOnly(
-nameof(Diameter),
-                typeof(double),
-                typeof(AngularTickBar),
-                new PropertyMetadata(default(double)));
+            nameof(Diameter),
+            typeof(double),
+            typeof(AngularBar),
+            new PropertyMetadata(default(double)));
 
         public static readonly DependencyProperty DiameterProperty = DiameterPropertyKey.DependencyProperty;
 
         public static readonly DependencyProperty MinAngleProperty = DependencyProperty.Register(
-nameof(MinAngle),
+            nameof(MinAngle),
             typeof(double),
             typeof(AngularBar),
             new FrameworkPropertyMetadata(
@@ -21,12 +23,13 @@ nameof(MinAngle),
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty MaxAngleProperty = DependencyProperty.Register(
-nameof(MaxAngle),
+            nameof(MaxAngle),
             typeof(double),
             typeof(AngularBar),
             new FrameworkPropertyMetadata(
                 0.0,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+#pragma warning restore SA1202 // Elements must be ordered by access
 
         /// <summary>
         /// Gets or sets the effective diameter ie ActualWidth - ReservedSpace
