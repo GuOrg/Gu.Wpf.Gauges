@@ -137,7 +137,7 @@
         private static void OnOffsetChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             var dl = o as LinearDimension;
-            if (dl == null || IsNan(dl.P1, dl.P2, dl.OffsetPoint) || IsNan(dl.OffsetDirection))
+            if (dl?.OffsetPoint == null || IsNan(dl.P1, dl.P2, dl.OffsetPoint.Value) || IsNan(dl.OffsetDirection))
             {
                 return;
             }
@@ -171,7 +171,13 @@
             Point op = d < 0
                 ? dl.P2
                 : dl.P1;
-            if (IsNan(dl.OffsetPoint) || (dl.OffsetPoint - op).Length > 1e-3)
+            if (dl.OffsetPoint == null)
+            {
+                return;
+            }
+
+            var offsetPoint = dl.OffsetPoint.Value;
+            if (IsNan(offsetPoint) || (offsetPoint - op).Length > 1e-3)
             {
                 dl.SetCurrentValue(OffsetPointProperty, dl.P2);
                 dl.hasExplicitOffsetPoint = false;
@@ -181,8 +187,13 @@
         private static Point GetOffsetPoint(Point p, LinearDimension dl)
         {
             var op = dl.OffsetPoint + (dl.Scale * dl.Offset * dl.OffsetDirection);
-            var d = Vector.Multiply(op - p, dl.OffsetDirection);
-            return p + (d * dl.OffsetDirection);
+            if (op != null)
+            {
+                var d = Vector.Multiply(op.Value - p, dl.OffsetDirection);
+                return p + (d * dl.OffsetDirection);
+            }
+
+            return p;
         }
 
         private static void UpdateArrowHeadDirections(LinearDimension dl)
