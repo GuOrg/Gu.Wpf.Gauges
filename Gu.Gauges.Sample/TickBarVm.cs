@@ -5,7 +5,6 @@
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
 
-    using Annotations;
     public class TickBarVm : INotifyPropertyChanged
     {
         private double minimum;
@@ -168,7 +167,6 @@
             }
         }
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             var handler = this.PropertyChanged;

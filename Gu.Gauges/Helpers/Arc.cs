@@ -77,7 +77,7 @@
 
         public Arc OffsetWith(double offset)
         {
-            return new Arc(this.Centre, this.Start, this.End, this.Radius + offset, false);
+            return new Arc(this.Centre, this.Start, this.End, this.Radius + offset, isDirectionReversed: false);
         }
 
         public override string ToString()
@@ -98,11 +98,11 @@
                 availableSize.Height == 0 ||
                 double.IsNaN(availableSize.Height))
             {
-                return new Arc(new Point(0, 0), start, end, 0, false);
+                return new Arc(new Point(0, 0), start, end, 0, isDirectionReversed: false);
             }
 
             var p0 = new Point(0, 0);
-            var arc = new Arc(p0, start, end, 1, false);
+            var arc = new Arc(p0, start, end, 1, isDirectionReversed: false);
             var rect = new Rect();
             var ps = arc.GetPoint(start);
             rect.Union(ps);
@@ -116,7 +116,7 @@
             var r = Math.Min(wf, hf);
             rect.Scale(r, r);
             var v = rect.FindTranslationToCenter(availableSize);
-            return new Arc(p0 + v, start, end, r, false);
+            return new Arc(p0 + v, start, end, r, isDirectionReversed: false);
         }
     }
 }
