@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Gu.Gauges.Tests.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>Gu.Gauges.Tests.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework">
@@ -65,6 +67,7 @@
     <Compile Include="Helpers\VextorExtTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Gu.Gauges.Tests.ruleset" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +79,8 @@
   <ItemGroup>
     <Analyzer Include="..\packages\Gu.Analyzers.0.1.11.25-dev\analyzers\dotnet\cs\Gu.Analyzers.Analyzers.dll" />
     <Analyzer Include="..\packages\Gu.Analyzers.0.1.11.25-dev\analyzers\dotnet\cs\Gu.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
     <Analyzer Include="..\packages\WpfAnalyzers.0.2.7.10\analyzers\dotnet\cs\WpfAnalyzers.Analyzers.dll" />
     <Analyzer Include="..\packages\WpfAnalyzers.0.2.7.10\analyzers\dotnet\cs\WpfAnalyzers.CodeFixes.dll" />
   </ItemGroup>

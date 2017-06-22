@@ -5,7 +5,7 @@ namespace Gu.Gauges
     public class AngularBar : TickBarBase
     {
         private static readonly DependencyPropertyKey DiameterPropertyKey = DependencyProperty.RegisterReadOnly(
-                "Diameter",
+nameof(Diameter),
                 typeof(double),
                 typeof(AngularTickBar),
                 new PropertyMetadata(default(double)));
@@ -13,7 +13,7 @@ namespace Gu.Gauges
         public static readonly DependencyProperty DiameterProperty = DiameterPropertyKey.DependencyProperty;
 
         public static readonly DependencyProperty MinAngleProperty = DependencyProperty.Register(
-            "MinAngle",
+nameof(MinAngle),
             typeof(double),
             typeof(AngularBar),
             new FrameworkPropertyMetadata(
@@ -21,7 +21,7 @@ namespace Gu.Gauges
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty MaxAngleProperty = DependencyProperty.Register(
-            "MaxAngle",
+nameof(MaxAngle),
             typeof(double),
             typeof(AngularBar),
             new FrameworkPropertyMetadata(
@@ -34,8 +34,8 @@ namespace Gu.Gauges
         /// </summary>
         public double Diameter
         {
-            get { return (double)this.GetValue(DiameterProperty); }
-            protected set { this.SetValue(DiameterPropertyKey, value); }
+            get => (double)this.GetValue(DiameterProperty);
+            protected set => this.SetValue(DiameterPropertyKey, value);
         }
 
         /// <summary>
@@ -44,8 +44,8 @@ namespace Gu.Gauges
         /// </summary>
         public double MinAngle
         {
-            get { return (double)this.GetValue(MinAngleProperty); }
-            set { this.SetValue(MinAngleProperty, value); }
+            get => (double)this.GetValue(MinAngleProperty);
+            set => this.SetValue(MinAngleProperty, value);
         }
 
         /// <summary>
@@ -54,8 +54,8 @@ namespace Gu.Gauges
         /// </summary>
         public double MaxAngle
         {
-            get { return (double)this.GetValue(MaxAngleProperty); }
-            set { this.SetValue(MaxAngleProperty, value); }
+            get => (double)this.GetValue(MaxAngleProperty);
+            set => this.SetValue(MaxAngleProperty, value);
         }
     }
 }

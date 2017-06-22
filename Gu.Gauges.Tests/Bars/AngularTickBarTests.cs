@@ -5,6 +5,5 @@
     [RequiresSTA]
     public class AngularTickBarTests
     {
-
     }
 }

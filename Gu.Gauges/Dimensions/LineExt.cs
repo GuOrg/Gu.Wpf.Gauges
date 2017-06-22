@@ -8,13 +8,13 @@
             "StartPoint",
             typeof(Point),
             typeof(LineExt),
-            new PropertyMetadata(default(Point), OnLineStartPointChanged));
+            new PropertyMetadata(default(Point), OnStartPointChanged));
 
         public static readonly DependencyProperty EndPointProperty = DependencyProperty.RegisterAttached(
             "EndPoint",
             typeof(Point),
             typeof(LineExt),
-            new PropertyMetadata(default(Point), OnLineEndPointChanged));
+            new PropertyMetadata(default(Point), OnEndPointChanged));
 
         public static void SetEndPoint(System.Windows.Shapes.Line element, Point value)
         {
@@ -36,28 +36,30 @@
             return (Point)element.GetValue(StartPointProperty);
         }
 
-        private static void OnLineEndPointChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        private static void OnEndPointChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             var l = o as System.Windows.Shapes.Line;
             if (l == null)
             {
                 return;
             }
+
             var p = (Point)e.NewValue;
-            l.SetValue(System.Windows.Shapes.Line.X2Property, p.X);
-            l.SetValue(System.Windows.Shapes.Line.Y2Property, p.Y);
+            l.SetCurrentValue(System.Windows.Shapes.Line.X2Property, p.X);
+            l.SetCurrentValue(System.Windows.Shapes.Line.Y2Property, p.Y);
         }
 
-        private static void OnLineStartPointChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        private static void OnStartPointChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             var l = o as System.Windows.Shapes.Line;
             if (l == null)
             {
                 return;
             }
+
             var p = (Point)e.NewValue;
-            l.SetValue(System.Windows.Shapes.Line.X1Property, p.X);
-            l.SetValue(System.Windows.Shapes.Line.Y1Property, p.Y);
+            l.SetCurrentValue(System.Windows.Shapes.Line.X1Property, p.X);
+            l.SetCurrentValue(System.Windows.Shapes.Line.Y1Property, p.Y);
         }
     }
 }

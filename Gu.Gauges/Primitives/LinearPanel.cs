@@ -1,15 +1,15 @@
 ﻿namespace Gu.Gauges
 {
     using System;
-    using System.Windows.Media;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
+    using System.Windows.Media;
 
     public class LinearPanel : Panel
     {
         /// <summary>
-        /// Identifies the <see cref="P:LinearPanel.Minimum" /> dependency property. 
+        /// Identifies the <see cref="P:LinearPanel.Minimum" /> dependency property.
         /// </summary>
         /// <returns>
         /// The identifier for the <see cref="P:LinearPanel.Minimum" /> dependency property.
@@ -21,7 +21,7 @@
                 FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
-        /// Identifies the <see cref="P:LinearPanel.Maximum" /> dependency property. 
+        /// Identifies the <see cref="P:LinearPanel.Maximum" /> dependency property.
         /// </summary>
         /// <returns>
         /// The identifier for the <see cref="P:LinearPanel.Maximum" /> dependency property.
@@ -45,7 +45,7 @@
                 FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
-        /// Identifies the <see cref="P:LinearPanel.IsDirectionReversed" /> dependency property. 
+        /// Identifies the <see cref="P:LinearPanel.IsDirectionReversed" /> dependency property.
         /// </summary>
         public static readonly DependencyProperty IsDirectionReversedProperty = Slider.IsDirectionReversedProperty.AddOwner(
             typeof(LinearPanel),
@@ -69,19 +69,19 @@
             "Start",
             typeof(double),
             typeof(LinearPanel),
-            new PropertyMetadata(double.NaN, OnPositionChanged));
+            new PropertyMetadata(double.NaN, OnStartChanged));
 
         public static readonly DependencyProperty EndProperty = DependencyProperty.RegisterAttached(
             "End",
             typeof(double),
             typeof(LinearPanel),
-            new PropertyMetadata(double.NaN, OnPositionChanged));
+            new PropertyMetadata(double.NaN, OnEndChanged));
 
         public static readonly DependencyProperty AtValueProperty = DependencyProperty.RegisterAttached(
             "AtValue",
             typeof(double),
             typeof(LinearPanel),
-            new PropertyMetadata(double.NaN, OnPositionChanged));
+            new PropertyMetadata(double.NaN, OnAtValueChanged));
 
         /// <summary>
         /// Gets or sets the <see cref="P:LinearPanel.Minimum" />
@@ -89,57 +89,57 @@
         /// </summary>
         public double Minimum
         {
-            get { return (double)this.GetValue(MinimumProperty); }
-            set { this.SetValue(MinimumProperty, value); }
+            get => (double)this.GetValue(MinimumProperty);
+            set => this.SetValue(MinimumProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the highest possible <see cref="P:LinearPanel.Maximum" /> of the range element.  
+        /// Gets or sets the highest possible <see cref="P:LinearPanel.Maximum" /> of the range element.
         /// </summary>
         /// <returns>
         /// The highest possible <see cref="P:LinearPanel.Maximum" /> of the range element. The default is 1.
         /// </returns>
         public double Maximum
         {
-            get { return (double)this.GetValue(MaximumProperty); }
-            set { this.SetValue(MaximumProperty, value); }
+            get => (double)this.GetValue(MaximumProperty);
+            set => this.SetValue(MaximumProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.  
+        /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.
         /// </summary>
         /// <returns>
         /// A <see cref="T:BlockBarPlacement" /> enumeration value that identifies the position of the <see cref="T:LinearPanel" /> in the <see cref="T:System.Windows.Style" /> layout of a <see cref="T:System.Windows.Controls.Slider" />. The default value is <see cref="F:BlockBarPlacement.Top" />.
         /// </returns>
         public TickBarPlacement Placement
         {
-            get { return (TickBarPlacement)this.GetValue(PlacementProperty); }
-            set { this.SetValue(PlacementProperty, value); }
+            get => (TickBarPlacement)this.GetValue(PlacementProperty);
+            set => this.SetValue(PlacementProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the direction of increasing value. 
+        /// Gets or sets the direction of increasing value.
         /// </summary>
         /// <returns>
-        /// true if the direction of increasing value is to the left for a horizontal tickbar or down for a vertical tickbar; otherwise, false. 
+        /// true if the direction of increasing value is to the left for a horizontal tickbar or down for a vertical tickbar; otherwise, false.
         /// The default is false.
         /// </returns>
         public bool IsDirectionReversed
         {
-            get { return (bool)this.GetValue(IsDirectionReversedProperty); }
-            set { this.SetValue(IsDirectionReversedProperty, value); }
+            get => (bool)this.GetValue(IsDirectionReversedProperty);
+            set => this.SetValue(IsDirectionReversedProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets a space buffer for the area that contains the tick marks that are specified for a <see cref="T:Bar" />.  
+        /// Gets or sets a space buffer for the area that contains the tick marks that are specified for a <see cref="T:Bar" />.
         /// </summary>
         /// <returns>
         /// A value that represents the total buffer area on either side of the row or column of tick marks. The default value is zero (0.0).
         /// </returns>
         public double ReservedSpace
         {
-            get { return (double)this.GetValue(ReservedSpaceProperty); }
-            set { this.SetValue(ReservedSpaceProperty, value); }
+            get => (double)this.GetValue(ReservedSpaceProperty);
+            set => this.SetValue(ReservedSpaceProperty, value);
         }
 
         public static void SetStart(DependencyObject element, double value)
@@ -180,7 +180,7 @@
         protected override Size MeasureOverride(Size constraint)
         {
             UIElementCollection children = this.InternalChildren;
-            var desiredSize = new Size();
+            var desiredSize = default(Size);
             for (int i = 0, count = children.Count; i < count; ++i)
             {
                 UIElement child = children[i];
@@ -191,11 +191,12 @@
                     desiredSize.Height = Math.Max(desiredSize.Height, child.DesiredSize.Height);
                 }
             }
+
             return desiredSize;
         }
 
         /// <summary>
-        /// LinearPanel computes a position for each of its children taking into account their  
+        /// LinearPanel computes a position for each of its children taking into account their
         /// </summary>
         /// <param name="arrangeSize">Size that LinearPanel will assume to position children.</param>
         protected override Size ArrangeOverride(Size arrangeSize)
@@ -223,8 +224,8 @@
             {
                 if (child == null) { continue; }
 
-                Point ps = new Point();
-                Point pe = new Point();
+                Point ps = default(Point);
+                Point pe = default(Point);
 
                 double start = GetStart(child);
                 double end = GetEnd(child);
@@ -246,7 +247,7 @@
                         rect.Intersect(rect1);
                         if (rect.IsEmpty)
                         {
-                            child.Arrange(new Rect());
+                            child.Arrange(default(Rect));
                         }
                         else
                         {
@@ -261,7 +262,23 @@
                     child.Arrange(new Rect(ps, pe));
                 }
             }
+
             return arrangeSize;
+        }
+
+        private static void OnStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            OnPositionChanged(d, e);
+        }
+
+        private static void OnEndChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            OnPositionChanged(d, e);
+        }
+
+        private static void OnAtValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            OnPositionChanged(d, e);
         }
 
         private static void OnPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

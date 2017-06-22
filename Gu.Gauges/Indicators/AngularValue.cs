@@ -5,7 +5,7 @@
     public class AngularValue : AngularIndicator
     {
         public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
-            "Value",
+nameof(Value),
             typeof(double),
             typeof(AngularValue),
             new PropertyMetadata(double.NaN, OnValueChanged));
@@ -17,8 +17,8 @@
 
         public double Value
         {
-            get { return (double)this.GetValue(ValueProperty); }
-            set { this.SetValue(ValueProperty, value); }
+            get => (double)this.GetValue(ValueProperty);
+            set => this.SetValue(ValueProperty, value);
         }
 
         protected virtual void OnValueChanged(double newValue)

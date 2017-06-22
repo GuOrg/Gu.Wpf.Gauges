@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-
-namespace Gu.Gauges
+﻿namespace Gu.Gauges
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using System.Reflection;
+
     public static class NameOf
     {
         public static string Property(Expression<Func<object>> property)

@@ -8,8 +8,9 @@ namespace Gu.Gauges
 
     public abstract class Gauge : Control, IGauge
     {
+#pragma warning disable SA1202 // Elements must be ordered by access
         /// <summary>
-        /// Identifies the <see cref="P:Gauge.Value" /> dependency property. 
+        /// Identifies the <see cref="P:Gauge.Value" /> dependency property.
         /// </summary>
         /// <returns>
         /// The identifier for the <see cref="P:Gauge.Value" /> dependency property.
@@ -18,10 +19,10 @@ namespace Gu.Gauges
             typeof(Gauge),
             new PropertyMetadata(
                 0.0,
-                AnimateValue));
+                OnValueChanged));
 
         private static readonly DependencyPropertyKey AnimatedValuePropertyKey = DependencyProperty.RegisterReadOnly(
-            "AnimatedValue",
+nameof(AnimatedValue),
             typeof(double),
             typeof(Gauge),
             new FrameworkPropertyMetadata(default(double)));
@@ -32,21 +33,22 @@ namespace Gu.Gauges
             typeof(double),
             typeof(Gauge),
             new PropertyMetadata(
-                0.0, 
+                0.0,
                 OnAnimatedValueProxyChanged));
 
         public static readonly DependencyProperty AnimatedValueProperty = AnimatedValuePropertyKey.DependencyProperty;
+#pragma warning restore SA1202 // Elements must be ordered by access
 
         /// <summary>
-        /// Gets or sets the current magnitude of the range control.  
+        /// Gets or sets the current magnitude of the range control.
         /// </summary>
         /// <returns>
         /// The current magnitude of the range control. The default is 0.
         /// </returns>
         public double Value
         {
-            get { return (double)this.GetValue(ValueProperty); }
-            set { this.SetValue(ValueProperty, value); }
+            get => (double)this.GetValue(ValueProperty);
+            set => this.SetValue(ValueProperty, value);
         }
 
         /// <summary>
@@ -54,14 +56,19 @@ namespace Gu.Gauges
         /// </summary>
         public double AnimatedValue
         {
-            get { return (double)this.GetValue(AnimatedValueProperty); }
-            protected set { this.SetValue(AnimatedValuePropertyKey, value); }
+            get => (double)this.GetValue(AnimatedValueProperty);
+            protected set => this.SetValue(AnimatedValuePropertyKey, value);
         }
 
-        private static void AnimateValue(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var gauge = (Gauge)d;
             gauge.AnimateValue();
+        }
+
+        private static void OnAnimatedValueProxyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            d.SetValue(AnimatedValuePropertyKey, e.NewValue);
         }
 
         private void AnimateValue()
@@ -70,13 +77,9 @@ namespace Gu.Gauges
             {
                 return;
             }
+
             var valueAnimation = new DoubleAnimation(this.Value, TimeSpan.FromMilliseconds(100));
             this.BeginAnimation(AnimatedValueProxyProperty, valueAnimation);
-        }
-
-        private static void OnAnimatedValueProxyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            d.SetValue(AnimatedValuePropertyKey, e.NewValue);
         }
     }
 }

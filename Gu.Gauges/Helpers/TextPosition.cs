@@ -33,16 +33,12 @@
             }
         }
 
-        public bool IsTransformed
-        {
-            get { return this.textPositionOptions.Orientation != TextOrientation.Horizontal; }
-        }
+        public bool IsTransformed => this.textPositionOptions.Orientation != TextOrientation.Horizontal;
 
         public Transform Transform
         {
             get
             {
-                //return Transform.Identity;
                 switch (this.textPositionOptions.Orientation)
                 {
                     case TextOrientation.Horizontal:
@@ -67,17 +63,12 @@
                 {
                     rect.Transform(this.Transform.Value);
                 }
+
                 return rect;
             }
         }
 
-        private Vector Offset
-        {
-            get
-            {
-                return this.textSize.Offset(this.textPositionOptions.Vertical, this.textPositionOptions.Horizontal);
-            }
-        }
+        private Vector Offset => this.textSize.Offset(this.textPositionOptions.Vertical, this.textPositionOptions.Horizontal);
 
         private double RotationAngle
         {

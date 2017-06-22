@@ -29,9 +29,9 @@
         [TestCase(TickBarPlacement.Bottom, "-7, 0")]
         public void VerticalUpPoint(TickBarPlacement placement, string expected)
         {
-            var textPositionOptions = new TextPositionOptions(  placement, TextOrientation.VerticalUp);
+            var textPositionOptions = new TextPositionOptions(placement, TextOrientation.VerticalUp);
             var textSize = new Size(this.text.Width, this.text.Height);
-            var textPosition = new TextPosition(textSize,textPositionOptions, new Point(0, 0), 0);
+            var textPosition = new TextPosition(textSize, textPositionOptions, new Point(0, 0), 0);
             Assert.AreEqual(expected, textPosition.Point.ToString("F0"));
         }
     }

@@ -9,7 +9,7 @@
     {
         public LinearIndicatorsView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

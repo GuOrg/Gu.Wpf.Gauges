@@ -9,7 +9,7 @@
     {
         public DefaultStyleLinearGaugeView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

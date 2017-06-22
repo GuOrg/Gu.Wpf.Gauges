@@ -16,7 +16,7 @@
         [TestCase("-1,2", -90)]
         [TestCase("-1,2", 180)]
         [TestCase("-1,2", 270)]
-        public void Rotate(string vs,double angle)
+        public void Rotate(string vs, double angle)
         {
             var v = vs.AsVector();
             var transform = new RotateTransform(angle);

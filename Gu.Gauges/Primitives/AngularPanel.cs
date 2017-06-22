@@ -21,7 +21,7 @@ namespace Gu.Gauges
                     FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
-        /// Identifies the <see cref="P:AngularPanel.Minimum" /> dependency property. 
+        /// Identifies the <see cref="P:AngularPanel.Minimum" /> dependency property.
         /// </summary>
         /// <returns>
         /// The identifier for the <see cref="P:AngularPanel.Minimum" /> dependency property.
@@ -33,7 +33,7 @@ namespace Gu.Gauges
                 FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
-        /// Identifies the <see cref="P:AngularPanel.Maximum" /> dependency property. 
+        /// Identifies the <see cref="P:AngularPanel.Maximum" /> dependency property.
         /// </summary>
         /// <returns>
         /// The identifier for the <see cref="P:AngularPanel.Maximum" /> dependency property.
@@ -45,7 +45,7 @@ namespace Gu.Gauges
                 FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
-        /// Identifies the <see cref="P:AngularPanel.IsDirectionReversed" /> dependency property. 
+        /// Identifies the <see cref="P:AngularPanel.IsDirectionReversed" /> dependency property.
         /// </summary>
         public static readonly DependencyProperty IsDirectionReversedProperty = Slider.IsDirectionReversedProperty.AddOwner(
             typeof(AngularPanel),
@@ -65,24 +65,23 @@ namespace Gu.Gauges
                 0.0,
                 FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits));
 
-        public static readonly DependencyProperty Start = DependencyProperty.RegisterAttached(
+        public static readonly DependencyProperty StartProperty = DependencyProperty.RegisterAttached(
             "Start",
             typeof(double),
             typeof(AngularPanel),
-            new PropertyMetadata(double.NaN, OnPositionChanged));
+            new PropertyMetadata(double.NaN, OnStartChanged));
 
-        public static readonly DependencyProperty End = DependencyProperty.RegisterAttached(
+        public static readonly DependencyProperty EndProperty = DependencyProperty.RegisterAttached(
             "End",
             typeof(double),
             typeof(AngularPanel),
-            new PropertyMetadata(double.NaN, OnPositionChanged));
+            new PropertyMetadata(double.NaN, OnEndChanged));
 
         public static readonly DependencyProperty AtValueProperty = DependencyProperty.RegisterAttached(
             "AtValue",
             typeof(double),
             typeof(AngularPanel),
-            new PropertyMetadata(double.NaN, OnPositionChanged));
-
+            new PropertyMetadata(double.NaN, OnAtValueChanged));
 
         /// <summary>
         /// Gets or sets the <see cref="P:AngularPanel.MinAngle" />
@@ -90,8 +89,8 @@ namespace Gu.Gauges
         /// </summary>
         public double MinAngle
         {
-            get { return (double)this.GetValue(MinAngleProperty); }
-            set { this.SetValue(MinAngleProperty, value); }
+            get => (double)this.GetValue(MinAngleProperty);
+            set => this.SetValue(MinAngleProperty, value);
         }
 
         /// <summary>
@@ -100,8 +99,8 @@ namespace Gu.Gauges
         /// </summary>
         public double MaxAngle
         {
-            get { return (double)this.GetValue(MaxAngleProperty); }
-            set { this.SetValue(MaxAngleProperty, value); }
+            get => (double)this.GetValue(MaxAngleProperty);
+            set => this.SetValue(MaxAngleProperty, value);
         }
 
         /// <summary>
@@ -110,65 +109,65 @@ namespace Gu.Gauges
         /// </summary>
         public double Minimum
         {
-            get { return (double)this.GetValue(MinimumProperty); }
-            set { this.SetValue(MinimumProperty, value); }
+            get => (double)this.GetValue(MinimumProperty);
+            set => this.SetValue(MinimumProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the highest possible <see cref="P:AngularPanel.Maximum" /> of the range element.  
+        /// Gets or sets the highest possible <see cref="P:AngularPanel.Maximum" /> of the range element.
         /// </summary>
         /// <returns>
         /// The highest possible <see cref="P:AngularPanel.Maximum" /> of the range element. The default is 1.
         /// </returns>
         public double Maximum
         {
-            get { return (double)this.GetValue(MaximumProperty); }
-            set { this.SetValue(MaximumProperty, value); }
+            get => (double)this.GetValue(MaximumProperty);
+            set => this.SetValue(MaximumProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the direction of increasing value. 
+        /// Gets or sets the direction of increasing value.
         /// </summary>
         /// <returns>
-        /// true if the direction of increasing value is to the left for a horizontal tickbar or down for a vertical tickbar; otherwise, false. 
+        /// true if the direction of increasing value is to the left for a horizontal tickbar or down for a vertical tickbar; otherwise, false.
         /// The default is false.
         /// </returns>
         public bool IsDirectionReversed
         {
-            get { return (bool)this.GetValue(IsDirectionReversedProperty); }
-            set { this.SetValue(IsDirectionReversedProperty, value); }
+            get => (bool)this.GetValue(IsDirectionReversedProperty);
+            set => this.SetValue(IsDirectionReversedProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets a space buffer for the area that contains the tick marks that are specified for a <see cref="T:AngularPanel" />.  
+        /// Gets or sets a space buffer for the area that contains the tick marks that are specified for a <see cref="T:AngularPanel" />.
         /// </summary>
         /// <returns>
         /// A value that represents the total buffer area on either side of the row or column of tick marks. The default value is zero (0.0).
         /// </returns>
         public double ReservedSpace
         {
-            get { return (double)this.GetValue(ReservedSpaceProperty); }
-            set { this.SetValue(ReservedSpaceProperty, value); }
+            get => (double)this.GetValue(ReservedSpaceProperty);
+            set => this.SetValue(ReservedSpaceProperty, value);
         }
 
         public static void SetStart(DependencyObject element, double value)
         {
-            element.SetValue(Start, value);
+            element.SetValue(StartProperty, value);
         }
 
         public static double GetStart(DependencyObject element)
         {
-            return (double)element.GetValue(Start);
+            return (double)element.GetValue(StartProperty);
         }
 
         public static void SetEnd(DependencyObject element, double value)
         {
-            element.SetValue(End, value);
+            element.SetValue(EndProperty, value);
         }
 
         public static double GetEnd(DependencyObject element)
         {
-            return (double)element.GetValue(End);
+            return (double)element.GetValue(EndProperty);
         }
 
         public static void SetAtValue(DependencyObject element, double value)
@@ -181,7 +180,6 @@ namespace Gu.Gauges
             return (double)element.GetValue(AtValueProperty);
         }
 
-
         /// <summary>
         /// Updates DesiredSize of the LinearPanel.
         /// </summary>
@@ -190,7 +188,7 @@ namespace Gu.Gauges
         protected override Size MeasureOverride(Size constraint)
         {
             UIElementCollection children = this.InternalChildren;
-            var desiredSize = new Size();
+            var desiredSize = default(Size);
             for (int i = 0, count = children.Count; i < count; ++i)
             {
                 UIElement child = children[i];
@@ -201,17 +199,17 @@ namespace Gu.Gauges
                     desiredSize.Height = Math.Max(desiredSize.Height, child.DesiredSize.Height);
                 }
             }
+
             return desiredSize;
         }
 
         /// <summary>
-        /// LinearPanel computes a position for each of its children taking into account their  
+        /// LinearPanel computes a position for each of its children taking into account their
         /// </summary>
         /// <param name="arrangeSize">Size that LinearPanel will assume to position children.</param>
         protected override Size ArrangeOverride(Size arrangeSize)
         {
             var arc = Arc.Fill(arrangeSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
-            var rotateTransform = new RotateTransform(0, arc.Centre.X, arc.Centre.Y);
             foreach (UIElement child in this.InternalChildren)
             {
                 if (child == null)
@@ -245,19 +243,32 @@ namespace Gu.Gauges
                     child.Arrange(new Rect(ps, pe));
                 }
             }
+
             return arrangeSize;
         }
 
-        private static void OnPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            OnPositionChanged(d);
+        }
+
+        private static void OnEndChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            OnPositionChanged(d);
+        }
+
+        private static void OnAtValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            OnPositionChanged(d);
+        }
+
+        private static void OnPositionChanged(DependencyObject d)
         {
             var uie = d as UIElement;
             if (uie != null)
             {
                 var panel = VisualTreeHelper.GetParent(uie) as AngularPanel;
-                if (panel != null)
-                {
-                    panel.InvalidateArrange();
-                }
+                panel?.InvalidateArrange();
             }
         }
     }

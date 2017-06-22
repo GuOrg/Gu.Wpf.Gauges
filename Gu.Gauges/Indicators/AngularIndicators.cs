@@ -6,8 +6,9 @@
     [ContentProperty("Items")]
     public class AngularIndicators : Indicators<AngularGauge>
     {
+#pragma warning disable SA1202 // Elements must be ordered by access
         private static readonly DependencyPropertyKey ItemsPropertyKey = DependencyProperty.RegisterReadOnly(
-            "Items",
+nameof(Items),
             typeof(AngularIndicatorsCollection),
             typeof(AngularIndicators),
             new FrameworkPropertyMetadata(null));
@@ -15,12 +16,13 @@
         public static readonly DependencyProperty ItemsProperty = ItemsPropertyKey.DependencyProperty;
 
         private static readonly DependencyPropertyKey GaugePropertyKey = DependencyProperty.RegisterReadOnly(
-            "Gauge",
+nameof(Gauge),
             typeof(AngularGauge),
             typeof(AngularIndicators),
             new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         public static readonly DependencyProperty GaugeProperty = GaugePropertyKey.DependencyProperty;
+#pragma warning restore SA1202 // Elements must be ordered by access
 
         static AngularIndicators()
         {
@@ -34,14 +36,14 @@
 
         public AngularIndicatorsCollection Items
         {
-            get { return (AngularIndicatorsCollection)this.GetValue(ItemsProperty); }
-            protected set { this.SetValue(ItemsPropertyKey, value); }
+            get => (AngularIndicatorsCollection)this.GetValue(ItemsProperty);
+            protected set => this.SetValue(ItemsPropertyKey, value);
         }
 
         public AngularGauge Gauge
         {
-            get { return (AngularGauge)this.GetValue(GaugeProperty); }
-            protected set { this.SetValue(GaugePropertyKey, value); }
+            get => (AngularGauge)this.GetValue(GaugeProperty);
+            protected set => this.SetValue(GaugePropertyKey, value);
         }
 
         protected override void OnGaugeChanged(AngularGauge newValue)
