@@ -3,8 +3,6 @@
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
-    using Gu.Gauges.Sample.Annotations;
-
     public class Vm : INotifyPropertyChanged
     {
         private double value;
@@ -60,7 +58,6 @@
             }
         }
 
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChangedEventHandler handler = this.PropertyChanged;
