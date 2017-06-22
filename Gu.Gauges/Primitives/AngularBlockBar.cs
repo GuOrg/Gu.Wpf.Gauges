@@ -178,16 +178,16 @@ namespace Gu.Gauges
             var rotationAngle = toAngle - fromAngle;
             var isLargeArc = arc.IsLargeAngle(fromAngle, toAngle);
             var sweepDirection = arc.SweepDirection(fromAngle, toAngle);
-            figure.Segments.Add(new ArcSegment(op2, new Size(arc.Radius, arc.Radius), rotationAngle, isLargeArc, sweepDirection, true));
-            figure.Segments.Add(new LineSegment(ip2, true));
+            figure.Segments.Add(new ArcSegment(op2, new Size(arc.Radius, arc.Radius), rotationAngle, isLargeArc, sweepDirection, isStroked: true));
+            figure.Segments.Add(new LineSegment(ip2, isStroked: true));
             sweepDirection = arc.SweepDirection(toAngle, fromAngle);
             var ri = arc.Radius - tickLength;
             if (ri < 0)
             {
                 ri = 0;
             }
-            figure.Segments.Add(new ArcSegment(ip1, new Size(ri, ri), rotationAngle, isLargeArc, sweepDirection, true));
-            figure.Segments.Add(new LineSegment(op1, true));
+            figure.Segments.Add(new ArcSegment(ip1, new Size(ri, ri), rotationAngle, isLargeArc, sweepDirection, isStroked: true));
+            figure.Segments.Add(new LineSegment(op1, isStroked: true));
             figure.IsClosed = true;
             figure.Freeze();
             geometry.Freeze();

@@ -86,10 +86,10 @@ namespace Gu.Gauges
                     var dir = Vector.Multiply(this.Direction, Rotate90Cw.Value);
                     var p1 = tp + (((this.Scale * TerminatorWidth) / 2) * dir);
                     var p2 = tp - ((this.Scale * TerminatorWidth / 2) * dir);
-                    context.BeginFigure(this.Point, true, false);
-                    context.LineTo(p1, true, true);
-                    context.LineTo(p2, true, true);
-                    context.LineTo(this.Point, true, true);
+                    context.BeginFigure(this.Point, isFilled: true, isClosed: false);
+                    context.LineTo(p1, isStroked: true, isSmoothJoin: true);
+                    context.LineTo(p2, isStroked: true, isSmoothJoin: true);
+                    context.LineTo(this.Point, isStroked: true, isSmoothJoin: true);
                 }
                 geometry.Freeze();
 
