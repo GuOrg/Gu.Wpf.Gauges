@@ -1,6 +1,5 @@
 namespace Gu.Gauges
 {
-    using System;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls.Primitives;
@@ -10,7 +9,7 @@ namespace Gu.Gauges
     public class AngularBlockBar : AngularBar
     {
         /// <summary>
-        /// Identifies the <see cref="P:AngularBlockBar.Value" /> dependency property. 
+        /// Identifies the <see cref="P:AngularBlockBar.Value" /> dependency property.
         /// </summary>
         /// <returns>
         /// The identifier for the <see cref="P:AngularBlockBar.Value" /> dependency property.
@@ -40,7 +39,7 @@ namespace Gu.Gauges
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty GapProperty = DependencyProperty.Register(
-            "Gap",
+nameof(Gap),
             typeof(double),
             typeof(AngularBlockBar),
             new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.AffectsRender));
@@ -53,51 +52,51 @@ namespace Gu.Gauges
                     FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
-        /// Gets or sets the current magnitude of the range control.  
+        /// Gets or sets the current magnitude of the range control.
         /// </summary>
         /// <returns>
         /// The current magnitude of the range control. The default is 0.
         /// </returns>
         public double Value
         {
-            get { return (double)this.GetValue(ValueProperty); }
-            set { this.SetValue(ValueProperty, value); }
+            get => (double)this.GetValue(ValueProperty);
+            set => this.SetValue(ValueProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> that specifies how the shape's interior is painted. 
+        /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> that specifies how the shape's interior is painted.
         /// </summary>
         /// <returns>
         /// A <see cref="T:System.Windows.Media.Brush" /> that describes how the shape's interior is painted. The default is HotPink.
         /// </returns>
         public Brush Fill
         {
-            get { return (Brush)this.GetValue(FillProperty); }
-            set { this.SetValue(FillProperty, value); }
+            get => (Brush)this.GetValue(FillProperty);
+            set => this.SetValue(FillProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> that specifies how the <see cref="T:AngularBlockBar" /> outline is painted. 
+        /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> that specifies how the <see cref="T:AngularBlockBar" /> outline is painted.
         /// </summary>
         /// <returns>
         /// A <see cref="T:System.Windows.Media.Brush" /> that specifies how the <see cref="T:AngularBlockBar" /> outline is painted. The default is null.
         /// </returns>
         public Brush Stroke
         {
-            get { return (Brush)this.GetValue(StrokeProperty); }
-            set { this.SetValue(StrokeProperty, value); }
+            get => (Brush)this.GetValue(StrokeProperty);
+            set => this.SetValue(StrokeProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the width of the <see cref="T:AngularBlockBar" /> outline. 
+        /// Gets or sets the width of the <see cref="T:AngularBlockBar" /> outline.
         /// </summary>
         /// <returns>
         /// The width of the <see cref="T:AngularBlockBar" /> outline.
         /// </returns>
         public double StrokeThickness
         {
-            get { return (double)this.GetValue(StrokeThicknessProperty); }
-            set { this.SetValue(StrokeThicknessProperty, value); }
+            get => (double)this.GetValue(StrokeThicknessProperty);
+            set => this.SetValue(StrokeThicknessProperty, value);
         }
 
         /// <summary>
@@ -105,18 +104,18 @@ namespace Gu.Gauges
         /// </summary>
         public double Gap
         {
-            get { return (double)this.GetValue(GapProperty); }
-            set { this.SetValue(GapProperty, value); }
+            get => (double)this.GetValue(GapProperty);
+            set => this.SetValue(GapProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the length of the ticks. 
+        /// Gets or sets the length of the ticks.
         /// The default value is 10.
         /// </summary>
         public double TickLength
         {
-            get { return (double)this.GetValue(TickLengthProperty); }
-            set { this.SetValue(TickLengthProperty, value); }
+            get => (double)this.GetValue(TickLengthProperty);
+            set => this.SetValue(TickLengthProperty, value);
         }
 
         protected override void OnRender(DrawingContext dc)
@@ -151,8 +150,8 @@ namespace Gu.Gauges
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            var rect = new Rect();
-            var arc = new Arc(new Point(0, 0), this.MinAngle, this.MaxAngle, this.ReservedSpace / 2 + this.TickLength, this.IsDirectionReversed);
+            var rect = default(Rect);
+            var arc = new Arc(new Point(0, 0), this.MinAngle, this.MaxAngle, (this.ReservedSpace / 2) + this.TickLength, this.IsDirectionReversed);
             rect.Union(arc.GetPoint(arc.Start));
             var a = TickHelper.ToAngle(this.Value, this.Minimum, this.Maximum, arc);
             rect.Union(arc.GetPoint(a));
@@ -160,6 +159,7 @@ namespace Gu.Gauges
             {
                 rect.Union(p);
             }
+
             return rect.Size;
         }
 
@@ -186,6 +186,7 @@ namespace Gu.Gauges
             {
                 ri = 0;
             }
+
             figure.Segments.Add(new ArcSegment(ip1, new Size(ri, ri), rotationAngle, isLargeArc, sweepDirection, isStroked: true));
             figure.Segments.Add(new LineSegment(op1, isStroked: true));
             figure.IsClosed = true;

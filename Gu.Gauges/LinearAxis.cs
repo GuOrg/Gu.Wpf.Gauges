@@ -14,7 +14,7 @@
         public static readonly DependencyProperty PenWidthProperty = LinearTickBar.PenWidthProperty.AddOwner(
             typeof(LinearAxis),
             new FrameworkPropertyMetadata(
-                1.0, 
+                1.0,
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         static LinearAxis()
@@ -24,8 +24,8 @@
 
         public double PenWidth
         {
-            get { return (double)this.GetValue(PenWidthProperty); }
-            set { this.SetValue(PenWidthProperty, value); }
+            get => (double)this.GetValue(PenWidthProperty);
+            set => this.SetValue(PenWidthProperty, value);
         }
 
         /// <summary>
@@ -33,8 +33,8 @@
         /// </summary>
         public TickBarPlacement Placement
         {
-            get { return (TickBarPlacement)this.GetValue(PlacementProperty); }
-            set { this.SetValue(PlacementProperty, value); }
+            get => (TickBarPlacement)this.GetValue(PlacementProperty);
+            set => this.SetValue(PlacementProperty, value);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Gu.Gauges
     public class DimensionArrowHead : Shape
     {
         public static readonly DependencyProperty PointProperty = DependencyProperty.Register(
-            "Point",
+nameof(Point),
             typeof(Point),
             typeof(DimensionArrowHead),
             new FrameworkPropertyMetadata(
@@ -16,7 +16,7 @@ namespace Gu.Gauges
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty DirectionProperty = DependencyProperty.Register(
-            "Direction",
+nameof(Direction),
             typeof(Vector),
             typeof(DimensionArrowHead),
             new FrameworkPropertyMetadata(
@@ -24,7 +24,7 @@ namespace Gu.Gauges
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty ScaleProperty = DependencyProperty.Register(
-            "Scale",
+nameof(Scale),
             typeof(double),
             typeof(DimensionArrowHead),
             new FrameworkPropertyMetadata(
@@ -38,39 +38,24 @@ namespace Gu.Gauges
         [TypeConverter(typeof(PointConverter))]
         public Point Point
         {
-            get
-            {
-                return (Point)this.GetValue(PointProperty);
-            }
-            set
-            {
-                this.SetValue(PointProperty, value);
-            }
+            get => (Point)this.GetValue(PointProperty);
+            set => this.SetValue(PointProperty, value);
         }
+
         [TypeConverter(typeof(VectorConverter))]
         public Vector Direction
         {
-            get
-            {
-                return (Vector)this.GetValue(DirectionProperty);
-            }
-            set
-            {
-                this.SetValue(DirectionProperty, value);
-            }
+            get => (Vector)this.GetValue(DirectionProperty);
+            set => this.SetValue(DirectionProperty, value);
         }
+
         [TypeConverter(typeof(LengthConverter))]
         public double Scale
         {
-            get
-            {
-                return (double)this.GetValue(ScaleProperty);
-            }
-            set
-            {
-                this.SetValue(ScaleProperty, value);
-            }
+            get => (double)this.GetValue(ScaleProperty);
+            set => this.SetValue(ScaleProperty, value);
         }
+
         protected override Geometry DefiningGeometry
         {
             get
@@ -91,6 +76,7 @@ namespace Gu.Gauges
                     context.LineTo(p2, isStroked: true, isSmoothJoin: true);
                     context.LineTo(this.Point, isStroked: true, isSmoothJoin: true);
                 }
+
                 geometry.Freeze();
 
                 return geometry;

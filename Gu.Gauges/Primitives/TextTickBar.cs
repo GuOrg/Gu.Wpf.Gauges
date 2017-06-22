@@ -1,10 +1,8 @@
 ﻿namespace Gu.Gauges
 {
-    using System;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Controls.Primitives;
     using System.Windows.Documents;
     using System.Windows.Media;
 
@@ -13,8 +11,9 @@
     /// </summary>
     public class TextTickBar : TickBarBase, ITextFormat
     {
+#pragma warning disable SA1202 // Elements must be ordered by access
         public static readonly DependencyProperty TextOrientationProperty = DependencyProperty.Register(
-            "TextOrientation",
+nameof(TextOrientation),
             typeof(TextOrientation),
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
@@ -82,7 +81,7 @@
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
-        /// Identifies the <see cref="P:TextTickBar.Foreground" /> dependency property. 
+        /// Identifies the <see cref="P:TextTickBar.Foreground" /> dependency property.
         /// </summary>
         /// <returns>
         /// The identifier for the <see cref="P:TextTickBar.Foreground" /> dependency property.
@@ -94,7 +93,7 @@
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.SubPropertiesDoNotAffectRender));
 
         /// <summary>
-        /// Identifies the <see cref="P:TextTickBar.TextEffects" /> dependency property. 
+        /// Identifies the <see cref="P:TextTickBar.TextEffects" /> dependency property.
         /// </summary>
         /// <returns>
         /// The identifier for the <see cref="P:TextTickBar.TextEffects" /> dependency property.
@@ -112,11 +111,11 @@
         public static readonly DependencyProperty ContentStringFormatProperty = ContentControl.ContentStringFormatProperty.AddOwner(
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
-                default(String),
+                default(string),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
         private static readonly DependencyPropertyKey TextSpacePropertyKey = DependencyProperty.RegisterReadOnly(
-            "TextSpace",
+nameof(TextSpace),
             typeof(double),
             typeof(TextTickBar),
             new PropertyMetadata(default(double)));
@@ -124,14 +123,25 @@
         public static readonly DependencyProperty TextSpaceProperty = TextSpacePropertyKey.DependencyProperty;
 
         private static readonly DependencyPropertyKey TextSpaceMarginPropertyKey = DependencyProperty.RegisterReadOnly(
-            "TextSpaceMargin",
+nameof(TextSpaceMargin),
             typeof(Thickness),
             typeof(TextTickBar),
             new PropertyMetadata(default(Thickness)));
 
         public static readonly DependencyProperty TextSpaceMarginProperty = TextSpaceMarginPropertyKey.DependencyProperty;
+#pragma warning restore SA1202 // Elements must be ordered by access
 
-        protected FormattedText[] AllTexts { get; private set; }
+        /// <summary>
+        /// Gets or sets the preferred top-level font family for the content of the element.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.Windows.Media.FontFamily" /> object that specifies the preferred font family, or a primary preferred font family with one or more fallback font families. The default is the font determined by the <see cref="P:System.Windows.SystemFonts.MessageFontFamily" /> value.
+        /// </returns>
+        public FontFamily FontFamily
+        {
+            get => (FontFamily)this.GetValue(FontFamilyProperty);
+            set => this.SetValue(FontFamilyProperty, value);
+        }
 
         /// <summary>
         /// Gets or sets the <see cref="T:Gu.Gauges.TextOrientation" />
@@ -139,92 +149,80 @@
         /// </summary>
         public TextOrientation TextOrientation
         {
-            get { return (TextOrientation)this.GetValue(TextOrientationProperty); }
-            set { this.SetValue(TextOrientationProperty, value); }
+            get => (TextOrientation)this.GetValue(TextOrientationProperty);
+            set => this.SetValue(TextOrientationProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the preferred top-level font family for the content of the element.  
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.Windows.Media.FontFamily" /> object that specifies the preferred font family, or a primary preferred font family with one or more fallback font families. The default is the font determined by the <see cref="P:System.Windows.SystemFonts.MessageFontFamily" /> value.
-        /// </returns>
-        public FontFamily FontFamily
-        {
-            get { return (FontFamily)this.GetValue(FontFamilyProperty); }
-            set { this.SetValue(FontFamilyProperty, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets the font style for the content of the element.  
+        /// Gets or sets the font style for the content of the element.
         /// </summary>
         /// <returns>
         /// A member of the <see cref="T:System.Windows.FontStyles" /> class that specifies the desired font style. The default is determined by the <see cref="P:System.Windows.SystemFonts.MessageFontStyle" /> value.
         /// </returns>
         public FontStyle FontStyle
         {
-            get { return (FontStyle)this.GetValue(FontStyleProperty); }
-            set { this.SetValue(FontStyleProperty, value); }
+            get => (FontStyle)this.GetValue(FontStyleProperty);
+            set => this.SetValue(FontStyleProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the top-level font weight for the content of the element.  
+        /// Gets or sets the top-level font weight for the content of the element.
         /// </summary>
         /// <returns>
         /// A member of the <see cref="T:System.Windows.FontWeights" /> class that specifies the desired font weight. The default value is determined by the <see cref="P:System.Windows.SystemFonts.MessageFontWeight" /> value.
         /// </returns>
         public FontWeight FontWeight
         {
-            get { return (FontWeight)this.GetValue(FontWeightProperty); }
-            set { this.SetValue(FontWeightProperty, value); }
+            get => (FontWeight)this.GetValue(FontWeightProperty);
+            set => this.SetValue(FontWeightProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the font-stretching characteristics for the content of the element.  
+        /// Gets or sets the font-stretching characteristics for the content of the element.
         /// </summary>
         /// <returns>
         /// A <see cref="T:System.Windows.FontStretch" /> structure that specifies the desired font-stretching characteristics to use. The default is <see cref="P:System.Windows.FontStretches.Normal" />.
         /// </returns>
         public FontStretch FontStretch
         {
-            get { return (FontStretch)this.GetValue(FontStretchProperty); }
-            set { this.SetValue(FontStretchProperty, value); }
+            get => (FontStretch)this.GetValue(FontStretchProperty);
+            set => this.SetValue(FontStretchProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the font size for the content of the element.  
+        /// Gets or sets the font size for the content of the element.
         /// </summary>
         /// <returns>
         /// The desired font size to use in device independent pixels,  greater than 0.001 and less than or equal to 35791.  The default depends on current system settings and depends on the <see cref="P:System.Windows.SystemFonts.MessageFontSize" /> value.
         /// </returns>
         public double FontSize
         {
-            get { return (double)this.GetValue(FontSizeProperty); }
-            set { this.SetValue(FontSizeProperty, value); }
+            get => (double)this.GetValue(FontSizeProperty);
+            set => this.SetValue(FontSizeProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> to apply to the content of the element.  
+        /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> to apply to the content of the element.
         /// </summary>
         /// <returns>
         /// The brush used to apply to the text contents. The default is <see cref="P:System.Windows.Media.Brushes.Black" />.
         /// </returns>
         public Brush Foreground
         {
-            get { return (Brush)this.GetValue(ForegroundProperty); }
-            set { this.SetValue(ForegroundProperty, value); }
+            get => (Brush)this.GetValue(ForegroundProperty);
+            set => this.SetValue(ForegroundProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets a collection of text effects to apply to the content of the element.  
+        /// Gets or sets a collection of text effects to apply to the content of the element.
         /// </summary>
         /// <returns>
         /// A <see cref="T:System.Windows.Media.TextEffectCollection" /> containing one or more <see cref="T:System.Windows.Media.TextEffect" /> objects that define effects to apply to the content in this element. The default is null (not an empty collection).
         /// </returns>
         public TextEffectCollection TextEffects
         {
-            get { return (TextEffectCollection)this.GetValue(TextEffectsProperty); }
-            set { this.SetValue(TextEffectsProperty, value); }
+            get => (TextEffectCollection)this.GetValue(TextEffectsProperty);
+            set => this.SetValue(TextEffectsProperty, value);
         }
 
         /// <summary>
@@ -235,8 +233,8 @@
         /// </returns>
         public string ContentStringFormat
         {
-            get { return (string)this.GetValue(ContentStringFormatProperty); }
-            set { this.SetValue(ContentStringFormatProperty, value); }
+            get => (string)this.GetValue(ContentStringFormatProperty);
+            set => this.SetValue(ContentStringFormatProperty, value);
         }
 
         /// <summary>
@@ -244,15 +242,17 @@
         /// </summary>
         public double TextSpace
         {
-            get { return (double)this.GetValue(TextSpaceProperty); }
-            protected set { this.SetValue(TextSpacePropertyKey, value); }
+            get => (double)this.GetValue(TextSpaceProperty);
+            protected set => this.SetValue(TextSpacePropertyKey, value);
         }
 
         public Thickness TextSpaceMargin
         {
-            get { return (Thickness)this.GetValue(TextSpaceMarginProperty); }
-            protected set { this.SetValue(TextSpaceMarginPropertyKey, value); }
+            get => (Thickness)this.GetValue(TextSpaceMarginProperty);
+            protected set => this.SetValue(TextSpaceMarginPropertyKey, value);
         }
+
+        protected FormattedText[] AllTexts { get; private set; }
 
         protected override void OnTicksChanged()
         {

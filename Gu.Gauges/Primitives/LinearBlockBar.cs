@@ -21,7 +21,7 @@
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         /// <summary>
-        /// Identifies the <see cref="P:BlockBar.Value" /> dependency property. 
+        /// Identifies the <see cref="P:BlockBar.Value" /> dependency property.
         /// </summary>
         /// <returns>
         /// The identifier for the <see cref="P:BlockBar.Value" /> dependency property.
@@ -51,69 +51,69 @@
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty GapProperty = DependencyProperty.Register(
-            "Gap",
+nameof(Gap),
             typeof(double),
             typeof(LinearBlockBar),
             new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
-        /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.  
+        /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.
         /// </summary>
         /// <returns>
         /// A <see cref="T:TickBarPlacement" /> enumeration value that identifies the position of the <see cref="T:LinearTextTickBar" /> in the <see cref="T:System.Windows.Style" /> layout of a <see cref="T:System.Windows.Controls.Slider" />. The default value is <see cref="F:LinearBlockBar.Top" />.
         /// </returns>
         public TickBarPlacement Placement
         {
-            get { return (TickBarPlacement)this.GetValue(PlacementProperty); }
-            set { this.SetValue(PlacementProperty, value); }
+            get => (TickBarPlacement)this.GetValue(PlacementProperty);
+            set => this.SetValue(PlacementProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the current magnitude of the range control.  
+        /// Gets or sets the current magnitude of the range control.
         /// </summary>
         /// <returns>
         /// The current magnitude of the range control. The default is 0.
         /// </returns>
         public double Value
         {
-            get { return (double)this.GetValue(ValueProperty); }
-            set { this.SetValue(ValueProperty, value); }
+            get => (double)this.GetValue(ValueProperty);
+            set => this.SetValue(ValueProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> that specifies how the shape's interior is painted. 
+        /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> that specifies how the shape's interior is painted.
         /// </summary>
         /// <returns>
         /// A <see cref="T:System.Windows.Media.Brush" /> that describes how the shape's interior is painted. The default is HotPink.
         /// </returns>
         public Brush Fill
         {
-            get { return (Brush)this.GetValue(FillProperty); }
-            set { this.SetValue(FillProperty, value); }
+            get => (Brush)this.GetValue(FillProperty);
+            set => this.SetValue(FillProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> that specifies how the <see cref="T:BlockBar" /> outline is painted. 
+        /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> that specifies how the <see cref="T:BlockBar" /> outline is painted.
         /// </summary>
         /// <returns>
         /// A <see cref="T:System.Windows.Media.Brush" /> that specifies how the <see cref="T:BlockBar" /> outline is painted. The default is null.
         /// </returns>
         public Brush Stroke
         {
-            get { return (Brush)this.GetValue(StrokeProperty); }
-            set { this.SetValue(StrokeProperty, value); }
+            get => (Brush)this.GetValue(StrokeProperty);
+            set => this.SetValue(StrokeProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the width of the <see cref="T:BlockBar" /> outline. 
+        /// Gets or sets the width of the <see cref="T:BlockBar" /> outline.
         /// </summary>
         /// <returns>
         /// The width of the <see cref="T:BlockBar" /> outline.
         /// </returns>
         public double StrokeThickness
         {
-            get { return (double)this.GetValue(StrokeThicknessProperty); }
-            set { this.SetValue(StrokeThicknessProperty, value); }
+            get => (double)this.GetValue(StrokeThicknessProperty);
+            set => this.SetValue(StrokeThicknessProperty, value);
         }
 
         /// <summary>
@@ -121,8 +121,8 @@
         /// </summary>
         public double Gap
         {
-            get { return (double)this.GetValue(GapProperty); }
-            set { this.SetValue(GapProperty, value); }
+            get => (double)this.GetValue(GapProperty);
+            set => this.SetValue(GapProperty, value);
         }
 
         protected override void OnRender(DrawingContext dc)
@@ -155,16 +155,19 @@
                     gap = new Vector(this.Gap / 2, 0);
                     break;
             }
+
             if (this.IsDirectionReversed)
             {
                 gap = -1 * gap;
             }
+
             foreach (var tick in ticks)
             {
                 if (tick == this.Minimum)
                 {
                     continue;
                 }
+
                 if (tick > this.Value)
                 {
                     var p = TickHelper.ToPos(this.Value, this.Minimum, this.Maximum, line);

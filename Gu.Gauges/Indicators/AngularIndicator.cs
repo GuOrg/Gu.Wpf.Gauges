@@ -8,18 +8,21 @@ namespace Gu.Gauges
 
     public class AngularIndicator : ContentControl
     {
+#pragma warning disable SA1202 // Elements must be ordered by access
+
         private static readonly DependencyPropertyKey GaugePropertyKey = DependencyProperty.RegisterReadOnly(
-            "Gauge",
+            nameof(Gauge),
             typeof(AngularGauge),
             typeof(AngularIndicator),
             new PropertyMetadata(null, OnGaugeChanged));
 
         public static readonly DependencyProperty GaugeProperty = GaugePropertyKey.DependencyProperty;
+#pragma warning restore SA1202 // Elements must be ordered by access
 
         public AngularGauge Gauge
         {
-            get { return (AngularGauge)this.GetValue(GaugeProperty); }
-            protected set { this.SetValue(GaugePropertyKey, value); }
+            get => (AngularGauge)this.GetValue(GaugeProperty);
+            protected set => this.SetValue(GaugePropertyKey, value);
         }
 
         protected override void OnVisualParentChanged(DependencyObject oldParent)

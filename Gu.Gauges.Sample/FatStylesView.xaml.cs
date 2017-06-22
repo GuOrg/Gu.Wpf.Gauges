@@ -9,7 +9,7 @@
     {
         public FatStylesView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

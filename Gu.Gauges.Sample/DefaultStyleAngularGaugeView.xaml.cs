@@ -9,7 +9,7 @@
     {
         public DefaultStyleAngularGaugeView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

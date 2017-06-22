@@ -9,7 +9,7 @@
     {
         public LinearRangesView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

@@ -6,10 +6,10 @@
 
     internal struct TextPositionOptions
     {
-        private static readonly double Treshold = Math.Sin(1 * Math.PI / 180);
         internal readonly Vertical Vertical;
         internal readonly Horizontal Horizontal;
         internal readonly TextOrientation Orientation;
+        private static readonly double Treshold = Math.Sin(1 * Math.PI / 180);
 
         public TextPositionOptions(TickBarPlacement placement, TextOrientation orientation)
         {
@@ -34,8 +34,9 @@
                             this.Horizontal = Horizontal.Center;
                             break;
                         default:
-                            throw new ArgumentOutOfRangeException("orientation");
+                            throw new ArgumentOutOfRangeException(nameof(orientation));
                     }
+
                     break;
                 case TickBarPlacement.Top:
                     switch (orientation)
@@ -55,8 +56,9 @@
                             this.Horizontal = Horizontal.Left;
                             break;
                         default:
-                            throw new ArgumentOutOfRangeException("orientation");
+                            throw new ArgumentOutOfRangeException(nameof(orientation));
                     }
+
                     break;
                 case TickBarPlacement.Right:
                     switch (orientation)
@@ -76,8 +78,9 @@
                             this.Horizontal = Horizontal.Center;
                             break;
                         default:
-                            throw new ArgumentOutOfRangeException("orientation");
+                            throw new ArgumentOutOfRangeException(nameof(orientation));
                     }
+
                     break;
                 case TickBarPlacement.Bottom:
                     switch (orientation)
@@ -97,11 +100,12 @@
                             this.Horizontal = Horizontal.Right;
                             break;
                         default:
-                            throw new ArgumentOutOfRangeException("orientation");
+                            throw new ArgumentOutOfRangeException(nameof(orientation));
                     }
+
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException("placement");
+                    throw new ArgumentOutOfRangeException(nameof(placement));
             }
         }
 
@@ -124,6 +128,7 @@
                     {
                         this.Vertical = Vertical.Top;
                     }
+
                     if (rotate.Y > Treshold)
                     {
                         this.Horizontal = Horizontal.Left;
@@ -136,6 +141,7 @@
                     {
                         this.Horizontal = Horizontal.Right;
                     }
+
                     break;
                 case TextOrientation.Tangential:
                     this.Vertical = Vertical.Bottom;
@@ -155,6 +161,7 @@
                     {
                         this.Horizontal = Horizontal.Right;
                     }
+
                     if (rotate.Y > Treshold)
                     {
                         this.Vertical = Vertical.Top;
@@ -167,6 +174,7 @@
                     {
                         this.Vertical = Vertical.Bottom;
                     }
+
                     break;
                 case TextOrientation.RadialOut:
                     this.Vertical = Vertical.Mid;
@@ -185,6 +193,7 @@
                     {
                         this.Vertical = Vertical.Bottom;
                     }
+
                     if (rotate.Y > Treshold)
                     {
                         this.Horizontal = Horizontal.Right;
@@ -197,6 +206,7 @@
                     {
                         this.Horizontal = Horizontal.Left;
                     }
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

@@ -12,7 +12,7 @@
     public class Axis : Control
     {
         /// <summary>
-        /// Identifies the <see cref="P:Axis.Minimum" /> dependency property. 
+        /// Identifies the <see cref="P:Axis.Minimum" /> dependency property.
         /// </summary>
         /// <returns>
         /// The identifier for the <see cref="P:Axis.Minimum" /> dependency property.
@@ -22,7 +22,7 @@
             new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
-        /// Identifies the <see cref="P:Axis.Maximum" /> dependency property. 
+        /// Identifies the <see cref="P:Axis.Maximum" /> dependency property.
         /// </summary>
         /// <returns>
         /// The identifier for the <see cref="P:Axis.Maximum" /> dependency property.
@@ -32,31 +32,31 @@
             new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty ShowLabelsProperty = DependencyProperty.Register(
-            "ShowLabels",
+nameof(ShowLabels),
             typeof(bool),
             typeof(Axis),
             new PropertyMetadata(true));
 
         public static readonly DependencyProperty MajorTickFrequencyProperty = DependencyProperty.Register(
-            "MajorTickFrequency",
+nameof(MajorTickFrequency),
             typeof(double),
             typeof(Axis),
             new FrameworkPropertyMetadata(default(double)));
 
         public static readonly DependencyProperty MajorTicksProperty = DependencyProperty.Register(
-            "MajorTicks",
+nameof(MajorTicks),
             typeof(DoubleCollection),
             typeof(Axis),
             new PropertyMetadata(default(DoubleCollection)));
 
         public static readonly DependencyProperty MinorTickFrequencyProperty = DependencyProperty.Register(
-            "MinorTickFrequency",
+nameof(MinorTickFrequency),
             typeof(double),
             typeof(Axis),
             new PropertyMetadata(default(double)));
 
         public static readonly DependencyProperty TextOrientationProperty = DependencyProperty.Register(
-            "TextOrientation",
+nameof(TextOrientation),
             typeof(TextOrientation),
             typeof(Axis),
             new FrameworkPropertyMetadata(TextOrientation.Horizontal, FrameworkPropertyMetadataOptions.Inherits));
@@ -82,7 +82,7 @@
             new PropertyMetadata(default(double), OnMinReservedSpaceChanged));
 
         /// <summary>
-        /// Identifies the <see cref="P:Axis.IsDirectionReversed" /> dependency property. 
+        /// Identifies the <see cref="P:Axis.IsDirectionReversed" /> dependency property.
         /// </summary>
         public static readonly DependencyProperty IsDirectionReversedProperty = Slider.IsDirectionReversedProperty.AddOwner(
             typeof(Axis),
@@ -93,27 +93,27 @@
         private readonly WeakDictionary<DependencyObject, double> minReservedSpaces = new WeakDictionary<DependencyObject, double>();
 
         /// <summary>
-        /// Gets or sets the <see cref="P:Axis.Minimum" /> possible <see cref="P:Axis.Value" /> of the range element.  
+        /// Gets or sets the <see cref="P:Axis.Minimum" /> possible <see cref="P:Axis.Value" /> of the range element.
         /// </summary>
         /// <returns>
         /// <see cref="P:Axis.Minimum" /> possible <see cref="P:Axis.Value" /> of the range element. The default is 0.
         /// </returns>
         public double Minimum
         {
-            get { return (double)this.GetValue(MinimumProperty); }
-            set { this.SetValue(MinimumProperty, value); }
+            get => (double)this.GetValue(MinimumProperty);
+            set => this.SetValue(MinimumProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the highest possible <see cref="P:Axis.Value" /> of the range element.  
+        /// Gets or sets the highest possible <see cref="P:Axis.Value" /> of the range element.
         /// </summary>
         /// <returns>
         /// The highest possible <see cref="P:Axis.Value" /> of the range element. The default is 1.
         /// </returns>
         public double Maximum
         {
-            get { return (double)this.GetValue(MaximumProperty); }
-            set { this.SetValue(MaximumProperty, value); }
+            get => (double)this.GetValue(MaximumProperty);
+            set => this.SetValue(MaximumProperty, value);
         }
 
         /// <summary>
@@ -121,8 +121,8 @@
         /// </summary>
         public bool ShowLabels
         {
-            get { return (bool)this.GetValue(ShowLabelsProperty); }
-            set { this.SetValue(ShowLabelsProperty, value); }
+            get => (bool)this.GetValue(ShowLabelsProperty);
+            set => this.SetValue(ShowLabelsProperty, value);
         }
 
         /// <summary>
@@ -131,51 +131,51 @@
         /// </summary>
         public TextOrientation TextOrientation
         {
-            get { return (TextOrientation)this.GetValue(TextOrientationProperty); }
-            set { this.SetValue(TextOrientationProperty, value); }
+            get => (TextOrientation)this.GetValue(TextOrientationProperty);
+            set => this.SetValue(TextOrientationProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets a space buffer for the area that contains the tick marks that are specified for a <see cref="T:Bar" />.  
+        /// Gets or sets a space buffer for the area that contains the tick marks that are specified for a <see cref="T:Bar" />.
         /// </summary>
         /// <returns>
         /// A value that represents the total buffer area on either side of the row or column of tick marks. The default value is zero (0.0).
         /// </returns>
         public double ReservedSpace
         {
-            get { return (double)this.GetValue(ReservedSpaceProperty); }
-            set { this.SetValue(ReservedSpaceProperty, value); }
+            get => (double)this.GetValue(ReservedSpaceProperty);
+            set => this.SetValue(ReservedSpaceProperty, value);
         }
 
         public double MajorTickFrequency
         {
-            get { return (double)this.GetValue(MajorTickFrequencyProperty); }
-            set { this.SetValue(MajorTickFrequencyProperty, value); }
+            get => (double)this.GetValue(MajorTickFrequencyProperty);
+            set => this.SetValue(MajorTickFrequencyProperty, value);
         }
 
         public DoubleCollection MajorTicks
         {
-            get { return (DoubleCollection)this.GetValue(MajorTicksProperty); }
-            set { this.SetValue(MajorTicksProperty, value); }
+            get => (DoubleCollection)this.GetValue(MajorTicksProperty);
+            set => this.SetValue(MajorTicksProperty, value);
         }
 
         public double MinorTickFrequency
         {
-            get { return (double)this.GetValue(MinorTickFrequencyProperty); }
-            set { this.SetValue(MinorTickFrequencyProperty, value); }
+            get => (double)this.GetValue(MinorTickFrequencyProperty);
+            set => this.SetValue(MinorTickFrequencyProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the direction of increasing value. 
+        /// Gets or sets the direction of increasing value.
         /// </summary>
         /// <returns>
-        /// true if the direction of increasing value is to the left for a horizontal tickbar or down for a vertical tickbar; otherwise, false. 
+        /// true if the direction of increasing value is to the left for a horizontal tickbar or down for a vertical tickbar; otherwise, false.
         /// The default is false.
         /// </returns>
         public bool IsDirectionReversed
         {
-            get { return (bool)this.GetValue(IsDirectionReversedProperty); }
-            set { this.SetValue(IsDirectionReversedProperty, value); }
+            get => (bool)this.GetValue(IsDirectionReversedProperty);
+            set => this.SetValue(IsDirectionReversedProperty, value);
         }
 
         public static void SetMinReservedSpace(DependencyObject element, double value)
@@ -194,13 +194,13 @@
             if (axis != null)
             {
                 axis.minReservedSpaces.AddOrUpdate(d, (double)e.NewValue);
-                axis.ReservedSpace = axis.minReservedSpaces.Max(x => x.Value);
+                axis.SetCurrentValue(ReservedSpaceProperty, axis.minReservedSpaces.Max(x => x.Value));
             }
         }
 
         private static object CoerceReservedSpace(DependencyObject d, object basevalue)
         {
-            var axis = ((Axis)d);
+            var axis = (Axis)d;
             var min = axis.minReservedSpaces.Any() ? axis.minReservedSpaces.Min(x => x.Value) : 0;
             var value = (double)basevalue;
             return Math.Max(value, min);

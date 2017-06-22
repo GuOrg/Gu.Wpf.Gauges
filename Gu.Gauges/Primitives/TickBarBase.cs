@@ -11,7 +11,7 @@ namespace Gu.Gauges
     public class TickBarBase : FrameworkElement
     {
         /// <summary>
-        /// Identifies the <see cref="P:Bar.Minimum" /> dependency property. 
+        /// Identifies the <see cref="P:Bar.Minimum" /> dependency property.
         /// </summary>
         /// <returns>
         /// The identifier for the <see cref="P:Bar.Minimum" /> dependency property.
@@ -24,7 +24,7 @@ namespace Gu.Gauges
                 OnMinimumChanged));
 
         /// <summary>
-        /// Identifies the <see cref="P:Bar.Maximum" /> dependency property. 
+        /// Identifies the <see cref="P:Bar.Maximum" /> dependency property.
         /// </summary>
         /// <returns>
         /// The identifier for the <see cref="P:Bar.Maximum" /> dependency property.
@@ -49,7 +49,7 @@ namespace Gu.Gauges
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         /// <summary>
-        /// Identifies the <see cref="P:Bar.TickFrequency" /> dependency property. 
+        /// Identifies the <see cref="P:Bar.TickFrequency" /> dependency property.
         /// </summary>
         public static readonly DependencyProperty TickFrequencyProperty = Slider.TickFrequencyProperty.AddOwner(
             typeof(TickBarBase),
@@ -59,7 +59,7 @@ namespace Gu.Gauges
                 OnTickFrequencyChanged));
 
         /// <summary>
-        /// Identifies the <see cref="P:Bar.Ticks" /> dependency property. 
+        /// Identifies the <see cref="P:Bar.Ticks" /> dependency property.
         /// </summary>
         public static readonly DependencyProperty TicksProperty = Slider.TicksProperty.AddOwner(
             typeof(TickBarBase),
@@ -69,7 +69,7 @@ namespace Gu.Gauges
                 OnTicksChanged));
 
         /// <summary>
-        /// Identifies the <see cref="P:Bar.IsDirectionReversed" /> dependency property. 
+        /// Identifies the <see cref="P:Bar.IsDirectionReversed" /> dependency property.
         /// </summary>
         public static readonly DependencyProperty IsDirectionReversedProperty = Slider.IsDirectionReversedProperty.AddOwner(
             typeof(TickBarBase),
@@ -86,78 +86,72 @@ namespace Gu.Gauges
         /// </summary>
         public double Minimum
         {
-            get { return (double)this.GetValue(MinimumProperty); }
-            set { this.SetValue(MinimumProperty, value); }
+            get => (double)this.GetValue(MinimumProperty);
+            set => this.SetValue(MinimumProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the highest possible <see cref="P:Bar.Maximum" /> of the range element.  
+        /// Gets or sets the highest possible <see cref="P:Bar.Maximum" /> of the range element.
         /// </summary>
         /// <returns>
         /// The highest possible <see cref="P:Bar.Maximum" /> of the range element. The default is 1.
         /// </returns>
         public double Maximum
         {
-            get { return (double)this.GetValue(MaximumProperty); }
-            set { this.SetValue(MaximumProperty, value); }
+            get => (double)this.GetValue(MaximumProperty);
+            set => this.SetValue(MaximumProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the direction of increasing value. 
+        /// Gets or sets the direction of increasing value.
         /// </summary>
         /// <returns>
-        /// true if the direction of increasing value is to the left for a horizontal tickbar or down for a vertical tickbar; otherwise, false. 
+        /// true if the direction of increasing value is to the left for a horizontal tickbar or down for a vertical tickbar; otherwise, false.
         /// The default is false.
         /// </returns>
         public bool IsDirectionReversed
         {
-            get { return (bool)this.GetValue(IsDirectionReversedProperty); }
-            set { this.SetValue(IsDirectionReversedProperty, value); }
+            get => (bool)this.GetValue(IsDirectionReversedProperty);
+            set => this.SetValue(IsDirectionReversedProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets a space buffer for the area that contains the tick marks that are specified for a <see cref="T:Bar" />.  
+        /// Gets or sets a space buffer for the area that contains the tick marks that are specified for a <see cref="T:Bar" />.
         /// </summary>
         /// <returns>
         /// A value that represents the total buffer area on either side of the row or column of tick marks. The default value is zero (0.0).
         /// </returns>
         public double ReservedSpace
         {
-            get { return (double)this.GetValue(ReservedSpaceProperty); }
-            set { this.SetValue(ReservedSpaceProperty, value); }
+            get => (double)this.GetValue(ReservedSpaceProperty);
+            set => this.SetValue(ReservedSpaceProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the interval between tick marks.  
+        /// Gets or sets the interval between tick marks.
         /// </summary>
         /// <returns>
         /// The distance between tick marks. The default is (0).
         /// </returns>
         public double TickFrequency
         {
-            get { return (double)this.GetValue(TickFrequencyProperty); }
-            set { this.SetValue(TickFrequencyProperty, value); }
+            get => (double)this.GetValue(TickFrequencyProperty);
+            set => this.SetValue(TickFrequencyProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the positions of the tick marks to display for a <see cref="T:Bar" />. 
+        /// Gets or sets the positions of the tick marks to display for a <see cref="T:Bar" />.
         /// </summary>
         /// <returns>
         /// A set of tick marks to display for a <see cref="T:Bar" />. The default is null.
         /// </returns>
         public DoubleCollection Ticks
         {
-            get { return (DoubleCollection)this.GetValue(TicksProperty); }
-            set { this.SetValue(TicksProperty, value); }
+            get => (DoubleCollection)this.GetValue(TicksProperty);
+            set => this.SetValue(TicksProperty, value);
         }
 
-        protected IReadOnlyList<double> AllTicks
-        {
-            get
-            {
-                return this.allTicks ?? EmptyTicks;
-            }
-        }
+        protected IReadOnlyList<double> AllTicks => this.allTicks ?? EmptyTicks;
 
         protected virtual void OnTicksChanged()
         {
@@ -189,11 +183,13 @@ namespace Gu.Gauges
             {
                 oldTicks.Changed -= bar.OnTickCollectionChanged;
             }
+
             var newTicks = e.NewValue as DoubleCollection;
             if (newTicks != null)
             {
                 newTicks.Changed += bar.OnTickCollectionChanged;
             }
+
             bar.OnTicksChanged();
         }
 

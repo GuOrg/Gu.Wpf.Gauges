@@ -1,9 +1,8 @@
-﻿using System;
-
-namespace Gu.Gauges
+﻿namespace Gu.Gauges
 {
-    using System.Windows.Controls.Primitives;
+    using System;
     using System.Windows;
+    using System.Windows.Controls.Primitives;
 
     internal struct Line
     {
@@ -25,7 +24,7 @@ namespace Gu.Gauges
         }
 
         public Line(Size size, double reservedSpace, TickBarPlacement placement, bool isDirectionReversed)
-            :this(size.Width, size.Height,reservedSpace, placement, isDirectionReversed)
+            : this(size.Width, size.Height, reservedSpace, placement, isDirectionReversed)
         {
         }
 
@@ -36,24 +35,25 @@ namespace Gu.Gauges
             switch (placement)
             {
                 case TickBarPlacement.Left:
-                    p1 = new Point(0, actualHeight - reservedSpace / 2);
+                    p1 = new Point(0, actualHeight - (reservedSpace / 2));
                     p2 = new Point(0, reservedSpace / 2);
                     break;
                 case TickBarPlacement.Top:
                     p1 = new Point(reservedSpace / 2, 0);
-                    p2 = new Point(actualWidth - reservedSpace / 2, 0);
+                    p2 = new Point(actualWidth - (reservedSpace / 2), 0);
                     break;
                 case TickBarPlacement.Right:
-                    p1 = new Point(actualWidth, actualHeight - reservedSpace / 2);
+                    p1 = new Point(actualWidth, actualHeight - (reservedSpace / 2));
                     p2 = new Point(actualWidth, reservedSpace / 2);
                     break;
                 case TickBarPlacement.Bottom:
                     p1 = new Point(reservedSpace / 2, actualHeight);
-                    p2 = new Point(actualWidth - reservedSpace / 2, actualHeight);
+                    p2 = new Point(actualWidth - (reservedSpace / 2), actualHeight);
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException("placement");
+                    throw new ArgumentOutOfRangeException(nameof(placement));
             }
+
             if (isDirectionReversed)
             {
                 this.StartPoint = p2;
@@ -79,17 +79,13 @@ namespace Gu.Gauges
         {
             var dv = (tick - minimum) / (maximum - minimum);
             var v = this.EndPoint - this.StartPoint;
-            return this.StartPoint + dv * v;
+            return this.StartPoint + (dv * v);
         }
 
         public override string ToString()
         {
-            return string.Format("StartPoint: ({0}, {1}), EndPoint: ({2}, {3}), Length: {4}",
-                this.StartPoint.X,
-                this.StartPoint.Y,
-                this.EndPoint.X,
-                this.EndPoint.Y,
-                this.Length);
+            return
+                $"StartPoint: ({this.StartPoint.X}, {this.StartPoint.Y}), EndPoint: ({this.EndPoint.X}, {this.EndPoint.Y}), Length: {this.Length}";
         }
     }
 }

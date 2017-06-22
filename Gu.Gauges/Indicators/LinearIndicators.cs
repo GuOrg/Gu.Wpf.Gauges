@@ -1,7 +1,6 @@
 ﻿namespace Gu.Gauges
 {
     using System;
-    using System.Collections.Specialized;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
@@ -15,13 +14,13 @@
     public class LinearIndicators : FrameworkElement
     {
         private static readonly DependencyPropertyKey GaugePropertyKey = DependencyProperty.RegisterReadOnly(
-            "Gauge",
+nameof(Gauge),
             typeof(LinearGauge),
             typeof(LinearIndicators),
             new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         public static readonly DependencyProperty GaugeProperty = GaugePropertyKey.DependencyProperty;
-        internal readonly LinearPanel Panel;
+        private readonly LinearPanel panel;
 
         static LinearIndicators()
         {
@@ -30,30 +29,29 @@
 
         public LinearIndicators()
         {
-            this.Panel = new LinearPanel();
-            this.AddVisualChild(this.Panel);
-            this.AddLogicalChild(this.Panel);
+            this.panel = new LinearPanel();
+            this.AddVisualChild(this.panel);
+            this.AddLogicalChild(this.panel);
         }
 
-        public UIElementCollection Items
-        {
-            get  { return this.Panel.Children; }
-        }
+        public UIElementCollection Items => this.panel.Children;
 
         public LinearGauge Gauge
         {
-            get { return (LinearGauge)this.GetValue(GaugeProperty); }
-            internal set { this.SetValue(GaugePropertyKey, value); }
+            get => (LinearGauge)this.GetValue(GaugeProperty);
+            internal set => this.SetValue(GaugePropertyKey, value);
         }
+
+        protected override int VisualChildrenCount => 1;
 
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
-            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.Minimum, this.Panel, LinearPanel.MinimumProperty);
-            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.Maximum, this.Panel, LinearPanel.MaximumProperty);
-            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.IsDirectionReversed, this.Panel, LinearPanel.IsDirectionReversedProperty);
-            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.Placement, this.Panel, LinearPanel.PlacementProperty);
-            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.ReservedSpace, this.Panel, LinearPanel.ReservedSpaceProperty);
+            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.Minimum, this.panel, LinearPanel.MinimumProperty);
+            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.Maximum, this.panel, LinearPanel.MaximumProperty);
+            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.IsDirectionReversed, this.panel, LinearPanel.IsDirectionReversedProperty);
+            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.Placement, this.panel, LinearPanel.PlacementProperty);
+            BindingHelper.BindOneWay(this, () => this.Gauge.Axis.ReservedSpace, this.panel, LinearPanel.ReservedSpaceProperty);
         }
 
         protected override void OnVisualParentChanged(DependencyObject oldParent)
@@ -68,15 +66,7 @@
 
         protected override Visual GetVisualChild(int index)
         {
-            return index == 0 ? this.Panel : null;
-        }
-
-        protected override int VisualChildrenCount
-        {
-            get
-            {
-                return 1;
-            }
+            return index == 0 ? this.panel : null;
         }
 
         /// <summary>
@@ -90,8 +80,8 @@
         /// <returns>The desired size of the control.</returns>
         protected override Size MeasureOverride(Size constraint)
         {
-            this.Panel.Measure(constraint);
-            return this.Panel.DesiredSize;
+            this.panel.Measure(constraint);
+            return this.panel.DesiredSize;
         }
 
         /// <summary>
@@ -101,13 +91,13 @@
         /// <param name="arrangeBounds">The computed size.</param>
         protected override Size ArrangeOverride(Size arrangeBounds)
         {
-            this.Panel.Arrange(new Rect(arrangeBounds));
+            this.panel.Arrange(new Rect(arrangeBounds));
             return arrangeBounds;
         }
 
         private void OnGaugeChanged(LinearGauge newGauge)
         {
-            BindingOperations.ClearAllBindings(this.Panel);
+            BindingOperations.ClearAllBindings(this.panel);
             this.Gauge = newGauge;
         }
     }

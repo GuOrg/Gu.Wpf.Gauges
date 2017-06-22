@@ -15,7 +15,7 @@
 
             var min = Math.Min(minimum, maximum);
             var max = Math.Max(minimum, maximum);
-            var threshold = 0.1 * tickFrequency + max;
+            var threshold = (0.1 * tickFrequency) + max;
             for (var v = min; v < threshold; v += tickFrequency)
             {
                 yield return v;
@@ -25,7 +25,7 @@
         internal static double ToAngle(double tick, double minimum, double maximum, Arc arc)
         {
             var dv = (tick - minimum) / (maximum - minimum);
-            var a = dv * (arc.End - arc.Start) + arc.Start;
+            var a = (dv * (arc.End - arc.Start)) + arc.Start;
             return a;
         }
 
@@ -33,7 +33,7 @@
         {
             var dv = (tick - minimum) / (maximum - minimum);
             var v = line.EndPoint - line.StartPoint;
-            return line.StartPoint + dv * v;
+            return line.StartPoint + (dv * v);
         }
     }
 }

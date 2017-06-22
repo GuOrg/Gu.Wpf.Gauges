@@ -7,7 +7,6 @@
     [RequiresSTA]
     public class AngularBlockBarTests
     {
-
         [TestCase("100, 100", -90, 0, 100, false, "10, 10")]
         [TestCase("100, 100", -90, 0, 100, true, "10, 10")]
         [TestCase("100, 100", 0, 0, 100, false, "10, 0")]

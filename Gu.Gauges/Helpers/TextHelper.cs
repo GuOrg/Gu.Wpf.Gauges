@@ -44,7 +44,7 @@
                     offsetY = 0;
                     break;
                 case TickBarPlacement.Right:
-                    offsetX = -1 * formattedText.Width + actualWidth;
+                    offsetX = (-1 * formattedText.Width) + actualWidth;
                     offsetY = -1 * formattedText.Height / 2;
                     break;
                 case TickBarPlacement.Bottom:
@@ -54,6 +54,7 @@
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
             return new Vector(offsetX, offsetY);
         }
 
