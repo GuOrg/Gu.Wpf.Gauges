@@ -47,7 +47,7 @@
                 child?.Measure(childConstraint);
             }
 
-            return new Size();
+            return default(Size);
         }
 
         protected override Size ArrangeOverride(Size arrangeSize)
@@ -60,12 +60,13 @@
                 {
                     continue;
                 }
+
                 double r = GetRadius(child);
                 double a = GetAngle(child);
 
                 if (double.IsNaN(r) || double.IsNaN(a))
                 {
-                    child.Arrange(new Rect());
+                    child.Arrange(default(Rect));
                 }
                 else
                 {
@@ -76,6 +77,7 @@
                     child.Arrange(new Rect(cp, child.DesiredSize));
                 }
             }
+
             return arrangeSize;
         }
 
@@ -96,6 +98,7 @@
             {
                 return;
             }
+
             var panel = VisualTreeHelper.GetParent(uie) as PolarCanvas;
             panel?.InvalidateArrange();
         }

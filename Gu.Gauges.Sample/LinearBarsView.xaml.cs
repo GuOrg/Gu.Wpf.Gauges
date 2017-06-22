@@ -9,7 +9,7 @@
     {
         public LinearBarsView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

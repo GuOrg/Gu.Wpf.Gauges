@@ -13,7 +13,7 @@
     public class LinearIndicator : ContentControl
     {
         private static readonly DependencyPropertyKey GaugePropertyKey = DependencyProperty.RegisterReadOnly(
-            "Gauge",
+nameof(Gauge),
             typeof(LinearGauge),
             typeof(LinearIndicator),
             new PropertyMetadata(null, OnGaugeChanged));
@@ -27,7 +27,7 @@
             new PropertyMetadata(default(TickBarPlacement), OnPlacementChanged));
 
         private static readonly DependencyPropertyKey PlacementTransformPropertyKey = DependencyProperty.RegisterReadOnly(
-            "PlacementTransform",
+nameof(PlacementTransform),
             typeof(RotateTransform),
             typeof(LinearIndicator),
             new PropertyMetadata(default(RotateTransform)));
@@ -48,14 +48,14 @@
 
         public LinearGauge Gauge
         {
-            get { return (LinearGauge)this.GetValue(GaugeProperty); }
-            protected set { this.SetValue(GaugePropertyKey, value); }
+            get => (LinearGauge)this.GetValue(GaugeProperty);
+            protected set => this.SetValue(GaugePropertyKey, value);
         }
 
         public RotateTransform PlacementTransform
         {
-            get { return (RotateTransform)this.GetValue(PlacementTransformProperty); }
-            protected set { this.SetValue(PlacementTransformPropertyKey, value); }
+            get => (RotateTransform)this.GetValue(PlacementTransformProperty);
+            protected set => this.SetValue(PlacementTransformPropertyKey, value);
         }
 
         protected override void OnVisualParentChanged(DependencyObject oldParent)
@@ -88,6 +88,7 @@
                     throw new ArgumentOutOfRangeException();
             }
         }
+
         private static void OnGaugeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((LinearIndicator)d).OnGaugeChanged((LinearGauge)e.OldValue, (LinearGauge)e.NewValue);

@@ -20,19 +20,17 @@
                 TickBarPlacement.Bottom,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
-
         /// <summary>
-        /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.  
+        /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.
         /// </summary>
         /// <returns>
         /// A <see cref="T:TickBarPlacement" /> enumeration value that identifies the position of the <see cref="T:LinearTextTickBar" /> in the <see cref="T:System.Windows.Style" /> layout of a <see cref="T:System.Windows.Controls.Slider" />. The default value is <see cref="F:Bar.Top" />.
         /// </returns>
         public TickBarPlacement Placement
         {
-            get { return (TickBarPlacement)this.GetValue(PlacementProperty); }
-            set { this.SetValue(PlacementProperty, value); }
+            get => (TickBarPlacement)this.GetValue(PlacementProperty);
+            set => this.SetValue(PlacementProperty, value);
         }
-
 
         protected override Size MeasureOverride(Size availableSize)
         {
@@ -40,13 +38,13 @@
             {
                 return new Size(0, 0);
             }
+
             var textHeight = Math.Ceiling(this.FontSize * this.FontFamily.LineSpacing);
 
             double w = 0;
             double h = 0;
             switch (this.TextOrientation)
             {
-
                 case TextOrientation.VerticalUp:
                 case TextOrientation.VerticalDown:
                     w = textHeight;
@@ -63,6 +61,7 @@
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
             var margin = this.TextSpace / 2;
             switch (this.Placement)
             {
@@ -77,11 +76,13 @@
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
             var size = new Size(w, h);
             if (size.IsInvalid())
             {
                 return new Size(0, 0);
             }
+
             return size;
         }
 
@@ -91,6 +92,7 @@
             {
                 return;
             }
+
             var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace, this.Placement, this.IsDirectionReversed);
             for (int i = 0; i < this.AllTicks.Count; i++)
             {

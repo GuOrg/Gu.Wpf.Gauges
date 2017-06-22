@@ -9,7 +9,7 @@
     {
         public AngularBarsView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

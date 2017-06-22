@@ -5,8 +5,8 @@
 
     public class LinearDimension : TwoPointDimension
     {
-        private bool _hasExplicitOffsetDirection = false;
-        private bool _hasExplicitOffsetPoint = false;
+        private bool hasExplicitOffsetDirection;
+        private bool hasExplicitOffsetPoint;
 
         static LinearDimension()
         {
@@ -22,13 +22,13 @@
                 new FrameworkPropertyMetadata(
                     new Point(double.NaN, double.NaN),
                     FrameworkPropertyMetadataOptions.AffectsMeasure,
-                    OnPointChanged));
+                    OnP1Changed));
             P2Property.AddOwner(
                 typeof(LinearDimension),
                 new FrameworkPropertyMetadata(
                     new Point(double.NaN, double.NaN),
                     FrameworkPropertyMetadataOptions.AffectsMeasure,
-                    OnPointChanged));
+                    OnP2Changed));
 
             OffsetPointProperty.AddOwner(
                 typeof(LinearDimension),
@@ -56,11 +56,21 @@
                 new FrameworkPropertyMetadata(
                     1.0,
                     FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
-                    OnOffsetChanged));
+                    OnScaleChanged));
 
             DefaultStyleKeyProperty.OverrideMetadata(
                 typeof(LinearDimension),
                 new FrameworkPropertyMetadata(typeof(LinearDimension)));
+        }
+
+        private static void OnP1Changed(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            OnPointChanged(o, e);
+        }
+
+        private static void OnP2Changed(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            OnPointChanged(o, e);
         }
 
         private static void OnPointChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
@@ -70,14 +80,17 @@
             {
                 return;
             }
-            if (!dl._hasExplicitOffsetDirection)
+
+            if (!dl.hasExplicitOffsetDirection)
             {
                 InitializeOffsetVector(dl);
             }
-            if (!dl._hasExplicitOffsetPoint)
+
+            if (!dl.hasExplicitOffsetPoint)
             {
                 InitializeOffsetPoint(dl);
             }
+
             OnOffsetChanged(o, e);
         }
 
@@ -88,7 +101,8 @@
             {
                 return;
             }
-            dl._hasExplicitOffsetPoint = true;
+
+            dl.hasExplicitOffsetPoint = true;
             OnOffsetChanged(o, e);
         }
 
@@ -99,18 +113,25 @@
             {
                 return;
             }
-            dl._hasExplicitOffsetDirection = true;
+
+            dl.hasExplicitOffsetDirection = true;
             OnOffsetChanged(o, e);
         }
 
         private static void OnFlowDirectionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             var dl = o as LinearDimension;
-            if (dl == null || IsNan(dl.OffsetDirection) || dl._hasExplicitOffsetDirection)
+            if (dl == null || IsNan(dl.OffsetDirection) || dl.hasExplicitOffsetDirection)
             {
                 return;
             }
+
             dl.OffsetDirection.Negate();
+        }
+
+        private static void OnScaleChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+        {
+            OnOffsetChanged(o, e);
         }
 
         private static void OnOffsetChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
@@ -140,7 +161,7 @@
             if (!dl.OffsetDirection.Equals(dir))
             {
                 dl.SetCurrentValue(OffsetDirectionProperty, dir);
-                dl._hasExplicitOffsetDirection = false;
+                dl.hasExplicitOffsetDirection = false;
             }
         }
 
@@ -153,7 +174,7 @@
             if (IsNan(dl.OffsetPoint) || (dl.OffsetPoint - op).Length > 1e-3)
             {
                 dl.SetCurrentValue(OffsetPointProperty, dl.P2);
-                dl._hasExplicitOffsetPoint = false;
+                dl.hasExplicitOffsetPoint = false;
             }
         }
 

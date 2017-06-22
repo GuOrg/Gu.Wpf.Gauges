@@ -7,10 +7,10 @@ namespace Gu.Gauges
     public class AngularTickBar : AngularBar
     {
         /// <summary>
-        /// Identifies the <see cref="P:AngularTickBar.PenWidth" /> dependency property. 
+        /// Identifies the <see cref="P:AngularTickBar.PenWidth" /> dependency property.
         /// </summary>
         public static readonly DependencyProperty PenWidthProperty = DependencyProperty.Register(
-            "PenWidth",
+nameof(PenWidth),
             typeof(double),
             typeof(AngularTickBar),
             new FrameworkPropertyMetadata(
@@ -27,7 +27,7 @@ namespace Gu.Gauges
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty TickLengthProperty = DependencyProperty.Register(
-            "TickLength",
+nameof(TickLength),
             typeof(double),
             typeof(AngularTickBar),
             new FrameworkPropertyMetadata(
@@ -40,30 +40,30 @@ namespace Gu.Gauges
         /// </summary>
         public double PenWidth
         {
-            get { return (double)this.GetValue(PenWidthProperty); }
-            set { this.SetValue(PenWidthProperty, value); }
+            get => (double)this.GetValue(PenWidthProperty);
+            set => this.SetValue(PenWidthProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> that is used to draw the tick marks.  
+        /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> that is used to draw the tick marks.
         /// </summary>
         /// <returns>
         /// A <see cref="T:System.Windows.Media.Brush" /> to use to draw tick marks. The default value is null.
         /// </returns>
         public Brush Fill
         {
-            get { return (Brush)this.GetValue(FillProperty); }
-            set { this.SetValue(FillProperty, value); }
+            get => (Brush)this.GetValue(FillProperty);
+            set => this.SetValue(FillProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the length of the ticks. 
+        /// Gets or sets the length of the ticks.
         /// The default value is 10.
         /// </summary>
         public double TickLength
         {
-            get { return (double)this.GetValue(TickLengthProperty); }
-            set { this.SetValue(TickLengthProperty, value); }
+            get => (double)this.GetValue(TickLengthProperty);
+            set => this.SetValue(TickLengthProperty, value);
         }
 
         protected override void OnRender(DrawingContext dc)
@@ -76,7 +76,7 @@ namespace Gu.Gauges
                 var tick = this.AllTicks[i];
                 var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
                 var po = arc.GetPoint(angle, -this.ReservedSpace / 2);
-                var pi = arc.GetPoint(angle, -this.ReservedSpace / 2 - this.TickLength);
+                var pi = arc.GetPoint(angle, (-this.ReservedSpace / 2) - this.TickLength);
                 var line = new Line(po, pi);
                 dc.DrawLine(pen, line);
             }

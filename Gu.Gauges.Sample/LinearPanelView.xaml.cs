@@ -9,7 +9,7 @@
     {
         public LinearPanelView()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

@@ -14,7 +14,7 @@
             Assert.AreEqual(1, indicators.Panel.Maximum);
             indicators.Gauge.Axis = new LinearAxis();
             Assert.AreEqual(1, indicators.Panel.Maximum);
-            indicators.Gauge.Axis.Maximum = 2;
+            indicators.Gauge.Axis.SetCurrentValue(Axis.MaximumProperty, (double)2);
             Assert.AreEqual(2, indicators.Panel.Maximum);
         }
 

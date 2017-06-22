@@ -5,33 +5,35 @@
     public class LinearRange : LinearIndicator
     {
         public static readonly DependencyProperty StartProperty = DependencyProperty.Register(
-            "Start", typeof(double),
+            nameof(Start),
+            typeof(double),
             typeof(LinearRange),
             new PropertyMetadata(
-                double.NaN, 
+                double.NaN,
                 OnStartChanged));
 
         public static readonly DependencyProperty EndProperty = DependencyProperty.Register(
-            "End",
+            nameof(End),
             typeof(double),
             typeof(LinearRange),
             new PropertyMetadata(double.NaN, OnEndChanged));
 
         static LinearRange()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(LinearRange), new FrameworkPropertyMetadata(typeof(LinearRange)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(LinearRange),
+                new FrameworkPropertyMetadata(typeof(LinearRange)));
         }
 
         public double Start
         {
-            get { return (double)this.GetValue(StartProperty); }
-            set { this.SetValue(StartProperty, value); }
+            get => (double) this.GetValue(StartProperty);
+            set => this.SetValue(StartProperty, value);
         }
 
         public double End
         {
-            get { return (double)this.GetValue(EndProperty); }
-            set { this.SetValue(EndProperty, value); }
+            get => (double) this.GetValue(EndProperty);
+            set => this.SetValue(EndProperty, value);
         }
 
         protected virtual void OnEndChanged(double newValue)
@@ -46,12 +48,12 @@
 
         private static void OnStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((LinearRange)d).OnStartChanged((double)e.NewValue);
+            ((LinearRange) d).OnStartChanged((double) e.NewValue);
         }
 
         private static void OnEndChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((LinearRange)d).OnEndChanged((double)e.NewValue);
+            ((LinearRange) d).OnEndChanged((double) e.NewValue);
         }
     }
 }

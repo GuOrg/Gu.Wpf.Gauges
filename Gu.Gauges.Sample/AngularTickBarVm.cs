@@ -15,16 +15,14 @@
 
         public double MinAngle
         {
-            get
-            {
-                return this.minAngle;
-            }
+            get => this.minAngle;
             set
             {
                 if (value.Equals(this.minAngle))
                 {
                     return;
                 }
+
                 this.minAngle = value;
                 this.OnPropertyChanged();
             }
@@ -32,16 +30,14 @@
 
         public double MaxAngle
         {
-            get
-            {
-                return this.maxAngle;
-            }
+            get => this.maxAngle;
             set
             {
                 if (value.Equals(this.maxAngle))
                 {
                     return;
                 }
+
                 this.maxAngle = value;
                 this.OnPropertyChanged();
             }

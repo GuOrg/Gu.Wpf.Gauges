@@ -31,6 +31,12 @@
             }
         }
 
+        public static Arc Fill(Size availableSize, double start, double end, bool isDirectionReversed)
+        {
+            var fill = Fill(availableSize, start, end);
+            return new Arc(fill.Centre, start, end, fill.Radius, isDirectionReversed);
+        }
+
         public Point GetPoint(double angle)
         {
             var v0 = new Vector(this.Radius, 0);
@@ -54,6 +60,7 @@
             {
                 return false;
             }
+
             return true;
         }
 
@@ -67,7 +74,7 @@
 
         public IEnumerable<Point> GetQuadrants(double start, double end)
         {
-            var q = start - start % 90;
+            var q = start - (start % 90);
             while (q < end)
             {
                 yield return this.GetPoint(q);
@@ -82,13 +89,7 @@
 
         public override string ToString()
         {
-            return string.Format("Centre: {0}, Radius: {1}, Start: {2}, End: {3}", this.Centre, this.Radius, this.Start, this.End);
-        }
-
-        public static Arc Fill(Size availableSize, double start, double end, bool isDirectionReversed)
-        {
-            var fill = Fill(availableSize, start, end);
-            return new Arc(fill.Centre, start, end, fill.Radius, isDirectionReversed);
+            return $"Centre: {this.Centre}, Radius: {this.Radius}, Start: {this.Start}, End: {this.End}";
         }
 
         internal static Arc Fill(Size availableSize, double start, double end)
@@ -103,7 +104,7 @@
 
             var p0 = new Point(0, 0);
             var arc = new Arc(p0, start, end, 1, isDirectionReversed: false);
-            var rect = new Rect();
+            var rect = default(Rect);
             var ps = arc.GetPoint(start);
             rect.Union(ps);
             rect.Union(arc.GetPoint(end));
@@ -111,6 +112,7 @@
             {
                 rect.Union(quadrant);
             }
+
             var wf = availableSize.Width / rect.Width;
             var hf = availableSize.Height / rect.Height;
             var r = Math.Min(wf, hf);
