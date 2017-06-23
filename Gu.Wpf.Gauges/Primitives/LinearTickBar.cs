@@ -22,7 +22,7 @@
         /// Identifies the <see cref="P:LinearTickBar.PenWidth" /> dependency property.
         /// </summary>
         public static readonly DependencyProperty PenWidthProperty = DependencyProperty.Register(
-nameof(PenWidth),
+            nameof(PenWidth),
             typeof(double),
             typeof(LinearTickBar),
             new FrameworkPropertyMetadata(
@@ -77,7 +77,7 @@ nameof(PenWidth),
             var pen = new Pen(this.Fill, this.PenWidth);
             pen.Freeze();
             var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace, this.Placement, this.IsDirectionReversed);
-            Vector offset = new Vector(0, 0);
+            var offset = new Vector(0, 0);
             switch (this.Placement)
             {
                 case TickBarPlacement.Left:

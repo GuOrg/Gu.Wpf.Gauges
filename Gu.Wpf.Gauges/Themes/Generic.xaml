@@ -78,15 +78,11 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type local:LinearValue}">
+    <Style TargetType="{x:Type local:LinearIndicator}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:LinearValue}">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                        <ContentPresenter />
-                    </Border>
+                <ControlTemplate TargetType="{x:Type local:LinearIndicator}">
+                    <ContentPresenter />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -121,6 +117,8 @@
                 <ControlTemplate TargetType="{x:Type local:LinearAxis}">
                     <DockPanel>
                         <local:LinearTextTickBar x:Name="TickLabels"
+                                                 local:Axis.MinReservedSpace="{Binding TextSpace,
+                                                                                       RelativeSource={RelativeSource Self}}"
                                                  FontFamily="{TemplateBinding FontFamily}"
                                                  FontSize="{TemplateBinding FontSize}"
                                                  FontStretch="{TemplateBinding FontStretch}"
@@ -135,9 +133,7 @@
                                                  SnapsToDevicePixels="True"
                                                  TextOrientation="{TemplateBinding TextOrientation}"
                                                  TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                                 Ticks="{TemplateBinding MajorTicks}"
-                                                 local:Axis.MinReservedSpace="{Binding TextSpace,
-                                                                                       RelativeSource={RelativeSource Self}}" />
+                                                 Ticks="{TemplateBinding MajorTicks}" />
 
                         <Grid x:Name="Ticks">
                             <local:LinearTickBar x:Name="MajorTicks"
@@ -301,12 +297,12 @@
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
-                        <DockPanel SnapsToDevicePixels="True">
+                        <!--<DockPanel SnapsToDevicePixels="True">
                             <ContentPresenter x:Name="Axis" Content="{TemplateBinding Axis}" />
                             <ContentPresenter x:Name="Indicators" Content="{TemplateBinding Indicators}" />
-                        </DockPanel>
+                        </DockPanel>-->
                     </Border>
-                    <ControlTemplate.Triggers>
+                    <!--<ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Axis.Placement, RelativeSource={RelativeSource Self}}" Value="Top">
                             <Setter TargetName="Axis" Property="DockPanel.Dock" Value="Top" />
                             <Setter TargetName="Indicators" Property="DockPanel.Dock" Value="Bottom" />
@@ -330,7 +326,7 @@
                             <Setter TargetName="Indicators" Property="DockPanel.Dock" Value="Left" />
                             <Setter TargetName="Indicators" Property="HorizontalAlignment" Value="Right" />
                         </DataTrigger>
-                    </ControlTemplate.Triggers>
+                    </ControlTemplate.Triggers>-->
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

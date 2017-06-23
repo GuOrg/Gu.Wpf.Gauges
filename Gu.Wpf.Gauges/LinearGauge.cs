@@ -1,60 +1,31 @@
 ﻿namespace Gu.Wpf.Gauges
 {
     using System.Windows;
+    using System.Windows.Controls.Primitives;
 
     public class LinearGauge : Gauge
     {
-        public static readonly DependencyProperty AxisProperty = DependencyProperty.Register(
-            nameof(Axis),
-            typeof(LinearAxis),
+        public static readonly DependencyProperty PlacementProperty = DependencyProperty.RegisterAttached(
+            "Placement",
+            typeof(TickBarPlacement),
             typeof(LinearGauge),
             new FrameworkPropertyMetadata(
-                null,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
-                OnAxisChanged));
-
-        public static readonly DependencyProperty IndicatorsProperty = DependencyProperty.Register(
-            nameof(Indicators),
-            typeof(LinearIndicators),
-            typeof(LinearGauge),
-            new FrameworkPropertyMetadata(
-                null,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
-                OnIndicatorsChanged));
+                TickBarPlacement.Bottom, 
+                FrameworkPropertyMetadataOptions.Inherits));
 
         static LinearGauge()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(LinearGauge), new FrameworkPropertyMetadata(typeof(LinearGauge)));
         }
 
-        public LinearAxis Axis
+        public static void SetPlacement(DependencyObject element, TickBarPlacement placement)
         {
-            get => (LinearAxis)this.GetValue(AxisProperty);
-            set => this.SetValue(AxisProperty, value);
+            element.SetValue(PlacementProperty, placement);
         }
 
-        public LinearIndicators Indicators
+        public static TickBarPlacement GetPlacement(DependencyObject element)
         {
-            get => (LinearIndicators)this.GetValue(IndicatorsProperty);
-            set => this.SetValue(IndicatorsProperty, value);
-        }
-
-        protected virtual void OnAxisChanged(LinearAxis oldAxis, LinearAxis newAxis)
-        {
-        }
-
-        protected virtual void OnIndicatorsChanged(LinearIndicators oldIndicators, LinearIndicators newIndicators)
-        {
-        }
-
-        private static void OnAxisChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((LinearGauge)d).OnAxisChanged((LinearAxis)e.OldValue, (LinearAxis)e.NewValue);
-        }
-
-        private static void OnIndicatorsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((LinearGauge)d).OnIndicatorsChanged((LinearIndicators)e.OldValue, (LinearIndicators)e.NewValue);
+            return (TickBarPlacement)element.GetValue(PlacementProperty);
         }
     }
 }

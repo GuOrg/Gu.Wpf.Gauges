@@ -16,7 +16,7 @@ namespace Gu.Wpf.Gauges
         /// <returns>
         /// The identifier for the <see cref="P:Bar.Minimum" /> dependency property.
         /// </returns>
-        public static readonly DependencyProperty MinimumProperty = RangeBase.MinimumProperty.AddOwner(
+        public static readonly DependencyProperty MinimumProperty = Gauge.MinimumProperty.AddOwner(
             typeof(TickBarBase),
             new FrameworkPropertyMetadata(
                 0.0,
@@ -29,7 +29,7 @@ namespace Gu.Wpf.Gauges
         /// <returns>
         /// The identifier for the <see cref="P:Bar.Maximum" /> dependency property.
         /// </returns>
-        public static readonly DependencyProperty MaximumProperty = RangeBase.MaximumProperty.AddOwner(
+        public static readonly DependencyProperty MaximumProperty = Gauge.MaximumProperty.AddOwner(
             typeof(TickBarBase),
             new FrameworkPropertyMetadata(
                 1.0,
@@ -71,7 +71,7 @@ namespace Gu.Wpf.Gauges
         /// <summary>
         /// Identifies the <see cref="P:Bar.IsDirectionReversed" /> dependency property.
         /// </summary>
-        public static readonly DependencyProperty IsDirectionReversedProperty = Slider.IsDirectionReversedProperty.AddOwner(
+        public static readonly DependencyProperty IsDirectionReversedProperty = Gauge.IsDirectionReversedProperty.AddOwner(
             typeof(TickBarBase),
             new FrameworkPropertyMetadata(
                 false,

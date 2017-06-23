@@ -13,6 +13,10 @@
                                          IsDesignTimeCreatable=True}"
         mc:Ignorable="d">
     <TabControl>
+        <TabItem Header="Gauge">
+            <sandbox:GaugeBox />
+        </TabItem>
+
         <TabItem Header="Linear default style">
             <sample:DefaultStyleLinearGaugeView />
         </TabItem>

@@ -25,7 +25,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <gauges:AngularGauge Grid.Row="0">
+        <!--<gauges:AngularGauge Grid.Row="0">
             <gauges:AngularGauge.Axis>
                 <gauges:AngularAxis IsDirectionReversed="{Binding IsDirectionReversed}"
                                     MajorTickFrequency="{Binding TickFrequency}"
@@ -57,7 +57,7 @@
                     </gauges:AngularValue>
                 </gauges:AngularIndicators>
             </gauges:AngularGauge.Indicators>
-        </gauges:AngularGauge>
+        </gauges:AngularGauge>-->
 
         <ContentPresenter Grid.Row="1" Content="{Binding}" />
     </Grid>

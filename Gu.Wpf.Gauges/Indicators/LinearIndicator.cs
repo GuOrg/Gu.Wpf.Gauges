@@ -1,104 +1,88 @@
 ﻿namespace Gu.Wpf.Gauges
 {
     using System;
-    using System.Linq;
     using System.Windows;
-    using System.Windows.Controls;
     using System.Windows.Controls.Primitives;
-    using System.Windows.Data;
-    using System.Windows.Media;
 
-    using Helpers;
-
-    public class LinearIndicator : ContentControl
+    public class LinearIndicator : Indicator
     {
-#pragma warning disable SA1202 // Elements must be ordered by access
-        private static readonly DependencyPropertyKey GaugePropertyKey = DependencyProperty.RegisterReadOnly(
-            nameof(Gauge),
-            typeof(LinearGauge),
+        public static readonly DependencyProperty PlacementProperty = LinearGauge.PlacementProperty.AddOwner(
             typeof(LinearIndicator),
-            new PropertyMetadata(null, OnGaugeChanged));
+            new FrameworkPropertyMetadata(
+                TickBarPlacement.Bottom,
+               FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits,
+                OnPlacementChanged));
 
-        public static readonly DependencyProperty GaugeProperty = GaugePropertyKey.DependencyProperty;
-
-        private static readonly DependencyProperty PlacementProxyProperty = DependencyProperty.Register(
-            "PlacementProxy",
-            typeof(TickBarPlacement),
-            typeof(LinearIndicator),
-            new PropertyMetadata(default(TickBarPlacement), OnPlacementProxyChanged));
-
-        private static readonly DependencyPropertyKey PlacementTransformPropertyKey = DependencyProperty.RegisterReadOnly(
-                nameof(PlacementTransform),
-                typeof(RotateTransform),
-                typeof(LinearIndicator),
-                new PropertyMetadata(default(RotateTransform)));
-
-        public static readonly DependencyProperty PlacementTransformProperty = PlacementTransformPropertyKey.DependencyProperty;
-#pragma warning restore SA1202 // Elements must be ordered by access
-
-        public LinearIndicator()
+        static LinearIndicator()
         {
-            this.PlacementTransform = new RotateTransform();
-            var property = NameOf.Property(() => this.Gauge.Axis.Placement);
-            var placementBinding = new Binding(property)
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(LinearIndicator), new FrameworkPropertyMetadata(typeof(LinearIndicator)));
+        }
+
+        public TickBarPlacement Placement
+        {
+            get => (TickBarPlacement)this.GetValue(PlacementProperty);
+            set => this.SetValue(PlacementProperty, value);
+        }
+
+        protected override Size ArrangeOverride(Size arrangeBounds)
+        {
+            if (double.IsNaN(this.Value))
             {
-                Source = this,
-                Mode = BindingMode.OneWay
-            };
-            BindingOperations.SetBinding(this, PlacementProxyProperty, placementBinding);
-        }
+                return arrangeBounds;
+            }
 
-        public LinearGauge Gauge
-        {
-            get => (LinearGauge)this.GetValue(GaugeProperty);
-            protected set => this.SetValue(GaugePropertyKey, value);
-        }
+            var child = this.GetVisualChild(0) as UIElement;
+            if (child == null)
+            {
+                return arrangeBounds;
+            }
 
-        public RotateTransform PlacementTransform
-        {
-            get => (RotateTransform)this.GetValue(PlacementTransformProperty);
-            protected set => this.SetValue(PlacementTransformPropertyKey, value);
-        }
-
-        protected override void OnVisualParentChanged(DependencyObject oldParent)
-        {
-            this.Gauge = this.VisualAncestors().OfType<LinearGauge>().FirstOrDefault();
-            base.OnVisualParentChanged(oldParent);
-        }
-
-        protected virtual void OnGaugeChanged(LinearGauge old, LinearGauge newValue)
-        {
-        }
-
-        protected virtual void OnPlacementChanged(TickBarPlacement placement)
-        {
-            switch (placement)
+            Line l1;
+            Line l2;
+            switch (this.Placement)
             {
                 case TickBarPlacement.Left:
-                    this.PlacementTransform.SetCurrentValue(RotateTransform.AngleProperty, (double)90);
+                case TickBarPlacement.Right:
+                    l1 = new Line(arrangeBounds, 0, TickBarPlacement.Left, this.IsDirectionReversed);
+                    l2 = new Line(arrangeBounds, 0, TickBarPlacement.Right, this.IsDirectionReversed);
                     break;
                 case TickBarPlacement.Top:
-                    this.PlacementTransform.SetCurrentValue(RotateTransform.AngleProperty, (double)180);
-                    break;
-                case TickBarPlacement.Right:
-                    this.PlacementTransform.SetCurrentValue(RotateTransform.AngleProperty, (double)-90);
-                    break;
                 case TickBarPlacement.Bottom:
-                    this.PlacementTransform.SetCurrentValue(RotateTransform.AngleProperty, (double)0);
+                    l1 = new Line(arrangeBounds, 0, TickBarPlacement.Top, this.IsDirectionReversed);
+                    l2 = new Line(arrangeBounds, 0, TickBarPlacement.Bottom, this.IsDirectionReversed);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
+            var p1 = l1.Interpolate(this.Value, this.Minimum, this.Maximum);
+            var p2 = l2.Interpolate(this.Value, this.Minimum, this.Maximum);
+            var w2 = child.DesiredSize.Width / 2;
+            var h2 = child.DesiredSize.Height / 2;
+            var ps = new Point(p1.X - w2, p1.Y - h2);
+            var pe = new Point(p2.X + w2, p2.Y + h2);
+            var rect = new Rect(arrangeBounds);
+            var rect1 = new Rect(ps, pe);
+            rect.Intersect(rect1);
+            if (rect.IsEmpty)
+            {
+                child.Arrange(default(Rect));
+            }
+            else
+            {
+                child.Arrange(rect);
+            }
+
+            return arrangeBounds;
         }
 
-        private static void OnGaugeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        protected virtual void OnPlacementChanged(TickBarPlacement eOldValue, TickBarPlacement eNewValue)
         {
-            ((LinearIndicator)d).OnGaugeChanged((LinearGauge)e.OldValue, (LinearGauge)e.NewValue);
         }
 
-        private static void OnPlacementProxyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnPlacementChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((LinearIndicator)d).OnPlacementChanged((TickBarPlacement)e.NewValue);
+            ((LinearIndicator)d).OnPlacementChanged((TickBarPlacement)e.OldValue, (TickBarPlacement)e.NewValue);
         }
     }
 }

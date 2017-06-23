@@ -26,7 +26,7 @@
         /// <returns>
         /// The identifier for the <see cref="P:BlockBar.Value" /> dependency property.
         /// </returns>
-        public static readonly DependencyProperty ValueProperty = RangeBase.ValueProperty.AddOwner(
+        public static readonly DependencyProperty ValueProperty = Gauge.ValueProperty.AddOwner(
             typeof(LinearBlockBar),
             new FrameworkPropertyMetadata(
                 0.0,

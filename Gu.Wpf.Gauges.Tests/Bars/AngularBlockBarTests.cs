@@ -1,10 +1,11 @@
 ﻿namespace Gu.Wpf.Gauges.Tests.Bars
 {
+    using System.Threading;
     using Gu.Wpf.Gauges.Tests.Helpers;
 
     using NUnit.Framework;
 
-    [RequiresSTA]
+    [Apartment(ApartmentState.STA)]
     public class AngularBlockBarTests
     {
         [TestCase("100, 100", -90, 0, 100, false, "10, 10")]

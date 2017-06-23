@@ -179,11 +179,11 @@
         /// <returns>LinearPanel's desired size.</returns>
         protected override Size MeasureOverride(Size constraint)
         {
-            UIElementCollection children = this.InternalChildren;
+            var children = this.InternalChildren;
             var desiredSize = default(Size);
             for (int i = 0, count = children.Count; i < count; ++i)
             {
-                UIElement child = children[i];
+                var child = children[i];
                 if (child != null)
                 {
                     child.Measure(constraint);
@@ -227,15 +227,15 @@
                     continue;
                 }
 
-                Point ps = default(Point);
-                Point pe = default(Point);
+                var ps = default(Point);
+                var pe = default(Point);
 
-                double start = GetStart(child);
-                double end = GetEnd(child);
+                var start = GetStart(child);
+                var end = GetEnd(child);
 
                 if (double.IsNaN(start) || double.IsNaN(end))
                 {
-                    double center = GetAtValue(child);
+                    var center = GetAtValue(child);
 
                     if (!double.IsNaN(center))
                     {

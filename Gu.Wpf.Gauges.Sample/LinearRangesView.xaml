@@ -82,7 +82,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <gauges:LinearGauge Grid.Row="0" Value="{Binding Value, ElementName=ValueSlider}">
+        <!--<gauges:LinearGauge Grid.Row="0" Value="{Binding Value, ElementName=ValueSlider}">
             <gauges:LinearGauge.Axis>
                 <gauges:LinearAxis IsDirectionReversed="{Binding IsDirectionReversed,
                                                                  ElementName=ValueSlider}"
@@ -156,7 +156,7 @@
                     </Grid>
                 </ControlTemplate>
             </gauges:LinearGauge.Template>
-        </gauges:LinearGauge>
+        </gauges:LinearGauge>-->
 
         <Slider x:Name="ValueSlider"
                 Grid.Row="1"
