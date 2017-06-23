@@ -2,9 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
-             xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
              mc:Ignorable="d">
     <UserControl.DataContext>
         <sample:TickBarVm Maximum="100"
@@ -22,34 +22,32 @@
             <RowDefinition Height="*" MinHeight="100" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <!--<gauges:LinearGauge Grid.Row="0" Value="{Binding Value}">
-            <gauges:LinearGauge.Axis>
-                <gauges:LinearAxis IsDirectionReversed="{Binding IsDirectionReversed}"
+        <gauges:LinearGauge Grid.Row="0"
+                            IsDirectionReversed="{Binding IsDirectionReversed}"
+                            Maximum="{Binding Maximum}"
+                            Minimum="{Binding Minimum}"
+                            Value="{Binding Value}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <gauges:LinearAxis Grid.Row="1"
                                    MajorTickFrequency="{Binding TickFrequency}"
                                    MajorTicks="{Binding Ticks}"
-                                   Maximum="{Binding Maximum}"
-                                   Minimum="{Binding Minimum}"
                                    MinorTickFrequency="{Binding MinorTickFrequency}"
-                                   Padding="25"
                                    Placement="{Binding Placement}"
                                    ShowLabels="{Binding ShowLabels}"
                                    TextOrientation="{Binding TextOrientation}" />
-            </gauges:LinearGauge.Axis>
-            <gauges:LinearGauge.Indicators>
-                <gauges:LinearIndicators>
-                    <gauges:LinearValue Value="{Binding AnimatedValue, RelativeSource={RelativeSource AncestorType={x:Type gauges:LinearGauge}}}">
-                        <Path Width="10"
-                              Height="10"
-                              Data="M0,0 L0.5,1 1,0z"
-                              Fill="Black"
-                              RenderTransform="{Binding PlacementTransform,
-                                                        RelativeSource={RelativeSource AncestorType={x:Type gauges:LinearValue}}}"
-                              RenderTransformOrigin="0.5,0.5"
-                              Stretch="Fill" />
-                    </gauges:LinearValue>
-                </gauges:LinearIndicators>
-            </gauges:LinearGauge.Indicators>
-        </gauges:LinearGauge>-->
+                <gauges:LinearIndicator Grid.Row="0">
+                    <Path Width="10"
+                          Height="10"
+                          Data="M0,0 L0.5,1 1,0z"
+                          Fill="Black"
+                          Stretch="Fill" />
+                </gauges:LinearIndicator>
+            </Grid>
+        </gauges:LinearGauge>
 
         <ContentPresenter Grid.Row="1"
                           Grid.Column="0"

@@ -60,6 +60,12 @@ namespace Gu.Wpf.Gauges
             remove => this.RemoveHandler(ValueChangedEvent, value);
         }
 
+        public double Value
+        {
+            get => (double)this.GetValue(ValueProperty);
+            set => this.SetValue(ValueProperty, value);
+        }
+
         public static void SetValue(DependencyObject element, double value)
         {
             element.SetValue(ValueProperty, value);

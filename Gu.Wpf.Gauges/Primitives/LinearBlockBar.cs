@@ -51,7 +51,7 @@
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty GapProperty = DependencyProperty.Register(
-nameof(Gap),
+            nameof(Gap),
             typeof(double),
             typeof(LinearBlockBar),
             new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.AffectsRender));
@@ -129,13 +129,12 @@ nameof(Gap),
         {
             var pen = new Pen(this.Stroke, this.StrokeThickness);
             pen.Freeze();
-
             var ticks = this.AllTicks.Concat(new[] { this.Value })
                             .OrderBy(t => t);
             var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace, this.Placement, this.IsDirectionReversed);
             var previous = line.StartPoint;
-            Vector offset = new Vector(0, 0);
-            Vector gap = new Vector(0, 0);
+            var offset = new Vector(0, 0);
+            var gap = new Vector(0, 0);
             switch (this.Placement)
             {
                 case TickBarPlacement.Left:

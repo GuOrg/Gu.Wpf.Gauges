@@ -4,7 +4,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d">
     <Border BorderBrush="Black" BorderThickness="1">
@@ -39,5 +38,4 @@
             </gauges:LinearIndicator>
         </gauges:LinearPanel>
     </Border>
-
 </UserControl>

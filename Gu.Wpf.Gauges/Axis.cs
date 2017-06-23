@@ -17,7 +17,7 @@
         /// <returns>
         /// The identifier for the <see cref="P:Axis.Minimum" /> dependency property.
         /// </returns>
-        public static readonly DependencyProperty MinimumProperty = RangeBase.MinimumProperty.AddOwner(
+        public static readonly DependencyProperty MinimumProperty = Gauge.MinimumProperty.AddOwner(
             typeof(Axis),
             new FrameworkPropertyMetadata(0.0, FrameworkPropertyMetadataOptions.Inherits));
 
@@ -27,36 +27,36 @@
         /// <returns>
         /// The identifier for the <see cref="P:Axis.Maximum" /> dependency property.
         /// </returns>
-        public static readonly DependencyProperty MaximumProperty = RangeBase.MaximumProperty.AddOwner(
+        public static readonly DependencyProperty MaximumProperty = Gauge.MaximumProperty.AddOwner(
             typeof(Axis),
             new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty ShowLabelsProperty = DependencyProperty.Register(
-nameof(ShowLabels),
+            nameof(ShowLabels),
             typeof(bool),
             typeof(Axis),
             new PropertyMetadata(true));
 
         public static readonly DependencyProperty MajorTickFrequencyProperty = DependencyProperty.Register(
-nameof(MajorTickFrequency),
+            nameof(MajorTickFrequency),
             typeof(double),
             typeof(Axis),
             new FrameworkPropertyMetadata(default(double)));
 
         public static readonly DependencyProperty MajorTicksProperty = DependencyProperty.Register(
-nameof(MajorTicks),
+            nameof(MajorTicks),
             typeof(DoubleCollection),
             typeof(Axis),
             new PropertyMetadata(default(DoubleCollection)));
 
         public static readonly DependencyProperty MinorTickFrequencyProperty = DependencyProperty.Register(
-nameof(MinorTickFrequency),
+            nameof(MinorTickFrequency),
             typeof(double),
             typeof(Axis),
             new PropertyMetadata(default(double)));
 
         public static readonly DependencyProperty TextOrientationProperty = DependencyProperty.Register(
-nameof(TextOrientation),
+            nameof(TextOrientation),
             typeof(TextOrientation),
             typeof(Axis),
             new FrameworkPropertyMetadata(TextOrientation.Horizontal, FrameworkPropertyMetadataOptions.Inherits));

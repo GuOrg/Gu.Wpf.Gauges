@@ -14,7 +14,7 @@
         /// <returns>
         /// The identifier for the <see cref="P:LinearPanel.Minimum" /> dependency property.
         /// </returns>
-        public static readonly DependencyProperty MinimumProperty = RangeBase.MinimumProperty.AddOwner(
+        public static readonly DependencyProperty MinimumProperty = Gauge.MinimumProperty.AddOwner(
             typeof(LinearPanel),
             new FrameworkPropertyMetadata(
                 0.0,
@@ -26,7 +26,7 @@
         /// <returns>
         /// The identifier for the <see cref="P:LinearPanel.Maximum" /> dependency property.
         /// </returns>
-        public static readonly DependencyProperty MaximumProperty = RangeBase.MaximumProperty.AddOwner(
+        public static readonly DependencyProperty MaximumProperty = Gauge.MaximumProperty.AddOwner(
             typeof(LinearPanel),
             new FrameworkPropertyMetadata(
                 1.0,
@@ -38,7 +38,7 @@
         /// <returns>
         /// The identifier for the <see cref="P:BlockLinearPanel.Placement" /> dependency property.
         /// </returns>
-        public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
+        public static readonly DependencyProperty PlacementProperty = LinearGauge.PlacementProperty.AddOwner(
             typeof(LinearPanel),
             new FrameworkPropertyMetadata(
                 TickBarPlacement.Bottom,
@@ -47,7 +47,7 @@
         /// <summary>
         /// Identifies the <see cref="P:LinearPanel.IsDirectionReversed" /> dependency property.
         /// </summary>
-        public static readonly DependencyProperty IsDirectionReversedProperty = Slider.IsDirectionReversedProperty.AddOwner(
+        public static readonly DependencyProperty IsDirectionReversedProperty = Gauge.IsDirectionReversedProperty.AddOwner(
             typeof(LinearPanel),
             new FrameworkPropertyMetadata(
                 false,

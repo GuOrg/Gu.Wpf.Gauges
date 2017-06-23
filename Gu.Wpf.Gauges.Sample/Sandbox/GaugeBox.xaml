@@ -54,10 +54,10 @@
                        Fill="Black" />
 
             <gauges:LinearIndicator Grid.Row="1"
-                                    Margin="0,-3"
+                                    Margin="0,-4"
                                     VerticalAlignment="Bottom">
-                <Ellipse Width="6"
-                         Height="6"
+                <Ellipse Width="8"
+                         Height="8"
                          Fill="HotPink" />
             </gauges:LinearIndicator>
         </Grid>
