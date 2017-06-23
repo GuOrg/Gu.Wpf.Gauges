@@ -68,7 +68,7 @@
     <Compile Include="FatStylesView.xaml.cs">
       <DependentUpon>FatStylesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LinearBarsView.xaml.cs">
+    <Compile Include="Primitives\LinearBarsView.xaml.cs">
       <DependentUpon>LinearBarsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="LinearIndicatorsView.xaml.cs">
@@ -106,7 +106,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LinearBarsView.xaml">
+    <Page Include="Primitives\LinearBarsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

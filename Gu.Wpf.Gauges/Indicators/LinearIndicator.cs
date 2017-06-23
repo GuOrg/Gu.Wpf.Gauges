@@ -14,7 +14,7 @@
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
         private static readonly DependencyPropertyKey GaugePropertyKey = DependencyProperty.RegisterReadOnly(
-nameof(Gauge),
+            nameof(Gauge),
             typeof(LinearGauge),
             typeof(LinearIndicator),
             new PropertyMetadata(null, OnGaugeChanged));
@@ -28,10 +28,10 @@ nameof(Gauge),
             new PropertyMetadata(default(TickBarPlacement), OnPlacementProxyChanged));
 
         private static readonly DependencyPropertyKey PlacementTransformPropertyKey = DependencyProperty.RegisterReadOnly(
-nameof(PlacementTransform),
-            typeof(RotateTransform),
-            typeof(LinearIndicator),
-            new PropertyMetadata(default(RotateTransform)));
+                nameof(PlacementTransform),
+                typeof(RotateTransform),
+                typeof(LinearIndicator),
+                new PropertyMetadata(default(RotateTransform)));
 
         public static readonly DependencyProperty PlacementTransformProperty = PlacementTransformPropertyKey.DependencyProperty;
 #pragma warning restore SA1202 // Elements must be ordered by access
