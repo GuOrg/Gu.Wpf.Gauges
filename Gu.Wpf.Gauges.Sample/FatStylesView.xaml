@@ -75,14 +75,18 @@
             </Setter>
         </Style>
 
-        <Style x:Key="FatLinearAxisStyle" TargetType="{x:Type gauges:LinearAxis}">
+        <Style x:Key="FatLinearGaugeStyle" TargetType="{x:Type gauges:LinearGauge}">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type gauges:LinearAxis}">
+                    <ControlTemplate TargetType="{x:Type gauges:LinearGauge}">
                         <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <gauges:LinearTextTickBar Grid.Row="0"
                                                       VerticalAlignment="Bottom"
@@ -95,12 +99,29 @@
 
                             <gauges:LinearBlockBar Grid.Row="1"
                                                    Grid.Column="0"
+                                                   Fill="White"
+                                                   Gap="1"
+                                                   TickFrequency="{Binding ElementName=Axis,
+                                                                           Path=MajorTickFrequency}"
+                                                   Ticks="{Binding ElementName=Axis,
+                                                                   Path=MajorTicks}" />
+
+                            <gauges:LinearBlockBar Grid.Row="1"
+                                                   Grid.Column="0"
                                                    Fill="LightGray"
                                                    Gap="1"
                                                    Opacity="0.2"
                                                    TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                    Ticks="{TemplateBinding MajorTicks}"
                                                    Value="{TemplateBinding Maximum}" />
+
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="1"
+                                       Margin="6,0,0,0"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding RelativeSource={RelativeSource FindAncestor,
+                                                                                     AncestorType=gauges:Gauge},
+                                                      Path=Value}" />
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -126,7 +147,7 @@
             <gauges:AngularGauge.Axis>
                 <gauges:AngularAxis IsDirectionReversed="False"
                                     MajorTickFrequency="25"
-                                    MajorTicks="60"
+                                    MajorTicks="10"
                                     MaxAngle="0"
                                     Maximum="100"
                                     MinAngle="-180"
@@ -155,52 +176,21 @@
 
         <gauges:LinearGauge Grid.Row="1"
                             Width="200"
+                            MajorTickFrequency="25"
+                            MajorTicks="10"
                             Maximum="100"
                             Minimum="0"
                             Placement="Bottom"
+                            Style="{StaticResource FatLinearGaugeStyle}"
                             TextElement.FontSize="20"
                             Value="{Binding Value,
-                                            ElementName=ValueSlider}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <gauges:LinearAxis x:Name="Axis"
-                                   Grid.Row="0"
-                                   Grid.RowSpan="2"
-                                   Grid.Column="0"
-                                   MajorTickFrequency="25"
-                                   MajorTicks="10"
-                                   Style="{StaticResource FatLinearAxisStyle}" />
-
-                <gauges:LinearBlockBar Grid.Row="1"
-                                       Grid.Column="0"
-                                       Fill="White"
-                                       Gap="1"
-                                       TickFrequency="{Binding ElementName=Axis,
-                                                               Path=MajorTickFrequency}"
-                                       Ticks="{Binding ElementName=Axis,
-                                                       Path=MajorTicks}" />
-                <TextBlock Grid.Row="1"
-                           Grid.Column="1"
-                           Margin="6,0,0,0"
-                           VerticalAlignment="Center"
-                           Text="{Binding RelativeSource={RelativeSource FindAncestor,
-                                                                         AncestorType=gauges:Gauge},
-                                          Path=Value}" />
-            </Grid>
-        </gauges:LinearGauge>
+                                            ElementName=ValueSlider}" />
 
         <Slider x:Name="ValueSlider"
                 Grid.Row="3"
                 Width="200"
                 Maximum="100"
                 Minimum="0"
-                Value="35" />
+                Value="80" />
     </Grid>
 </UserControl>

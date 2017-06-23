@@ -3,14 +3,12 @@ namespace Gu.Wpf.Gauges
     using System.ComponentModel;
     using System.Windows;
     using System.Windows.Controls;
+    using System.Windows.Media;
 
     [DefaultEvent(nameof(ValueChanged))]
     [DefaultProperty("Value")]
     public class Gauge : ContentControl
     {
-        /// <summary>
-        /// Event correspond to Value changed event
-        /// </summary>
         public static readonly RoutedEvent ValueChangedEvent = EventManager.RegisterRoutedEvent(
             nameof(ValueChanged),
             RoutingStrategy.Bubble,
@@ -50,6 +48,24 @@ namespace Gu.Wpf.Gauges
             typeof(Gauge),
             new FrameworkPropertyMetadata(default(bool), FrameworkPropertyMetadataOptions.Inherits));
 
+        public static readonly DependencyProperty MajorTickFrequencyProperty = DependencyProperty.RegisterAttached(
+            nameof(MajorTickFrequency),
+            typeof(double),
+            typeof(Gauge),
+            new FrameworkPropertyMetadata(default(double), FrameworkPropertyMetadataOptions.Inherits));
+
+        public static readonly DependencyProperty MajorTicksProperty = DependencyProperty.RegisterAttached(
+            nameof(MajorTicks),
+            typeof(DoubleCollection),
+            typeof(Gauge),
+            new FrameworkPropertyMetadata(default(DoubleCollection), FrameworkPropertyMetadataOptions.Inherits));
+
+        public static readonly DependencyProperty MinorTickFrequencyProperty = DependencyProperty.RegisterAttached(
+            nameof(MinorTickFrequency),
+            typeof(double),
+            typeof(Gauge),
+            new FrameworkPropertyMetadata(default(double), FrameworkPropertyMetadataOptions.Inherits));
+
         /// <summary>
         /// Add / Remove ValueChangedEvent handler
         /// </summary>
@@ -64,6 +80,36 @@ namespace Gu.Wpf.Gauges
         {
             get => (double)this.GetValue(ValueProperty);
             set => this.SetValue(ValueProperty, value);
+        }
+
+        public double Minimum
+        {
+            get => (double)this.GetValue(MinimumProperty);
+            set => this.SetValue(MinimumProperty, value);
+        }
+
+        public double Maximum
+        {
+            get => (double)this.GetValue(MaximumProperty);
+            set => this.SetValue(MaximumProperty, value);
+        }
+
+        public double MajorTickFrequency
+        {
+            get => (double)this.GetValue(MajorTickFrequencyProperty);
+            set => this.SetValue(MajorTickFrequencyProperty, value);
+        }
+
+        public DoubleCollection MajorTicks
+        {
+            get => (DoubleCollection)this.GetValue(MajorTicksProperty);
+            set => this.SetValue(MajorTicksProperty, value);
+        }
+
+        public double MinorTickFrequency
+        {
+            get => (double)this.GetValue(MinorTickFrequencyProperty);
+            set => this.SetValue(MinorTickFrequencyProperty, value);
         }
 
         public static void SetValue(DependencyObject element, double value)

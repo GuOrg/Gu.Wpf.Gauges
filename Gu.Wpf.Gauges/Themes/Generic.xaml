@@ -298,10 +298,6 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
                         <ContentPresenter />
-                        <!--<DockPanel SnapsToDevicePixels="True">
-                            <ContentPresenter x:Name="Axis" Content="{TemplateBinding Axis}" />
-                            <ContentPresenter x:Name="Indicators" Content="{TemplateBinding Indicators}" />
-                        </DockPanel>-->
                     </Border>
                     <!--<ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Axis.Placement, RelativeSource={RelativeSource Self}}" Value="Top">

@@ -12,9 +12,7 @@
     public class TextTickBar : TickBarBase, ITextFormat
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
-        public static readonly DependencyProperty TextOrientationProperty = DependencyProperty.Register(
-nameof(TextOrientation),
-            typeof(TextOrientation),
+        public static readonly DependencyProperty TextOrientationProperty = Axis.TextOrientationProperty.AddOwner(
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
                 TextOrientation.Tangential,
@@ -90,7 +88,7 @@ nameof(TextOrientation),
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
                Brushes.Black,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.SubPropertiesDoNotAffectRender));
+               FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.SubPropertiesDoNotAffectRender));
 
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.TextEffects" /> dependency property.
@@ -115,7 +113,7 @@ nameof(TextOrientation),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
         private static readonly DependencyPropertyKey TextSpacePropertyKey = DependencyProperty.RegisterReadOnly(
-nameof(TextSpace),
+            nameof(TextSpace),
             typeof(double),
             typeof(TextTickBar),
             new PropertyMetadata(default(double)));
@@ -123,7 +121,7 @@ nameof(TextSpace),
         public static readonly DependencyProperty TextSpaceProperty = TextSpacePropertyKey.DependencyProperty;
 
         private static readonly DependencyPropertyKey TextSpaceMarginPropertyKey = DependencyProperty.RegisterReadOnly(
-nameof(TextSpaceMargin),
+            nameof(TextSpaceMargin),
             typeof(Thickness),
             typeof(TextTickBar),
             new PropertyMetadata(default(Thickness)));

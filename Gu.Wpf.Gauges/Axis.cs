@@ -55,7 +55,7 @@
             typeof(Axis),
             new PropertyMetadata(default(double)));
 
-        public static readonly DependencyProperty TextOrientationProperty = DependencyProperty.Register(
+        public static readonly DependencyProperty TextOrientationProperty = DependencyProperty.RegisterAttached(
             nameof(TextOrientation),
             typeof(TextOrientation),
             typeof(Axis),
