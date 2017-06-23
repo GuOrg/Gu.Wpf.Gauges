@@ -11,7 +11,7 @@
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="5"
-                          Placement="Bottom"
+                          Placement="Left"
                           ReservedSpace="0"
                           TextOrientation="Horizontal"
                           TickFrequency="50"

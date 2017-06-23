@@ -101,10 +101,8 @@
                                                    Grid.Column="0"
                                                    Fill="White"
                                                    Gap="1"
-                                                   TickFrequency="{Binding ElementName=Axis,
-                                                                           Path=MajorTickFrequency}"
-                                                   Ticks="{Binding ElementName=Axis,
-                                                                   Path=MajorTicks}" />
+                                                   TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                   Ticks="{TemplateBinding MajorTicks}" />
 
                             <gauges:LinearBlockBar Grid.Row="1"
                                                    Grid.Column="0"
