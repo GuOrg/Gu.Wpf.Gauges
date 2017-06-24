@@ -67,6 +67,6 @@ namespace Gu.Wpf.Gauges
         /// <returns>
         /// A composite string that specifies how to format the <see cref="P:TextTickBar.Content" /> property if it is displayed as a string.
         /// </returns>
-        string ContentStringFormat { get; }
+        string StringFormat { get; }
     }
 }

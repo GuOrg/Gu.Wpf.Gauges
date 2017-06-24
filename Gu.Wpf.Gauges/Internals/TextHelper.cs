@@ -20,7 +20,7 @@
         internal static FormattedText AsFormattedText(double value, ITextFormat textFormat, Typeface typeface)
         {
             var formattedText = new FormattedText(
-                value.ToString(textFormat.ContentStringFormat, CultureInfo.CurrentUICulture),
+                value.ToString(textFormat.StringFormat, CultureInfo.CurrentUICulture),
                 CultureInfo.CurrentUICulture,
                 FlowDirection.LeftToRight,
                 typeface,

@@ -40,7 +40,6 @@
             }
 
             var textHeight = Math.Ceiling(this.FontSize * this.FontFamily.LineSpacing);
-
             double w = 0;
             double h = 0;
             switch (this.TextOrientation)
@@ -94,11 +93,57 @@
             }
 
             var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace, this.Placement, this.IsDirectionReversed);
-            for (int i = 0; i < this.AllTicks.Count; i++)
+            for (var i = 0; i < this.AllTicks.Count; i++)
             {
                 var tick = this.AllTicks[i];
                 var pos = TickHelper.ToPos(tick, this.Minimum, this.Maximum, line);
                 var text = this.AllTexts[i];
+                switch (this.HorizontalTextAlignment)
+                {
+                    case HorizontalTextAlignment.Left:
+                        break;
+                    case HorizontalTextAlignment.Center:
+                        switch (this.TextOrientation)
+                        {
+                            case TextOrientation.Horizontal:
+                                pos.Offset((this.ActualWidth - text.Width) / 2, 0);
+                                break;
+                            case TextOrientation.VerticalUp:
+                                break;
+                            case TextOrientation.VerticalDown:
+                                break;
+                            case TextOrientation.Tangential:
+                                break;
+                            case TextOrientation.RadialOut:
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
+
+                        break;
+                    case HorizontalTextAlignment.Right:
+                        switch (this.TextOrientation)
+                        {
+                            case TextOrientation.Horizontal:
+                                pos.Offset(this.ActualWidth - text.Width, 0);
+                                break;
+                            case TextOrientation.VerticalUp:
+                                break;
+                            case TextOrientation.VerticalDown:
+                                break;
+                            case TextOrientation.Tangential:
+                                break;
+                            case TextOrientation.RadialOut:
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
+
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
                 var textPosition = new TextPosition(text, new TextPositionOptions(this.Placement, this.TextOrientation), pos, 0);
                 dc.DrawText(text, textPosition);
             }

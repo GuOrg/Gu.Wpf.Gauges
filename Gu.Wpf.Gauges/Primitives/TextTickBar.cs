@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using System.Windows;
-    using System.Windows.Controls;
     using System.Windows.Documents;
     using System.Windows.Media;
 
@@ -12,11 +11,17 @@
     public class TextTickBar : TickBarBase, ITextFormat
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
-        public static readonly DependencyProperty TextOrientationProperty = Axis.TextOrientationProperty.AddOwner(
+        public static readonly DependencyProperty TextOrientationProperty = Gauge.TextOrientationProperty.AddOwner(
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
                 TextOrientation.Tangential,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+
+        public static readonly DependencyProperty HorizontalTextAlignmentProperty = DependencyProperty.Register(
+            "HorizontalTextAlignment",
+            typeof(HorizontalTextAlignment),
+            typeof(TextTickBar),
+            new PropertyMetadata(default(HorizontalTextAlignment)));
 
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.FontFamily" /> dependency property.
@@ -106,7 +111,9 @@
         /// <returns>
         /// The identifier for the <see cref="P:TextTickBar.ContentStringFormat" /> dependency property.
         /// </returns>
-        public static readonly DependencyProperty ContentStringFormatProperty = ContentControl.ContentStringFormatProperty.AddOwner(
+        public static readonly DependencyProperty StringFormatProperty = DependencyProperty.Register(
+            "StringFormat",
+            typeof(string),
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
                 default(string),
@@ -130,6 +137,22 @@
 #pragma warning restore SA1202 // Elements must be ordered by access
 
         /// <summary>
+        /// Gets or sets the <see cref="T:Gu.Wpf.Gauges.TextOrientation" />
+        /// Default is Tangential
+        /// </summary>
+        public TextOrientation TextOrientation
+        {
+            get => (TextOrientation)this.GetValue(TextOrientationProperty);
+            set => this.SetValue(TextOrientationProperty, value);
+        }
+
+        public HorizontalTextAlignment HorizontalTextAlignment
+        {
+            get => (HorizontalTextAlignment)this.GetValue(HorizontalTextAlignmentProperty);
+            set => this.SetValue(HorizontalTextAlignmentProperty, value);
+        }
+
+        /// <summary>
         /// Gets or sets the preferred top-level font family for the content of the element.
         /// </summary>
         /// <returns>
@@ -139,16 +162,6 @@
         {
             get => (FontFamily)this.GetValue(FontFamilyProperty);
             set => this.SetValue(FontFamilyProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets the <see cref="T:Gu.Wpf.Gauges.TextOrientation" />
-        /// Default is Tangential
-        /// </summary>
-        public TextOrientation TextOrientation
-        {
-            get => (TextOrientation)this.GetValue(TextOrientationProperty);
-            set => this.SetValue(TextOrientationProperty, value);
         }
 
         /// <summary>
@@ -229,10 +242,10 @@
         /// <returns>
         /// A composite string that specifies how to format the <see cref="P:TextTickBar.ContentStringFormat" /> property if it is displayed as a string.
         /// </returns>
-        public string ContentStringFormat
+        public string StringFormat
         {
-            get => (string)this.GetValue(ContentStringFormatProperty);
-            set => this.SetValue(ContentStringFormatProperty, value);
+            get => (string)this.GetValue(StringFormatProperty);
+            set => this.SetValue(StringFormatProperty, value);
         }
 
         /// <summary>

@@ -14,7 +14,7 @@
         /// <returns>
         /// The identifier for the <see cref="P:LinearBlockBar.Placement" /> dependency property.
         /// </returns>
-        public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
+        public static readonly DependencyProperty PlacementProperty = LinearGauge.PlacementProperty.AddOwner(
             typeof(LinearBlockBar),
             new FrameworkPropertyMetadata(
                 TickBarPlacement.Bottom,

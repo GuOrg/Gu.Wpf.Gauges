@@ -9,7 +9,7 @@
         internal readonly Vertical Vertical;
         internal readonly Horizontal Horizontal;
         internal readonly TextOrientation Orientation;
-        private static readonly double Treshold = Math.Sin(1 * Math.PI / 180);
+        private static readonly double Threshold = Math.Sin(1 * Math.PI / 180);
 
         public TextPositionOptions(TickBarPlacement placement, TextOrientation orientation)
         {
@@ -116,11 +116,11 @@
             switch (this.Orientation)
             {
                 case TextOrientation.VerticalDown:
-                    if (rotate.X > Treshold)
+                    if (rotate.X > Threshold)
                     {
                         this.Vertical = Vertical.Bottom;
                     }
-                    else if (Math.Abs(rotate.X) < Treshold)
+                    else if (Math.Abs(rotate.X) < Threshold)
                     {
                         this.Vertical = Vertical.Mid;
                     }
@@ -129,11 +129,11 @@
                         this.Vertical = Vertical.Top;
                     }
 
-                    if (rotate.Y > Treshold)
+                    if (rotate.Y > Threshold)
                     {
                         this.Horizontal = Horizontal.Left;
                     }
-                    else if (Math.Abs(rotate.Y) < Treshold)
+                    else if (Math.Abs(rotate.Y) < Threshold)
                     {
                         this.Horizontal = Horizontal.Center;
                     }
@@ -149,11 +149,11 @@
 
                     break;
                 case TextOrientation.Horizontal:
-                    if (rotate.X > Treshold)
+                    if (rotate.X > Threshold)
                     {
                         this.Horizontal = Horizontal.Left;
                     }
-                    else if (Math.Abs(rotate.X) < Treshold)
+                    else if (Math.Abs(rotate.X) < Threshold)
                     {
                         this.Horizontal = Horizontal.Center;
                     }
@@ -162,11 +162,11 @@
                         this.Horizontal = Horizontal.Right;
                     }
 
-                    if (rotate.Y > Treshold)
+                    if (rotate.Y > Threshold)
                     {
                         this.Vertical = Vertical.Top;
                     }
-                    else if (Math.Abs(rotate.Y) < Treshold)
+                    else if (Math.Abs(rotate.Y) < Threshold)
                     {
                         this.Vertical = Vertical.Mid;
                     }
@@ -181,11 +181,11 @@
                     this.Horizontal = Horizontal.Left;
                     break;
                 case TextOrientation.VerticalUp:
-                    if (rotate.X > Treshold)
+                    if (rotate.X > Threshold)
                     {
                         this.Vertical = Vertical.Top;
                     }
-                    else if (Math.Abs(rotate.X) < Treshold)
+                    else if (Math.Abs(rotate.X) < Threshold)
                     {
                         this.Vertical = Vertical.Mid;
                     }
@@ -194,11 +194,11 @@
                         this.Vertical = Vertical.Bottom;
                     }
 
-                    if (rotate.Y > Treshold)
+                    if (rotate.Y > Threshold)
                     {
                         this.Horizontal = Horizontal.Right;
                     }
-                    else if (Math.Abs(rotate.Y) < Treshold)
+                    else if (Math.Abs(rotate.Y) < Threshold)
                     {
                         this.Horizontal = Horizontal.Center;
                     }

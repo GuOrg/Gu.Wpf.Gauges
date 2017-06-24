@@ -86,6 +86,7 @@
     <Compile Include="Primitives\AngularBlockBar.cs" />
     <Compile Include="AngularGauge.cs" />
     <Compile Include="Primitives\AngularPanel.cs" />
+    <Compile Include="Primitives\HorizontalTextAlignment.cs" />
     <Compile Include="Primitives\LinearTextTickBar.cs" />
     <Compile Include="Primitives\Ring.cs" />
     <Compile Include="Primitives\TickBarBase.cs" />
@@ -121,6 +122,8 @@
     <Compile Include="LinearGauge.cs" />
     <Compile Include="Primitives\PolarCanvas.cs" />
     <Compile Include="Primitives\TextTickBar.cs" />
+    <Compile Include="Primitives\TickText.cs" />
+    <Compile Include="Primitives\VerticalTextAlignment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
