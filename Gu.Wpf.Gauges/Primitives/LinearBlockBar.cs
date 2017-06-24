@@ -50,8 +50,8 @@
                 default(double),
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
-        public static readonly DependencyProperty GapProperty = DependencyProperty.Register(
-            nameof(Gap),
+        public static readonly DependencyProperty TickGapProperty = DependencyProperty.Register(
+            nameof(TickGap),
             typeof(double),
             typeof(LinearBlockBar),
             new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.AffectsRender));
@@ -119,10 +119,10 @@
         /// <summary>
         /// Gets or sets the gap  in pixels between blocks. Default is 1.0
         /// </summary>
-        public double Gap
+        public double TickGap
         {
-            get => (double)this.GetValue(GapProperty);
-            set => this.SetValue(GapProperty, value);
+            get => (double)this.GetValue(TickGapProperty);
+            set => this.SetValue(TickGapProperty, value);
         }
 
         protected override void OnRender(DrawingContext dc)
@@ -139,19 +139,19 @@
             {
                 case TickBarPlacement.Left:
                     offset = new Vector(this.ActualWidth, 0);
-                    gap = new Vector(0, -1 * this.Gap / 2);
+                    gap = new Vector(0, -1 * this.TickGap / 2);
                     break;
                 case TickBarPlacement.Right:
                     offset = new Vector(-1 * this.ActualWidth, 0);
-                    gap = new Vector(0, -1 * this.Gap / 2);
+                    gap = new Vector(0, -1 * this.TickGap / 2);
                     break;
                 case TickBarPlacement.Top:
                     offset = new Vector(0, this.ActualHeight);
-                    gap = new Vector(this.Gap / 2, 0);
+                    gap = new Vector(this.TickGap / 2, 0);
                     break;
                 case TickBarPlacement.Bottom:
                     offset = new Vector(0, -1 * this.ActualHeight);
-                    gap = new Vector(this.Gap / 2, 0);
+                    gap = new Vector(this.TickGap / 2, 0);
                     break;
             }
 

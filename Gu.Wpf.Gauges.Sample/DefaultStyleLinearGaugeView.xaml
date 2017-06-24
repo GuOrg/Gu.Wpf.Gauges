@@ -13,8 +13,8 @@
                           Placement="Bottom"
                           ShowLabels="True"
                           TextOrientation="Horizontal"
-                          TickFrequency="25"
-                          Ticks="60 85"
+                          MajorTickFrequency="25"
+                          MajorTicks="60 85"
                           Value="14" />
     </UserControl.DataContext>
     <Grid>
@@ -24,8 +24,8 @@
         </Grid.RowDefinitions>
         <gauges:LinearGauge Grid.Row="0"
                             IsDirectionReversed="{Binding IsDirectionReversed}"
-                            MajorTickFrequency="{Binding TickFrequency}"
-                            MajorTicks="{Binding Ticks}"
+                            MajorTickFrequency="{Binding MajorTickFrequency}"
+                            MajorTicks="{Binding MajorTicks}"
                             Maximum="{Binding Maximum}"
                             Minimum="{Binding Minimum}"
                             MinorTickFrequency="{Binding MinorTickFrequency}"

@@ -22,8 +22,8 @@
                 FrameworkPropertyMetadataOptions.Inherits,
                 OnMaxAngleChanged));
 
-        public static readonly DependencyProperty TickLengthProperty = DependencyProperty.RegisterAttached(
-            nameof(TickLength),
+        public static readonly DependencyProperty ThicknessProperty = DependencyProperty.RegisterAttached(
+            nameof(Thickness),
             typeof(double),
             typeof(AngularGauge),
             new FrameworkPropertyMetadata(
@@ -50,10 +50,10 @@
             set => this.SetValue(MaxAngleProperty, value);
         }
 
-        public double TickLength
+        public double Thickness
         {
-            get => (double)this.GetValue(TickLengthProperty);
-            set => this.SetValue(TickLengthProperty, value);
+            get => (double)this.GetValue(ThicknessProperty);
+            set => this.SetValue(ThicknessProperty, value);
         }
 
         public double TickGap
@@ -82,14 +82,14 @@
             return (double)element.GetValue(MaxAngleProperty);
         }
 
-        public static void SetTickLength(DependencyObject element, double value)
+        public static void SetThickness(DependencyObject element, double value)
         {
-            element.SetValue(TickLengthProperty, value);
+            element.SetValue(ThicknessProperty, value);
         }
 
-        public static double GetTickLength(DependencyObject element)
+        public static double GetThickness(DependencyObject element)
         {
-            return (double)element.GetValue(TickLengthProperty);
+            return (double)element.GetValue(ThicknessProperty);
         }
 
         public static void SetTickGap(DependencyObject element, double value)

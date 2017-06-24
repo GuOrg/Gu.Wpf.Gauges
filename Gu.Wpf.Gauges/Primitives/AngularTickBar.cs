@@ -26,7 +26,7 @@ namespace Gu.Wpf.Gauges
                 default(Brush),
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
-        public static readonly DependencyProperty TickLengthProperty = AngularGauge.TickLengthProperty.AddOwner(
+        public static readonly DependencyProperty TickLengthProperty = AngularGauge.ThicknessProperty.AddOwner(
             typeof(AngularTickBar),
             new FrameworkPropertyMetadata(
                 10.0,

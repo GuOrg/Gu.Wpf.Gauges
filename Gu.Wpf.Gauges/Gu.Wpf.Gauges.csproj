@@ -87,6 +87,7 @@
     <Compile Include="AngularGauge.cs" />
     <Compile Include="Primitives\AngularPanel.cs" />
     <Compile Include="Primitives\LinearTextTickBar.cs" />
+    <Compile Include="Primitives\Ring.cs" />
     <Compile Include="Primitives\TickBarBase.cs" />
     <Compile Include="Gauge.cs" />
     <Compile Include="Internals\Arc.cs" />

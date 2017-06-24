@@ -26,10 +26,14 @@
             <sample:DefaultStyleAngularGaugeView />
         </TabItem>
 
-        <TabItem Header="FatStyles">
-            <styled:FatStylesView />
+        <TabItem Header="Flat">
+            <styled:FlatBlackAndWhiteView />
         </TabItem>
 
+        <TabItem Header="Modern">
+            <styled:ModernView />
+        </TabItem>
+        
         <TabItem Header="Linear ranges">
             <sample:LinearRangesView />
         </TabItem>

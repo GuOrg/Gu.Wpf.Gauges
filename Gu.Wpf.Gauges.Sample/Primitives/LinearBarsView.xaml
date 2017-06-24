@@ -14,8 +14,8 @@
                           Placement="Left"
                           ReservedSpace="0"
                           TextOrientation="Horizontal"
-                          TickFrequency="50"
-                          Ticks="75"
+                          MajorTickFrequency="50"
+                          MajorTicks="75"
                           Value="80" />
     </UserControl.DataContext>
     <Grid>
@@ -30,8 +30,8 @@
                       Background="Lavender">
                     <gauges:LinearAxis Foreground="Black"
                                        IsDirectionReversed="{Binding IsDirectionReversed}"
-                                       MajorTickFrequency="{Binding TickFrequency}"
-                                       MajorTicks="{Binding Ticks}"
+                                       MajorTickFrequency="{Binding MajorTickFrequency}"
+                                       MajorTicks="{Binding MajorTicks}"
                                        Maximum="{Binding Maximum}"
                                        Minimum="{Binding Minimum}"
                                        MinorTickFrequency="{Binding MinorTickFrequency}"
@@ -50,8 +50,8 @@
                              Minimum="{Binding Minimum}"
                              Placement="{Binding Placement}"
                              ReservedSpace="{Binding ReservedSpace}"
-                             TickFrequency="{Binding TickFrequency}"
-                             Ticks="{Binding Ticks}" />
+                             TickFrequency="{Binding MajorTickFrequency}"
+                             Ticks="{Binding MajorTicks}" />
                 </Grid>
             </GroupBox>
 
@@ -59,14 +59,14 @@
                 <Grid Background="LightYellow">
                     <gauges:LinearBlockBar Width="100"
                                            Fill="CornflowerBlue"
-                                           Gap="2"
+                                           TickGap="2"
                                            IsDirectionReversed="{Binding IsDirectionReversed}"
                                            Maximum="{Binding Maximum}"
                                            Minimum="{Binding Minimum}"
                                            Placement="{Binding Placement}"
                                            ReservedSpace="{Binding ReservedSpace}"
-                                           TickFrequency="{Binding TickFrequency}"
-                                           Ticks="{Binding Ticks}"
+                                           TickFrequency="{Binding MajorTickFrequency}"
+                                           Ticks="{Binding MajorTicks}"
                                            Value="{Binding Value}" />
                 </Grid>
             </GroupBox>
@@ -79,8 +79,8 @@
                                       Minimum="{Binding Minimum}"
                                       Placement="{Binding Placement}"
                                       ReservedSpace="{Binding ReservedSpace}"
-                                      TickFrequency="{Binding TickFrequency}"
-                                      Ticks="{Binding Ticks}" />
+                                      TickFrequency="{Binding MajorTickFrequency}"
+                                      Ticks="{Binding MajorTicks}" />
             </GroupBox>
 
             <GroupBox Header="TextTickBar">
@@ -107,8 +107,8 @@
                                               Placement="{Binding Placement}"
                                               ReservedSpace="{Binding ReservedSpace}"
                                               TextOrientation="{Binding TextOrientation}"
-                                              TickFrequency="{Binding TickFrequency}"
-                                              Ticks="{Binding Ticks}" />
+                                              TickFrequency="{Binding MajorTickFrequency}"
+                                              Ticks="{Binding MajorTicks}" />
                     <Rectangle Grid.Row="0"
                                Grid.RowSpan="2"
                                Grid.Column="0"

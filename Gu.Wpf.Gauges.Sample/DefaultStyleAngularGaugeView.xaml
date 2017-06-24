@@ -16,8 +16,8 @@
                                  ReservedSpace="10"
                                  ShowLabels="True"
                                  TextOrientation="Tangential"
-                                 TickFrequency="25"
-                                 Ticks="85"
+                                 MajorTickFrequency="25"
+                                 MajorTicks="85"
                                  Value="30" />
     </UserControl.DataContext>
     <Grid>
@@ -29,8 +29,8 @@
         <gauges:AngularGauge Grid.Row="0"
                              Margin="12"
                              IsDirectionReversed="{Binding IsDirectionReversed}"
-                             MajorTickFrequency="{Binding TickFrequency}"
-                             MajorTicks="{Binding Ticks}"
+                             MajorTickFrequency="{Binding MajorTickFrequency}"
+                             MajorTicks="{Binding MajorTicks}"
                              Maximum="{Binding Maximum}"
                              Minimum="{Binding Minimum}"
                              MinorTickFrequency="{Binding MinorTickFrequency}"

@@ -41,7 +41,7 @@ namespace Gu.Wpf.Gauges
             typeof(AngularBlockBar),
             new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.AffectsRender));
 
-        public static readonly DependencyProperty TickLengthProperty = AngularGauge.TickLengthProperty.AddOwner(
+        public static readonly DependencyProperty ThicknessProperty = AngularGauge.ThicknessProperty.AddOwner(
             typeof(AngularBlockBar),
             new FrameworkPropertyMetadata(
                 10.0,
@@ -108,10 +108,10 @@ namespace Gu.Wpf.Gauges
         /// Gets or sets the length of the ticks.
         /// The default value is 10.
         /// </summary>
-        public double TickLength
+        public double Thickness
         {
-            get => (double)this.GetValue(TickLengthProperty);
-            set => this.SetValue(TickLengthProperty, value);
+            get => (double)this.GetValue(ThicknessProperty);
+            set => this.SetValue(ThicknessProperty, value);
         }
 
         protected override void OnRender(DrawingContext dc)
@@ -120,6 +120,7 @@ namespace Gu.Wpf.Gauges
             pen.Freeze();
 
             var ticks = this.AllTicks
+                            .Concat(new[] { this.Value })
                             .OrderBy(t => t);
             var arc = Arc.Fill(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
             arc = arc.OffsetWith(-1 * this.ReservedSpace / 2);
@@ -131,7 +132,7 @@ namespace Gu.Wpf.Gauges
                 if (tick > this.Value)
                 {
                     var a = TickHelper.ToAngle(this.Value, this.Minimum, this.Maximum, arc);
-                    var block = ArcBlock(arc, previous, a, this.TickLength);
+                    var block = ArcBlock(arc, previous, a, this.Thickness);
                     dc.DrawGeometry(this.Fill, pen, block);
                     break;
                 }
@@ -139,7 +140,7 @@ namespace Gu.Wpf.Gauges
                 var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
                 if (previous != angle)
                 {
-                    var arcBlock = ArcBlock(arc, previous, angle - gap, this.TickLength);
+                    var arcBlock = ArcBlock(arc, previous, angle - gap, this.Thickness);
                     dc.DrawGeometry(this.Fill, pen, arcBlock);
                 }
 
@@ -150,7 +151,7 @@ namespace Gu.Wpf.Gauges
         protected override Size MeasureOverride(Size availableSize)
         {
             var rect = default(Rect);
-            var arc = new Arc(new Point(0, 0), this.MinAngle, this.MaxAngle, (this.ReservedSpace / 2) + this.TickLength, this.IsDirectionReversed);
+            var arc = new Arc(new Point(0, 0), this.MinAngle, this.MaxAngle, (this.ReservedSpace / 2) + this.Thickness, this.IsDirectionReversed);
             rect.Union(arc.GetPoint(arc.Start));
             var a = TickHelper.ToAngle(this.Value, this.Minimum, this.Maximum, arc);
             rect.Union(arc.GetPoint(a));

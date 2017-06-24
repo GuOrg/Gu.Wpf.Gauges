@@ -52,10 +52,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AngularBarsView.xaml.cs">
+    <Compile Include="Converters\IsValue.cs" />
+    <Compile Include="Primitives\AngularBarsView.xaml.cs">
       <DependentUpon>AngularBarsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AngularPanelView.xaml.cs">
+    <Compile Include="Primitives\AngularPanelView.xaml.cs">
       <DependentUpon>AngularPanelView.xaml</DependentUpon>
     </Compile>
     <Compile Include="AngularTickBarVm.cs" />
@@ -65,8 +66,11 @@
     <Compile Include="DefaultStyleLinearGaugeView.xaml.cs">
       <DependentUpon>DefaultStyleLinearGaugeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Styled\FatStylesView.xaml.cs">
-      <DependentUpon>FatStylesView.xaml</DependentUpon>
+    <Compile Include="Styled\ModernView.xaml.cs">
+      <DependentUpon>ModernView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styled\FlatBlackAndWhiteView.xaml.cs">
+      <DependentUpon>FlatBlackAndWhiteView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Primitives\LinearBarsView.xaml.cs">
       <DependentUpon>LinearBarsView.xaml</DependentUpon>
@@ -74,10 +78,10 @@
     <Compile Include="LinearIndicatorsView.xaml.cs">
       <DependentUpon>LinearIndicatorsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LinearRangesView.xaml.cs">
+    <Compile Include="Primitives\LinearRangesView.xaml.cs">
       <DependentUpon>LinearRangesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LinearPanelView.xaml.cs">
+    <Compile Include="Primitives\LinearPanelView.xaml.cs">
       <DependentUpon>LinearPanelView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sandbox\AxisBox.xaml.cs">
@@ -92,11 +96,11 @@
     <Compile Include="TickBarVm.cs" />
     <Compile Include="Vm.cs" />
     <Compile Include="WpfStuff\ItemsControlExt.cs" />
-    <Page Include="AngularBarsView.xaml">
+    <Page Include="Primitives\AngularBarsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AngularPanelView.xaml">
+    <Page Include="Primitives\AngularPanelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -108,7 +112,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styled\FatStylesView.xaml">
+    <Page Include="Styled\ModernView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styled\FlatBlackAndWhiteView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -120,7 +128,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LinearRangesView.xaml">
+    <Page Include="Primitives\LinearRangesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -136,7 +144,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="LinearPanelView.xaml">
+    <Page Include="Primitives\LinearPanelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -225,4 +233,5 @@
       <Paket>True</Paket>
     </Analyzer>
   </ItemGroup>
+  <ItemGroup />
 </Project>

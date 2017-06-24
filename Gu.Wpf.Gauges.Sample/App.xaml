@@ -79,19 +79,19 @@
                                Text="TickFrequency" />
                     <TextBox Grid.Row="3"
                              Grid.Column="1"
-                             Text="{Binding TickFrequency}" />
+                             Text="{Binding MajorTickFrequency}" />
                     <Slider Grid.Row="3"
                             Grid.Column="2"
                             Maximum="{Binding Maximum}"
                             Minimum="{Binding Minimum}"
-                            Value="{Binding TickFrequency}" />
+                            Value="{Binding MajorTickFrequency}" />
 
                     <TextBlock Grid.Row="4"
                                Grid.Column="0"
                                Text="Ticks" />
                     <TextBox Grid.Row="4"
                              Grid.Column="1"
-                             Text="{Binding Ticks}" />
+                             Text="{Binding MajorTicks}" />
 
                     <TextBlock Grid.Row="5"
                                Grid.Column="0"
@@ -220,19 +220,19 @@
                                Text="TickFrequency" />
                     <TextBox Grid.Row="5"
                              Grid.Column="1"
-                             Text="{Binding TickFrequency}" />
+                             Text="{Binding MajorTickFrequency}" />
                     <Slider Grid.Row="5"
                             Grid.Column="2"
                             Maximum="{Binding Maximum}"
                             Minimum="{Binding Minimum}"
-                            Value="{Binding TickFrequency}" />
+                            Value="{Binding MajorTickFrequency}" />
 
                     <TextBlock Grid.Row="6"
                                Grid.Column="0"
                                Text="Ticks" />
                     <TextBox Grid.Row="6"
                              Grid.Column="1"
-                             Text="{Binding Ticks}" />
+                             Text="{Binding MajorTicks}" />
 
                     <TextBlock Grid.Row="7"
                                Grid.Column="0"

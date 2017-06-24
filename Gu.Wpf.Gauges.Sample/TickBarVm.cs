@@ -9,9 +9,9 @@
     {
         private double minimum;
         private double maximum;
-        private double tickFrequency;
+        private double majorTickFrequency;
         private double reservedSpace;
-        private DoubleCollection ticks;
+        private DoubleCollection majorTicks;
         private TickBarPlacement placement;
         private bool isDirectionReversed;
 
@@ -19,6 +19,8 @@
         private TextOrientation textOrientation;
 
         private double minorTickFrequency;
+        private DoubleCollection minorTicks;
+        private double thickness;
         private bool showLabels;
 
         public TickBarVm()
@@ -26,7 +28,7 @@
             this.Minimum = 0;
             this.Maximum = 100;
             this.value = 50;
-            this.TickFrequency = 50;
+            this.MajorTickFrequency = 50;
             this.ReservedSpace = 0;
             this.Placement = TickBarPlacement.Bottom;
         }
@@ -78,17 +80,32 @@
             }
         }
 
-        public double TickFrequency
+        public double MajorTickFrequency
         {
-            get => this.tickFrequency;
+            get => this.majorTickFrequency;
             set
             {
-                if (value.Equals(this.tickFrequency))
+                if (value.Equals(this.majorTickFrequency))
                 {
                     return;
                 }
 
-                this.tickFrequency = value;
+                this.majorTickFrequency = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public DoubleCollection MajorTicks
+        {
+            get => this.majorTicks;
+            set
+            {
+                if (Equals(value, this.majorTicks))
+                {
+                    return;
+                }
+
+                this.majorTicks = value;
                 this.OnPropertyChanged();
             }
         }
@@ -108,6 +125,38 @@
             }
         }
 
+        public DoubleCollection MinorTicks
+        {
+            get => this.minorTicks;
+
+            set
+            {
+                if (ReferenceEquals(value, this.minorTicks))
+                {
+                    return;
+                }
+
+                this.minorTicks = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public double Thickness
+        {
+            get => this.thickness;
+
+            set
+            {
+                if (value == this.thickness)
+                {
+                    return;
+                }
+
+                this.thickness = value;
+                this.OnPropertyChanged();
+            }
+        }
+
         public double ReservedSpace
         {
             get => this.reservedSpace;
@@ -119,21 +168,6 @@
                 }
 
                 this.reservedSpace = value;
-                this.OnPropertyChanged();
-            }
-        }
-
-        public DoubleCollection Ticks
-        {
-            get => this.ticks;
-            set
-            {
-                if (Equals(value, this.ticks))
-                {
-                    return;
-                }
-
-                this.ticks = value;
                 this.OnPropertyChanged();
             }
         }
