@@ -19,10 +19,8 @@
             </Grid.RowDefinitions>
             <gauges:LinearTextTickBar x:Name="TickLabels"
                                       TextOrientation="Horizontal"
-                                      TickFrequency="{Binding ElementName=MajorTicks,
-                                                              Path=TickFrequency}"
-                                      Ticks="{Binding ElementName=MajorTicks,
-                                                      Path=Ticks}" />
+                                      TickFrequency="{Binding ElementName=MajorTicks, Path=TickFrequency}"
+                                      Ticks="{Binding ElementName=MajorTicks, Path=Ticks}" />
 
             <gauges:LinearTickBar x:Name="MajorTicks"
                                   Grid.Row="1"
@@ -37,8 +35,7 @@
                                   Grid.Row="1"
                                   Height="10"
                                   VerticalAlignment="Bottom"
-                                  Fill="{Binding ElementName=MajorTicks,
-                                                 Path=Fill}"
+                                  Fill="{Binding ElementName=MajorTicks, Path=Fill}"
                                   PenWidth="1"
                                   Placement="Bottom"
                                   SnapsToDevicePixels="True"
