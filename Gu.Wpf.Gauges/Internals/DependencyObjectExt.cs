@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Gauges.Helpers
+﻿namespace Gu.Wpf.Gauges
 {
     using System.Collections.Generic;
     using System.Windows;

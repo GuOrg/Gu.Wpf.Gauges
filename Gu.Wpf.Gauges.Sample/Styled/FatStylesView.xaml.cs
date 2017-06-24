@@ -1,10 +1,7 @@
-﻿namespace Gu.Wpf.Gauges.Sample
+﻿namespace Gu.Wpf.Gauges.Sample.Styled
 {
     using System.Windows.Controls;
 
-    /// <summary>
-    /// Interaction logic for FatStylesView.xaml
-    /// </summary>
     public partial class FatStylesView : UserControl
     {
         public FatStylesView()

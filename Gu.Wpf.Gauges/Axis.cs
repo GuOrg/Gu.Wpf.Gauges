@@ -8,8 +8,6 @@
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
 
-    using Gu.Wpf.Gauges.Helpers;
-
     public class Axis : Control, ISupportInitialize
     {
         /// <summary>

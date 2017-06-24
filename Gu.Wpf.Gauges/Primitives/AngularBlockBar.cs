@@ -37,18 +37,15 @@ namespace Gu.Wpf.Gauges
                 default(double),
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
-        public static readonly DependencyProperty GapProperty = DependencyProperty.Register(
-            nameof(Gap),
-            typeof(double),
+        public static readonly DependencyProperty TickGapProperty = AngularGauge.TickGapProperty.AddOwner(
             typeof(AngularBlockBar),
             new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.AffectsRender));
 
-        public static readonly DependencyProperty TickLengthProperty =
-            AngularTickBar.TickLengthProperty.AddOwner(
-                typeof(AngularBlockBar),
-                new FrameworkPropertyMetadata(
-                    10.0,
-                    FrameworkPropertyMetadataOptions.AffectsRender));
+        public static readonly DependencyProperty TickLengthProperty = AngularGauge.TickLengthProperty.AddOwner(
+            typeof(AngularBlockBar),
+            new FrameworkPropertyMetadata(
+                10.0,
+                FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
         /// Gets or sets the current magnitude of the range control.
@@ -101,10 +98,10 @@ namespace Gu.Wpf.Gauges
         /// <summary>
         /// Gets or sets the gap  in degrees between blocks. Default is 1.0
         /// </summary>
-        public double Gap
+        public double TickGap
         {
-            get => (double)this.GetValue(GapProperty);
-            set => this.SetValue(GapProperty, value);
+            get => (double)this.GetValue(TickGapProperty);
+            set => this.SetValue(TickGapProperty, value);
         }
 
         /// <summary>
@@ -123,12 +120,11 @@ namespace Gu.Wpf.Gauges
             pen.Freeze();
 
             var ticks = this.AllTicks
-                            .Concat(new[] { this.Value })
                             .OrderBy(t => t);
             var arc = Arc.Fill(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
             arc = arc.OffsetWith(-1 * this.ReservedSpace / 2);
             var previous = arc.Start;
-            var gap = this.IsDirectionReversed ? -1 * this.Gap : this.Gap;
+            var gap = this.IsDirectionReversed ? -1 * this.TickGap : this.TickGap;
 
             foreach (var tick in ticks)
             {
@@ -141,8 +137,12 @@ namespace Gu.Wpf.Gauges
                 }
 
                 var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
-                var arcBlock = ArcBlock(arc, previous, angle - gap, this.TickLength);
-                dc.DrawGeometry(this.Fill, pen, arcBlock);
+                if (previous != angle)
+                {
+                    var arcBlock = ArcBlock(arc, previous, angle - gap, this.TickLength);
+                    dc.DrawGeometry(this.Fill, pen, arcBlock);
+                }
+
                 previous = angle + gap;
             }
         }
@@ -159,13 +159,15 @@ namespace Gu.Wpf.Gauges
                 rect.Union(p);
             }
 
+            System.Diagnostics.Debug.Assert(!rect.IsNaN(), "!rect.IsNaN()");
+            System.Diagnostics.Debug.Assert(!rect.IsInfinity(), "!rect.IsInfinity()");
             return rect.Size;
         }
 
         private static PathGeometry ArcBlock(Arc arc, double fromAngle, double toAngle, double tickLength)
         {
-            PathGeometry geometry = new PathGeometry();
-            PathFigure figure = new PathFigure();
+            var geometry = new PathGeometry();
+            var figure = new PathFigure();
 
             geometry.Figures.Add(figure);
             var op1 = arc.GetPoint(fromAngle);

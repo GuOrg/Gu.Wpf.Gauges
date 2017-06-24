@@ -5,8 +5,6 @@
     using System.Windows;
     using System.Windows.Media;
 
-    using Gu.Wpf.Gauges.Helpers;
-
     internal struct Arc
     {
         internal readonly Point Centre;

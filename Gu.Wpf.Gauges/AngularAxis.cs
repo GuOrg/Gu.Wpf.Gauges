@@ -16,6 +16,18 @@
                 0.0d,
                 FrameworkPropertyMetadataOptions.Inherits));
 
+        public static readonly DependencyProperty TickGapProperty = AngularGauge.TickGapProperty.AddOwner(
+            typeof(AngularAxis),
+            new FrameworkPropertyMetadata(
+                0.0d,
+                FrameworkPropertyMetadataOptions.Inherits));
+
+        public static readonly DependencyProperty TickLengthProperty = AngularGauge.TickLengthProperty.AddOwner(
+            typeof(AngularAxis),
+            new FrameworkPropertyMetadata(
+                0.0d,
+                FrameworkPropertyMetadataOptions.Inherits));
+
         static AngularAxis()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(AngularAxis), new FrameworkPropertyMetadata(typeof(AngularAxis)));
@@ -39,6 +51,24 @@
         {
             get => (double)this.GetValue(MaxAngleProperty);
             set => this.SetValue(MaxAngleProperty, value);
+        }
+
+        /// <summary>
+        /// Gets or sets the <see cref="P:AngularAxis.TickGap" />
+        /// </summary>
+        public double TickGap
+        {
+            get => (double)this.GetValue(TickGapProperty);
+            set => this.SetValue(TickGapProperty, value);
+        }
+
+        /// <summary>
+        /// Gets or sets the <see cref="P:AngularAxis.TickLength" />
+        /// </summary>
+        public double TickLength
+        {
+            get => (double)this.GetValue(TickLengthProperty);
+            set => this.SetValue(TickLengthProperty, value);
         }
     }
 }

@@ -65,7 +65,7 @@
     <Compile Include="DefaultStyleLinearGaugeView.xaml.cs">
       <DependentUpon>DefaultStyleLinearGaugeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FatStylesView.xaml.cs">
+    <Compile Include="Styled\FatStylesView.xaml.cs">
       <DependentUpon>FatStylesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Primitives\LinearBarsView.xaml.cs">
@@ -108,7 +108,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FatStylesView.xaml">
+    <Page Include="Styled\FatStylesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

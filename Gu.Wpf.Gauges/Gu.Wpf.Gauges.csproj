@@ -63,11 +63,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Gauge.tt</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\BindingHelper.cs" />
-    <Compile Include="Helpers\DependencyObjectExt.cs" />
-    <Compile Include="Helpers\NameOf.cs" />
-    <Compile Include="Helpers\TextPositionOptions.cs" />
-    <Compile Include="Helpers\WeakKeyValuePair.cs" />
+    <Compile Include="Internals\BindingHelper.cs" />
+    <Compile Include="Internals\DependencyObjectExt.cs" />
+    <Compile Include="Internals\NameOf.cs" />
+    <Compile Include="Internals\TextPositionOptions.cs" />
+    <Compile Include="Internals\WeakKeyValuePair.cs" />
     <Compile Include="Indicators\AngularIndicator.cs" />
     <Compile Include="Indicators\Indicator.cs" />
     <Compile Include="LinearGauge.generated.cs">
@@ -81,30 +81,30 @@
     <Compile Include="Primitives\LinearTextTickBar.cs" />
     <Compile Include="Primitives\TickBarBase.cs" />
     <Compile Include="Gauge.cs" />
-    <Compile Include="Helpers\Arc.cs" />
+    <Compile Include="Internals\Arc.cs" />
     <Compile Include="Dimensions\DimensionArrowHead.cs" />
     <Compile Include="Dimensions\DimensionLine.cs" />
     <Compile Include="Dimensions\LineExt.cs" />
     <Compile Include="Dimensions\TwoPointDimension.cs" />
-    <Compile Include="Helpers\DrawingContextExt.cs" />
+    <Compile Include="Internals\DrawingContextExt.cs" />
     <Compile Include="Primitives\ITextFormat.cs" />
-    <Compile Include="Helpers\Horizontal.cs" />
-    <Compile Include="Helpers\Line.cs" />
+    <Compile Include="Internals\Horizontal.cs" />
+    <Compile Include="Internals\Line.cs" />
     <Compile Include="Primitives\LinearPanel.cs" />
     <Compile Include="Primitives\LinearTickBar.cs" />
-    <Compile Include="Helpers\PointExt.cs" />
-    <Compile Include="Helpers\RectExt.cs" />
-    <Compile Include="Helpers\SizeExt.cs" />
-    <Compile Include="Helpers\RotateTransformExt.cs" />
-    <Compile Include="Helpers\TextHelper.cs" />
-    <Compile Include="Helpers\TextPosition.cs" />
-    <Compile Include="Helpers\TickHelper.cs" />
+    <Compile Include="Internals\PointExt.cs" />
+    <Compile Include="Internals\RectExt.cs" />
+    <Compile Include="Internals\SizeExt.cs" />
+    <Compile Include="Internals\RotateTransformExt.cs" />
+    <Compile Include="Internals\TextHelper.cs" />
+    <Compile Include="Internals\TextPosition.cs" />
+    <Compile Include="Internals\TickHelper.cs" />
     <Compile Include="Primitives\AngularBar.cs" />
     <Compile Include="Primitives\AngularTextBar.cs" />
     <Compile Include="Primitives\AngularTickBar.cs" />
     <Compile Include="Primitives\LinearBlockBar.cs" />
-    <Compile Include="Helpers\VectorExt.cs" />
-    <Compile Include="Helpers\Vertical.cs" />
+    <Compile Include="Internals\VectorExt.cs" />
+    <Compile Include="Internals\Vertical.cs" />
     <Compile Include="Indicators\AngularRange.cs" />
     <Compile Include="Indicators\LinearIndicator.cs" />
     <Compile Include="Indicators\LinearRange.cs" />
@@ -117,7 +117,7 @@
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="TextOrientation.cs" />
-    <Compile Include="Helpers\WeakDictionary.cs" />
+    <Compile Include="Internals\WeakDictionary.cs" />
     <None Include="Gu.Wpf.Gauges.ruleset" />
     <None Include="paket.references" />
     <AppDesigner Include="Properties\" />

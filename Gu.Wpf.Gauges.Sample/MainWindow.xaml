@@ -6,6 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
         xmlns:sandbox="clr-namespace:Gu.Wpf.Gauges.Sample.Sandbox"
+        xmlns:styled="clr-namespace:Gu.Wpf.Gauges.Sample.Styled"
         Title="MainWindow"
         Width="525"
         Height="350"
@@ -26,7 +27,7 @@
         </TabItem>
 
         <TabItem Header="FatStyles">
-            <sample:FatStylesView />
+            <styled:FatStylesView />
         </TabItem>
 
         <TabItem Header="Linear ranges">

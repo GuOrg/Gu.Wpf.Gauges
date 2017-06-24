@@ -80,7 +80,7 @@
                       Height="100"
                       Background="LightGray">
                     <gauges:AngularBlockBar Fill="Olive"
-                                            Gap="1"
+                                            TickGap="1"
                                             IsDirectionReversed="{Binding IsDirectionReversed}"
                                             MaxAngle="{Binding MaxAngle}"
                                             Maximum="{Binding Maximum}"
