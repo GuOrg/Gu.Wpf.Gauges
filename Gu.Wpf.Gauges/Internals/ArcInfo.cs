@@ -5,17 +5,17 @@
     using System.Windows;
     using System.Windows.Media;
 
-    internal struct Arc
+    internal struct ArcInfo
     {
-        internal readonly Point Centre;
+        internal readonly Point Center;
         internal readonly double Radius;
         internal readonly double Start;
         internal readonly double End;
 
-        public Arc(Point centre, double start, double end, double radius, bool isDirectionReversed)
+        public ArcInfo(Point center, double start, double end, double radius, bool isDirectionReversed)
             : this()
         {
-            this.Centre = centre;
+            this.Center = center;
             this.Radius = radius;
             if (isDirectionReversed)
             {
@@ -29,17 +29,17 @@
             }
         }
 
-        public static Arc Fill(Size availableSize, double start, double end, bool isDirectionReversed)
+        public static ArcInfo Fill(Size availableSize, double start, double end, bool isDirectionReversed)
         {
             var fill = Fill(availableSize, start, end);
-            return new Arc(fill.Centre, start, end, fill.Radius, isDirectionReversed);
+            return new ArcInfo(fill.Center, start, end, fill.Radius, isDirectionReversed);
         }
 
         public Point GetPoint(double angle)
         {
             var v0 = new Vector(this.Radius, 0);
             var rotate = v0.Rotate(angle);
-            var p = this.Centre + rotate;
+            var p = this.Center + rotate;
             return p;
         }
 
@@ -47,7 +47,7 @@
         {
             var v0 = new Vector(this.Radius + offset, 0);
             var rotate = v0.Rotate(angle);
-            var p = this.Centre + rotate;
+            var p = this.Center + rotate;
             return p;
         }
 
@@ -80,28 +80,28 @@
             }
         }
 
-        public Arc OffsetWith(double offset)
+        public ArcInfo OffsetWith(double offset)
         {
-            return new Arc(this.Centre, this.Start, this.End, this.Radius + offset, isDirectionReversed: false);
+            return new ArcInfo(this.Center, this.Start, this.End, this.Radius + offset, isDirectionReversed: false);
         }
 
         public override string ToString()
         {
-            return $"Centre: {this.Centre}, Radius: {this.Radius}, Start: {this.Start}, End: {this.End}";
+            return $"Center: {this.Center}, Radius: {this.Radius}, Start: {this.Start}, End: {this.End}";
         }
 
-        internal static Arc Fill(Size availableSize, double start, double end)
+        internal static ArcInfo Fill(Size availableSize, double start, double end)
         {
             if (availableSize.Width == 0 ||
                 double.IsNaN(availableSize.Width) ||
                 availableSize.Height == 0 ||
                 double.IsNaN(availableSize.Height))
             {
-                return new Arc(new Point(0, 0), start, end, 0, isDirectionReversed: false);
+                return new ArcInfo(new Point(0, 0), start, end, 0, isDirectionReversed: false);
             }
 
             var p0 = new Point(0, 0);
-            var arc = new Arc(p0, start, end, 1, isDirectionReversed: false);
+            var arc = new ArcInfo(p0, start, end, 1, isDirectionReversed: false);
             var rect = default(Rect);
             var ps = arc.GetPoint(start);
             rect.Union(ps);
@@ -116,7 +116,7 @@
             var r = Math.Min(wf, hf);
             rect.Scale(r, r);
             var v = rect.FindTranslationToCenter(availableSize);
-            return new Arc(p0 + v, start, end, r, isDirectionReversed: false);
+            return new ArcInfo(p0 + v, start, end, r, isDirectionReversed: false);
         }
     }
 }

@@ -6,12 +6,12 @@ namespace Gu.Wpf.Gauges.Tests.Helpers
 
     internal static class GeometryExt
     {
-        public static Point AsPoint(this string s)
+        public static Point AsPoint(this string text)
         {
-            var strings = s.Split(',');
+            var strings = text.Split(',');
             if (strings.Length != 2)
             {
-                throw new ArgumentException(string.Empty, nameof(s));
+                throw new ArgumentException(string.Empty, nameof(text));
             }
 
             var x = double.Parse(strings[0], CultureInfo.InvariantCulture);
@@ -19,12 +19,12 @@ namespace Gu.Wpf.Gauges.Tests.Helpers
             return new Point(x, y);
         }
 
-        public static Vector AsVector(this string s)
+        public static Vector AsVector(this string text)
         {
-            var strings = s.Split(',');
+            var strings = text.Split(',');
             if (strings.Length != 2)
             {
-                throw new ArgumentException(string.Empty, nameof(s));
+                throw new ArgumentException(string.Empty, nameof(text));
             }
 
             var x = double.Parse(strings[0], CultureInfo.InvariantCulture);
@@ -32,12 +32,12 @@ namespace Gu.Wpf.Gauges.Tests.Helpers
             return new Vector(x, y);
         }
 
-        public static Size AsSize(this string s)
+        public static Size AsSize(this string text)
         {
-            var strings = s.Split(',');
+            var strings = text.Split(',');
             if (strings.Length != 2)
             {
-                throw new ArgumentException(string.Empty, nameof(s));
+                throw new ArgumentException(string.Empty, nameof(text));
             }
 
             var width = double.Parse(strings[0], CultureInfo.InvariantCulture);
@@ -52,14 +52,12 @@ namespace Gu.Wpf.Gauges.Tests.Helpers
 
         public static string ToString(this Vector v, string format)
         {
-            return
-                $"{v.X.ToString(format, CultureInfo.InvariantCulture)}, {v.Y.ToString(format, CultureInfo.InvariantCulture)}";
+            return $"{v.X.ToString(format, CultureInfo.InvariantCulture)}, {v.Y.ToString(format, CultureInfo.InvariantCulture)}";
         }
 
         public static string ToString(this Size size, string format)
         {
-            return
-                $"{size.Width.ToString(format, CultureInfo.InvariantCulture)}, {size.Height.ToString(format, CultureInfo.InvariantCulture)}";
+            return $"{size.Width.ToString(format, CultureInfo.InvariantCulture)}, {size.Height.ToString(format, CultureInfo.InvariantCulture)}";
         }
     }
 }

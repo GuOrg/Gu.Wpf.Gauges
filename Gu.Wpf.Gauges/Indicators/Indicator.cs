@@ -108,6 +108,8 @@ namespace Gu.Wpf.Gauges
             set => this.SetValue(IsDirectionReversedProperty, value);
         }
 
+        protected UIElement VisualChild => (UIElement)this.GetVisualChild(0);
+
         /// <summary>
         ///     This method is invoked when the Value property changes.
         /// </summary>

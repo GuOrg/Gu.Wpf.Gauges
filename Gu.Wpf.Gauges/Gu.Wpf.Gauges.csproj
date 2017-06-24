@@ -90,7 +90,7 @@
     <Compile Include="Primitives\Ring.cs" />
     <Compile Include="Primitives\TickBarBase.cs" />
     <Compile Include="Gauge.cs" />
-    <Compile Include="Internals\Arc.cs" />
+    <Compile Include="Internals\ArcInfo.cs" />
     <Compile Include="Dimensions\DimensionArrowHead.cs" />
     <Compile Include="Dimensions\DimensionLine.cs" />
     <Compile Include="Dimensions\LineExt.cs" />

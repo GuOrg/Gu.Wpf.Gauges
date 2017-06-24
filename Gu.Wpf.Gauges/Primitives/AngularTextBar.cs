@@ -40,7 +40,7 @@ namespace Gu.Wpf.Gauges
 
         protected override void OnRender(DrawingContext dc)
         {
-            var arc = Arc.Fill(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
+            var arc = ArcInfo.Fill(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
             for (var i = 0; i < this.AllTicks.Count; i++)
             {
                 var tick = this.AllTicks[i];
@@ -56,7 +56,7 @@ namespace Gu.Wpf.Gauges
         {
             var bounds = default(Rect);
             var midPoint = new Point(0, 0);
-            var arc = new Arc(midPoint, this.MinAngle, this.MaxAngle, this.ReservedSpace, this.IsDirectionReversed);
+            var arc = new ArcInfo(midPoint, this.MinAngle, this.MaxAngle, this.ReservedSpace, this.IsDirectionReversed);
             for (var i = 0; i < this.AllTicks.Count; i++)
             {
                 var tick = this.AllTicks[i];

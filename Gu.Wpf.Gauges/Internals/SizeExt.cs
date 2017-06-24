@@ -49,7 +49,13 @@
             return new Vector(-x, -y);
         }
 
-        internal static bool IsInvalid(this Size size)
+        internal static bool IsInfinity(this Size size)
+        {
+            return double.IsInfinity(size.Width) ||
+                   double.IsInfinity(size.Height);
+        }
+
+        internal static bool IsNanOrEmpty(this Size size)
         {
             return double.IsNaN(size.Width) ||
                     double.IsNaN(size.Height) ||

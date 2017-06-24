@@ -1,10 +1,10 @@
-﻿namespace Gu.Wpf.Gauges.Tests.Helpers
+﻿namespace Gu.Wpf.Gauges.Tests.Internals
 {
     using System.Globalization;
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
-
+    using Gu.Wpf.Gauges.Tests.Helpers;
     using NUnit.Framework;
 
     public class TextPositionTests

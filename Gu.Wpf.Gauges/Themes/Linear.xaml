@@ -32,17 +32,8 @@
                 <ControlTemplate TargetType="{x:Type local:LinearAxis}">
                     <DockPanel>
                         <local:LinearTextTickBar x:Name="TickLabels"
-                                                 local:Axis.MinReservedSpace="{Binding TextSpace, RelativeSource={RelativeSource Self}}"
-                                                 FontFamily="{TemplateBinding FontFamily}"
-                                                 FontSize="{TemplateBinding FontSize}"
-                                                 FontStretch="{TemplateBinding FontStretch}"
-                                                 FontStyle="{TemplateBinding FontStyle}"
-                                                 FontWeight="{TemplateBinding FontWeight}"
-                                                 Foreground="{TemplateBinding Foreground}"
-                                                 IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
-                                                 Maximum="{TemplateBinding Maximum}"
-                                                 Minimum="{TemplateBinding Minimum}"
-                                                 Placement="{TemplateBinding Placement}"
+                                                 local:Axis.MinReservedSpace="{Binding TextSpace,
+                                                                                       RelativeSource={RelativeSource Self}}"
                                                  ReservedSpace="{TemplateBinding ReservedSpace}"
                                                  SnapsToDevicePixels="True"
                                                  TextOrientation="{TemplateBinding TextOrientation}"
@@ -52,9 +43,6 @@
                         <Grid x:Name="Ticks">
                             <local:LinearTickBar x:Name="MajorTicks"
                                                  Fill="{TemplateBinding Foreground}"
-                                                 IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
-                                                 Maximum="{TemplateBinding Maximum}"
-                                                 Minimum="{TemplateBinding Minimum}"
                                                  PenWidth="{TemplateBinding PenWidth}"
                                                  Placement="{TemplateBinding Placement}"
                                                  ReservedSpace="{TemplateBinding ReservedSpace}"
@@ -65,9 +53,6 @@
 
                             <local:LinearTickBar x:Name="MinorTicks"
                                                  Fill="{TemplateBinding Foreground}"
-                                                 IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
-                                                 Maximum="{TemplateBinding Maximum}"
-                                                 Minimum="{TemplateBinding Minimum}"
                                                  PenWidth="{TemplateBinding PenWidth}"
                                                  Placement="{TemplateBinding Placement}"
                                                  ReservedSpace="{TemplateBinding ReservedSpace}"
@@ -78,7 +63,8 @@
                         </Grid>
 
                         <Rectangle x:Name="Line"
-                                   Margin="{Binding TextSpaceMargin, ElementName=TickLabels}"
+                                   Margin="{Binding TextSpaceMargin,
+                                                    ElementName=TickLabels}"
                                    Fill="{TemplateBinding Foreground}" />
 
                     </DockPanel>
@@ -166,7 +152,8 @@
                                                      Grid.Row="1"
                                                      Height="10"
                                                      VerticalAlignment="Bottom"
-                                                     Fill="{Binding ElementName=MajorTicks, Path=Fill}"
+                                                     Fill="{Binding ElementName=MajorTicks,
+                                                                    Path=Fill}"
                                                      PenWidth="1"
                                                      Placement="Bottom"
                                                      SnapsToDevicePixels="True"
@@ -185,7 +172,6 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
 
     <Style TargetType="{x:Type local:LinearGauge}">
         <Setter Property="Template">

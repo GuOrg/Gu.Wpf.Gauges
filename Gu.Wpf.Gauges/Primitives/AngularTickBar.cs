@@ -68,7 +68,7 @@ namespace Gu.Wpf.Gauges
         {
             var pen = new Pen(this.Fill, this.PenWidth);
             pen.Freeze();
-            var arc = Arc.Fill(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
+            var arc = ArcInfo.Fill(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
             for (int i = 0; i < this.AllTicks.Count; i++)
             {
                 var tick = this.AllTicks[i];

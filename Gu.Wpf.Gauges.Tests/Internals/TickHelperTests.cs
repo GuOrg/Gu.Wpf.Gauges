@@ -1,8 +1,7 @@
-﻿namespace Gu.Wpf.Gauges.Tests.Helpers
+﻿namespace Gu.Wpf.Gauges.Tests.Internals
 {
     using System.Linq;
     using System.Windows;
-
     using NUnit.Framework;
 
     public class TickHelperTests
@@ -35,7 +34,7 @@
         [TestCase(1, -1, 1, 1)]
         public void ToAngle(double tick, double min, double max, double expected)
         {
-            var actual = TickHelper.ToAngle(tick, min, max, new Arc(new Point(0, 0), 0, 1, 1, isDirectionReversed: false));
+            var actual = TickHelper.ToAngle(tick, min, max, new ArcInfo(new Point(0, 0), 0, 1, 1, isDirectionReversed: false));
             Assert.AreEqual(expected, actual);
         }
     }

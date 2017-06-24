@@ -53,6 +53,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\IsValue.cs" />
+    <Compile Include="Indicators\LinearIndicatorsView.xaml.cs">
+      <DependentUpon>LinearIndicatorsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Primitives\AngularBarsView.xaml.cs">
       <DependentUpon>AngularBarsView.xaml</DependentUpon>
     </Compile>
@@ -65,6 +68,9 @@
     </Compile>
     <Compile Include="DefaultStyleLinearGaugeView.xaml.cs">
       <DependentUpon>DefaultStyleLinearGaugeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Styled\BlueAndTicksView.xaml.cs">
+      <DependentUpon>BlueAndTicksView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Styled\ModernView.xaml.cs">
       <DependentUpon>ModernView.xaml</DependentUpon>
@@ -96,6 +102,10 @@
     <Compile Include="TickBarVm.cs" />
     <Compile Include="Vm.cs" />
     <Compile Include="WpfStuff\ItemsControlExt.cs" />
+    <Page Include="Indicators\LinearIndicatorsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Primitives\AngularBarsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,6 +119,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DefaultStyleLinearGaugeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styled\BlueAndTicksView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

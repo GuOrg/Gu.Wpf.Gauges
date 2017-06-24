@@ -52,8 +52,8 @@
 
         protected override Size ArrangeOverride(Size arrangeSize)
         {
-            var arc = Arc.Fill(arrangeSize, 0, 360);
-            arc = new Arc(arc.Centre, 0, 360, 0, isDirectionReversed: false);
+            var arc = ArcInfo.Fill(arrangeSize, 0, 360);
+            arc = new ArcInfo(arc.Center, 0, 360, 0, isDirectionReversed: false);
             foreach (UIElement child in this.InternalChildren)
             {
                 if (child == null)

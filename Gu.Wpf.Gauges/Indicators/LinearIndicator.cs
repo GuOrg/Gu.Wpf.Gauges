@@ -10,7 +10,7 @@
             typeof(LinearIndicator),
             new FrameworkPropertyMetadata(
                 TickBarPlacement.Bottom,
-                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits,
                 OnPlacementChanged));
 
         static LinearIndicator()
@@ -22,6 +22,17 @@
         {
             get => (TickBarPlacement)this.GetValue(PlacementProperty);
             set => this.SetValue(PlacementProperty, value);
+        }
+
+        protected override Size MeasureOverride(Size constraint)
+        {
+            if (this.VisualChild != null)
+            {
+                this.VisualChild.Measure(constraint);
+                return this.VisualChild.DesiredSize;
+            }
+
+            return default(Size);
         }
 
         protected override Size ArrangeOverride(Size arrangeBounds)
@@ -64,15 +75,7 @@
             var rect = new Rect(arrangeBounds);
             var rect1 = new Rect(ps, pe);
             rect.Intersect(rect1);
-            if (rect.IsEmpty)
-            {
-                child.Arrange(default(Rect));
-            }
-            else
-            {
-                child.Arrange(rect);
-            }
-
+            child.Arrange(rect.IsEmpty ? default(Rect) : rect);
             return arrangeBounds;
         }
 

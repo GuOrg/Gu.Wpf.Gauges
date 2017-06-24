@@ -51,16 +51,15 @@
     </When>
   </Choose>
   <ItemGroup>
-    <Compile Include="Bars\AngularBlockBarTests.cs" />
-    <Compile Include="Bars\AngularTickBarTests.cs" />
-    <Compile Include="Bars\FrameworkElementExt.cs" />
-    <Compile Include="Helpers\ArcTests.cs" />
-    <Compile Include="Helpers\GeometryExt.cs" />
-    <Compile Include="Indicators\LinearIndicatorsTests.cs" />
+    <Compile Include="Primitives\AngularBlockBarTests.cs" />
+    <Compile Include="Primitives\AngularTickBarTests.cs" />
+    <Compile Include="Primitives\FrameworkElementExt.cs" />
+    <Compile Include="Internals\ArcTests.cs" />
+    <Compile Include="TestHelpers\GeometryExt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helpers\TextPositionTests.cs" />
-    <Compile Include="Helpers\TickHelperTests.cs" />
-    <Compile Include="Helpers\VextorExtTests.cs" />
+    <Compile Include="Internals\TextPositionTests.cs" />
+    <Compile Include="Internals\TickHelperTests.cs" />
+    <Compile Include="TestHelpers\VextorExtTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Gu.Wpf.Gauges.Tests.ruleset" />
@@ -134,5 +133,8 @@
     <Analyzer Include="..\packages\WpfAnalyzers\analyzers\dotnet\cs\WpfAnalyzers.CodeFixes.dll">
       <Paket>True</Paket>
     </Analyzer>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Indicators\" />
   </ItemGroup>
 </Project>

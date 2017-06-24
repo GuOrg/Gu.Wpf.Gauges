@@ -78,7 +78,7 @@
             }
 
             var size = new Size(w, h);
-            if (size.IsInvalid())
+            if (size.IsNanOrEmpty())
             {
                 return new Size(0, 0);
             }

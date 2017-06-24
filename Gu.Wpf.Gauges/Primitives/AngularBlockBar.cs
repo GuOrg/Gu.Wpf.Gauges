@@ -122,7 +122,7 @@ namespace Gu.Wpf.Gauges
             var ticks = this.AllTicks
                             .Concat(new[] { this.Value })
                             .OrderBy(t => t);
-            var arc = Arc.Fill(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
+            var arc = ArcInfo.Fill(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
             arc = arc.OffsetWith(-1 * this.ReservedSpace / 2);
             var previous = arc.Start;
             var gap = this.IsDirectionReversed ? -1 * this.TickGap : this.TickGap;
@@ -151,7 +151,7 @@ namespace Gu.Wpf.Gauges
         protected override Size MeasureOverride(Size availableSize)
         {
             var rect = default(Rect);
-            var arc = new Arc(new Point(0, 0), this.MinAngle, this.MaxAngle, (this.ReservedSpace / 2) + this.Thickness, this.IsDirectionReversed);
+            var arc = new ArcInfo(new Point(0, 0), this.MinAngle, this.MaxAngle, (this.ReservedSpace / 2) + this.Thickness, this.IsDirectionReversed);
             rect.Union(arc.GetPoint(arc.Start));
             var a = TickHelper.ToAngle(this.Value, this.Minimum, this.Maximum, arc);
             rect.Union(arc.GetPoint(a));
@@ -165,25 +165,25 @@ namespace Gu.Wpf.Gauges
             return rect.Size;
         }
 
-        private static PathGeometry ArcBlock(Arc arc, double fromAngle, double toAngle, double tickLength)
+        private static PathGeometry ArcBlock(ArcInfo arcInfo, double fromAngle, double toAngle, double tickLength)
         {
             var geometry = new PathGeometry();
             var figure = new PathFigure();
 
             geometry.Figures.Add(figure);
-            var op1 = arc.GetPoint(fromAngle);
-            var ip1 = arc.GetPoint(fromAngle, -1 * tickLength);
-            var op2 = arc.GetPoint(toAngle);
-            var ip2 = arc.GetPoint(toAngle, -1 * tickLength);
+            var op1 = arcInfo.GetPoint(fromAngle);
+            var ip1 = arcInfo.GetPoint(fromAngle, -1 * tickLength);
+            var op2 = arcInfo.GetPoint(toAngle);
+            var ip2 = arcInfo.GetPoint(toAngle, -1 * tickLength);
 
             figure.StartPoint = op1;
             var rotationAngle = toAngle - fromAngle;
-            var isLargeArc = arc.IsLargeAngle(fromAngle, toAngle);
-            var sweepDirection = arc.SweepDirection(fromAngle, toAngle);
-            figure.Segments.Add(new ArcSegment(op2, new Size(arc.Radius, arc.Radius), rotationAngle, isLargeArc, sweepDirection, isStroked: true));
+            var isLargeArc = arcInfo.IsLargeAngle(fromAngle, toAngle);
+            var sweepDirection = arcInfo.SweepDirection(fromAngle, toAngle);
+            figure.Segments.Add(new ArcSegment(op2, new Size(arcInfo.Radius, arcInfo.Radius), rotationAngle, isLargeArc, sweepDirection, isStroked: true));
             figure.Segments.Add(new LineSegment(ip2, isStroked: true));
-            sweepDirection = arc.SweepDirection(toAngle, fromAngle);
-            var ri = arc.Radius - tickLength;
+            sweepDirection = arcInfo.SweepDirection(toAngle, fromAngle);
+            var ri = arcInfo.Radius - tickLength;
             if (ri < 0)
             {
                 ri = 0;

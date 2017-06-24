@@ -33,7 +33,11 @@
         <TabItem Header="Modern">
             <styled:ModernView />
         </TabItem>
-        
+
+        <TabItem Header="Blue and Ticks">
+            <styled:BlueAndTicksView />
+        </TabItem>
+
         <TabItem Header="Linear ranges">
             <sample:LinearRangesView />
         </TabItem>

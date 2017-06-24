@@ -8,14 +8,14 @@
              mc:Ignorable="d">
     <UserControl.DataContext>
         <sample:TickBarVm IsDirectionReversed="False"
+                          MajorTickFrequency="50"
+                          MajorTicks="75"
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="5"
                           Placement="Left"
                           ReservedSpace="0"
                           TextOrientation="Horizontal"
-                          MajorTickFrequency="50"
-                          MajorTicks="75"
                           Value="80" />
     </UserControl.DataContext>
     <Grid>
@@ -59,13 +59,13 @@
                 <Grid Background="LightYellow">
                     <gauges:LinearBlockBar Width="100"
                                            Fill="CornflowerBlue"
-                                           TickGap="2"
                                            IsDirectionReversed="{Binding IsDirectionReversed}"
                                            Maximum="{Binding Maximum}"
                                            Minimum="{Binding Minimum}"
                                            Placement="{Binding Placement}"
                                            ReservedSpace="{Binding ReservedSpace}"
                                            TickFrequency="{Binding MajorTickFrequency}"
+                                           TickGap="2"
                                            Ticks="{Binding MajorTicks}"
                                            Value="{Binding Value}" />
                 </Grid>
