@@ -5,7 +5,7 @@
 
     public class LinearAxis : Axis
     {
-        public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
+        public static readonly DependencyProperty PlacementProperty = LinearGauge.PlacementProperty.AddOwner(
             typeof(LinearAxis),
             new FrameworkPropertyMetadata(
                 default(TickBarPlacement),

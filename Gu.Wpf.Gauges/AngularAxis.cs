@@ -4,17 +4,17 @@
 
     public class AngularAxis : Axis
     {
-        public static readonly DependencyProperty MinAngleProperty = AngularBar.MinAngleProperty.AddOwner(
-                typeof(AngularAxis),
-                new FrameworkPropertyMetadata(
-                    -180.0,
-                    FrameworkPropertyMetadataOptions.Inherits));
+        public static readonly DependencyProperty MinAngleProperty = AngularGauge.MinAngleProperty.AddOwner(
+            typeof(AngularAxis),
+            new FrameworkPropertyMetadata(
+                -180.0d,
+                FrameworkPropertyMetadataOptions.Inherits));
 
-        public static readonly DependencyProperty MaxAngleProperty = AngularBar.MaxAngleProperty.AddOwner(
-                typeof(AngularAxis),
-                new FrameworkPropertyMetadata(
-                    0.0,
-                    FrameworkPropertyMetadataOptions.Inherits));
+        public static readonly DependencyProperty MaxAngleProperty = AngularGauge.MaxAngleProperty.AddOwner(
+            typeof(AngularAxis),
+            new FrameworkPropertyMetadata(
+                0.0d,
+                FrameworkPropertyMetadataOptions.Inherits));
 
         static AngularAxis()
         {

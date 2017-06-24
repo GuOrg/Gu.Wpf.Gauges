@@ -10,7 +10,7 @@
             typeof(LinearIndicator),
             new FrameworkPropertyMetadata(
                 TickBarPlacement.Bottom,
-               FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits,
+                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits,
                 OnPlacementChanged));
 
         static LinearIndicator()

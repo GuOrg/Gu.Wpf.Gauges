@@ -24,21 +24,20 @@
         </Grid.RowDefinitions>
         <gauges:LinearGauge Grid.Row="0"
                             IsDirectionReversed="{Binding IsDirectionReversed}"
+                            MajorTickFrequency="{Binding TickFrequency}"
+                            MajorTicks="{Binding Ticks}"
                             Maximum="{Binding Maximum}"
                             Minimum="{Binding Minimum}"
+                            MinorTickFrequency="{Binding MinorTickFrequency}"
+                            Placement="{Binding Placement}"
+                            TextOrientation="{Binding TextOrientation}"
                             Value="{Binding Value}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <gauges:LinearAxis Grid.Row="1"
-                                   MajorTickFrequency="{Binding TickFrequency}"
-                                   MajorTicks="{Binding Ticks}"
-                                   MinorTickFrequency="{Binding MinorTickFrequency}"
-                                   Placement="{Binding Placement}"
-                                   ShowLabels="{Binding ShowLabels}"
-                                   TextOrientation="{Binding TextOrientation}" />
+                <gauges:LinearAxis Grid.Row="1" ShowLabels="{Binding ShowLabels}" />
                 <gauges:LinearIndicator Grid.Row="0">
                     <Path Width="10"
                           Height="10"

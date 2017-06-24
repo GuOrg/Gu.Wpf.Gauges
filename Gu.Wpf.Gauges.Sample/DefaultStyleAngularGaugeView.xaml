@@ -17,7 +17,8 @@
                                  ShowLabels="True"
                                  TextOrientation="Tangential"
                                  TickFrequency="25"
-                                 Ticks="85" />
+                                 Ticks="85"
+                                 Value="30" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -28,18 +29,15 @@
         <gauges:AngularGauge Grid.Row="0"
                              Margin="12"
                              IsDirectionReversed="{Binding IsDirectionReversed}"
+                             MajorTickFrequency="{Binding TickFrequency}"
+                             MajorTicks="{Binding Ticks}"
                              Maximum="{Binding Maximum}"
                              Minimum="{Binding Minimum}"
+                             MinorTickFrequency="{Binding MinorTickFrequency}"
+                             TextOrientation="{Binding TextOrientation}"
                              Value="{Binding Value}">
             <Grid>
-                <gauges:AngularAxis IsDirectionReversed="{Binding IsDirectionReversed}"
-                                    MajorTickFrequency="{Binding TickFrequency}"
-                                    MajorTicks="{Binding Ticks}"
-                                    MaxAngle="{Binding MaxAngle}"
-                                    MinAngle="{Binding MinAngle}"
-                                    MinorTickFrequency="{Binding MinorTickFrequency}"
-                                    ShowLabels="{Binding ShowLabels}"
-                                    TextOrientation="{Binding TextOrientation}" />
+                <gauges:AngularAxis ShowLabels="{Binding ShowLabels}" />
 
                 <gauges:AngularIndicator Foreground="Blue" Value="{Binding Value, RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}">
                     <Grid VerticalAlignment="Bottom">

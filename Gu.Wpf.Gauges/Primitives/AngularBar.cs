@@ -5,7 +5,6 @@ namespace Gu.Wpf.Gauges
     public class AngularBar : TickBarBase
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
-
         private static readonly DependencyPropertyKey DiameterPropertyKey = DependencyProperty.RegisterReadOnly(
             nameof(Diameter),
             typeof(double),
@@ -14,17 +13,13 @@ namespace Gu.Wpf.Gauges
 
         public static readonly DependencyProperty DiameterProperty = DiameterPropertyKey.DependencyProperty;
 
-        public static readonly DependencyProperty MinAngleProperty = DependencyProperty.Register(
-            nameof(MinAngle),
-            typeof(double),
+        public static readonly DependencyProperty MinAngleProperty = AngularGauge.MinAngleProperty.AddOwner(
             typeof(AngularBar),
             new FrameworkPropertyMetadata(
                 -180.0,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
-        public static readonly DependencyProperty MaxAngleProperty = DependencyProperty.Register(
-            nameof(MaxAngle),
-            typeof(double),
+        public static readonly DependencyProperty MaxAngleProperty = AngularGauge.MaxAngleProperty.AddOwner(
             typeof(AngularBar),
             new FrameworkPropertyMetadata(
                 0.0,

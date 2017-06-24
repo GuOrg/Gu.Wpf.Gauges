@@ -52,7 +52,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AngularAxis.cs" />
+    <Compile Include="AngularGauge.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AngularGauge.tt</DependentUpon>
+    </Compile>
     <Compile Include="Axis.cs" />
+    <Compile Include="Gauge.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Gauge.tt</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\BindingHelper.cs" />
     <Compile Include="Helpers\DependencyObjectExt.cs" />
     <Compile Include="Helpers\NameOf.cs" />
@@ -60,6 +70,11 @@
     <Compile Include="Helpers\WeakKeyValuePair.cs" />
     <Compile Include="Indicators\AngularIndicator.cs" />
     <Compile Include="Indicators\Indicator.cs" />
+    <Compile Include="LinearGauge.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LinearGauge.tt</DependentUpon>
+    </Compile>
     <Compile Include="Primitives\AngularBlockBar.cs" />
     <Compile Include="AngularGauge.cs" />
     <Compile Include="Primitives\AngularPanel.cs" />
@@ -139,5 +154,22 @@
     <Analyzer Include="..\packages\WpfAnalyzers\analyzers\dotnet\cs\WpfAnalyzers.CodeFixes.dll">
       <Paket>True</Paket>
     </Analyzer>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AngularGauge.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AngularGauge.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="LinearGauge.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LinearGauge.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Gauge.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Gauge.generated.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
 </Project>

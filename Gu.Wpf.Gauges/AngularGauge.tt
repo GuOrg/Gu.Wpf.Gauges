@@ -1,0 +1,98 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".generated.cs" #>
+namespace Gu.Wpf.Gauges
+{
+    using System.Windows;
+
+    public partial class AngularGauge
+    {
+<#
+    var properties = new[]
+                     {
+                         new PropertyMetaData("MinAngle", "double", "-180.0d", true),
+                         new PropertyMetaData("MaxAngle", "double", "0.0d", true),
+                     };
+
+    foreach (var property in properties)
+    {
+        var notifyOnChange = property.NotifyOnChange
+            ? $@",
+                On{property.Name}Changed"
+            : string.Empty;
+        WriteLineIfNotFirst(property, properties);
+    #>
+        public static readonly DependencyProperty <#= property.Name #>Property = DependencyProperty.RegisterAttached(
+            nameof(<#= property.Name #>),
+            typeof(<#= property.Type #>),
+            typeof(AngularGauge),
+            new FrameworkPropertyMetadata(
+                <#= property.DefaultValue #>,
+                FrameworkPropertyMetadataOptions.Inherits<#= notifyOnChange #>));
+<#    } #>
+<#  foreach (var property in properties)
+    { #>
+
+        public <#= property.Type #> <#= property.Name #>
+        {
+            get => (<#= property.Type #>)this.GetValue(<#= property.Name #>Property);
+            set => this.SetValue(<#= property.Name #>Property, value);
+        }
+<#    } #>
+<#  foreach (var property in properties)
+    { #>
+
+        public static void Set<#= property.Name #>(DependencyObject element, <#= property.Type #> value)
+        {
+            element.SetValue(<#= property.Name #>Property, value);
+        }
+
+        public static <#= property.Type #> Get<#= property.Name #>(DependencyObject element)
+        {
+            return (<#= property.Type #>)element.GetValue(<#= property.Name #>Property);
+        }
+<#    } #>
+<#  foreach (var property in properties.Where(p => p.NotifyOnChange))
+    { #>
+
+        private static void On<#= property.Name #>Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is AngularGauge gauge)
+            {
+                gauge.On<#= property.Name #>Changed((<#= property.Type #>)e.OldValue, (<#= property.Type #>)e.NewValue);
+            }
+        }
+<#  } #>
+    }
+}
+<#+
+
+private void WriteLineIfNotFirst<T>(T item, IEnumerable<T> items)
+{
+    if (!ReferenceEquals(items.First(), item))
+    {
+        this.WriteLine("");
+    }
+}
+
+public class PropertyMetaData
+{
+    public PropertyMetaData(string name, string type, string defaultValue, bool notifyOnChange = false)
+    {
+        Name = name;
+        Type = type;
+        DefaultValue = defaultValue ?? $"default({type})";
+        NotifyOnChange = notifyOnChange;
+    }
+
+    public string Name { get; }
+
+    public string Type { get; }
+
+    public string DefaultValue { get; }
+
+    public bool NotifyOnChange { get; }
+}
+#>

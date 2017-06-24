@@ -20,11 +20,11 @@
                              MinAngle="-180"
                              Minimum="{Binding Minimum,
                                                ElementName=Slider}">
-            <gauges:AngularValue Value="{Binding Value, ElementName=Slider}">
+            <gauges:AngularIndicator Value="{Binding Value, ElementName=Slider}">
                 <Rectangle Width="10"
                            Height="10"
                            Fill="Black" />
-            </gauges:AngularValue>
+            </gauges:AngularIndicator>
         </gauges:AngularPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

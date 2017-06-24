@@ -2,7 +2,6 @@ namespace Gu.Wpf.Gauges
 {
     using System.Linq;
     using System.Windows;
-    using System.Windows.Controls.Primitives;
     using System.Windows.Media;
     using System.Windows.Shapes;
 
@@ -14,7 +13,7 @@ namespace Gu.Wpf.Gauges
         /// <returns>
         /// The identifier for the <see cref="P:AngularBlockBar.Value" /> dependency property.
         /// </returns>
-        public static readonly DependencyProperty ValueProperty = RangeBase.ValueProperty.AddOwner(
+        public static readonly DependencyProperty ValueProperty = Gauge.ValueProperty.AddOwner(
             typeof(AngularBlockBar),
             new FrameworkPropertyMetadata(
                 0.0,

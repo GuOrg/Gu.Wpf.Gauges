@@ -1,6 +1,7 @@
 ﻿namespace Gu.Wpf.Gauges
 {
     using System;
+    using System.ComponentModel;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
@@ -9,7 +10,7 @@
 
     using Gu.Wpf.Gauges.Helpers;
 
-    public class Axis : Control
+    public class Axis : Control, ISupportInitialize
     {
         /// <summary>
         /// Identifies the <see cref="P:Axis.Minimum" /> dependency property.
@@ -37,29 +38,34 @@
             typeof(Axis),
             new PropertyMetadata(true));
 
-        public static readonly DependencyProperty MajorTickFrequencyProperty = DependencyProperty.Register(
-            nameof(MajorTickFrequency),
-            typeof(double),
+        public static readonly DependencyProperty MajorTickFrequencyProperty = Gauge.MajorTickFrequencyProperty.AddOwner(
             typeof(Axis),
             new FrameworkPropertyMetadata(default(double)));
 
-        public static readonly DependencyProperty MajorTicksProperty = DependencyProperty.Register(
-            nameof(MajorTicks),
-            typeof(DoubleCollection),
+        public static readonly DependencyProperty MajorTicksProperty = Gauge.MajorTicksProperty.AddOwner(
             typeof(Axis),
-            new PropertyMetadata(default(DoubleCollection)));
+            new FrameworkPropertyMetadata(default(DoubleCollection)));
 
-        public static readonly DependencyProperty MinorTickFrequencyProperty = DependencyProperty.Register(
-            nameof(MinorTickFrequency),
-            typeof(double),
+        public static readonly DependencyProperty MinorTickFrequencyProperty = Gauge.MinorTickFrequencyProperty.AddOwner(
             typeof(Axis),
-            new PropertyMetadata(default(double)));
+            new FrameworkPropertyMetadata(default(double)));
 
-        public static readonly DependencyProperty TextOrientationProperty = DependencyProperty.RegisterAttached(
-            nameof(TextOrientation),
-            typeof(TextOrientation),
+        public static readonly DependencyProperty MinorTicksProperty = Gauge.MinorTicksProperty.AddOwner(
+            typeof(Axis),
+            new FrameworkPropertyMetadata(default(DoubleCollection)));
+
+        public static readonly DependencyProperty TextOrientationProperty = Gauge.TextOrientationProperty.AddOwner(
             typeof(Axis),
             new FrameworkPropertyMetadata(TextOrientation.Horizontal, FrameworkPropertyMetadataOptions.Inherits));
+
+        /// <summary>
+        /// Identifies the <see cref="P:Axis.IsDirectionReversed" /> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty IsDirectionReversedProperty = Gauge.IsDirectionReversedProperty.AddOwner(
+            typeof(Axis),
+            new FrameworkPropertyMetadata(
+                false,
+                FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Identifies the <see cref="P:Axis.ReservedSpace" /> dependency property. This property is read-only.
@@ -80,15 +86,6 @@
             typeof(double),
             typeof(Axis),
             new PropertyMetadata(default(double), OnMinReservedSpaceChanged));
-
-        /// <summary>
-        /// Identifies the <see cref="P:Axis.IsDirectionReversed" /> dependency property.
-        /// </summary>
-        public static readonly DependencyProperty IsDirectionReversedProperty = Slider.IsDirectionReversedProperty.AddOwner(
-            typeof(Axis),
-            new FrameworkPropertyMetadata(
-                false,
-                FrameworkPropertyMetadataOptions.Inherits));
 
         private readonly WeakDictionary<DependencyObject, double> minReservedSpaces = new WeakDictionary<DependencyObject, double>();
 
@@ -163,6 +160,12 @@
         {
             get => (double)this.GetValue(MinorTickFrequencyProperty);
             set => this.SetValue(MinorTickFrequencyProperty, value);
+        }
+
+        public DoubleCollection MinorTicks
+        {
+            get => (DoubleCollection)this.GetValue(MinorTicksProperty);
+            set => this.SetValue(MinorTicksProperty, value);
         }
 
         /// <summary>
