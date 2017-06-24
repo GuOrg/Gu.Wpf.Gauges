@@ -10,7 +10,7 @@
             typeof(TickBarPlacement),
             typeof(LinearGauge),
             new FrameworkPropertyMetadata(
-                TickBarPlacement.Bottom, 
+                TickBarPlacement.Bottom,
                 FrameworkPropertyMetadataOptions.Inherits));
 
         static LinearGauge()

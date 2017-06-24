@@ -192,7 +192,7 @@ namespace Gu.Wpf.Gauges
         {
             if (d is Gauge gauge)
             {
-                gauge.OnMinimumChanged((double) e.OldValue, (double) e.NewValue);
+                gauge.OnMinimumChanged((double)e.OldValue, (double)e.NewValue);
             }
         }
 
@@ -200,7 +200,7 @@ namespace Gu.Wpf.Gauges
         {
             if (d is Gauge gauge)
             {
-                gauge.OnMaximumChanged((double) e.OldValue, (double) e.NewValue);
+                gauge.OnMaximumChanged((double)e.OldValue, (double)e.NewValue);
             }
         }
     }
