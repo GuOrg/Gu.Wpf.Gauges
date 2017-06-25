@@ -84,15 +84,11 @@
         </Grid.RowDefinitions>
 
         <gauges:LinearGauge Grid.Row="0"
-                            Maximum="{Binding Maximum,
-                                              ElementName=ValueSlider}"
-                            Minimum="{Binding Minimum,
-                                              ElementName=ValueSlider}"
-                            Value="{Binding Value,
-                                            ElementName=ValueSlider}">
+                            Maximum="{Binding Maximum, ElementName=ValueSlider}"
+                            Minimum="{Binding Minimum, ElementName=ValueSlider}"
+                            Value="{Binding Value, ElementName=ValueSlider}">
             <Grid>
-                <gauges:LinearAxis IsDirectionReversed="{Binding IsDirectionReversed,
-                                                                 ElementName=ValueSlider}"
+                <gauges:LinearAxis IsDirectionReversed="{Binding IsDirectionReversed, ElementName=ValueSlider}"
                                    MajorTicks="20 80"
                                    MinorTickFrequency="10"
                                    Placement="Bottom"
@@ -135,8 +131,7 @@
                         <TextBlock Grid.Row="1"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Top"
-                                   Text="{Binding Value,
-                                                  RelativeSource={RelativeSource AncestorType={x:Type gauges:LinearGauge}}}" />
+                                   Text="{Binding Value, RelativeSource={RelativeSource AncestorType={x:Type gauges:LinearGauge}}}" />
                     </Grid>
                 </gauges:LinearIndicator>
             </Grid>

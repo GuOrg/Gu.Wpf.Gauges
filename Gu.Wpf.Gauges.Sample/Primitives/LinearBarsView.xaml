@@ -7,16 +7,16 @@
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
              mc:Ignorable="d">
     <UserControl.DataContext>
-        <sample:TickBarVm IsDirectionReversed="False"
+        <sample:TickBarVm HorizontalTextAlignment="Left"
+                          IsDirectionReversed="False"
                           MajorTickFrequency="50"
                           MajorTicks="75"
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="5"
-                          ReservedSpace="0"
                           Placement="Right"
+                          ReservedSpace="0"
                           TextOrientation="Horizontal"
-                          HorizontalTextAlignment="Left"
                           VerticalTextAlignment="Top"
                           Value="80" />
     </UserControl.DataContext>

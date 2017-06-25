@@ -83,12 +83,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LinearGauge.tt</DependentUpon>
     </Compile>
-    <Compile Include="Primitives\AngularBlockBar.cs" />
+    <Compile Include="Primitives\Angular\AngularBlockBar.cs" />
     <Compile Include="AngularGauge.cs" />
-    <Compile Include="Primitives\AngularPanel.cs" />
+    <Compile Include="Primitives\Angular\AngularPanel.cs" />
     <Compile Include="Primitives\HorizontalTextAlignment.cs" />
-    <Compile Include="Primitives\LinearTextTickBar.cs" />
-    <Compile Include="Primitives\Ring.cs" />
+    <Compile Include="Primitives\Linear\LinearTextTickBar.cs" />
+    <Compile Include="Primitives\Angular\Ring.cs" />
     <Compile Include="Primitives\TickBarBase.cs" />
     <Compile Include="Gauge.cs" />
     <Compile Include="Internals\ArcInfo.cs" />
@@ -100,8 +100,8 @@
     <Compile Include="Primitives\ITextFormat.cs" />
     <Compile Include="Internals\Horizontal.cs" />
     <Compile Include="Internals\Line.cs" />
-    <Compile Include="Primitives\LinearPanel.cs" />
-    <Compile Include="Primitives\LinearTickBar.cs" />
+    <Compile Include="Primitives\Linear\LinearPanel.cs" />
+    <Compile Include="Primitives\Linear\LinearTickBar.cs" />
     <Compile Include="Internals\PointExt.cs" />
     <Compile Include="Internals\RectExt.cs" />
     <Compile Include="Internals\SizeExt.cs" />
@@ -109,10 +109,10 @@
     <Compile Include="Internals\TextHelper.cs" />
     <Compile Include="Internals\TextPosition.cs" />
     <Compile Include="Internals\TickHelper.cs" />
-    <Compile Include="Primitives\AngularBar.cs" />
-    <Compile Include="Primitives\AngularTextBar.cs" />
-    <Compile Include="Primitives\AngularTickBar.cs" />
-    <Compile Include="Primitives\LinearBlockBar.cs" />
+    <Compile Include="Primitives\Angular\AngularBar.cs" />
+    <Compile Include="Primitives\Angular\AngularTextBar.cs" />
+    <Compile Include="Primitives\Angular\AngularTickBar.cs" />
+    <Compile Include="Primitives\Linear\LinearBlockBar.cs" />
     <Compile Include="Internals\VectorExt.cs" />
     <Compile Include="Internals\Vertical.cs" />
     <Compile Include="Indicators\AngularRange.cs" />
@@ -120,8 +120,8 @@
     <Compile Include="Indicators\LinearRange.cs" />
     <Compile Include="LinearAxis.cs" />
     <Compile Include="LinearGauge.cs" />
-    <Compile Include="Primitives\PolarCanvas.cs" />
-    <Compile Include="Primitives\TextTickBar.cs" />
+    <Compile Include="Primitives\Angular\PolarCanvas.cs" />
+    <Compile Include="Primitives\Linear\TextTickBar.cs" />
     <Compile Include="Primitives\TickText.cs" />
     <Compile Include="Primitives\VerticalTextAlignment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

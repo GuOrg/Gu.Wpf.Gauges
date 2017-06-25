@@ -28,7 +28,7 @@
         {
             if (this.VisualChild != null)
             {
-                this.VisualChild.Measure(constraint);
+                this.VisualChild.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
                 return this.VisualChild.DesiredSize;
             }
 
