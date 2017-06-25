@@ -49,10 +49,9 @@
                                                Maximum="{TemplateBinding Maximum}"
                                                MinAngle="{TemplateBinding MinAngle}"
                                                Minimum="{TemplateBinding Minimum}"
-                                               ReservedSpace="{Binding TextSpace,
-                                                                       ElementName=TextBar}"
+                                               ReservedSpace="{Binding TextSpace, ElementName=TextBar}"
+                                               Thickness="10"
                                                TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                               TickLength="10"
                                                Ticks="{TemplateBinding MajorTicks}" />
                         <gauges:AngularTickBar Fill="{TemplateBinding Foreground}"
                                                IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
@@ -60,10 +59,9 @@
                                                Maximum="{TemplateBinding Maximum}"
                                                MinAngle="{TemplateBinding MinAngle}"
                                                Minimum="{TemplateBinding Minimum}"
-                                               ReservedSpace="{Binding TextSpace,
-                                                                       ElementName=TextBar}"
-                                               TickFrequency="{TemplateBinding MinorTickFrequency}"
-                                               TickLength="5" />
+                                               ReservedSpace="{Binding TextSpace, ElementName=TextBar}"
+                                               Thickness="5"
+                                               TickFrequency="{TemplateBinding MinorTickFrequency}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

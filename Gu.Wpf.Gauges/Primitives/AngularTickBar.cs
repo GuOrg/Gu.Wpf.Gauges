@@ -1,8 +1,8 @@
 namespace Gu.Wpf.Gauges
 {
     using System.Windows;
-    using System.Windows.Controls.Primitives;
     using System.Windows.Media;
+    using System.Windows.Shapes;
 
     public class AngularTickBar : AngularBar
     {
@@ -20,13 +20,13 @@ namespace Gu.Wpf.Gauges
         /// <summary>
         /// Identifies the <see cref="P:AngularTickBar.Fill" /> dependency property. This property is read-only.
         /// </summary>
-        public static readonly DependencyProperty FillProperty = TickBar.FillProperty.AddOwner(
+        public static readonly DependencyProperty FillProperty = Shape.FillProperty.AddOwner(
             typeof(AngularTickBar),
             new FrameworkPropertyMetadata(
                 default(Brush),
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
-        public static readonly DependencyProperty TickLengthProperty = AngularGauge.ThicknessProperty.AddOwner(
+        public static readonly DependencyProperty ThicknessProperty = AngularGauge.ThicknessProperty.AddOwner(
             typeof(AngularTickBar),
             new FrameworkPropertyMetadata(
                 10.0,
@@ -58,10 +58,10 @@ namespace Gu.Wpf.Gauges
         /// Gets or sets the length of the ticks.
         /// The default value is 10.
         /// </summary>
-        public double TickLength
+        public double Thickness
         {
-            get => (double)this.GetValue(TickLengthProperty);
-            set => this.SetValue(TickLengthProperty, value);
+            get => (double)this.GetValue(ThicknessProperty);
+            set => this.SetValue(ThicknessProperty, value);
         }
 
         protected override void OnRender(DrawingContext dc)
@@ -74,7 +74,7 @@ namespace Gu.Wpf.Gauges
                 var tick = this.AllTicks[i];
                 var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
                 var po = arc.GetPoint(angle, -this.ReservedSpace / 2);
-                var pi = arc.GetPoint(angle, (-this.ReservedSpace / 2) - this.TickLength);
+                var pi = arc.GetPoint(angle, (-this.ReservedSpace / 2) - this.Thickness);
                 var line = new Line(po, pi);
                 dc.DrawLine(pen, line);
             }

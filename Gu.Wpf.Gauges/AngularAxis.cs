@@ -22,10 +22,10 @@
                 0.0d,
                 FrameworkPropertyMetadataOptions.Inherits));
 
-        public static readonly DependencyProperty TickLengthProperty = AngularGauge.ThicknessProperty.AddOwner(
+        public static readonly DependencyProperty ThicknessProperty = AngularGauge.ThicknessProperty.AddOwner(
             typeof(AngularAxis),
             new FrameworkPropertyMetadata(
-                0.0d,
+                10.0d,
                 FrameworkPropertyMetadataOptions.Inherits));
 
         static AngularAxis()
@@ -65,10 +65,10 @@
         /// <summary>
         /// Gets or sets the <see cref="P:AngularAxis.Thickness" />
         /// </summary>
-        public double TickLength
+        public double Thickness
         {
-            get => (double)this.GetValue(TickLengthProperty);
-            set => this.SetValue(TickLengthProperty, value);
+            get => (double)this.GetValue(ThicknessProperty);
+            set => this.SetValue(ThicknessProperty, value);
         }
     }
 }

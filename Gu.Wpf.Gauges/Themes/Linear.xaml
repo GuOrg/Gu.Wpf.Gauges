@@ -32,8 +32,7 @@
                 <ControlTemplate TargetType="{x:Type local:LinearAxis}">
                     <DockPanel>
                         <local:LinearTextTickBar x:Name="TickLabels"
-                                                 local:Axis.MinReservedSpace="{Binding TextSpace,
-                                                                                       RelativeSource={RelativeSource Self}}"
+                                                 local:Axis.MinReservedSpace="{Binding TextSpace, RelativeSource={RelativeSource Self}}"
                                                  ReservedSpace="{TemplateBinding ReservedSpace}"
                                                  SnapsToDevicePixels="True"
                                                  TextOrientation="{TemplateBinding TextOrientation}"
@@ -63,8 +62,7 @@
                         </Grid>
 
                         <Rectangle x:Name="Line"
-                                   Margin="{Binding TextSpaceMargin,
-                                                    ElementName=TickLabels}"
+                                   Margin="{Binding TextSpaceMargin, ElementName=TickLabels}"
                                    Fill="{TemplateBinding Foreground}" />
 
                     </DockPanel>
@@ -152,8 +150,7 @@
                                                      Grid.Row="1"
                                                      Height="10"
                                                      VerticalAlignment="Bottom"
-                                                     Fill="{Binding ElementName=MajorTicks,
-                                                                    Path=Fill}"
+                                                     Fill="{Binding ElementName=MajorTicks, Path=Fill}"
                                                      PenWidth="1"
                                                      Placement="Bottom"
                                                      SnapsToDevicePixels="True"
@@ -183,33 +180,70 @@
                             BorderThickness="{TemplateBinding BorderThickness}">
                         <ContentPresenter />
                     </Border>
-                    <!--<ControlTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Axis.Placement, RelativeSource={RelativeSource Self}}" Value="Top">
-                            <Setter TargetName="Axis" Property="DockPanel.Dock" Value="Top" />
-                            <Setter TargetName="Indicators" Property="DockPanel.Dock" Value="Bottom" />
-                            <Setter TargetName="Indicators" Property="VerticalAlignment" Value="Top" />
-                        </DataTrigger>
-
-                        <DataTrigger Binding="{Binding Axis.Placement, RelativeSource={RelativeSource Self}}" Value="Bottom">
-                            <Setter TargetName="Axis" Property="DockPanel.Dock" Value="Bottom" />
-                            <Setter TargetName="Indicators" Property="DockPanel.Dock" Value="Top" />
-                            <Setter TargetName="Indicators" Property="VerticalAlignment" Value="Bottom" />
-                        </DataTrigger>
-
-                        <DataTrigger Binding="{Binding Axis.Placement, RelativeSource={RelativeSource Self}}" Value="Left">
-                            <Setter TargetName="Axis" Property="DockPanel.Dock" Value="Left" />
-                            <Setter TargetName="Indicators" Property="DockPanel.Dock" Value="Right" />
-                            <Setter TargetName="Indicators" Property="HorizontalAlignment" Value="Left" />
-                        </DataTrigger>
-
-                        <DataTrigger Binding="{Binding Axis.Placement, RelativeSource={RelativeSource Self}}" Value="Right">
-                            <Setter TargetName="Axis" Property="DockPanel.Dock" Value="Right" />
-                            <Setter TargetName="Indicators" Property="DockPanel.Dock" Value="Left" />
-                            <Setter TargetName="Indicators" Property="HorizontalAlignment" Value="Right" />
-                        </DataTrigger>
-                    </ControlTemplate.Triggers>-->
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Content" Value="{x:Null}" />
+                    <Condition Property="Placement" Value="Bottom" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type local:LinearGauge}">
+                                <Border Margin="{TemplateBinding Padding}"
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                    <Grid>
+                                        <local:LinearAxis />
+                                        <local:LinearIndicator>
+                                            <Path Width="10"
+                                                  Height="10"
+                                                  VerticalAlignment="Bottom"
+                                                  Data="M-0.5,0 L0.5,0 0,1z"
+                                                  Fill="Black"
+                                                  Stretch="Fill" />
+                                        </local:LinearIndicator>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Content" Value="{x:Null}" />
+                    <Condition Property="Placement" Value="Top" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type local:LinearGauge}">
+                                <Border Margin="{TemplateBinding Padding}"
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                    <Grid>
+                                        <local:LinearAxis />
+                                        <local:LinearIndicator>
+                                            <Path Width="10"
+                                                  Height="10"
+                                                  VerticalAlignment="Top"
+                                                  Data="M-0.5,1 L0.5,1 0,0z"
+                                                  Fill="Black"
+                                                  Stretch="Fill" />
+                                        </local:LinearIndicator>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>
