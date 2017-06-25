@@ -21,7 +21,7 @@
             "HorizontalTextAlignment",
             typeof(HorizontalTextAlignment),
             typeof(TextTickBar),
-            new PropertyMetadata(default(HorizontalTextAlignment)));
+            new FrameworkPropertyMetadata(default(HorizontalTextAlignment), FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.FontFamily" /> dependency property.
@@ -265,9 +265,9 @@
 
         protected FormattedText[] AllTexts { get; private set; }
 
-        protected override void OnTicksChanged()
+        protected override void UpdateTicks()
         {
-            base.OnTicksChanged();
+            base.UpdateTicks();
             var typeFace = this.TypeFace();
             this.AllTexts = this.AllTicks.Select(x => TextHelper.AsFormattedText(x, this, typeFace))
                                          .ToArray();

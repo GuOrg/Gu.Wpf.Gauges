@@ -13,9 +13,11 @@
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="5"
-                          Placement="Left"
                           ReservedSpace="0"
+                          Placement="Right"
                           TextOrientation="Horizontal"
+                          HorizontalTextAlignment="Left"
+                          VerticalTextAlignment="Top"
                           Value="80" />
     </UserControl.DataContext>
     <Grid>
@@ -101,6 +103,7 @@
                                               Grid.Column="0"
                                               Grid.ColumnSpan="2"
                                               Foreground="Black"
+                                              HorizontalTextAlignment="{Binding HorizontalTextAlignment}"
                                               IsDirectionReversed="{Binding IsDirectionReversed}"
                                               Maximum="{Binding Maximum}"
                                               Minimum="{Binding Minimum}"

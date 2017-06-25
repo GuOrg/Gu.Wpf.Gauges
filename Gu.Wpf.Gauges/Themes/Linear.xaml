@@ -59,12 +59,8 @@
                                                  TickFrequency="{TemplateBinding MinorTickFrequency}"
                                                  Ticks="{TemplateBinding MinorTicks}"
                                                  UseLayoutRounding="True" />
+                            <Rectangle x:Name="Line" Fill="{TemplateBinding Foreground}" />
                         </Grid>
-
-                        <Rectangle x:Name="Line"
-                                   Margin="{Binding TextSpaceMargin, ElementName=TickLabels}"
-                                   Fill="{TemplateBinding Foreground}" />
-
                     </DockPanel>
                     <ControlTemplate.Triggers>
                         <Trigger Property="ShowLabels" Value="False">
@@ -72,7 +68,6 @@
                         </Trigger>
 
                         <Trigger Property="Placement" Value="Top">
-                            <Setter TargetName="Line" Property="DockPanel.Dock" Value="Top" />
                             <Setter TargetName="Line" Property="VerticalAlignment" Value="Top" />
                             <Setter TargetName="Ticks" Property="DockPanel.Dock" Value="Top" />
                             <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Top" />
@@ -84,7 +79,6 @@
                         </Trigger>
 
                         <Trigger Property="Placement" Value="Bottom">
-                            <Setter TargetName="Line" Property="DockPanel.Dock" Value="Bottom" />
                             <Setter TargetName="Line" Property="VerticalAlignment" Value="Bottom" />
                             <Setter TargetName="Ticks" Property="DockPanel.Dock" Value="Bottom" />
                             <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Bottom" />
@@ -96,7 +90,6 @@
                         </Trigger>
 
                         <Trigger Property="Placement" Value="Left">
-                            <Setter TargetName="Line" Property="DockPanel.Dock" Value="Left" />
                             <Setter TargetName="Line" Property="HorizontalAlignment" Value="Left" />
                             <Setter TargetName="Ticks" Property="DockPanel.Dock" Value="Left" />
                             <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Left" />
@@ -108,7 +101,6 @@
                         </Trigger>
 
                         <Trigger Property="Placement" Value="Right">
-                            <Setter TargetName="Line" Property="DockPanel.Dock" Value="Right" />
                             <Setter TargetName="Line" Property="HorizontalAlignment" Value="Right" />
                             <Setter TargetName="Ticks" Property="DockPanel.Dock" Value="Right" />
                             <Setter TargetName="TickLabels" Property="DockPanel.Dock" Value="Right" />

@@ -15,10 +15,10 @@ namespace Gu.Wpf.Gauges
             FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty MaxAngleProperty = AngularBar.MaxAngleProperty.AddOwner(
-                typeof(AngularPanel),
-                new FrameworkPropertyMetadata(
-                    0.0,
-                    FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits));
+            typeof(AngularPanel),
+            new FrameworkPropertyMetadata(
+                0.0,
+                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Identifies the <see cref="P:AngularPanel.Minimum" /> dependency property.

@@ -55,7 +55,7 @@ namespace Gu.Wpf.Gauges
             typeof(TickBarBase),
             new FrameworkPropertyMetadata(
                 0.0,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits,
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits,
                 OnTickFrequencyChanged));
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Gu.Wpf.Gauges
             typeof(TickBarBase),
             new FrameworkPropertyMetadata(
                 null,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits,
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits,
                 OnTicksChanged));
 
         /// <summary>
@@ -153,55 +153,52 @@ namespace Gu.Wpf.Gauges
 
         protected IReadOnlyList<double> AllTicks => this.allTicks ?? EmptyTicks;
 
-        protected virtual void OnTicksChanged()
+        protected virtual void UpdateTicks()
         {
             this.allTicks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency)
                                       .Concat(this.Ticks ?? Enumerable.Empty<double>())
                                       .Where(x => x >= this.Minimum && x <= this.Maximum)
                                       .OrderBy(x => x)
                                       .ToArray();
-            this.InvalidateMeasure();
         }
 
         private static void OnMinimumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var bar = (TickBarBase)d;
-            bar.OnTicksChanged();
+            bar.UpdateTicks();
         }
 
         private static void OnMaximumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var bar = (TickBarBase)d;
-            bar.OnTicksChanged();
+            bar.UpdateTicks();
         }
 
         private static void OnTicksChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var bar = (TickBarBase)d;
-            var oldTicks = e.OldValue as DoubleCollection;
-            if (oldTicks != null)
+            if (e.OldValue is DoubleCollection oldTicks)
             {
                 oldTicks.Changed -= bar.OnTickCollectionChanged;
             }
 
-            var newTicks = e.NewValue as DoubleCollection;
-            if (newTicks != null)
+            if (e.NewValue is DoubleCollection newTicks)
             {
                 newTicks.Changed += bar.OnTickCollectionChanged;
             }
 
-            bar.OnTicksChanged();
+            bar.UpdateTicks();
         }
 
         private static void OnTickFrequencyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var bar = (TickBarBase)d;
-            bar.OnTicksChanged();
+            bar.UpdateTicks();
         }
 
         private void OnTickCollectionChanged(object sender, EventArgs eventArgs)
         {
-            this.OnTicksChanged();
+            this.UpdateTicks();
         }
     }
 }

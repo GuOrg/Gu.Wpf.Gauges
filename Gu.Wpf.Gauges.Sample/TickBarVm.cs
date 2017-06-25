@@ -17,7 +17,8 @@
 
         private double value;
         private TextOrientation textOrientation;
-
+        private HorizontalTextAlignment horizontalTextAlignment;
+        private VerticalTextAlignment verticalTextAlignment;
         private double minorTickFrequency;
         private DoubleCollection minorTicks;
         private double thickness;
@@ -198,6 +199,38 @@
                 }
 
                 this.textOrientation = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public HorizontalTextAlignment HorizontalTextAlignment
+        {
+            get => this.horizontalTextAlignment;
+
+            set
+            {
+                if (value == this.horizontalTextAlignment)
+                {
+                    return;
+                }
+
+                this.horizontalTextAlignment = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public VerticalTextAlignment VerticalTextAlignment
+        {
+            get => this.verticalTextAlignment;
+
+            set
+            {
+                if (value == this.verticalTextAlignment)
+                {
+                    return;
+                }
+
+                this.verticalTextAlignment = value;
                 this.OnPropertyChanged();
             }
         }

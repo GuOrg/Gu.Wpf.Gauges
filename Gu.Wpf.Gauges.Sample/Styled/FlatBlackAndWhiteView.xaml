@@ -20,8 +20,8 @@
                                                    TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                    Ticks="{TemplateBinding MajorTicks}" />
                             <gauges:AngularBlockBar x:Name="Axis"
-                                                    VerticalAlignment="Bottom"
                                                     Height="60"
+                                                    VerticalAlignment="Bottom"
                                                     Fill="LightGray"
                                                     Opacity="0.2"
                                                     TickFrequency="{TemplateBinding MajorTickFrequency}"
@@ -71,17 +71,17 @@
                                                    Grid.Row="1"
                                                    Grid.Column="0"
                                                    Fill="White"
-                                                   TickGap="1"
                                                    TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                   TickGap="1"
                                                    Ticks="{TemplateBinding MajorTicks}" />
 
                             <gauges:LinearBlockBar x:Name="Axis"
                                                    Grid.Row="1"
                                                    Grid.Column="0"
                                                    Fill="LightGray"
-                                                   TickGap="1"
                                                    Opacity="0.2"
                                                    TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                   TickGap="1"
                                                    Ticks="{TemplateBinding MajorTicks}"
                                                    Value="{TemplateBinding Maximum}" />
 
