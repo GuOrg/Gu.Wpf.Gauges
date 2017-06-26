@@ -21,7 +21,7 @@ namespace Gu.Wpf.Gauges
             new FrameworkPropertyMetadata(
                 0.0,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits,
-                OnMinimumChanged));
+                (d, _) => ((TickBarBase)d).UpdateTicks()));
 
         /// <summary>
         /// Identifies the <see cref="P:Bar.Maximum" /> dependency property.
@@ -34,7 +34,7 @@ namespace Gu.Wpf.Gauges
             new FrameworkPropertyMetadata(
                 1.0,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits,
-                OnMaximumChanged));
+                (d, _) => ((TickBarBase)d).UpdateTicks()));
 
         /// <summary>
         /// Identifies the <see cref="P:Bar.ReservedSpace" /> dependency property. This property is read-only.
@@ -56,7 +56,7 @@ namespace Gu.Wpf.Gauges
             new FrameworkPropertyMetadata(
                 0.0,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits,
-                OnTickFrequencyChanged));
+                (d, _) => ((TickBarBase)d).UpdateTicks()));
 
         /// <summary>
         /// Identifies the <see cref="P:Bar.Ticks" /> dependency property.
@@ -162,18 +162,6 @@ namespace Gu.Wpf.Gauges
                                       .ToArray();
         }
 
-        private static void OnMinimumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var bar = (TickBarBase)d;
-            bar.UpdateTicks();
-        }
-
-        private static void OnMaximumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var bar = (TickBarBase)d;
-            bar.UpdateTicks();
-        }
-
         private static void OnTicksChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var bar = (TickBarBase)d;
@@ -187,12 +175,6 @@ namespace Gu.Wpf.Gauges
                 newTicks.Changed += bar.OnTickCollectionChanged;
             }
 
-            bar.UpdateTicks();
-        }
-
-        private static void OnTickFrequencyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var bar = (TickBarBase)d;
             bar.UpdateTicks();
         }
 

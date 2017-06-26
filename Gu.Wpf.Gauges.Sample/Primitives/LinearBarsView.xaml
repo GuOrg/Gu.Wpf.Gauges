@@ -5,6 +5,7 @@
              xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
+             d:DesignWidth="550"
              mc:Ignorable="d">
     <UserControl.DataContext>
         <sample:TickBarVm HorizontalTextAlignment="Left"
@@ -18,7 +19,7 @@
                           ReservedSpace="0"
                           TextOrientation="Horizontal"
                           VerticalTextAlignment="Top"
-                          Value="80" />
+                          Value="1" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -63,7 +64,7 @@
                          Ticks="{Binding MajorTicks}" />
             </GroupBox>
 
-            <GroupBox Header="BlockBar">
+            <GroupBox Header="BlockBar with ticks">
                 <gauges:LinearBlockBar Fill="CornflowerBlue"
                                        IsDirectionReversed="{Binding IsDirectionReversed}"
                                        Maximum="{Binding Maximum}"
@@ -73,6 +74,17 @@
                                        TickFrequency="{Binding MajorTickFrequency}"
                                        TickGap="2"
                                        Ticks="{Binding MajorTicks}"
+                                       Value="{Binding Value}" />
+            </GroupBox>
+
+            <GroupBox Header="BlockBar no ticks">
+                <gauges:LinearBlockBar Fill="CornflowerBlue"
+                                       IsDirectionReversed="{Binding IsDirectionReversed}"
+                                       Maximum="{Binding Maximum}"
+                                       Minimum="{Binding Minimum}"
+                                       Placement="{Binding Placement}"
+                                       ReservedSpace="{Binding ReservedSpace}"
+                                       Stroke="Black"
                                        Value="{Binding Value}" />
             </GroupBox>
 

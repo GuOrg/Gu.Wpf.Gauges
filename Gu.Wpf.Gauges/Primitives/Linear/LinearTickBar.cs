@@ -119,13 +119,13 @@
                     offset = new Vector(this.ActualWidth, 0);
                     break;
                 case TickBarPlacement.Right:
-                    offset = new Vector(-1 * this.ActualWidth, 0);
+                    offset = new Vector(-this.ActualWidth, 0);
                     break;
                 case TickBarPlacement.Top:
                     offset = new Vector(0, this.ActualHeight);
                     break;
                 case TickBarPlacement.Bottom:
-                    offset = new Vector(0, -1 * this.ActualHeight);
+                    offset = new Vector(0, -this.ActualHeight);
                     break;
             }
 
@@ -137,7 +137,6 @@
             foreach (var tick in this.AllTicks)
             {
                 var p = TickHelper.ToPos(tick, this.Minimum, this.Maximum, line);
-
                 if (this.SnapsToDevicePixels)
                 {
                     p = p.Round(0);
