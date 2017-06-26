@@ -27,7 +27,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 IsDirectionReversed = isDirectionReversed,
             };
 
-            //// SaveImage(tickBar);
             ImageAssert.AreEqual(Properties.Resources.LinearTickBar_Min_0_Max_10_TickFrequency_1_Horizontal, tickBar);
         }
 
@@ -47,7 +46,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 IsDirectionReversed = isDirectionReversed,
             };
 
-            //// SaveImage(tickBar);
             var expected = isDirectionReversed
                 ? Properties.Resources.LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1_2_6_Horizontal
                 : Properties.Resources.LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_Ticks_1_2_6_Horizontal;
@@ -71,7 +69,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 IsDirectionReversed = isDirectionReversed,
             };
 
-            //// SaveImage(tickBar);
             var expected = isDirectionReversed
                 ? Properties.Resources.LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Horizontal
                 : Properties.Resources.LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Horizontal;
@@ -94,7 +91,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 IsDirectionReversed = isDirectionReversed,
             };
 
-            SaveImage(tickBar);
             ImageAssert.AreEqual(Properties.Resources.LinearTickBar_Min_0_Max_10_TickFrequency_1_Vertical, tickBar);
         }
 
@@ -114,7 +110,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 IsDirectionReversed = isDirectionReversed,
             };
 
-             SaveImage(tickBar);
             var expected = isDirectionReversed
                 ? Properties.Resources.LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1_2_6_Vertical
                 : Properties.Resources.LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_Ticks_1_2_6_Vertical;
@@ -138,7 +133,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 IsDirectionReversed = isDirectionReversed,
             };
 
-            //// SaveImage(tickBar);
             var expected = isDirectionReversed
                 ? Properties.Resources.LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Vertical
                 : Properties.Resources.LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Vertical;
