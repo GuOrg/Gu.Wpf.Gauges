@@ -16,7 +16,7 @@
             typeof(LinearTickBar),
             new FrameworkPropertyMetadata(
                 TickBarPlacement.Bottom,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Identifies the <see cref="P:LinearTickBar.PenWidth" /> dependency property.
@@ -123,9 +123,20 @@
                     break;
             }
 
+            if (this.SnapsToDevicePixels)
+            {
+                offset = offset.Round(0);
+            }
+
             foreach (var tick in this.AllTicks)
             {
-                var p = TickHelper.ToPos(tick, this.Minimum, this.Maximum, line).Round(0);
+                var p = TickHelper.ToPos(tick, this.Minimum, this.Maximum, line);
+
+                if (this.SnapsToDevicePixels)
+                {
+                    p = p.Round(0);
+                }
+
                 var l = new Line(p, p + offset);
                 dc.DrawLine(this.Pen, l);
             }

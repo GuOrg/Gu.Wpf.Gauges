@@ -29,7 +29,7 @@
         }
 
         /// <summary>
-        /// Gets or sets the textplacement
+        /// Gets or sets the placement
         /// </summary>
         public TickBarPlacement Placement
         {

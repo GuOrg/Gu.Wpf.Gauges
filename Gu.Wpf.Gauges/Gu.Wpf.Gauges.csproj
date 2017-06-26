@@ -73,8 +73,10 @@
     </Compile>
     <Compile Include="Internals\BindingHelper.cs" />
     <Compile Include="Internals\DependencyObjectExt.cs" />
+    <Compile Include="Internals\DoubleUtil.cs" />
     <Compile Include="Internals\NameOf.cs" />
     <Compile Include="Internals\TextPositionOptions.cs" />
+    <Compile Include="Internals\ValidateEnums.cs" />
     <Compile Include="Internals\WeakKeyValuePair.cs" />
     <Compile Include="Indicators\AngularIndicator.cs" />
     <Compile Include="Indicators\Indicator.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="Primitives\Angular\AngularBlockBar.cs" />
     <Compile Include="AngularGauge.cs" />
     <Compile Include="Primitives\Angular\AngularPanel.cs" />
+    <Compile Include="Primitives\GeometryBar.cs" />
     <Compile Include="Primitives\HorizontalTextAlignment.cs" />
     <Compile Include="Primitives\Linear\LinearTextTickBar.cs" />
     <Compile Include="Primitives\Angular\Ring.cs" />
