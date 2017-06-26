@@ -147,15 +147,22 @@
     <Folder Include="SandBox\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_TickFrequency_0_Ticks_1 2 6_Horizontal.png" />
-    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_TickFrequency_0_Ticks_1 2 6_Vertical.png" />
-    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_TickFrequency_1_Vertical.png" />
-    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_TickFrequency_1_Horizontal.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1 2 6_Horizontal.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1 2 6_Vertical.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_Ticks_1 2 6_Horizontal.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_Ticks_1 2 6_Vertical.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_TickFrequency_5_Ticks_1 2 6_Horizontal.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_TickFrequency_5_Ticks_1 2 6_Vertical.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1 2 6_Horizontal.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1 2 6_Vertical.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_TickFrequency_1_Horizontal.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_TickFrequency_1_Vertical.png" />
   </ItemGroup>
 </Project>

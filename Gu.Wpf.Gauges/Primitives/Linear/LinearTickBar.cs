@@ -16,7 +16,7 @@
             typeof(LinearTickBar),
             new FrameworkPropertyMetadata(
                 TickBarPlacement.Bottom,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure));
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
         /// Identifies the <see cref="P:LinearTickBar.PenWidth" /> dependency property.
@@ -27,7 +27,8 @@
             typeof(LinearTickBar),
             new FrameworkPropertyMetadata(
                 1.0,
-                FrameworkPropertyMetadataOptions.AffectsRender));
+                FrameworkPropertyMetadataOptions.AffectsRender,
+                OnPenWidthChanged));
 
         /// <summary>
         /// Identifies the <see cref="P:LinearTickBar.Fill" /> dependency property. This property is read-only.
@@ -36,7 +37,15 @@
             typeof(LinearTickBar),
             new FrameworkPropertyMetadata(
                 default(Brush),
-                FrameworkPropertyMetadataOptions.AffectsRender));
+                FrameworkPropertyMetadataOptions.AffectsRender,
+                OnFillChanged));
+
+        private Pen pen;
+
+        static LinearTickBar()
+        {
+            SnapsToDevicePixelsProperty.OverrideMetadata(typeof(LinearTickBar), new FrameworkPropertyMetadata(true));
+        }
 
         /// <summary>
         /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.
@@ -72,10 +81,30 @@
             set => this.SetValue(FillProperty, value);
         }
 
+        private Pen Pen
+        {
+            get
+            {
+                if (this.pen == null)
+                {
+                    if (this.Fill != null && this.PenWidth > 0)
+                    {
+                        this.pen = new Pen(this.Fill, this.PenWidth);
+                        this.pen.Freeze();
+                    }
+                }
+
+                return this.pen;
+            }
+        }
+
         protected override void OnRender(DrawingContext dc)
         {
-            var pen = new Pen(this.Fill, this.PenWidth);
-            pen.Freeze();
+            if (this.Pen == null)
+            {
+                return;
+            }
+
             var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace, this.Placement, this.IsDirectionReversed);
             var offset = new Vector(0, 0);
             switch (this.Placement)
@@ -98,8 +127,18 @@
             {
                 var p = TickHelper.ToPos(tick, this.Minimum, this.Maximum, line).Round(0);
                 var l = new Line(p, p + offset);
-                dc.DrawLine(pen, l);
+                dc.DrawLine(this.Pen, l);
             }
+        }
+
+        private static void OnFillChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((LinearTickBar)d).pen = null;
+        }
+
+        private static void OnPenWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((LinearTickBar)d).pen = null;
         }
     }
 }

@@ -63,9 +63,10 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LinearTickBar_Min_0_Max_10_TickFrequency_0_Ticks_1_2_6_Horizontal {
+        internal static System.Drawing.Bitmap LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Horizontal {
             get {
-                object obj = ResourceManager.GetObject("LinearTickBar_Min_0_Max_10_TickFrequency_0_Ticks_1_2_6_Horizontal", resourceCulture);
+                object obj = ResourceManager.GetObject("LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_" +
+                        "Horizontal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +74,72 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LinearTickBar_Min_0_Max_10_TickFrequency_0_Ticks_1_2_6_Vertical {
+        internal static System.Drawing.Bitmap LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Vertical {
             get {
-                object obj = ResourceManager.GetObject("LinearTickBar_Min_0_Max_10_TickFrequency_0_Ticks_1_2_6_Vertical", resourceCulture);
+                object obj = ResourceManager.GetObject("LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_" +
+                        "Vertical", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_Ticks_1_2_6_Horizontal {
+            get {
+                object obj = ResourceManager.GetObject("LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_Ticks_1_2_6_Horizontal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_Ticks_1_2_6_Vertical {
+            get {
+                object obj = ResourceManager.GetObject("LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_Ticks_1_2_6_Vertical", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Horizontal {
+            get {
+                object obj = ResourceManager.GetObject("LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_H" +
+                        "orizontal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Vertical {
+            get {
+                object obj = ResourceManager.GetObject("LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_V" +
+                        "ertical", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1_2_6_Horizontal {
+            get {
+                object obj = ResourceManager.GetObject("LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1_2_6_Horizontal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1_2_6_Vertical {
+            get {
+                object obj = ResourceManager.GetObject("LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1_2_6_Vertical", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
