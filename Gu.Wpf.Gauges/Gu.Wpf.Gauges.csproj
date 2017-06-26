@@ -74,8 +74,10 @@
     <Compile Include="Internals\BindingHelper.cs" />
     <Compile Include="Internals\DependencyObjectExt.cs" />
     <Compile Include="Internals\DoubleUtil.cs" />
+    <Compile Include="Internals\Linear.cs" />
     <Compile Include="Internals\NameOf.cs" />
     <Compile Include="Internals\TextPositionOptions.cs" />
+    <Compile Include="Internals\TickBarPlacementExt.cs" />
     <Compile Include="Internals\ValidateEnums.cs" />
     <Compile Include="Internals\WeakKeyValuePair.cs" />
     <Compile Include="Indicators\AngularIndicator.cs" />

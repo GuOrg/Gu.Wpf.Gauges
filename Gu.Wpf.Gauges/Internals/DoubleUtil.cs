@@ -12,6 +12,21 @@ namespace Gu.Wpf.Gauges
         internal const double DoubleEpsilon = 2.22044604925031E-16;
         internal const float FltMin = 1.175494E-38f;
 
+        internal static double Clamp(this double value, double min, double max)
+        {
+            if (value <= min)
+            {
+                return min;
+            }
+
+            if (value >= max)
+            {
+                return max;
+            }
+
+            return value;
+        }
+
         public static bool AreClose(double value1, double value2)
         {
             if (value1 == value2)
