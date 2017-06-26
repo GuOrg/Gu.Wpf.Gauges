@@ -15,15 +15,14 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         public void TickFrequencyOneHorizontal(TickBarPlacement placement)
         {
             var tickBar = new LinearTickBar
-            {
-                Minimum = 0,
-                Maximum = 10,
-                TickFrequency = 1,
-                Fill = Brushes.Black,
-                Placement = placement
-            };
+                          {
+                              Minimum = 0,
+                              Maximum = 10,
+                              TickFrequency = 1,
+                              Fill = Brushes.Black,
+                              Placement = placement
+                          };
 
-            //// SaveImage(tickBar, new Size(40, 5));
             ImageAssert.AreEqual(Properties.Resources.LinearTickBar_Min_0_Max_10_TickFrequency_1_Horizontal, tickBar);
         }
 
@@ -40,7 +39,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                               Placement = placement
                           };
 
-            SaveImage(tickBar, new Size(40, 5));
             ImageAssert.AreEqual(Properties.Resources.LinearTickBar_Min_0_Max_10_TickFrequency_0_Ticks_1_2_6_Horizontal, tickBar);
         }
 
@@ -49,15 +47,14 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         public void TickFrequencyOneVertical(TickBarPlacement placement)
         {
             var tickBar = new LinearTickBar
-            {
-                Minimum = 0,
-                Maximum = 10,
-                TickFrequency = 1,
-                Fill = Brushes.Black,
-                Placement = placement
-            };
+                          {
+                              Minimum = 0,
+                              Maximum = 10,
+                              TickFrequency = 1,
+                              Fill = Brushes.Black,
+                              Placement = placement
+                          };
 
-            //// SaveImage(tickBar, new Size(5, 40));
             ImageAssert.AreEqual(Properties.Resources.LinearTickBar_Min_0_Max_10_TickFrequency_1_Vertical, tickBar);
         }
 
@@ -66,26 +63,29 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         public void TicksVertical(TickBarPlacement placement)
         {
             var tickBar = new LinearTickBar
-            {
-                Minimum = 0,
-                Maximum = 10,
-                Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
-                Fill = Brushes.Black,
-                Placement = placement
-            };
+                          {
+                              Minimum = 0,
+                              Maximum = 10,
+                              Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
+                              Fill = Brushes.Black,
+                              Placement = placement
+                          };
 
-            SaveImage(tickBar, new Size(5, 40));
             ImageAssert.AreEqual(Properties.Resources.LinearTickBar_Min_0_Max_10_TickFrequency_0_Ticks_1_2_6_Vertical, tickBar);
         }
 
-        private static void SaveImage(LinearTickBar tickBar, Size size)
+        private static void SaveImage(LinearTickBar tickBar)
         {
             var ticks = tickBar.Ticks != null
-                    ? $"_Ticks_{tickBar.Ticks}"
-                    : string.Empty;
+                ? $"_Ticks_{tickBar.Ticks}"
+                : string.Empty;
             var orientation = tickBar.Placement == TickBarPlacement.Left || tickBar.Placement == TickBarPlacement.Right
                 ? "_Vertical"
                 : "_Horizontal";
+
+            var size = tickBar.Placement == TickBarPlacement.Left || tickBar.Placement == TickBarPlacement.Right
+                ? new Size(5, 40)
+                : new Size(40, 5);
             tickBar.SaveImage(size, $@"C:\Temp\LinearTickBar_Min_{tickBar.Minimum}_Max_{tickBar.Maximum}_TickFrequency_{tickBar.TickFrequency}{ticks}{orientation}.png");
         }
     }
