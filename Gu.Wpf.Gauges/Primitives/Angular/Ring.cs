@@ -55,8 +55,7 @@ namespace Gu.Wpf.Gauges
 
         protected override Size MeasureOverride(Size constraint)
         {
-            var d = Math.Min(constraint.Width, constraint.Height);
-            return new Size(d, d);
+            return new Size(this.Thickness, this.Thickness);
         }
     }
 }

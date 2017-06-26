@@ -17,9 +17,7 @@ namespace Gu.Wpf.Gauges
             typeof(GeometryBar),
             new FrameworkPropertyMetadata(
                 null,
-                FrameworkPropertyMetadataOptions.AffectsMeasure |
-                FrameworkPropertyMetadataOptions.AffectsRender |
-                FrameworkPropertyMetadataOptions.SubPropertiesDoNotAffectRender,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.SubPropertiesDoNotAffectRender,
                 (d, e) => ((GeometryBar)d).pen = null));
 
         public static readonly DependencyProperty StrokeThicknessProperty = Shape.StrokeThicknessProperty.AddOwner(
@@ -32,30 +30,28 @@ namespace Gu.Wpf.Gauges
         /// <summary>
         /// StrokeStartLineCap property
         /// </summary>
-        public static readonly DependencyProperty StrokeStartLineCapProperty =
-            DependencyProperty.Register(
-                "StrokeStartLineCap",
-                typeof(PenLineCap),
-                typeof(GeometryBar),
-                new FrameworkPropertyMetadata(
-                    PenLineCap.Flat,
-                    FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
-                    (d, e) => ((GeometryBar)d).pen = null),
-                ValidateEnums.IsPenLineCapValid);
+        public static readonly DependencyProperty StrokeStartLineCapProperty = DependencyProperty.Register(
+            "StrokeStartLineCap",
+            typeof(PenLineCap),
+            typeof(GeometryBar),
+            new FrameworkPropertyMetadata(
+                PenLineCap.Flat,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
+                (d, e) => ((GeometryBar) d).pen = null),
+            ValidateEnums.IsPenLineCapValid);
 
         /// <summary>
         /// StrokeEndLineCap property
         /// </summary>
-        public static readonly DependencyProperty StrokeEndLineCapProperty =
-            DependencyProperty.Register(
-                "StrokeEndLineCap",
-                typeof(PenLineCap),
-                typeof(GeometryBar),
-                new FrameworkPropertyMetadata(
-                    PenLineCap.Flat,
-                    FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
-                    (d, e) => ((GeometryBar)d).pen = null),
-                ValidateEnums.IsPenLineCapValid);
+        public static readonly DependencyProperty StrokeEndLineCapProperty = DependencyProperty.Register(
+            "StrokeEndLineCap",
+            typeof(PenLineCap),
+            typeof(GeometryBar),
+            new FrameworkPropertyMetadata(
+                PenLineCap.Flat,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
+                (d, e) => ((GeometryBar) d).pen = null),
+            ValidateEnums.IsPenLineCapValid);
 
         /// <summary>
         /// StrokeDashCap property
@@ -126,7 +122,7 @@ namespace Gu.Wpf.Gauges
 
         private Pen pen;
 
-        public GeometryBar()
+        protected GeometryBar()
         {
             this.StrokeDashArray = new DoubleCollection();
         }
@@ -230,7 +226,12 @@ namespace Gu.Wpf.Gauges
             set => this.SetValue(StrokeDashArrayProperty, value);
         }
 
-        internal bool IsPenNoOp
+        /// <summary>
+        /// Get the geometry that defines this shape
+        /// </summary>
+        protected abstract Geometry DefiningGeometry { get; }
+
+        protected bool CanCreatePen
         {
             get
             {
@@ -245,29 +246,52 @@ namespace Gu.Wpf.Gauges
             {
                 if (this.pen == null)
                 {
-                    if (!this.IsPenNoOp)
+                    if (!this.CanCreatePen)
                     {
                         // This pen is internal to the system and
                         // must not participate in freezable treeness
                         this.pen = new Pen
-                                   {
-                                       //CanBeInheritanceContext = false;
-                                       Thickness = Math.Abs(this.StrokeThickness),
-                                       Brush = this.Stroke,
-                                       StartLineCap = this.StrokeStartLineCap,
-                                       EndLineCap = this.StrokeEndLineCap,
-                                       DashCap = this.StrokeDashCap,
-                                       LineJoin = this.StrokeLineJoin,
-                                       MiterLimit = this.StrokeMiterLimit,
-                                       DashStyle = this.StrokeDashOffset != 0.0 && this.StrokeDashArray.Count > 0
+                        {
+                            //CanBeInheritanceContext = false;
+                            Thickness = Math.Abs(this.StrokeThickness),
+                            Brush = this.Stroke,
+                            StartLineCap = this.StrokeStartLineCap,
+                            EndLineCap = this.StrokeEndLineCap,
+                            DashCap = this.StrokeDashCap,
+                            LineJoin = this.StrokeLineJoin,
+                            MiterLimit = this.StrokeMiterLimit,
+                            DashStyle = this.StrokeDashOffset != 0.0 && this.StrokeDashArray.Count > 0
                                            ? new DashStyle(this.StrokeDashArray, this.StrokeDashOffset)
                                            : DashStyles.Solid
-                                   };
+                        };
                     }
                 }
 
                 return this.pen;
             }
+        }
+
+        protected double GetStrokeThickness()
+        {
+            return this.CanCreatePen ? 0 : Math.Abs(this.StrokeThickness);
+        }
+
+        protected override Size MeasureOverride(Size availableSize)
+        {
+            var strokeThickness = this.GetStrokeThickness();
+            return new Size(strokeThickness, strokeThickness);
+        }
+
+        protected override void OnRender(DrawingContext dc)
+        {
+            var geometry = this.DefiningGeometry;
+            if (geometry == null ||
+                ReferenceEquals(geometry, Geometry.Empty))
+            {
+                return;
+            }
+
+            dc.DrawGeometry(this.Fill, this.Pen, geometry);
         }
     }
 }

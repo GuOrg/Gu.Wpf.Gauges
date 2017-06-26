@@ -1,5 +1,6 @@
 ﻿namespace Gu.Wpf.Gauges
 {
+    using System;
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
@@ -26,9 +27,9 @@
             typeof(double),
             typeof(LinearTickBar),
             new FrameworkPropertyMetadata(
-                1.0,
+                1.0d,
                 FrameworkPropertyMetadataOptions.AffectsRender,
-                OnPenWidthChanged));
+                (d, _) => ((LinearTickBar)d).pen = null));
 
         /// <summary>
         /// Identifies the <see cref="P:LinearTickBar.Fill" /> dependency property. This property is read-only.
@@ -38,7 +39,7 @@
             new FrameworkPropertyMetadata(
                 default(Brush),
                 FrameworkPropertyMetadataOptions.AffectsRender,
-                OnFillChanged));
+                (d, _) => ((LinearTickBar)d).pen = null));
 
         private Pen pen;
 
@@ -90,12 +91,17 @@
                     if (this.Fill != null && this.PenWidth > 0)
                     {
                         this.pen = new Pen(this.Fill, this.PenWidth);
-                        this.pen.Freeze();
                     }
                 }
 
                 return this.pen;
             }
+        }
+
+        protected override Size MeasureOverride(Size availableSize)
+        {
+            var thickness = Math.Abs(this.PenWidth);
+            return new Size(thickness, thickness);
         }
 
         protected override void OnRender(DrawingContext dc)
@@ -105,7 +111,7 @@
                 return;
             }
 
-            var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace, this.Placement, this.IsDirectionReversed);
+            var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace + this.PenWidth, this.Placement, this.IsDirectionReversed);
             var offset = new Vector(0, 0);
             switch (this.Placement)
             {
@@ -140,16 +146,6 @@
                 var l = new Line(p, p + offset);
                 dc.DrawLine(this.Pen, l);
             }
-        }
-
-        private static void OnFillChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((LinearTickBar)d).pen = null;
-        }
-
-        private static void OnPenWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((LinearTickBar)d).pen = null;
         }
     }
 }

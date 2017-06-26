@@ -1,5 +1,6 @@
 namespace Gu.Wpf.Gauges
 {
+    using System;
     using System.Linq;
     using System.Windows;
     using System.Windows.Media;
@@ -114,6 +115,12 @@ namespace Gu.Wpf.Gauges
             set => this.SetValue(ThicknessProperty, value);
         }
 
+        protected override Size MeasureOverride(Size availableSize)
+        {
+            var thickness = Math.Abs(this.StrokeThickness + this.Thickness);
+            return new Size(thickness, thickness);
+        }
+
         protected override void OnRender(DrawingContext dc)
         {
             var pen = new Pen(this.Stroke, this.StrokeThickness);
@@ -146,23 +153,6 @@ namespace Gu.Wpf.Gauges
 
                 previous = angle + gap;
             }
-        }
-
-        protected override Size MeasureOverride(Size availableSize)
-        {
-            var rect = default(Rect);
-            var arc = new ArcInfo(new Point(0, 0), this.MinAngle, this.MaxAngle, (this.ReservedSpace / 2) + this.Thickness, this.IsDirectionReversed);
-            rect.Union(arc.GetPoint(arc.Start));
-            var a = TickHelper.ToAngle(this.Value, this.Minimum, this.Maximum, arc);
-            rect.Union(arc.GetPoint(a));
-            foreach (var p in arc.GetQuadrants(arc.Start, a))
-            {
-                rect.Union(p);
-            }
-
-            System.Diagnostics.Debug.Assert(!rect.IsNaN(), "!rect.IsNaN()");
-            System.Diagnostics.Debug.Assert(!rect.IsInfinity(), "!rect.IsInfinity()");
-            return rect.Size;
         }
 
         private static PathGeometry ArcBlock(ArcInfo arcInfo, double fromAngle, double toAngle, double tickLength)

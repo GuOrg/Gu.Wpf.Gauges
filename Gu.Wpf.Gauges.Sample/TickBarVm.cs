@@ -21,6 +21,7 @@
         private VerticalTextAlignment verticalTextAlignment;
         private double minorTickFrequency;
         private DoubleCollection minorTicks;
+        private double tickGap = 1.0;
         private double thickness;
         private bool showLabels;
 
@@ -138,6 +139,22 @@
                 }
 
                 this.minorTicks = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public double TickGap
+        {
+            get => this.tickGap;
+
+            set
+            {
+                if (value == this.tickGap)
+                {
+                    return;
+                }
+
+                this.tickGap = value;
                 this.OnPropertyChanged();
             }
         }

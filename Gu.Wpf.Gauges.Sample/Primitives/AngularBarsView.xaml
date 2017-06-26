@@ -19,15 +19,15 @@
         <sample:AngularTickBarVm MajorTickFrequency="25"
                                  MajorTicks="10"
                                  MinorTickFrequency="5"
-                                 MaxAngle="270"
+                                 MaxAngle="0"
                                  Maximum="100"
-                                 MinAngle="-90"
+                                 MinAngle="-180"
                                  Minimum="0"
                                  Placement="Top"
                                  ReservedSpace="1"
                                  Thickness="10"
                                  TextOrientation="Tangential"
-                                 Value="100" />
+                                 Value="80" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>

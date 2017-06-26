@@ -14,7 +14,7 @@
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="5"
-                          Placement="Right"
+                          Placement="Bottom"
                           ReservedSpace="0"
                           TextOrientation="Horizontal"
                           VerticalTextAlignment="Top"
@@ -25,57 +25,59 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <WrapPanel>
+        <UniformGrid Rows="2">
+            <UniformGrid.Resources>
+                <Style TargetType="{x:Type GroupBox}">
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Border Height="100" Background="LightGray">
+                                    <ContentPresenter Content="{Binding}" />
+                                </Border>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </UniformGrid.Resources>
             <GroupBox Header="LinearAxis">
-                <Grid Width="200"
-                      Height="100"
-                      Background="Lavender">
-                    <gauges:LinearAxis Foreground="Black"
-                                       IsDirectionReversed="{Binding IsDirectionReversed}"
-                                       MajorTickFrequency="{Binding MajorTickFrequency}"
-                                       MajorTicks="{Binding MajorTicks}"
-                                       Maximum="{Binding Maximum}"
-                                       Minimum="{Binding Minimum}"
-                                       MinorTickFrequency="{Binding MinorTickFrequency}"
-                                       Placement="{Binding Placement}"
-                                       ReservedSpace="{Binding ReservedSpace}"
-                                       TextOrientation="{Binding TextOrientation}" />
-                </Grid>
+                <gauges:LinearAxis Foreground="Black"
+                                   IsDirectionReversed="{Binding IsDirectionReversed}"
+                                   MajorTickFrequency="{Binding MajorTickFrequency}"
+                                   MajorTicks="{Binding MajorTicks}"
+                                   Maximum="{Binding Maximum}"
+                                   Minimum="{Binding Minimum}"
+                                   MinorTickFrequency="{Binding MinorTickFrequency}"
+                                   Placement="{Binding Placement}"
+                                   ReservedSpace="{Binding ReservedSpace}"
+                                   TextOrientation="{Binding TextOrientation}" />
             </GroupBox>
 
             <GroupBox Header="Framework TickBar">
-                <Grid Background="Lavender">
-                    <TickBar Width="100"
-                             Fill="Black"
-                             IsDirectionReversed="{Binding IsDirectionReversed}"
-                             Maximum="{Binding Maximum}"
-                             Minimum="{Binding Minimum}"
-                             Placement="{Binding Placement}"
-                             ReservedSpace="{Binding ReservedSpace}"
-                             TickFrequency="{Binding MajorTickFrequency}"
-                             Ticks="{Binding MajorTicks}" />
-                </Grid>
+                <TickBar Fill="Black"
+                         IsDirectionReversed="{Binding IsDirectionReversed}"
+                         Maximum="{Binding Maximum}"
+                         Minimum="{Binding Minimum}"
+                         Placement="{Binding Placement}"
+                         ReservedSpace="{Binding ReservedSpace}"
+                         TickFrequency="{Binding MajorTickFrequency}"
+                         Ticks="{Binding MajorTicks}" />
             </GroupBox>
 
             <GroupBox Header="BlockBar">
-                <Grid Background="LightYellow">
-                    <gauges:LinearBlockBar Width="100"
-                                           Fill="CornflowerBlue"
-                                           IsDirectionReversed="{Binding IsDirectionReversed}"
-                                           Maximum="{Binding Maximum}"
-                                           Minimum="{Binding Minimum}"
-                                           Placement="{Binding Placement}"
-                                           ReservedSpace="{Binding ReservedSpace}"
-                                           TickFrequency="{Binding MajorTickFrequency}"
-                                           TickGap="2"
-                                           Ticks="{Binding MajorTicks}"
-                                           Value="{Binding Value}" />
-                </Grid>
+                <gauges:LinearBlockBar Fill="CornflowerBlue"
+                                       IsDirectionReversed="{Binding IsDirectionReversed}"
+                                       Maximum="{Binding Maximum}"
+                                       Minimum="{Binding Minimum}"
+                                       Placement="{Binding Placement}"
+                                       ReservedSpace="{Binding ReservedSpace}"
+                                       TickFrequency="{Binding MajorTickFrequency}"
+                                       TickGap="2"
+                                       Ticks="{Binding MajorTicks}"
+                                       Value="{Binding Value}" />
             </GroupBox>
 
             <GroupBox Header="LinearTickBar">
-                <gauges:LinearTickBar Width="100"
-                                      Fill="Black"
+                <gauges:LinearTickBar Fill="Black"
                                       IsDirectionReversed="{Binding IsDirectionReversed}"
                                       Maximum="{Binding Maximum}"
                                       Minimum="{Binding Minimum}"
@@ -86,10 +88,7 @@
             </GroupBox>
 
             <GroupBox Header="TextTickBar">
-                <Grid Width="100"
-                      Height="100"
-                      Background="Cornsilk"
-                      ShowGridLines="True">
+                <Grid Background="Bisque" ShowGridLines="True">
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition />
@@ -120,7 +119,7 @@
                                StrokeThickness="1" />
                 </Grid>
             </GroupBox>
-        </WrapPanel>
+        </UniformGrid>
         <ContentPresenter Grid.Row="1" Content="{Binding}" />
     </Grid>
 </UserControl>

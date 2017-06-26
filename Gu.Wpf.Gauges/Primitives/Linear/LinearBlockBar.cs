@@ -28,14 +28,16 @@
         public static readonly DependencyProperty ValueProperty = Gauge.ValueProperty.AddOwner(
             typeof(LinearBlockBar),
             new FrameworkPropertyMetadata(
-                0.0,
+                0.0d,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty TickGapProperty = DependencyProperty.Register(
             nameof(TickGap),
             typeof(double),
             typeof(LinearBlockBar),
-            new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.AffectsRender));
+            new FrameworkPropertyMetadata(
+                1.0d,
+                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
 
         static LinearBlockBar()
         {
@@ -75,9 +77,25 @@
             set => this.SetValue(TickGapProperty, value);
         }
 
+        protected override Geometry DefiningGeometry
+        {
+            get
+            {
+                if (this.RenderSize.IsNanOrEmpty() ||
+                    (this.Fill == null && !this.CanCreatePen))
+                {
+                    return Geometry.Empty;
+                }
+
+                var rect = new Rect(this.RenderSize);
+                return new RectangleGeometry(rect);
+            }
+        }
+
         protected override void OnRender(DrawingContext dc)
         {
-            var ticks = this.AllTicks.Concat(new[] { this.Value })
+            var ticks = this.AllTicks
+                            .Concat(new[] { this.Value })
                             .OrderBy(t => t);
             var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace, this.Placement, this.IsDirectionReversed);
             var previous = line.StartPoint;
