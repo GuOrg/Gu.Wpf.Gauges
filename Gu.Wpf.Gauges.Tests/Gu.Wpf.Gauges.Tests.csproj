@@ -40,6 +40,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -51,6 +52,13 @@
     </When>
   </Choose>
   <ItemGroup>
+    <Compile Include="Primitives\Linear\LinearTickBarTests.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TestHelpers\ImageAssert.cs" />
     <Compile Include="Primitives\AngularBlockBarTests.cs" />
     <Compile Include="Primitives\AngularTickBarTests.cs" />
     <Compile Include="Primitives\FrameworkElementExt.cs" />
@@ -136,5 +144,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Indicators\" />
+    <Folder Include="SandBox\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_TickFrequency_0_Ticks_1 2 6_Horizontal.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_TickFrequency_0_Ticks_1 2 6_Vertical.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_TickFrequency_1_Vertical.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_TickFrequency_1_Horizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
