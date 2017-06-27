@@ -15,11 +15,12 @@
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="5"
-                          Placement="Left"
+                          Placement="Bottom"
                           ReservedSpace="0"
+                          SnapsToDevicePixels="False"
                           TextOrientation="Horizontal"
                           VerticalTextAlignment="Top"
-                          Value="100" />
+                          Value="76" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -32,7 +33,7 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Border Height="100" Background="LightGray">
+                                <Border Height="101" Background="LightGray">
                                     <ContentPresenter Content="{Binding}" />
                                 </Border>
                             </DataTemplate>
@@ -50,6 +51,7 @@
                                    MinorTickFrequency="{Binding MinorTickFrequency}"
                                    Placement="{Binding Placement}"
                                    ReservedSpace="{Binding ReservedSpace}"
+                                   SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
                                    TextOrientation="{Binding TextOrientation}" />
             </GroupBox>
 
@@ -60,6 +62,7 @@
                          Minimum="{Binding Minimum}"
                          Placement="{Binding Placement}"
                          ReservedSpace="{Binding ReservedSpace}"
+                         SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
                          TickFrequency="{Binding MajorTickFrequency}"
                          Ticks="{Binding MajorTicks}" />
             </GroupBox>
@@ -71,8 +74,9 @@
                                        Minimum="{Binding Minimum}"
                                        Placement="{Binding Placement}"
                                        ReservedSpace="{Binding ReservedSpace}"
+                                       SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
                                        TickFrequency="{Binding MajorTickFrequency}"
-                                       TickGap="2"
+                                       TickGap="1"
                                        Ticks="{Binding MajorTicks}"
                                        Value="{Binding Value}" />
             </GroupBox>
@@ -85,11 +89,49 @@
                                            Minimum="{Binding Minimum}"
                                            Placement="{Binding Placement}"
                                            ReservedSpace="{Binding ReservedSpace}"
+                                           SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
                                            Stroke="Black"
+                                           StrokeThickness="1"
                                            Value="{Binding Value}" />
-                    <Rectangle Fill="#55ff69b4" Stroke="Black"></Rectangle>
+                    <Rectangle Fill="#55ff69b4"
+                               SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                               Stroke="Black"
+                               StrokeThickness="1" />
                 </Grid>
+            </GroupBox>
 
+            <GroupBox Header="BlockBar and tickbars">
+                <Grid>
+                    <gauges:LinearBlockBar Fill="CornflowerBlue"
+                                           IsDirectionReversed="{Binding IsDirectionReversed}"
+                                           Maximum="{Binding Maximum}"
+                                           Minimum="{Binding Minimum}"
+                                           Placement="{Binding Placement}"
+                                           ReservedSpace="{Binding ReservedSpace}"
+                                           SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                                           TickFrequency="{Binding MajorTickFrequency}"
+                                           TickGap="1"
+                                           Ticks="{Binding MajorTicks}"
+                                           Value="{Binding Value}" />
+                    <gauges:LinearTickBar Fill="Black"
+                                          IsDirectionReversed="{Binding IsDirectionReversed}"
+                                          Maximum="{Binding Maximum}"
+                                          Minimum="{Binding Minimum}"
+                                          Placement="{Binding Placement}"
+                                          ReservedSpace="{Binding ReservedSpace}"
+                                          SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                                          TickFrequency="{Binding MajorTickFrequency}"
+                                          Ticks="{Binding MajorTicks}" />
+                    <!--<TickBar Fill="Black"
+                             IsDirectionReversed="{Binding IsDirectionReversed}"
+                             Maximum="{Binding Maximum}"
+                             Minimum="{Binding Minimum}"
+                             Placement="{Binding Placement}"
+                             SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                             ReservedSpace="{Binding ReservedSpace}"
+                             TickFrequency="{Binding MajorTickFrequency}"
+                             Ticks="{Binding MajorTicks}" />-->
+                </Grid>
             </GroupBox>
 
             <GroupBox Header="LinearTickBar">
@@ -99,6 +141,7 @@
                                       Minimum="{Binding Minimum}"
                                       Placement="{Binding Placement}"
                                       ReservedSpace="{Binding ReservedSpace}"
+                                      SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
                                       TickFrequency="{Binding MajorTickFrequency}"
                                       Ticks="{Binding MajorTicks}" />
             </GroupBox>
@@ -124,6 +167,7 @@
                                               Minimum="{Binding Minimum}"
                                               Placement="{Binding Placement}"
                                               ReservedSpace="{Binding ReservedSpace}"
+                                              SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
                                               TextOrientation="{Binding TextOrientation}"
                                               TickFrequency="{Binding MajorTickFrequency}"
                                               Ticks="{Binding MajorTicks}" />

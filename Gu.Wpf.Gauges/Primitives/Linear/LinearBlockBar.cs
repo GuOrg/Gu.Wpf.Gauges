@@ -82,23 +82,50 @@
 
         protected override void OnRender(DrawingContext dc)
         {
-            if (this.Value == this.Minimum ||
-                (this.Fill == null && this.Stroke == null))
+            void Scale(ref Rect rect, double scale)
             {
-                return;
+                if (this.IsDirectionReversed)
+                {
+                    if (this.Placement.IsHorizontal())
+                    {
+                        var right = rect.Right;
+                        rect.Width *= scale;
+                        rect.X = right - rect.Width;
+                    }
+                    else
+                    {
+                        rect.Height *= scale;
+                    }
+                }
+                else
+                {
+                    if (this.Placement.IsHorizontal())
+                    {
+                        rect.Width *= scale;
+                    }
+                    else
+                    {
+                        var bottom = rect.Bottom;
+                        rect.Height *= scale;
+                        rect.Y = bottom - rect.Height;
+                    }
+                }
             }
 
-            if (this.AllTicks.Count == 0)
+            void Draw(ref Rect rect)
             {
-                var lip = Interpolate.Linear(this.Minimum, this.Maximum, this.Value)
-                                     .Clamp(0, 1);
+                if (this.SnapsToDevicePixels)
+                {
+                    var right = rect.Right;
+                    var bottom = rect.Bottom;
+                    rect.X = Math.Round(rect.X);
+                    rect.Y = Math.Round(rect.Y);
+                    rect.Width = Math.Round(right - rect.X);
+                    rect.Height = Math.Round(bottom - rect.Y);
+                }
+
                 if (this.Placement.IsHorizontal())
                 {
-                    var w = lip * (this.ActualWidth - this.StrokeThickness);
-                    var rect = this.IsDirectionReversed
-                        ? new Rect(this.ActualWidth - w - (this.StrokeThickness / 2), this.StrokeThickness / 2, w, this.ActualHeight - this.StrokeThickness)
-                        : new Rect(this.StrokeThickness / 2, this.StrokeThickness / 2, w, this.ActualHeight - this.StrokeThickness);
-
                     if (rect.Width <= this.StrokeThickness)
                     {
                         if (!DoubleUtil.IsZero(rect.Width))
@@ -113,10 +140,6 @@
                 }
                 else
                 {
-                    var h = lip * (this.ActualHeight - this.StrokeThickness);
-                    var rect = this.IsDirectionReversed
-                        ? new Rect(this.StrokeThickness / 2, this.StrokeThickness / 2, this.ActualWidth - this.StrokeThickness, h)
-                        : new Rect(this.StrokeThickness / 2, this.ActualHeight - h - (this.StrokeThickness / 2), this.ActualWidth - this.StrokeThickness, h);
                     if (rect.Height <= this.StrokeThickness)
                     {
                         if (!DoubleUtil.IsZero(rect.Height))
@@ -129,7 +152,23 @@
                         dc.DrawRectangle(this.Fill, this.Pen, rect);
                     }
                 }
+            }
 
+            if (this.Value == this.Minimum ||
+                (this.Fill == null && this.Stroke == null))
+            {
+                return;
+            }
+
+            if (this.AllTicks.Count == 0)
+            {
+                var rect = new Rect(this.RenderSize);
+                rect.Inflate(-this.StrokeThickness / 2, -this.StrokeThickness / 2);
+                Scale(
+                    ref rect,
+                    Interpolate.Linear(this.Minimum, this.Maximum, this.Value)
+                               .Clamp(0, 1));
+                Draw(ref rect);
                 return;
             }
 

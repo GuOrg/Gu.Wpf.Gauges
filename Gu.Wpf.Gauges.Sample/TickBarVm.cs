@@ -11,6 +11,7 @@
         private double maximum;
         private double majorTickFrequency;
         private double reservedSpace;
+        private bool snapsToDevicePixels;
         private DoubleCollection majorTicks;
         private TickBarPlacement placement;
         private bool isDirectionReversed;
@@ -186,6 +187,22 @@
                 }
 
                 this.reservedSpace = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public bool SnapsToDevicePixels
+        {
+            get => this.snapsToDevicePixels;
+
+            set
+            {
+                if (value == this.snapsToDevicePixels)
+                {
+                    return;
+                }
+
+                this.snapsToDevicePixels = value;
                 this.OnPropertyChanged();
             }
         }
