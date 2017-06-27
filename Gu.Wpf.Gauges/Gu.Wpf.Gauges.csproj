@@ -126,7 +126,7 @@
     <Compile Include="LinearAxis.cs" />
     <Compile Include="LinearGauge.cs" />
     <Compile Include="Primitives\Angular\PolarCanvas.cs" />
-    <Compile Include="Primitives\Linear\TextTickBar.cs" />
+    <Compile Include="Primitives\TextTickBar.cs" />
     <Compile Include="Primitives\TickText.cs" />
     <Compile Include="Primitives\VerticalTextAlignment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
