@@ -71,11 +71,11 @@
                     <ControlTemplate TargetType="{x:Type gauges:AngularGauge}">
                         <Grid VerticalAlignment="Top">
                             <gauges:AngularTextBar Margin="0" Ticks="{TemplateBinding MajorTicks}" />
-                            <gauges:AngularTickBar Fill="Black"
+                            <gauges:AngularTickBar Stroke="Black"
                                                    Thickness="6"
                                                    Ticks="{TemplateBinding MajorTicks}" />
                             <gauges:AngularTickBar Margin="2"
-                                                   Fill="Black"
+                                                   Stroke="Black"
                                                    Thickness="2"
                                                    TickFrequency="1" />
                             <gauges:AngularBlockBar Fill="CornflowerBlue" Thickness="6" />

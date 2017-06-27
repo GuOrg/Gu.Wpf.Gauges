@@ -43,7 +43,7 @@
                                                TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                Ticks="{TemplateBinding MajorTicks}" />
                         <gauges:AngularTickBar x:Name="MajorTicks"
-                                               Fill="{TemplateBinding Foreground}"
+                                               Stroke="{TemplateBinding Foreground}"
                                                IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
                                                MaxAngle="{TemplateBinding MaxAngle}"
                                                Maximum="{TemplateBinding Maximum}"
@@ -53,7 +53,7 @@
                                                Thickness="10"
                                                TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                Ticks="{TemplateBinding MajorTicks}" />
-                        <gauges:AngularTickBar Fill="{TemplateBinding Foreground}"
+                        <gauges:AngularTickBar Stroke="{TemplateBinding Foreground}"
                                                IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
                                                MaxAngle="{TemplateBinding MaxAngle}"
                                                Maximum="{TemplateBinding Maximum}"

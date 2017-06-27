@@ -5,28 +5,20 @@
              xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
-             d:DesignHeight="300"
-             d:DesignWidth="300"
+             d:DesignHeight="600"
              mc:Ignorable="d">
-    <UserControl.Resources>
-        <Style TargetType="{x:Type GroupBox}">
-            <Setter Property="Height" Value="100" />
-            <Setter Property="Width" Value="100" />
-            <Setter Property="Background" Value="LightGray" />
-        </Style>
-    </UserControl.Resources>
     <UserControl.DataContext>
         <sample:AngularTickBarVm MajorTickFrequency="25"
                                  MajorTicks="10"
-                                 MinorTickFrequency="5"
                                  MaxAngle="0"
                                  Maximum="100"
                                  MinAngle="-180"
                                  Minimum="0"
+                                 MinorTickFrequency="5"
                                  Placement="Top"
-                                 ReservedSpace="1"
-                                 Thickness="10"
+                                 ReservedSpace="0"
                                  TextOrientation="Tangential"
+                                 Thickness="10"
                                  Value="80" />
     </UserControl.DataContext>
     <Grid>
@@ -34,7 +26,23 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <UniformGrid>
+        <UniformGrid Rows="2">
+            <UniformGrid.Resources>
+                <Style TargetType="{x:Type GroupBox}">
+                    <Setter Property="Background" Value="LightGray" />
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Border Width="100"
+                                        Height="100"
+                                        Background="LightGray">
+                                    <ContentPresenter Content="{Binding}" />
+                                </Border>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </UniformGrid.Resources>
             <GroupBox Header="AngularAxis">
                 <gauges:AngularAxis Foreground="Black"
                                     IsDirectionReversed="{Binding IsDirectionReversed}"
@@ -51,16 +59,16 @@
             </GroupBox>
 
             <GroupBox Header="AngularTickBar">
-                <gauges:AngularTickBar Fill="Black"
-                                       IsDirectionReversed="{Binding IsDirectionReversed}"
+                <gauges:AngularTickBar IsDirectionReversed="{Binding IsDirectionReversed}"
                                        MaxAngle="{Binding MaxAngle}"
                                        Maximum="{Binding Maximum}"
                                        MinAngle="{Binding MinAngle}"
                                        Minimum="{Binding Minimum}"
                                        Opacity="1"
-                                       PenWidth="1"
                                        ReservedSpace="{Binding ReservedSpace}"
                                        SnapsToDevicePixels="True"
+                                       Stroke="Black"
+                                       StrokeThickness="1"
                                        TickFrequency="{Binding MajorTickFrequency}"
                                        Ticks="{Binding MajorTicks}" />
             </GroupBox>
@@ -95,9 +103,9 @@
             </GroupBox>
 
             <GroupBox Header="Ring">
-                <gauges:Ring Fill="Olive"
+                <gauges:Ring HorizontalAlignment="Center"
+                             Fill="Olive"
                              Stroke="Khaki"
-                             HorizontalAlignment="Center"
                              StrokeThickness="1"
                              Thickness="{Binding Thickness}" />
             </GroupBox>
