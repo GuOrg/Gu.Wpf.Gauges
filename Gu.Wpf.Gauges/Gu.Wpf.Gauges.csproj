@@ -74,7 +74,7 @@
     <Compile Include="Internals\BindingHelper.cs" />
     <Compile Include="Internals\DependencyObjectExt.cs" />
     <Compile Include="Internals\DoubleUtil.cs" />
-    <Compile Include="Internals\Linear.cs" />
+    <Compile Include="Internals\Interpolate.cs" />
     <Compile Include="Internals\NameOf.cs" />
     <Compile Include="Internals\TextPositionOptions.cs" />
     <Compile Include="Internals\TickBarPlacementExt.cs" />

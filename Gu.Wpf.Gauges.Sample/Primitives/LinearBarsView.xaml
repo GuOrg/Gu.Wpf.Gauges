@@ -9,7 +9,7 @@
              mc:Ignorable="d">
     <UserControl.DataContext>
         <sample:TickBarVm HorizontalTextAlignment="Left"
-                          IsDirectionReversed="False"
+                          IsDirectionReversed="True"
                           MajorTickFrequency="50"
                           MajorTicks="75"
                           Maximum="100"
@@ -19,7 +19,7 @@
                           ReservedSpace="0"
                           TextOrientation="Horizontal"
                           VerticalTextAlignment="Top"
-                          Value="1" />
+                          Value="75" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>

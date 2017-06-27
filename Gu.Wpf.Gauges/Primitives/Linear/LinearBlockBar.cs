@@ -1,5 +1,6 @@
 ﻿namespace Gu.Wpf.Gauges
 {
+    using System;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls.Primitives;
@@ -77,23 +78,39 @@
             set => this.SetValue(TickGapProperty, value);
         }
 
-        protected override Geometry DefiningGeometry
-        {
-            get
-            {
-                if (this.RenderSize.IsNanOrEmpty() ||
-                    (this.Fill == null && !this.CanCreatePen))
-                {
-                    return Geometry.Empty;
-                }
-
-                var rect = new Rect(this.RenderSize);
-                return new RectangleGeometry(rect);
-            }
-        }
+        protected override Geometry DefiningGeometry => throw new InvalidOperationException("Uses OnRender");
 
         protected override void OnRender(DrawingContext dc)
         {
+            if (this.Value == this.Minimum ||
+                (this.Fill == null && this.Stroke == null))
+            {
+                return;
+            }
+
+            if (this.Ticks.Count == 0)
+            {
+                var lerp = Interpolate.Linear(this.Minimum, this.Maximum, this.Value);
+                if (this.Placement.IsHorizontal())
+                {
+                    var dw = lerp * this.ActualWidth;
+                    var rect = this.IsDirectionReversed
+                        ? new Rect(this.ActualWidth - dw, 0, dw, this.ActualHeight)
+                        : new Rect(0, 0, dw, this.ActualHeight);
+                    dc.DrawRectangle(this.Fill, this.Pen, rect);
+                }
+                else
+                {
+                    var dh = lerp * this.ActualHeight;
+                    var rect = this.IsDirectionReversed
+                        ? new Rect(0, this.ActualHeight - dh, this.ActualWidth, dh)
+                        : new Rect(0, 0, this.ActualWidth, dh);
+                    dc.DrawRectangle(this.Fill, this.Pen, rect);
+                }
+
+                return;
+            }
+
             var ticks = this.AllTicks
                             .Concat(new[] { this.Value })
                             .OrderBy(t => t);
