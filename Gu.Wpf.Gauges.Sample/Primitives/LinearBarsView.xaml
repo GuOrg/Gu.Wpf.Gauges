@@ -9,17 +9,17 @@
              mc:Ignorable="d">
     <UserControl.DataContext>
         <sample:TickBarVm HorizontalTextAlignment="Left"
-                          IsDirectionReversed="True"
+                          IsDirectionReversed="False"
                           MajorTickFrequency="50"
                           MajorTicks="75"
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="5"
-                          Placement="Bottom"
+                          Placement="Left"
                           ReservedSpace="0"
                           TextOrientation="Horizontal"
                           VerticalTextAlignment="Top"
-                          Value="75" />
+                          Value="100" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -78,14 +78,18 @@
             </GroupBox>
 
             <GroupBox Header="BlockBar no ticks">
-                <gauges:LinearBlockBar Fill="CornflowerBlue"
-                                       IsDirectionReversed="{Binding IsDirectionReversed}"
-                                       Maximum="{Binding Maximum}"
-                                       Minimum="{Binding Minimum}"
-                                       Placement="{Binding Placement}"
-                                       ReservedSpace="{Binding ReservedSpace}"
-                                       Stroke="Black"
-                                       Value="{Binding Value}" />
+                <Grid>
+                    <gauges:LinearBlockBar Fill="CornflowerBlue"
+                                           IsDirectionReversed="{Binding IsDirectionReversed}"
+                                           Maximum="{Binding Maximum}"
+                                           Minimum="{Binding Minimum}"
+                                           Placement="{Binding Placement}"
+                                           ReservedSpace="{Binding ReservedSpace}"
+                                           Stroke="Black"
+                                           Value="{Binding Value}" />
+                    <Rectangle Fill="#55ff69b4" Stroke="Black"></Rectangle>
+                </Grid>
+
             </GroupBox>
 
             <GroupBox Header="LinearTickBar">

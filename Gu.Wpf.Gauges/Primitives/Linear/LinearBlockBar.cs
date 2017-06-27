@@ -90,17 +90,21 @@
 
             if (this.AllTicks.Count == 0)
             {
-                var lerp = Interpolate.Linear(this.Minimum, this.Maximum, this.Value)
-                                      .Clamp(0, 1);
+                var lip = Interpolate.Linear(this.Minimum, this.Maximum, this.Value)
+                                     .Clamp(0, 1);
                 if (this.Placement.IsHorizontal())
                 {
-                    var dw = lerp * this.ActualWidth;
+                    var w = lip * (this.ActualWidth - this.StrokeThickness);
                     var rect = this.IsDirectionReversed
-                        ? new Rect(this.ActualWidth - dw, 0, dw, this.ActualHeight)
-                        : new Rect(0, 0, dw, this.ActualHeight);
+                        ? new Rect(this.ActualWidth - w - (this.StrokeThickness / 2), this.StrokeThickness / 2, w, this.ActualHeight - this.StrokeThickness)
+                        : new Rect(this.StrokeThickness / 2, this.StrokeThickness / 2, w, this.ActualHeight - this.StrokeThickness);
+
                     if (rect.Width <= this.StrokeThickness)
                     {
-                        dc.DrawLine(this.Pen, rect.BottomLeft, rect.BottomRight);
+                        if (!DoubleUtil.IsZero(rect.Width))
+                        {
+                            dc.DrawLine(this.Pen, rect.BottomLeft, rect.TopLeft);
+                        }
                     }
                     else
                     {
@@ -109,13 +113,16 @@
                 }
                 else
                 {
-                    var dh = lerp * this.ActualHeight;
+                    var h = lip * (this.ActualHeight - this.StrokeThickness);
                     var rect = this.IsDirectionReversed
-                        ? new Rect(0, 0, this.ActualWidth, dh)
-                        : new Rect(0, this.ActualHeight - dh, this.ActualWidth, dh);
+                        ? new Rect(this.StrokeThickness / 2, this.StrokeThickness / 2, this.ActualWidth - this.StrokeThickness, h)
+                        : new Rect(this.StrokeThickness / 2, this.ActualHeight - h - (this.StrokeThickness / 2), this.ActualWidth - this.StrokeThickness, h);
                     if (rect.Height <= this.StrokeThickness)
                     {
-                        dc.DrawLine(this.Pen, rect.BottomLeft, rect.TopLeft);
+                        if (!DoubleUtil.IsZero(rect.Height))
+                        {
+                            dc.DrawLine(this.Pen, rect.BottomLeft, rect.BottomRight);
+                        }
                     }
                     else
                     {
@@ -126,9 +133,6 @@
                 return;
             }
 
-            var ticks = this.AllTicks
-                            .Concat(new[] { this.Value })
-                            .OrderBy(t => t);
             var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace, this.Placement, this.IsDirectionReversed);
             var previous = line.StartPoint;
             var offset = new Vector(0, 0);
@@ -158,6 +162,9 @@
                 gap = -1 * gap;
             }
 
+            var ticks = this.AllTicks
+                            .Concat(new[] { this.Value })
+                            .OrderBy(t => t);
             foreach (var tick in ticks)
             {
                 if (tick == this.Minimum)
