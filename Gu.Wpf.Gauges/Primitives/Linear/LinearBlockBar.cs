@@ -88,24 +88,39 @@
                 return;
             }
 
-            if (this.Ticks.Count == 0)
+            if (this.AllTicks.Count == 0)
             {
-                var lerp = Interpolate.Linear(this.Minimum, this.Maximum, this.Value);
+                var lerp = Interpolate.Linear(this.Minimum, this.Maximum, this.Value)
+                                      .Clamp(0, 1);
                 if (this.Placement.IsHorizontal())
                 {
                     var dw = lerp * this.ActualWidth;
                     var rect = this.IsDirectionReversed
                         ? new Rect(this.ActualWidth - dw, 0, dw, this.ActualHeight)
                         : new Rect(0, 0, dw, this.ActualHeight);
-                    dc.DrawRectangle(this.Fill, this.Pen, rect);
+                    if (rect.Width <= this.StrokeThickness)
+                    {
+                        dc.DrawLine(this.Pen, rect.BottomLeft, rect.BottomRight);
+                    }
+                    else
+                    {
+                        dc.DrawRectangle(this.Fill, this.Pen, rect);
+                    }
                 }
                 else
                 {
                     var dh = lerp * this.ActualHeight;
                     var rect = this.IsDirectionReversed
-                        ? new Rect(0, this.ActualHeight - dh, this.ActualWidth, dh)
-                        : new Rect(0, 0, this.ActualWidth, dh);
-                    dc.DrawRectangle(this.Fill, this.Pen, rect);
+                        ? new Rect(0, 0, this.ActualWidth, dh)
+                        : new Rect(0, this.ActualHeight - dh, this.ActualWidth, dh);
+                    if (rect.Height <= this.StrokeThickness)
+                    {
+                        dc.DrawLine(this.Pen, rect.BottomLeft, rect.TopLeft);
+                    }
+                    else
+                    {
+                        dc.DrawRectangle(this.Fill, this.Pen, rect);
+                    }
                 }
 
                 return;
