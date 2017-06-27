@@ -82,8 +82,10 @@
 
         protected override void OnRender(DrawingContext dc)
         {
-            void Scale(ref Rect rect, double scale)
+            void ScaleToValue(ref Rect rect, double value)
             {
+                var scale = Interpolate.Linear(this.Minimum, this.Maximum, value)
+                                       .Clamp(0, 1);
                 if (this.IsDirectionReversed)
                 {
                     if (this.Placement.IsHorizontal())
@@ -162,13 +164,10 @@
 
             if (this.AllTicks.Count == 0)
             {
-                var rect = new Rect(this.RenderSize);
-                rect.Inflate(-this.StrokeThickness / 2, -this.StrokeThickness / 2);
-                Scale(
-                    ref rect,
-                    Interpolate.Linear(this.Minimum, this.Maximum, this.Value)
-                               .Clamp(0, 1));
-                Draw(ref rect);
+                var bar = new Rect(this.RenderSize);
+                bar.Inflate(-this.StrokeThickness / 2, -this.StrokeThickness / 2);
+                ScaleToValue(ref bar, this.Value);
+                Draw(ref bar);
                 return;
             }
 
