@@ -45,70 +45,96 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Themes\Angular.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\Linear.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AngularAxis.cs" />
+    <Compile Include="AngularGauge.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AngularGauge.tt</DependentUpon>
+    </Compile>
     <Compile Include="Axis.cs" />
-    <Compile Include="Helpers\BindingHelper.cs" />
-    <Compile Include="Helpers\DependencyObjectExt.cs" />
-    <Compile Include="Helpers\NameOf.cs" />
-    <Compile Include="Helpers\TextPositionOptions.cs" />
-    <Compile Include="Helpers\WeakKeyValuePair.cs" />
+    <Compile Include="Gauge.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Gauge.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Internals\BindingHelper.cs" />
+    <Compile Include="Internals\DependencyObjectExt.cs" />
+    <Compile Include="Internals\DoubleUtil.cs" />
+    <Compile Include="Internals\Interpolate.cs" />
+    <Compile Include="Internals\NameOf.cs" />
+    <Compile Include="Internals\TextPositionOptions.cs" />
+    <Compile Include="Internals\TickBarPlacementExt.cs" />
+    <Compile Include="Internals\ValidateEnums.cs" />
+    <Compile Include="Internals\WeakKeyValuePair.cs" />
     <Compile Include="Indicators\AngularIndicator.cs" />
-    <Compile Include="Indicators\AngularIndicators.cs" />
-    <Compile Include="Indicators\AngularIndicatorsCollection.cs" />
-    <Compile Include="Indicators\AngularValue.cs" />
-    <Compile Include="Indicators\Indicators.cs" />
-    <Compile Include="Indicators\LinearIndicators.cs" />
-    <Compile Include="Indicators\LinearIndicatorsCollection.cs" />
-    <Compile Include="Indicators\LinearValue.cs" />
-    <Compile Include="Primitives\AngularBlockBar.cs" />
+    <Compile Include="Indicators\Indicator.cs" />
+    <Compile Include="LinearGauge.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LinearGauge.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Primitives\Angular\AngularBlockBar.cs" />
     <Compile Include="AngularGauge.cs" />
-    <Compile Include="Primitives\AngularPanel.cs" />
-    <Compile Include="Primitives\LinearTextTickBar.cs" />
+    <Compile Include="Primitives\Angular\AngularPanel.cs" />
+    <Compile Include="Primitives\GeometryBar.cs" />
+    <Compile Include="Primitives\HorizontalTextAlignment.cs" />
+    <Compile Include="Primitives\Linear\LinearTextTickBar.cs" />
+    <Compile Include="Primitives\Angular\Ring.cs" />
     <Compile Include="Primitives\TickBarBase.cs" />
     <Compile Include="Gauge.cs" />
-    <Compile Include="Helpers\Arc.cs" />
+    <Compile Include="Internals\ArcInfo.cs" />
     <Compile Include="Dimensions\DimensionArrowHead.cs" />
     <Compile Include="Dimensions\DimensionLine.cs" />
     <Compile Include="Dimensions\LineExt.cs" />
     <Compile Include="Dimensions\TwoPointDimension.cs" />
-    <Compile Include="Helpers\DrawingContextExt.cs" />
+    <Compile Include="Internals\DrawingContextExt.cs" />
     <Compile Include="Primitives\ITextFormat.cs" />
-    <Compile Include="Helpers\Horizontal.cs" />
-    <Compile Include="Helpers\Line.cs" />
-    <Compile Include="Primitives\LinearPanel.cs" />
-    <Compile Include="Primitives\LinearTickBar.cs" />
-    <Compile Include="Helpers\PointExt.cs" />
-    <Compile Include="Helpers\RectExt.cs" />
-    <Compile Include="Helpers\SizeExt.cs" />
-    <Compile Include="Helpers\RotateTransformExt.cs" />
-    <Compile Include="Helpers\TextHelper.cs" />
-    <Compile Include="Helpers\TextPosition.cs" />
-    <Compile Include="Helpers\TickHelper.cs" />
-    <Compile Include="Primitives\AngularBar.cs" />
-    <Compile Include="Primitives\AngularTextBar.cs" />
-    <Compile Include="Primitives\AngularTickBar.cs" />
-    <Compile Include="Primitives\LinearBlockBar.cs" />
-    <Compile Include="Helpers\VectorExt.cs" />
-    <Compile Include="Helpers\Vertical.cs" />
+    <Compile Include="Internals\Horizontal.cs" />
+    <Compile Include="Internals\Line.cs" />
+    <Compile Include="Primitives\Linear\LinearPanel.cs" />
+    <Compile Include="Primitives\Linear\LinearTickBar.cs" />
+    <Compile Include="Internals\PointExt.cs" />
+    <Compile Include="Internals\RectExt.cs" />
+    <Compile Include="Internals\SizeExt.cs" />
+    <Compile Include="Internals\RotateTransformExt.cs" />
+    <Compile Include="Internals\TextHelper.cs" />
+    <Compile Include="Internals\TextPosition.cs" />
+    <Compile Include="Internals\TickHelper.cs" />
+    <Compile Include="Primitives\Angular\AngularBar.cs" />
+    <Compile Include="Primitives\Angular\AngularTextBar.cs" />
+    <Compile Include="Primitives\Angular\AngularTickBar.cs" />
+    <Compile Include="Primitives\Linear\LinearBlockBar.cs" />
+    <Compile Include="Internals\VectorExt.cs" />
+    <Compile Include="Internals\Vertical.cs" />
     <Compile Include="Indicators\AngularRange.cs" />
     <Compile Include="Indicators\LinearIndicator.cs" />
     <Compile Include="Indicators\LinearRange.cs" />
     <Compile Include="LinearAxis.cs" />
     <Compile Include="LinearGauge.cs" />
-    <Compile Include="Primitives\PolarCanvas.cs" />
+    <Compile Include="Primitives\Angular\PolarCanvas.cs" />
     <Compile Include="Primitives\TextTickBar.cs" />
+    <Compile Include="Primitives\TickText.cs" />
+    <Compile Include="Primitives\VerticalTextAlignment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="TextOrientation.cs" />
-    <Compile Include="Helpers\WeakDictionary.cs" />
+    <Compile Include="Internals\WeakDictionary.cs" />
     <None Include="Gu.Wpf.Gauges.ruleset" />
     <None Include="paket.references" />
     <AppDesigner Include="Properties\" />
@@ -145,5 +171,22 @@
     <Analyzer Include="..\packages\WpfAnalyzers\analyzers\dotnet\cs\WpfAnalyzers.CodeFixes.dll">
       <Paket>True</Paket>
     </Analyzer>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AngularGauge.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AngularGauge.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="LinearGauge.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LinearGauge.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Gauge.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Gauge.generated.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
 </Project>

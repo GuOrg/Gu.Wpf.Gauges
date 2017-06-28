@@ -1,0 +1,147 @@
+﻿<UserControl x:Class="Gu.Wpf.Gauges.Sample.AngularBarsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
+             d:DesignHeight="600"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <sample:AngularTickBarVm MajorTickFrequency="25"
+                                 MajorTicks="10"
+                                 MaxAngle="0"
+                                 Maximum="100"
+                                 MinAngle="-180"
+                                 Minimum="0"
+                                 MinorTickFrequency="5"
+                                 Placement="Top"
+                                 ReservedSpace="0"
+                                 TextOrientation="Tangential"
+                                 Thickness="10"
+                                 Value="78" />
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <UniformGrid Rows="2">
+            <UniformGrid.Resources>
+                <Style TargetType="{x:Type GroupBox}">
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Border Width="100"
+                                        Height="100"
+                                        Background="LightGray">
+                                    <ContentPresenter Content="{Binding}" />
+                                </Border>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </UniformGrid.Resources>
+            <GroupBox Header="AngularAxis">
+                <gauges:AngularAxis Foreground="Black"
+                                    IsDirectionReversed="{Binding IsDirectionReversed}"
+                                    MajorTickFrequency="{Binding MajorTickFrequency}"
+                                    MajorTicks="{Binding MajorTicks}"
+                                    MaxAngle="{Binding MaxAngle}"
+                                    Maximum="{Binding Maximum}"
+                                    MinAngle="{Binding MinAngle}"
+                                    Minimum="{Binding Minimum}"
+                                    MinorTickFrequency="{Binding MinorTickFrequency}"
+                                    ReservedSpace="{Binding ReservedSpace}"
+                                    SnapsToDevicePixels="True"
+                                    TextOrientation="{Binding TextOrientation}" />
+            </GroupBox>
+
+            <GroupBox Header="AngularTickBar">
+                <gauges:AngularTickBar IsDirectionReversed="{Binding IsDirectionReversed}"
+                                       MaxAngle="{Binding MaxAngle}"
+                                       Maximum="{Binding Maximum}"
+                                       MinAngle="{Binding MinAngle}"
+                                       Minimum="{Binding Minimum}"
+                                       Opacity="1"
+                                       ReservedSpace="{Binding ReservedSpace}"
+                                       SnapsToDevicePixels="True"
+                                       Stroke="Black"
+                                       StrokeThickness="1"
+                                       TickFrequency="{Binding MajorTickFrequency}"
+                                       Ticks="{Binding MajorTicks}" />
+            </GroupBox>
+
+            <GroupBox Background="Lavender" Header="AngularTextBar">
+                <gauges:AngularTextBar IsDirectionReversed="{Binding IsDirectionReversed}"
+                                       MaxAngle="{Binding MaxAngle}"
+                                       Maximum="{Binding Maximum}"
+                                       MinAngle="{Binding MinAngle}"
+                                       Minimum="{Binding Minimum}"
+                                       ReservedSpace="{Binding ReservedSpace}"
+                                       TextOrientation="{Binding TextOrientation}"
+                                       TickFrequency="{Binding MajorTickFrequency}"
+                                       Ticks="{Binding MajorTicks}" />
+            </GroupBox>
+
+            <GroupBox Header="AngularBlockBar">
+                <gauges:AngularBlockBar Fill="Olive"
+                                        IsDirectionReversed="{Binding IsDirectionReversed}"
+                                        MaxAngle="{Binding MaxAngle}"
+                                        Maximum="{Binding Maximum}"
+                                        MinAngle="{Binding MinAngle}"
+                                        Minimum="{Binding Minimum}"
+                                        ReservedSpace="{Binding ReservedSpace}"
+                                        Stroke="Khaki"
+                                        StrokeThickness="1"
+                                        Thickness="{Binding Thickness}"
+                                        TickFrequency="{Binding MajorTickFrequency}"
+                                        TickGap="1"
+                                        Ticks="{Binding MajorTicks}"
+                                        Value="{Binding Value}" />
+            </GroupBox>
+
+            <GroupBox Header="BlockBar and TickBar">
+                <Grid>
+                    <gauges:AngularBlockBar Fill="Olive"
+                                            IsDirectionReversed="{Binding IsDirectionReversed}"
+                                            MaxAngle="{Binding MaxAngle}"
+                                            Maximum="{Binding Maximum}"
+                                            MinAngle="{Binding MinAngle}"
+                                            Minimum="{Binding Minimum}"
+                                            ReservedSpace="{Binding ReservedSpace}"
+                                            Stroke="Khaki"
+                                            StrokeThickness="1"
+                                            Thickness="{Binding Thickness}"
+                                            TickFrequency="{Binding MajorTickFrequency}"
+                                            TickGap="1"
+                                            Ticks="{Binding MajorTicks}"
+                                            Value="{Binding Value}" />
+                    <gauges:AngularTickBar IsDirectionReversed="{Binding IsDirectionReversed}"
+                                           MaxAngle="{Binding MaxAngle}"
+                                           Maximum="{Binding Maximum}"
+                                           MinAngle="{Binding MinAngle}"
+                                           Minimum="{Binding Minimum}"
+                                           Opacity="1"
+                                           ReservedSpace="{Binding ReservedSpace}"
+                                           SnapsToDevicePixels="True"
+                                           Stroke="Black"
+                                           StrokeThickness="1"
+                                           TickFrequency="{Binding MajorTickFrequency}"
+                                           Ticks="{Binding MajorTicks}" />
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Header="Ring">
+                <gauges:Ring HorizontalAlignment="Center"
+                             Fill="Olive"
+                             Stroke="Khaki"
+                             StrokeThickness="1"
+                             Thickness="{Binding Thickness}" />
+            </GroupBox>
+        </UniformGrid>
+
+        <ContentPresenter Grid.Row="1" Content="{Binding}" />
+    </Grid>
+</UserControl>
+

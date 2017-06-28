@@ -6,6 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
         xmlns:sandbox="clr-namespace:Gu.Wpf.Gauges.Sample.Sandbox"
+        xmlns:styled="clr-namespace:Gu.Wpf.Gauges.Sample.Styled"
         Title="MainWindow"
         Width="525"
         Height="350"
@@ -13,6 +14,10 @@
                                          IsDesignTimeCreatable=True}"
         mc:Ignorable="d">
     <TabControl>
+        <TabItem Header="Gauge">
+            <sandbox:GaugeBox />
+        </TabItem>
+
         <TabItem Header="Linear default style">
             <sample:DefaultStyleLinearGaugeView />
         </TabItem>
@@ -21,8 +26,16 @@
             <sample:DefaultStyleAngularGaugeView />
         </TabItem>
 
-        <TabItem Header="FatStyles">
-            <sample:FatStylesView />
+        <TabItem Header="Flat">
+            <styled:FlatBlackAndWhiteView />
+        </TabItem>
+
+        <TabItem Header="Modern">
+            <styled:ModernView />
+        </TabItem>
+
+        <TabItem Header="Blue and Ticks">
+            <styled:BlueAndTicksView />
         </TabItem>
 
         <TabItem Header="Linear ranges">

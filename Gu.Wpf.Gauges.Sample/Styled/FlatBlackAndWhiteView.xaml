@@ -1,0 +1,140 @@
+﻿<UserControl x:Class="Gu.Wpf.Gauges.Sample.Styled.FlatBlackAndWhiteView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="400"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="AngularGaugeStyle" TargetType="{x:Type gauges:AngularGauge}">
+            <Setter Property="TickGap" Value="1" />
+            <Setter Property="Thickness" Value="35" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type gauges:AngularGauge}">
+                        <Grid>
+                            <gauges:AngularTextBar x:Name="TextBar"
+                                                   Foreground="LightGray"
+                                                   TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                   Ticks="{TemplateBinding MajorTicks}" />
+                            <gauges:AngularBlockBar x:Name="Axis"
+                                                    Height="60"
+                                                    VerticalAlignment="Bottom"
+                                                    Fill="LightGray"
+                                                    Opacity="0.2"
+                                                    TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                    Ticks="{TemplateBinding MajorTicks}"
+                                                    Value="{TemplateBinding Maximum}" />
+
+                            <gauges:AngularBlockBar x:Name="ValueIndicator"
+                                                    Height="60"
+                                                    VerticalAlignment="Bottom"
+                                                    Fill="White"
+                                                    TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                    Ticks="{TemplateBinding MajorTicks}" />
+
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Bottom"
+                                       Text="{Binding Value, RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="LinearGaugeStyle" TargetType="{x:Type gauges:LinearGauge}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type gauges:LinearGauge}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="38" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <gauges:LinearTextTickBar x:Name="TextTicks"
+                                                      Grid.Row="0"
+                                                      VerticalAlignment="Bottom"
+                                                      FontSize="20"
+                                                      Foreground="LightGray"
+                                                      Placement="Bottom"
+                                                      TextOrientation="Horizontal"
+                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                      Ticks="{TemplateBinding MajorTicks}" />
+
+                            <gauges:LinearBlockBar x:Name="ValueIndicator"
+                                                   Grid.Row="1"
+                                                   Grid.Column="0"
+                                                   Fill="White"
+                                                   TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                   TickGap="1"
+                                                   Ticks="{TemplateBinding MajorTicks}" />
+
+                            <gauges:LinearBlockBar x:Name="Axis"
+                                                   Grid.Row="1"
+                                                   Grid.Column="0"
+                                                   Fill="LightGray"
+                                                   Opacity="0.2"
+                                                   TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                   TickGap="1"
+                                                   Ticks="{TemplateBinding MajorTicks}"
+                                                   Value="{TemplateBinding Maximum}" />
+
+                            <TextBlock Grid.Row="1"
+                                       Grid.Column="1"
+                                       Margin="6,0,0,0"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=gauges:Gauge}, Path=Value}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="10"
+          Background="#FF1D1D1D"
+          ShowGridLines="True"
+          TextElement.FontSize="20"
+          TextElement.Foreground="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <gauges:AngularGauge Height="100"
+                             Margin="12"
+                             MajorTickFrequency="25"
+                             MajorTicks="10"
+                             MaxAngle="0"
+                             Maximum="100"
+                             MinAngle="-180"
+                             Minimum="0"
+                             Style="{StaticResource AngularGaugeStyle}"
+                             Value="{Binding Value, ElementName=ValueSlider}" />
+
+        <gauges:LinearGauge Grid.Row="1"
+                            Width="200"
+                            Margin="12"
+                            MajorTickFrequency="25"
+                            MajorTicks="10"
+                            Maximum="100"
+                            Minimum="0"
+                            Placement="Bottom"
+                            Style="{StaticResource LinearGaugeStyle}"
+                            Value="{Binding Value, ElementName=ValueSlider}" />
+
+        <Slider x:Name="ValueSlider"
+                Grid.Row="3"
+                Width="200"
+                Maximum="100"
+                Minimum="0"
+                Value="80" />
+    </Grid>
+</UserControl>

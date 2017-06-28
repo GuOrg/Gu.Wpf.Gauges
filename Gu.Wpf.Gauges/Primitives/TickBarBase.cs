@@ -16,12 +16,12 @@ namespace Gu.Wpf.Gauges
         /// <returns>
         /// The identifier for the <see cref="P:Bar.Minimum" /> dependency property.
         /// </returns>
-        public static readonly DependencyProperty MinimumProperty = RangeBase.MinimumProperty.AddOwner(
+        public static readonly DependencyProperty MinimumProperty = Gauge.MinimumProperty.AddOwner(
             typeof(TickBarBase),
             new FrameworkPropertyMetadata(
                 0.0,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits,
-                OnMinimumChanged));
+                (d, _) => ((TickBarBase)d).UpdateTicks()));
 
         /// <summary>
         /// Identifies the <see cref="P:Bar.Maximum" /> dependency property.
@@ -29,12 +29,12 @@ namespace Gu.Wpf.Gauges
         /// <returns>
         /// The identifier for the <see cref="P:Bar.Maximum" /> dependency property.
         /// </returns>
-        public static readonly DependencyProperty MaximumProperty = RangeBase.MaximumProperty.AddOwner(
+        public static readonly DependencyProperty MaximumProperty = Gauge.MaximumProperty.AddOwner(
             typeof(TickBarBase),
             new FrameworkPropertyMetadata(
                 1.0,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits,
-                OnMaximumChanged));
+                (d, _) => ((TickBarBase)d).UpdateTicks()));
 
         /// <summary>
         /// Identifies the <see cref="P:Bar.ReservedSpace" /> dependency property. This property is read-only.
@@ -55,8 +55,8 @@ namespace Gu.Wpf.Gauges
             typeof(TickBarBase),
             new FrameworkPropertyMetadata(
                 0.0,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits,
-                OnTickFrequencyChanged));
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits,
+                (d, _) => ((TickBarBase)d).UpdateTicks()));
 
         /// <summary>
         /// Identifies the <see cref="P:Bar.Ticks" /> dependency property.
@@ -65,13 +65,13 @@ namespace Gu.Wpf.Gauges
             typeof(TickBarBase),
             new FrameworkPropertyMetadata(
                 null,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits,
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits,
                 OnTicksChanged));
 
         /// <summary>
         /// Identifies the <see cref="P:Bar.IsDirectionReversed" /> dependency property.
         /// </summary>
-        public static readonly DependencyProperty IsDirectionReversedProperty = Slider.IsDirectionReversedProperty.AddOwner(
+        public static readonly DependencyProperty IsDirectionReversedProperty = Gauge.IsDirectionReversedProperty.AddOwner(
             typeof(TickBarBase),
             new FrameworkPropertyMetadata(
                 false,
@@ -153,55 +153,34 @@ namespace Gu.Wpf.Gauges
 
         protected IReadOnlyList<double> AllTicks => this.allTicks ?? EmptyTicks;
 
-        protected virtual void OnTicksChanged()
+        protected virtual void UpdateTicks()
         {
             this.allTicks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency)
                                       .Concat(this.Ticks ?? Enumerable.Empty<double>())
                                       .Where(x => x >= this.Minimum && x <= this.Maximum)
                                       .OrderBy(x => x)
                                       .ToArray();
-            this.InvalidateMeasure();
-        }
-
-        private static void OnMinimumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var bar = (TickBarBase)d;
-            bar.OnTicksChanged();
-        }
-
-        private static void OnMaximumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var bar = (TickBarBase)d;
-            bar.OnTicksChanged();
         }
 
         private static void OnTicksChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var bar = (TickBarBase)d;
-            var oldTicks = e.OldValue as DoubleCollection;
-            if (oldTicks != null)
+            if (e.OldValue is DoubleCollection oldTicks)
             {
                 oldTicks.Changed -= bar.OnTickCollectionChanged;
             }
 
-            var newTicks = e.NewValue as DoubleCollection;
-            if (newTicks != null)
+            if (e.NewValue is DoubleCollection newTicks)
             {
                 newTicks.Changed += bar.OnTickCollectionChanged;
             }
 
-            bar.OnTicksChanged();
-        }
-
-        private static void OnTickFrequencyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var bar = (TickBarBase)d;
-            bar.OnTicksChanged();
+            bar.UpdateTicks();
         }
 
         private void OnTickCollectionChanged(object sender, EventArgs eventArgs)
         {
-            this.OnTicksChanged();
+            this.UpdateTicks();
         }
     }
 }

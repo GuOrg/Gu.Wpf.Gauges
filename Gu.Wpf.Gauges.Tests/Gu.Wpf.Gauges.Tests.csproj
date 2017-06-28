@@ -40,6 +40,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -51,16 +52,24 @@
     </When>
   </Choose>
   <ItemGroup>
-    <Compile Include="Bars\AngularBlockBarTests.cs" />
-    <Compile Include="Bars\AngularTickBarTests.cs" />
-    <Compile Include="Bars\FrameworkElementExt.cs" />
-    <Compile Include="Helpers\ArcTests.cs" />
-    <Compile Include="Helpers\GeometryExt.cs" />
-    <Compile Include="Indicators\LinearIndicatorsTests.cs" />
+    <Compile Include="Internals\LinearTests.cs" />
+    <Compile Include="Primitives\Linear\LinearBlockBarTests.cs" />
+    <Compile Include="Primitives\Linear\LinearTickBarTests.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TestHelpers\ImageAssert.cs" />
+    <Compile Include="Primitives\AngularBlockBarTests.cs" />
+    <Compile Include="Primitives\AngularTickBarTests.cs" />
+    <Compile Include="Primitives\FrameworkElementExt.cs" />
+    <Compile Include="Internals\ArcTests.cs" />
+    <Compile Include="TestHelpers\GeometryExt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helpers\TextPositionTests.cs" />
-    <Compile Include="Helpers\TickHelperTests.cs" />
-    <Compile Include="Helpers\VextorExtTests.cs" />
+    <Compile Include="Internals\TextPositionTests.cs" />
+    <Compile Include="Internals\TickHelperTests.cs" />
+    <Compile Include="TestHelpers\VextorExtTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Gu.Wpf.Gauges.Tests.ruleset" />
@@ -134,5 +143,38 @@
     <Analyzer Include="..\packages\WpfAnalyzers\analyzers\dotnet\cs\WpfAnalyzers.CodeFixes.dll">
       <Paket>True</Paket>
     </Analyzer>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Indicators\" />
+    <Folder Include="SandBox\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Primitives\Linear\LinearBlockBarImages\LinearBlockBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1 2 6_Horizontal.png" />
+    <Content Include="Primitives\Linear\LinearBlockBarImages\LinearBlockBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1 2 6_Vertical.png" />
+    <Content Include="Primitives\Linear\LinearBlockBarImages\LinearBlockBar_Min_0_Max_10_IsDirectionReversed_False_Ticks_1 2 6_Horizontal.png" />
+    <Content Include="Primitives\Linear\LinearBlockBarImages\LinearBlockBar_Min_0_Max_10_IsDirectionReversed_False_Ticks_1 2 6_Vertical.png" />
+    <Content Include="Primitives\Linear\LinearBlockBarImages\LinearBlockBar_Min_0_Max_10_IsDirectionReversed_True_TickFrequency_5_Ticks_1 2 6_Horizontal.png" />
+    <Content Include="Primitives\Linear\LinearBlockBarImages\LinearBlockBar_Min_0_Max_10_IsDirectionReversed_True_TickFrequency_5_Ticks_1 2 6_Vertical.png" />
+    <Content Include="Primitives\Linear\LinearBlockBarImages\LinearBlockBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1 2 6_Horizontal.png" />
+    <Content Include="Primitives\Linear\LinearBlockBarImages\LinearBlockBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1 2 6_Vertical.png" />
+    <Content Include="Primitives\Linear\LinearBlockBarImages\LinearBlockBar_Min_0_Max_10_TickFrequency_1_Horizontal.png" />
+    <Content Include="Primitives\Linear\LinearBlockBarImages\LinearBlockBar_Min_0_Max_10_TickFrequency_1_Vertical.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1 2 6_Horizontal.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1 2 6_Vertical.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_Ticks_1 2 6_Horizontal.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_Ticks_1 2 6_Vertical.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_TickFrequency_5_Ticks_1 2 6_Horizontal.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_TickFrequency_5_Ticks_1 2 6_Vertical.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1 2 6_Horizontal.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1 2 6_Vertical.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_TickFrequency_1_Horizontal.png" />
+    <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_TickFrequency_1_Vertical.png" />
   </ItemGroup>
 </Project>

@@ -9,16 +9,21 @@
     {
         private double minimum;
         private double maximum;
-        private double tickFrequency;
+        private double majorTickFrequency;
         private double reservedSpace;
-        private DoubleCollection ticks;
+        private bool snapsToDevicePixels;
+        private DoubleCollection majorTicks;
         private TickBarPlacement placement;
         private bool isDirectionReversed;
 
         private double value;
         private TextOrientation textOrientation;
-
+        private HorizontalTextAlignment horizontalTextAlignment;
+        private VerticalTextAlignment verticalTextAlignment;
         private double minorTickFrequency;
+        private DoubleCollection minorTicks;
+        private double tickGap = 1.0;
+        private double thickness;
         private bool showLabels;
 
         public TickBarVm()
@@ -26,7 +31,7 @@
             this.Minimum = 0;
             this.Maximum = 100;
             this.value = 50;
-            this.TickFrequency = 50;
+            this.MajorTickFrequency = 50;
             this.ReservedSpace = 0;
             this.Placement = TickBarPlacement.Bottom;
         }
@@ -78,17 +83,32 @@
             }
         }
 
-        public double TickFrequency
+        public double MajorTickFrequency
         {
-            get => this.tickFrequency;
+            get => this.majorTickFrequency;
             set
             {
-                if (value.Equals(this.tickFrequency))
+                if (value.Equals(this.majorTickFrequency))
                 {
                     return;
                 }
 
-                this.tickFrequency = value;
+                this.majorTickFrequency = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public DoubleCollection MajorTicks
+        {
+            get => this.majorTicks;
+            set
+            {
+                if (Equals(value, this.majorTicks))
+                {
+                    return;
+                }
+
+                this.majorTicks = value;
                 this.OnPropertyChanged();
             }
         }
@@ -108,6 +128,54 @@
             }
         }
 
+        public DoubleCollection MinorTicks
+        {
+            get => this.minorTicks;
+
+            set
+            {
+                if (ReferenceEquals(value, this.minorTicks))
+                {
+                    return;
+                }
+
+                this.minorTicks = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public double TickGap
+        {
+            get => this.tickGap;
+
+            set
+            {
+                if (value == this.tickGap)
+                {
+                    return;
+                }
+
+                this.tickGap = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public double Thickness
+        {
+            get => this.thickness;
+
+            set
+            {
+                if (value == this.thickness)
+                {
+                    return;
+                }
+
+                this.thickness = value;
+                this.OnPropertyChanged();
+            }
+        }
+
         public double ReservedSpace
         {
             get => this.reservedSpace;
@@ -123,17 +191,18 @@
             }
         }
 
-        public DoubleCollection Ticks
+        public bool SnapsToDevicePixels
         {
-            get => this.ticks;
+            get => this.snapsToDevicePixels;
+
             set
             {
-                if (Equals(value, this.ticks))
+                if (value == this.snapsToDevicePixels)
                 {
                     return;
                 }
 
-                this.ticks = value;
+                this.snapsToDevicePixels = value;
                 this.OnPropertyChanged();
             }
         }
@@ -164,6 +233,38 @@
                 }
 
                 this.textOrientation = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public HorizontalTextAlignment HorizontalTextAlignment
+        {
+            get => this.horizontalTextAlignment;
+
+            set
+            {
+                if (value == this.horizontalTextAlignment)
+                {
+                    return;
+                }
+
+                this.horizontalTextAlignment = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public VerticalTextAlignment VerticalTextAlignment
+        {
+            get => this.verticalTextAlignment;
+
+            set
+            {
+                if (value == this.verticalTextAlignment)
+                {
+                    return;
+                }
+
+                this.verticalTextAlignment = value;
                 this.OnPropertyChanged();
             }
         }

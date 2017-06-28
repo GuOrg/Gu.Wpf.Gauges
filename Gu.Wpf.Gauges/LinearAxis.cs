@@ -5,7 +5,7 @@
 
     public class LinearAxis : Axis
     {
-        public static readonly DependencyProperty PlacementProperty = TickBar.PlacementProperty.AddOwner(
+        public static readonly DependencyProperty PlacementProperty = LinearGauge.PlacementProperty.AddOwner(
             typeof(LinearAxis),
             new FrameworkPropertyMetadata(
                 default(TickBarPlacement),
@@ -29,7 +29,7 @@
         }
 
         /// <summary>
-        /// Gets or sets the textplacement
+        /// Gets or sets the placement
         /// </summary>
         public TickBarPlacement Placement
         {

@@ -2,59 +2,29 @@
 {
     using System.Windows;
 
-    public class AngularGauge : Gauge
+    public partial class AngularGauge : Gauge
     {
-        public static readonly DependencyProperty AxisProperty = DependencyProperty.Register(
-            nameof(Axis),
-            typeof(AngularAxis),
-            typeof(AngularGauge),
-            new FrameworkPropertyMetadata(
-                null,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
-                OnAxisChanged));
-
-        public static readonly DependencyProperty IndicatorsProperty = DependencyProperty.Register(
-            nameof(Indicators),
-            typeof(AngularIndicators),
-            typeof(AngularGauge),
-            new FrameworkPropertyMetadata(
-                null,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
-                OnIndicatorsChanged));
-
         static AngularGauge()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(typeof(AngularGauge)));
         }
 
-        public AngularAxis Axis
-        {
-            get => (AngularAxis)this.GetValue(AxisProperty);
-            set => this.SetValue(AxisProperty, value);
-        }
-
-        public AngularIndicators Indicators
-        {
-            get => (AngularIndicators)this.GetValue(IndicatorsProperty);
-            set => this.SetValue(IndicatorsProperty, value);
-        }
-
-        protected virtual void OnAxisChanged(AngularAxis oldAxis, AngularAxis newAxis)
+        /// <summary>
+        ///     This method is invoked when the <see cref="MinAngle"/> property changes.
+        /// </summary>
+        /// <param name="oldMinAngle">The old value of the <see cref="MinAngle"/> property.</param>
+        /// <param name="newMinAngle">The new value of the <see cref="MinAngle"/> property.</param>
+        protected virtual void OnMinAngleChanged(double oldMinAngle, double newMinAngle)
         {
         }
 
-        protected virtual void OnIndicatorsChanged(AngularIndicators oldIndicators, AngularIndicators newIndicators)
+        /// <summary>
+        ///     This method is invoked when the <see cref="MaxAngle"/> property changes.
+        /// </summary>
+        /// <param name="oldMaxAngle">The old value of the <see cref="MaxAngle"/> property.</param>
+        /// <param name="newMaxAngle">The new value of the <see cref="MaxAngle"/> property.</param>
+        protected virtual void OnMaxAngleChanged(double oldMaxAngle, double newMaxAngle)
         {
-        }
-
-        private static void OnAxisChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((AngularGauge)d).OnAxisChanged((AngularAxis)e.OldValue, (AngularAxis)e.NewValue);
-        }
-
-        private static void OnIndicatorsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((AngularGauge)d).OnIndicatorsChanged((AngularIndicators)e.OldValue, (AngularIndicators)e.NewValue);
         }
     }
 }

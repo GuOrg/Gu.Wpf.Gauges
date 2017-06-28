@@ -2,68 +2,79 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <gauges:LinearIndicators>
-            <gauges:LinearRange Height="25"
-                                VerticalAlignment="Top"
-                                Background="GreenYellow"
-                                End="0.20"
-                                Start="0">
-                <TextBlock HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Text="Good" />
-            </gauges:LinearRange>
-            <gauges:LinearRange Height="25"
-                                VerticalAlignment="Top"
-                                Background="Yellow"
-                                End="0.80"
-                                Start="0.20">
-                <TextBlock HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Text="Bad" />
-            </gauges:LinearRange>
-            <gauges:LinearRange Height="25"
-                                VerticalAlignment="Top"
-                                Background="Orange"
-                                End="1.00"
-                                Start="0.80">
-                <TextBlock HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Text="Ugly" />
-            </gauges:LinearRange>
-            <gauges:LinearValue Value="{Binding Value, Mode=OneWay, ElementName=Slider}">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="25" />
-                    </Grid.RowDefinitions>
-                    <Rectangle Grid.Row="0"
-                               Width="3"
-                               Height="30"
-                               Fill="Black" />
-                    <TextBlock Grid.Row="1"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Top"
-                               Text="{Binding Value,
-                                              ElementName=Slider}" />
-                </Grid>
-            </gauges:LinearValue>
-        </gauges:LinearIndicators>
+        <gauges:LinearGauge Maximum="1"
+                            Minimum="0"
+                            Value="{Binding Value,
+                                            Mode=OneWay,
+                                            ElementName=Slider}">
+            <Grid>
+                <gauges:LinearRange Height="25"
+                                    VerticalAlignment="Top"
+                                    Background="GreenYellow"
+                                    End="0.20"
+                                    Start="0">
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Text="Good" />
+                </gauges:LinearRange>
+
+                <gauges:LinearRange Height="25"
+                                    VerticalAlignment="Top"
+                                    Background="Yellow"
+                                    End="0.80"
+                                    Start="0.20">
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Text="Bad" />
+                </gauges:LinearRange>
+
+                <gauges:LinearRange Height="25"
+                                    VerticalAlignment="Top"
+                                    Background="Orange"
+                                    End="1.00"
+                                    Start="0.80">
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Text="Ugly" />
+                </gauges:LinearRange>
+
+                <gauges:LinearIndicator>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="25" />
+                        </Grid.RowDefinitions>
+                        <Rectangle Grid.Row="0"
+                                   Width="3"
+                                   Height="30"
+                                   Fill="Black" />
+                        <TextBlock Grid.Row="1"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Top"
+                                   Text="{Binding Value,
+                                                  ElementName=Slider}" />
+                    </Grid>
+                </gauges:LinearIndicator>
+            </Grid>
+        </gauges:LinearGauge>
+
         <Slider x:Name="Slider"
                 Grid.Row="1"
+                IsSnapToTickEnabled="True"
                 Maximum="1"
                 Minimum="0"
                 TickFrequency="0.01"
-                IsSnapToTickEnabled="True"
                 Value="0.35" />
     </Grid>
 </UserControl>

@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using System.Windows;
-    using System.Windows.Controls;
     using System.Windows.Documents;
     using System.Windows.Media;
 
@@ -12,13 +11,17 @@
     public class TextTickBar : TickBarBase, ITextFormat
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
-        public static readonly DependencyProperty TextOrientationProperty = DependencyProperty.Register(
-nameof(TextOrientation),
-            typeof(TextOrientation),
+        public static readonly DependencyProperty TextOrientationProperty = Gauge.TextOrientationProperty.AddOwner(
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
                 TextOrientation.Tangential,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+
+        public static readonly DependencyProperty HorizontalTextAlignmentProperty = DependencyProperty.Register(
+            "HorizontalTextAlignment",
+            typeof(HorizontalTextAlignment),
+            typeof(TextTickBar),
+            new FrameworkPropertyMetadata(default(HorizontalTextAlignment), FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.FontFamily" /> dependency property.
@@ -90,7 +93,7 @@ nameof(TextOrientation),
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
                Brushes.Black,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.SubPropertiesDoNotAffectRender));
+               FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits | FrameworkPropertyMetadataOptions.SubPropertiesDoNotAffectRender));
 
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.TextEffects" /> dependency property.
@@ -108,14 +111,16 @@ nameof(TextOrientation),
         /// <returns>
         /// The identifier for the <see cref="P:TextTickBar.ContentStringFormat" /> dependency property.
         /// </returns>
-        public static readonly DependencyProperty ContentStringFormatProperty = ContentControl.ContentStringFormatProperty.AddOwner(
+        public static readonly DependencyProperty StringFormatProperty = DependencyProperty.Register(
+            "StringFormat",
+            typeof(string),
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
                 default(string),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
         private static readonly DependencyPropertyKey TextSpacePropertyKey = DependencyProperty.RegisterReadOnly(
-nameof(TextSpace),
+            nameof(TextSpace),
             typeof(double),
             typeof(TextTickBar),
             new PropertyMetadata(default(double)));
@@ -123,13 +128,29 @@ nameof(TextSpace),
         public static readonly DependencyProperty TextSpaceProperty = TextSpacePropertyKey.DependencyProperty;
 
         private static readonly DependencyPropertyKey TextSpaceMarginPropertyKey = DependencyProperty.RegisterReadOnly(
-nameof(TextSpaceMargin),
+            nameof(TextSpaceMargin),
             typeof(Thickness),
             typeof(TextTickBar),
             new PropertyMetadata(default(Thickness)));
 
         public static readonly DependencyProperty TextSpaceMarginProperty = TextSpaceMarginPropertyKey.DependencyProperty;
 #pragma warning restore SA1202 // Elements must be ordered by access
+
+        /// <summary>
+        /// Gets or sets the <see cref="T:Gu.Wpf.Gauges.TextOrientation" />
+        /// Default is Tangential
+        /// </summary>
+        public TextOrientation TextOrientation
+        {
+            get => (TextOrientation)this.GetValue(TextOrientationProperty);
+            set => this.SetValue(TextOrientationProperty, value);
+        }
+
+        public HorizontalTextAlignment HorizontalTextAlignment
+        {
+            get => (HorizontalTextAlignment)this.GetValue(HorizontalTextAlignmentProperty);
+            set => this.SetValue(HorizontalTextAlignmentProperty, value);
+        }
 
         /// <summary>
         /// Gets or sets the preferred top-level font family for the content of the element.
@@ -141,16 +162,6 @@ nameof(TextSpaceMargin),
         {
             get => (FontFamily)this.GetValue(FontFamilyProperty);
             set => this.SetValue(FontFamilyProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets the <see cref="T:Gu.Wpf.Gauges.TextOrientation" />
-        /// Default is Tangential
-        /// </summary>
-        public TextOrientation TextOrientation
-        {
-            get => (TextOrientation)this.GetValue(TextOrientationProperty);
-            set => this.SetValue(TextOrientationProperty, value);
         }
 
         /// <summary>
@@ -231,10 +242,10 @@ nameof(TextSpaceMargin),
         /// <returns>
         /// A composite string that specifies how to format the <see cref="P:TextTickBar.ContentStringFormat" /> property if it is displayed as a string.
         /// </returns>
-        public string ContentStringFormat
+        public string StringFormat
         {
-            get => (string)this.GetValue(ContentStringFormatProperty);
-            set => this.SetValue(ContentStringFormatProperty, value);
+            get => (string)this.GetValue(StringFormatProperty);
+            set => this.SetValue(StringFormatProperty, value);
         }
 
         /// <summary>
@@ -254,9 +265,9 @@ nameof(TextSpaceMargin),
 
         protected FormattedText[] AllTexts { get; private set; }
 
-        protected override void OnTicksChanged()
+        protected override void UpdateTicks()
         {
-            base.OnTicksChanged();
+            base.UpdateTicks();
             var typeFace = this.TypeFace();
             this.AllTexts = this.AllTicks.Select(x => TextHelper.AsFormattedText(x, this, typeFace))
                                          .ToArray();

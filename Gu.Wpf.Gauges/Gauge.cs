@@ -1,31 +1,62 @@
 namespace Gu.Wpf.Gauges
 {
+    using System.ComponentModel;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Controls.Primitives;
 
-    public abstract class Gauge : Control
+    public partial class Gauge : ContentControl
     {
-        /// <summary>
-        /// Identifies the <see cref="P:Gauge.Value" /> dependency property.
-        /// </summary>
-        /// <returns>
-        /// The identifier for the <see cref="P:Gauge.Value" /> dependency property.
-        /// </returns>
-        public static readonly DependencyProperty ValueProperty = RangeBase.ValueProperty.AddOwner(
-            typeof(Gauge),
-            new PropertyMetadata(0.0));
+        public static readonly RoutedEvent ValueChangedEvent = EventManager.RegisterRoutedEvent(
+            nameof(ValueChanged),
+            RoutingStrategy.Bubble,
+            typeof(RoutedPropertyChangedEventHandler<double>),
+            typeof(Gauge));
 
         /// <summary>
-        /// Gets or sets the current magnitude of the range control.
+        /// Add / Remove ValueChangedEvent handler
         /// </summary>
-        /// <returns>
-        /// The current magnitude of the range control. The default is 0.
-        /// </returns>
-        public double Value
+        [Category("Behavior")]
+        public event RoutedPropertyChangedEventHandler<double> ValueChanged
         {
-            get => (double)this.GetValue(ValueProperty);
-            set => this.SetValue(ValueProperty, value);
+            add => this.AddHandler(ValueChangedEvent, value);
+            remove => this.RemoveHandler(ValueChangedEvent, value);
+        }
+
+        /// <summary>
+        ///     This method is invoked when the <see cref="Value"/> property changes.
+        /// </summary>
+        /// <param name="oldValue">The old value of the Value property.</param>
+        /// <param name="newValue">The new value of the Value property.</param>
+        protected virtual void OnValueChanged(double oldValue, double newValue)
+        {
+            this.RaiseEvent(new RoutedPropertyChangedEventArgs<double>(oldValue, newValue) { RoutedEvent = ValueChangedEvent });
+        }
+
+        /// <summary>
+        ///     This method is invoked when the <see cref="Minimum"/> property changes.
+        /// </summary>
+        /// <param name="oldMinimum">The old value of the Minimum property.</param>
+        /// <param name="newMinimum">The new value of the Minimum property.</param>
+        protected virtual void OnMinimumChanged(double oldMinimum, double newMinimum)
+        {
+        }
+
+        /// <summary>
+        ///     This method is invoked when the <see cref="Maximum"/> property changes.
+        /// </summary>
+        /// <param name="oldMaximum">The old value of the Maximum property.</param>
+        /// <param name="newMaximum">The new value of the Maximum property.</param>
+        protected virtual void OnMaximumChanged(double oldMaximum, double newMaximum)
+        {
+        }
+
+        /// <summary>
+        ///     This method is invoked when the <see cref="IsDirectionReversed"/> property changes.
+        /// </summary>
+        /// <param name="oldValue">The old value of the Maximum property.</param>
+        /// <param name="newValue">The new value of the Maximum property.</param>
+        protected virtual void OnIsDirectionReversedChanged(bool oldValue, bool newValue)
+        {
         }
     }
 }
