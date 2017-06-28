@@ -27,7 +27,7 @@ namespace Gu.Wpf.Gauges
             return value;
         }
 
-        public static bool AreClose(double value1, double value2)
+        internal static bool AreClose(double value1, double value2)
         {
             if (value1 == value2)
             {
@@ -44,7 +44,7 @@ namespace Gu.Wpf.Gauges
             return false;
         }
 
-        public static bool LessThan(double value1, double value2)
+        internal static bool LessThan(double value1, double value2)
         {
             if (value1 < value2)
             {
@@ -54,7 +54,7 @@ namespace Gu.Wpf.Gauges
             return false;
         }
 
-        public static bool GreaterThan(double value1, double value2)
+        internal static bool GreaterThan(double value1, double value2)
         {
             if (value1 > value2)
             {
@@ -64,7 +64,7 @@ namespace Gu.Wpf.Gauges
             return false;
         }
 
-        public static bool LessThanOrClose(double value1, double value2)
+        internal static bool LessThanOrClose(double value1, double value2)
         {
             if (value1 >= value2)
             {
@@ -74,7 +74,7 @@ namespace Gu.Wpf.Gauges
             return true;
         }
 
-        public static bool GreaterThanOrClose(double value1, double value2)
+        internal static bool GreaterThanOrClose(double value1, double value2)
         {
             if (value1 <= value2)
             {
@@ -84,17 +84,17 @@ namespace Gu.Wpf.Gauges
             return true;
         }
 
-        public static bool IsOne(double value)
+        internal static bool IsOne(double value)
         {
             return Math.Abs(value - 1.0) < 2.22044604925031E-15;
         }
 
-        public static bool IsZero(double value)
+        internal static bool IsZero(double value)
         {
             return Math.Abs(value) < 2.22044604925031E-15;
         }
 
-        public static bool AreClose(Point point1, Point point2)
+        internal static bool AreClose(Point point1, Point point2)
         {
             if (AreClose(point1.X, point2.X))
             {
@@ -104,7 +104,7 @@ namespace Gu.Wpf.Gauges
             return false;
         }
 
-        public static bool AreClose(Size size1, Size size2)
+        internal static bool AreClose(Size size1, Size size2)
         {
             if (AreClose(size1.Width, size2.Width))
             {
@@ -114,7 +114,7 @@ namespace Gu.Wpf.Gauges
             return false;
         }
 
-        public static bool AreClose(Vector vector1, Vector vector2)
+        internal static bool AreClose(Vector vector1, Vector vector2)
         {
             if (AreClose(vector1.X, vector2.X))
             {
@@ -124,7 +124,7 @@ namespace Gu.Wpf.Gauges
             return false;
         }
 
-        public static bool AreClose(Rect rect1, Rect rect2)
+        internal static bool AreClose(Rect rect1, Rect rect2)
         {
             if (rect1.IsEmpty)
             {
@@ -139,7 +139,7 @@ namespace Gu.Wpf.Gauges
             return false;
         }
 
-        public static bool IsBetweenZeroAndOne(double val)
+        internal static bool IsBetweenZeroAndOne(double val)
         {
             if (GreaterThanOrClose(val, 0.0))
             {
@@ -149,9 +149,9 @@ namespace Gu.Wpf.Gauges
             return false;
         }
 
-        public static int DoubleToInt(double val)
+        internal static int DoubleToInt(double val)
         {
-            if (0.0 >= val)
+            if (val <= 0.0)
             {
                 return (int)(val - 0.5);
             }
@@ -159,14 +159,14 @@ namespace Gu.Wpf.Gauges
             return (int)(val + 0.5);
         }
 
-        public static bool RectHasNaN(Rect r)
+        internal static bool RectHasNaN(Rect r)
         {
             return IsNaN(r.X) || IsNaN(r.Y) || (IsNaN(r.Height) || IsNaN(r.Width));
         }
 
-        public static bool IsNaN(double value)
+        internal static bool IsNaN(double value)
         {
-            var nanUnion = new NanUnion();
+            var nanUnion = default(NanUnion);
             nanUnion.DoubleValue = value;
             var num1 = nanUnion.UintValue & 18442240474082181120UL;
             var num2 = nanUnion.UintValue & 4503599627370495UL;

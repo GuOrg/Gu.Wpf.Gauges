@@ -37,7 +37,7 @@ namespace Gu.Wpf.Gauges
             new FrameworkPropertyMetadata(
                 PenLineCap.Flat,
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
-                (d, e) => ((GeometryBar) d).pen = null),
+                (d, e) => ((GeometryBar)d).pen = null),
             ValidateEnums.IsPenLineCapValid);
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Gu.Wpf.Gauges
             new FrameworkPropertyMetadata(
                 PenLineCap.Flat,
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
-                (d, e) => ((GeometryBar) d).pen = null),
+                (d, e) => ((GeometryBar)d).pen = null),
             ValidateEnums.IsPenLineCapValid);
 
         /// <summary>
@@ -252,7 +252,7 @@ namespace Gu.Wpf.Gauges
                         // must not participate in freezable treeness
                         this.pen = new Pen
                         {
-                            //CanBeInheritanceContext = false;
+                            //// CanBeInheritanceContext = false;
                             Thickness = Math.Abs(this.StrokeThickness),
                             Brush = this.Stroke,
                             StartLineCap = this.StrokeStartLineCap,
