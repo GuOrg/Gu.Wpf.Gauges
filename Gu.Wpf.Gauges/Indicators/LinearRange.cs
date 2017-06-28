@@ -10,15 +10,19 @@
             nameof(Start),
             typeof(double),
             typeof(LinearRange),
-            new PropertyMetadata(
+            new FrameworkPropertyMetadata(
                 double.NaN,
+                FrameworkPropertyMetadataOptions.AffectsArrange,
                 OnStartChanged));
 
         public static readonly DependencyProperty EndProperty = DependencyProperty.Register(
             nameof(End),
             typeof(double),
             typeof(LinearRange),
-            new PropertyMetadata(double.NaN, OnEndChanged));
+            new FrameworkPropertyMetadata(
+                double.NaN,
+                FrameworkPropertyMetadataOptions.AffectsArrange,
+                OnEndChanged));
 
         static LinearRange()
         {

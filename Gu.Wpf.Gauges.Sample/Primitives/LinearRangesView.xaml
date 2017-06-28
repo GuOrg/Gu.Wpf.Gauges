@@ -23,36 +23,46 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Slider x:Name="GoodMinSlider"
                 Grid.Row="1"
                 Width="200"
-                Maximum="{Binding Maximum}"
-                Minimum="{Binding Minimum}"
+                Maximum="110"
+                Minimum="-10"
                 Value="10" />
+
+        <Slider x:Name="GoodMaxSlider"
+                Grid.Row="2"
+                Width="200"
+                Maximum="110"
+                Minimum="-10"
+                Value="19" />
 
         <gauges:LinearGauge Grid.Row="0"
                             Maximum="{Binding Maximum}"
                             Minimum="{Binding Minimum}"
                             Placement="{Binding Placement}"
-                            Value="{Binding Value}">
+                            Value="{Binding Value}"
+                            Margin="20"
+                            IsDirectionReversed="{Binding IsDirectionReversed}">
             <Grid>
-                <gauges:LinearRange Background="GreenYellow"
-                                    End="20"
-                                    Start="{Binding Value, ElementName=GoodMinSlider}">
-                    <TextBlock HorizontalAlignment="Center"
-                               VerticalAlignment="Top"
-                               Text="Good" />
-                </gauges:LinearRange>
-
                 <gauges:LinearRange Background="Yellow"
                                     End="80"
                                     Start="20">
                     <TextBlock HorizontalAlignment="Center"
                                VerticalAlignment="Top"
                                Text="Bad" />
+                </gauges:LinearRange>
+
+                <gauges:LinearRange Background="GreenYellow"
+                                    End="{Binding Value, ElementName=GoodMaxSlider}"
+                                    Start="{Binding Value, ElementName=GoodMinSlider}">
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Top"
+                               Text="Good" />
                 </gauges:LinearRange>
 
                 <gauges:LinearRange Background="Orange"
@@ -85,7 +95,7 @@
             </Grid>
         </gauges:LinearGauge>
 
-        <ContentPresenter Grid.Row="2"
+        <ContentPresenter Grid.Row="3"
                           Grid.Column="0"
                           Content="{Binding}" />
 
