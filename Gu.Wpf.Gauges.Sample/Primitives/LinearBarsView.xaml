@@ -33,7 +33,8 @@
                     <Setter Property="ContentTemplate">
                         <Setter.Value>
                             <DataTemplate>
-                                <Border Height="101" Background="LightGray">
+                                <Border Height="101"
+                                        Background="LightGray">
                                     <ContentPresenter Content="{Binding}" />
                                 </Border>
                             </DataTemplate>
@@ -147,7 +148,8 @@
             </GroupBox>
 
             <GroupBox Header="TextTickBar">
-                <Grid Background="Bisque" ShowGridLines="True">
+                <Grid Background="Bisque"
+                      ShowGridLines="True">
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition />
@@ -180,6 +182,7 @@
                 </Grid>
             </GroupBox>
         </UniformGrid>
-        <ContentPresenter Grid.Row="1" Content="{Binding}" />
+        <ContentPresenter Grid.Row="1"
+                          Content="{Binding}" />
     </Grid>
 </UserControl>

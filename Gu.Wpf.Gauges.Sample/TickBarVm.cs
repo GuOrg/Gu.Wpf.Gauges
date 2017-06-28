@@ -8,12 +8,12 @@
     public class TickBarVm : INotifyPropertyChanged
     {
         private double minimum;
-        private double maximum;
-        private double majorTickFrequency;
+        private double maximum = 100;
+        private double majorTickFrequency = 50;
         private double reservedSpace;
         private bool snapsToDevicePixels;
         private DoubleCollection majorTicks;
-        private TickBarPlacement placement;
+        private TickBarPlacement placement = TickBarPlacement.Bottom;
         private bool isDirectionReversed;
 
         private double value;
@@ -25,16 +25,6 @@
         private double tickGap = 1.0;
         private double thickness;
         private bool showLabels;
-
-        public TickBarVm()
-        {
-            this.Minimum = 0;
-            this.Maximum = 100;
-            this.value = 50;
-            this.MajorTickFrequency = 50;
-            this.ReservedSpace = 0;
-            this.Placement = TickBarPlacement.Bottom;
-        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

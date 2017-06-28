@@ -72,7 +72,8 @@
                                        Ticks="{Binding MajorTicks}" />
             </GroupBox>
 
-            <GroupBox Background="Lavender" Header="AngularTextBar">
+            <GroupBox Background="Lavender"
+                      Header="AngularTextBar">
                 <gauges:AngularTextBar IsDirectionReversed="{Binding IsDirectionReversed}"
                                        MaxAngle="{Binding MaxAngle}"
                                        Maximum="{Binding Maximum}"
@@ -141,7 +142,8 @@
             </GroupBox>
         </UniformGrid>
 
-        <ContentPresenter Grid.Row="1" Content="{Binding}" />
+        <ContentPresenter Grid.Row="1"
+                          Content="{Binding}" />
     </Grid>
 </UserControl>
 

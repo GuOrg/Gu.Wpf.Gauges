@@ -15,11 +15,9 @@
         <gauges:AngularPanel Grid.Row="0"
                              IsDirectionReversed="False"
                              MaxAngle="0"
-                             Maximum="{Binding Maximum,
-                                               ElementName=Slider}"
+                             Maximum="{Binding Maximum, ElementName=Slider}"
                              MinAngle="-180"
-                             Minimum="{Binding Minimum,
-                                               ElementName=Slider}">
+                             Minimum="{Binding Minimum, ElementName=Slider}">
             <gauges:AngularIndicator Value="{Binding Value, ElementName=Slider}">
                 <Rectangle Width="10"
                            Height="10"
