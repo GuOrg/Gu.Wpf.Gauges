@@ -53,6 +53,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Internals\LinearTests.cs" />
+    <Compile Include="Internals\RectExtTest.cs" />
     <Compile Include="Primitives\Linear\LinearBlockBarTests.cs" />
     <Compile Include="Primitives\Linear\LinearTickBarTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
