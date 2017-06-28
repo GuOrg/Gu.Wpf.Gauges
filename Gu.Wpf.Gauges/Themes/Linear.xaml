@@ -250,6 +250,70 @@
                     </Setter>
                 </MultiTrigger.Setters>
             </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Content" Value="{x:Null}" />
+                    <Condition Property="Placement" Value="Left" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type local:LinearGauge}">
+                                <Border
+                                    Margin="{TemplateBinding Padding}"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                    <Grid>
+                                        <local:LinearAxis />
+                                        <local:LinearIndicator>
+                                            <Path
+                                                Width="10"
+                                                Height="10"
+                                                HorizontalAlignment="Left"
+                                                Data="M-0.5,1 L0.5,1 0,0z"
+                                                Fill="Black"
+                                                Stretch="Fill" />
+                                        </local:LinearIndicator>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </MultiTrigger.Setters>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Content" Value="{x:Null}" />
+                    <Condition Property="Placement" Value="Right" />
+                </MultiTrigger.Conditions>
+                <MultiTrigger.Setters>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type local:LinearGauge}">
+                                <Border
+                                    Margin="{TemplateBinding Padding}"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                    <Grid>
+                                        <local:LinearAxis />
+                                        <local:LinearIndicator>
+                                            <Path
+                                                Width="10"
+                                                Height="10"
+                                                HorizontalAlignment="Right"
+                                                Data="M-0.5,1 L0.5,1 0,0z"
+                                                Fill="Black"
+                                                Stretch="Fill" />
+                                        </local:LinearIndicator>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </MultiTrigger.Setters>
+            </MultiTrigger>
         </Style.Triggers>
     </Style>
 </ResourceDictionary>
