@@ -1,6 +1,8 @@
 ﻿namespace Gu.Wpf.Gauges
 {
+    using System;
     using System.Windows;
+    using System.Windows.Controls.Primitives;
 
     public class LinearRange : LinearIndicator
     {
@@ -45,6 +47,39 @@
         protected virtual void OnStartChanged(double newValue)
         {
             LinearPanel.SetStart(this, newValue);
+        }
+
+        protected override Size ArrangeOverride(Size arrangeBounds)
+        {
+            if (double.IsNaN(this.Value))
+            {
+                return arrangeBounds;
+            }
+
+            var child = this.GetVisualChild(0) as UIElement;
+            if (child == null)
+            {
+                return arrangeBounds;
+            }
+
+            var si = Interpolate.Linear(this.Minimum, this.Maximum, this.Start);
+            var ei = Interpolate.Linear(this.Minimum, this.Maximum, this.End);
+
+            switch (this.Placement)
+            {
+                case TickBarPlacement.Left:
+                case TickBarPlacement.Right:
+                    child.Arrange(new Rect(new Point(0, si * arrangeBounds.Height), new Point(arrangeBounds.Width, ei * arrangeBounds.Height)));
+                    break;
+                case TickBarPlacement.Top:
+                case TickBarPlacement.Bottom:
+                    child.Arrange(new Rect(new Point(si * arrangeBounds.Width, 0), new Point(ei * arrangeBounds.Width, arrangeBounds.Height)));
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return arrangeBounds;
         }
 
         private static void OnStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
