@@ -19,12 +19,12 @@
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" MinHeight="100" />
+            <RowDefinition Height="*"
+                           MinHeight="100" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <gauges:LinearGauge Grid.Row="0"
                             Margin="12"
-                            VerticalAlignment="Center"
                             IsDirectionReversed="{Binding IsDirectionReversed}"
                             MajorTickFrequency="{Binding MajorTickFrequency}"
                             MajorTicks="{Binding MajorTicks}"
