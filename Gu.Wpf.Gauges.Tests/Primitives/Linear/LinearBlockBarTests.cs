@@ -18,18 +18,18 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         public void TickFrequencyOneHorizontal(bool isDirectionReversed, TickBarPlacement placement)
         {
             var blockBar = new LinearBlockBar
-                           {
-                               Minimum = 0,
-                               Maximum = 10,
-                               TickFrequency = 1,
-                               Fill = Brushes.Black,
-                               Stroke = Brushes.Red,
-                               StrokeThickness = 1,
-                               TickGap = 1,
-                               Value = 10,
-                               Placement = placement,
-                               IsDirectionReversed = isDirectionReversed,
-                           };
+            {
+                Minimum = 0,
+                Maximum = 10,
+                TickFrequency = 1,
+                Fill = Brushes.Black,
+                Stroke = Brushes.Red,
+                StrokeThickness = 1,
+                TickGap = 1,
+                Value = 10,
+                Placement = placement,
+                IsDirectionReversed = isDirectionReversed,
+            };
 
             ImageAssert.AreEqual(Properties.Resources.LinearBlockBar_Min_0_Max_10_TickFrequency_1_Horizontal, blockBar);
         }
@@ -41,18 +41,18 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         public void TicksHorizontal(bool isDirectionReversed, TickBarPlacement placement)
         {
             var blockBar = new LinearBlockBar
-                           {
-                               Minimum = 0,
-                               Maximum = 10,
-                               Ticks = new DoubleCollection(new double[] {1, 2, 6}),
-                               Fill = Brushes.Black,
-                               Stroke = Brushes.Red,
-                               StrokeThickness = 1,
-                               TickGap = 1,
-                               Value = 10,
-                               Placement = placement,
-                               IsDirectionReversed = isDirectionReversed,
-                           };
+            {
+                Minimum = 0,
+                Maximum = 10,
+                Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
+                Fill = Brushes.Black,
+                Stroke = Brushes.Red,
+                StrokeThickness = 1,
+                TickGap = 1,
+                Value = 10,
+                Placement = placement,
+                IsDirectionReversed = isDirectionReversed,
+            };
             SaveImage(blockBar);
             var expected = isDirectionReversed
                 ? Properties.Resources.LinearBlockBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1_2_6_Horizontal
@@ -67,19 +67,19 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         public void TicksAndFrequencyHorizontal(bool isDirectionReversed, TickBarPlacement placement)
         {
             var blockBar = new LinearBlockBar
-                           {
-                               Minimum = 0,
-                               Maximum = 10,
-                               TickFrequency = 5,
-                               Ticks = new DoubleCollection(new double[] {1, 2, 6}),
-                               Fill = Brushes.Black,
-                               Stroke = Brushes.Red,
-                               StrokeThickness = 1,
-                               TickGap = 1,
-                               Value = 10,
-                               Placement = placement,
-                               IsDirectionReversed = isDirectionReversed,
-                           };
+            {
+                Minimum = 0,
+                Maximum = 10,
+                TickFrequency = 5,
+                Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
+                Fill = Brushes.Black,
+                Stroke = Brushes.Red,
+                StrokeThickness = 1,
+                TickGap = 1,
+                Value = 10,
+                Placement = placement,
+                IsDirectionReversed = isDirectionReversed,
+            };
 
             SaveImage(blockBar);
             var expected = isDirectionReversed
@@ -95,18 +95,18 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         public void TickFrequencyOneVertical(bool isDirectionReversed, TickBarPlacement placement)
         {
             var blockBar = new LinearBlockBar
-                           {
-                               Minimum = 0,
-                               Maximum = 10,
-                               TickFrequency = 1,
-                               Fill = Brushes.Black,
-                               Stroke = Brushes.Red,
-                               StrokeThickness = 1,
-                               TickGap = 1,
-                               Value = 10,
-                               Placement = placement,
-                               IsDirectionReversed = isDirectionReversed,
-                           };
+            {
+                Minimum = 0,
+                Maximum = 10,
+                TickFrequency = 1,
+                Fill = Brushes.Black,
+                Stroke = Brushes.Red,
+                StrokeThickness = 1,
+                TickGap = 1,
+                Value = 10,
+                Placement = placement,
+                IsDirectionReversed = isDirectionReversed,
+            };
 
             SaveImage(blockBar);
             ImageAssert.AreEqual(Properties.Resources.LinearBlockBar_Min_0_Max_10_TickFrequency_1_Vertical, blockBar);
@@ -119,18 +119,18 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         public void TicksVertical(bool isDirectionReversed, TickBarPlacement placement)
         {
             var blockBar = new LinearBlockBar
-                           {
-                               Minimum = 0,
-                               Maximum = 10,
-                               Ticks = new DoubleCollection(new double[] {1, 2, 6}),
-                               Fill = Brushes.Black,
-                               Stroke = Brushes.Red,
-                               StrokeThickness = 1,
-                               TickGap = 1,
-                               Value = 10,
-                               Placement = placement,
-                               IsDirectionReversed = isDirectionReversed,
-                           };
+            {
+                Minimum = 0,
+                Maximum = 10,
+                Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
+                Fill = Brushes.Black,
+                Stroke = Brushes.Red,
+                StrokeThickness = 1,
+                TickGap = 1,
+                Value = 10,
+                Placement = placement,
+                IsDirectionReversed = isDirectionReversed,
+            };
 
             SaveImage(blockBar);
             var expected = isDirectionReversed
@@ -146,19 +146,19 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         public void TicksAndFrequencyVertical(bool isDirectionReversed, TickBarPlacement placement)
         {
             var blockBar = new LinearBlockBar
-                           {
-                               Minimum = 0,
-                               Maximum = 10,
-                               TickFrequency = 5,
-                               Ticks = new DoubleCollection(new double[] {1, 2, 6}),
-                               Fill = Brushes.Black,
-                               Stroke = Brushes.Red,
-                               StrokeThickness = 1,
-                               TickGap = 1,
-                               Value = 10,
-                               Placement = placement,
-                               IsDirectionReversed = isDirectionReversed,
-                           };
+            {
+                Minimum = 0,
+                Maximum = 10,
+                TickFrequency = 5,
+                Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
+                Fill = Brushes.Black,
+                Stroke = Brushes.Red,
+                StrokeThickness = 1,
+                TickGap = 1,
+                Value = 10,
+                Placement = placement,
+                IsDirectionReversed = isDirectionReversed,
+            };
 
             SaveImage(blockBar);
             var expected = isDirectionReversed
