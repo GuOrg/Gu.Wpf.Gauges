@@ -82,9 +82,11 @@
 
         protected override void OnRender(DrawingContext dc)
         {
-            void ScaleToValue(ref Rect rect, double value)
+            Rect CreateBar()
             {
-                var scale = Interpolate.Linear(this.Minimum, this.Maximum, value)
+                var rect = new Rect(this.RenderSize);
+                rect.Inflate(-this.StrokeThickness / 2, -this.StrokeThickness / 2);
+                var scale = Interpolate.Linear(this.Minimum, this.Maximum, this.Value)
                                        .Clamp(0, 1);
                 if (this.IsDirectionReversed)
                 {
@@ -112,6 +114,8 @@
                         rect.Y = bottom - rect.Height;
                     }
                 }
+
+                return rect;
             }
 
             void Draw(ref Rect rect)
@@ -164,9 +168,7 @@
 
             if (this.AllTicks.Count == 0)
             {
-                var bar = new Rect(this.RenderSize);
-                bar.Inflate(-this.StrokeThickness / 2, -this.StrokeThickness / 2);
-                ScaleToValue(ref bar, this.Value);
+                var bar = CreateBar();
                 Draw(ref bar);
                 return;
             }
