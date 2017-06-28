@@ -25,7 +25,6 @@
         </Grid.RowDefinitions>
         <gauges:LinearGauge Grid.Row="0"
                             Margin="12"
-                            VerticalAlignment="Center"
                             IsDirectionReversed="{Binding IsDirectionReversed}"
                             MajorTickFrequency="{Binding MajorTickFrequency}"
                             MajorTicks="{Binding MajorTicks}"
