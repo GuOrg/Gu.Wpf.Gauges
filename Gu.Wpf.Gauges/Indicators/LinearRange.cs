@@ -66,8 +66,13 @@
                 return arrangeBounds;
             }
 
-            var si = Interpolate.Linear(this.Minimum, this.Maximum, this.Start);
-            var ei = Interpolate.Linear(this.Minimum, this.Maximum, this.End);
+            var min = this.IsDirectionReversed ? this.Maximum : this.Minimum;
+            var max = this.IsDirectionReversed ? this.Minimum : this.Maximum;
+            var start = this.IsDirectionReversed ? this.End : this.Start;
+            var end = this.IsDirectionReversed ? this.Start : this.End;
+
+            var si = Interpolate.Linear(min, max, start);
+            var ei = Interpolate.Linear(min, max, end);
 
             switch (this.Placement)
             {
