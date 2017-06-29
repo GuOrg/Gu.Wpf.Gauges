@@ -82,36 +82,51 @@
 
         protected override void OnRender(DrawingContext dc)
         {
+            double PixelPosition(double value)
+            {
+                var scale = Interpolate.Linear(this.Minimum, this.Maximum, value)
+                                       .Clamp(0, 1);
+                if (this.Placement.IsHorizontal())
+                {
+                    var pos = (this.StrokeThickness / 2) + (scale * (this.ActualWidth - this.StrokeThickness));
+                    return this.IsDirectionReversed
+                        ? this.ActualWidth - pos
+                        : pos;
+                }
+                else
+                {
+                    var pos = (this.StrokeThickness / 2) + (scale * (this.ActualHeight - this.StrokeThickness));
+                    return this.IsDirectionReversed
+                        ? this.ActualHeight - pos
+                        : pos;
+                }
+            }
+
             Rect CreateBar()
             {
                 var rect = new Rect(this.RenderSize);
                 rect.Inflate(-this.StrokeThickness / 2, -this.StrokeThickness / 2);
-                var scale = Interpolate.Linear(this.Minimum, this.Maximum, this.Value)
-                                       .Clamp(0, 1);
-                if (this.IsDirectionReversed)
+                var pos = PixelPosition(this.Value);
+                if (this.Placement.IsHorizontal())
                 {
-                    if (this.Placement.IsHorizontal())
+                    if (this.IsDirectionReversed)
                     {
-                        var right = rect.Right;
-                        rect.Width *= scale;
-                        rect.X = right - rect.Width;
+                        RectExt.SetLeft(ref rect, pos);
                     }
                     else
                     {
-                        rect.Height *= scale;
+                        RectExt.SetRight(ref rect, pos);
                     }
                 }
                 else
                 {
-                    if (this.Placement.IsHorizontal())
+                    if (this.IsDirectionReversed)
                     {
-                        rect.Width *= scale;
+                        RectExt.SetBottom(ref rect, pos);
                     }
                     else
                     {
-                        var bottom = rect.Bottom;
-                        rect.Height *= scale;
-                        rect.Y = bottom - rect.Height;
+                        RectExt.SetTop(ref rect, pos);
                     }
                 }
 

@@ -34,6 +34,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -100,37 +101,44 @@
 
                     <TextBlock Grid.Row="5"
                                Grid.Column="0"
-                               Text="ReservedSpace" />
+                               Text="TickGap" />
                     <TextBox Grid.Row="5"
                              Grid.Column="1"
+                             Text="{Binding TickGap}" />
+                    
+                    <TextBlock Grid.Row="6"
+                               Grid.Column="0"
+                               Text="ReservedSpace" />
+                    <TextBox Grid.Row="6"
+                             Grid.Column="1"
                              Text="{Binding ReservedSpace}" />
-                    <Slider Grid.Row="5"
+                    <Slider Grid.Row="6"
                             Grid.Column="2"
                             Maximum="50"
                             Minimum="0"
                             Value="{Binding ReservedSpace}" />
 
-                    <TextBlock Grid.Row="6"
+                    <TextBlock Grid.Row="7"
                                Grid.Column="0"
                                Text="TickBarPlacement" />
-                    <ComboBox Grid.Row="6"
+                    <ComboBox Grid.Row="7"
                               Grid.Column="1"
                               sample:ItemsControlExt.EnumSource="{x:Type TickBarPlacement}"
                               SelectedItem="{Binding Placement}" />
 
 
-                    <TextBlock Grid.Row="7"
+                    <TextBlock Grid.Row="8"
                                Grid.Column="0"
                                Text="TextOrientation" />
-                    <ComboBox Grid.Row="7"
+                    <ComboBox Grid.Row="8"
                               Grid.Column="1"
                               sample:ItemsControlExt.EnumSource="{x:Type gauges:TextOrientation}"
                               SelectedItem="{Binding TextOrientation}" />
 
-                    <TextBlock Grid.Row="8"
+                    <TextBlock Grid.Row="9"
                                Grid.Column="0"
                                Text="IsDirectionReversed" />
-                    <CheckBox Grid.Row="8"
+                    <CheckBox Grid.Row="9"
                               Grid.Column="1"
                               IsChecked="{Binding IsDirectionReversed}" />
                 </Grid>

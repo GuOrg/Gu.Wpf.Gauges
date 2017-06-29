@@ -3,26 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
-             xmlns:local="clr-namespace:Gu.Wpf.Gauges.Sample.Sandbox"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
              d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d">
     <UserControl.DataContext>
-        <sample:TickBarVm HorizontalTextAlignment="Left"
-                          IsDirectionReversed="False"
-                          MajorTickFrequency="50"
+        <sample:TickBarVm IsDirectionReversed="True"
+                          MajorTickFrequency="10"
                           MajorTicks="75"
                           Maximum="100"
                           Minimum="0"
-                          MinorTickFrequency="5"
                           Placement="Left"
                           ReservedSpace="0"
                           SnapsToDevicePixels="False"
-                          TextOrientation="Horizontal"
-                          VerticalTextAlignment="Top"
-                          Value="1" />
+                          TickGap="1"
+                          Value="10" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -41,6 +37,7 @@
                                        SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
                                        Stroke="Black"
                                        StrokeThickness="1"
+                                       TickGap="{Binding TickGap}"
                                        Value="{Binding Value}" />
                 <Rectangle Fill="#55ff69b4"
                            SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
