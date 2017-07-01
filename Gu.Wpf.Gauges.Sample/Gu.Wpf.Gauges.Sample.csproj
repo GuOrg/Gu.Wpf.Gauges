@@ -87,7 +87,7 @@
     <Compile Include="LinearIndicatorsView.xaml.cs">
       <DependentUpon>LinearIndicatorsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Primitives\LinearRangesView.xaml.cs">
+    <Compile Include="Indicators\LinearRangesView.xaml.cs">
       <DependentUpon>LinearRangesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sandbox\AxisBox.xaml.cs">
@@ -146,7 +146,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Primitives\LinearRangesView.xaml">
+    <Page Include="Indicators\LinearRangesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

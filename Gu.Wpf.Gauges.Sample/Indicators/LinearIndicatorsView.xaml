@@ -5,36 +5,61 @@
              xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
              xmlns:local="clr-namespace:Gu.Wpf.Gauges.Sample.Indicators"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
              d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d">
-    <gauges:LinearGauge Maximum="{Binding Maximum, ElementName=ValueSlider}"
-                        Minimum="{Binding Minimum, ElementName=ValueSlider}"
-                        Value="{Binding Value, ElementName=ValueSlider}">
-        <Grid>
-            <gauges:LinearRange Background="GreenYellow"
-                                End="20"
-                                Start="0">
-                <TextBlock HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Text="Good" />
-            </gauges:LinearRange>
+    <UserControl.DataContext>
+        <sample:TickBarVm MajorTickFrequency="25"
+                          MajorTicks="10 85"
+                          Maximum="100"
+                          Minimum="0"
+                          MinorTickFrequency="5"
+                          Placement="Top"
+                          ShowLabels="True"
+                          TextOrientation="Horizontal"
+                          Value="60" />
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            <gauges:LinearRange Background="Yellow"
-                                End="80"
-                                Start="20">
-                <TextBlock HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Text="Bad" />
-            </gauges:LinearRange>
+        <gauges:LinearGauge Grid.Row="0"
+                            Height="80"
+                            Margin="10"
+                            IsDirectionReversed="{Binding IsDirectionReversed}"
+                            Maximum="{Binding Maximum}"
+                            Minimum="{Binding Minimum}"
+                            Placement="{Binding Placement}"
+                            Value="{Binding Value}">
+            <Grid>
+                <gauges:LinearAxis MajorTickFrequency="10" />
 
-            <gauges:LinearRange Background="Orange"
-                                End="100"
-                                Start="80">
-                <TextBlock HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Text="Ugly" />
-            </gauges:LinearRange>
-        </Grid>
-    </gauges:LinearGauge>
+                <gauges:LinearIndicator>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Rectangle Grid.Row="0"
+                                   Width="1"
+                                   Height="25"
+                                   HorizontalAlignment="Center"
+                                   Fill="Black" />
+                        <TextBlock Grid.Row="1"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding Value, RelativeSource={RelativeSource AncestorType={x:Type gauges:LinearGauge}}}" />
+                    </Grid>
+                </gauges:LinearIndicator>
+            </Grid>
+        </gauges:LinearGauge>
+
+        <ContentPresenter Grid.Row="2"
+                          Grid.Column="0"
+                          Content="{Binding}" />
+
+    </Grid>
 </UserControl>
