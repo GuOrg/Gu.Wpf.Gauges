@@ -56,16 +56,6 @@
             set => this.SetValue(PlacementProperty, value);
         }
 
-        protected virtual void OnEndChanged(double newValue)
-        {
-            LinearPanel.SetEnd(this, newValue);
-        }
-
-        protected virtual void OnStartChanged(double newValue)
-        {
-            LinearPanel.SetStart(this, newValue);
-        }
-
         protected override Size ArrangeOverride(Size arrangeBounds)
         {
             if (double.IsNaN(this.Value))
@@ -104,18 +94,28 @@
             return arrangeBounds;
         }
 
+        protected virtual void OnEndChanged(double oldValue, double newValue)
+        {
+            LinearPanel.SetEnd(this, newValue);
+        }
+
+        protected virtual void OnStartChanged(double oldValue, double newValue)
+        {
+            LinearPanel.SetStart(this, newValue);
+        }
+
         protected virtual void OnPlacementChanged(TickBarPlacement oldValue, TickBarPlacement newValue)
         {
         }
 
         private static void OnStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((LinearRange)d).OnStartChanged((double)e.NewValue);
+            ((LinearRange)d).OnStartChanged((double)e.OldValue, (double)e.NewValue);
         }
 
         private static void OnEndChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((LinearRange)d).OnEndChanged((double)e.NewValue);
+            ((LinearRange)d).OnEndChanged((double)e.OldValue, (double)e.NewValue);
         }
 
         private static void OnPlacementChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
