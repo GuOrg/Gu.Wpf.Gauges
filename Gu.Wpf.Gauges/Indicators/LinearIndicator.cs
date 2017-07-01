@@ -79,7 +79,7 @@
             return arrangeBounds;
         }
 
-        protected virtual void OnPlacementChanged(TickBarPlacement eOldValue, TickBarPlacement eNewValue)
+        protected virtual void OnPlacementChanged(TickBarPlacement oldValue, TickBarPlacement newValue)
         {
         }
 

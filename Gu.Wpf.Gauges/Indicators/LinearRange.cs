@@ -4,7 +4,7 @@
     using System.Windows;
     using System.Windows.Controls.Primitives;
 
-    public class LinearRange : LinearIndicator
+    public class LinearRange : Indicator
     {
         public static readonly DependencyProperty StartProperty = DependencyProperty.Register(
             nameof(Start),
@@ -24,6 +24,13 @@
                 FrameworkPropertyMetadataOptions.AffectsArrange,
                 OnEndChanged));
 
+        public static readonly DependencyProperty PlacementProperty = LinearGauge.PlacementProperty.AddOwner(
+            typeof(LinearRange),
+            new FrameworkPropertyMetadata(
+                TickBarPlacement.Bottom,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits,
+                OnPlacementChanged));
+
         static LinearRange()
         {
             DefaultStyleKeyProperty.OverrideMetadata(
@@ -41,6 +48,12 @@
         {
             get => (double)this.GetValue(EndProperty);
             set => this.SetValue(EndProperty, value);
+        }
+
+        public TickBarPlacement Placement
+        {
+            get => (TickBarPlacement)this.GetValue(PlacementProperty);
+            set => this.SetValue(PlacementProperty, value);
         }
 
         protected virtual void OnEndChanged(double newValue)
@@ -91,6 +104,10 @@
             return arrangeBounds;
         }
 
+        protected virtual void OnPlacementChanged(TickBarPlacement oldValue, TickBarPlacement newValue)
+        {
+        }
+
         private static void OnStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((LinearRange)d).OnStartChanged((double)e.NewValue);
@@ -99,6 +116,11 @@
         private static void OnEndChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((LinearRange)d).OnEndChanged((double)e.NewValue);
+        }
+
+        private static void OnPlacementChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((LinearRange)d).OnPlacementChanged((TickBarPlacement)e.OldValue, (TickBarPlacement)e.NewValue);
         }
     }
 }
