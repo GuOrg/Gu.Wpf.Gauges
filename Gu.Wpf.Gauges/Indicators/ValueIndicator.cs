@@ -51,7 +51,7 @@
 
         private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((LinearIndicator)d).OnValueChanged((double)e.OldValue, (double)e.NewValue);
+            ((ValueIndicator)d).OnValueChanged((double)e.OldValue, (double)e.NewValue);
         }
     }
 }

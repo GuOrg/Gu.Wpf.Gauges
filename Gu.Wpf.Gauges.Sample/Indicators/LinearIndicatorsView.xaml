@@ -8,12 +8,9 @@
              d:DesignHeight="300"
              d:DesignWidth="300"
              mc:Ignorable="d">
-    <gauges:LinearGauge Maximum="{Binding Maximum,
-                                          ElementName=ValueSlider}"
-                        Minimum="{Binding Minimum,
-                                          ElementName=ValueSlider}"
-                        Value="{Binding Value,
-                                        ElementName=ValueSlider}">
+    <gauges:LinearGauge Maximum="{Binding Maximum, ElementName=ValueSlider}"
+                        Minimum="{Binding Minimum, ElementName=ValueSlider}"
+                        Value="{Binding Value, ElementName=ValueSlider}">
         <Grid>
             <gauges:LinearRange Background="GreenYellow"
                                 End="20"
