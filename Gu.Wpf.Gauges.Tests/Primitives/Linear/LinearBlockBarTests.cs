@@ -60,6 +60,41 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
             ImageAssert.AreEqual(expected, blockBar);
         }
 
+        [TestCase(true, TickBarPlacement.Top, 5.8)]
+        [TestCase(false, TickBarPlacement.Top, 5.8)]
+        [TestCase(true, TickBarPlacement.Bottom, 5.8)]
+        [TestCase(false, TickBarPlacement.Bottom, 5.8)]
+        [TestCase(true, TickBarPlacement.Top, 6)]
+        [TestCase(false, TickBarPlacement.Top, 6)]
+        [TestCase(true, TickBarPlacement.Bottom, 6)]
+        [TestCase(false, TickBarPlacement.Bottom, 6)]
+        [TestCase(true, TickBarPlacement.Top, 6.2)]
+        [TestCase(false, TickBarPlacement.Top, 6.2)]
+        [TestCase(true, TickBarPlacement.Bottom, 6.2)]
+        [TestCase(false, TickBarPlacement.Bottom, 6.2)]
+        public void TicksHorizontalValueAtTick(bool isDirectionReversed, TickBarPlacement placement, double value)
+        {
+            var blockBar = new LinearBlockBar
+                           {
+                               Minimum = 0,
+                               Maximum = 10,
+                               Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
+                               Fill = Brushes.Black,
+                               Stroke = Brushes.Red,
+                               StrokeThickness = 1,
+                               TickGap = 1,
+                               Value = value,
+                               Placement = placement,
+                               IsDirectionReversed = isDirectionReversed,
+                           };
+
+            SaveImage(blockBar);
+            var expected = isDirectionReversed
+                ? Properties.Resources.LinearBlockBar_Min_0_Max_10_Value_6_IsDirectionReversed_True_Ticks_1_2_6_Horizontal
+                : Properties.Resources.LinearBlockBar_Min_0_Max_10_Value_6_IsDirectionReversed_False_Ticks_1_2_6_Horizontal;
+            ImageAssert.AreEqual(expected, blockBar);
+        }
+
         [TestCase(true, TickBarPlacement.Top)]
         [TestCase(false, TickBarPlacement.Top)]
         [TestCase(true, TickBarPlacement.Bottom)]
@@ -136,6 +171,40 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
             ImageAssert.AreEqual(expected, blockBar);
         }
 
+        [TestCase(true, TickBarPlacement.Left, 5.8)]
+        [TestCase(false, TickBarPlacement.Left, 5.8)]
+        [TestCase(true, TickBarPlacement.Right, 5.8)]
+        [TestCase(false, TickBarPlacement.Right, 5.8)]
+        [TestCase(true, TickBarPlacement.Left, 6)]
+        [TestCase(false, TickBarPlacement.Left, 6)]
+        [TestCase(true, TickBarPlacement.Right, 6)]
+        [TestCase(false, TickBarPlacement.Right, 6)]
+        [TestCase(true, TickBarPlacement.Left, 6.2)]
+        [TestCase(false, TickBarPlacement.Left, 6.2)]
+        [TestCase(true, TickBarPlacement.Right, 6.2)]
+        [TestCase(false, TickBarPlacement.Right, 6.2)]
+        public void TicksVerticalValueAtTick(bool isDirectionReversed, TickBarPlacement placement, double value)
+        {
+            var blockBar = new LinearBlockBar
+            {
+                Minimum = 0,
+                Maximum = 10,
+                Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
+                Fill = Brushes.Black,
+                Stroke = Brushes.Red,
+                StrokeThickness = 1,
+                TickGap = 1,
+                Value = value,
+                Placement = placement,
+                IsDirectionReversed = isDirectionReversed,
+            };
+
+            var expected = isDirectionReversed
+                ? Properties.Resources.LinearBlockBar_Min_0_Max_10_Value_6_IsDirectionReversed_True_Ticks_1_2_6_Vertical
+                : Properties.Resources.LinearBlockBar_Min_0_Max_10_Value_6_IsDirectionReversed_False_Ticks_1_2_6_Vertical;
+            ImageAssert.AreEqual(expected, blockBar);
+        }
+
         [TestCase(true, TickBarPlacement.Left)]
         [TestCase(false, TickBarPlacement.Left)]
         [TestCase(true, TickBarPlacement.Right)]
@@ -185,10 +254,15 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
             var size = blockBar.Placement == TickBarPlacement.Left || blockBar.Placement == TickBarPlacement.Right
                 ? new Size(5, 40)
                 : new Size(40, 5);
+
+            var value = blockBar.Value < blockBar.Maximum
+                ? $"_Value_{blockBar.Value}"
+                : string.Empty;
+
             Directory.CreateDirectory(@"C:\Temp\LinearBlockBar");
             blockBar.SaveImage(
                 size,
-                $@"C:\Temp\LinearBlockBar\LinearBlockBar_Min_{blockBar.Minimum}_Max_{blockBar.Maximum}{isReversed}{tickFrequency}{ticks}{orientation}.png");
+                $@"C:\Temp\LinearBlockBar\LinearBlockBar_Min_{blockBar.Minimum}_Max_{blockBar.Maximum}{value}{isReversed}{tickFrequency}{ticks}{orientation}.png");
         }
     }
 }
