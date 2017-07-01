@@ -5,6 +5,7 @@
 
     using NUnit.Framework;
 
+    [Explicit("Rewrite as image asserts")]
     [Apartment(ApartmentState.STA)]
     public class AngularBlockBarTests
     {

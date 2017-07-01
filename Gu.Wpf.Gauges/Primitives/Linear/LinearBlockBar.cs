@@ -82,40 +82,91 @@
 
         protected override void OnRender(DrawingContext dc)
         {
+            double PixelPosition(double value)
+            {
+                var scale = Interpolate.Linear(this.Minimum, this.Maximum, value)
+                                       .Clamp(0, 1);
+                if (this.Placement.IsHorizontal())
+                {
+                    var pos = (this.StrokeThickness / 2) + (scale * (this.ActualWidth - this.StrokeThickness));
+                    return this.IsDirectionReversed
+                        ? this.ActualWidth - pos
+                        : pos;
+                }
+                else
+                {
+                    var pos = (this.StrokeThickness / 2) + (scale * (this.ActualHeight - this.StrokeThickness));
+                    return this.IsDirectionReversed
+                        ? pos
+                        : this.ActualHeight - pos;
+                }
+            }
+
             Rect CreateBar()
             {
                 var rect = new Rect(this.RenderSize);
                 rect.Inflate(-this.StrokeThickness / 2, -this.StrokeThickness / 2);
-                var scale = Interpolate.Linear(this.Minimum, this.Maximum, this.Value)
-                                       .Clamp(0, 1);
-                if (this.IsDirectionReversed)
+                var pos = PixelPosition(this.Value);
+                if (this.Placement.IsHorizontal())
                 {
-                    if (this.Placement.IsHorizontal())
+                    if (this.IsDirectionReversed)
                     {
-                        var right = rect.Right;
-                        rect.Width *= scale;
-                        rect.X = right - rect.Width;
+                        RectExt.SetLeft(ref rect, pos);
                     }
                     else
                     {
-                        rect.Height *= scale;
+                        RectExt.SetRight(ref rect, pos);
                     }
                 }
                 else
                 {
-                    if (this.Placement.IsHorizontal())
+                    if (this.IsDirectionReversed)
                     {
-                        rect.Width *= scale;
+                        RectExt.SetBottom(ref rect, pos);
                     }
                     else
                     {
-                        var bottom = rect.Bottom;
-                        rect.Height *= scale;
-                        rect.Y = bottom - rect.Height;
+                        RectExt.SetTop(ref rect, pos);
                     }
                 }
 
                 return rect;
+            }
+
+            Rect Split(ref Rect barRect, double tickValue)
+            {
+                var pos = PixelPosition(tickValue);
+                var offset = (this.TickGap / 2) + (this.StrokeThickness / 2);
+                if (this.Placement.IsHorizontal())
+                {
+                    if (this.IsDirectionReversed)
+                    {
+                        var tick = barRect.TrimLeft(pos + offset);
+                        RectExt.SetRight(ref barRect, pos - offset);
+                        return tick;
+                    }
+                    else
+                    {
+                        var tick = barRect.TrimRight(pos - offset);
+                        RectExt.SetLeft(ref barRect, pos + offset);
+                        return tick;
+                    }
+                }
+                else
+                {
+                    if (this.IsDirectionReversed)
+                    {
+                        var tick = barRect.TrimBottom(pos - offset);
+                        RectExt.SetTop(ref barRect, pos + offset);
+                        return tick;
+                    }
+                    else
+                    {
+                        var tick = barRect.TrimTop(pos + offset);
+                        RectExt.SetBottom(ref barRect, pos - offset);
+                        return tick;
+                    }
+                }
             }
 
             void Draw(ref Rect rect)
@@ -166,65 +217,30 @@
                 return;
             }
 
-            if (this.AllTicks.Count == 0)
+            var bar = CreateBar();
+            foreach (var tick in this.AllTicks)
             {
-                var bar = CreateBar();
-                Draw(ref bar);
-                return;
-            }
+                if (tick == this.Maximum ||
+                    bar.Width == 0 ||
+                    bar.Height == 0)
+                {
+                    break;
+                }
 
-            var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace, this.Placement, this.IsDirectionReversed);
-            var previous = line.StartPoint;
-            var offset = new Vector(0, 0);
-            var gap = new Vector(0, 0);
-            switch (this.Placement)
-            {
-                case TickBarPlacement.Left:
-                    offset = new Vector(this.ActualWidth, 0);
-                    gap = new Vector(0, -1 * this.TickGap / 2);
-                    break;
-                case TickBarPlacement.Right:
-                    offset = new Vector(-1 * this.ActualWidth, 0);
-                    gap = new Vector(0, -1 * this.TickGap / 2);
-                    break;
-                case TickBarPlacement.Top:
-                    offset = new Vector(0, this.ActualHeight);
-                    gap = new Vector(this.TickGap / 2, 0);
-                    break;
-                case TickBarPlacement.Bottom:
-                    offset = new Vector(0, -1 * this.ActualHeight);
-                    gap = new Vector(this.TickGap / 2, 0);
-                    break;
-            }
-
-            if (this.IsDirectionReversed)
-            {
-                gap = -1 * gap;
-            }
-
-            var ticks = this.AllTicks
-                            .Concat(new[] { this.Value })
-                            .OrderBy(t => t);
-            foreach (var tick in ticks)
-            {
                 if (tick == this.Minimum)
                 {
                     continue;
                 }
 
+                var tickRect = Split(ref bar, tick);
+                Draw(ref tickRect);
                 if (tick > this.Value)
                 {
-                    var p = TickHelper.ToPos(this.Value, this.Minimum, this.Maximum, line);
-                    var r = new Rect(previous, p);
-                    dc.DrawRectangle(this.Fill, this.Pen, r);
                     break;
                 }
-
-                var pos = TickHelper.ToPos(tick, this.Minimum, this.Maximum, line);
-                var rect = new Rect(previous, pos + offset - gap);
-                dc.DrawRectangle(this.Fill, this.Pen, rect);
-                previous = pos + gap;
             }
+
+            Draw(ref bar);
         }
     }
 }

@@ -5,23 +5,25 @@
 
     public class RectExtTest
     {
-        [TestCase("1 2 3 4", 0)]
-        [TestCase("1 2 3 4", 2)]
-        public void SetLeft(string rs, double value)
+        [TestCase("1 2 3 4", 0, 4)]
+        [TestCase("1 2 3 4", 2, 4)]
+        [TestCase("1 2 3 4", 8, 8)]
+        public void SetLeft(string rs, double value, double expected)
         {
             var rect = Rect.Parse(rs);
             RectExt.SetLeft(ref rect, value);
-            Assert.AreEqual(Rect.Parse(rs).Right, rect.Right);
+            Assert.AreEqual(expected, rect.Right);
             Assert.AreEqual(value, rect.Left);
         }
 
-        [TestCase("1 2 3 4", 0)]
-        [TestCase("1 2 3 4", 2)]
-        public void WithLeft(string rs, double value)
+        [TestCase("1 2 3 4", 0, 4)]
+        [TestCase("1 2 3 4", 2, 4)]
+        [TestCase("1 2 3 4", 8, 8)]
+        public void WithLeft(string rs, double value, double expected)
         {
             var rect = Rect.Parse(rs);
             var actual = rect.WithLeft(value);
-            Assert.AreEqual(rect.Right, actual.Right);
+            Assert.AreEqual(expected, actual.Right);
             Assert.AreEqual(value, actual.Left);
         }
 
@@ -35,13 +37,15 @@
             Assert.AreEqual(expected, actual.Left);
         }
 
-        [TestCase("1 2 3 4", 2)]
-        [TestCase("1 2 3 4", 3)]
-        public void SetRight(string rs, double value)
+        [TestCase("1 2 3 4", 0, 0)]
+        [TestCase("1 2 3 4", 2, 1)]
+        [TestCase("1 2 3 4", 3, 1)]
+        [TestCase("1 2 3 4", 10, 1)]
+        public void SetRight(string rs, double value, double expected)
         {
             var rect = Rect.Parse(rs);
             RectExt.SetRight(ref rect, value);
-            Assert.AreEqual(Rect.Parse(rs).Left, rect.Left);
+            Assert.AreEqual(expected, rect.Left);
             Assert.AreEqual(value, rect.Right);
         }
 
@@ -65,12 +69,14 @@
             Assert.AreEqual(expected, actual.Right);
         }
 
-        [TestCase("1 2 3 4", 3)]
-        public void SetTop(string rs, double value)
+        [TestCase("1 2 3 4", 0, 6)]
+        [TestCase("1 2 3 4", 3, 6)]
+        [TestCase("1 2 3 4", 10, 10)]
+        public void SetTop(string rs, double value, double expected)
         {
             var rect = Rect.Parse(rs);
             RectExt.SetTop(ref rect, value);
-            Assert.AreEqual(Rect.Parse(rs).Bottom, rect.Bottom);
+            Assert.AreEqual(expected, rect.Bottom);
             Assert.AreEqual(value, rect.Top);
         }
 
@@ -84,8 +90,9 @@
             Assert.AreEqual(value, actual.Top);
         }
 
+        [TestCase("1 2 3 4", 1, 2)]
         [TestCase("1 2 3 4", 2, 2)]
-        [TestCase("1 2 3 4", 7, 2)]
+        [TestCase("1 2 3 4", 5, 5)]
         public void TrimTop(string rs, double value, double expected)
         {
             var rect = Rect.Parse(rs);
@@ -94,12 +101,14 @@
             Assert.AreEqual(expected, actual.Top);
         }
 
-        [TestCase("1 2 3 4", 3)]
-        public void SetBottom(string rs, double value)
+        [TestCase("1 2 3 4", 0, 0)]
+        [TestCase("1 2 3 4", 3, 2)]
+        [TestCase("1 2 3 4", 10, 2)]
+        public void SetBottom(string rs, double value, double expected)
         {
             var rect = Rect.Parse(rs);
             RectExt.SetBottom(ref rect, value);
-            Assert.AreEqual(Rect.Parse(rs).Top, rect.Top);
+            Assert.AreEqual(expected, rect.Top);
             Assert.AreEqual(value, rect.Bottom);
         }
 
@@ -113,7 +122,6 @@
             Assert.AreEqual(value, actual.Bottom);
         }
 
-        [TestCase("1 2 3 4", 1, 2)]
         [TestCase("1 2 3 4", 2, 2)]
         [TestCase("1 2 3 4", 3, 3)]
         [TestCase("1 2 3 4", 7, 6)]

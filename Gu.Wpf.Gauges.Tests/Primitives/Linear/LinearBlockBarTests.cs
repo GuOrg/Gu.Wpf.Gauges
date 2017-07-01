@@ -53,7 +53,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 Placement = placement,
                 IsDirectionReversed = isDirectionReversed,
             };
-            SaveImage(blockBar);
+
             var expected = isDirectionReversed
                 ? Properties.Resources.LinearBlockBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1_2_6_Horizontal
                 : Properties.Resources.LinearBlockBar_Min_0_Max_10_IsDirectionReversed_False_Ticks_1_2_6_Horizontal;
@@ -81,7 +81,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 IsDirectionReversed = isDirectionReversed,
             };
 
-            SaveImage(blockBar);
             var expected = isDirectionReversed
                 ? Properties.Resources.LinearBlockBar_Min_0_Max_10_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Horizontal
                 : Properties.Resources.LinearBlockBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Horizontal;
@@ -108,7 +107,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 IsDirectionReversed = isDirectionReversed,
             };
 
-            SaveImage(blockBar);
             ImageAssert.AreEqual(Properties.Resources.LinearBlockBar_Min_0_Max_10_TickFrequency_1_Vertical, blockBar);
         }
 
@@ -132,7 +130,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 IsDirectionReversed = isDirectionReversed,
             };
 
-            SaveImage(blockBar);
             var expected = isDirectionReversed
                 ? Properties.Resources.LinearBlockBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1_2_6_Vertical
                 : Properties.Resources.LinearBlockBar_Min_0_Max_10_IsDirectionReversed_False_Ticks_1_2_6_Vertical;
@@ -160,7 +157,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 IsDirectionReversed = isDirectionReversed,
             };
 
-            SaveImage(blockBar);
             var expected = isDirectionReversed
                 ? Properties.Resources.LinearBlockBar_Min_0_Max_10_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Vertical
                 : Properties.Resources.LinearBlockBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Vertical;
