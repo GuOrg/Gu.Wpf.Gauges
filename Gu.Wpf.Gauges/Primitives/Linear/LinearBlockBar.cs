@@ -1,7 +1,7 @@
 ﻿namespace Gu.Wpf.Gauges
 {
     using System;
-    using System.Linq;
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
@@ -80,6 +80,7 @@
 
         protected override Geometry DefiningGeometry => throw new InvalidOperationException("Uses OnRender");
 
+        [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
         protected override void OnRender(DrawingContext dc)
         {
             double PixelPosition(double value)
