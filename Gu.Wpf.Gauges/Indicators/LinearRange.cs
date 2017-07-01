@@ -96,12 +96,10 @@
 
         protected virtual void OnEndChanged(double oldValue, double newValue)
         {
-            LinearPanel.SetEnd(this, newValue);
         }
 
         protected virtual void OnStartChanged(double oldValue, double newValue)
         {
-            LinearPanel.SetStart(this, newValue);
         }
 
         protected virtual void OnPlacementChanged(TickBarPlacement oldValue, TickBarPlacement newValue)
