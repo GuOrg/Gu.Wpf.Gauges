@@ -42,8 +42,7 @@
                 return arrangeBounds;
             }
 
-            var child = this.GetVisualChild(0) as UIElement;
-            if (child == null)
+            if (this.VisualChild == null)
             {
                 return arrangeBounds;
             }
@@ -68,14 +67,14 @@
 
             var p1 = l1.Interpolate(this.Value, this.Minimum, this.Maximum);
             var p2 = l2.Interpolate(this.Value, this.Minimum, this.Maximum);
-            var w2 = child.DesiredSize.Width / 2;
-            var h2 = child.DesiredSize.Height / 2;
+            var w2 = this.VisualChild.DesiredSize.Width / 2;
+            var h2 = this.VisualChild.DesiredSize.Height / 2;
             var ps = new Point(p1.X - w2, p1.Y - h2);
             var pe = new Point(p2.X + w2, p2.Y + h2);
             var rect = new Rect(arrangeBounds);
             var rect1 = new Rect(ps, pe);
             rect.Intersect(rect1);
-            child.Arrange(rect.IsEmpty ? default(Rect) : rect);
+            this.VisualChild.Arrange(rect.IsEmpty ? default(Rect) : rect);
             return arrangeBounds;
         }
 
