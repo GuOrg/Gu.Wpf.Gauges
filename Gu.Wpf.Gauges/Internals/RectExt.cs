@@ -30,6 +30,7 @@
 
         internal static void SetRight(ref Rect rect, double right)
         {
+            rect.X = Math.Min(rect.Left, right);
             rect.Width = Math.Max(0, right - rect.X);
         }
 
@@ -58,7 +59,7 @@
 
         internal static Rect TrimTop(this Rect rect, double top)
         {
-            if (rect.Top > top)
+            if (rect.Top < top)
             {
                 SetTop(ref rect, top);
             }
@@ -76,6 +77,7 @@
 
         internal static void SetBottom(ref Rect rect, double bottom)
         {
+            rect.Y = Math.Min(rect.Top, bottom);
             rect.Height = Math.Max(0, bottom - rect.Top);
         }
 

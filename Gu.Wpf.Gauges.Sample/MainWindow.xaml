@@ -14,10 +14,6 @@
                                          IsDesignTimeCreatable=True}"
         mc:Ignorable="d">
     <TabControl>
-        <TabItem Header="Gauge">
-            <sandbox:GaugeBox />
-        </TabItem>
-
         <TabItem Header="Linear default style">
             <sample:DefaultStyleLinearGaugeView />
         </TabItem>
@@ -64,6 +60,14 @@
 
         <TabItem Header="Angular panel">
             <sample:AngularPanelView />
+        </TabItem>
+
+        <TabItem Header="Gauge">
+            <sandbox:GaugeBox />
+        </TabItem>
+
+        <TabItem Header="LinearBlockBarBox">
+            <sandbox:LinearBlockBarBox />
         </TabItem>
     </TabControl>
 </Window>

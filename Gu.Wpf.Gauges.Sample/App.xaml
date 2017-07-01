@@ -105,7 +105,7 @@
                     <TextBox Grid.Row="5"
                              Grid.Column="1"
                              Text="{Binding TickGap}" />
-                    
+
                     <TextBlock Grid.Row="6"
                                Grid.Column="0"
                                Text="ReservedSpace" />
