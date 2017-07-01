@@ -4,26 +4,8 @@ namespace Gu.Wpf.Gauges
     using System.Windows;
     using System.Windows.Controls;
 
-    [DefaultEvent("ValueChanged")]
-    [DefaultProperty("Value")]
     public class Indicator : ContentControl
     {
-        /// <summary>
-        /// Event correspond to Value changed event
-        /// </summary>
-        public static readonly RoutedEvent ValueChangedEvent = EventManager.RegisterRoutedEvent(
-            nameof(ValueChanged),
-            RoutingStrategy.Bubble,
-            typeof(RoutedPropertyChangedEventHandler<double>),
-            typeof(Indicator));
-
-        public static readonly DependencyProperty ValueProperty = Gauge.ValueProperty.AddOwner(
-            typeof(Indicator),
-            new FrameworkPropertyMetadata(
-                double.NaN,
-                FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits,
-                OnValueChanged));
-
         /// <summary>
         /// Identifies the <see cref="P:Bar.Minimum" /> dependency property.
         /// </summary>
@@ -56,22 +38,6 @@ namespace Gu.Wpf.Gauges
             new FrameworkPropertyMetadata(
                 false,
                 FrameworkPropertyMetadataOptions.Inherits));
-
-        /// <summary>
-        /// Add / Remove ValueChangedEvent handler
-        /// </summary>
-        [Category("Behavior")]
-        public event RoutedPropertyChangedEventHandler<double> ValueChanged
-        {
-            add => this.AddHandler(ValueChangedEvent, value);
-            remove => this.RemoveHandler(ValueChangedEvent, value);
-        }
-
-        public double Value
-        {
-            get => (double)this.GetValue(ValueProperty);
-            set => this.SetValue(ValueProperty, value);
-        }
 
         /// <summary>
         /// Gets or sets the <see cref="P:Bar.Minimum" />
@@ -109,20 +75,5 @@ namespace Gu.Wpf.Gauges
         }
 
         protected UIElement VisualChild => (UIElement)this.GetVisualChild(0);
-
-        /// <summary>
-        ///     This method is invoked when the Value property changes.
-        /// </summary>
-        /// <param name="oldValue">The old value of the Value property.</param>
-        /// <param name="newValue">The new value of the Value property.</param>
-        protected virtual void OnValueChanged(double oldValue, double newValue)
-        {
-            this.RaiseEvent(new RoutedPropertyChangedEventArgs<double>(oldValue, newValue) { RoutedEvent = ValueChangedEvent });
-        }
-
-        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((Indicator)d).OnValueChanged((double)e.OldValue, (double)e.NewValue);
-        }
     }
 }

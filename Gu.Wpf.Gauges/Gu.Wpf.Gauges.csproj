@@ -71,6 +71,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Gauge.tt</DependentUpon>
     </Compile>
+    <Compile Include="Indicators\ValueIndicator.cs" />
     <Compile Include="Internals\BindingHelper.cs" />
     <Compile Include="Internals\DependencyObjectExt.cs" />
     <Compile Include="Internals\DoubleUtil.cs" />
@@ -105,7 +106,6 @@
     <Compile Include="Primitives\ITextFormat.cs" />
     <Compile Include="Internals\Horizontal.cs" />
     <Compile Include="Internals\Line.cs" />
-    <Compile Include="Primitives\Linear\LinearPanel.cs" />
     <Compile Include="Primitives\Linear\LinearTickBar.cs" />
     <Compile Include="Internals\PointExt.cs" />
     <Compile Include="Internals\RectExt.cs" />

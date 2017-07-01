@@ -2,7 +2,7 @@ namespace Gu.Wpf.Gauges
 {
     using System.Windows;
 
-    public class AngularIndicator : Indicator
+    public class AngularIndicator : ValueIndicator
     {
         static AngularIndicator()
         {

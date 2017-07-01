@@ -4,7 +4,7 @@
     using System.Windows;
     using System.Windows.Controls.Primitives;
 
-    public class LinearIndicator : Indicator
+    public class LinearIndicator : ValueIndicator
     {
         public static readonly DependencyProperty PlacementProperty = LinearGauge.PlacementProperty.AddOwner(
             typeof(LinearIndicator),
