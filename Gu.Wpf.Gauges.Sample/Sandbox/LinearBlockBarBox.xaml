@@ -18,7 +18,7 @@
                           ReservedSpace="0"
                           SnapsToDevicePixels="False"
                           TickGap="1"
-                          Value="10" />
+                          Value="100" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>

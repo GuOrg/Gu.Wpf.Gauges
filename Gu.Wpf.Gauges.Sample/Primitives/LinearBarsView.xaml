@@ -15,11 +15,11 @@
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="5"
-                          TickGap="2"
                           Placement="Left"
                           ReservedSpace="0"
                           SnapsToDevicePixels="False"
                           TextOrientation="Horizontal"
+                          TickGap="2"
                           VerticalTextAlignment="Top"
                           Value="76" />
     </UserControl.DataContext>

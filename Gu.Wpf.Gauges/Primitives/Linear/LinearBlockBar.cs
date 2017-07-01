@@ -97,8 +97,8 @@
                 {
                     var pos = (this.StrokeThickness / 2) + (scale * (this.ActualHeight - this.StrokeThickness));
                     return this.IsDirectionReversed
-                        ? this.ActualHeight - pos
-                        : pos;
+                        ? pos
+                        : this.ActualHeight - pos;
                 }
             }
 
