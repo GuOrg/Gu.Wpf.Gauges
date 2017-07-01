@@ -90,9 +90,6 @@
     <Compile Include="Primitives\LinearRangesView.xaml.cs">
       <DependentUpon>LinearRangesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Primitives\LinearPanelView.xaml.cs">
-      <DependentUpon>LinearPanelView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Sandbox\AxisBox.xaml.cs">
       <DependentUpon>AxisBox.xaml</DependentUpon>
     </Compile>
@@ -165,10 +162,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Primitives\LinearPanelView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Sandbox\AxisBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

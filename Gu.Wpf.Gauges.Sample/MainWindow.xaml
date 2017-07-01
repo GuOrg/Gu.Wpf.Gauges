@@ -50,10 +50,6 @@
             <sample:LinearIndicatorsView />
         </TabItem>
 
-        <TabItem Header="Linear panel">
-            <sample:LinearPanelView />
-        </TabItem>
-
         <TabItem Header="Polar panel">
             <sandbox:PolarPanelView />
         </TabItem>

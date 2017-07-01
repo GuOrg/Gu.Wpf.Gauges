@@ -58,7 +58,8 @@
 
         protected override Size ArrangeOverride(Size arrangeBounds)
         {
-            if (double.IsNaN(this.Value))
+            if (double.IsNaN(this.Start) ||
+                double.IsNaN(this.End))
             {
                 return arrangeBounds;
             }

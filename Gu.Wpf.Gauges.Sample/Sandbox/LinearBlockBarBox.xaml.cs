@@ -6,7 +6,7 @@
     {
         public LinearBlockBarBox()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }
