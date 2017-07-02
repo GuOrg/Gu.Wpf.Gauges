@@ -72,6 +72,9 @@
     <Compile Include="Sandbox\LinearBlockBarBox.xaml.cs">
       <DependentUpon>LinearBlockBarBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sandbox\RingBox.xaml.cs">
+      <DependentUpon>RingBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Styled\BlueAndTicksView.xaml.cs">
       <DependentUpon>BlueAndTicksView.xaml</DependentUpon>
     </Compile>
@@ -123,6 +126,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Sandbox\LinearBlockBarBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sandbox\RingBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
