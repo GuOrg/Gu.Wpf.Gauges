@@ -123,6 +123,11 @@ namespace Gu.Wpf.Gauges
 
         protected override void OnRender(DrawingContext dc)
         {
+            if ((this.Stroke == null && this.Fill == null) || this.AllTicks == null)
+            {
+                return;
+            }
+
             var pen = new Pen(this.Stroke, this.StrokeThickness);
             pen.Freeze();
 

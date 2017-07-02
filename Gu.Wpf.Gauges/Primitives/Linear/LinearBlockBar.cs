@@ -227,25 +227,28 @@
             }
 
             var bar = CreateBar();
-            foreach (var tick in this.AllTicks)
+            if (this.AllTicks != null)
             {
-                if (tick == this.Maximum ||
-                    bar.Width == 0 ||
-                    bar.Height == 0)
+                foreach (var tick in this.AllTicks)
                 {
-                    break;
-                }
+                    if (tick == this.Maximum ||
+                        bar.Width == 0 ||
+                        bar.Height == 0)
+                    {
+                        break;
+                    }
 
-                if (tick == this.Minimum)
-                {
-                    continue;
-                }
+                    if (tick == this.Minimum)
+                    {
+                        continue;
+                    }
 
-                var tickRect = Split(ref bar, tick);
-                Draw(ref tickRect);
-                if (tick > this.Value)
-                {
-                    break;
+                    var tickRect = Split(ref bar, tick);
+                    Draw(ref tickRect);
+                    if (tick > this.Value)
+                    {
+                        break;
+                    }
                 }
             }
 

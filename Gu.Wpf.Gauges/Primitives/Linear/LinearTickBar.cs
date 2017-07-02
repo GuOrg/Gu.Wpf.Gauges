@@ -134,7 +134,8 @@
                     : new Line(new Point(0, pos), new Point(this.ActualWidth, pos));
             }
 
-            if (this.Pen == null)
+            if (this.Pen == null ||
+                this.AllTicks == null)
             {
                 return;
             }

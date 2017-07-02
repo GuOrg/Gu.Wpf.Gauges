@@ -268,6 +268,12 @@
         protected override void UpdateTicks()
         {
             base.UpdateTicks();
+            if (this.AllTicks == null)
+            {
+                this.AllTexts = new FormattedText[0];
+                return;
+            }
+
             var typeFace = this.TypeFace();
             this.AllTexts = this.AllTicks.Select(x => TextHelper.AsFormattedText(x, this, typeFace))
                                          .ToArray();

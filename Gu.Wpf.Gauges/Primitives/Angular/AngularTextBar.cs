@@ -38,22 +38,13 @@ namespace Gu.Wpf.Gauges
             set => this.SetValue(MaxAngleProperty, value);
         }
 
-        protected override void OnRender(DrawingContext dc)
-        {
-            var arc = ArcInfo.Fill(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
-            for (var i = 0; i < this.AllTicks.Count; i++)
-            {
-                var tick = this.AllTicks[i];
-                var text = this.AllTexts[i];
-                var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
-                var point = arc.GetPoint(angle, -this.TextSpace / 2);
-                var textPosition = new TextPosition(text, new TextPositionOptions(this.TextOrientation, angle), point, angle);
-                dc.DrawText(text, textPosition);
-            }
-        }
-
         protected override Size MeasureOverride(Size availableSize)
         {
+            if (this.AllTicks == null)
+            {
+                return default(Size);
+            }
+
             var bounds = default(Rect);
             var midPoint = new Point(0, 0);
             var arc = new ArcInfo(midPoint, this.MinAngle, this.MaxAngle, 0, this.IsDirectionReversed);
@@ -71,6 +62,26 @@ namespace Gu.Wpf.Gauges
 
             this.TextSpace = 2 * points.Max(p => (p - midPoint).Length);
             return bounds.Size;
+        }
+
+        protected override void OnRender(DrawingContext dc)
+        {
+            if (this.AllTicks == null ||
+                this.Foreground == null)
+            {
+                return;
+            }
+
+            var arc = ArcInfo.Fill(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
+            for (var i = 0; i < this.AllTicks.Count; i++)
+            {
+                var tick = this.AllTicks[i];
+                var text = this.AllTexts[i];
+                var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
+                var point = arc.GetPoint(angle, -this.TextSpace / 2);
+                var textPosition = new TextPosition(text, new TextPositionOptions(this.TextOrientation, angle), point, angle);
+                dc.DrawText(text, textPosition);
+            }
         }
     }
 }

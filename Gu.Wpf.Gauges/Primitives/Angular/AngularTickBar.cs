@@ -102,7 +102,8 @@ namespace Gu.Wpf.Gauges
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            if (this.Thickness <= 0)
+            if (this.Thickness <= 0 ||
+                this.AllTicks == null)
             {
                 return default(Size);
             }
@@ -120,7 +121,8 @@ namespace Gu.Wpf.Gauges
 
         protected override void OnRender(DrawingContext dc)
         {
-            if (this.Pen == null)
+            if (this.Pen == null ||
+                this.AllTicks == null)
             {
                 return;
             }

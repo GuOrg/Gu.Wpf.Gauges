@@ -9,6 +9,8 @@ namespace Gu.Wpf.Gauges
 
     public class TickBarBase : FrameworkElement
     {
+#pragma warning disable SA1202 // Elements must be ordered by access
+
         /// <summary>
         /// Identifies the <see cref="P:Bar.Minimum" /> dependency property.
         /// </summary>
@@ -64,8 +66,17 @@ namespace Gu.Wpf.Gauges
                 false,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
-        private static readonly double[] EmptyTicks = new double[0];
-        private double[] allTicks;
+        private static readonly DependencyPropertyKey AllTicksPropertyKey = DependencyProperty.RegisterReadOnly(
+            nameof(AllTicks),
+            typeof(IReadOnlyList<double>),
+            typeof(TickBarBase),
+            new FrameworkPropertyMetadata(
+                default(IReadOnlyList<double>),
+                FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static readonly DependencyProperty AllTicksProperty = AllTicksPropertyKey.DependencyProperty;
+
+#pragma warning restore SA1202 // Elements must be ordered by access
 
         /// <summary>
         /// Gets or sets the <see cref="P:Bar.Minimum" />
@@ -126,11 +137,15 @@ namespace Gu.Wpf.Gauges
             set => this.SetValue(TicksProperty, value);
         }
 
-        protected IReadOnlyList<double> AllTicks => this.allTicks ?? EmptyTicks;
+        public IReadOnlyList<double> AllTicks
+        {
+            get => (IReadOnlyList<double>)this.GetValue(AllTicksProperty);
+            protected set => this.SetValue(AllTicksPropertyKey, value);
+        }
 
         protected virtual void UpdateTicks()
         {
-            this.allTicks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency)
+            this.AllTicks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency)
                                       .Concat(this.Ticks ?? Enumerable.Empty<double>())
                                       .Where(x => x >= this.Minimum && x <= this.Maximum)
                                       .OrderBy(x => x)

@@ -87,7 +87,8 @@
 
         protected override void OnRender(DrawingContext dc)
         {
-            if (this.Foreground == null)
+            if (this.Foreground == null ||
+                this.AllTicks == null)
             {
                 return;
             }
