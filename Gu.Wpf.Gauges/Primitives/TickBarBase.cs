@@ -2,6 +2,7 @@ namespace Gu.Wpf.Gauges
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.Specialized;
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
@@ -76,6 +77,14 @@ namespace Gu.Wpf.Gauges
 
         public static readonly DependencyProperty AllTicksProperty = AllTicksPropertyKey.DependencyProperty;
 
+        public static readonly DependencyProperty ExceptTicksProperty = DependencyProperty.Register(
+            nameof(ExceptTicks),
+            typeof(IEnumerable<double>),
+            typeof(TickBarBase),
+            new PropertyMetadata(
+                default(IEnumerable<double>),
+                OnExceptTicksChanged));
+
 #pragma warning restore SA1202 // Elements must be ordered by access
 
         /// <summary>
@@ -143,11 +152,21 @@ namespace Gu.Wpf.Gauges
             protected set => this.SetValue(AllTicksPropertyKey, value);
         }
 
+        /// <summary>
+        /// Ticks to not render.
+        /// </summary>
+        public IEnumerable<double> ExceptTicks
+        {
+            get => (IEnumerable<double>)this.GetValue(ExceptTicksProperty);
+            set => this.SetValue(ExceptTicksProperty, value);
+        }
+
         protected virtual void UpdateTicks()
         {
             this.AllTicks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency)
                                       .Concat(this.Ticks ?? Enumerable.Empty<double>())
                                       .Where(x => x >= this.Minimum && x <= this.Maximum)
+                                      .Except(this.ExceptTicks ?? Enumerable.Empty<double>())
                                       .OrderBy(x => x)
                                       .ToArray();
         }
@@ -163,6 +182,22 @@ namespace Gu.Wpf.Gauges
             if (e.NewValue is DoubleCollection newTicks)
             {
                 newTicks.Changed += bar.OnTickCollectionChanged;
+            }
+
+            bar.UpdateTicks();
+        }
+
+        private static void OnExceptTicksChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var bar = (TickBarBase)d;
+            if (e.OldValue is INotifyCollectionChanged oldTicks)
+            {
+                oldTicks.CollectionChanged -= bar.OnTickCollectionChanged;
+            }
+
+            if (e.NewValue is INotifyCollectionChanged newTicks)
+            {
+                newTicks.CollectionChanged += bar.OnTickCollectionChanged;
             }
 
             bar.UpdateTicks();

@@ -35,6 +35,7 @@
                                   Grid.Row="1"
                                   Height="10"
                                   VerticalAlignment="Bottom"
+                                  ExceptTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
                                   Fill="{Binding ElementName=MajorTicks, Path=Fill}"
                                   PenWidth="1"
                                   Placement="Bottom"
