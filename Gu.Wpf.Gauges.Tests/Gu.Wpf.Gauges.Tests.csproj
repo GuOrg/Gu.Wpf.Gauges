@@ -55,6 +55,7 @@
     <Compile Include="Internals\LinearTests.cs" />
     <Compile Include="Internals\RectExtTest.cs" />
     <Compile Include="Indicators\LinearRangeTests.cs" />
+    <Compile Include="Primitives\Angular\RingTests.cs" />
     <Compile Include="Primitives\Linear\LinearBlockBarTests.cs" />
     <Compile Include="Primitives\Linear\LinearTickBarTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
