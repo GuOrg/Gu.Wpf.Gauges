@@ -83,20 +83,28 @@
         [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
         protected override void OnRender(DrawingContext dc)
         {
+            double EffectiveStrokeThickness()
+            {
+                return this.Stroke == null
+                    ? 0
+                    : this.StrokeThickness;
+            }
+
             double PixelPosition(double value)
             {
                 var scale = Interpolate.Linear(this.Minimum, this.Maximum, value)
                                        .Clamp(0, 1);
+
                 if (this.Placement.IsHorizontal())
                 {
-                    var pos = (this.StrokeThickness / 2) + (scale * (this.ActualWidth - this.StrokeThickness));
+                    var pos = (EffectiveStrokeThickness() / 2) + (scale * (this.ActualWidth - EffectiveStrokeThickness()));
                     return this.IsDirectionReversed
                         ? this.ActualWidth - pos
                         : pos;
                 }
                 else
                 {
-                    var pos = (this.StrokeThickness / 2) + (scale * (this.ActualHeight - this.StrokeThickness));
+                    var pos = (EffectiveStrokeThickness() / 2) + (scale * (this.ActualHeight - EffectiveStrokeThickness()));
                     return this.IsDirectionReversed
                         ? pos
                         : this.ActualHeight - pos;
@@ -106,7 +114,7 @@
             Rect CreateBar()
             {
                 var rect = new Rect(this.RenderSize);
-                rect.Inflate(-this.StrokeThickness / 2, -this.StrokeThickness / 2);
+                rect.Inflate(-EffectiveStrokeThickness() / 2, -EffectiveStrokeThickness() / 2);
                 var pos = PixelPosition(this.Value);
                 if (this.Placement.IsHorizontal())
                 {
@@ -137,7 +145,7 @@
             Rect Split(ref Rect barRect, double tickValue)
             {
                 var pos = PixelPosition(tickValue);
-                var offset = (this.TickGap / 2) + (this.StrokeThickness / 2);
+                var offset = (this.TickGap / 2) + (EffectiveStrokeThickness() / 2);
                 if (this.Placement.IsHorizontal())
                 {
                     if (this.IsDirectionReversed)
@@ -184,7 +192,7 @@
 
                 if (this.Placement.IsHorizontal())
                 {
-                    if (rect.Width <= this.StrokeThickness)
+                    if (rect.Width <= EffectiveStrokeThickness())
                     {
                         if (!DoubleUtil.IsZero(rect.Width))
                         {
@@ -198,7 +206,7 @@
                 }
                 else
                 {
-                    if (rect.Height <= this.StrokeThickness)
+                    if (rect.Height <= EffectiveStrokeThickness())
                     {
                         if (!DoubleUtil.IsZero(rect.Height))
                         {
