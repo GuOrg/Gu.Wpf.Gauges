@@ -130,7 +130,6 @@ namespace Gu.Wpf.Gauges
                             .Concat(new[] { this.Value })
                             .OrderBy(t => t);
             var arc = ArcInfo.Fill(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
-            arc = arc.OffsetWith(-1 * this.ReservedSpace / 2);
             var previous = arc.Start;
             var gap = this.IsDirectionReversed ? -1 * this.TickGap : this.TickGap;
 

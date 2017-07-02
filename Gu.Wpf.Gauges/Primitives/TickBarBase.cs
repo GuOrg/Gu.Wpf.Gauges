@@ -5,7 +5,6 @@ namespace Gu.Wpf.Gauges
     using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Controls.Primitives;
     using System.Windows.Media;
 
     public class TickBarBase : FrameworkElement
@@ -35,18 +34,6 @@ namespace Gu.Wpf.Gauges
                 1.0,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits,
                 (d, _) => ((TickBarBase)d).UpdateTicks()));
-
-        /// <summary>
-        /// Identifies the <see cref="P:Bar.ReservedSpace" /> dependency property. This property is read-only.
-        /// </summary>
-        /// <returns>
-        /// The identifier for the <see cref="P:Bar.ReservedSpace" /> dependency property.
-        /// </returns>
-        public static readonly DependencyProperty ReservedSpaceProperty = TickBar.ReservedSpaceProperty.AddOwner(
-            typeof(TickBarBase),
-            new FrameworkPropertyMetadata(
-                0.0,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure));
 
         /// <summary>
         /// Identifies the <see cref="P:Bar.TickFrequency" /> dependency property.
@@ -113,18 +100,6 @@ namespace Gu.Wpf.Gauges
         {
             get => (bool)this.GetValue(IsDirectionReversedProperty);
             set => this.SetValue(IsDirectionReversedProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets a space buffer for the area that contains the tick marks that are specified for a <see cref="T:Bar" />.
-        /// </summary>
-        /// <returns>
-        /// A value that represents the total buffer area on either side of the row or column of tick marks. The default value is zero (0.0).
-        /// </returns>
-        public double ReservedSpace
-        {
-            get => (double)this.GetValue(ReservedSpaceProperty);
-            set => this.SetValue(ReservedSpaceProperty, value);
         }
 
         /// <summary>

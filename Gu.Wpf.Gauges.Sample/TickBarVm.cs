@@ -10,7 +10,6 @@
         private double minimum;
         private double maximum = 100;
         private double majorTickFrequency = 50;
-        private double reservedSpace;
         private bool snapsToDevicePixels;
         private DoubleCollection majorTicks;
         private TickBarPlacement placement = TickBarPlacement.Bottom;
@@ -162,21 +161,6 @@
                 }
 
                 this.thickness = value;
-                this.OnPropertyChanged();
-            }
-        }
-
-        public double ReservedSpace
-        {
-            get => this.reservedSpace;
-            set
-            {
-                if (value.Equals(this.reservedSpace))
-                {
-                    return;
-                }
-
-                this.reservedSpace = value;
                 this.OnPropertyChanged();
             }
         }

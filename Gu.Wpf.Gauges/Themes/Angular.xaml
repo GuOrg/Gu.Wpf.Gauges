@@ -49,7 +49,6 @@
                                                Maximum="{TemplateBinding Maximum}"
                                                MinAngle="{TemplateBinding MinAngle}"
                                                Minimum="{TemplateBinding Minimum}"
-                                               ReservedSpace="{Binding TextSpace, ElementName=TextBar}"
                                                Thickness="10"
                                                TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                Ticks="{TemplateBinding MajorTicks}" />
@@ -59,7 +58,6 @@
                                                Maximum="{TemplateBinding Maximum}"
                                                MinAngle="{TemplateBinding MinAngle}"
                                                Minimum="{TemplateBinding Minimum}"
-                                               ReservedSpace="{Binding TextSpace, ElementName=TextBar}"
                                                Thickness="5"
                                                TickFrequency="{TemplateBinding MinorTickFrequency}" />
                     </Grid>

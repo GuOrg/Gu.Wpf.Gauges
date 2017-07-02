@@ -46,7 +46,7 @@ namespace Gu.Wpf.Gauges
                 var tick = this.AllTicks[i];
                 var text = this.AllTexts[i];
                 var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
-                var point = arc.GetPoint(angle, (-this.ReservedSpace / 2) - (this.TextSpace / 2));
+                var point = arc.GetPoint(angle, -this.TextSpace / 2);
                 var textPosition = new TextPosition(text, new TextPositionOptions(this.TextOrientation, angle), point, angle);
                 dc.DrawText(text, textPosition);
             }
@@ -56,7 +56,7 @@ namespace Gu.Wpf.Gauges
         {
             var bounds = default(Rect);
             var midPoint = new Point(0, 0);
-            var arc = new ArcInfo(midPoint, this.MinAngle, this.MaxAngle, this.ReservedSpace, this.IsDirectionReversed);
+            var arc = new ArcInfo(midPoint, this.MinAngle, this.MaxAngle, 0, this.IsDirectionReversed);
             for (var i = 0; i < this.AllTicks.Count; i++)
             {
                 var tick = this.AllTicks[i];

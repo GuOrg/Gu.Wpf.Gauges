@@ -92,7 +92,7 @@
                 return;
             }
 
-            var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace, this.Placement, this.IsDirectionReversed);
+            var line = new Line(this.ActualWidth, this.ActualHeight, 0, this.Placement, this.IsDirectionReversed);
             for (var i = 0; i < this.AllTicks.Count; i++)
             {
                 var tick = this.AllTicks[i];

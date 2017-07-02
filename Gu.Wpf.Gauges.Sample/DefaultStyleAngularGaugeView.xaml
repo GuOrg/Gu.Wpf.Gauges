@@ -13,7 +13,6 @@
                                  MinAngle="-180"
                                  Minimum="0"
                                  MinorTickFrequency="5"
-                                 ReservedSpace="10"
                                  ShowLabels="True"
                                  TextOrientation="Tangential"
                                  MajorTickFrequency="25"
