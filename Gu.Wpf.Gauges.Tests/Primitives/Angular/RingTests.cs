@@ -21,7 +21,7 @@
             };
 
             SaveImage(ring);
-            ImageAssert.AreEqual(Properties.Resources.LinearBlockBar_Min_0_Max_10_TickFrequency_1_Horizontal, ring);
+            ImageAssert.AreEqual(Properties.Resources.Ring_Thickness_10_StrokeThickness_0, ring);
         }
 
         [Test]
@@ -35,15 +35,15 @@
                 Thickness = 10,
             };
             SaveImage(ring);
-            ImageAssert.AreEqual(Properties.Resources.LinearBlockBar_Min_0_Max_10_TickFrequency_1_Horizontal, ring);
+            ImageAssert.AreEqual(Properties.Resources.Ring_Thickness_10_StrokeThickness_1, ring);
         }
 
         private static void SaveImage(Ring ring)
         {
-            Directory.CreateDirectory(@"C:\Temp\Ring");
+            Directory.CreateDirectory($@"C:\Temp\{ring.GetType().Name}");
             ring.SaveImage(
                 new Size(30, 30),
-                $@"C:\Temp\Ring\Ring_Thickness_{ring.Thickness}_StrokeThickness_{ring.StrokeThickness}.png");
+                $@"C:\Temp\{ring.GetType().Name}\{ring.GetType().Name}_Thickness_{ring.Thickness}_StrokeThickness_{ring.StrokeThickness}.png");
         }
     }
 }

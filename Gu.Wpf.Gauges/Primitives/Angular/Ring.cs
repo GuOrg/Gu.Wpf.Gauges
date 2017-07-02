@@ -249,7 +249,9 @@ namespace Gu.Wpf.Gauges
             get
             {
                 var strokeThickness = this.StrokeThickness;
-                return (this.Stroke == null) || DoubleUtil.IsNaN(strokeThickness) || DoubleUtil.IsZero(strokeThickness);
+                return this.Stroke == null ||
+                       DoubleUtil.IsNaN(strokeThickness) ||
+                       DoubleUtil.IsZero(strokeThickness);
             }
         }
 
@@ -291,28 +293,56 @@ namespace Gu.Wpf.Gauges
 
         protected override Size MeasureOverride(Size constraint)
         {
-            base.MeasureOverride(constraint);
-            return new Size(2 * this.Thickness, 2 * this.Thickness);
+            var width = constraint.Width;
+            var height = constraint.Height;
+            if (double.IsInfinity(width) && double.IsInfinity(height))
+            {
+                return new Size(2 * this.Thickness, 2 * this.Thickness);
+            }
+
+            var d = Math.Min(width, height);
+            return new Size(d, d);
         }
 
         protected override Size ArrangeOverride(Size finalSize)
         {
             this.diameter = Math.Min(finalSize.Width, finalSize.Height);
-            return new Size(this.diameter, this.diameter);
+            return finalSize;
+        }
+
+        [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
+        protected override void OnRender(DrawingContext dc)
+        {
+            if (this.diameter == 0)
+            {
+                return;
+            }
+
+            var geometry = this.CreateGeometry();
+            if (!ReferenceEquals(geometry, Geometry.Empty))
+            {
+                dc.DrawGeometry(this.Fill, this.Pen, geometry);
+            }
         }
 
         [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
         protected virtual Geometry CreateGeometry()
         {
-            if (!this.CanCreatePen ||
-                this.diameter == 0)
+            if (this.diameter == 0)
             {
                 return Geometry.Empty;
             }
 
-            var r = (this.diameter - this.GetStrokeThickness()) / 2;
+            var strokeThickness = this.GetStrokeThickness();
+            var r = (this.diameter - strokeThickness) / 2;
             var ri = r - this.Thickness;
-            var center = new Point(r + (this.GetStrokeThickness() / 2), r + (this.GetStrokeThickness() / 2));
+            var cx = this.HorizontalAlignment == HorizontalAlignment.Stretch
+                ? this.RenderSize.Width / 2
+                : r + (strokeThickness / 2);
+            var cy = this.VerticalAlignment == VerticalAlignment.Stretch
+                ? this.RenderSize.Height / 2
+                : r + (strokeThickness / 2);
+            var center = new Point(cx, cy);
             if (this.Thickness <= 0 || ri <= 0)
             {
                 return new EllipseGeometry(center, r, r);
@@ -328,22 +358,6 @@ namespace Gu.Wpf.Gauges
                     center,
                     ri,
                     ri));
-        }
-
-        [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
-        protected override void OnRender(DrawingContext dc)
-        {
-            if (!this.CanCreatePen ||
-                this.diameter == 0)
-            {
-                return;
-            }
-
-            var geometry = this.CreateGeometry();
-            if (!ReferenceEquals(geometry, Geometry.Empty))
-            {
-                dc.DrawGeometry(this.Fill, this.Pen, geometry);
-            }
         }
     }
 }
