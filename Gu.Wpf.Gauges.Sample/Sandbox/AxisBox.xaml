@@ -27,7 +27,6 @@
                                   Height="15"
                                   Fill="Black"
                                   PenWidth="1"
-                                  SnapsToDevicePixels="True"
                                   TickFrequency="25"
                                   Ticks="30,70" />
 
@@ -39,9 +38,7 @@
                                   Fill="{Binding ElementName=MajorTicks, Path=Fill}"
                                   PenWidth="1"
                                   Placement="Bottom"
-                                  SnapsToDevicePixels="True"
-                                  TickFrequency="5"
-                                  Ticks="70" />
+                                  TickFrequency="5" />
 
             <Rectangle x:Name="Line"
                        Grid.Row="1"
