@@ -54,7 +54,7 @@
   <ItemGroup>
     <Compile Include="Internals\LinearTests.cs" />
     <Compile Include="Internals\RectExtTest.cs" />
-    <Compile Include="Primitives\Angular\RingTests.cs" />
+    <Compile Include="Indicators\LinearRangeTests.cs" />
     <Compile Include="Primitives\Linear\LinearBlockBarTests.cs" />
     <Compile Include="Primitives\Linear\LinearTickBarTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -147,7 +147,6 @@
     </Analyzer>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Indicators\" />
     <Folder Include="SandBox\" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +157,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Indicators\LinearRangeImages\LinearRange_Orientation_Horizontal_IsDirectionReversed_False.png" />
+    <Content Include="Indicators\LinearRangeImages\LinearRange_Orientation_Horizontal_IsDirectionReversed_True.png" />
+    <Content Include="Indicators\LinearRangeImages\LinearRange_Orientation_Vertical_IsDirectionReversed_False.png" />
+    <Content Include="Indicators\LinearRangeImages\LinearRange_Orientation_Vertical_IsDirectionReversed_True.png" />
     <Content Include="Primitives\Angular\RingImages\Ring_Thickness_10_StrokeThickness_0.png" />
     <Content Include="Primitives\Angular\RingImages\Ring_Thickness_10_StrokeThickness_1.png" />
     <Content Include="Primitives\Linear\LinearBlockBarImages\LinearBlockBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1 2 6_Horizontal.png" />
