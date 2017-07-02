@@ -88,7 +88,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                                IsDirectionReversed = isDirectionReversed,
                            };
 
-            SaveImage(blockBar);
             var expected = isDirectionReversed
                 ? Properties.Resources.LinearBlockBar_Min_0_Max_10_Value_6_IsDirectionReversed_True_Ticks_1_2_6_Horizontal
                 : Properties.Resources.LinearBlockBar_Min_0_Max_10_Value_6_IsDirectionReversed_False_Ticks_1_2_6_Horizontal;
