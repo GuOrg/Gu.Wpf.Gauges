@@ -43,11 +43,6 @@
 
         private Pen pen;
 
-        static LinearTickBar()
-        {
-            SnapsToDevicePixelsProperty.OverrideMetadata(typeof(LinearTickBar), new FrameworkPropertyMetadata(true));
-        }
-
         /// <summary>
         /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.
         /// </summary>
@@ -106,44 +101,47 @@
 
         protected override void OnRender(DrawingContext dc)
         {
+            double PixelPosition(double value)
+            {
+                var scale = Interpolate.Linear(this.Minimum, this.Maximum, value)
+                                       .Clamp(0, 1);
+                if (this.Placement.IsHorizontal())
+                {
+                    var pos = (this.PenWidth / 2) + (scale * (this.ActualWidth - this.PenWidth));
+                    return this.IsDirectionReversed
+                        ? this.ActualWidth - pos
+                        : pos;
+                }
+                else
+                {
+                    var pos = (this.PenWidth / 2) + (scale * (this.ActualHeight - this.PenWidth));
+                    return this.IsDirectionReversed
+                        ? pos
+                        : this.ActualHeight - pos;
+                }
+            }
+
+            Line CreateLine(double value)
+            {
+                var pos = PixelPosition(value);
+                if (this.SnapsToDevicePixels)
+                {
+                    pos = Math.Round(pos, 0);
+                }
+
+                return this.Placement.IsHorizontal()
+                    ? new Line(new Point(pos, 0), new Point(pos, this.ActualHeight))
+                    : new Line(new Point(0, pos), new Point(this.ActualWidth, pos));
+            }
+
             if (this.Pen == null)
             {
                 return;
             }
 
-            var line = new Line(this.ActualWidth, this.ActualHeight, this.ReservedSpace + this.PenWidth, this.Placement, this.IsDirectionReversed);
-            var offset = new Vector(0, 0);
-            switch (this.Placement)
-            {
-                case TickBarPlacement.Left:
-                    offset = new Vector(this.ActualWidth, 0);
-                    break;
-                case TickBarPlacement.Right:
-                    offset = new Vector(-this.ActualWidth, 0);
-                    break;
-                case TickBarPlacement.Top:
-                    offset = new Vector(0, this.ActualHeight);
-                    break;
-                case TickBarPlacement.Bottom:
-                    offset = new Vector(0, -this.ActualHeight);
-                    break;
-            }
-
-            if (this.SnapsToDevicePixels)
-            {
-                offset = offset.Round(0);
-            }
-
             foreach (var tick in this.AllTicks)
             {
-                var p = TickHelper.ToPos(tick, this.Minimum, this.Maximum, line);
-                if (this.SnapsToDevicePixels)
-                {
-                    p = p.Round(0);
-                }
-
-                var l = new Line(p, p + offset);
-                dc.DrawLine(this.Pen, l);
+                dc.DrawLine(this.Pen, CreateLine(tick));
             }
         }
     }

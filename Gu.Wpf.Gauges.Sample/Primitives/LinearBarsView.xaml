@@ -137,15 +137,21 @@
             </GroupBox>
 
             <GroupBox Header="LinearTickBar">
-                <gauges:LinearTickBar Fill="Black"
-                                      IsDirectionReversed="{Binding IsDirectionReversed}"
-                                      Maximum="{Binding Maximum}"
-                                      Minimum="{Binding Minimum}"
-                                      Placement="{Binding Placement}"
-                                      ReservedSpace="{Binding ReservedSpace}"
-                                      SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
-                                      TickFrequency="{Binding MajorTickFrequency}"
-                                      Ticks="{Binding MajorTicks}" />
+                <Grid>
+                    <gauges:LinearTickBar Fill="Black"
+                                          IsDirectionReversed="{Binding IsDirectionReversed}"
+                                          Maximum="{Binding Maximum}"
+                                          Minimum="{Binding Minimum}"
+                                          Placement="{Binding Placement}"
+                                          ReservedSpace="{Binding ReservedSpace}"
+                                          SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                                          TickFrequency="{Binding MajorTickFrequency}"
+                                          Ticks="{Binding MajorTicks}" />
+                    <Rectangle Fill="#55ff69b4"
+                               SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                               Stroke="Black"
+                               StrokeThickness="1" />
+                </Grid>
             </GroupBox>
 
             <GroupBox Header="TextTickBar">

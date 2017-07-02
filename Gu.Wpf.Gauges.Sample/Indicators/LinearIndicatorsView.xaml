@@ -18,7 +18,7 @@
                           Placement="Top"
                           ShowLabels="True"
                           TextOrientation="Horizontal"
-                          Value="60" />
+                          Value="50" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -40,24 +40,23 @@
                 <gauges:LinearIndicator>
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="30" />
+                            <RowDefinition Height="40" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Rectangle Grid.Row="0"
                                    Width="1"
-                                   Height="25"
                                    HorizontalAlignment="Center"
                                    Fill="Black" />
-                        <TextBlock Grid.Row="1"
+                        <!--<TextBlock Grid.Row="1"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
-                                   Text="{Binding Value, RelativeSource={RelativeSource AncestorType={x:Type gauges:LinearGauge}}}" />
+                                   Text="{Binding Value, RelativeSource={RelativeSource AncestorType={x:Type gauges:LinearGauge}}}" />-->
                     </Grid>
                 </gauges:LinearIndicator>
             </Grid>
         </gauges:LinearGauge>
 
-        <ContentPresenter Grid.Row="2"
+        <ContentPresenter Grid.Row="1"
                           Grid.Column="0"
                           Content="{Binding}" />
 
