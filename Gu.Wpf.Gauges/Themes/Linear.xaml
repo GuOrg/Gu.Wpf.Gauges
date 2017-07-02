@@ -47,9 +47,8 @@
                                 <local:LinearTickBar x:Name="MajorTicks"
                                                      Grid.Row="2"
                                                      Height="15"
-                                                     Fill="Black"
+                                                     Fill="{TemplateBinding Foreground}"
                                                      PenWidth="1"
-                                                     SnapsToDevicePixels="True"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                      Ticks="{TemplateBinding MajorTicks}" />
 
@@ -57,18 +56,17 @@
                                                      Grid.Row="2"
                                                      Height="10"
                                                      VerticalAlignment="Bottom"
-                                                     Fill="{Binding ElementName=MajorTicks, Path=Fill}"
+                                                     Fill="{TemplateBinding Foreground}"
                                                      PenWidth="1"
                                                      Placement="Bottom"
-                                                     SnapsToDevicePixels="True"
-                                                     TickFrequency="5"
-                                                     Ticks="70" />
+                                                     TickFrequency="{TemplateBinding MinorTickFrequency}"
+                                                     Ticks="{TemplateBinding MinorTicks}" />
 
                                 <Rectangle x:Name="Line"
                                            Grid.Row="2"
                                            Height="1"
                                            VerticalAlignment="Bottom"
-                                           Fill="Black" />
+                                           Fill="{TemplateBinding Foreground}" />
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
@@ -92,9 +90,8 @@
                                 <local:LinearTickBar x:Name="MajorTicks"
                                                      Grid.Row="0"
                                                      Height="15"
-                                                     Fill="Black"
+                                                     Fill="{TemplateBinding Foreground}"
                                                      PenWidth="1"
-                                                     SnapsToDevicePixels="True"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                      Ticks="{TemplateBinding MajorTicks}" />
 
@@ -102,18 +99,16 @@
                                                      Grid.Row="0"
                                                      Height="10"
                                                      VerticalAlignment="Top"
-                                                     Fill="{Binding ElementName=MajorTicks, Path=Fill}"
+                                                     Fill="{TemplateBinding Foreground}"
                                                      PenWidth="1"
-                                                     Placement="Top"
-                                                     SnapsToDevicePixels="True"
-                                                     TickFrequency="5"
-                                                     Ticks="70" />
+                                                     TickFrequency="{TemplateBinding MinorTickFrequency}"
+                                                     Ticks="{TemplateBinding MinorTicks}" />
 
                                 <Rectangle x:Name="Line"
                                            Grid.Row="0"
                                            Height="1"
                                            VerticalAlignment="Top"
-                                           Fill="Black" />
+                                           Fill="{TemplateBinding Foreground}" />
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
@@ -138,10 +133,9 @@
                                 <local:LinearTickBar x:Name="MajorTicks"
                                                      Grid.Column="0"
                                                      Width="15"
-                                                     Fill="Black"
+                                                     Fill="{TemplateBinding Foreground}"
                                                      PenWidth="1"
                                                      Placement="Left"
-                                                     SnapsToDevicePixels="True"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                      Ticks="{TemplateBinding MajorTicks}" />
 
@@ -149,18 +143,17 @@
                                                      Grid.Column="0"
                                                      Width="10"
                                                      HorizontalAlignment="Left"
-                                                     Fill="{Binding ElementName=MajorTicks, Path=Fill}"
+                                                     Fill="{TemplateBinding Foreground}"
                                                      PenWidth="1"
                                                      Placement="Left"
-                                                     SnapsToDevicePixels="True"
-                                                     TickFrequency="5"
-                                                     Ticks="70" />
+                                                     TickFrequency="{TemplateBinding MinorTickFrequency}"
+                                                     Ticks="{TemplateBinding MinorTicks}" />
 
                                 <Rectangle x:Name="Line"
                                            Grid.Column="0"
                                            Width="1"
                                            HorizontalAlignment="Left"
-                                           Fill="Black" />
+                                           Fill="{TemplateBinding Foreground}" />
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
@@ -186,10 +179,9 @@
                                 <local:LinearTickBar x:Name="MajorTicks"
                                                      Grid.Column="2"
                                                      Width="15"
-                                                     Fill="Black"
+                                                     Fill="{TemplateBinding Foreground}"
                                                      PenWidth="1"
                                                      Placement="Right"
-                                                     SnapsToDevicePixels="True"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                      Ticks="{TemplateBinding MajorTicks}" />
 
@@ -197,18 +189,17 @@
                                                      Grid.Column="2"
                                                      Width="10"
                                                      HorizontalAlignment="Right"
-                                                     Fill="{Binding ElementName=MajorTicks, Path=Fill}"
+                                                     Fill="{TemplateBinding Foreground}"
                                                      PenWidth="1"
                                                      Placement="Left"
-                                                     SnapsToDevicePixels="True"
-                                                     TickFrequency="5"
-                                                     Ticks="70" />
+                                                     TickFrequency="{TemplateBinding MinorTickFrequency}"
+                                                     Ticks="{TemplateBinding MinorTicks}" />
 
                                 <Rectangle x:Name="Line"
                                            Grid.Column="2"
                                            Width="1"
                                            HorizontalAlignment="Right"
-                                           Fill="Black" />
+                                           Fill="{TemplateBinding Foreground}" />
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
@@ -251,7 +242,7 @@
                                                   Height="10"
                                                   VerticalAlignment="Bottom"
                                                   Data="M-0.5,0 L0.5,0 0,1z"
-                                                  Fill="Black"
+                                                  Fill="{TemplateBinding Foreground}"
                                                   Stretch="Fill" />
                                         </local:LinearIndicator>
                                     </Grid>
@@ -281,7 +272,7 @@
                                                   Height="10"
                                                   VerticalAlignment="Top"
                                                   Data="M-0.5,0 L+0.5,0 0,-1z"
-                                                  Fill="Black"
+                                                  Fill="{TemplateBinding Foreground}"
                                                   Stretch="Fill" />
                                         </local:LinearIndicator>
                                     </Grid>
@@ -311,7 +302,7 @@
                                                   Height="10"
                                                   HorizontalAlignment="Left"
                                                   Data="M0.5,-0.5 L0.5,0.5 0,0z"
-                                                  Fill="Black"
+                                                  Fill="{TemplateBinding Foreground}"
                                                   Stretch="Fill" />
                                         </local:LinearIndicator>
                                     </Grid>
@@ -341,7 +332,7 @@
                                                   Height="10"
                                                   HorizontalAlignment="Right"
                                                   Data="M-0.5,-0.5 L-0.5,0.5 0,0z"
-                                                  Fill="Black"
+                                                  Fill="{TemplateBinding Foreground}"
                                                   Stretch="Fill" />
                                         </local:LinearIndicator>
                                     </Grid>
