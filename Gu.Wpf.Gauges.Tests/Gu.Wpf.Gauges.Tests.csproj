@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Internals\LinearTests.cs" />
     <Compile Include="Internals\RectExtTest.cs" />
+    <Compile Include="Primitives\Angular\RingTests.cs" />
     <Compile Include="Primitives\Linear\LinearBlockBarTests.cs" />
     <Compile Include="Primitives\Linear\LinearTickBarTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -157,6 +158,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Primitives\Angular\RingImages\Ring_Thickness_10_StrokeThickness_0.png" />
+    <Content Include="Primitives\Angular\RingImages\Ring_Thickness_10_StrokeThickness_1.png" />
     <Content Include="Primitives\Linear\LinearBlockBarImages\LinearBlockBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1 2 6_Horizontal.png" />
     <Content Include="Primitives\Linear\LinearBlockBarImages\LinearBlockBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1 2 6_Vertical.png" />
     <Content Include="Primitives\Linear\LinearBlockBarImages\LinearBlockBar_Min_0_Max_10_IsDirectionReversed_False_Ticks_1 2 6_Horizontal.png" />
