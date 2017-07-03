@@ -6,6 +6,18 @@ namespace Gu.Wpf.Gauges
     public abstract class LinearGeometryBar : GeometryBar
     {
         /// <summary>
+        /// Identifies the <see cref="P:LinearBlockBar.Value" /> dependency property.
+        /// </summary>
+        /// <returns>
+        /// The identifier for the <see cref="P:LinearBlockBar.Value" /> dependency property.
+        /// </returns>
+        public static readonly DependencyProperty ValueProperty = Gauge.ValueProperty.AddOwner(
+            typeof(LinearGeometryBar),
+            new FrameworkPropertyMetadata(
+                double.NaN,
+                FrameworkPropertyMetadataOptions.AffectsRender));
+
+        /// <summary>
         /// Identifies the <see cref="P:LinearBlockBar.Placement" /> dependency property. This property is read-only.
         /// </summary>
         /// <returns>
@@ -18,6 +30,18 @@ namespace Gu.Wpf.Gauges
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
+        /// Gets or sets the current magnitude of the range control.
+        /// </summary>
+        /// <returns>
+        /// The current magnitude of the range control. The default is 0.
+        /// </returns>
+        public double Value
+        {
+            get => (double)this.GetValue(ValueProperty);
+            set => this.SetValue(ValueProperty, value);
+        }
+
+        /// <summary>
         /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.
         /// </summary>
         /// <returns>
@@ -28,6 +52,10 @@ namespace Gu.Wpf.Gauges
             get => (TickBarPlacement)this.GetValue(PlacementProperty);
             set => this.SetValue(PlacementProperty, value);
         }
+
+        protected double EffectiveValue => double.IsNaN(this.Value)
+            ? this.Maximum
+            : this.Value;
 
         /// <summary>
         /// Get the interpolated pixel position for the value.

@@ -7,18 +7,6 @@
 
     public class LinearBlockBar : LinearGeometryBar
     {
-        /// <summary>
-        /// Identifies the <see cref="P:LinearBlockBar.Value" /> dependency property.
-        /// </summary>
-        /// <returns>
-        /// The identifier for the <see cref="P:LinearBlockBar.Value" /> dependency property.
-        /// </returns>
-        public static readonly DependencyProperty ValueProperty = Gauge.ValueProperty.AddOwner(
-            typeof(LinearBlockBar),
-            new FrameworkPropertyMetadata(
-                double.NaN,
-                FrameworkPropertyMetadataOptions.AffectsRender));
-
         public static readonly DependencyProperty TickGapProperty = DependencyProperty.Register(
             nameof(TickGap),
             typeof(double),
@@ -26,18 +14,6 @@
             new FrameworkPropertyMetadata(
                 1.0d,
                 FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
-
-        /// <summary>
-        /// Gets or sets the current magnitude of the range control.
-        /// </summary>
-        /// <returns>
-        /// The current magnitude of the range control. The default is 0.
-        /// </returns>
-        public double Value
-        {
-            get => (double)this.GetValue(ValueProperty);
-            set => this.SetValue(ValueProperty, value);
-        }
 
         /// <summary>
         /// Gets or sets the gap  in pixels between blocks. Default is 1.0
@@ -58,7 +34,7 @@
                 var rect = new Rect(this.RenderSize);
                 var strokeThickness = this.GetStrokeThickness();
                 rect.Inflate(-strokeThickness / 2, -strokeThickness / 2);
-                var value = double.IsNaN(this.Value) ? this.Maximum : this.Value;
+                var value = this.EffectiveValue;
                 var pos = this.PixelPosition(value);
                 if (this.Placement.IsHorizontal())
                 {
@@ -189,7 +165,7 @@
 
                     var tickRect = Split(ref bar, tick);
                     Draw(ref tickRect);
-                    if (tick > this.Value)
+                    if (tick > this.EffectiveValue)
                     {
                         break;
                     }

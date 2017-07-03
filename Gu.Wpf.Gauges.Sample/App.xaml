@@ -105,18 +105,23 @@
                     <TextBox Grid.Row="5"
                              Grid.Column="1"
                              Text="{Binding TickGap}" />
+                    <Slider Grid.Row="5"
+                            Grid.Column="2"
+                            Maximum="10"
+                            Minimum="0"
+                            Value="{Binding TickGap}" />
 
                     <TextBlock Grid.Row="6"
                                Grid.Column="0"
-                               Text="ReservedSpace" />
+                               Text="TickWidth" />
                     <TextBox Grid.Row="6"
                              Grid.Column="1"
-                             Text="{Binding ReservedSpace}" />
+                             Text="{Binding TickWidth}" />
                     <Slider Grid.Row="6"
                             Grid.Column="2"
-                            Maximum="50"
+                            Maximum="10"
                             Minimum="0"
-                            Value="{Binding ReservedSpace}" />
+                            Value="{Binding TickWidth}" />
 
                     <TextBlock Grid.Row="7"
                                Grid.Column="0"
@@ -125,7 +130,6 @@
                               Grid.Column="1"
                               sample:ItemsControlExt.EnumSource="{x:Type TickBarPlacement}"
                               SelectedItem="{Binding Placement}" />
-
 
                     <TextBlock Grid.Row="8"
                                Grid.Column="0"

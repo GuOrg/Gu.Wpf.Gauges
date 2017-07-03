@@ -78,23 +78,70 @@
             }
 
             if (this.Pen == null ||
-                this.AllTicks == null)
+                this.AllTicks == null ||
+                this.EffectiveValue == this.Minimum)
             {
                 return;
             }
 
+            var max = this.EffectiveValue;
             if (this.TickWidth <= this.StrokeThickness)
             {
                 foreach (var tick in this.AllTicks)
                 {
+                    if (tick > max)
+                    {
+                        break;
+                    }
+
                     dc.DrawLine(this.Pen, CreateLine(tick));
                 }
             }
             else
             {
+                if (max < this.Maximum)
+                {
+                    var rect = new Rect(this.RenderSize);
+                    rect.Inflate(new Size(this.TickWidth, this.TickWidth));
+                    var pos = this.PixelPosition(max);
+                    if (this.Placement.IsHorizontal())
+                    {
+                        if (this.IsDirectionReversed)
+                        {
+                            RectExt.SetLeft(ref rect, pos);
+                        }
+                        else
+                        {
+                            RectExt.SetRight(ref rect, pos);
+                        }
+                    }
+                    else
+                    {
+                        if (this.IsDirectionReversed)
+                        {
+                            RectExt.SetBottom(ref rect, pos);
+                        }
+                        else
+                        {
+                            RectExt.SetTop(ref rect, pos);
+                        }
+                    }
+
+                    dc.PushClip(new RectangleGeometry(rect));
+                }
+
                 foreach (var tick in this.AllTicks)
                 {
                     dc.DrawRectangle(this.Fill, this.Pen, CreateRect(tick));
+                    if (tick > max)
+                    {
+                        break;
+                    }
+                }
+
+                if (max < this.Maximum)
+                {
+                    dc.Pop();
                 }
             }
         }
