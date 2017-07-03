@@ -93,6 +93,7 @@
     <Compile Include="Primitives\Angular\AngularPanel.cs" />
     <Compile Include="Primitives\GeometryBar.cs" />
     <Compile Include="Primitives\HorizontalTextAlignment.cs" />
+    <Compile Include="Primitives\Linear\LinearGeometryBar.cs" />
     <Compile Include="Primitives\Linear\LinearTextTickBar.cs" />
     <Compile Include="Primitives\Angular\Ring.cs" />
     <Compile Include="Primitives\TickBarBase.cs" />

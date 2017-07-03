@@ -3,23 +3,10 @@
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
-    using System.Windows.Controls.Primitives;
     using System.Windows.Media;
 
-    public class LinearBlockBar : GeometryBar
+    public class LinearBlockBar : LinearGeometryBar
     {
-        /// <summary>
-        /// Identifies the <see cref="P:LinearBlockBar.Placement" /> dependency property. This property is read-only.
-        /// </summary>
-        /// <returns>
-        /// The identifier for the <see cref="P:LinearBlockBar.Placement" /> dependency property.
-        /// </returns>
-        public static readonly DependencyProperty PlacementProperty = LinearGauge.PlacementProperty.AddOwner(
-            typeof(LinearBlockBar),
-            new FrameworkPropertyMetadata(
-                TickBarPlacement.Bottom,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
-
         /// <summary>
         /// Identifies the <see cref="P:BlockBar.Value" /> dependency property.
         /// </summary>
@@ -39,18 +26,6 @@
             new FrameworkPropertyMetadata(
                 1.0d,
                 FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
-
-        /// <summary>
-        /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:TickBarPlacement" /> enumeration value that identifies the position of the <see cref="T:LinearTextTickBar" /> in the <see cref="T:System.Windows.Style" /> layout of a <see cref="T:System.Windows.Controls.Slider" />. The default value is <see cref="F:LinearBlockBar.Top" />.
-        /// </returns>
-        public TickBarPlacement Placement
-        {
-            get => (TickBarPlacement)this.GetValue(PlacementProperty);
-            set => this.SetValue(PlacementProperty, value);
-        }
 
         /// <summary>
         /// Gets or sets the current magnitude of the range control.
@@ -78,39 +53,12 @@
         [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
         protected override void OnRender(DrawingContext dc)
         {
-            double EffectiveStrokeThickness()
-            {
-                return this.Stroke == null
-                    ? 0
-                    : this.StrokeThickness;
-            }
-
-            double PixelPosition(double value)
-            {
-                var scale = Interpolate.Linear(this.Minimum, this.Maximum, value)
-                                       .Clamp(0, 1);
-
-                if (this.Placement.IsHorizontal())
-                {
-                    var pos = (EffectiveStrokeThickness() / 2) + (scale * (this.ActualWidth - EffectiveStrokeThickness()));
-                    return this.IsDirectionReversed
-                        ? this.ActualWidth - pos
-                        : pos;
-                }
-                else
-                {
-                    var pos = (EffectiveStrokeThickness() / 2) + (scale * (this.ActualHeight - EffectiveStrokeThickness()));
-                    return this.IsDirectionReversed
-                        ? pos
-                        : this.ActualHeight - pos;
-                }
-            }
-
             Rect CreateBar()
             {
                 var rect = new Rect(this.RenderSize);
-                rect.Inflate(-EffectiveStrokeThickness() / 2, -EffectiveStrokeThickness() / 2);
-                var pos = PixelPosition(this.Value);
+                var strokeThickness = this.GetStrokeThickness();
+                rect.Inflate(-strokeThickness / 2, -strokeThickness / 2);
+                var pos = this.PixelPosition(this.Value);
                 if (this.Placement.IsHorizontal())
                 {
                     if (this.IsDirectionReversed)
@@ -139,8 +87,8 @@
 
             Rect Split(ref Rect barRect, double tickValue)
             {
-                var pos = PixelPosition(tickValue);
-                var offset = (this.TickGap / 2) + (EffectiveStrokeThickness() / 2);
+                var pos = this.PixelPosition(tickValue);
+                var offset = (this.TickGap / 2) + (this.GetStrokeThickness() / 2);
                 if (this.Placement.IsHorizontal())
                 {
                     if (this.IsDirectionReversed)
@@ -187,7 +135,7 @@
 
                 if (this.Placement.IsHorizontal())
                 {
-                    if (rect.Width <= EffectiveStrokeThickness())
+                    if (rect.Width <= this.GetStrokeThickness())
                     {
                         if (!DoubleUtil.IsZero(rect.Width))
                         {
@@ -201,7 +149,7 @@
                 }
                 else
                 {
-                    if (rect.Height <= EffectiveStrokeThickness())
+                    if (rect.Height <= this.GetStrokeThickness())
                     {
                         if (!DoubleUtil.IsZero(rect.Height))
                         {
