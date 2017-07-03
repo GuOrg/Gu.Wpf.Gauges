@@ -66,11 +66,11 @@
                 var strokeThickness = this.GetStrokeThickness();
                 if (this.Placement.IsHorizontal())
                 {
-                    return new Rect(pos - (this.TickWidth / 2), strokeThickness / 2, this.TickWidth, this.ActualHeight - strokeThickness);
+                    return new Rect(pos - (this.TickWidth / 2) - (strokeThickness / 2), strokeThickness / 2, this.TickWidth + strokeThickness, this.ActualHeight - strokeThickness);
                 }
                 else
                 {
-                    return new Rect(strokeThickness / 2, pos - (this.TickWidth / 2), this.ActualWidth - strokeThickness, this.TickWidth);
+                    return new Rect(strokeThickness / 2, pos - (this.TickWidth / 2) - (strokeThickness / 2), this.ActualWidth - strokeThickness, this.TickWidth + strokeThickness);
                 }
             }
 
