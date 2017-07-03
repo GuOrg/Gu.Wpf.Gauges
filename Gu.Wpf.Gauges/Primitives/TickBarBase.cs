@@ -82,7 +82,8 @@ namespace Gu.Wpf.Gauges
             typeof(TickBarBase),
             new FrameworkPropertyMetadata(
                 default(IReadOnlyList<double>),
-                FrameworkPropertyMetadataOptions.AffectsRender));
+                FrameworkPropertyMetadataOptions.AffectsRender,
+                OnAllTicksChanged));
 
         public static readonly DependencyProperty AllTicksProperty = AllTicksPropertyKey.DependencyProperty;
 
@@ -189,6 +190,10 @@ namespace Gu.Wpf.Gauges
                                       .ToArray();
         }
 
+        protected virtual void OnAllTicksChanged(IReadOnlyList<double> oldValue, IReadOnlyList<double> newValue)
+        {
+        }
+
         private static void OnTicksChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var bar = (TickBarBase)d;
@@ -203,6 +208,11 @@ namespace Gu.Wpf.Gauges
             }
 
             bar.UpdateTicks();
+        }
+
+        private static void OnExcludeTicksChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((TickBarBase)d).OnAllTicksChanged((IReadOnlyList<double>)e.OldValue, (IReadOnlyList<double>)e.NewValue);
         }
 
         private static void OnExcludeTicksChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

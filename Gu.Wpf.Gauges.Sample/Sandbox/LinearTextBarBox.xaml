@@ -45,15 +45,18 @@
                                       Grid.Column="0"
                                       Grid.ColumnSpan="2"
                                       Foreground="Black"
-                                      HorizontalTextAlignment="{Binding HorizontalTextAlignment}"
+                                      HorizontalTextAlignment="Left"
                                       IsDirectionReversed="{Binding IsDirectionReversed}"
                                       Maximum="{Binding Maximum}"
                                       Minimum="{Binding Minimum}"
                                       Placement="{Binding Placement}"
-                                      SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
-                                      TextOrientation="{Binding TextOrientation}"
                                       TickFrequency="{Binding MajorTickFrequency}"
-                                      Ticks="{Binding MajorTicks}" />
+                                      Ticks="{Binding MajorTicks}"
+                                      VerticalTextAlignment="Bottom">
+                <gauges:LinearTextTickBar.TextTransform>
+                    <RotateTransform Angle="90" />
+                </gauges:LinearTextTickBar.TextTransform>
+            </gauges:LinearTextTickBar>
             <Rectangle Grid.Row="0"
                        Grid.RowSpan="2"
                        Grid.Column="0"

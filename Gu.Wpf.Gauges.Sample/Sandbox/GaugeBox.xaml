@@ -19,7 +19,6 @@
             <gauges:LinearTextTickBar x:Name="TickLabels"
                                       Placement="Bottom"
                                       SnapsToDevicePixels="True"
-                                      TextOrientation="Horizontal"
                                       TickFrequency="{Binding ElementName=MajorTicks, Path=TickFrequency}"
                                       Ticks="{Binding ElementName=MajorTicks, Path=Ticks}" />
 

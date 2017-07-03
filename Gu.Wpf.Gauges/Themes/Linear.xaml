@@ -40,7 +40,6 @@
                                 </Grid.RowDefinitions>
                                 <local:LinearTextTickBar x:Name="TickLabels"
                                                          Grid.Row="1"
-                                                         TextOrientation="{TemplateBinding TextOrientation}"
                                                          TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                          Ticks="{TemplateBinding MajorTicks}" />
 
@@ -84,7 +83,6 @@
                                 </Grid.RowDefinitions>
                                 <local:LinearTextTickBar x:Name="TickLabels"
                                                          Grid.Row="1"
-                                                         TextOrientation="{TemplateBinding TextOrientation}"
                                                          TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                          Ticks="{TemplateBinding MajorTicks}" />
 
@@ -128,7 +126,6 @@
                                 <local:LinearTextTickBar x:Name="TickLabels"
                                                          Grid.Column="1"
                                                          Placement="Left"
-                                                         TextOrientation="{TemplateBinding TextOrientation}"
                                                          TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                          Ticks="{TemplateBinding MajorTicks}" />
 
@@ -175,7 +172,6 @@
                                 <local:LinearTextTickBar x:Name="TickLabels"
                                                          Grid.Column="1"
                                                          Placement="Left"
-                                                         TextOrientation="{TemplateBinding TextOrientation}"
                                                          TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                          Ticks="{TemplateBinding MajorTicks}" />
 

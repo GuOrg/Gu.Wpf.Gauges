@@ -200,7 +200,6 @@
                                               Minimum="{Binding Minimum}"
                                               Placement="{Binding Placement}"
                                               SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
-                                              TextOrientation="{Binding TextOrientation}"
                                               TickFrequency="{Binding MajorTickFrequency}"
                                               Ticks="{Binding MajorTicks}" />
                     <Rectangle Grid.Row="0"

@@ -1,6 +1,6 @@
 ﻿namespace Gu.Wpf.Gauges
 {
-    using System.Linq;
+    using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Documents;
     using System.Windows.Media;
@@ -8,20 +8,34 @@
     /// <summary>
     /// http://stackoverflow.com/a/3578214/1069200
     /// </summary>
-    public class TextTickBar : TickBarBase, ITextFormat
+    public abstract class TextTickBar : TickBarBase, ITextFormat
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
-        public static readonly DependencyProperty TextOrientationProperty = Gauge.TextOrientationProperty.AddOwner(
+        private static readonly DependencyPropertyKey AllTextsPropertyKey = DependencyProperty.RegisterReadOnly(
+            nameof(AllTexts),
+            typeof(IReadOnlyList<TickText>),
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
-                TextOrientation.Tangential,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+                default(IReadOnlyList<TickText>),
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static readonly DependencyProperty AllTextsProperty = AllTextsPropertyKey.DependencyProperty;
 
         public static readonly DependencyProperty HorizontalTextAlignmentProperty = DependencyProperty.Register(
-            "HorizontalTextAlignment",
+            nameof(HorizontalTextAlignment),
             typeof(HorizontalTextAlignment),
             typeof(TextTickBar),
-            new FrameworkPropertyMetadata(default(HorizontalTextAlignment), FrameworkPropertyMetadataOptions.AffectsRender));
+            new FrameworkPropertyMetadata(
+                default(HorizontalTextAlignment),
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static readonly DependencyProperty VerticalTextAlignmentProperty = DependencyProperty.Register(
+            nameof(VerticalTextAlignment),
+            typeof(VerticalTextAlignment),
+            typeof(TextTickBar),
+            new FrameworkPropertyMetadata(
+                default(VerticalTextAlignment),
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.FontFamily" /> dependency property.
@@ -119,14 +133,6 @@
                 default(string),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
-        private static readonly DependencyPropertyKey TextSpacePropertyKey = DependencyProperty.RegisterReadOnly(
-            nameof(TextSpace),
-            typeof(double),
-            typeof(TextTickBar),
-            new PropertyMetadata(default(double)));
-
-        public static readonly DependencyProperty TextSpaceProperty = TextSpacePropertyKey.DependencyProperty;
-
         private static readonly DependencyPropertyKey TextSpaceMarginPropertyKey = DependencyProperty.RegisterReadOnly(
             nameof(TextSpaceMargin),
             typeof(Thickness),
@@ -134,22 +140,25 @@
             new PropertyMetadata(default(Thickness)));
 
         public static readonly DependencyProperty TextSpaceMarginProperty = TextSpaceMarginPropertyKey.DependencyProperty;
+        private Typeface typeFace;
 #pragma warning restore SA1202 // Elements must be ordered by access
 
-        /// <summary>
-        /// Gets or sets the <see cref="T:Gu.Wpf.Gauges.TextOrientation" />
-        /// Default is Tangential
-        /// </summary>
-        public TextOrientation TextOrientation
+        public IReadOnlyList<TickText> AllTexts
         {
-            get => (TextOrientation)this.GetValue(TextOrientationProperty);
-            set => this.SetValue(TextOrientationProperty, value);
+            get => (IReadOnlyList<TickText>)this.GetValue(AllTextsProperty);
+            protected set => this.SetValue(AllTextsPropertyKey, value);
         }
 
         public HorizontalTextAlignment HorizontalTextAlignment
         {
             get => (HorizontalTextAlignment)this.GetValue(HorizontalTextAlignmentProperty);
             set => this.SetValue(HorizontalTextAlignmentProperty, value);
+        }
+
+        public VerticalTextAlignment VerticalTextAlignment
+        {
+            get => (VerticalTextAlignment)this.GetValue(VerticalTextAlignmentProperty);
+            set => this.SetValue(VerticalTextAlignmentProperty, value);
         }
 
         /// <summary>
@@ -251,32 +260,19 @@
         /// <summary>
         /// Gets the Reserved space due to the text
         /// </summary>
-        public double TextSpace
-        {
-            get => (double)this.GetValue(TextSpaceProperty);
-            protected set => this.SetValue(TextSpacePropertyKey, value);
-        }
-
         public Thickness TextSpaceMargin
         {
             get => (Thickness)this.GetValue(TextSpaceMarginProperty);
             protected set => this.SetValue(TextSpaceMarginPropertyKey, value);
         }
 
-        protected FormattedText[] AllTexts { get; private set; }
+        protected Typeface TypeFace => this.typeFace ??
+                                       (this.typeFace = new Typeface(
+                                           this.FontFamily,
+                                           this.FontStyle,
+                                           this.FontWeight,
+                                           this.FontStretch));
 
-        protected override void UpdateTicks()
-        {
-            base.UpdateTicks();
-            if (this.AllTicks == null)
-            {
-                this.AllTexts = new FormattedText[0];
-                return;
-            }
-
-            var typeFace = this.TypeFace();
-            this.AllTexts = this.AllTicks.Select(x => TextHelper.AsFormattedText(x, this, typeFace))
-                                         .ToArray();
-        }
+        protected abstract void UpdateTexts();
     }
 }

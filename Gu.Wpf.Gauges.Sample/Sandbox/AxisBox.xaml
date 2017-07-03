@@ -18,7 +18,6 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <gauges:LinearTextTickBar x:Name="TickLabels"
-                                      TextOrientation="Horizontal"
                                       TickFrequency="{Binding ElementName=MajorTicks, Path=TickFrequency}"
                                       Ticks="{Binding ElementName=MajorTicks, Path=Ticks}" />
 

@@ -8,15 +8,6 @@
 
     internal static class TextHelper
     {
-        internal static Typeface TypeFace(this ITextFormat textFormat)
-        {
-            return new Typeface(
-                textFormat.FontFamily,
-                textFormat.FontStyle,
-                textFormat.FontWeight,
-                textFormat.FontStretch);
-        }
-
         internal static FormattedText AsFormattedText(double value, ITextFormat textFormat, Typeface typeface)
         {
             var formattedText = new FormattedText(

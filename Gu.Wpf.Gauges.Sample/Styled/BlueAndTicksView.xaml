@@ -22,7 +22,6 @@
                             </Grid.ColumnDefinitions>
                             <gauges:LinearTextTickBar Margin="2,0"
                                                       HorizontalTextAlignment="Right"
-                                                      TextOrientation="Horizontal"
                                                       Ticks="{TemplateBinding MajorTicks}" />
 
                             <gauges:LinearTickBar Grid.Column="1"

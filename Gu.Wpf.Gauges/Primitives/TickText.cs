@@ -13,7 +13,7 @@ namespace Gu.Wpf.Gauges
             double emSize,
             Brush foreground,
             Point point,
-            RotateTransform transform)
+            Transform transform)
             : base(
                 string.Format(format, tick, CultureInfo.CurrentUICulture),
                 CultureInfo.CurrentUICulture,
@@ -28,6 +28,6 @@ namespace Gu.Wpf.Gauges
 
         public Point Point { get; }
 
-        public RotateTransform Transform { get; }
+        public Transform Transform { get; }
     }
 }
