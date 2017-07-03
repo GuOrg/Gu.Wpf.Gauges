@@ -6,11 +6,11 @@ using System.Windows;
 using System.Windows.Markup;
 
 [assembly: AssemblyTitle("Gauges")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Wpf Gauges")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Johan Larsson, Erik Wahlström")]
 [assembly: AssemblyProduct("Gauges")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
