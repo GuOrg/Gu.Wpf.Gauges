@@ -48,7 +48,7 @@
                                                      Grid.Row="2"
                                                      Height="15"
                                                      Fill="{TemplateBinding Foreground}"
-                                                     PenWidth="1"
+                                                     TickWidth="1"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                      Ticks="{TemplateBinding MajorTicks}" />
 
@@ -58,7 +58,7 @@
                                                      VerticalAlignment="Bottom"
                                                      ExceptTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
                                                      Fill="{TemplateBinding Foreground}"
-                                                     PenWidth="1"
+                                                     TickWidth="1"
                                                      Placement="Bottom"
                                                      TickFrequency="{TemplateBinding MinorTickFrequency}"
                                                      Ticks="{TemplateBinding MinorTicks}" />
@@ -92,7 +92,7 @@
                                                      Grid.Row="0"
                                                      Height="15"
                                                      Fill="{TemplateBinding Foreground}"
-                                                     PenWidth="1"
+                                                     TickWidth="1"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                      Ticks="{TemplateBinding MajorTicks}" />
 
@@ -102,7 +102,7 @@
                                                      VerticalAlignment="Top"
                                                      ExceptTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
                                                      Fill="{TemplateBinding Foreground}"
-                                                     PenWidth="1"
+                                                     TickWidth="1"
                                                      TickFrequency="{TemplateBinding MinorTickFrequency}"
                                                      Ticks="{TemplateBinding MinorTicks}" />
 
@@ -136,7 +136,7 @@
                                                      Grid.Column="0"
                                                      Width="15"
                                                      Fill="{TemplateBinding Foreground}"
-                                                     PenWidth="1"
+                                                     TickWidth="1"
                                                      Placement="Left"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                      Ticks="{TemplateBinding MajorTicks}" />
@@ -147,7 +147,7 @@
                                                      HorizontalAlignment="Left"
                                                      ExceptTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
                                                      Fill="{TemplateBinding Foreground}"
-                                                     PenWidth="1"
+                                                     TickWidth="1"
                                                      Placement="Left"
                                                      TickFrequency="{TemplateBinding MinorTickFrequency}"
                                                      Ticks="{TemplateBinding MinorTicks}" />
@@ -183,7 +183,7 @@
                                                      Grid.Column="2"
                                                      Width="15"
                                                      Fill="{TemplateBinding Foreground}"
-                                                     PenWidth="1"
+                                                     TickWidth="1"
                                                      Placement="Right"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                      Ticks="{TemplateBinding MajorTicks}" />
@@ -194,7 +194,7 @@
                                                      HorizontalAlignment="Right"
                                                      ExceptTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
                                                      Fill="{TemplateBinding Foreground}"
-                                                     PenWidth="1"
+                                                     TickWidth="1"
                                                      Placement="Left"
                                                      TickFrequency="{TemplateBinding MinorTickFrequency}"
                                                      Ticks="{TemplateBinding MinorTicks}" />

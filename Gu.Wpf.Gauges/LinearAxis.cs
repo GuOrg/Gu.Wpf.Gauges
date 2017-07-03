@@ -11,7 +11,7 @@
                 default(TickBarPlacement),
                 FrameworkPropertyMetadataOptions.Inherits));
 
-        public static readonly DependencyProperty PenWidthProperty = LinearTickBar.PenWidthProperty.AddOwner(
+        public static readonly DependencyProperty PenWidthProperty = LinearTickBar.TickWidthProperty.AddOwner(
             typeof(LinearAxis),
             new FrameworkPropertyMetadata(
                 1.0,

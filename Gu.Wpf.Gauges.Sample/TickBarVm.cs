@@ -22,6 +22,7 @@
         private double minorTickFrequency;
         private DoubleCollection minorTicks;
         private double tickGap = 1.0;
+        private double tickWidth = 1.0;
         private double thickness;
         private bool showLabels;
 
@@ -145,6 +146,22 @@
                 }
 
                 this.tickGap = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public double TickWidth
+        {
+            get => this.tickWidth;
+
+            set
+            {
+                if (value == this.tickWidth)
+                {
+                    return;
+                }
+
+                this.tickWidth = value;
                 this.OnPropertyChanged();
             }
         }

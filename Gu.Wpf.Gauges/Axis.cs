@@ -1,14 +1,10 @@
 ﻿namespace Gu.Wpf.Gauges
 {
-    using System;
-    using System.ComponentModel;
-    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Controls.Primitives;
     using System.Windows.Media;
 
-    public class Axis : Control, ISupportInitialize
+    public class Axis : Control
     {
         /// <summary>
         /// Identifies the <see cref="P:Axis.Minimum" /> dependency property.
@@ -28,7 +24,9 @@
         /// </returns>
         public static readonly DependencyProperty MaximumProperty = Gauge.MaximumProperty.AddOwner(
             typeof(Axis),
-            new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.Inherits));
+            new FrameworkPropertyMetadata(
+                1.0, 
+                FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty ShowLabelsProperty = DependencyProperty.Register(
             nameof(ShowLabels),
@@ -64,28 +62,6 @@
             new FrameworkPropertyMetadata(
                 false,
                 FrameworkPropertyMetadataOptions.Inherits));
-
-        /// <summary>
-        /// Identifies the <see cref="P:Axis.ReservedSpace" /> dependency property. This property is read-only.
-        /// </summary>
-        /// <returns>
-        /// The identifier for the <see cref="P:Axis.ReservedSpace" /> dependency property.
-        /// </returns>
-        public static readonly DependencyProperty ReservedSpaceProperty = TickBar.ReservedSpaceProperty.AddOwner(
-            typeof(Axis),
-            new FrameworkPropertyMetadata(
-                0.0,
-                FrameworkPropertyMetadataOptions.Inherits,
-                null,
-                CoerceReservedSpace));
-
-        public static readonly DependencyProperty MinReservedSpaceProperty = DependencyProperty.RegisterAttached(
-            "MinReservedSpace",
-            typeof(double),
-            typeof(Axis),
-            new PropertyMetadata(default(double), OnMinReservedSpaceChanged));
-
-        private readonly WeakDictionary<DependencyObject, double> minReservedSpaces = new WeakDictionary<DependencyObject, double>();
 
         /// <summary>
         /// Gets or sets the <see cref="P:Axis.Minimum" /> possible <see cref="P:Axis.Value" /> of the range element.
@@ -130,18 +106,6 @@
             set => this.SetValue(TextOrientationProperty, value);
         }
 
-        /// <summary>
-        /// Gets or sets a space buffer for the area that contains the tick marks that are specified for a <see cref="T:Bar" />.
-        /// </summary>
-        /// <returns>
-        /// A value that represents the total buffer area on either side of the row or column of tick marks. The default value is zero (0.0).
-        /// </returns>
-        public double ReservedSpace
-        {
-            get => (double)this.GetValue(ReservedSpaceProperty);
-            set => this.SetValue(ReservedSpaceProperty, value);
-        }
-
         public double MajorTickFrequency
         {
             get => (double)this.GetValue(MajorTickFrequencyProperty);
@@ -177,34 +141,6 @@
         {
             get => (bool)this.GetValue(IsDirectionReversedProperty);
             set => this.SetValue(IsDirectionReversedProperty, value);
-        }
-
-        public static void SetMinReservedSpace(DependencyObject element, double value)
-        {
-            element.SetValue(MinReservedSpaceProperty, value);
-        }
-
-        public static double GetMinReservedSpace(DependencyObject element)
-        {
-            return (double)element.GetValue(MinReservedSpaceProperty);
-        }
-
-        private static void OnMinReservedSpaceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var axis = d.VisualAncestors().OfType<Axis>().FirstOrDefault();
-            if (axis != null)
-            {
-                axis.minReservedSpaces.AddOrUpdate(d, (double)e.NewValue);
-                axis.SetCurrentValue(ReservedSpaceProperty, axis.minReservedSpaces.Max(x => x.Value));
-            }
-        }
-
-        private static object CoerceReservedSpace(DependencyObject d, object basevalue)
-        {
-            var axis = (Axis)d;
-            var min = axis.minReservedSpaces.Any() ? axis.minReservedSpaces.Min(x => x.Value) : 0;
-            var value = (double)basevalue;
-            return Math.Max(value, min);
         }
     }
 }

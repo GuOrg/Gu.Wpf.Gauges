@@ -18,7 +18,7 @@ namespace Gu.Wpf.Gauges
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.SubPropertiesDoNotAffectRender,
-                (d, e) => ((GeometryBar)d).pen = null));
+                (d, e) => ((GeometryBar)d).ResetPen()));
 
         public static readonly DependencyProperty StrokeThicknessProperty = Shape.StrokeThicknessProperty.AddOwner(
             typeof(GeometryBar),
@@ -292,6 +292,11 @@ namespace Gu.Wpf.Gauges
             }
 
             dc.DrawGeometry(this.Fill, this.Pen, geometry);
+        }
+
+        protected void ResetPen()
+        {
+            this.pen = null;
         }
     }
 }
