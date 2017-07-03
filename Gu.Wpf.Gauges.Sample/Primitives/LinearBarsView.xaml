@@ -18,8 +18,8 @@
                           Placement="Bottom"
                           SnapsToDevicePixels="False"
                           TextOrientation="Horizontal"
-                          TickGap="2"
-                          TickWidth="2"
+                          TickGap="1"
+                          TickWidth="1"
                           VerticalTextAlignment="Top"
                           Value="80" />
     </UserControl.DataContext>
