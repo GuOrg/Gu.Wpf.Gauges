@@ -8,16 +8,16 @@
     public class LinearBlockBar : LinearGeometryBar
     {
         /// <summary>
-        /// Identifies the <see cref="P:BlockBar.Value" /> dependency property.
+        /// Identifies the <see cref="P:LinearBlockBar.Value" /> dependency property.
         /// </summary>
         /// <returns>
-        /// The identifier for the <see cref="P:BlockBar.Value" /> dependency property.
+        /// The identifier for the <see cref="P:LinearBlockBar.Value" /> dependency property.
         /// </returns>
         public static readonly DependencyProperty ValueProperty = Gauge.ValueProperty.AddOwner(
             typeof(LinearBlockBar),
             new FrameworkPropertyMetadata(
-                0.0d,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+                double.NaN,
+                FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty TickGapProperty = DependencyProperty.Register(
             nameof(TickGap),
@@ -58,7 +58,8 @@
                 var rect = new Rect(this.RenderSize);
                 var strokeThickness = this.GetStrokeThickness();
                 rect.Inflate(-strokeThickness / 2, -strokeThickness / 2);
-                var pos = this.PixelPosition(this.Value);
+                var value = double.IsNaN(this.Value) ? this.Maximum : this.Value;
+                var pos = this.PixelPosition(value);
                 if (this.Placement.IsHorizontal())
                 {
                     if (this.IsDirectionReversed)

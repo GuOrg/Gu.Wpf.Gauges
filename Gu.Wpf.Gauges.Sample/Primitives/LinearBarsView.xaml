@@ -20,7 +20,7 @@
                           TextOrientation="Horizontal"
                           TickGap="2"
                           VerticalTextAlignment="Top"
-                          Value="100" />
+                          Value="70" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>

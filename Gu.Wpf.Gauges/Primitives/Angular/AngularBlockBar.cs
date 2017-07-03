@@ -42,7 +42,7 @@ namespace Gu.Wpf.Gauges
             typeof(AngularBlockBar),
             new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.AffectsRender));
 
-        public static readonly DependencyProperty ThicknessProperty = AngularGauge.ThicknessProperty.AddOwner(
+        public static readonly DependencyProperty ThicknessProperty = Gauge.ThicknessProperty.AddOwner(
             typeof(AngularBlockBar),
             new FrameworkPropertyMetadata(
                 10.0,

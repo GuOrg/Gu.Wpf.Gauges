@@ -2,7 +2,6 @@
 {
     using System.ComponentModel;
     using System.Windows;
-    using System.Windows.Controls;
     using System.Windows.Media;
 
     [DefaultEvent(nameof(ValueChanged))]
@@ -77,6 +76,14 @@
                 default(DoubleCollection),
                 FrameworkPropertyMetadataOptions.Inherits));
 
+        public static readonly DependencyProperty ThicknessProperty = DependencyProperty.RegisterAttached(
+            nameof(Thickness),
+            typeof(double),
+            typeof(Gauge),
+            new FrameworkPropertyMetadata(
+                10.0d,
+                FrameworkPropertyMetadataOptions.Inherits));
+
         public static readonly DependencyProperty TextOrientationProperty = DependencyProperty.RegisterAttached(
             nameof(TextOrientation),
             typeof(TextOrientation),
@@ -131,6 +138,12 @@
         {
             get => (DoubleCollection)this.GetValue(MinorTicksProperty);
             set => this.SetValue(MinorTicksProperty, value);
+        }
+
+        public double Thickness
+        {
+            get => (double)this.GetValue(ThicknessProperty);
+            set => this.SetValue(ThicknessProperty, value);
         }
 
         public TextOrientation TextOrientation
@@ -217,6 +230,16 @@
         public static DoubleCollection GetMinorTicks(DependencyObject element)
         {
             return (DoubleCollection)element.GetValue(MinorTicksProperty);
+        }
+
+        public static void SetThickness(DependencyObject element, double value)
+        {
+            element.SetValue(ThicknessProperty, value);
+        }
+
+        public static double GetThickness(DependencyObject element)
+        {
+            return (double)element.GetValue(ThicknessProperty);
         }
 
         public static void SetTextOrientation(DependencyObject element, TextOrientation value)

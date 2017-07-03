@@ -7,7 +7,6 @@ namespace Gu.Wpf.Gauges
 {
     using System.ComponentModel;
     using System.Windows;
-    using System.Windows.Controls;
     using System.Windows.Media;
 
     [DefaultEvent(nameof(ValueChanged))]
@@ -25,6 +24,7 @@ namespace Gu.Wpf.Gauges
                          new PropertyMetaData("MajorTicks", "DoubleCollection", null),
                          new PropertyMetaData("MinorTickFrequency", "double", null),
                          new PropertyMetaData("MinorTicks", "DoubleCollection", null),
+                         new PropertyMetaData("Thickness", "double", "10.0d"),
                          new PropertyMetaData("TextOrientation", "TextOrientation", "TextOrientation.Horizontal"),
                      };
 
@@ -34,7 +34,7 @@ namespace Gu.Wpf.Gauges
             ? $@",
                 On{property.Name}Changed"
             : string.Empty;
-        WriteLineIfNotFirst(property, properties);
+        this.WriteLineIfNotFirst(property, properties);
     #>
         public static readonly DependencyProperty <#= property.Name #>Property = DependencyProperty.RegisterAttached(
             nameof(<#= property.Name #>),
