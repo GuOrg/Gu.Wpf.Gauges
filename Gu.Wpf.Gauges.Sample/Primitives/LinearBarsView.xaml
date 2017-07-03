@@ -16,7 +16,7 @@
                           Minimum="0"
                           MinorTickFrequency="5"
                           Placement="Bottom"
-                          SnapsToDevicePixels="False"
+                          SnapsToDevicePixels="True"
                           TextOrientation="Horizontal"
                           TickGap="2"
                           VerticalTextAlignment="Top"
