@@ -64,14 +64,17 @@
             {
                 var pos = this.PixelPosition(tick);
                 var strokeThickness = this.GetStrokeThickness();
-                if (this.Placement.IsHorizontal())
-                {
-                    return new Rect(pos - (this.TickWidth / 2) - (strokeThickness / 2), strokeThickness / 2, this.TickWidth + strokeThickness, this.ActualHeight - strokeThickness);
-                }
-                else
-                {
-                    return new Rect(strokeThickness / 2, pos - (this.TickWidth / 2) - (strokeThickness / 2), this.ActualWidth - strokeThickness, this.TickWidth + strokeThickness);
-                }
+                return this.Placement.IsHorizontal()
+                    ? new Rect(
+                        x: pos - (this.TickWidth / 2) + (strokeThickness / 2),
+                        y: strokeThickness / 2,
+                        width: this.TickWidth - strokeThickness,
+                        height: this.ActualHeight - strokeThickness)
+                    : new Rect(
+                        x: strokeThickness / 2,
+                        y: pos - (this.TickWidth / 2) + (strokeThickness / 2),
+                        width: this.ActualWidth - strokeThickness,
+                        height: this.TickWidth - strokeThickness);
             }
 
             if (this.Pen == null ||

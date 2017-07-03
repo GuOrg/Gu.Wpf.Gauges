@@ -9,7 +9,7 @@
              mc:Ignorable="d">
     <UserControl.DataContext>
         <sample:TickBarVm HorizontalTextAlignment="Left"
-                          IsDirectionReversed="False"
+                          IsDirectionReversed="True"
                           MajorTickFrequency="50"
                           MajorTicks="75"
                           Maximum="100"
@@ -18,8 +18,8 @@
                           Placement="Bottom"
                           SnapsToDevicePixels="False"
                           TextOrientation="Horizontal"
-                          TickGap="1"
-                          TickWidth="1"
+                          TickGap="3"
+                          TickWidth="3"
                           VerticalTextAlignment="Top"
                           Value="80" />
     </UserControl.DataContext>
@@ -110,6 +110,7 @@
                                            TickGap="{Binding TickGap}"
                                            Ticks="{Binding MajorTicks}"
                                            Value="{Binding Value}" />
+
                     <gauges:LinearTickBar Fill="Red"
                                           IsDirectionReversed="{Binding IsDirectionReversed}"
                                           Maximum="{Binding Maximum}"
@@ -119,6 +120,18 @@
                                           TickFrequency="{Binding MajorTickFrequency}"
                                           TickWidth="{Binding TickWidth}"
                                           Ticks="{Binding MajorTicks}" />
+
+                    <gauges:LinearDotBar Fill="GreenYellow"
+                                         IsDirectionReversed="{Binding IsDirectionReversed}"
+                                         Maximum="{Binding Maximum}"
+                                         Minimum="{Binding Minimum}"
+                                         Placement="{Binding Placement}"
+                                         SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                                         Stroke="Blue"
+                                         TickDiameter="{Binding TickWidth}"
+                                         TickFrequency="{Binding MajorTickFrequency}"
+                                         Ticks="{Binding MajorTicks}" />
+
                     <Rectangle Fill="#55ff69b4"
                                SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
                                Stroke="Black"

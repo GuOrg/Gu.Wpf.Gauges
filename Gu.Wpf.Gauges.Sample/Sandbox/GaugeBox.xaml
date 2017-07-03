@@ -27,10 +27,10 @@
                                   Grid.Row="1"
                                   Height="15"
                                   Fill="Black"
-                                  TickWidth="1"
                                   Placement="Bottom"
                                   SnapsToDevicePixels="True"
                                   TickFrequency="25"
+                                  TickWidth="1"
                                   Ticks="30,70" />
 
             <gauges:LinearTickBar x:Name="MinorTicks"
@@ -38,10 +38,10 @@
                                   Height="10"
                                   VerticalAlignment="Bottom"
                                   Fill="{Binding ElementName=MajorTicks, Path=Fill}"
-                                  TickWidth="1"
                                   Placement="Bottom"
                                   SnapsToDevicePixels="True"
                                   TickFrequency="5"
+                                  TickWidth="1"
                                   Ticks="70" />
 
             <Rectangle x:Name="Line"

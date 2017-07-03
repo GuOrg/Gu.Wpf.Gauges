@@ -26,8 +26,8 @@
                                   Grid.Row="1"
                                   Height="15"
                                   Fill="Black"
-                                  TickWidth="1"
                                   TickFrequency="25"
+                                  TickWidth="1"
                                   Ticks="30,70" />
 
             <gauges:LinearTickBar x:Name="MinorTicks"
@@ -36,9 +36,9 @@
                                   VerticalAlignment="Bottom"
                                   ExceptTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
                                   Fill="{Binding ElementName=MajorTicks, Path=Fill}"
-                                  TickWidth="1"
                                   Placement="Bottom"
-                                  TickFrequency="5" />
+                                  TickFrequency="5"
+                                  TickWidth="1" />
 
             <Rectangle x:Name="Line"
                        Grid.Row="1"

@@ -25,7 +25,7 @@
         public static readonly DependencyProperty MaximumProperty = Gauge.MaximumProperty.AddOwner(
             typeof(Axis),
             new FrameworkPropertyMetadata(
-                1.0, 
+                1.0,
                 FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty ShowLabelsProperty = DependencyProperty.Register(

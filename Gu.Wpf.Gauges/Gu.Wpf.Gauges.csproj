@@ -96,6 +96,7 @@
     <Compile Include="Primitives\Linear\LinearGeometryBar.cs" />
     <Compile Include="Primitives\Linear\LinearTextTickBar.cs" />
     <Compile Include="Primitives\Angular\Ring.cs" />
+    <Compile Include="Primitives\Linear\LinearTickBar.cs" />
     <Compile Include="Primitives\TickBarBase.cs" />
     <Compile Include="Gauge.cs" />
     <Compile Include="Internals\ArcInfo.cs" />
@@ -107,7 +108,7 @@
     <Compile Include="Primitives\ITextFormat.cs" />
     <Compile Include="Internals\Horizontal.cs" />
     <Compile Include="Internals\Line.cs" />
-    <Compile Include="Primitives\Linear\LinearTickBar.cs" />
+    <Compile Include="Primitives\Linear\LinearDotBar.cs" />
     <Compile Include="Internals\PointExt.cs" />
     <Compile Include="Internals\RectExt.cs" />
     <Compile Include="Internals\SizeExt.cs" />
