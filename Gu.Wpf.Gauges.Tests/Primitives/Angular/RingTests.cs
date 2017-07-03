@@ -20,7 +20,6 @@
                 Thickness = 10,
             };
 
-            SaveImage(ring);
             ImageAssert.AreEqual(Properties.Resources.Ring_Thickness_10_StrokeThickness_0, ring);
         }
 
@@ -34,7 +33,7 @@
                 StrokeThickness = 1,
                 Thickness = 10,
             };
-            SaveImage(ring);
+
             ImageAssert.AreEqual(Properties.Resources.Ring_Thickness_10_StrokeThickness_1, ring);
         }
 
