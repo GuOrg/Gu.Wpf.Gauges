@@ -17,7 +17,7 @@
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
                 default(IReadOnlyList<TickText>),
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty AllTextsProperty = AllTextsPropertyKey.DependencyProperty;
 
@@ -27,7 +27,7 @@
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
                 default(HorizontalTextAlignment),
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty VerticalTextAlignmentProperty = DependencyProperty.Register(
             nameof(VerticalTextAlignment),
@@ -35,7 +35,7 @@
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
                 default(VerticalTextAlignment),
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.FontFamily" /> dependency property.
@@ -46,8 +46,9 @@
         public static readonly DependencyProperty FontFamilyProperty = TextElement.FontFamilyProperty.AddOwner(
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
-               new FontFamily("Segoe UI"),
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+                new FontFamily("Segoe UI"),
+                FrameworkPropertyMetadataOptions.Inherits,
+                (d, _) => ((TextTickBar)d).UpdateTypeFace()));
 
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.FontStyle" /> dependency property.
@@ -59,7 +60,8 @@
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
                 FontStyles.Normal,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.Inherits,
+                (d, _) => ((TextTickBar)d).UpdateTypeFace()));
 
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.FontWeight" /> dependency property.
@@ -71,7 +73,8 @@
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
                 FontWeights.Normal,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.Inherits,
+                (d, _) => ((TextTickBar)d).UpdateTypeFace()));
 
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.FontStretch" /> dependency property.
@@ -83,7 +86,8 @@
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
                 FontStretches.Normal,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.Inherits,
+                (d, _) => ((TextTickBar)d).UpdateTypeFace()));
 
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.FontSize" /> dependency property.
@@ -95,7 +99,8 @@
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
                 12.0,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.Inherits,
+                (d, _) => ((TextTickBar)d).UpdateTexts()));
 
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.Foreground" /> dependency property.
@@ -129,9 +134,9 @@
             "StringFormat",
             typeof(string),
             typeof(TextTickBar),
-            new FrameworkPropertyMetadata(
+            new PropertyMetadata(
                 default(string),
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+                (d, _) => ((TextTickBar)d).UpdateTexts()));
 
         private static readonly DependencyPropertyKey TextSpaceMarginPropertyKey = DependencyProperty.RegisterReadOnly(
             nameof(TextSpaceMargin),
@@ -272,6 +277,18 @@
                                            this.FontStyle,
                                            this.FontWeight,
                                            this.FontStretch));
+
+        protected void UpdateTypeFace()
+        {
+            this.typeFace = null;
+            this.UpdateTexts();
+        }
+
+        protected override void UpdateTicks()
+        {
+            base.UpdateTicks();
+            this.UpdateTexts();
+        }
 
         protected abstract void UpdateTexts();
     }

@@ -45,14 +45,14 @@
                                       Grid.Column="0"
                                       Grid.ColumnSpan="2"
                                       Foreground="Black"
-                                      HorizontalTextAlignment="Left"
+                                      HorizontalTextAlignment="{Binding HorizontalTextAlignment}"
                                       IsDirectionReversed="{Binding IsDirectionReversed}"
                                       Maximum="{Binding Maximum}"
                                       Minimum="{Binding Minimum}"
                                       Placement="{Binding Placement}"
                                       TickFrequency="{Binding MajorTickFrequency}"
                                       Ticks="{Binding MajorTicks}"
-                                      VerticalTextAlignment="Bottom">
+                                      VerticalTextAlignment="{Binding VerticalTextAlignment}">
                 <gauges:LinearTextTickBar.TextTransform>
                     <RotateTransform Angle="90" />
                 </gauges:LinearTextTickBar.TextTransform>

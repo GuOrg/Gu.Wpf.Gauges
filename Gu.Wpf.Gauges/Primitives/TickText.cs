@@ -7,27 +7,32 @@ namespace Gu.Wpf.Gauges
     public class TickText : FormattedText
     {
         public TickText(
-            double tick,
+            double value,
             string format,
             Typeface typeface,
             double emSize,
             Brush foreground,
-            Point point,
             Transform transform)
             : base(
-                string.Format(format, tick, CultureInfo.CurrentUICulture),
+                Format(format, value, CultureInfo.CurrentUICulture),
                 CultureInfo.CurrentUICulture,
                 FlowDirection.LeftToRight,
                 typeface,
                 emSize,
                 foreground)
         {
-            this.Point = point;
+            this.Value = value;
             this.Transform = transform;
         }
 
-        public Point Point { get; }
+        public double Value { get; }
 
         public Transform Transform { get; }
+
+        public Point Point { get; set; }
+
+        private static string Format(string format, double value, CultureInfo culture) => string.IsNullOrEmpty(format)
+            ? value.ToString(culture)
+            : string.Format(format, value, culture);
     }
 }

@@ -6,7 +6,7 @@
     {
         public LinearTickBarBox()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

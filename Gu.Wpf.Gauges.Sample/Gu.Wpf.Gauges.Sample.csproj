@@ -84,6 +84,9 @@
     <Compile Include="Sandbox\RingBox.xaml.cs">
       <DependentUpon>RingBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sandbox\SandboxWindow.xaml.cs">
+      <DependentUpon>SandboxWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Styled\BlueAndTicksView.xaml.cs">
       <DependentUpon>BlueAndTicksView.xaml</DependentUpon>
     </Compile>
@@ -151,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Sandbox\RingBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sandbox\SandboxWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

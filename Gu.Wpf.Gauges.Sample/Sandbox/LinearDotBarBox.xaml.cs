@@ -6,7 +6,7 @@
     {
         public LinearDotBarBox()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

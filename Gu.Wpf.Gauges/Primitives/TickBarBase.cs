@@ -210,7 +210,7 @@ namespace Gu.Wpf.Gauges
             bar.UpdateTicks();
         }
 
-        private static void OnExcludeTicksChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnAllTicksChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ((TickBarBase)d).OnAllTicksChanged((IReadOnlyList<double>)e.OldValue, (IReadOnlyList<double>)e.NewValue);
         }

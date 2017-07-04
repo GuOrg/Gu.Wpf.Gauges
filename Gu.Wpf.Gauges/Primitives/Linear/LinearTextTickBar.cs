@@ -18,7 +18,7 @@
             typeof(LinearTextTickBar),
             new FrameworkPropertyMetadata(
                 TickBarPlacement.Bottom,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty TextTransformProperty = DependencyProperty.Register(
             nameof(TextTransform),
@@ -26,7 +26,7 @@
             typeof(LinearTextTickBar),
             new FrameworkPropertyMetadata(
                 default(Transform),
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
         /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.
@@ -48,123 +48,173 @@
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            if (this.AllTexts == null ||
-                this.AllTexts.Count == 0)
+            var rect = default(Rect);
+            if (this.AllTexts != null)
             {
-                return new Size(0, 0);
+                foreach (var tickText in this.AllTexts)
+                {
+                    var p = new Point(tickText.Width, tickText.Height);
+                    if (tickText.Transform != null)
+                    {
+                        p = tickText.Transform.Transform(p);
+                    }
+
+                    rect.Union(p);
+                }
             }
 
-            throw new NotImplementedException();
-            //var textHeight = Math.Ceiling(this.FontSize * this.FontFamily.LineSpacing);
-            //double w = 0;
-            //double h = 0;
-            //switch (this.TextOrientation)
-            //{
-            //    case TextOrientation.VerticalUp:
-            //    case TextOrientation.VerticalDown:
-            //        w = textHeight;
-            //        h = this.AllTexts_.Max(t => t.Width);
-            //        this.TextSpace = textHeight;
-            //        break;
-            //    case TextOrientation.Horizontal:
-            //    case TextOrientation.Tangential:
-            //    case TextOrientation.RadialOut:
-            //        w = this.AllTexts_.Max(x => x.Width);
-            //        h = textHeight;
-            //        this.TextSpace = w;
-            //        break;
-            //    default:
-            //        throw new ArgumentOutOfRangeException();
-            //}
+            return rect.Size;
+        }
 
-            //var margin = this.TextSpace / 2;
-            //switch (this.Placement)
-            //{
-            //    case TickBarPlacement.Left:
-            //    case TickBarPlacement.Right:
-            //        this.TextSpaceMargin = new Thickness(0, margin, 0, margin);
-            //        break;
-            //    case TickBarPlacement.Top:
-            //    case TickBarPlacement.Bottom:
-            //        this.TextSpaceMargin = new Thickness(margin, 0, margin, 0);
-            //        break;
-            //    default:
-            //        throw new ArgumentOutOfRangeException();
-            //}
+        protected override Size ArrangeOverride(Size finalSize)
+        {
+            if (this.AllTexts != null)
+            {
+                foreach (var tickText in this.AllTexts)
+                {
+                    tickText.Point = this.PixelPosition(tickText, finalSize);
+                }
+            }
 
-            //var size = new Size(w, h);
-            //if (size.IsNanOrEmpty())
-            //{
-            //    return new Size(0, 0);
-            //}
-
-            //return size;
+            return finalSize;
         }
 
         protected override void OnRender(DrawingContext dc)
         {
             if (this.Foreground == null ||
-                this.AllTicks == null)
+                this.AllTexts == null ||
+                this.AllTexts.Count == 0)
             {
                 return;
             }
 
-            throw new NotImplementedException();
-            //var line = new Line(this.ActualWidth, this.ActualHeight, 0, this.Placement, this.IsDirectionReversed);
-            //for (var i = 0; i < this.AllTicks.Count; i++)
-            //{
+            foreach (var tickText in this.AllTexts)
+            {
+                if (tickText.Transform != null)
+                {
                 var pos = Gauges.Ticks.ToPos(tick, this.Minimum, this.Maximum, line);
-            //    var pos = TickHelper.ToPos(tick, this.Minimum, this.Maximum, line);
-            //    var text = this.AllTexts_[i];
-            //    switch (this.HorizontalTextAlignment)
-            //    {
-            //        case HorizontalTextAlignment.Left:
-            //            break;
-            //        case HorizontalTextAlignment.Center:
-            //            switch (this.TextOrientation)
-            //            {
-            //                case TextOrientation.Horizontal:
-            //                    pos.Offset((this.ActualWidth - text.Width) / 2, 0);
-            //                    break;
-            //                case TextOrientation.VerticalUp:
-            //                    break;
-            //                case TextOrientation.VerticalDown:
-            //                    break;
-            //                case TextOrientation.Tangential:
-            //                    break;
-            //                case TextOrientation.RadialOut:
-            //                    break;
-            //                default:
-            //                    throw new ArgumentOutOfRangeException();
-            //            }
+                }
 
-            //            break;
-            //        case HorizontalTextAlignment.Right:
-            //            switch (this.TextOrientation)
-            //            {
-            //                case TextOrientation.Horizontal:
-            //                    pos.Offset(this.ActualWidth - text.Width, 0);
-            //                    break;
-            //                case TextOrientation.VerticalUp:
-            //                    break;
-            //                case TextOrientation.VerticalDown:
-            //                    break;
-            //                case TextOrientation.Tangential:
-            //                    break;
-            //                case TextOrientation.RadialOut:
-            //                    break;
-            //                default:
-            //                    throw new ArgumentOutOfRangeException();
-            //            }
+                dc.DrawText(tickText, tickText.Point);
 
-            //            break;
-            //        default:
-            //            throw new ArgumentOutOfRangeException();
-            //    }
+                if (tickText.Transform != null)
+                {
+                    dc.Pop();
+                }
+            }
+        }
 
-            //    var textPosition = new TextPosition(text, new TextPositionOptions(this.Placement, this.TextOrientation), pos, 0);
-            //    dc.DrawText(text, textPosition);
-            //}
+        /// <summary>
+        /// Get the interpolated pixel position for the value.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="finalSize"></param>
+        /// <returns></returns>
+        protected virtual double PixelPosition(double value, Size finalSize)
+        {
+            var scale = Interpolate.Linear(this.Minimum, this.Maximum, value)
+                                   .Clamp(0, 1);
+
+            if (this.Placement.IsHorizontal())
+            {
+                var pos = scale * finalSize.Width;
+                return this.IsDirectionReversed
+                    ? finalSize.Width - pos
+                    : pos;
+            }
+            else
+            {
+                var pos = scale * finalSize.Height;
+                return this.IsDirectionReversed
+                    ? pos
+                    : finalSize.Height - pos;
+            }
+        }
+
+        protected virtual Point PixelPosition(TickText tickText, Size finalSize)
+        {
+            var geometry = tickText.BuildGeometry(default(Point));
+            geometry.SetCurrentValue(Geometry.TransformProperty, tickText.Transform);
+            var bounds = geometry.Bounds;
+            var pos = this.PixelPosition(tickText.Value, finalSize);
+            if (this.Placement.IsHorizontal())
+            {
+                switch (this.HorizontalTextAlignment)
+                {
+                    case HorizontalTextAlignment.Left:
+                        tickText.TextAlignment = TextAlignment.Left;
+                        break;
+                    case HorizontalTextAlignment.Center:
+                        tickText.TextAlignment = TextAlignment.Center;
+                        break;
+                    case HorizontalTextAlignment.Right:
+                        tickText.TextAlignment = TextAlignment.Right;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+                var y = 0.0;
+                switch (this.VerticalTextAlignment)
+                {
+                    case VerticalTextAlignment.Top:
+                        y += tickText.Extent;
+                        break;
+                    case VerticalTextAlignment.Center:
+                        y += tickText.Extent / 2;
+                        break;
+                    case VerticalTextAlignment.Bottom:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+                return new Point(pos, y);
+            }
+            else
+            {
+                var x = 0.0;
+                switch (this.HorizontalTextAlignment)
+                {
+                    case HorizontalTextAlignment.Left:
+                        break;
+                    case HorizontalTextAlignment.Center:
+                        x += tickText.Width / 2;
+                        break;
+                    case HorizontalTextAlignment.Right:
+                        x += tickText.Width;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+                switch (this.VerticalTextAlignment)
+                {
+                    case VerticalTextAlignment.Top:
+                        pos += tickText.Extent;
+                        break;
+                    case VerticalTextAlignment.Center:
+                        pos += tickText.Extent / 2;
+                        break;
+                    case VerticalTextAlignment.Bottom:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+                return new Point(x, pos);
+            }
+        }
+
+        protected virtual TickText CreateTickText(double value)
+        {
+            return new TickText(
+                value,
+                this.StringFormat ?? string.Empty,
+                this.TypeFace,
+                this.FontSize,
+                this.Foreground,
+                this.TextTransform);
         }
 
         protected override void UpdateTexts()
@@ -175,15 +225,7 @@
                 return;
             }
 
-            this.AllTexts = this.AllTicks.Select(
-                x => new TickText(
-                    x,
-                    this.StringFormat,
-                    this.TypeFace,
-                    this.FontSize,
-                    this.Foreground,
-                    ,
-                    this.TextTransform));
+            this.AllTexts = this.AllTicks.Select(this.CreateTickText).ToArray();
         }
     }
 }

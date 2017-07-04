@@ -66,10 +66,14 @@
             <sandbox:LinearBlockBarBox />
         </TabItem>
 
+        <TabItem Header="LinearTextBarBox">
+            <sandbox:LinearTextBarBox />
+        </TabItem>
+
         <TabItem Header="LinearDotBarBox">
             <sandbox:LinearDotBarBox />
         </TabItem>
-        
+
         <TabItem Header="RingBox">
             <sandbox:RingBox />
         </TabItem>
