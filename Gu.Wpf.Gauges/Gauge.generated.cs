@@ -12,9 +12,8 @@
             nameof(Value),
             typeof(double),
             typeof(Gauge),
-            new FrameworkPropertyMetadata(
+            new PropertyMetadata(
                 double.NaN,
-                FrameworkPropertyMetadataOptions.Inherits,
                 OnValueChanged));
 
         public static readonly DependencyProperty MinimumProperty = DependencyProperty.RegisterAttached(

@@ -241,7 +241,7 @@
                                         BorderThickness="{TemplateBinding BorderThickness}">
                                     <Grid>
                                         <local:LinearAxis />
-                                        <local:LinearIndicator>
+                                        <local:LinearIndicator Value="{TemplateBinding Value}">
                                             <Path Width="10"
                                                   Height="10"
                                                   VerticalAlignment="Bottom"
@@ -271,7 +271,7 @@
                                         BorderThickness="{TemplateBinding BorderThickness}">
                                     <Grid>
                                         <local:LinearAxis />
-                                        <local:LinearIndicator>
+                                        <local:LinearIndicator Value="{TemplateBinding Value}">
                                             <Path Width="10"
                                                   Height="10"
                                                   VerticalAlignment="Top"
@@ -301,7 +301,7 @@
                                         BorderThickness="{TemplateBinding BorderThickness}">
                                     <Grid>
                                         <local:LinearAxis />
-                                        <local:LinearIndicator>
+                                        <local:LinearIndicator Value="{TemplateBinding Value}">
                                             <Path Width="10"
                                                   Height="10"
                                                   HorizontalAlignment="Left"
@@ -331,7 +331,7 @@
                                         BorderThickness="{TemplateBinding BorderThickness}">
                                     <Grid>
                                         <local:LinearAxis />
-                                        <local:LinearIndicator>
+                                        <local:LinearIndicator Value="{TemplateBinding Value}">
                                             <Path Width="10"
                                                   Height="10"
                                                   HorizontalAlignment="Right"
