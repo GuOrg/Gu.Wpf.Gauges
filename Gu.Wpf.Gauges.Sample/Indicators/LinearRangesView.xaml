@@ -21,13 +21,12 @@
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <gauges:LinearGauge Grid.Row="0"
-                            Height="80"
                             Margin="10"
                             IsDirectionReversed="{Binding IsDirectionReversed}"
                             Maximum="{Binding Maximum}"
