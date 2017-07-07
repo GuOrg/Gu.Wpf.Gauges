@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Gu.Wpf.Gauges.Sample.Sandbox"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
         Title="SandboxWindow"
-        Width="300"
+        Width="100"
         Height="400"
         mc:Ignorable="d">
-    <local:LinearTextBarBox />
+    <sample:DefaultStyleLinearGaugeView />
 </Window>
