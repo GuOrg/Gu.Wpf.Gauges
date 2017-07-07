@@ -48,19 +48,19 @@
                                                      Grid.Row="2"
                                                      Height="15"
                                                      Fill="{TemplateBinding Foreground}"
-                                                     TickWidth="1"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                     TickWidth="1"
                                                      Ticks="{TemplateBinding MajorTicks}" />
 
                                 <local:LinearTickBar x:Name="MinorTicks"
                                                      Grid.Row="2"
                                                      Height="10"
                                                      VerticalAlignment="Bottom"
-                                                     ExceptTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
+                                                     ExcludeTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
                                                      Fill="{TemplateBinding Foreground}"
-                                                     TickWidth="1"
                                                      Placement="Bottom"
                                                      TickFrequency="{TemplateBinding MinorTickFrequency}"
+                                                     TickWidth="1"
                                                      Ticks="{TemplateBinding MinorTicks}" />
 
                                 <Rectangle x:Name="Line"
@@ -92,18 +92,18 @@
                                                      Grid.Row="0"
                                                      Height="15"
                                                      Fill="{TemplateBinding Foreground}"
-                                                     TickWidth="1"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                     TickWidth="1"
                                                      Ticks="{TemplateBinding MajorTicks}" />
 
                                 <local:LinearTickBar x:Name="MinorTicks"
                                                      Grid.Row="0"
                                                      Height="10"
                                                      VerticalAlignment="Top"
-                                                     ExceptTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
+                                                     ExcludeTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
                                                      Fill="{TemplateBinding Foreground}"
-                                                     TickWidth="1"
                                                      TickFrequency="{TemplateBinding MinorTickFrequency}"
+                                                     TickWidth="1"
                                                      Ticks="{TemplateBinding MinorTicks}" />
 
                                 <Rectangle x:Name="Line"
@@ -136,20 +136,20 @@
                                                      Grid.Column="0"
                                                      Width="15"
                                                      Fill="{TemplateBinding Foreground}"
-                                                     TickWidth="1"
                                                      Placement="Left"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                     TickWidth="1"
                                                      Ticks="{TemplateBinding MajorTicks}" />
 
                                 <local:LinearTickBar x:Name="MinorTicks"
                                                      Grid.Column="0"
                                                      Width="10"
                                                      HorizontalAlignment="Left"
-                                                     ExceptTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
+                                                     ExcludeTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
                                                      Fill="{TemplateBinding Foreground}"
-                                                     TickWidth="1"
                                                      Placement="Left"
                                                      TickFrequency="{TemplateBinding MinorTickFrequency}"
+                                                     TickWidth="1"
                                                      Ticks="{TemplateBinding MinorTicks}" />
 
                                 <Rectangle x:Name="Line"
@@ -183,20 +183,20 @@
                                                      Grid.Column="2"
                                                      Width="15"
                                                      Fill="{TemplateBinding Foreground}"
-                                                     TickWidth="1"
                                                      Placement="Right"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                     TickWidth="1"
                                                      Ticks="{TemplateBinding MajorTicks}" />
 
                                 <local:LinearTickBar x:Name="MinorTicks"
                                                      Grid.Column="2"
                                                      Width="10"
                                                      HorizontalAlignment="Right"
-                                                     ExceptTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
+                                                     ExcludeTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
                                                      Fill="{TemplateBinding Foreground}"
-                                                     TickWidth="1"
                                                      Placement="Left"
                                                      TickFrequency="{TemplateBinding MinorTickFrequency}"
+                                                     TickWidth="1"
                                                      Ticks="{TemplateBinding MinorTicks}" />
 
                                 <Rectangle x:Name="Line"

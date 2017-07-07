@@ -77,8 +77,8 @@ namespace Gu.Wpf.Gauges
 
         public static readonly DependencyProperty AllTicksProperty = AllTicksPropertyKey.DependencyProperty;
 
-        public static readonly DependencyProperty ExceptTicksProperty = DependencyProperty.Register(
-            nameof(ExceptTicks),
+        public static readonly DependencyProperty ExcludeTicksProperty = DependencyProperty.Register(
+            nameof(ExcludeTicks),
             typeof(IEnumerable<double>),
             typeof(TickBarBase),
             new PropertyMetadata(
@@ -155,10 +155,10 @@ namespace Gu.Wpf.Gauges
         /// <summary>
         /// Ticks to not render.
         /// </summary>
-        public IEnumerable<double> ExceptTicks
+        public IEnumerable<double> ExcludeTicks
         {
-            get => (IEnumerable<double>)this.GetValue(ExceptTicksProperty);
-            set => this.SetValue(ExceptTicksProperty, value);
+            get => (IEnumerable<double>)this.GetValue(ExcludeTicksProperty);
+            set => this.SetValue(ExcludeTicksProperty, value);
         }
 
         protected virtual void UpdateTicks()
@@ -166,7 +166,7 @@ namespace Gu.Wpf.Gauges
             this.AllTicks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency)
                                       .Concat(this.Ticks ?? Enumerable.Empty<double>())
                                       .Where(x => x >= this.Minimum && x <= this.Maximum)
-                                      .Except(this.ExceptTicks ?? Enumerable.Empty<double>())
+                                      .Except(this.ExcludeTicks ?? Enumerable.Empty<double>())
                                       .OrderBy(x => x)
                                       .ToArray();
         }
