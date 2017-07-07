@@ -52,7 +52,7 @@ namespace Gu.Wpf.Gauges
             {
                 var tick = this.AllTicks[i];
                 var text = this.AllTexts[i];
-                var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
+                var angle = Gauges.Ticks.ToAngle(tick, this.Minimum, this.Maximum, arc);
                 var point = arc.GetPoint(angle);
                 var textPosition = new TextPosition(text, new TextPositionOptions(this.TextOrientation, angle), point, angle);
                 bounds.Union(textPosition.TransformedBounds);
@@ -77,7 +77,7 @@ namespace Gu.Wpf.Gauges
             {
                 var tick = this.AllTicks[i];
                 var text = this.AllTexts[i];
-                var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
+                var angle = Gauges.Ticks.ToAngle(tick, this.Minimum, this.Maximum, arc);
                 var point = arc.GetPoint(angle, -this.TextSpace / 2);
                 var textPosition = new TextPosition(text, new TextPositionOptions(this.TextOrientation, angle), point, angle);
                 dc.DrawText(text, textPosition);

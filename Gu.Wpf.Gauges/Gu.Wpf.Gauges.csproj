@@ -115,7 +115,7 @@
     <Compile Include="Internals\RotateTransformExt.cs" />
     <Compile Include="Internals\TextHelper.cs" />
     <Compile Include="Internals\TextPosition.cs" />
-    <Compile Include="Internals\TickHelper.cs" />
+    <Compile Include="Internals\Ticks.cs" />
     <Compile Include="Primitives\Angular\AngularBar.cs" />
     <Compile Include="Primitives\Angular\AngularTextBar.cs" />
     <Compile Include="Primitives\Angular\AngularTickBar.cs" />
@@ -137,6 +137,7 @@
     </Compile>
     <Compile Include="TextOrientation.cs" />
     <Compile Include="Internals\WeakDictionary.cs" />
+    <Compile Include="TickSnap.cs" />
     <None Include="Gu.Wpf.Gauges.ruleset" />
     <None Include="paket.references" />
     <AppDesigner Include="Properties\" />

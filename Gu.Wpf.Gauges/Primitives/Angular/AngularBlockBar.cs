@@ -142,13 +142,13 @@ namespace Gu.Wpf.Gauges
             {
                 if (tick > this.Value)
                 {
-                    var a = TickHelper.ToAngle(this.Value, this.Minimum, this.Maximum, arc);
+                    var a = Gauges.Ticks.ToAngle(this.Value, this.Minimum, this.Maximum, arc);
                     var block = ArcBlock(arc, previous, a, this.Thickness);
                     dc.DrawGeometry(this.Fill, pen, block);
                     break;
                 }
 
-                var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
+                var angle = Gauges.Ticks.ToAngle(tick, this.Minimum, this.Maximum, arc);
                 if (previous != angle)
                 {
                     var arcBlock = ArcBlock(arc, previous, angle - gap, this.Thickness);

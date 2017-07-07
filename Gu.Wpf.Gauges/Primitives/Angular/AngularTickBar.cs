@@ -112,7 +112,7 @@ namespace Gu.Wpf.Gauges
             var rect = default(Rect);
             foreach (var tick in this.AllTicks)
             {
-                var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
+                var angle = Gauges.Ticks.ToAngle(tick, this.Minimum, this.Maximum, arc);
                 rect.Union(arc.GetPoint(angle));
             }
 
@@ -130,7 +130,7 @@ namespace Gu.Wpf.Gauges
             var arc = ArcInfo.Fill(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
             foreach (var tick in this.AllTicks)
             {
-                var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
+                var angle = Gauges.Ticks.ToAngle(tick, this.Minimum, this.Maximum, arc);
                 var po = arc.GetPoint(angle, 0);
                 var pi = arc.GetPoint(angle, -this.Thickness);
                 var line = new Line(po, pi);

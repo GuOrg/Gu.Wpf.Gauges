@@ -97,7 +97,7 @@
             for (var i = 0; i < this.AllTicks.Count; i++)
             {
                 var tick = this.AllTicks[i];
-                var pos = TickHelper.ToPos(tick, this.Minimum, this.Maximum, line);
+                var pos = Gauges.Ticks.ToPos(tick, this.Minimum, this.Maximum, line);
                 var text = this.AllTexts[i];
                 switch (this.HorizontalTextAlignment)
                 {

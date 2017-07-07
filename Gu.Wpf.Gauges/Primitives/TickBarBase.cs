@@ -48,6 +48,15 @@ namespace Gu.Wpf.Gauges
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits,
                 (d, _) => ((TickBarBase)d).UpdateTicks()));
 
+        public static readonly DependencyProperty SnapTicksToProperty = DependencyProperty.Register(
+            nameof(SnapTicksTo),
+            typeof(TickSnap),
+            typeof(TickBarBase),
+            new FrameworkPropertyMetadata(
+                TickSnap.TickFrequency,
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits,
+                (d, _) => ((TickBarBase)d).UpdateTicks()));
+
         /// <summary>
         /// Identifies the <see cref="P:Bar.Ticks" /> dependency property.
         /// </summary>
@@ -135,6 +144,15 @@ namespace Gu.Wpf.Gauges
         }
 
         /// <summary>
+        /// Control snapping of ticks generated with <see cref="TickFrequency"/>
+        /// </summary>
+        public TickSnap SnapTicksTo
+        {
+            get => (TickSnap)this.GetValue(SnapTicksToProperty);
+            set => this.SetValue(SnapTicksToProperty, value);
+        }
+
+        /// <summary>
         /// Gets or sets the positions of the tick marks to display for a <see cref="T:Bar" />.
         /// </summary>
         /// <returns>
@@ -163,7 +181,7 @@ namespace Gu.Wpf.Gauges
 
         protected virtual void UpdateTicks()
         {
-            this.AllTicks = TickHelper.CreateTicks(this.Minimum, this.Maximum, this.TickFrequency)
+            this.AllTicks = Gauges.Ticks.Create(this.Minimum, this.Maximum, this.TickFrequency, this.SnapTicksTo)
                                       .Concat(this.Ticks ?? Enumerable.Empty<double>())
                                       .Where(x => x >= this.Minimum && x <= this.Maximum)
                                       .Except(this.ExcludeTicks ?? Enumerable.Empty<double>())

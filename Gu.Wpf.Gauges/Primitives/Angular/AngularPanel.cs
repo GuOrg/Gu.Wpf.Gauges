@@ -229,7 +229,7 @@ namespace Gu.Wpf.Gauges
 
                     if (!double.IsNaN(center))
                     {
-                        var angle = TickHelper.ToAngle(center, this.Minimum, this.Maximum, arc);
+                        var angle = Ticks.ToAngle(center, this.Minimum, this.Maximum, arc);
                         var p1 = arc.GetPoint(angle);
                         var rect = new Rect(child.DesiredSize);
                         rect.Offset(new Vector(p1.X, p1.Y));

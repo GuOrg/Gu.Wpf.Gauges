@@ -64,6 +64,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TestHelpers\DoubleComparer.cs" />
     <Compile Include="TestHelpers\ImageAssert.cs" />
     <Compile Include="Primitives\AngularBlockBarTests.cs" />
     <Compile Include="Primitives\AngularTickBarTests.cs" />
