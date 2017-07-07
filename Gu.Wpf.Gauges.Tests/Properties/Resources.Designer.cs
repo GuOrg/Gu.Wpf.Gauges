@@ -315,6 +315,26 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearLineBar_Min_0_Max_10_Value_NaN_Horizontal {
+            get {
+                object obj = ResourceManager.GetObject("LinearLineBar_Min_0_Max_10_Value_NaN_Horizontal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearLineBar_Min_0_Max_10_Value_NaN_Vertical {
+            get {
+                object obj = ResourceManager.GetObject("LinearLineBar_Min_0_Max_10_Value_NaN_Vertical", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearRange_Orientation_Horizontal_IsDirectionReversed_False {
             get {
                 object obj = ResourceManager.GetObject("LinearRange_Orientation_Horizontal_IsDirectionReversed_False", resourceCulture);

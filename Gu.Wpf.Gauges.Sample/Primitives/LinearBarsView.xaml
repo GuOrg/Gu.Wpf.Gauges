@@ -9,13 +9,13 @@
              mc:Ignorable="d">
     <UserControl.DataContext>
         <sample:TickBarVm HorizontalTextAlignment="Left"
-                          IsDirectionReversed="True"
+                          IsDirectionReversed="False"
                           MajorTickFrequency="50"
                           MajorTicks="75"
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="5"
-                          Placement="Bottom"
+                          Placement="Right"
                           SnapsToDevicePixels="False"
                           TextOrientation="Horizontal"
                           TickGap="3"
@@ -148,6 +148,7 @@
                                           Placement="{Binding Placement}"
                                           SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
                                           Stroke="Black"
+                                          StrokeThickness="1"
                                           TickFrequency="{Binding MajorTickFrequency}"
                                           TickWidth="{Binding TickWidth}"
                                           Ticks="{Binding MajorTicks}" />
@@ -155,6 +156,25 @@
                                SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
                                Stroke="Black"
                                StrokeThickness="1" />
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Header="LinearLineBar">
+                <Grid>
+                    <gauges:LinearLineBar IsDirectionReversed="{Binding IsDirectionReversed}"
+                                          Maximum="{Binding Maximum}"
+                                          Minimum="{Binding Minimum}"
+                                          Placement="{Binding Placement}"
+                                          SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                                          Stroke="Black"
+                                          StrokeEndLineCap="Round"
+                                          StrokeStartLineCap="Round"
+                                          StrokeThickness="3"
+                                          Value="{Binding Value}" />
+                    <!--<Rectangle Fill="#55ff69b4"
+                               SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                               Stroke="Black"
+                               StrokeThickness="1" />-->
                 </Grid>
             </GroupBox>
 

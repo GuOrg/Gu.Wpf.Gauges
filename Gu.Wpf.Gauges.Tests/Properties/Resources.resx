@@ -190,6 +190,12 @@
   <data name="LinearDotBar_Min_0_Max_10_TickFrequency_1_Vertical" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\primitives\linear\lineardotbarimages\lineardotbar_min_0_max_10_tickfrequency_1_vertical.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="LinearLineBar_Min_0_Max_10_Value_NaN_Horizontal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\primitives\linear\linearlinebarimages\linearlinebar_min_0_max_10_value_nan_horizontal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LinearLineBar_Min_0_Max_10_Value_NaN_Vertical" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\primitives\linear\linearlinebarimages\linearlinebar_min_0_max_10_value_nan_vertical.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="LinearRange_Orientation_Horizontal_IsDirectionReversed_False" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\indicators\linearrangeimages\linearrange_orientation_horizontal_isdirectionreversed_false.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

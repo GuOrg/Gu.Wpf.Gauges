@@ -1,30 +1,32 @@
 namespace Gu.Wpf.Gauges
 {
+    using System;
     using System.Windows;
     using System.Windows.Controls.Primitives;
+    using System.Windows.Media;
 
-    public abstract class LinearGeometryBar : GeometryBar
+    public class LinearLineBar : LineBar
     {
         /// <summary>
-        /// Identifies the <see cref="P:LinearGeometryBar.Value" /> dependency property.
+        /// Identifies the <see cref="P:LinearLineBar.Value" /> dependency property.
         /// </summary>
         /// <returns>
-        /// The identifier for the <see cref="P:LinearGeometryBar.Value" /> dependency property.
+        /// The identifier for the <see cref="P:LinearLineBar.Value" /> dependency property.
         /// </returns>
         public static readonly DependencyProperty ValueProperty = Gauge.ValueProperty.AddOwner(
-            typeof(LinearGeometryBar),
+            typeof(LinearLineBar),
             new FrameworkPropertyMetadata(
                 double.NaN,
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
-        /// Identifies the <see cref="P:LinearGeometryBar.Placement" /> dependency property. This property is read-only.
+        /// Identifies the <see cref="P:LinearLineBar.Placement" /> dependency property. This property is read-only.
         /// </summary>
         /// <returns>
-        /// The identifier for the <see cref="P:LinearGeometryBar.Placement" /> dependency property.
+        /// The identifier for the <see cref="P:LinearLineBar.Placement" /> dependency property.
         /// </returns>
         public static readonly DependencyProperty PlacementProperty = LinearGauge.PlacementProperty.AddOwner(
-            typeof(LinearGeometryBar),
+            typeof(LinearLineBar),
             new FrameworkPropertyMetadata(
                 TickBarPlacement.Bottom,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
@@ -45,7 +47,7 @@ namespace Gu.Wpf.Gauges
         /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.
         /// </summary>
         /// <returns>
-        /// A <see cref="T:TickBarPlacement" /> enumeration value that identifies the position of the <see cref="T:LinearTextTickBar" /> in the <see cref="T:System.Windows.Style" /> layout of a <see cref="T:System.Windows.Controls.Slider" />. The default value is <see cref="F:LinearGeometryBar.Top" />.
+        /// A <see cref="T:TickBarPlacement" /> enumeration value that identifies the position of the <see cref="T:LinearTextTickBar" /> in the <see cref="T:System.Windows.Style" /> layout of a <see cref="T:System.Windows.Controls.Slider" />. The default value is <see cref="F:LinearLineBar.Top" />.
         /// </returns>
         public TickBarPlacement Placement
         {
@@ -57,6 +59,37 @@ namespace Gu.Wpf.Gauges
             ? this.Maximum
             : this.Value;
 
+        protected override Geometry DefiningGeometry => throw new InvalidOperationException("Uses OnRender");
+
+        protected override Size MeasureOverride(Size availableSize)
+        {
+            if (this.Placement.IsHorizontal())
+            {
+                return new Size(0, this.GetStrokeThickness());
+            }
+
+            return new Size(this.GetStrokeThickness(), 0);
+        }
+
+        protected override void OnRender(DrawingContext dc)
+        {
+            if (this.Pen == null ||
+                this.EffectiveValue == this.Minimum)
+            {
+                return;
+            }
+
+            var strokeThickness = this.GetStrokeThickness();
+            var start = this.Placement.IsHorizontal()
+                ? new Point(this.PixelPosition(this.Minimum), strokeThickness / 2)
+                : new Point(strokeThickness / 2, this.PixelPosition(this.Minimum));
+            var end = this.Placement.IsHorizontal()
+                ? new Point(this.PixelPosition(this.EffectiveValue), strokeThickness / 2)
+                : new Point(strokeThickness / 2, this.PixelPosition(this.EffectiveValue));
+
+            dc.DrawLine(this.Pen, start, end);
+        }
+
         /// <summary>
         /// Get the interpolated pixel position for the value.
         /// </summary>
@@ -67,17 +100,16 @@ namespace Gu.Wpf.Gauges
             var scale = Interpolate.Linear(this.Minimum, this.Maximum, value)
                                    .Clamp(0, 1);
 
-            var strokeThickness = this.GetStrokeThickness();
             if (this.Placement.IsHorizontal())
             {
-                var pos = (strokeThickness / 2) + (scale * (this.ActualWidth - strokeThickness));
+                var pos = scale * this.ActualWidth;
                 return this.IsDirectionReversed
                     ? this.ActualWidth - pos
                     : pos;
             }
             else
             {
-                var pos = (strokeThickness / 2) + (scale * (this.ActualHeight - strokeThickness));
+                var pos = scale * this.ActualHeight;
                 return this.IsDirectionReversed
                     ? pos
                     : this.ActualHeight - pos;

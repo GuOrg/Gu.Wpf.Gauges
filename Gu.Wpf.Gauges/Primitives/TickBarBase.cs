@@ -92,7 +92,7 @@ namespace Gu.Wpf.Gauges
             typeof(TickBarBase),
             new PropertyMetadata(
                 default(IEnumerable<double>),
-                OnExceptTicksChanged));
+                OnExcludeTicksChanged));
 
 #pragma warning restore SA1202 // Elements must be ordered by access
 
@@ -205,7 +205,7 @@ namespace Gu.Wpf.Gauges
             bar.UpdateTicks();
         }
 
-        private static void OnExceptTicksChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void OnExcludeTicksChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var bar = (TickBarBase)d;
             if (e.OldValue is INotifyCollectionChanged oldTicks)

@@ -58,6 +58,7 @@
     <Compile Include="Primitives\Angular\RingTests.cs" />
     <Compile Include="Primitives\Linear\LinearBlockBarTests.cs" />
     <Compile Include="Primitives\Linear\LinearDotBarTests.cs" />
+    <Compile Include="Primitives\Linear\LinearLineBarTests.cs" />
     <Compile Include="Primitives\Linear\LinearTickBarTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -190,6 +191,8 @@
     <Content Include="Primitives\Linear\LinearDotBarImages\LinearDotBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1 2 6_Vertical.png" />
     <Content Include="Primitives\Linear\LinearDotBarImages\LinearDotBar_Min_0_Max_10_TickFrequency_1_Horizontal.png" />
     <Content Include="Primitives\Linear\LinearDotBarImages\LinearDotBar_Min_0_Max_10_TickFrequency_1_Vertical.png" />
+    <Content Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Min_0_Max_10_Value_NaN_Horizontal.png" />
+    <Content Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Min_0_Max_10_Value_NaN_Vertical.png" />
     <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1 2 6_Horizontal.png" />
     <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1 2 6_Vertical.png" />
     <Content Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_Ticks_1 2 6_Horizontal.png" />
