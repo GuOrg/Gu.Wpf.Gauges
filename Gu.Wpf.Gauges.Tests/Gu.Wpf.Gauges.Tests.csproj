@@ -52,7 +52,7 @@
     </When>
   </Choose>
   <ItemGroup>
-    <Compile Include="Internals\LinearTests.cs" />
+    <Compile Include="Internals\InterpolateTests.cs" />
     <Compile Include="Internals\RectExtTest.cs" />
     <Compile Include="Indicators\LinearRangeTests.cs" />
     <Compile Include="Primitives\Angular\RingTests.cs" />

@@ -4,6 +4,7 @@
 
     public class InterpolateTests
     {
+        [TestCase(0, 0, 0, 0)]
         [TestCase(0, 1, 0, 0)]
         [TestCase(0, 1, 0.5, 0.5)]
         [TestCase(0, 1, 1, 1)]
