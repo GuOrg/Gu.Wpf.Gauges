@@ -9,15 +9,13 @@
              d:DesignWidth="300"
              mc:Ignorable="d">
     <UserControl.DataContext>
-        <sample:TickBarVm HorizontalTextAlignment="Left"
-                          IsDirectionReversed="False"
+        <sample:TickBarVm HorizontalTextAlignment="Center"
+                          IsDirectionReversed="True"
                           MajorTickFrequency="25"
                           MajorTicks="100"
                           Maximum="100"
                           Minimum="0"
-                          Placement="Top"
-                          SnapsToDevicePixels="False"
-                          TickGap="2"
+                          Placement="Bottom"
                           VerticalTextAlignment="Center" />
     </UserControl.DataContext>
     <Grid>

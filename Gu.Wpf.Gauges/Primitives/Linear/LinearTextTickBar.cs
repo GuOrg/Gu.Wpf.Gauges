@@ -88,7 +88,6 @@
 
             foreach (var tickText in this.AllTexts)
             {
-                dc.DrawRectangle(new SolidColorBrush(Color.FromArgb(50, 255, 69, 69)), null, tickText.Geometry.Bounds);
                 dc.DrawGeometry(this.Foreground, null, tickText.Geometry);
             }
         }
@@ -167,10 +166,10 @@
                     case HorizontalTextAlignment.Left:
                         break;
                     case HorizontalTextAlignment.Center:
-                        x -= bounds.Width / 2;
+                        x += (finalSize.Width - bounds.Width) / 2;
                         break;
                     case HorizontalTextAlignment.Right:
-                        x -= bounds.Width;
+                        x += finalSize.Width - bounds.Width;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -183,10 +182,10 @@
                         y += pos;
                         break;
                     case VerticalTextAlignment.Center:
-                        y += pos + (bounds.Bottom / 2);
+                        y += pos - (bounds.Height / 2);
                         break;
                     case VerticalTextAlignment.Bottom:
-                        y += pos + bounds.Bottom;
+                        y += pos - bounds.Height;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
