@@ -43,7 +43,7 @@
                                   TickFrequency="{Binding MajorTickFrequency}"
                                   Ticks="{Binding MajorTickFrequency}" />
 
-            <gauges:LinearTextTickBar Grid.Row="0"
+            <gauges:LinearTextBar Grid.Row="0"
                                       Grid.RowSpan="2"
                                       Grid.Column="0"
                                       Grid.ColumnSpan="2"
@@ -56,10 +56,10 @@
                                       TickFrequency="{Binding MajorTickFrequency}"
                                       Ticks="{Binding MajorTicks}"
                                       VerticalTextAlignment="{Binding VerticalTextAlignment}">
-                <gauges:LinearTextTickBar.TextTransform>
+                <gauges:LinearTextBar.TextTransform>
                     <RotateTransform Angle="0" />
-                </gauges:LinearTextTickBar.TextTransform>
-            </gauges:LinearTextTickBar>
+                </gauges:LinearTextBar.TextTransform>
+            </gauges:LinearTextBar>
             <!--<Rectangle Grid.Row="0"
                        Grid.RowSpan="2"
                        Grid.Column="0"

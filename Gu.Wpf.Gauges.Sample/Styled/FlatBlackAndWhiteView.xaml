@@ -57,7 +57,7 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <gauges:LinearTextTickBar x:Name="TextTicks"
+                            <gauges:LinearTextBar x:Name="TextTicks"
                                                       Grid.Row="0"
                                                       VerticalAlignment="Bottom"
                                                       FontSize="20"

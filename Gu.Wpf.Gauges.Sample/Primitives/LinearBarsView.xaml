@@ -189,7 +189,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <gauges:LinearTextTickBar Grid.Row="0"
+                    <gauges:LinearTextBar Grid.Row="0"
                                               Grid.RowSpan="2"
                                               Grid.Column="0"
                                               Grid.ColumnSpan="2"

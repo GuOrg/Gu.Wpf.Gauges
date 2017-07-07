@@ -20,7 +20,7 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <gauges:LinearTextTickBar Margin="2,0"
+                            <gauges:LinearTextBar Margin="2,0"
                                                       HorizontalTextAlignment="Right"
                                                       Ticks="{TemplateBinding MajorTicks}" />
 

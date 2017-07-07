@@ -1,6 +1,7 @@
 namespace Gu.Wpf.Gauges
 {
     using System;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Media;
 
@@ -56,55 +57,92 @@ namespace Gu.Wpf.Gauges
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            if (this.AllTicks == null)
+            var rect = default(Rect);
+            if (this.AllTexts != null)
             {
-                return default(Size);
+                foreach (var tickText in this.AllTexts)
+                {
+                    rect.Union(new Rect(tickText.Geometry.Bounds.Size));
+                }
             }
 
-            throw new NotImplementedException();
-            ////var bounds = default(Rect);
-            ////var midPoint = new Point(0, 0);
-            ////var arc = new ArcInfo(midPoint, this.MinAngle, this.MaxAngle, 0, this.IsDirectionReversed);
-            ////for (var i = 0; i < this.AllTicks.Count; i++)
-            ////{
-            ////    var tick = this.AllTicks[i];
-            ////    var angle = Gauges.Ticks.ToAngle(tick, this.Minimum, this.Maximum, arc);
-            ////    var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
-            ////    var point = arc.GetPoint(angle);
-            ////    var textPosition = new TextPosition(text, new TextPositionOptions(this.TextOrientation, angle), point, angle);
-            ////    bounds.Union(textPosition.TransformedBounds);
-            ////}
+            return rect.Size;
+        }
 
-            ////var points = new[] { bounds.TopLeft, bounds.TopRight, bounds.BottomRight, bounds.BottomLeft };
+        protected override Size ArrangeOverride(Size finalSize)
+        {
+            if (this.AllTexts != null)
+            {
+                foreach (var tickText in this.AllTexts)
+                {
+                    tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, 0.0d);
+                    tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, 0.0d);
+                    var pos = this.PixelPosition(tickText, finalSize);
+                    tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, pos.X);
+                    tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, pos.Y);
+                }
+            }
 
-            ////this.TextSpace = 2 * points.Max(p => (p - midPoint).Length);
-            ////return bounds.Size;
+            return finalSize;
         }
 
         protected override void OnRender(DrawingContext dc)
         {
-            if (this.AllTicks == null ||
-                this.Foreground == null)
+            if (this.Foreground == null ||
+                this.AllTexts == null ||
+                this.AllTexts.Count == 0)
             {
                 return;
             }
 
+            foreach (var tickText in this.AllTexts)
+            {
+                dc.DrawGeometry(this.Foreground, null, tickText.Geometry);
+            }
+        }
+
+
+        /// <summary>
+        /// Get the interpolated pixel position for the value.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="finalSize"></param>
+        /// <returns></returns>
+        protected virtual double PixelPosition(double value, Size finalSize)
+        {
+            var scale = Interpolate.Linear(this.Minimum, this.Maximum, value)
+                                   .Clamp(0, 1);
+
             throw new NotImplementedException();
-            ////var arc = ArcInfo.Fill(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
-            ////for (var i = 0; i < this.AllTicks.Count; i++)
-            ////{
-            ////    var tick = this.AllTicks[i];
-            ////   var angle = Gauges.Ticks.ToAngle(tick, this.Minimum, this.Maximum, arc);
-            ////    var angle = TickHelper.ToAngle(tick, this.Minimum, this.Maximum, arc);
-            ////    var point = arc.GetPoint(angle, -this.TextSpace / 2);
-            ////    var textPosition = new TextPosition(text, new TextPositionOptions(this.TextOrientation, angle), point, angle);
-            ////    dc.DrawText(text, textPosition);
-            ////}
+        }
+
+        protected virtual Point PixelPosition(TickText tickText, Size finalSize)
+        {
+            var pos = this.PixelPosition(tickText.Value, finalSize);
+            var bounds = tickText.Geometry.Bounds;
+            throw new NotImplementedException();
+        }
+
+        protected virtual TickText CreateTickText(double value)
+        {
+            return new TickText(
+                value,
+                this.StringFormat ?? string.Empty,
+                this.TypeFace,
+                this.FontSize,
+                this.Foreground,
+                null);
         }
 
         protected override void UpdateTexts()
         {
-            throw new NotImplementedException();
+            if (this.AllTicks == null || this.AllTicks.Count == 0)
+            {
+                this.AllTexts = null;
+                return;
+            }
+
+            this.AllTexts = this.AllTicks.Select(this.CreateTickText).ToArray();
         }
     }
 }

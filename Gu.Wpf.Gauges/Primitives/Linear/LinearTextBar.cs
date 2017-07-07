@@ -6,16 +6,16 @@
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
 
-    public class LinearTextTickBar : TextTickBar
+    public class LinearTextBar : TextTickBar
     {
         /// <summary>
-        /// Identifies the <see cref="P:LinearTextTickBar.Placement" /> dependency property. This property is read-only.
+        /// Identifies the <see cref="P:LinearTextBar.Placement" /> dependency property. This property is read-only.
         /// </summary>
         /// <returns>
         /// The identifier for the <see cref="P:Bar.Placement" /> dependency property.
         /// </returns>
         public static readonly DependencyProperty PlacementProperty = LinearGauge.PlacementProperty.AddOwner(
-            typeof(LinearTextTickBar),
+            typeof(LinearTextBar),
             new FrameworkPropertyMetadata(
                 TickBarPlacement.Bottom,
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
@@ -23,7 +23,7 @@
         public static readonly DependencyProperty TextTransformProperty = DependencyProperty.Register(
             nameof(TextTransform),
             typeof(Transform),
-            typeof(LinearTextTickBar),
+            typeof(LinearTextBar),
             new FrameworkPropertyMetadata(
                 default(Transform),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
@@ -32,7 +32,7 @@
         /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.
         /// </summary>
         /// <returns>
-        /// A <see cref="T:TickBarPlacement" /> enumeration value that identifies the position of the <see cref="T:LinearTextTickBar" /> in the <see cref="T:System.Windows.Style" /> layout of a <see cref="T:System.Windows.Controls.Slider" />. The default value is <see cref="F:Bar.Top" />.
+        /// A <see cref="T:TickBarPlacement" /> enumeration value that identifies the position of the <see cref="T:LinearTextBar" /> in the <see cref="T:System.Windows.Style" /> layout of a <see cref="T:System.Windows.Controls.Slider" />. The default value is <see cref="F:Bar.Top" />.
         /// </returns>
         public TickBarPlacement Placement
         {

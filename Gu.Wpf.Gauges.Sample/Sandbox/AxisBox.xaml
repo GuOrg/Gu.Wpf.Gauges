@@ -17,7 +17,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <gauges:LinearTextTickBar x:Name="TickLabels"
+            <gauges:LinearTextBar x:Name="TickLabels"
                                       TickFrequency="{Binding ElementName=MajorTicks, Path=TickFrequency}"
                                       Ticks="{Binding ElementName=MajorTicks, Path=Ticks}" />
 

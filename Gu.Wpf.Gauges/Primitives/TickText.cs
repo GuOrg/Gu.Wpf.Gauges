@@ -6,6 +6,8 @@ namespace Gu.Wpf.Gauges
 
     public class TickText : FormattedText
     {
+        private TransformGroup transformGroup;
+
         public TickText(
             double value,
             string format,
@@ -23,19 +25,21 @@ namespace Gu.Wpf.Gauges
         {
             this.Value = value;
             this.Geometry = this.BuildGeometry(default(Point));
-            var transformGroup = new TransformGroup();
-            if (transform != null)
-            {
-                transformGroup.Children.Add(transform);
-            }
-
-            transformGroup.Children.Add(this.TranslateTransform);
-            this.Geometry.Transform = transformGroup;
+            this.transformGroup = new TransformGroup();
+            this.transformGroup.Children.Add(transform ?? Transform.Identity);
+            this.transformGroup.Children.Add(this.TranslateTransform);
+            this.Geometry.Transform = this.transformGroup;
         }
 
         public double Value { get; }
 
         public Geometry Geometry { get; }
+
+        public Transform Transform
+        {
+            get => this.transformGroup.Children[0];
+            set => this.transformGroup.Children[0] = value ?? Transform.Identity;
+        }
 
         public TranslateTransform TranslateTransform { get; } = new TranslateTransform();
 

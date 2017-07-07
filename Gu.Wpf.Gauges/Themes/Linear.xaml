@@ -38,7 +38,7 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <local:LinearTextTickBar x:Name="TickLabels"
+                                <local:LinearTextBar x:Name="TickLabels"
                                                          Grid.Row="1"
                                                          Margin="0.5,0"
                                                          HorizontalTextAlignment="Center"
@@ -84,7 +84,7 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <local:LinearTextTickBar x:Name="TickLabels"
+                                <local:LinearTextBar x:Name="TickLabels"
                                                          Grid.Row="1"
                                                          HorizontalTextAlignment="Center"
                                                          Margin="0.5,0"
@@ -129,7 +129,7 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <local:LinearTextTickBar x:Name="TickLabels"
+                                <local:LinearTextBar x:Name="TickLabels"
                                                          Grid.Column="1"
                                                          Margin="0,0.5"
                                                          HorizontalTextAlignment="Left"
@@ -178,7 +178,7 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <local:LinearTextTickBar x:Name="TickLabels"
+                                <local:LinearTextBar x:Name="TickLabels"
                                                          Grid.Column="1"
                                                          HorizontalTextAlignment="Right"
                                                          Margin="0,0.5"
