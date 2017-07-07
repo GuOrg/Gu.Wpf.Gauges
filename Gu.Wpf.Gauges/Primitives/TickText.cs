@@ -22,14 +22,22 @@ namespace Gu.Wpf.Gauges
                 foreground)
         {
             this.Value = value;
-            this.Transform = transform;
+            this.Geometry = this.BuildGeometry(default(Point));
+            var transformGroup = new TransformGroup();
+            if (transform != null)
+            {
+                transformGroup.Children.Add(transform);
+            }
+
+            transformGroup.Children.Add(this.TranslateTransform);
+            this.Geometry.Transform = transformGroup;
         }
 
         public double Value { get; }
 
-        public Transform Transform { get; }
+        public Geometry Geometry { get; }
 
-        public Point Point { get; set; }
+        public TranslateTransform TranslateTransform { get; } = new TranslateTransform();
 
         private static string Format(string format, double value, CultureInfo culture) => string.IsNullOrEmpty(format)
             ? value.ToString(culture)

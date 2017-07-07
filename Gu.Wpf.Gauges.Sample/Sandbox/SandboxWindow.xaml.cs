@@ -6,7 +6,7 @@
     {
         public SandboxWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

@@ -18,17 +18,17 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         public void TickFrequencyOneHorizontal(bool isDirectionReversed, TickBarPlacement placement)
         {
             var tickBar = new LinearDotBar
-                          {
-                              Minimum = 0,
-                              Maximum = 10,
-                              TickFrequency = 1,
-                              Fill = Brushes.Red,
-                              Stroke = Brushes.Black,
-                              StrokeThickness = 1,
-                              TickDiameter = 5,
-                              Placement = placement,
-                              IsDirectionReversed = isDirectionReversed,
-                          };
+            {
+                Minimum = 0,
+                Maximum = 10,
+                TickFrequency = 1,
+                Fill = Brushes.Red,
+                Stroke = Brushes.Black,
+                StrokeThickness = 1,
+                TickDiameter = 5,
+                Placement = placement,
+                IsDirectionReversed = isDirectionReversed,
+            };
             ImageAssert.AreEqual(Properties.Resources.LinearDotBar_Min_0_Max_10_TickFrequency_1_Horizontal, tickBar);
         }
 
@@ -39,17 +39,17 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         public void TicksHorizontal(bool isDirectionReversed, TickBarPlacement placement)
         {
             var tickBar = new LinearDotBar
-                          {
-                              Minimum = 0,
-                              Maximum = 10,
-                              Ticks = new DoubleCollection(new double[] {1, 2, 6}),
-                              Fill = Brushes.Red,
-                              Stroke = Brushes.Black,
-                              StrokeThickness = 1,
-                              TickDiameter = 5,
-                              Placement = placement,
-                              IsDirectionReversed = isDirectionReversed,
-                          };
+            {
+                Minimum = 0,
+                Maximum = 10,
+                Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
+                Fill = Brushes.Red,
+                Stroke = Brushes.Black,
+                StrokeThickness = 1,
+                TickDiameter = 5,
+                Placement = placement,
+                IsDirectionReversed = isDirectionReversed,
+            };
 
             var expected = isDirectionReversed
                 ? Properties.Resources.LinearDotBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1_2_6_Horizontal
@@ -64,18 +64,18 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         public void TicksAndFrequencyHorizontal(bool isDirectionReversed, TickBarPlacement placement)
         {
             var tickBar = new LinearDotBar
-                          {
-                              Minimum = 0,
-                              Maximum = 10,
-                              TickFrequency = 5,
-                              Ticks = new DoubleCollection(new double[] {1, 2, 6}),
-                              Fill = Brushes.Red,
-                              Stroke = Brushes.Black,
-                              StrokeThickness = 1,
-                              TickDiameter = 5,
-                              Placement = placement,
-                              IsDirectionReversed = isDirectionReversed,
-                          };
+            {
+                Minimum = 0,
+                Maximum = 10,
+                TickFrequency = 5,
+                Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
+                Fill = Brushes.Red,
+                Stroke = Brushes.Black,
+                StrokeThickness = 1,
+                TickDiameter = 5,
+                Placement = placement,
+                IsDirectionReversed = isDirectionReversed,
+            };
             var expected = isDirectionReversed
                 ? Properties.Resources.LinearDotBar_Min_0_Max_10_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Horizontal
                 : Properties.Resources.LinearDotBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Horizontal;
@@ -89,17 +89,17 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         public void TickFrequencyOneVertical(bool isDirectionReversed, TickBarPlacement placement)
         {
             var tickBar = new LinearDotBar
-                          {
-                              Minimum = 0,
-                              Maximum = 10,
-                              TickFrequency = 1,
-                              Fill = Brushes.Red,
-                              Stroke = Brushes.Black,
-                              StrokeThickness = 1,
-                              TickDiameter = 5,
-                              Placement = placement,
-                              IsDirectionReversed = isDirectionReversed,
-                          };
+            {
+                Minimum = 0,
+                Maximum = 10,
+                TickFrequency = 1,
+                Fill = Brushes.Red,
+                Stroke = Brushes.Black,
+                StrokeThickness = 1,
+                TickDiameter = 5,
+                Placement = placement,
+                IsDirectionReversed = isDirectionReversed,
+            };
             ImageAssert.AreEqual(Properties.Resources.LinearDotBar_Min_0_Max_10_TickFrequency_1_Vertical, tickBar);
         }
 
@@ -110,17 +110,17 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         public void TicksVertical(bool isDirectionReversed, TickBarPlacement placement)
         {
             var tickBar = new LinearDotBar
-                          {
-                              Minimum = 0,
-                              Maximum = 10,
-                              Ticks = new DoubleCollection(new double[] {1, 2, 6}),
-                              Fill = Brushes.Red,
-                              Stroke = Brushes.Black,
-                              StrokeThickness = 1,
-                              TickDiameter = 5,
-                              Placement = placement,
-                              IsDirectionReversed = isDirectionReversed,
-                          };
+            {
+                Minimum = 0,
+                Maximum = 10,
+                Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
+                Fill = Brushes.Red,
+                Stroke = Brushes.Black,
+                StrokeThickness = 1,
+                TickDiameter = 5,
+                Placement = placement,
+                IsDirectionReversed = isDirectionReversed,
+            };
             var expected = isDirectionReversed
                 ? Properties.Resources.LinearDotBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1_2_6_Vertical
                 : Properties.Resources.LinearDotBar_Min_0_Max_10_IsDirectionReversed_False_Ticks_1_2_6_Vertical;
@@ -134,18 +134,18 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         public void TicksAndFrequencyVertical(bool isDirectionReversed, TickBarPlacement placement)
         {
             var tickBar = new LinearDotBar
-                          {
-                              Minimum = 0,
-                              Maximum = 10,
-                              TickFrequency = 5,
-                              Ticks = new DoubleCollection(new double[] {1, 2, 6}),
-                              Fill = Brushes.Red,
-                              Stroke = Brushes.Black,
-                              StrokeThickness = 1,
-                              TickDiameter = 5,
-                              Placement = placement,
-                              IsDirectionReversed = isDirectionReversed,
-                          };
+            {
+                Minimum = 0,
+                Maximum = 10,
+                TickFrequency = 5,
+                Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
+                Fill = Brushes.Red,
+                Stroke = Brushes.Black,
+                StrokeThickness = 1,
+                TickDiameter = 5,
+                Placement = placement,
+                IsDirectionReversed = isDirectionReversed,
+            };
             var expected = isDirectionReversed
                 ? Properties.Resources.LinearDotBar_Min_0_Max_10_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Vertical
                 : Properties.Resources.LinearDotBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Vertical;

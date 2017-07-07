@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
-             xmlns:local="clr-namespace:Gu.Wpf.Gauges.Sample.Sandbox"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
              d:DesignHeight="400"
@@ -11,18 +10,15 @@
              mc:Ignorable="d">
     <UserControl.DataContext>
         <sample:TickBarVm HorizontalTextAlignment="Left"
-                          IsDirectionReversed="True"
-                          MajorTickFrequency="50"
-                          MajorTicks="75"
+                          IsDirectionReversed="False"
+                          MajorTickFrequency="25"
+                          MajorTicks="100"
                           Maximum="100"
                           Minimum="0"
-                          MinorTickFrequency="5"
-                          Placement="Bottom"
+                          Placement="Top"
                           SnapsToDevicePixels="False"
-                          TextOrientation="Horizontal"
                           TickGap="2"
-                          VerticalTextAlignment="Top"
-                          Value="100" />
+                          VerticalTextAlignment="Center" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -40,6 +36,15 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
+            <gauges:LinearTickBar Grid.Row="0"
+                                  Grid.RowSpan="2"
+                                  Grid.Column="0"
+                                  Grid.ColumnSpan="2"
+                                  Maximum="{Binding Maximum}"
+                                  Minimum="{Binding Minimum}"
+                                  TickFrequency="{Binding MajorTickFrequency}"
+                                  Ticks="{Binding MajorTickFrequency}" />
+
             <gauges:LinearTextTickBar Grid.Row="0"
                                       Grid.RowSpan="2"
                                       Grid.Column="0"
@@ -54,15 +59,15 @@
                                       Ticks="{Binding MajorTicks}"
                                       VerticalTextAlignment="{Binding VerticalTextAlignment}">
                 <gauges:LinearTextTickBar.TextTransform>
-                    <RotateTransform Angle="90" />
+                    <RotateTransform Angle="0" />
                 </gauges:LinearTextTickBar.TextTransform>
             </gauges:LinearTextTickBar>
-            <Rectangle Grid.Row="0"
+            <!--<Rectangle Grid.Row="0"
                        Grid.RowSpan="2"
                        Grid.Column="0"
                        Grid.ColumnSpan="2"
                        Stroke="Black"
-                       StrokeThickness="1" />
+                       StrokeThickness="1" />-->
         </Grid>
         <ContentPresenter Grid.Row="1"
                           Content="{Binding}" />

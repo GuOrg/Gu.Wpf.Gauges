@@ -9,7 +9,7 @@
     public class LinearTextTickBar : TextTickBar
     {
         /// <summary>
-        /// Identifies the <see cref="P:Bar.Placement" /> dependency property. This property is read-only.
+        /// Identifies the <see cref="P:LinearTextTickBar.Placement" /> dependency property. This property is read-only.
         /// </summary>
         /// <returns>
         /// The identifier for the <see cref="P:Bar.Placement" /> dependency property.
@@ -53,13 +53,7 @@
             {
                 foreach (var tickText in this.AllTexts)
                 {
-                    var p = new Point(tickText.Width, tickText.Height);
-                    if (tickText.Transform != null)
-                    {
-                        p = tickText.Transform.Transform(p);
-                    }
-
-                    rect.Union(p);
+                    rect.Union(new Rect(tickText.Geometry.Bounds.Size));
                 }
             }
 
@@ -72,7 +66,11 @@
             {
                 foreach (var tickText in this.AllTexts)
                 {
-                    tickText.Point = this.PixelPosition(tickText, finalSize);
+                    tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, 0.0d);
+                    tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, 0.0d);
+                    var pos = this.PixelPosition(tickText, finalSize);
+                    tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, pos.X);
+                    tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, pos.Y);
                 }
             }
 
@@ -90,17 +88,8 @@
 
             foreach (var tickText in this.AllTexts)
             {
-                if (tickText.Transform != null)
-                {
-                var pos = Gauges.Ticks.ToPos(tick, this.Minimum, this.Maximum, line);
-                }
-
-                dc.DrawText(tickText, tickText.Point);
-
-                if (tickText.Transform != null)
-                {
-                    dc.Pop();
-                }
+                dc.DrawRectangle(new SolidColorBrush(Color.FromArgb(50, 255, 69, 69)), null, tickText.Geometry.Bounds);
+                dc.DrawGeometry(this.Foreground, null, tickText.Geometry);
             }
         }
 
@@ -133,76 +122,77 @@
 
         protected virtual Point PixelPosition(TickText tickText, Size finalSize)
         {
-            var geometry = tickText.BuildGeometry(default(Point));
-            geometry.SetCurrentValue(Geometry.TransformProperty, tickText.Transform);
-            var bounds = geometry.Bounds;
             var pos = this.PixelPosition(tickText.Value, finalSize);
+            var bounds = tickText.Geometry.Bounds;
             if (this.Placement.IsHorizontal())
             {
+                var x = -bounds.Left;
                 switch (this.HorizontalTextAlignment)
                 {
                     case HorizontalTextAlignment.Left:
-                        tickText.TextAlignment = TextAlignment.Left;
+                        x += pos;
                         break;
                     case HorizontalTextAlignment.Center:
-                        tickText.TextAlignment = TextAlignment.Center;
+                        x += pos - (bounds.Width / 2);
                         break;
                     case HorizontalTextAlignment.Right:
-                        tickText.TextAlignment = TextAlignment.Right;
+                        x += pos - bounds.Width;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
 
-                var y = 0.0;
+                var y = -bounds.Top;
                 switch (this.VerticalTextAlignment)
                 {
                     case VerticalTextAlignment.Top:
-                        y += tickText.Extent;
                         break;
                     case VerticalTextAlignment.Center:
-                        y += tickText.Extent / 2;
+                        y += (finalSize.Height - bounds.Height) / 2;
                         break;
                     case VerticalTextAlignment.Bottom:
+                        y += finalSize.Height - bounds.Height;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
 
-                return new Point(pos, y);
+                return new Point(x, y);
             }
             else
             {
-                var x = 0.0;
+                var x = -bounds.Left;
                 switch (this.HorizontalTextAlignment)
                 {
                     case HorizontalTextAlignment.Left:
                         break;
                     case HorizontalTextAlignment.Center:
-                        x += tickText.Width / 2;
+                        x -= bounds.Width / 2;
                         break;
                     case HorizontalTextAlignment.Right:
-                        x += tickText.Width;
+                        x -= bounds.Width;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
 
+                var y = -bounds.Top;
                 switch (this.VerticalTextAlignment)
                 {
                     case VerticalTextAlignment.Top:
-                        pos += tickText.Extent;
+                        y += pos;
                         break;
                     case VerticalTextAlignment.Center:
-                        pos += tickText.Extent / 2;
+                        y += pos + (bounds.Bottom / 2);
                         break;
                     case VerticalTextAlignment.Bottom:
+                        y += pos + bounds.Bottom;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
 
-                return new Point(x, pos);
+                return new Point(x, y);
             }
         }
 
