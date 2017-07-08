@@ -56,7 +56,8 @@
 
                             <gauges:LinearBlockBar x:Name="ValueBar"
                                                    Grid.Column="0"
-                                                   Fill="{TemplateBinding Foreground}" />
+                                                   Fill="{TemplateBinding Foreground}"
+                                                   Value="{TemplateBinding Value}" />
 
                             <TextBlock Grid.Column="1"
                                        Margin="6,0"
@@ -86,7 +87,8 @@
                                        Fill="{TemplateBinding Background}" />
 
                             <gauges:LinearBlockBar x:Name="ValueBar"
-                                                   Fill="{TemplateBinding Foreground}" />
+                                                   Fill="{TemplateBinding Foreground}"
+                                                   Value="{TemplateBinding Value}" />
                             <gauges:LinearIndicator>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
