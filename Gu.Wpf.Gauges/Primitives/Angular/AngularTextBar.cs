@@ -101,7 +101,6 @@ namespace Gu.Wpf.Gauges
             }
         }
 
-
         /// <summary>
         /// Get the interpolated pixel position for the value.
         /// </summary>

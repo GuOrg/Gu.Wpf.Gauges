@@ -10,11 +10,11 @@
              mc:Ignorable="d">
     <UserControl.DataContext>
         <sample:TickBarVm HorizontalTextAlignment="Center"
-                          IsDirectionReversed="True"
-                          MajorTickFrequency="25"
+                          IsDirectionReversed="False"
+                          MajorTickFrequency="1"
                           MajorTicks="100"
-                          Maximum="100"
-                          Minimum="0"
+                          Maximum="3"
+                          Minimum="-0.5"
                           Placement="Bottom"
                           VerticalTextAlignment="Center" />
     </UserControl.DataContext>
@@ -44,18 +44,19 @@
                                   Ticks="{Binding MajorTickFrequency}" />
 
             <gauges:LinearTextBar Grid.Row="0"
-                                      Grid.RowSpan="2"
-                                      Grid.Column="0"
-                                      Grid.ColumnSpan="2"
-                                      Foreground="Black"
-                                      HorizontalTextAlignment="{Binding HorizontalTextAlignment}"
-                                      IsDirectionReversed="{Binding IsDirectionReversed}"
-                                      Maximum="{Binding Maximum}"
-                                      Minimum="{Binding Minimum}"
-                                      Placement="{Binding Placement}"
-                                      TickFrequency="{Binding MajorTickFrequency}"
-                                      Ticks="{Binding MajorTicks}"
-                                      VerticalTextAlignment="{Binding VerticalTextAlignment}">
+                                  Grid.RowSpan="2"
+                                  Grid.Column="0"
+                                  Grid.ColumnSpan="2"
+                                  Foreground="Black"
+                                  HorizontalTextAlignment="{Binding HorizontalTextAlignment}"
+                                  IsDirectionReversed="{Binding IsDirectionReversed}"
+                                  Maximum="{Binding Maximum}"
+                                  Minimum="{Binding Minimum}"
+                                  Placement="{Binding Placement}"
+                                  SnapTicksTo="Minimum"
+                                  TickFrequency="{Binding MajorTickFrequency}"
+                                  Ticks="{Binding MajorTicks}"
+                                  VerticalTextAlignment="{Binding VerticalTextAlignment}">
                 <gauges:LinearTextBar.TextTransform>
                     <RotateTransform Angle="0" />
                 </gauges:LinearTextBar.TextTransform>
