@@ -32,189 +32,201 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:LinearAxis}">
-                            <Grid x:Name="Ticks">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <local:LinearTextBar x:Name="TickLabels"
-                                                     Grid.Row="1"
-                                                     Padding="0.5,0,0.5,2"
-                                                     HorizontalTextAlignment="Center"
-                                                     TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                                     Ticks="{TemplateBinding MajorTicks}"
-                                                     VerticalTextAlignment="Bottom" />
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                <Grid x:Name="AxisGrid">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <local:LinearTextBar x:Name="TickLabels"
+                                                         Grid.Row="1"
+                                                         Padding="0.5,0,0.5,2"
+                                                         HorizontalTextAlignment="Center"
+                                                         TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                         Ticks="{TemplateBinding MajorTicks}"
+                                                         VerticalTextAlignment="Bottom" />
 
-                                <local:LinearTickBar x:Name="MajorTicks"
-                                                     Grid.Row="2"
-                                                     Height="8"
-                                                     Fill="{TemplateBinding Foreground}"
-                                                     TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                                     TickWidth="1"
-                                                     Ticks="{TemplateBinding MajorTicks}" />
+                                    <local:LinearTickBar x:Name="MajorTicks"
+                                                         Grid.Row="2"
+                                                         Height="8"
+                                                         Fill="{TemplateBinding Foreground}"
+                                                         TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                         TickWidth="1"
+                                                         Ticks="{TemplateBinding MajorTicks}" />
 
-                                <local:LinearTickBar x:Name="MinorTicks"
-                                                     Grid.Row="2"
-                                                     Height="5"
-                                                     VerticalAlignment="Bottom"
-                                                     ExcludeTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
-                                                     Fill="{TemplateBinding Foreground}"
-                                                     Placement="Bottom"
-                                                     TickFrequency="{TemplateBinding MinorTickFrequency}"
-                                                     TickWidth="1"
-                                                     Ticks="{TemplateBinding MinorTicks}" />
+                                    <local:LinearTickBar x:Name="MinorTicks"
+                                                         Grid.Row="2"
+                                                         Height="5"
+                                                         VerticalAlignment="Bottom"
+                                                         ExcludeTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
+                                                         Fill="{TemplateBinding Foreground}"
+                                                         TickFrequency="{TemplateBinding MinorTickFrequency}"
+                                                         TickWidth="1"
+                                                         Ticks="{TemplateBinding MinorTicks}" />
 
-                                <Rectangle x:Name="Line"
-                                           Grid.Row="2"
-                                           Height="1"
-                                           VerticalAlignment="Bottom"
-                                           Fill="{TemplateBinding Foreground}" />
-                            </Grid>
+                                    <Rectangle x:Name="Line"
+                                               Grid.Row="2"
+                                               Height="1"
+                                               VerticalAlignment="Bottom"
+                                               Fill="{TemplateBinding Foreground}" />
+                                </Grid>
+                            </Border>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Trigger>
+
             <Trigger Property="Placement" Value="Top">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:LinearAxis}">
-                            <Grid x:Name="Ticks">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-                                <local:LinearTickBar x:Name="MajorTicks"
-                                                     Grid.Row="0"
-                                                     Height="8"
-                                                     Fill="{TemplateBinding Foreground}"
-                                                     TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                                     TickWidth="1"
-                                                     Ticks="{TemplateBinding MajorTicks}" />
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                <Grid x:Name="AxisGrid">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <local:LinearTickBar x:Name="MajorTicks"
+                                                         Grid.Row="0"
+                                                         Height="8"
+                                                         Fill="{TemplateBinding Foreground}"
+                                                         TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                         TickWidth="1"
+                                                         Ticks="{TemplateBinding MajorTicks}" />
 
-                                <local:LinearTickBar x:Name="MinorTicks"
-                                                     Grid.Row="0"
-                                                     Height="5"
-                                                     VerticalAlignment="Top"
-                                                     ExcludeTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
-                                                     Fill="{TemplateBinding Foreground}"
-                                                     TickFrequency="{TemplateBinding MinorTickFrequency}"
-                                                     TickWidth="1"
-                                                     Ticks="{TemplateBinding MinorTicks}" />
+                                    <local:LinearTickBar x:Name="MinorTicks"
+                                                         Grid.Row="0"
+                                                         Height="5"
+                                                         VerticalAlignment="Top"
+                                                         ExcludeTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
+                                                         Fill="{TemplateBinding Foreground}"
+                                                         TickFrequency="{TemplateBinding MinorTickFrequency}"
+                                                         TickWidth="1"
+                                                         Ticks="{TemplateBinding MinorTicks}" />
 
-                                <Rectangle x:Name="Line"
-                                           Grid.Row="0"
-                                           Height="1"
-                                           VerticalAlignment="Top"
-                                           Fill="{TemplateBinding Foreground}" />
+                                    <Rectangle x:Name="Line"
+                                               Grid.Row="0"
+                                               Height="1"
+                                               VerticalAlignment="Top"
+                                               Fill="{TemplateBinding Foreground}" />
 
-                                <local:LinearTextBar x:Name="TickLabels"
-                                                     Grid.Row="1"
-                                                     Padding="0.5,2,0.5,0"
-                                                     HorizontalTextAlignment="Center"
-                                                     TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                                     Ticks="{TemplateBinding MajorTicks}"
-                                                     VerticalTextAlignment="Top" />
-                            </Grid>
+                                    <local:LinearTextBar x:Name="TickLabels"
+                                                         Grid.Row="1"
+                                                         Padding="0.5,2,0.5,0"
+                                                         HorizontalTextAlignment="Center"
+                                                         TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                         Ticks="{TemplateBinding MajorTicks}"
+                                                         VerticalTextAlignment="Top" />
+                                </Grid>
+                            </Border>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Trigger>
+
             <Trigger Property="Placement" Value="Left">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:LinearAxis}">
-                            <Grid x:Name="Ticks">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <local:LinearTickBar x:Name="MajorTicks"
-                                                     Grid.Column="0"
-                                                     Width="8"
-                                                     Fill="{TemplateBinding Foreground}"
-                                                     Placement="Left"
-                                                     TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                                     TickWidth="1"
-                                                     Ticks="{TemplateBinding MajorTicks}" />
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                <Grid x:Name="AxisGrid">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <local:LinearTickBar x:Name="MajorTicks"
+                                                         Grid.Column="0"
+                                                         Width="8"
+                                                         Fill="{TemplateBinding Foreground}"
+                                                         TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                         TickWidth="1"
+                                                         Ticks="{TemplateBinding MajorTicks}" />
 
-                                <local:LinearTickBar x:Name="MinorTicks"
-                                                     Grid.Column="0"
-                                                     Width="5"
-                                                     HorizontalAlignment="Left"
-                                                     ExcludeTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
-                                                     Fill="{TemplateBinding Foreground}"
-                                                     Placement="Left"
-                                                     TickFrequency="{TemplateBinding MinorTickFrequency}"
-                                                     TickWidth="1"
-                                                     Ticks="{TemplateBinding MinorTicks}" />
+                                    <local:LinearTickBar x:Name="MinorTicks"
+                                                         Grid.Column="0"
+                                                         Width="5"
+                                                         HorizontalAlignment="Left"
+                                                         ExcludeTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
+                                                         Fill="{TemplateBinding Foreground}"
+                                                         TickFrequency="{TemplateBinding MinorTickFrequency}"
+                                                         TickWidth="1"
+                                                         Ticks="{TemplateBinding MinorTicks}" />
 
-                                <Rectangle x:Name="Line"
-                                           Grid.Column="0"
-                                           Width="1"
-                                           HorizontalAlignment="Left"
-                                           Fill="{TemplateBinding Foreground}" />
+                                    <Rectangle x:Name="Line"
+                                               Grid.Column="0"
+                                               Width="1"
+                                               HorizontalAlignment="Left"
+                                               Fill="{TemplateBinding Foreground}" />
 
-                                <local:LinearTextBar x:Name="TickLabels"
-                                                     Grid.Column="1"
-                                                     Padding="2,0.5,0,0.5"
-                                                     HorizontalTextAlignment="Left"
-                                                     Placement="Left"
-                                                     TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                                     Ticks="{TemplateBinding MajorTicks}"
-                                                     VerticalTextAlignment="Center" />
-                            </Grid>
+                                    <local:LinearTextBar x:Name="TickLabels"
+                                                         Grid.Column="1"
+                                                         Padding="2,0.5,0,0.5"
+                                                         HorizontalTextAlignment="Left"
+                                                         TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                         Ticks="{TemplateBinding MajorTicks}"
+                                                         VerticalTextAlignment="Center" />
+                                </Grid>
+                            </Border>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
             </Trigger>
+
             <Trigger Property="Placement" Value="Right">
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:LinearAxis}">
-                            <Grid x:Name="Ticks">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <local:LinearTextBar x:Name="TickLabels"
-                                                     Grid.Column="1"
-                                                     Padding="0,0.5,2,0.5"
-                                                     HorizontalTextAlignment="Right"
-                                                     Placement="Left"
-                                                     TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                                     Ticks="{TemplateBinding MajorTicks}"
-                                                     VerticalTextAlignment="Center" />
+                            <Border Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}">
+                                <Grid x:Name="AxisGrid">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <local:LinearTextBar x:Name="TickLabels"
+                                                         Grid.Column="1"
+                                                         Padding="0,0.5,2,0.5"
+                                                         HorizontalTextAlignment="Right"
+                                                         TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                         Ticks="{TemplateBinding MajorTicks}"
+                                                         VerticalTextAlignment="Center" />
 
-                                <local:LinearTickBar x:Name="MajorTicks"
-                                                     Grid.Column="2"
-                                                     Width="8"
-                                                     Fill="{TemplateBinding Foreground}"
-                                                     Placement="Right"
-                                                     TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                                     TickWidth="1"
-                                                     Ticks="{TemplateBinding MajorTicks}" />
+                                    <local:LinearTickBar x:Name="MajorTicks"
+                                                         Grid.Column="2"
+                                                         Width="8"
+                                                         Fill="{TemplateBinding Foreground}"
+                                                         TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                         TickWidth="1"
+                                                         Ticks="{TemplateBinding MajorTicks}" />
 
-                                <local:LinearTickBar x:Name="MinorTicks"
-                                                     Grid.Column="2"
-                                                     Width="5"
-                                                     HorizontalAlignment="Right"
-                                                     ExcludeTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
-                                                     Fill="{TemplateBinding Foreground}"
-                                                     Placement="Left"
-                                                     TickFrequency="{TemplateBinding MinorTickFrequency}"
-                                                     TickWidth="1"
-                                                     Ticks="{TemplateBinding MinorTicks}" />
+                                    <local:LinearTickBar x:Name="MinorTicks"
+                                                         Grid.Column="2"
+                                                         Width="5"
+                                                         HorizontalAlignment="Right"
+                                                         ExcludeTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
+                                                         Fill="{TemplateBinding Foreground}"
+                                                         TickFrequency="{TemplateBinding MinorTickFrequency}"
+                                                         TickWidth="1"
+                                                         Ticks="{TemplateBinding MinorTicks}" />
 
-                                <Rectangle x:Name="Line"
-                                           Grid.Column="2"
-                                           Width="1"
-                                           HorizontalAlignment="Right"
-                                           Fill="{TemplateBinding Foreground}" />
-                            </Grid>
+                                    <Rectangle x:Name="Line"
+                                               Grid.Column="2"
+                                               Width="1"
+                                               HorizontalAlignment="Right"
+                                               Fill="{TemplateBinding Foreground}" />
+                                </Grid>
+                            </Border>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
@@ -355,10 +367,13 @@
                                         BorderThickness="{TemplateBinding BorderThickness}">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition />
-                                            <ColumnDefinition Width="1" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
-                                        <local:LinearIndicator Value="{TemplateBinding Value}">
+                                        <local:LinearAxis Grid.Column="0" />
+
+                                        <local:LinearIndicator Grid.Column="1"
+                                                               Value="{TemplateBinding Value}">
                                             <Path Width="10"
                                                   Height="10"
                                                   HorizontalAlignment="Right"
@@ -366,7 +381,6 @@
                                                   Fill="{TemplateBinding Foreground}"
                                                   Stretch="Fill" />
                                         </local:LinearIndicator>
-                                        <local:LinearAxis Grid.Column="1" />
                                     </Grid>
                                 </Border>
                             </ControlTemplate>

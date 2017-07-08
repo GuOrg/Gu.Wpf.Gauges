@@ -81,6 +81,7 @@
 
         protected override Size ArrangeOverride(Size finalSize)
         {
+            var rect = default(Rect);
             if (this.AllTexts != null)
             {
                 foreach (var tickText in this.AllTexts)
@@ -90,9 +91,15 @@
                     var pos = this.PixelPosition(tickText, finalSize);
                     tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, pos.X);
                     tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, pos.Y);
+                    rect.Union(tickText.Geometry.Bounds);
                 }
             }
 
+            this.TextSpaceMargin = new Thickness(
+                Math.Max(0, -rect.Left),
+                Math.Max(0, -rect.Top),
+                Math.Max(0, rect.Right - finalSize.Width),
+                Math.Max(0, rect.Bottom - finalSize.Height));
             return finalSize;
         }
 
