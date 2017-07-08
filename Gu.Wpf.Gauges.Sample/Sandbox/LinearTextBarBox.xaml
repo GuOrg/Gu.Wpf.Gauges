@@ -9,13 +9,13 @@
              d:DesignWidth="300"
              mc:Ignorable="d">
     <UserControl.DataContext>
-        <sample:TickBarVm HorizontalTextAlignment="Center"
+        <sample:TickBarVm HorizontalTextAlignment="Left"
                           IsDirectionReversed="False"
-                          MajorTickFrequency="1"
+                          MajorTickFrequency="25"
                           MajorTicks="100"
-                          Maximum="3"
-                          Minimum="-0.5"
-                          Placement="Bottom"
+                          Maximum="100"
+                          Minimum="0"
+                          Placement="Left"
                           VerticalTextAlignment="Center" />
     </UserControl.DataContext>
     <Grid>
@@ -40,6 +40,7 @@
                                   Grid.ColumnSpan="2"
                                   Maximum="{Binding Maximum}"
                                   Minimum="{Binding Minimum}"
+                                  Placement="{Binding Placement}"
                                   TickFrequency="{Binding MajorTickFrequency}"
                                   Ticks="{Binding MajorTickFrequency}" />
 
@@ -53,7 +54,6 @@
                                   Maximum="{Binding Maximum}"
                                   Minimum="{Binding Minimum}"
                                   Placement="{Binding Placement}"
-                                  SnapTicksTo="Minimum"
                                   TickFrequency="{Binding MajorTickFrequency}"
                                   Ticks="{Binding MajorTicks}"
                                   VerticalTextAlignment="{Binding VerticalTextAlignment}">

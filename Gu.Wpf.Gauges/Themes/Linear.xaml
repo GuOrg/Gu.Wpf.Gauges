@@ -40,7 +40,7 @@
                                 </Grid.RowDefinitions>
                                 <local:LinearTextBar x:Name="TickLabels"
                                                      Grid.Row="1"
-                                                     Margin="0.5,0"
+                                                     Margin="0.5,0,0.5,2"
                                                      HorizontalTextAlignment="Center"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                      Ticks="{TemplateBinding MajorTicks}"
@@ -48,7 +48,7 @@
 
                                 <local:LinearTickBar x:Name="MajorTicks"
                                                      Grid.Row="2"
-                                                     Height="10"
+                                                     Height="8"
                                                      Fill="{TemplateBinding Foreground}"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                      TickWidth="1"
@@ -56,7 +56,7 @@
 
                                 <local:LinearTickBar x:Name="MinorTicks"
                                                      Grid.Row="2"
-                                                     Height="6"
+                                                     Height="5"
                                                      VerticalAlignment="Bottom"
                                                      ExcludeTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
                                                      Fill="{TemplateBinding Foreground}"
@@ -87,7 +87,7 @@
                                 </Grid.RowDefinitions>
                                 <local:LinearTickBar x:Name="MajorTicks"
                                                      Grid.Row="0"
-                                                     Height="10"
+                                                     Height="8"
                                                      Fill="{TemplateBinding Foreground}"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                      TickWidth="1"
@@ -95,7 +95,7 @@
 
                                 <local:LinearTickBar x:Name="MinorTicks"
                                                      Grid.Row="0"
-                                                     Height="6"
+                                                     Height="5"
                                                      VerticalAlignment="Top"
                                                      ExcludeTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
                                                      Fill="{TemplateBinding Foreground}"
@@ -111,7 +111,7 @@
 
                                 <local:LinearTextBar x:Name="TickLabels"
                                                      Grid.Row="1"
-                                                     Margin="0.5,0"
+                                                     Margin="0.5,2,0.5,0"
                                                      HorizontalTextAlignment="Center"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                      Ticks="{TemplateBinding MajorTicks}"
@@ -133,7 +133,7 @@
                                 </Grid.ColumnDefinitions>
                                 <local:LinearTickBar x:Name="MajorTicks"
                                                      Grid.Column="0"
-                                                     Width="10"
+                                                     Width="8"
                                                      Fill="{TemplateBinding Foreground}"
                                                      Placement="Left"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
@@ -142,7 +142,7 @@
 
                                 <local:LinearTickBar x:Name="MinorTicks"
                                                      Grid.Column="0"
-                                                     Width="6"
+                                                     Width="5"
                                                      HorizontalAlignment="Left"
                                                      ExcludeTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
                                                      Fill="{TemplateBinding Foreground}"
@@ -159,7 +159,7 @@
 
                                 <local:LinearTextBar x:Name="TickLabels"
                                                      Grid.Column="1"
-                                                     Margin="0,0.5"
+                                                     Margin="2,0.5,0,0.5"
                                                      HorizontalTextAlignment="Left"
                                                      Placement="Left"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
@@ -182,7 +182,7 @@
                                 </Grid.ColumnDefinitions>
                                 <local:LinearTextBar x:Name="TickLabels"
                                                      Grid.Column="1"
-                                                     Margin="0,0.5"
+                                                     Margin="0,0.5,2,0.5"
                                                      HorizontalTextAlignment="Right"
                                                      Placement="Left"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
@@ -191,7 +191,7 @@
 
                                 <local:LinearTickBar x:Name="MajorTicks"
                                                      Grid.Column="2"
-                                                     Width="10"
+                                                     Width="8"
                                                      Fill="{TemplateBinding Foreground}"
                                                      Placement="Right"
                                                      TickFrequency="{TemplateBinding MajorTickFrequency}"
@@ -200,7 +200,7 @@
 
                                 <local:LinearTickBar x:Name="MinorTicks"
                                                      Grid.Column="2"
-                                                     Width="6"
+                                                     Width="5"
                                                      HorizontalAlignment="Right"
                                                      ExcludeTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
                                                      Fill="{TemplateBinding Foreground}"
@@ -250,12 +250,18 @@
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}">
                                     <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
                                         <local:LinearAxis />
-                                        <local:LinearIndicator Value="{TemplateBinding Value}">
+
+                                        <local:LinearIndicator Grid.Row="1"
+                                                               Value="{TemplateBinding Value}">
                                             <Path Width="10"
                                                   Height="10"
                                                   VerticalAlignment="Bottom"
-                                                  Data="M-0.5,0 L0.5,0 0,1z"
+                                                  Data="M-0.5,0 L+0.5,0 0,-1z"
                                                   Fill="{TemplateBinding Foreground}"
                                                   Stretch="Fill" />
                                         </local:LinearIndicator>
@@ -280,15 +286,19 @@
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}">
                                     <Grid>
-                                        <local:LinearAxis />
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
                                         <local:LinearIndicator Value="{TemplateBinding Value}">
                                             <Path Width="10"
                                                   Height="10"
                                                   VerticalAlignment="Top"
-                                                  Data="M-0.5,0 L+0.5,0 0,-1z"
+                                                  Data="M-0.5,0 L0.5,0 0,1z"
                                                   Fill="{TemplateBinding Foreground}"
                                                   Stretch="Fill" />
                                         </local:LinearIndicator>
+                                        <local:LinearAxis Grid.Row="1" />
                                     </Grid>
                                 </Border>
                             </ControlTemplate>
@@ -310,15 +320,19 @@
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}">
                                     <Grid>
-                                        <local:LinearAxis />
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
                                         <local:LinearIndicator Value="{TemplateBinding Value}">
                                             <Path Width="10"
                                                   Height="10"
                                                   HorizontalAlignment="Left"
-                                                  Data="M0.5,-0.5 L0.5,0.5 0,0z"
+                                                  Data="M-0.5,-0.5 L-0.5,0.5 0,0z"
                                                   Fill="{TemplateBinding Foreground}"
                                                   Stretch="Fill" />
                                         </local:LinearIndicator>
+                                        <local:LinearAxis Grid.Column="1" />
                                     </Grid>
                                 </Border>
                             </ControlTemplate>
@@ -340,15 +354,19 @@
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}">
                                     <Grid>
-                                        <local:LinearAxis />
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="1" />
+                                        </Grid.ColumnDefinitions>
                                         <local:LinearIndicator Value="{TemplateBinding Value}">
                                             <Path Width="10"
                                                   Height="10"
                                                   HorizontalAlignment="Right"
-                                                  Data="M-0.5,-0.5 L-0.5,0.5 0,0z"
+                                                  Data="M0.5,-0.5 L0.5,0.5 0,0z"
                                                   Fill="{TemplateBinding Foreground}"
                                                   Stretch="Fill" />
                                         </local:LinearIndicator>
+                                        <local:LinearAxis Grid.Column="1" />
                                     </Grid>
                                 </Border>
                             </ControlTemplate>
