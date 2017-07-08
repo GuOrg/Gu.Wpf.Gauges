@@ -25,7 +25,6 @@ namespace Gu.Wpf.Gauges
                          new PropertyMetaData("MinorTickFrequency", "double", null),
                          new PropertyMetaData("MinorTicks", "DoubleCollection", null),
                          new PropertyMetaData("Thickness", "double", "10.0d"),
-                         new PropertyMetaData("TextOrientation", "TextOrientation", "TextOrientation.Horizontal"),
                      };
 
     foreach (var property in properties)

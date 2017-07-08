@@ -38,6 +38,14 @@
                 0.0d,
                 FrameworkPropertyMetadataOptions.Inherits));
 
+        public static readonly DependencyProperty TextOrientationProperty = DependencyProperty.RegisterAttached(
+            nameof(TextOrientation),
+            typeof(TextOrientation),
+            typeof(AngularGauge),
+            new FrameworkPropertyMetadata(
+                TextOrientation.Tangential,
+                FrameworkPropertyMetadataOptions.Inherits));
+
         public double MinAngle
         {
             get => (double)this.GetValue(MinAngleProperty);
@@ -60,6 +68,12 @@
         {
             get => (double)this.GetValue(TickGapProperty);
             set => this.SetValue(TickGapProperty, value);
+        }
+
+        public TextOrientation TextOrientation
+        {
+            get => (TextOrientation)this.GetValue(TextOrientationProperty);
+            set => this.SetValue(TextOrientationProperty, value);
         }
 
         public static void SetMinAngle(DependencyObject element, double value)
@@ -100,6 +114,16 @@
         public static double GetTickGap(DependencyObject element)
         {
             return (double)element.GetValue(TickGapProperty);
+        }
+
+        public static void SetTextOrientation(DependencyObject element, TextOrientation value)
+        {
+            element.SetValue(TextOrientationProperty, value);
+        }
+
+        public static TextOrientation GetTextOrientation(DependencyObject element)
+        {
+            return (TextOrientation)element.GetValue(TextOrientationProperty);
         }
 
         private static void OnMinAngleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

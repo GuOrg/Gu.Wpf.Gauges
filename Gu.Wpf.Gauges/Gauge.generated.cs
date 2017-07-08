@@ -12,8 +12,9 @@
             nameof(Value),
             typeof(double),
             typeof(Gauge),
-            new PropertyMetadata(
+            new FrameworkPropertyMetadata(
                 double.NaN,
+                FrameworkPropertyMetadataOptions.Inherits,
                 OnValueChanged));
 
         public static readonly DependencyProperty MinimumProperty = DependencyProperty.RegisterAttached(
@@ -83,14 +84,6 @@
                 10.0d,
                 FrameworkPropertyMetadataOptions.Inherits));
 
-        public static readonly DependencyProperty TextOrientationProperty = DependencyProperty.RegisterAttached(
-            nameof(TextOrientation),
-            typeof(TextOrientation),
-            typeof(Gauge),
-            new FrameworkPropertyMetadata(
-                TextOrientation.Horizontal,
-                FrameworkPropertyMetadataOptions.Inherits));
-
         public double Value
         {
             get => (double)this.GetValue(ValueProperty);
@@ -143,12 +136,6 @@
         {
             get => (double)this.GetValue(ThicknessProperty);
             set => this.SetValue(ThicknessProperty, value);
-        }
-
-        public TextOrientation TextOrientation
-        {
-            get => (TextOrientation)this.GetValue(TextOrientationProperty);
-            set => this.SetValue(TextOrientationProperty, value);
         }
 
         public static void SetValue(DependencyObject element, double value)
@@ -239,16 +226,6 @@
         public static double GetThickness(DependencyObject element)
         {
             return (double)element.GetValue(ThicknessProperty);
-        }
-
-        public static void SetTextOrientation(DependencyObject element, TextOrientation value)
-        {
-            element.SetValue(TextOrientationProperty, value);
-        }
-
-        public static TextOrientation GetTextOrientation(DependencyObject element)
-        {
-            return (TextOrientation)element.GetValue(TextOrientationProperty);
         }
 
         private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

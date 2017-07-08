@@ -16,7 +16,6 @@
         private bool isDirectionReversed;
 
         private double value;
-        private TextOrientation textOrientation;
         private HorizontalTextAlignment horizontalTextAlignment;
         private VerticalTextAlignment verticalTextAlignment;
         private double minorTickFrequency;
@@ -209,21 +208,6 @@
                 }
 
                 this.placement = value;
-                this.OnPropertyChanged();
-            }
-        }
-
-        public TextOrientation TextOrientation
-        {
-            get => this.textOrientation;
-            set
-            {
-                if (value == this.textOrientation)
-                {
-                    return;
-                }
-
-                this.textOrientation = value;
                 this.OnPropertyChanged();
             }
         }

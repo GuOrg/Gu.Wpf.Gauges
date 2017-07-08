@@ -23,14 +23,6 @@
                 TickBarPlacement.Bottom,
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
 
-        public static readonly DependencyProperty TextTransformProperty = DependencyProperty.Register(
-            nameof(TextTransform),
-            typeof(Transform),
-            typeof(LinearTextBar),
-            new FrameworkPropertyMetadata(
-                default(Transform),
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
-
         public static readonly DependencyProperty PaddingProperty =
             DependencyProperty.Register(
                 nameof(Padding),
@@ -50,12 +42,6 @@
         {
             get => (TickBarPlacement)this.GetValue(PlacementProperty);
             set => this.SetValue(PlacementProperty, value);
-        }
-
-        public Transform TextTransform
-        {
-            get => (Transform)this.GetValue(TextTransformProperty);
-            set => this.SetValue(TextTransformProperty, value);
         }
 
         public Thickness Padding

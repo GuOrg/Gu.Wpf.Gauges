@@ -50,10 +50,6 @@
             typeof(Axis),
             new FrameworkPropertyMetadata(default(DoubleCollection)));
 
-        public static readonly DependencyProperty TextOrientationProperty = Gauge.TextOrientationProperty.AddOwner(
-            typeof(Axis),
-            new FrameworkPropertyMetadata(TextOrientation.Horizontal, FrameworkPropertyMetadataOptions.Inherits));
-
         /// <summary>
         /// Identifies the <see cref="P:Axis.IsDirectionReversed" /> dependency property.
         /// </summary>
@@ -94,16 +90,6 @@
         {
             get => (bool)this.GetValue(ShowLabelsProperty);
             set => this.SetValue(ShowLabelsProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets the <see cref="T:Gu.Wpf.Gauges.TextOrientation" />
-        /// Default is Horizontal
-        /// </summary>
-        public TextOrientation TextOrientation
-        {
-            get => (TextOrientation)this.GetValue(TextOrientationProperty);
-            set => this.SetValue(TextOrientationProperty, value);
         }
 
         public double MajorTickFrequency

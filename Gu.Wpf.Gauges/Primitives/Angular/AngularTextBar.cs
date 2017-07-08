@@ -5,9 +5,9 @@ namespace Gu.Wpf.Gauges
     using System.Windows;
     using System.Windows.Media;
 
-    public class AngularTextBar : TextTickBar, ITextFormat
+    public class AngularTextBar : TextTickBar
     {
-        public static readonly DependencyProperty TextOrientationProperty = Gauge.TextOrientationProperty.AddOwner(
+        public static readonly DependencyProperty TextOrientationProperty = AngularGauge.TextOrientationProperty.AddOwner(
             typeof(AngularTextBar),
             new FrameworkPropertyMetadata(
                 TextOrientation.Tangential,
@@ -130,7 +130,7 @@ namespace Gu.Wpf.Gauges
                 this.TypeFace,
                 this.FontSize,
                 this.Foreground,
-                null);
+                this.TextOrientation == TextOrientation.UseTransform ? this.TextTransform : null);
         }
 
         protected override void UpdateTexts()

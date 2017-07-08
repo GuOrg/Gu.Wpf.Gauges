@@ -18,8 +18,10 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <gauges:LinearTextBar x:Name="TickLabels"
-                                      TickFrequency="{Binding ElementName=MajorTicks, Path=TickFrequency}"
-                                      Ticks="{Binding ElementName=MajorTicks, Path=Ticks}" />
+                                  HorizontalTextAlignment="Center"
+                                  Padding="0.5,1"
+                                  TickFrequency="{Binding ElementName=MajorTicks, Path=TickFrequency}"
+                                  Ticks="{Binding ElementName=MajorTicks, Path=Ticks}" />
 
             <gauges:LinearTickBar x:Name="MajorTicks"
                                   Grid.Row="1"

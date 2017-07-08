@@ -77,7 +77,6 @@
     <Compile Include="Internals\DoubleUtil.cs" />
     <Compile Include="Internals\Interpolate.cs" />
     <Compile Include="Internals\NameOf.cs" />
-    <Compile Include="Internals\TextPositionOptions.cs" />
     <Compile Include="Internals\TickBarPlacementExt.cs" />
     <Compile Include="Internals\ValidateEnums.cs" />
     <Compile Include="Internals\WeakKeyValuePair.cs" />
@@ -107,7 +106,6 @@
     <Compile Include="Dimensions\LineExt.cs" />
     <Compile Include="Dimensions\TwoPointDimension.cs" />
     <Compile Include="Internals\DrawingContextExt.cs" />
-    <Compile Include="Primitives\ITextFormat.cs" />
     <Compile Include="Internals\Horizontal.cs" />
     <Compile Include="Internals\Line.cs" />
     <Compile Include="Primitives\Linear\LinearDotBar.cs" />
@@ -115,8 +113,6 @@
     <Compile Include="Internals\RectExt.cs" />
     <Compile Include="Internals\SizeExt.cs" />
     <Compile Include="Internals\RotateTransformExt.cs" />
-    <Compile Include="Internals\TextHelper.cs" />
-    <Compile Include="Internals\TextPosition.cs" />
     <Compile Include="Internals\Ticks.cs" />
     <Compile Include="Primitives\Angular\AngularBar.cs" />
     <Compile Include="Primitives\Angular\AngularTextBar.cs" />
@@ -137,7 +133,7 @@
       <SubType>Code</SubType>
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="TextOrientation.cs" />
+    <Compile Include="Primitives\Angular\TextOrientation.cs" />
     <Compile Include="Internals\WeakDictionary.cs" />
     <Compile Include="TickSnap.cs" />
     <None Include="Gu.Wpf.Gauges.ruleset" />

@@ -22,10 +22,16 @@
                 0.0d,
                 FrameworkPropertyMetadataOptions.Inherits));
 
-        public static readonly DependencyProperty ThicknessProperty = AngularGauge.ThicknessProperty.AddOwner(
+        public static readonly DependencyProperty ThicknessProperty = Gauge.ThicknessProperty.AddOwner(
             typeof(AngularAxis),
             new FrameworkPropertyMetadata(
                 10.0d,
+                FrameworkPropertyMetadataOptions.Inherits));
+
+        public static readonly DependencyProperty TextOrientationProperty = AngularGauge.TextOrientationProperty.AddOwner(
+            typeof(AngularAxis),
+            new FrameworkPropertyMetadata(
+                TextOrientation.Tangential,
                 FrameworkPropertyMetadataOptions.Inherits));
 
         static AngularAxis()
@@ -69,6 +75,16 @@
         {
             get => (double)this.GetValue(ThicknessProperty);
             set => this.SetValue(ThicknessProperty, value);
+        }
+
+        /// <summary>
+        /// Gets or sets the <see cref="T:Gu.Wpf.Gauges.TextOrientation" />
+        /// Default is Horizontal
+        /// </summary>
+        public TextOrientation TextOrientation
+        {
+            get => (TextOrientation)this.GetValue(TextOrientationProperty);
+            set => this.SetValue(TextOrientationProperty, value);
         }
     }
 }

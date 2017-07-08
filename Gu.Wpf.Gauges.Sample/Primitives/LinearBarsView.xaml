@@ -17,7 +17,6 @@
                           MinorTickFrequency="5"
                           Placement="Right"
                           SnapsToDevicePixels="False"
-                          TextOrientation="Horizontal"
                           TickGap="3"
                           TickWidth="3"
                           VerticalTextAlignment="Top"
@@ -52,8 +51,7 @@
                                    Minimum="{Binding Minimum}"
                                    MinorTickFrequency="{Binding MinorTickFrequency}"
                                    Placement="{Binding Placement}"
-                                   SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
-                                   TextOrientation="{Binding TextOrientation}" />
+                                   SnapsToDevicePixels="{Binding SnapsToDevicePixels}" />
             </GroupBox>
 
             <GroupBox Header="Framework TickBar">

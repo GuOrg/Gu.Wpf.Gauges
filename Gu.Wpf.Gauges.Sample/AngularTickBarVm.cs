@@ -4,6 +4,7 @@
     {
         private double minAngle;
         private double maxAngle;
+        private TextOrientation textOrientation;
 
         public AngularTickBarVm()
         {
@@ -39,6 +40,21 @@
                 }
 
                 this.maxAngle = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public TextOrientation TextOrientation
+        {
+            get => this.textOrientation;
+            set
+            {
+                if (value == this.textOrientation)
+                {
+                    return;
+                }
+
+                this.textOrientation = value;
                 this.OnPropertyChanged();
             }
         }

@@ -8,7 +8,7 @@
     /// <summary>
     /// Base class for a tick bar that renders ticks as text.
     /// </summary>
-    public abstract class TextTickBar : TickBarBase, ITextFormat
+    public abstract class TextTickBar : TickBarBase
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
         private static readonly DependencyPropertyKey AllTextsPropertyKey = DependencyProperty.RegisterReadOnly(
@@ -35,6 +35,14 @@
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
                 default(VerticalTextAlignment),
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static readonly DependencyProperty TextTransformProperty = DependencyProperty.Register(
+            nameof(TextTransform),
+            typeof(Transform),
+            typeof(TextTickBar),
+            new FrameworkPropertyMetadata(
+                default(Transform),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
@@ -164,6 +172,12 @@
         {
             get => (VerticalTextAlignment)this.GetValue(VerticalTextAlignmentProperty);
             set => this.SetValue(VerticalTextAlignmentProperty, value);
+        }
+
+        public Transform TextTransform
+        {
+            get => (Transform)this.GetValue(TextTransformProperty);
+            set => this.SetValue(TextTransformProperty, value);
         }
 
         /// <summary>

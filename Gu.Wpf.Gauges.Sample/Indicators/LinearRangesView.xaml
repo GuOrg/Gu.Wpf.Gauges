@@ -16,7 +16,6 @@
                           MinorTickFrequency="5"
                           Placement="Top"
                           ShowLabels="True"
-                          TextOrientation="Horizontal"
                           Value="60" />
     </UserControl.DataContext>
     <Grid>

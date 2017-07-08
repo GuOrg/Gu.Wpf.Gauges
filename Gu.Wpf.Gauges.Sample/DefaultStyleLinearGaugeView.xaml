@@ -33,7 +33,6 @@
                             Minimum="{Binding Minimum}"
                             MinorTickFrequency="{Binding MinorTickFrequency}"
                             Placement="{Binding Placement}"
-                            TextOrientation="{Binding TextOrientation}"
                             Value="{Binding Value}" />
 
         <ContentPresenter Grid.Row="1"
