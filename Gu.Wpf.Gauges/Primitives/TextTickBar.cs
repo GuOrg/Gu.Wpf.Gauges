@@ -6,7 +6,7 @@
     using System.Windows.Media;
 
     /// <summary>
-    /// http://stackoverflow.com/a/3578214/1069200
+    /// Base class for a tick bar that renders ticks as text.
     /// </summary>
     public abstract class TextTickBar : TickBarBase, ITextFormat
     {

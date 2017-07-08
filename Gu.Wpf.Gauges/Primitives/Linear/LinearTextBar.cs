@@ -6,6 +6,9 @@
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
 
+    /// <summary>
+    /// Linear tick bar that renders ticks as text.
+    /// </summary>
     public class LinearTextBar : TextTickBar
     {
         /// <summary>
@@ -28,6 +31,15 @@
                 default(Transform),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
 
+        public static readonly DependencyProperty PaddingProperty =
+            DependencyProperty.Register(
+                nameof(Padding),
+                typeof(Thickness),
+                typeof(LinearTextBar),
+                new FrameworkPropertyMetadata(
+                    default(Thickness),
+                    FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
+
         /// <summary>
         /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.
         /// </summary>
@@ -46,6 +58,12 @@
             set => this.SetValue(TextTransformProperty, value);
         }
 
+        public Thickness Padding
+        {
+            get => (Thickness)this.GetValue(PaddingProperty);
+            set => this.SetValue(PaddingProperty, value);
+        }
+
         protected override Size MeasureOverride(Size availableSize)
         {
             var rect = default(Rect);
@@ -57,6 +75,7 @@
                 }
             }
 
+            rect.Inflate(this.Padding.Left + this.Padding.Right, this.Padding.Top + this.Padding.Bottom);
             return rect.Size;
         }
 
@@ -105,17 +124,17 @@
 
             if (this.Placement.IsHorizontal())
             {
-                var pos = scale * finalSize.Width;
+                var pos = scale * (finalSize.Width - this.Padding.Left - this.Padding.Right);
                 return this.IsDirectionReversed
-                    ? finalSize.Width - pos
-                    : pos;
+                    ? finalSize.Width - pos - this.Padding.Right
+                    : this.Padding.Left + pos;
             }
             else
             {
-                var pos = scale * finalSize.Height;
+                var pos = scale * (finalSize.Height - this.Padding.Top - this.Padding.Bottom);
                 return this.IsDirectionReversed
-                    ? pos
-                    : finalSize.Height - pos;
+                    ? pos + this.Padding.Bottom
+                    : finalSize.Height - pos - this.Padding.Top;
             }
         }
 
@@ -145,12 +164,13 @@
                 switch (this.VerticalTextAlignment)
                 {
                     case VerticalTextAlignment.Top:
+                        y += this.Padding.Top;
                         break;
                     case VerticalTextAlignment.Center:
                         y += (finalSize.Height - bounds.Height) / 2;
                         break;
                     case VerticalTextAlignment.Bottom:
-                        y += finalSize.Height - bounds.Height;
+                        y += finalSize.Height - bounds.Height - this.Padding.Bottom;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
