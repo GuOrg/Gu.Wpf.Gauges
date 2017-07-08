@@ -138,13 +138,13 @@
                 default(string),
                 (d, _) => ((TextTickBar)d).UpdateTexts()));
 
-        private static readonly DependencyPropertyKey TextSpaceMarginPropertyKey = DependencyProperty.RegisterReadOnly(
-            nameof(TextSpaceMargin),
+        private static readonly DependencyPropertyKey OverflowPropertyKey = DependencyProperty.RegisterReadOnly(
+            nameof(Overflow),
             typeof(Thickness),
             typeof(TextTickBar),
             new PropertyMetadata(default(Thickness)));
 
-        public static readonly DependencyProperty TextSpaceMarginProperty = TextSpaceMarginPropertyKey.DependencyProperty;
+        public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
         private Typeface typeFace;
 #pragma warning restore SA1202 // Elements must be ordered by access
 
@@ -263,12 +263,12 @@
         }
 
         /// <summary>
-        /// Gets the Reserved space due to the text
+        /// Gets a <see cref="Thickness"/> with values indicating how much the control draws outside its bounds.
         /// </summary>
-        public Thickness TextSpaceMargin
+        public Thickness Overflow
         {
-            get => (Thickness)this.GetValue(TextSpaceMarginProperty);
-            protected set => this.SetValue(TextSpaceMarginPropertyKey, value);
+            get => (Thickness)this.GetValue(OverflowProperty);
+            protected set => this.SetValue(OverflowPropertyKey, value);
         }
 
         protected Typeface TypeFace => this.typeFace ??

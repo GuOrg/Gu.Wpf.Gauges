@@ -406,10 +406,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Center_VerticalTextAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Center_Vertic" +
+                        "alTextAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Pad" +
+                        "ding_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Center_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Center_Vertic" +
                         "alTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Center_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Center_Vertic" +
+                        "alTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padd" +
+                        "ing_1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -428,10 +452,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Center_VerticalTextAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Center_Vertic" +
+                        "alTextAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Pad" +
+                        "ding_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Center_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Center_Vertic" +
                         "alTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Center_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Center_Vertic" +
+                        "alTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padd" +
+                        "ing_1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -450,10 +498,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Center_VerticalTextAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Center_Vertic" +
+                        "alTextAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Paddin" +
+                        "g_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Center_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Center_Vertic" +
                         "alTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Center_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Center_Vertic" +
+                        "alTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding" +
+                        "_1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -472,10 +544,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Left_VerticalTextAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Left_Vertical" +
+                        "TextAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Paddi" +
+                        "ng_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Left_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Left_Vertical" +
                         "TextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Left_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Left_Vertical" +
+                        "TextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Paddin" +
+                        "g_1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -494,10 +590,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Left_VerticalTextAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Left_Vertical" +
+                        "TextAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Paddi" +
+                        "ng_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Left_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Left_Vertical" +
                         "TextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Left_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Left_Vertical" +
+                        "TextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Paddin" +
+                        "g_1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -516,10 +636,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Left_VerticalTextAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Left_Vertical" +
+                        "TextAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_" +
+                        "1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Left_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Left_Vertical" +
                         "TextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Left_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Left_Vertical" +
+                        "TextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1" +
+                        "_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -538,10 +682,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Right_VerticalTextAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Right_Vertica" +
+                        "lTextAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padd" +
+                        "ing_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Right_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Right_Vertica" +
                         "lTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Right_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Right_Vertica" +
+                        "lTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Paddi" +
+                        "ng_1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -560,10 +728,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Right_VerticalTextAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Right_Vertica" +
+                        "lTextAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padd" +
+                        "ing_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Right_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Right_Vertica" +
                         "lTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Right_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Right_Vertica" +
+                        "lTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Paddi" +
+                        "ng_1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -582,10 +774,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Right_VerticalTextAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Right_Vertica" +
+                        "lTextAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding" +
+                        "_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Right_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Right_Vertica" +
                         "lTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Right_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Bottom_HorizontalTextAlignment_Right_Vertica" +
+                        "lTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_" +
+                        "1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -604,10 +820,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Center_VerticalTextAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Center_Vertical" +
+                        "TextAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Paddi" +
+                        "ng_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Center_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Center_Vertical" +
                         "TextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Center_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Center_Vertical" +
+                        "TextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Paddin" +
+                        "g_1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -626,10 +866,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Center_VerticalTextAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Center_Vertical" +
+                        "TextAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Paddi" +
+                        "ng_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Center_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Center_Vertical" +
                         "TextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Center_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Center_Vertical" +
+                        "TextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Paddin" +
+                        "g_1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -648,10 +912,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Center_VerticalTextAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Center_Vertical" +
+                        "TextAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_" +
+                        "1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Center_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Center_Vertical" +
                         "TextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Center_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Center_Vertical" +
+                        "TextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1" +
+                        "_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -670,10 +958,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Left_VerticalTextAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Left_VerticalTe" +
+                        "xtAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding" +
+                        "_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Left_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Left_VerticalTe" +
                         "xtAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Left_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Left_VerticalTe" +
+                        "xtAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_" +
+                        "1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -692,10 +1004,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Left_VerticalTextAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Left_VerticalTe" +
+                        "xtAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding" +
+                        "_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Left_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Left_VerticalTe" +
                         "xtAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Left_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Left_VerticalTe" +
+                        "xtAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_" +
+                        "1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -714,10 +1050,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Left_VerticalTextAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Left_VerticalTe" +
+                        "xtAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_" +
+                        "1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Left_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Left_VerticalTe" +
                         "xtAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Left_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Left_VerticalTe" +
+                        "xtAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1" +
+                        "_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -736,10 +1096,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Right_VerticalTextAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Right_VerticalT" +
+                        "extAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Paddin" +
+                        "g_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Right_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Right_VerticalT" +
                         "extAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Right_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Right_VerticalT" +
+                        "extAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding" +
+                        "_1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -758,10 +1142,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Right_VerticalTextAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Right_VerticalT" +
+                        "extAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Paddin" +
+                        "g_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Right_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Right_VerticalT" +
                         "extAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Right_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Right_VerticalT" +
+                        "extAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding" +
+                        "_1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -780,10 +1188,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Right_VerticalTextAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Right_VerticalT" +
+                        "extAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1" +
+                        "_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Right_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Right_VerticalT" +
                         "extAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Right_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Left_HorizontalTextAlignment_Right_VerticalT" +
+                        "extAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_" +
+                        "1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -802,10 +1234,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Center_VerticalTextAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Center_Vertica" +
+                        "lTextAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padd" +
+                        "ing_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Center_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Center_Vertica" +
                         "lTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Center_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Center_Vertica" +
+                        "lTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Paddi" +
+                        "ng_1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -824,10 +1280,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Center_VerticalTextAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Center_Vertica" +
+                        "lTextAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padd" +
+                        "ing_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Center_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Center_Vertica" +
                         "lTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Center_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Center_Vertica" +
+                        "lTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Paddi" +
+                        "ng_1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -846,10 +1326,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Center_VerticalTextAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Center_Vertica" +
+                        "lTextAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding" +
+                        "_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Center_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Center_Vertica" +
                         "lTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Center_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Center_Vertica" +
+                        "lTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_" +
+                        "1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -868,10 +1372,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Left_VerticalTextAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Left_VerticalT" +
+                        "extAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Paddin" +
+                        "g_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Left_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Left_VerticalT" +
                         "extAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Left_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Left_VerticalT" +
+                        "extAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding" +
+                        "_1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -890,10 +1418,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Left_VerticalTextAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Left_VerticalT" +
+                        "extAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Paddin" +
+                        "g_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Left_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Left_VerticalT" +
                         "extAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Left_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Left_VerticalT" +
+                        "extAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding" +
+                        "_1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -912,10 +1464,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Left_VerticalTextAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Left_VerticalT" +
+                        "extAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1" +
+                        "_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Left_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Left_VerticalT" +
                         "extAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Left_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Left_VerticalT" +
+                        "extAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_" +
+                        "1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -934,10 +1510,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Right_VerticalTextAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Right_Vertical" +
+                        "TextAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Paddi" +
+                        "ng_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Right_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Right_Vertical" +
                         "TextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Right_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Right_Vertical" +
+                        "TextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Paddin" +
+                        "g_1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -956,10 +1556,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Right_VerticalTextAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Right_Vertical" +
+                        "TextAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Paddi" +
+                        "ng_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Right_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Right_Vertical" +
                         "TextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Right_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Right_Vertical" +
+                        "TextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Paddin" +
+                        "g_1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -978,10 +1602,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Right_VerticalTextAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Right_Vertical" +
+                        "TextAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_" +
+                        "1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Right_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Right_Vertical" +
                         "TextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Right_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Right_HorizontalTextAlignment_Right_Vertical" +
+                        "TextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1" +
+                        "_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1000,10 +1648,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Center_VerticalTextAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Center_VerticalT" +
+                        "extAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Paddin" +
+                        "g_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Center_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Center_VerticalT" +
                         "extAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Center_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Center_VerticalT" +
+                        "extAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding" +
+                        "_1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1022,10 +1694,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Center_VerticalTextAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Center_VerticalT" +
+                        "extAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Paddin" +
+                        "g_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Center_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Center_VerticalT" +
                         "extAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Center_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Center_VerticalT" +
+                        "extAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding" +
+                        "_1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1044,10 +1740,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Center_VerticalTextAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Center_VerticalT" +
+                        "extAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1" +
+                        "_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Center_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Center_VerticalT" +
                         "extAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Center_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Center_VerticalT" +
+                        "extAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_" +
+                        "1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1066,10 +1786,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Left_VerticalTextAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Left_VerticalTex" +
+                        "tAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_" +
+                        "1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Left_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Left_VerticalTex" +
                         "tAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Left_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Left_VerticalTex" +
+                        "tAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1" +
+                        "_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1088,10 +1832,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Left_VerticalTextAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Left_VerticalTex" +
+                        "tAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_" +
+                        "1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Left_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Left_VerticalTex" +
                         "tAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Left_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Left_VerticalTex" +
+                        "tAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1" +
+                        "_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1110,10 +1878,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Left_VerticalTextAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Left_VerticalTex" +
+                        "tAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1" +
+                        "_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Left_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Left_VerticalTex" +
                         "tAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Left_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Left_VerticalTex" +
+                        "tAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_" +
+                        "1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1132,10 +1924,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Right_VerticalTextAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Right_VerticalTe" +
+                        "xtAlignment_Bottom_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding" +
+                        "_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Right_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Right_VerticalTe" +
                         "xtAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Right_VerticalTextAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Right_VerticalTe" +
+                        "xtAlignment_Bottom_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_" +
+                        "1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1154,10 +1970,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Right_VerticalTextAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Right_VerticalTe" +
+                        "xtAlignment_Center_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding" +
+                        "_1_1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Right_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Right_VerticalTe" +
                         "xtAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Right_VerticalTextAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Right_VerticalTe" +
+                        "xtAlignment_Center_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_" +
+                        "1_1_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1176,10 +2016,34 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Right_VerticalTextAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Right_VerticalTe" +
+                        "xtAlignment_Top_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Padding_1_" +
+                        "1_1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Right_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6 {
             get {
                 object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Right_VerticalTe" +
                         "xtAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Right_VerticalTextAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1_1_1 {
+            get {
+                object obj = ResourceManager.GetObject("LinearTextBar_Placement_Min_0_Max_10_Top_HorizontalTextAlignment_Right_VerticalTe" +
+                        "xtAlignment_Top_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Padding_1_1" +
+                        "_1_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

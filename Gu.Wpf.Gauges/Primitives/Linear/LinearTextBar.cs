@@ -95,7 +95,7 @@
                 }
             }
 
-            this.TextSpaceMargin = new Thickness(
+            this.Overflow = new Thickness(
                 Math.Max(0, -rect.Left),
                 Math.Max(0, -rect.Top),
                 Math.Max(0, rect.Right - finalSize.Width),
