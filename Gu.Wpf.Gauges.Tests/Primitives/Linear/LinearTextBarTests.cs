@@ -1,9 +1,6 @@
 namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
 {
-    using System.Drawing;
-    using System.Globalization;
     using System.IO;
-    using System.Linq;
     using System.Threading;
     using System.Windows;
     using System.Windows.Controls.Primitives;
@@ -187,7 +184,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 ? $"_Ticks_{tickBar.Ticks}"
                 : string.Empty;
 
-            var padding = tickBar.Padding.Left == 0 && tickBar.Padding.Right == 0 && tickBar.Padding.Top == 0 && tickBar.Padding.Bottom == 0
+            var padding = tickBar.Padding.IsZero()
                 ? string.Empty
                 : $"_Padding_{tickBar.Padding}";
 
