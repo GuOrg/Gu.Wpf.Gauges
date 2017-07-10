@@ -51,7 +51,9 @@
             if (this.VisualChild != null)
             {
                 this.VisualChild.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-                return this.VisualChild.DesiredSize;
+                return this.Placement.IsHorizontal()
+                    ? new Size(0, this.VisualChild.DesiredSize.Height)
+                    : new Size(this.VisualChild.DesiredSize.Width, 0);
             }
 
             return default(Size);
@@ -79,9 +81,9 @@
             switch (this.Placement)
             {
                 case TickBarPlacement.Left:
-                    return new Rect(position.X, position.Y + (size.Height / 2), size.Width, size.Height);
+                    return new Rect(position.X, position.Y - (size.Height / 2), size.Width, size.Height);
                 case TickBarPlacement.Right:
-                    return new Rect(position.X - size.Width, position.Y + (size.Height / 2), size.Width, size.Height);
+                    return new Rect(position.X - size.Width, position.Y - (size.Height / 2), size.Width, size.Height);
                 case TickBarPlacement.Top:
                     return new Rect(position.X - (size.Width / 2), position.Y, size.Width, size.Height);
                 case TickBarPlacement.Bottom:

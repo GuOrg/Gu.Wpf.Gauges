@@ -32,7 +32,7 @@
             typeof(Gauge),
             new FrameworkPropertyMetadata(
                 default(bool),
-                FrameworkPropertyMetadataOptions.Inherits,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits,
                 OnIsDirectionReversedChanged));
 
         public static readonly DependencyProperty MajorTickFrequencyProperty = DependencyProperty.RegisterAttached(

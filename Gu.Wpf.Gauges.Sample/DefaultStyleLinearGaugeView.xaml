@@ -7,14 +7,15 @@
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
              mc:Ignorable="d">
     <UserControl.DataContext>
-        <sample:TickBarVm MajorTickFrequency="25"
+        <sample:TickBarVm IsDirectionReversed="False"
+                          MajorTickFrequency="25"
                           MajorTicks="10 85"
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="5"
                           Placement="Left"
                           ShowLabels="True"
-                          Value="100" />
+                          Value="0" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
