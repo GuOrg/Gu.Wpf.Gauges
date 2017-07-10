@@ -17,5 +17,9 @@
         }
 
         internal double Interpolate(double min, double max) => Gu.Wpf.Gauges.Interpolate.Linear(min, max, this);
+
+        internal double Interpolate(double min, double max, bool isDirectionReversed) => isDirectionReversed
+            ? Gu.Wpf.Gauges.Interpolate.Linear(max, min, this)
+            : Gu.Wpf.Gauges.Interpolate.Linear(min, max, this);
     }
 }

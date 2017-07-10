@@ -5,7 +5,7 @@
              xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
-             d:DesignHeight="300"
+             d:DesignHeight="400"
              d:DesignWidth="300"
              mc:Ignorable="d">
     <UserControl.DataContext>
@@ -14,14 +14,14 @@
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="5"
-                          Placement="Top"
+                          Placement="Bottom"
                           ShowLabels="True"
                           Value="50" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <gauges:LinearGauge Grid.Row="0"
@@ -33,19 +33,21 @@
                             Value="{Binding Value}">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
                 <gauges:LinearIndicator Grid.Row="0"
                                         Padding="0.5">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="40" />
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Rectangle Grid.Row="0"
                                    Width="1"
+                                   Height="10"
                                    HorizontalAlignment="Center"
                                    Fill="Black" />
                         <!--<TextBlock Grid.Row="1"

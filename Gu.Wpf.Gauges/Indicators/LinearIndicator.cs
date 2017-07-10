@@ -35,13 +35,13 @@
                 double.IsNaN(this.Value))
             {
                 var binding = new Binding
-                              {
-                                  RelativeSource = new RelativeSource(
+                {
+                    RelativeSource = new RelativeSource(
                                       RelativeSourceMode.FindAncestor,
                                       typeof(LinearGauge),
                                       1),
-                                  Path = ValuePropertyPath
-                              };
+                    Path = ValuePropertyPath
+                };
                 this.SetBinding(ValueProperty, binding);
             }
         }
@@ -69,35 +69,45 @@
                 return arrangeBounds;
             }
 
-            Line l1;
-            Line l2;
+            this.VisualChild.Arrange(this.ChildRect(this.PixelPosition(arrangeBounds)));
+            return arrangeBounds;
+        }
+
+        protected Rect ChildRect(Point position)
+        {
+            var size = this.VisualChild.DesiredSize;
             switch (this.Placement)
             {
                 case TickBarPlacement.Left:
+                    return new Rect(position.X, position.Y + (size.Height / 2), size.Width, size.Height);
                 case TickBarPlacement.Right:
-                    l1 = new Line(arrangeBounds, 0, TickBarPlacement.Left, this.IsDirectionReversed);
-                    l2 = new Line(arrangeBounds, 0, TickBarPlacement.Right, this.IsDirectionReversed);
-                    break;
+                    return new Rect(position.X - size.Width, position.Y + (size.Height / 2), size.Width, size.Height);
                 case TickBarPlacement.Top:
+                    return new Rect(position.X - (size.Width / 2), position.Y, size.Width, size.Height);
                 case TickBarPlacement.Bottom:
-                    l1 = new Line(arrangeBounds, 0, TickBarPlacement.Top, this.IsDirectionReversed);
-                    l2 = new Line(arrangeBounds, 0, TickBarPlacement.Bottom, this.IsDirectionReversed);
-                    break;
+                    return new Rect(position.X - (size.Width / 2), position.Y - size.Height, size.Width, size.Height);
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
 
-            var p1 = l1.Interpolate(this.Value, this.Minimum, this.Maximum);
-            var p2 = l2.Interpolate(this.Value, this.Minimum, this.Maximum);
-            var w2 = this.VisualChild.DesiredSize.Width / 2;
-            var h2 = this.VisualChild.DesiredSize.Height / 2;
-            var ps = new Point(p1.X - w2, p1.Y - h2);
-            var pe = new Point(p2.X + w2, p2.Y + h2);
-            var rect = new Rect(arrangeBounds);
-            var rect1 = new Rect(ps, pe);
-            rect.Intersect(rect1);
-            this.VisualChild.Arrange(rect.IsEmpty ? default(Rect) : rect);
-            return arrangeBounds;
+        protected Point PixelPosition(Size arrangeBounds)
+        {
+            var step = Interpolate.Linear(this.Minimum, this.Maximum, this.Value)
+                                  .Clamp(0, 1);
+            switch (this.Placement)
+            {
+                case TickBarPlacement.Left:
+                    return new Point(this.Padding.Left, step.Interpolate(this.Padding.Top, arrangeBounds.Height - this.Padding.Bottom, this.IsDirectionReversed));
+                case TickBarPlacement.Right:
+                    return new Point(arrangeBounds.Width - this.Padding.Right, step.Interpolate(this.Padding.Top, arrangeBounds.Height - this.Padding.Bottom, this.IsDirectionReversed));
+                case TickBarPlacement.Top:
+                    return new Point(step.Interpolate(this.Padding.Left, arrangeBounds.Width - this.Padding.Right, this.IsDirectionReversed), this.Padding.Top);
+                case TickBarPlacement.Bottom:
+                    return new Point(step.Interpolate(this.Padding.Left, arrangeBounds.Width - this.Padding.Right, this.IsDirectionReversed), arrangeBounds.Height - this.Padding.Bottom);
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         protected virtual void OnPlacementChanged(TickBarPlacement oldValue, TickBarPlacement newValue)

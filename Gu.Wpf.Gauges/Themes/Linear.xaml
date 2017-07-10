@@ -265,6 +265,7 @@
                                         <local:LinearAxis />
 
                                         <local:LinearIndicator Grid.Row="1"
+                                                               Padding="0,0.5"
                                                                Value="{TemplateBinding Value}">
                                             <Path Width="10"
                                                   Height="10"
@@ -298,7 +299,8 @@
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
-                                        <local:LinearIndicator Value="{TemplateBinding Value}">
+                                        <local:LinearIndicator Padding="0,0.5"
+                                                               Value="{TemplateBinding Value}">
                                             <Path Width="10"
                                                   Height="10"
                                                   VerticalAlignment="Top"
@@ -332,7 +334,8 @@
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
-                                        <local:LinearIndicator Value="{TemplateBinding Value}">
+                                        <local:LinearIndicator Padding="0.5,0"
+                                                               Value="{TemplateBinding Value}">
                                             <Path Width="10"
                                                   Height="10"
                                                   HorizontalAlignment="Left"
@@ -369,6 +372,7 @@
                                         <local:LinearAxis Grid.Column="0" />
 
                                         <local:LinearIndicator Grid.Column="1"
+                                                               Padding="0.5,0"
                                                                Value="{TemplateBinding Value}">
                                             <Path Width="10"
                                                   Height="10"
