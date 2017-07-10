@@ -25,17 +25,20 @@
         </Grid.RowDefinitions>
 
         <gauges:LinearGauge Grid.Row="0"
-                            Height="80"
-                            Margin="10"
+                            Margin="5"
                             IsDirectionReversed="{Binding IsDirectionReversed}"
                             Maximum="{Binding Maximum}"
                             Minimum="{Binding Minimum}"
                             Placement="{Binding Placement}"
                             Value="{Binding Value}">
             <Grid>
-                <gauges:LinearAxis MajorTickFrequency="10" />
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-                <gauges:LinearIndicator>
+                <gauges:LinearIndicator Grid.Row="0"
+                                        Padding="0.5">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40" />
@@ -51,6 +54,9 @@
                                    Text="{Binding Value, RelativeSource={RelativeSource AncestorType={x:Type gauges:LinearGauge}}}" />-->
                     </Grid>
                 </gauges:LinearIndicator>
+
+                <gauges:LinearAxis Grid.Row="1"
+                                   MajorTickFrequency="10" />
             </Grid>
         </gauges:LinearGauge>
 

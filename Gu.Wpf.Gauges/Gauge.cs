@@ -12,6 +12,14 @@ namespace Gu.Wpf.Gauges
             typeof(RoutedPropertyChangedEventHandler<double>),
             typeof(Gauge));
 
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.RegisterAttached(
+            nameof(Value),
+            typeof(double),
+            typeof(Gauge),
+            new PropertyMetadata(
+                double.NaN,
+                OnValueChanged));
+
         /// <summary>
         /// Add / Remove ValueChangedEvent handler
         /// </summary>
@@ -20,6 +28,12 @@ namespace Gu.Wpf.Gauges
         {
             add => this.AddHandler(ValueChangedEvent, value);
             remove => this.RemoveHandler(ValueChangedEvent, value);
+        }
+
+        public double Value
+        {
+            get => (double)this.GetValue(ValueProperty);
+            set => this.SetValue(ValueProperty, value);
         }
 
         /// <summary>
@@ -57,6 +71,14 @@ namespace Gu.Wpf.Gauges
         /// <param name="newValue">The new value of the Maximum property.</param>
         protected virtual void OnIsDirectionReversedChanged(bool oldValue, bool newValue)
         {
+        }
+
+        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is Gauge gauge)
+            {
+                gauge.OnValueChanged((double)e.OldValue, (double)e.NewValue);
+            }
         }
     }
 }

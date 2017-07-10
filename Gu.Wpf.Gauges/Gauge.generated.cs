@@ -8,15 +8,6 @@
     [DefaultProperty("Value")]
     public partial class Gauge
     {
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.RegisterAttached(
-            nameof(Value),
-            typeof(double),
-            typeof(Gauge),
-            new FrameworkPropertyMetadata(
-                double.NaN,
-                FrameworkPropertyMetadataOptions.Inherits,
-                OnValueChanged));
-
         public static readonly DependencyProperty MinimumProperty = DependencyProperty.RegisterAttached(
             nameof(Minimum),
             typeof(double),
@@ -83,12 +74,6 @@
             new FrameworkPropertyMetadata(
                 10.0d,
                 FrameworkPropertyMetadataOptions.Inherits));
-
-        public double Value
-        {
-            get => (double)this.GetValue(ValueProperty);
-            set => this.SetValue(ValueProperty, value);
-        }
 
         public double Minimum
         {
@@ -226,14 +211,6 @@
         public static double GetThickness(DependencyObject element)
         {
             return (double)element.GetValue(ThicknessProperty);
-        }
-
-        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is Gauge gauge)
-            {
-                gauge.OnValueChanged((double)e.OldValue, (double)e.NewValue);
-            }
         }
 
         private static void OnMinimumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

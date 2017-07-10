@@ -3,6 +3,7 @@
     using System;
     using System.Windows;
     using System.Windows.Controls.Primitives;
+    using System.Windows.Data;
 
     public class LinearIndicator : ValueIndicator
     {
@@ -13,6 +14,8 @@
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits,
                 OnPlacementChanged));
 
+        private static readonly PropertyPath ValuePropertyPath = new PropertyPath(Gauge.ValueProperty);
+
         static LinearIndicator()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(LinearIndicator), new FrameworkPropertyMetadata(typeof(LinearIndicator)));
@@ -22,6 +25,25 @@
         {
             get => (TickBarPlacement)this.GetValue(PlacementProperty);
             set => this.SetValue(PlacementProperty, value);
+        }
+
+        /// <inheritdoc />
+        public override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+            if (BindingOperations.GetBinding(this, ValueProperty) == null &&
+                double.IsNaN(this.Value))
+            {
+                var binding = new Binding
+                              {
+                                  RelativeSource = new RelativeSource(
+                                      RelativeSourceMode.FindAncestor,
+                                      typeof(LinearGauge),
+                                      1),
+                                  Path = ValuePropertyPath
+                              };
+                this.SetBinding(ValueProperty, binding);
+            }
         }
 
         protected override Size MeasureOverride(Size constraint)
