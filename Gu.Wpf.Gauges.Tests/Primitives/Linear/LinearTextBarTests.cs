@@ -1,7 +1,9 @@
 namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
 {
     using System.Drawing;
+    using System.Globalization;
     using System.IO;
+    using System.Linq;
     using System.Threading;
     using System.Windows;
     using System.Windows.Controls.Primitives;
@@ -175,12 +177,11 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 IsDirectionReversed = isDirectionReversed,
                 Padding = string.IsNullOrEmpty(padding) ? default(Thickness) : (Thickness)ThicknessConverter.ConvertFrom(padding)
             };
-            SaveImage(tickBar);
-            var expected = (Bitmap)Properties.Resources.ResourceManager.GetObject(GetName(tickBar));
-            ImageAssert.AreEqual(expected, tickBar);
+
+            ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
 
-        private static string GetName(LinearTextBar tickBar)
+        private static string GetFileName(LinearTextBar tickBar)
         {
             var ticks = tickBar.Ticks != null
                 ? $"_Ticks_{tickBar.Ticks}"
@@ -198,9 +199,8 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 ? $"_TickFrequency_{tickBar.TickFrequency}"
                 : string.Empty;
 
-            return $@"LinearTextBar_Placement_Min_{tickBar.Minimum}_Max_{tickBar.Maximum}_{tickBar.Placement}_HorizontalTextAlignment_{tickBar.HorizontalTextAlignment}_VerticalTextAlignment_{tickBar.VerticalTextAlignment}{isReversed}{tickFrequency}{ticks}{padding}"
-                   .Replace(" ", "_")
-                   .Replace(",", "_");
+            return $@"LinearTextBar_Placement_Min_{tickBar.Minimum}_Max_{tickBar.Maximum}_{tickBar.Placement}_HorizontalTextAlignment_{tickBar.HorizontalTextAlignment}_VerticalTextAlignment_{tickBar.VerticalTextAlignment}{isReversed}{tickFrequency}{ticks}{padding}.png"
+                   .Replace(" ", "_");
         }
 
         private static void SaveImage(LinearTextBar tickBar)
@@ -209,7 +209,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
             var size = tickBar.Placement.IsHorizontal()
                 ? new Size(100, 15)
                 : new Size(15, 100);
-            tickBar.SaveImage(size, $@"C:\Temp\LinearTextBar\{GetName(tickBar)}.png");
+            tickBar.SaveImage(size, $@"C:\Temp\LinearTextBar\{GetFileName(tickBar)}");
         }
     }
 }

@@ -113,7 +113,7 @@
         protected virtual double PixelPosition(double value, Size finalSize)
         {
             var step = Interpolate.Linear(this.Minimum, this.Maximum, value)
-                                   .Clamp(0, 1);
+                                  .Clamp(0, 1);
 
             if (this.Placement.IsHorizontal())
             {
