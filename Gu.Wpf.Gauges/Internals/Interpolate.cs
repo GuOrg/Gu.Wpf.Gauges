@@ -1,15 +1,32 @@
 ﻿namespace Gu.Wpf.Gauges
 {
-   internal static class Interpolate
+    internal static class Interpolate
     {
-        internal static double Linear(double min, double max, double value)
+        /// <summary>
+        /// Returns (value - min) / (max - min)
+        /// </summary>
+        /// <returns>A value between 0 and 1 if <paramref name="value"/> is between <paramref name="min"/> and <paramref name="max"/> </returns>
+        internal static Interpolation Linear(double min, double max, double value)
         {
             if (DoubleUtil.AreClose(min, max))
             {
-                return 0;
+                return Interpolation.Zero;
             }
 
-            return (value - min) / (max - min);
+            return new Interpolation((value - min) / (max - min));
+        }
+
+        /// <summary>
+        /// Returns min + (linear.Value * (max - min))
+        /// </summary>
+        internal static double Linear(double min, double max, Interpolation linear)
+        {
+            if (DoubleUtil.AreClose(min, max))
+            {
+                return min;
+            }
+
+            return min + (linear.Value * (max - min));
         }
     }
 }

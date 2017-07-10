@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Gu.Wpf.Gauges.Sample.Sandbox"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
-             d:DesignHeight="300"
+             d:DesignHeight="400"
              d:DesignWidth="300"
              mc:Ignorable="d">
     <UserControl.DataContext>
@@ -23,11 +23,18 @@
                                  Value="30" />
     </UserControl.DataContext>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <gauges:AngularTextBar MaxAngle="{Binding MaxAngle}"
                                Maximum="{Binding Maximum}"
                                MinAngle="{Binding MinAngle}"
                                Minimum="{Binding Minimum}"
                                Ticks="{Binding MajorTicks}" />
+
+        <ContentPresenter Grid.Row="1"
+                          Content="{Binding}" />
     </Grid>
 </UserControl>
 

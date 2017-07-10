@@ -112,22 +112,22 @@
         /// <returns></returns>
         protected virtual double PixelPosition(double value, Size finalSize)
         {
-            var scale = Interpolate.Linear(this.Minimum, this.Maximum, value)
+            var step = Interpolate.Linear(this.Minimum, this.Maximum, value)
                                    .Clamp(0, 1);
 
             if (this.Placement.IsHorizontal())
             {
-                var pos = scale * (finalSize.Width - this.Padding.Left - this.Padding.Right);
+                var pos = step.Interpolate(this.Padding.Left, finalSize.Width - this.Padding.Right);
                 return this.IsDirectionReversed
-                    ? finalSize.Width - pos - this.Padding.Right
-                    : this.Padding.Left + pos;
+                    ? finalSize.Width - pos
+                    : pos;
             }
             else
             {
-                var pos = scale * (finalSize.Height - this.Padding.Top - this.Padding.Bottom);
+                var pos = step.Interpolate(this.Padding.Bottom, finalSize.Height - this.Padding.Top);
                 return this.IsDirectionReversed
-                    ? pos + this.Padding.Bottom
-                    : finalSize.Height - pos - this.Padding.Top;
+                    ? pos
+                    : finalSize.Height - pos;
             }
         }
 

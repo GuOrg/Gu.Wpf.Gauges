@@ -102,14 +102,14 @@ namespace Gu.Wpf.Gauges
 
             if (this.Placement.IsHorizontal())
             {
-                var pos = scale * this.ActualWidth;
+                var pos = scale.Interpolate(0, this.ActualWidth);
                 return this.IsDirectionReversed
                     ? this.ActualWidth - pos
                     : pos;
             }
             else
             {
-                var pos = scale * this.ActualHeight;
+                var pos = scale.Interpolate(0, this.ActualHeight);
                 return this.IsDirectionReversed
                     ? pos
                     : this.ActualHeight - pos;

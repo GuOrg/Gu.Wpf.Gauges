@@ -14,7 +14,7 @@
                           MajorTicks="75"
                           Maximum="100"
                           Minimum="0"
-                          Placement="Left"
+                          Placement="Top"
                           SnapsToDevicePixels="False"
                           TickGap="2"
                           Value="100" />

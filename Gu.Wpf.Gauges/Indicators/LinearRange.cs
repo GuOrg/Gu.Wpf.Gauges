@@ -82,11 +82,11 @@
             {
                 case TickBarPlacement.Left:
                 case TickBarPlacement.Right:
-                    child.Arrange(new Rect(new Point(0, si * arrangeBounds.Height), new Point(arrangeBounds.Width, ei * arrangeBounds.Height)));
+                    child.Arrange(new Rect(new Point(0, si.Value * arrangeBounds.Height), new Point(arrangeBounds.Width, ei.Value * arrangeBounds.Height)));
                     break;
                 case TickBarPlacement.Top:
                 case TickBarPlacement.Bottom:
-                    child.Arrange(new Rect(new Point(si * arrangeBounds.Width, 0), new Point(ei * arrangeBounds.Width, arrangeBounds.Height)));
+                    child.Arrange(new Rect(new Point(si.Value * arrangeBounds.Width, 0), new Point(ei.Value * arrangeBounds.Width, arrangeBounds.Height)));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

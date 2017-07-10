@@ -15,11 +15,11 @@
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="5"
-                          Placement="Right"
+                          Placement="Left"
                           SnapsToDevicePixels="False"
                           TickGap="3"
                           TickWidth="3"
-                          VerticalTextAlignment="Top"
+                          VerticalTextAlignment="Center"
                           Value="80" />
     </UserControl.DataContext>
     <Grid>
@@ -188,18 +188,19 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <gauges:LinearTextBar Grid.Row="0"
-                                              Grid.RowSpan="2"
-                                              Grid.Column="0"
-                                              Grid.ColumnSpan="2"
-                                              Foreground="Black"
-                                              HorizontalTextAlignment="{Binding HorizontalTextAlignment}"
-                                              IsDirectionReversed="{Binding IsDirectionReversed}"
-                                              Maximum="{Binding Maximum}"
-                                              Minimum="{Binding Minimum}"
-                                              Placement="{Binding Placement}"
-                                              SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
-                                              TickFrequency="{Binding MajorTickFrequency}"
-                                              Ticks="{Binding MajorTicks}" />
+                                          Grid.RowSpan="2"
+                                          Grid.Column="0"
+                                          Grid.ColumnSpan="2"
+                                          Foreground="Black"
+                                          HorizontalTextAlignment="{Binding HorizontalTextAlignment}"
+                                          IsDirectionReversed="{Binding IsDirectionReversed}"
+                                          Maximum="{Binding Maximum}"
+                                          Minimum="{Binding Minimum}"
+                                          Placement="{Binding Placement}"
+                                          SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                                          TickFrequency="{Binding MajorTickFrequency}"
+                                          Ticks="{Binding MajorTicks}"
+                                          VerticalTextAlignment="{Binding VerticalTextAlignment}" />
                     <Rectangle Grid.Row="0"
                                Grid.RowSpan="2"
                                Grid.Column="0"

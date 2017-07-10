@@ -76,7 +76,9 @@
     <Compile Include="Internals\DependencyObjectExt.cs" />
     <Compile Include="Internals\DoubleUtil.cs" />
     <Compile Include="Internals\Interpolate.cs" />
+    <Compile Include="Internals\Interpolation.cs" />
     <Compile Include="Internals\NameOf.cs" />
+    <Compile Include="Internals\ThicknessExt.cs" />
     <Compile Include="Internals\TickBarPlacementExt.cs" />
     <Compile Include="Internals\ValidateEnums.cs" />
     <Compile Include="Internals\WeakKeyValuePair.cs" />

@@ -53,6 +53,9 @@ namespace Gu.Wpf.Gauges
             set => this.SetValue(PlacementProperty, value);
         }
 
+        /// <summary>
+        /// Get the value if not NaN, returns Maximum otherwise.
+        /// </summary>
         protected double EffectiveValue => double.IsNaN(this.Value)
             ? this.Maximum
             : this.Value;
@@ -64,20 +67,20 @@ namespace Gu.Wpf.Gauges
         /// <returns></returns>
         protected virtual double PixelPosition(double value)
         {
-            var scale = Interpolate.Linear(this.Minimum, this.Maximum, value)
+            var step = Interpolate.Linear(this.Minimum, this.Maximum, value)
                                    .Clamp(0, 1);
 
             var strokeThickness = this.GetStrokeThickness();
             if (this.Placement.IsHorizontal())
             {
-                var pos = (strokeThickness / 2) + (scale * (this.ActualWidth - strokeThickness));
+                var pos = step.Interpolate(strokeThickness / 2, this.ActualWidth - (strokeThickness / 2));
                 return this.IsDirectionReversed
                     ? this.ActualWidth - pos
                     : pos;
             }
             else
             {
-                var pos = (strokeThickness / 2) + (scale * (this.ActualHeight - strokeThickness));
+                var pos = step.Interpolate(strokeThickness / 2, this.ActualHeight - (strokeThickness / 2));
                 return this.IsDirectionReversed
                     ? pos
                     : this.ActualHeight - pos;

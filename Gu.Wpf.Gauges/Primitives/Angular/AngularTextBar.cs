@@ -1,6 +1,5 @@
 namespace Gu.Wpf.Gauges
 {
-    using System;
     using System.Linq;
     using System.Windows;
     using System.Windows.Media;
@@ -24,6 +23,8 @@ namespace Gu.Wpf.Gauges
             new FrameworkPropertyMetadata(
                 0.0,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
+
+        private ArcInfo arc;
 
         /// <summary>
         /// Gets or sets the <see cref="T:Gu.Wpf.Gauges.TextOrientation" />
@@ -71,13 +72,14 @@ namespace Gu.Wpf.Gauges
 
         protected override Size ArrangeOverride(Size finalSize)
         {
+            this.arc = ArcInfo.Fill(finalSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
             if (this.AllTexts != null)
             {
                 foreach (var tickText in this.AllTexts)
                 {
                     tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, 0.0d);
                     tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, 0.0d);
-                    var pos = this.PixelPosition(tickText, finalSize);
+                    var pos = this.PixelPosition(tickText);
                     tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, pos.X);
                     tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, pos.Y);
                 }
@@ -101,25 +103,17 @@ namespace Gu.Wpf.Gauges
             }
         }
 
-        /// <summary>
-        /// Get the interpolated pixel position for the value.
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="finalSize"></param>
-        /// <returns></returns>
-        protected virtual double PixelPosition(double value, Size finalSize)
+        protected virtual Point PixelPosition(double value)
         {
-            var scale = Interpolate.Linear(this.Minimum, this.Maximum, value)
-                                   .Clamp(0, 1);
-
-            throw new NotImplementedException();
+            var linear = Interpolate.Linear(this.Minimum, this.Maximum, value)
+                                    .Clamp(0, 1);
+            var angle = Interpolate.Linear(this.MinAngle, this.MaxAngle, linear);
+            return this.arc.GetPoint(angle);
         }
 
-        protected virtual Point PixelPosition(TickText tickText, Size finalSize)
+        protected virtual Point PixelPosition(TickText tickText)
         {
-            var pos = this.PixelPosition(tickText.Value, finalSize);
-            var bounds = tickText.Geometry.Bounds;
-            throw new NotImplementedException();
+            return this.PixelPosition(tickText.Value);
         }
 
         protected virtual TickText CreateTickText(double value)
