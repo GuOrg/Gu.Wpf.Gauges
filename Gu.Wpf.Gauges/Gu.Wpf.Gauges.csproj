@@ -92,6 +92,8 @@
     <Compile Include="Primitives\Angular\AngularBlockBar.cs" />
     <Compile Include="AngularGauge.cs" />
     <Compile Include="Primitives\Angular\AngularPanel.cs" />
+    <Compile Include="Primitives\Angular\AngularTextPosition.cs" />
+    <Compile Include="Primitives\Angular\DefaultAngularTextPosition.cs" />
     <Compile Include="Primitives\GeometryBar.cs" />
     <Compile Include="Primitives\HorizontalTextAlignment.cs" />
     <Compile Include="Primitives\Linear\DefaultLinearTextPosition.cs" />

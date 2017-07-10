@@ -13,6 +13,16 @@ namespace Gu.Wpf.Gauges
                 TextOrientation.Tangential,
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
+        public static readonly DependencyProperty TextPositionProperty = DependencyProperty.Register(
+            nameof(TextPosition),
+            typeof(AngularTextPosition),
+            typeof(AngularTextBar),
+            new FrameworkPropertyMetadata(
+                AngularTextPosition.Default,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender,
+                OnTextPositionChanged,
+                CoerceTextPosition));
+
         public static readonly DependencyProperty MinAngleProperty = AngularBar.MinAngleProperty.AddOwner(
             typeof(AngularTextBar),
             new FrameworkPropertyMetadata(
@@ -35,6 +45,15 @@ namespace Gu.Wpf.Gauges
         {
             get => (TextOrientation)this.GetValue(TextOrientationProperty);
             set => this.SetValue(TextOrientationProperty, value);
+        }
+
+        /// <summary>
+        /// Controls how each tick is arranged.
+        /// </summary>
+        public AngularTextPosition TextPosition
+        {
+            get => (AngularTextPosition)this.GetValue(TextPositionProperty);
+            set => this.SetValue(TextPositionProperty, value);
         }
 
         /// <summary>
@@ -162,6 +181,30 @@ namespace Gu.Wpf.Gauges
             }
 
             this.AllTexts = this.AllTicks.Select(this.CreateTickText).ToArray();
+        }
+
+        private static void OnTextPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var textBar = (AngularTextBar)d;
+            if (e.OldValue is AngularTextPosition oldValue)
+            {
+                oldValue.ArrangeDirty -= textBar.OnTextPositionArrange;
+            }
+
+            if (e.NewValue is AngularTextPosition newValue)
+            {
+                newValue.ArrangeDirty += textBar.OnTextPositionArrange;
+            }
+        }
+
+        private static object CoerceTextPosition(DependencyObject d, object basevalue)
+        {
+            return basevalue ?? LinearTextPosition.Default;
+        }
+
+        private void OnTextPositionArrange(object sender, EventArgs e)
+        {
+            this.InvalidateArrange();
         }
     }
 }

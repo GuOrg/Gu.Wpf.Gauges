@@ -59,11 +59,11 @@
                                   TickFrequency="{Binding MajorTickFrequency}"
                                   Ticks="{Binding MajorTicks}">
                 <gauges:LinearTextBar.TextPosition>
-                    <gauges:ExplicitLinearTextPosition Horizontal="Center"
+                    <gauges:ExplicitLinearTextPosition Horizontal="Right"
                                                        Vertical="Center" />
                 </gauges:LinearTextBar.TextPosition>
                 <gauges:LinearTextBar.TextTransform>
-                    <RotateTransform Angle="0" />
+                    <RotateTransform Angle="45" />
                 </gauges:LinearTextBar.TextTransform>
             </gauges:LinearTextBar>
             <!--<Rectangle Grid.Row="0"
