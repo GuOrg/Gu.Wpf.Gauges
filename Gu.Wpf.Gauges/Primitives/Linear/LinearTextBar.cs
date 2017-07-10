@@ -23,6 +23,16 @@
                 TickBarPlacement.Bottom,
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
 
+        public static readonly DependencyProperty TextPositionProperty = DependencyProperty.Register(
+            nameof(TextPosition),
+            typeof(LinearTextPosition),
+            typeof(LinearTextBar),
+            new FrameworkPropertyMetadata(
+                LinearTextPosition.Default,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender,
+                OnTextPositionChanged,
+                CoerceTextPosition));
+
         public static readonly DependencyProperty PaddingProperty =
             DependencyProperty.Register(
                 nameof(Padding),
@@ -42,6 +52,15 @@
         {
             get => (TickBarPlacement)this.GetValue(PlacementProperty);
             set => this.SetValue(PlacementProperty, value);
+        }
+
+        /// <summary>
+        /// Controls how each tick is arranged.
+        /// </summary>
+        public LinearTextPosition TextPosition
+        {
+            get => (LinearTextPosition)this.GetValue(TextPositionProperty);
+            set => this.SetValue(TextPositionProperty, value);
         }
 
         public Thickness Padding
@@ -72,11 +91,7 @@
             {
                 foreach (var tickText in this.AllTexts)
                 {
-                    tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, 0.0d);
-                    tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, 0.0d);
-                    var pos = this.PixelPosition(tickText, finalSize);
-                    tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, pos.X);
-                    tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, pos.Y);
+                    this.TextPosition.ArrangeTick(tickText, finalSize, this);
                     rect.Union(tickText.Geometry.Bounds);
                 }
             }
@@ -104,110 +119,6 @@
             }
         }
 
-        /// <summary>
-        /// Get the interpolated pixel position for the value.
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="finalSize"></param>
-        /// <returns></returns>
-        protected virtual double PixelPosition(double value, Size finalSize)
-        {
-            var step = Interpolate.Linear(this.Minimum, this.Maximum, value)
-                                  .Clamp(0, 1);
-
-            if (this.Placement.IsHorizontal())
-            {
-                var pos = step.Interpolate(this.Padding.Left, finalSize.Width - this.Padding.Right);
-                return this.IsDirectionReversed
-                    ? finalSize.Width - pos
-                    : pos;
-            }
-            else
-            {
-                var pos = step.Interpolate(this.Padding.Bottom, finalSize.Height - this.Padding.Top);
-                return this.IsDirectionReversed
-                    ? pos
-                    : finalSize.Height - pos;
-            }
-        }
-
-        protected virtual Point PixelPosition(TickText tickText, Size finalSize)
-        {
-            var pos = this.PixelPosition(tickText.Value, finalSize);
-            var bounds = tickText.Geometry.Bounds;
-            if (this.Placement.IsHorizontal())
-            {
-                var x = -bounds.Left;
-                switch (this.HorizontalTextAlignment)
-                {
-                    case HorizontalTextAlignment.Left:
-                        x += pos;
-                        break;
-                    case HorizontalTextAlignment.Center:
-                        x += pos - (bounds.Width / 2);
-                        break;
-                    case HorizontalTextAlignment.Right:
-                        x += pos - bounds.Width;
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-
-                var y = -bounds.Top;
-                switch (this.VerticalTextAlignment)
-                {
-                    case VerticalTextAlignment.Top:
-                        y += this.Padding.Top;
-                        break;
-                    case VerticalTextAlignment.Center:
-                        y += (finalSize.Height - bounds.Height) / 2;
-                        break;
-                    case VerticalTextAlignment.Bottom:
-                        y += finalSize.Height - bounds.Height - this.Padding.Bottom;
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-
-                return new Point(x, y);
-            }
-            else
-            {
-                var x = -bounds.Left;
-                switch (this.HorizontalTextAlignment)
-                {
-                    case HorizontalTextAlignment.Left:
-                        break;
-                    case HorizontalTextAlignment.Center:
-                        x += (finalSize.Width - bounds.Width) / 2;
-                        break;
-                    case HorizontalTextAlignment.Right:
-                        x += finalSize.Width - bounds.Width;
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-
-                var y = -bounds.Top;
-                switch (this.VerticalTextAlignment)
-                {
-                    case VerticalTextAlignment.Top:
-                        y += pos;
-                        break;
-                    case VerticalTextAlignment.Center:
-                        y += pos - (bounds.Height / 2);
-                        break;
-                    case VerticalTextAlignment.Bottom:
-                        y += pos - bounds.Height;
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-
-                return new Point(x, y);
-            }
-        }
-
         protected virtual TickText CreateTickText(double value)
         {
             return new TickText(
@@ -228,6 +139,30 @@
             }
 
             this.AllTexts = this.AllTicks.Select(this.CreateTickText).ToArray();
+        }
+
+        private static void OnTextPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var textBar = (LinearTextBar)d;
+            if (e.OldValue is LinearTextPosition oldValue)
+            {
+                oldValue.ArrangeDirty -= textBar.OnTextPositionArrange;
+            }
+
+            if (e.NewValue is LinearTextPosition newValue)
+            {
+                newValue.ArrangeDirty += textBar.OnTextPositionArrange;
+            }
+        }
+
+        private static object CoerceTextPosition(DependencyObject d, object basevalue)
+        {
+            return basevalue ?? LinearTextPosition.Default;
+        }
+
+        private void OnTextPositionArrange(object sender, EventArgs e)
+        {
+            this.InvalidateArrange();
         }
     }
 }

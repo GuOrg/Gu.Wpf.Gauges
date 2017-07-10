@@ -19,9 +19,7 @@
                 </Grid.ColumnDefinitions>
                 <gauges:LinearTextBar Margin="2,0"
                                       Padding="0,0.5"
-                                      HorizontalTextAlignment="Right"
-                                      Ticks="{TemplateBinding MajorTicks}"
-                                      VerticalTextAlignment="Center" />
+                                      Ticks="{TemplateBinding MajorTicks}" />
 
                 <gauges:LinearTickBar x:Name="MajorTicks"
                                       Grid.Column="1"
@@ -70,9 +68,7 @@
                 </Grid.RowDefinitions>
                 <gauges:LinearTextBar Margin="2,0"
                                       Padding="0.5,0"
-                                      HorizontalTextAlignment="Center"
-                                      Ticks="{TemplateBinding MajorTicks}"
-                                      VerticalTextAlignment="Top" />
+                                      Ticks="{TemplateBinding MajorTicks}" />
 
                 <gauges:LinearTickBar x:Name="MajorTicks"
                                       Grid.Row="1"

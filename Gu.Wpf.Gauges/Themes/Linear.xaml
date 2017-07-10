@@ -45,10 +45,8 @@
                                     <local:LinearTextBar x:Name="TickLabels"
                                                          Grid.Row="1"
                                                          Padding="0.5,0,0.5,2"
-                                                         HorizontalTextAlignment="Center"
                                                          TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                                         Ticks="{TemplateBinding MajorTicks}"
-                                                         VerticalTextAlignment="Bottom" />
+                                                         Ticks="{TemplateBinding MajorTicks}" />
 
                                     <local:LinearTickBar x:Name="MajorTicks"
                                                          Grid.Row="2"
@@ -121,10 +119,8 @@
                                     <local:LinearTextBar x:Name="TickLabels"
                                                          Grid.Row="1"
                                                          Padding="0.5,2,0.5,0"
-                                                         HorizontalTextAlignment="Center"
                                                          TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                                         Ticks="{TemplateBinding MajorTicks}"
-                                                         VerticalTextAlignment="Top" />
+                                                         Ticks="{TemplateBinding MajorTicks}" />
                                 </Grid>
                             </Border>
                         </ControlTemplate>
@@ -173,10 +169,8 @@
                                     <local:LinearTextBar x:Name="TickLabels"
                                                          Grid.Column="1"
                                                          Padding="2,0.5,0,0.5"
-                                                         HorizontalTextAlignment="Left"
                                                          TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                                         Ticks="{TemplateBinding MajorTicks}"
-                                                         VerticalTextAlignment="Center" />
+                                                         Ticks="{TemplateBinding MajorTicks}" />
                                 </Grid>
                             </Border>
                         </ControlTemplate>
@@ -201,10 +195,8 @@
                                     <local:LinearTextBar x:Name="TickLabels"
                                                          Grid.Column="1"
                                                          Padding="0,0.5,2,0.5"
-                                                         HorizontalTextAlignment="Right"
                                                          TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                                         Ticks="{TemplateBinding MajorTicks}"
-                                                         VerticalTextAlignment="Center" />
+                                                         Ticks="{TemplateBinding MajorTicks}" />
 
                                     <local:LinearTickBar x:Name="MajorTicks"
                                                          Grid.Column="2"

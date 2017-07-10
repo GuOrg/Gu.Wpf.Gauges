@@ -1,4 +1,5 @@
-﻿namespace Gu.Wpf.Gauges.Sample
+﻿// ReSharper disable ExplicitCallerInfoArgument
+namespace Gu.Wpf.Gauges.Sample
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
@@ -225,6 +226,7 @@
 
                 this.horizontalTextAlignment = value;
                 this.OnPropertyChanged();
+                this.OnPropertyChanged(nameof(this.ExplicitLinearTextPosition));
             }
         }
 
@@ -241,8 +243,11 @@
 
                 this.verticalTextAlignment = value;
                 this.OnPropertyChanged();
+                this.OnPropertyChanged(nameof(this.ExplicitLinearTextPosition));
             }
         }
+
+        public ExplicitLinearTextPosition ExplicitLinearTextPosition => new ExplicitLinearTextPosition(this.horizontalTextAlignment, this.verticalTextAlignment);
 
         public bool IsDirectionReversed
         {

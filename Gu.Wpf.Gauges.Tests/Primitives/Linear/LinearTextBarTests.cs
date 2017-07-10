@@ -159,7 +159,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Left, VerticalTextAlignment.Bottom, true, "1")]
         [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Center, VerticalTextAlignment.Bottom, true, "1")]
         [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Right, VerticalTextAlignment.Bottom, true, "1")]
-        public void Render(TickBarPlacement placement, HorizontalTextAlignment horizontalTextAlignment, VerticalTextAlignment verticalTextAlignment, bool isDirectionReversed, string padding)
+        public void RenderExplicitTextPosition(TickBarPlacement placement, HorizontalTextAlignment horizontalTextAlignment, VerticalTextAlignment verticalTextAlignment, bool isDirectionReversed, string padding)
         {
             var tickBar = new LinearTextBar
             {
@@ -169,8 +169,40 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
                 Foreground = Brushes.Black,
                 Placement = placement,
-                HorizontalTextAlignment = horizontalTextAlignment,
-                VerticalTextAlignment = verticalTextAlignment,
+                TextPosition = new ExplicitLinearTextPosition(horizontalTextAlignment, verticalTextAlignment),
+                IsDirectionReversed = isDirectionReversed,
+                Padding = string.IsNullOrEmpty(padding) ? default(Thickness) : (Thickness)ThicknessConverter.ConvertFrom(padding)
+            };
+
+            ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
+        }
+
+        [TestCase(TickBarPlacement.Left, false, null)]
+        [TestCase(TickBarPlacement.Left, true, null)]
+        [TestCase(TickBarPlacement.Left, false, "1")]
+        [TestCase(TickBarPlacement.Left, true, "1")]
+        [TestCase(TickBarPlacement.Right, false, null)]
+        [TestCase(TickBarPlacement.Right, true, null)]
+        [TestCase(TickBarPlacement.Right, false, "1")]
+        [TestCase(TickBarPlacement.Right, true, "1")]
+        [TestCase(TickBarPlacement.Top, false, null)]
+        [TestCase(TickBarPlacement.Top, true, null)]
+        [TestCase(TickBarPlacement.Top, false, "1")]
+        [TestCase(TickBarPlacement.Top, true, "1")]
+        [TestCase(TickBarPlacement.Bottom, false, null)]
+        [TestCase(TickBarPlacement.Bottom, true, null)]
+        [TestCase(TickBarPlacement.Bottom, false, "1")]
+        [TestCase(TickBarPlacement.Bottom, true, "1")]
+        public void RenderDefaultTextPosition(TickBarPlacement placement, bool isDirectionReversed, string padding)
+        {
+            var tickBar = new LinearTextBar
+            {
+                Minimum = 0,
+                Maximum = 10,
+                TickFrequency = 5,
+                Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
+                Foreground = Brushes.Black,
+                Placement = placement,
                 IsDirectionReversed = isDirectionReversed,
                 Padding = string.IsNullOrEmpty(padding) ? default(Thickness) : (Thickness)ThicknessConverter.ConvertFrom(padding)
             };
@@ -196,7 +228,11 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 ? $"_TickFrequency_{tickBar.TickFrequency}"
                 : string.Empty;
 
-            return $@"LinearTextBar_Placement_Min_{tickBar.Minimum}_Max_{tickBar.Maximum}_{tickBar.Placement}_HorizontalTextAlignment_{tickBar.HorizontalTextAlignment}_VerticalTextAlignment_{tickBar.VerticalTextAlignment}{isReversed}{tickFrequency}{ticks}{padding}.png"
+            var textPosition = tickBar.TextPosition is ExplicitLinearTextPosition explicitPos
+                ? $"_Explicit_{explicitPos.Horizontal}_{explicitPos.Vertical}"
+                : "_Default";
+
+            return $@"LinearTextBar_Placement_Min_{tickBar.Minimum}_Max_{tickBar.Maximum}_{tickBar.Placement}{textPosition}{isReversed}{tickFrequency}{ticks}{padding}.png"
                    .Replace(" ", "_");
         }
 

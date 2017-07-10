@@ -1,5 +1,6 @@
 namespace Gu.Wpf.Gauges
 {
+    using System;
     using System.Linq;
     using System.Windows;
     using System.Windows.Media;
@@ -79,6 +80,27 @@ namespace Gu.Wpf.Gauges
                 {
                     tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, 0.0d);
                     tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, 0.0d);
+                    switch (this.TextOrientation)
+                    {
+                        case TextOrientation.Tangential:
+                            tickText.Transform = new RotateTransform(this.Angle(tickText.Value) + 90);
+                            break;
+                        case TextOrientation.TangentialFlipped:
+                            tickText.Transform = new RotateTransform(this.Angle(tickText.Value) - 90);
+                            break;
+                        case TextOrientation.RadialOut:
+                            tickText.Transform = new RotateTransform(this.Angle(tickText.Value));
+                            break;
+                        case TextOrientation.RadialIn:
+                            tickText.Transform = new RotateTransform(this.Angle(tickText.Value) - 180);
+                            break;
+                        case TextOrientation.UseTransform:
+                            tickText.Transform = this.TextTransform;
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+
                     var pos = this.PixelPosition(tickText);
                     tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, pos.X);
                     tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, pos.Y);
@@ -103,12 +125,16 @@ namespace Gu.Wpf.Gauges
             }
         }
 
-        protected virtual Point PixelPosition(double value)
+        protected virtual double Angle(double value)
         {
             var linear = Interpolate.Linear(this.Minimum, this.Maximum, value)
                                     .Clamp(0, 1);
-            var angle = Interpolate.Linear(this.MinAngle, this.MaxAngle, linear);
-            return this.arc.GetPoint(angle);
+            return Interpolate.Linear(this.MinAngle, this.MaxAngle, linear);
+        }
+
+        protected virtual Point PixelPosition(double value)
+        {
+            return this.arc.GetPoint(this.Angle(value));
         }
 
         protected virtual Point PixelPosition(TickText tickText)

@@ -6,9 +6,14 @@
     public enum TextOrientation
     {
         /// <summary>
-        /// Draws text at 90° angle to line tick.
+        /// Draws text at -90° angle to line tick.
         /// </summary>
         Tangential,
+
+        /// <summary>
+        /// Draws text at 90° angle to line tick.
+        /// </summary>
+        TangentialFlipped,
 
         /// <summary>
         /// Draws text parallel to line tick, text starting from center.

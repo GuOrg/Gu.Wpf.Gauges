@@ -27,11 +27,21 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <gauges:AngularTextBar MaxAngle="{Binding MaxAngle}"
-                               Maximum="{Binding Maximum}"
-                               MinAngle="{Binding MinAngle}"
-                               Minimum="{Binding Minimum}"
-                               Ticks="{Binding MajorTicks}" />
+        <Border Margin="20"
+                Background="Transparent">
+            <gauges:AngularTextBar MaxAngle="{Binding MaxAngle}"
+                                   Maximum="{Binding Maximum}"
+                                   MinAngle="{Binding MinAngle}"
+                                   Minimum="{Binding Minimum}"
+                                   TextOrientation="{Binding TextOrientation}"
+                                   TickFrequency="{Binding MajorTickFrequency}"
+                                   Ticks="{Binding MajorTicks}">
+                <gauges:AngularTextBar.TextTransform>
+                    <RotateTransform Angle="0" />
+                </gauges:AngularTextBar.TextTransform>
+            </gauges:AngularTextBar>
+        </Border>
+
 
         <ContentPresenter Grid.Row="1"
                           Content="{Binding}" />

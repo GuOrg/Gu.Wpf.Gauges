@@ -21,22 +21,6 @@
 
         public static readonly DependencyProperty AllTextsProperty = AllTextsPropertyKey.DependencyProperty;
 
-        public static readonly DependencyProperty HorizontalTextAlignmentProperty = DependencyProperty.Register(
-            nameof(HorizontalTextAlignment),
-            typeof(HorizontalTextAlignment),
-            typeof(TextTickBar),
-            new FrameworkPropertyMetadata(
-                default(HorizontalTextAlignment),
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
-
-        public static readonly DependencyProperty VerticalTextAlignmentProperty = DependencyProperty.Register(
-            nameof(VerticalTextAlignment),
-            typeof(VerticalTextAlignment),
-            typeof(TextTickBar),
-            new FrameworkPropertyMetadata(
-                default(VerticalTextAlignment),
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
-
         public static readonly DependencyProperty TextTransformProperty = DependencyProperty.Register(
             nameof(TextTransform),
             typeof(Transform),
@@ -160,18 +144,6 @@
         {
             get => (IReadOnlyList<TickText>)this.GetValue(AllTextsProperty);
             protected set => this.SetValue(AllTextsPropertyKey, value);
-        }
-
-        public HorizontalTextAlignment HorizontalTextAlignment
-        {
-            get => (HorizontalTextAlignment)this.GetValue(HorizontalTextAlignmentProperty);
-            set => this.SetValue(HorizontalTextAlignmentProperty, value);
-        }
-
-        public VerticalTextAlignment VerticalTextAlignment
-        {
-            get => (VerticalTextAlignment)this.GetValue(VerticalTextAlignmentProperty);
-            set => this.SetValue(VerticalTextAlignmentProperty, value);
         }
 
         public Transform TextTransform

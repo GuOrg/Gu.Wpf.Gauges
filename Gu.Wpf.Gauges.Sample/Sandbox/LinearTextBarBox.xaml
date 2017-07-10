@@ -15,8 +15,7 @@
                           MajorTicks="100"
                           Maximum="100"
                           Minimum="0"
-                          Placement="Left"
-                          VerticalTextAlignment="Center" />
+                          Placement="Left" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -53,14 +52,16 @@
                                   Grid.ColumnSpan="2"
                                   Padding="0.5"
                                   Foreground="Black"
-                                  HorizontalTextAlignment="{Binding HorizontalTextAlignment}"
                                   IsDirectionReversed="{Binding IsDirectionReversed}"
                                   Maximum="{Binding Maximum}"
                                   Minimum="{Binding Minimum}"
                                   Placement="{Binding Placement}"
                                   TickFrequency="{Binding MajorTickFrequency}"
-                                  Ticks="{Binding MajorTicks}"
-                                  VerticalTextAlignment="{Binding VerticalTextAlignment}">
+                                  Ticks="{Binding MajorTicks}">
+                <gauges:LinearTextBar.TextPosition>
+                    <gauges:ExplicitLinearTextPosition Horizontal="Center"
+                                                       Vertical="Center" />
+                </gauges:LinearTextBar.TextPosition>
                 <gauges:LinearTextBar.TextTransform>
                     <RotateTransform Angle="0" />
                 </gauges:LinearTextBar.TextTransform>
