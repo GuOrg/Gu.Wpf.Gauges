@@ -174,6 +174,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 Padding = string.IsNullOrEmpty(padding) ? default(Thickness) : (Thickness)ThicknessConverter.ConvertFrom(padding)
             };
 
+            SaveImage(tickBar);
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
 
@@ -207,6 +208,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 Padding = string.IsNullOrEmpty(padding) ? default(Thickness) : (Thickness)ThicknessConverter.ConvertFrom(padding)
             };
 
+            SaveImage(tickBar);
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
 
@@ -252,10 +254,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 ? string.Empty
                 : $"_Padding_{tickBar.Padding}";
 
-            var isReversed = tickBar.Ticks != null
-                ? $"_IsDirectionReversed_{tickBar.IsDirectionReversed}"
-                : string.Empty;
-
             var tickFrequency = tickBar.TickFrequency > 0
                 ? $"_TickFrequency_{tickBar.TickFrequency}"
                 : string.Empty;
@@ -264,7 +262,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 ? $"_Explicit_{explicitPos.Horizontal}_{explicitPos.Vertical}"
                 : "_Default";
 
-            return $@"LinearTextBar_Placement_Min_{tickBar.Minimum}_Max_{tickBar.Maximum}_{tickBar.Placement}{textPosition}{isReversed}{tickFrequency}{ticks}{padding}.png"
+            return $@"LinearTextBar_Placement_{tickBar.Placement}_Min_{tickBar.Minimum}_Max_{tickBar.Maximum}_IsDirectionReversed_{tickBar.IsDirectionReversed}{textPosition}{tickFrequency}{ticks}{padding}.png"
                    .Replace(" ", "_");
         }
 
