@@ -174,7 +174,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 Padding = string.IsNullOrEmpty(padding) ? default(Thickness) : (Thickness)ThicknessConverter.ConvertFrom(padding)
             };
 
-            SaveImage(tickBar);
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
 
@@ -208,7 +207,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 Padding = string.IsNullOrEmpty(padding) ? default(Thickness) : (Thickness)ThicknessConverter.ConvertFrom(padding)
             };
 
-            SaveImage(tickBar);
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
 
