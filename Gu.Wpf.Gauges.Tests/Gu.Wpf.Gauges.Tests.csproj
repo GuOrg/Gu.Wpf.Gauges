@@ -54,6 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Internals\InterpolateTests.cs" />
+    <Compile Include="Internals\InterpolationTests.cs" />
     <Compile Include="Internals\RectExtTest.cs" />
     <Compile Include="Indicators\LinearRangeTests.cs" />
     <Compile Include="Primitives\Angular\RingTests.cs" />

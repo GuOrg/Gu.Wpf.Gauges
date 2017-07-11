@@ -148,7 +148,7 @@ namespace Gu.Wpf.Gauges
         {
             var linear = Interpolate.Linear(this.Minimum, this.Maximum, value)
                                     .Clamp(0, 1);
-            return Interpolate.Linear(this.MinAngle, this.MaxAngle, linear);
+            return linear.Interpolate(this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
         }
 
         protected virtual Point PixelPosition(double value)
