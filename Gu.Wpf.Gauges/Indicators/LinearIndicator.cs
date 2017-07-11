@@ -100,13 +100,13 @@
             switch (this.Placement)
             {
                 case TickBarPlacement.Left:
-                    return new Point(this.Padding.Left, step.Interpolate(this.Padding.Top, arrangeBounds.Height - this.Padding.Bottom, this.IsDirectionReversed));
+                    return new Point(this.Padding.Left, step.InterpolateVertical(arrangeBounds, this.Padding, this.IsDirectionReversed));
                 case TickBarPlacement.Right:
-                    return new Point(arrangeBounds.Width - this.Padding.Right, step.Interpolate(this.Padding.Top, arrangeBounds.Height - this.Padding.Bottom, this.IsDirectionReversed));
+                    return new Point(arrangeBounds.Width - this.Padding.Right, step.InterpolateVertical(arrangeBounds, this.Padding, this.IsDirectionReversed));
                 case TickBarPlacement.Top:
-                    return new Point(step.Interpolate(this.Padding.Left, arrangeBounds.Width - this.Padding.Right, this.IsDirectionReversed), this.Padding.Top);
+                    return new Point(step.InterpolateHorizontal(arrangeBounds, this.Padding, this.IsDirectionReversed), this.Padding.Top);
                 case TickBarPlacement.Bottom:
-                    return new Point(step.Interpolate(this.Padding.Left, arrangeBounds.Width - this.Padding.Right, this.IsDirectionReversed), arrangeBounds.Height - this.Padding.Bottom);
+                    return new Point(step.InterpolateHorizontal(arrangeBounds, this.Padding, this.IsDirectionReversed), arrangeBounds.Height - this.Padding.Bottom);
                 default:
                     throw new ArgumentOutOfRangeException();
             }
