@@ -9,5 +9,5 @@
         Width="100"
         Height="400"
         mc:Ignorable="d">
-    <local:AngularTextBarBox />
+    <local:LinearTickBarBox />
 </Window>

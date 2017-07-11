@@ -17,7 +17,7 @@
                           Minimum="0"
                           Placement="Bottom"
                           SnapsToDevicePixels="False"
-                          TickWidth="10"
+                          TickWidth="3"
                           Value="65" />
     </UserControl.DataContext>
     <Grid>

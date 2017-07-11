@@ -1,6 +1,7 @@
 ﻿namespace Gu.Wpf.Gauges
 {
     using System.Windows;
+    using System.Windows.Controls.Primitives;
 
     internal struct Interpolation
     {
@@ -23,6 +24,10 @@
         internal double Interpolate(double min, double max, bool isDirectionReversed) => isDirectionReversed
             ? Gu.Wpf.Gauges.Interpolate.Linear(max, min, this)
             : Gu.Wpf.Gauges.Interpolate.Linear(min, max, this);
+
+        internal double Interpolate(Size size, Thickness padding, TickBarPlacement placement, bool isDirectionReversed) => placement.IsHorizontal()
+            ? this.InterpolateHorizontal(size, padding, isDirectionReversed)
+            : this.InterpolateVertical(size, padding, isDirectionReversed);
 
         internal double InterpolateVertical(Size size, Thickness padding, bool isDirectionReversed) => this.Interpolate(padding.Top, size.Height - padding.Bottom, isDirectionReversed);
 

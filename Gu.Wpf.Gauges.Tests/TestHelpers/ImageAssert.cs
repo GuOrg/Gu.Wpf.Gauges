@@ -15,7 +15,7 @@
 
     public static class ImageAssert
     {
-        public static void AreEqual(string fileName, LinearTextBar tickBar)
+        public static void AreEqual(string fileName, UIElement tickBar)
         {
             var assembly = typeof(ImageAssert).Assembly;
             var name = assembly.GetManifestResourceNames()

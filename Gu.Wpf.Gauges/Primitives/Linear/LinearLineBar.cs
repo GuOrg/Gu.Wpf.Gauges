@@ -7,6 +7,7 @@ namespace Gu.Wpf.Gauges
 
     public class LinearLineBar : LineBar
     {
+#pragma warning disable SA1202 // Elements must be ordered by access
         /// <summary>
         /// Identifies the <see cref="P:LinearLineBar.Value" /> dependency property.
         /// </summary>
@@ -31,6 +32,23 @@ namespace Gu.Wpf.Gauges
                 TickBarPlacement.Bottom,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
+        public static readonly DependencyProperty PaddingProperty = DependencyProperty.Register(
+            nameof(Padding),
+            typeof(Thickness),
+            typeof(LinearLineBar),
+            new FrameworkPropertyMetadata(
+                default(Thickness),
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
+
+        private static readonly DependencyPropertyKey OverflowPropertyKey = DependencyProperty.RegisterReadOnly(
+            nameof(Overflow),
+            typeof(Thickness),
+            typeof(LinearLineBar),
+            new PropertyMetadata(default(Thickness)));
+
+        public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
+#pragma warning restore SA1202 // Elements must be ordered by access
+
         /// <summary>
         /// Gets or sets the current magnitude of the range control.
         /// </summary>
@@ -53,6 +71,21 @@ namespace Gu.Wpf.Gauges
         {
             get => (TickBarPlacement)this.GetValue(PlacementProperty);
             set => this.SetValue(PlacementProperty, value);
+        }
+
+        public Thickness Padding
+        {
+            get => (Thickness)this.GetValue(PaddingProperty);
+            set => this.SetValue(PaddingProperty, value);
+        }
+
+        /// <summary>
+        /// Gets a <see cref="Thickness"/> with values indicating how much the control draws outside its bounds.
+        /// </summary>
+        public Thickness Overflow
+        {
+            get => (Thickness)this.GetValue(OverflowProperty);
+            protected set => this.SetValue(OverflowPropertyKey, value);
         }
 
         protected double EffectiveValue => double.IsNaN(this.Value)

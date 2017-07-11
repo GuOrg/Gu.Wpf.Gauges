@@ -42,14 +42,40 @@
         protected override Size MeasureOverride(Size availableSize)
         {
             var thickness = Math.Abs(this.TickWidth);
-            return new Size(thickness, thickness);
+            return this.Placement.IsHorizontal() ? new Size(0, thickness) : new Size(thickness, 0);
+        }
+
+        protected override Size ArrangeOverride(Size finalSize)
+        {
+            if (this.AllTicks != null)
+            {
+                var tickBounds = default(Rect);
+                var strokeThickness = this.Placement.IsHorizontal()
+                    ? new Size(this.GetStrokeThickness() / 2, 0)
+                    : new Size(0, this.GetStrokeThickness() / 2);
+                var rect = this.CreateRect(this.AllTicks[0], finalSize);
+                rect.Inflate(strokeThickness);
+                tickBounds.Union(rect);
+                if (this.EffectiveValue == this.Maximum)
+                {
+                    rect = this.CreateRect(this.AllTicks[this.AllTicks.Count - 1], finalSize);
+                    rect.Inflate(strokeThickness);
+                    tickBounds.Union(rect);
+                }
+
+                this.Overflow = this.Placement.IsHorizontal()
+                    ? new Thickness(Math.Max(0, -tickBounds.Left), 0, Math.Max(0, tickBounds.Right - finalSize.Width), 0)
+                    : new Thickness(0, Math.Max(0, -tickBounds.Top), 0, Math.Max(0, tickBounds.Bottom - finalSize.Height));
+            }
+
+            return finalSize;
         }
 
         protected override void OnRender(DrawingContext dc)
         {
             Line CreateLine(double value)
             {
-                var pos = this.PixelPosition(value);
+                var pos = this.PixelPosition(value, this.RenderSize);
                 if (this.SnapsToDevicePixels)
                 {
                     pos = Math.Round(pos, 0);
@@ -58,23 +84,6 @@
                 return this.Placement.IsHorizontal()
                     ? new Line(new Point(pos, 0), new Point(pos, this.ActualHeight))
                     : new Line(new Point(0, pos), new Point(this.ActualWidth, pos));
-            }
-
-            Rect CreateRect(double tick)
-            {
-                var pos = this.PixelPosition(tick);
-                var strokeThickness = this.GetStrokeThickness();
-                return this.Placement.IsHorizontal()
-                    ? new Rect(
-                        x: pos - (this.TickWidth / 2) + (strokeThickness / 2),
-                        y: strokeThickness / 2,
-                        width: this.TickWidth - strokeThickness,
-                        height: this.ActualHeight - strokeThickness)
-                    : new Rect(
-                        x: strokeThickness / 2,
-                        y: pos - (this.TickWidth / 2) + (strokeThickness / 2),
-                        width: this.ActualWidth - strokeThickness,
-                        height: this.TickWidth - strokeThickness);
             }
 
             if (this.Pen == null ||
@@ -103,7 +112,7 @@
                 {
                     var rect = new Rect(this.RenderSize);
                     rect.Inflate(new Size(this.TickWidth, this.TickWidth));
-                    var pos = this.PixelPosition(max);
+                    var pos = this.PixelPosition(max, this.RenderSize);
                     if (this.Placement.IsHorizontal())
                     {
                         if (this.IsDirectionReversed)
@@ -132,7 +141,7 @@
 
                 foreach (var tick in this.AllTicks)
                 {
-                    dc.DrawRectangle(this.Fill, this.Pen, CreateRect(tick));
+                    dc.DrawRectangle(this.Fill, this.Pen, this.CreateRect(tick, this.RenderSize));
                     if (tick > max)
                     {
                         break;
@@ -144,6 +153,23 @@
                     dc.Pop();
                 }
             }
+        }
+
+        protected virtual Rect CreateRect(double tick, Size arrangeSize)
+        {
+            var position = this.PixelPosition(tick, arrangeSize);
+            var strokeThickness = this.GetStrokeThickness();
+            return this.Placement.IsHorizontal()
+                ? new Rect(
+                    x: position - (this.TickWidth / 2) + (strokeThickness / 2),
+                    y: strokeThickness / 2,
+                    width: this.TickWidth - strokeThickness,
+                    height: arrangeSize.Height - strokeThickness)
+                : new Rect(
+                    x: strokeThickness / 2,
+                    y: position - (this.TickWidth / 2) + (strokeThickness / 2),
+                    width: arrangeSize.Width - strokeThickness,
+                    height: this.TickWidth - strokeThickness);
         }
     }
 }
