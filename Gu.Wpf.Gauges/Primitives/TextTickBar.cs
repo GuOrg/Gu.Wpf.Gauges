@@ -130,13 +130,6 @@
                 default(string),
                 (d, _) => ((TextTickBar)d).UpdateTexts()));
 
-        private static readonly DependencyPropertyKey OverflowPropertyKey = DependencyProperty.RegisterReadOnly(
-            nameof(Overflow),
-            typeof(Thickness),
-            typeof(TextTickBar),
-            new PropertyMetadata(default(Thickness)));
-
-        public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
         private Typeface typeFace;
 #pragma warning restore SA1202 // Elements must be ordered by access
 
@@ -246,15 +239,6 @@
         {
             get => (string)this.GetValue(StringFormatProperty);
             set => this.SetValue(StringFormatProperty, value);
-        }
-
-        /// <summary>
-        /// Gets a <see cref="Thickness"/> with values indicating how much the control draws outside its bounds.
-        /// </summary>
-        public Thickness Overflow
-        {
-            get => (Thickness)this.GetValue(OverflowProperty);
-            protected set => this.SetValue(OverflowPropertyKey, value);
         }
 
         protected Typeface TypeFace => this.typeFace ??
