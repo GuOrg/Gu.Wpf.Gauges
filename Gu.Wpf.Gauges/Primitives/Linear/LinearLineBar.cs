@@ -4,6 +4,7 @@ namespace Gu.Wpf.Gauges
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
+    using Gu.Wpf.Gauges.Primitives.Linear;
 
     public class LinearLineBar : LineBar
     {
@@ -104,6 +105,80 @@ namespace Gu.Wpf.Gauges
             return new Size(this.GetStrokeThickness(), 0);
         }
 
+        protected override Size ArrangeOverride(Size finalSize)
+        {
+            var strokeThickness = this.GetStrokeThickness();
+            if (strokeThickness > 0)
+            {
+                var tickBounds = default(Rect);
+                if (this.StrokeStartLineCap != PenLineCap.Flat)
+                {
+                    var position = this.PixelPosition(this.Minimum, finalSize);
+
+                    if (this.Placement.IsHorizontal())
+                    {
+                        if (this.IsDirectionReversed)
+                        {
+                            RectExt.SetRight(ref tickBounds, Math.Min(0, strokeThickness - position - finalSize.Width));
+                        }
+                        else
+                        {
+                            RectExt.SetLeft(ref tickBounds, Math.Min(0, strokeThickness - position));
+                        }
+                    }
+                    else
+                    {
+                        if (this.IsDirectionReversed)
+                        {
+                            RectExt.SetTop(ref tickBounds, strokeThickness - position - finalSize.Height);
+                        }
+                        else
+                        {
+                            RectExt.SetBottom(ref tickBounds, strokeThickness - position);
+                        }
+                    }
+                }
+
+                if (this.StrokeEndLineCap != PenLineCap.Flat)
+                {
+                    var position = this.PixelPosition(this.EffectiveValue, finalSize);
+                    if (this.Placement.IsHorizontal())
+                    {
+                        if (this.IsDirectionReversed)
+                        {
+                            RectExt.SetLeft(ref tickBounds, Math.Min(0, strokeThickness - position));
+                        }
+                        else
+                        {
+                            RectExt.SetRight(ref tickBounds, Math.Min(0, strokeThickness - position - finalSize.Width));
+                        }
+                    }
+                    else
+                    {
+                        if (this.IsDirectionReversed)
+                        {
+                            RectExt.SetBottom(ref tickBounds, strokeThickness - position);
+                        }
+                        else
+                        {
+                            RectExt.SetTop(ref tickBounds, strokeThickness - position - finalSize.Height);
+                        }
+                    }
+                }
+
+                this.Overflow = this.Placement.IsHorizontal()
+                    ? new Thickness(Math.Max(0, -tickBounds.Left), 0, Math.Max(0, tickBounds.Right - finalSize.Width), 0)
+                    : new Thickness(0, Math.Max(0, -tickBounds.Top), 0, Math.Max(0, tickBounds.Bottom - finalSize.Height));
+            }
+            else
+            {
+                this.Overflow = default(Thickness);
+            }
+
+            this.RegisterOverflow(this.Overflow);
+            return finalSize;
+        }
+
         protected override void OnRender(DrawingContext dc)
         {
             if (this.Pen == null ||
@@ -114,11 +189,11 @@ namespace Gu.Wpf.Gauges
 
             var strokeThickness = this.GetStrokeThickness();
             var start = this.Placement.IsHorizontal()
-                ? new Point(this.PixelPosition(this.Minimum), strokeThickness / 2)
-                : new Point(strokeThickness / 2, this.PixelPosition(this.Minimum));
+                ? new Point(this.PixelPosition(this.Minimum, this.RenderSize), strokeThickness / 2)
+                : new Point(strokeThickness / 2, this.PixelPosition(this.Minimum, this.RenderSize));
             var end = this.Placement.IsHorizontal()
-                ? new Point(this.PixelPosition(this.EffectiveValue), strokeThickness / 2)
-                : new Point(strokeThickness / 2, this.PixelPosition(this.EffectiveValue));
+                ? new Point(this.PixelPosition(this.EffectiveValue, this.RenderSize), strokeThickness / 2)
+                : new Point(strokeThickness / 2, this.PixelPosition(this.EffectiveValue, this.RenderSize));
 
             dc.DrawLine(this.Pen, start, end);
         }
@@ -127,26 +202,11 @@ namespace Gu.Wpf.Gauges
         /// Get the interpolated pixel position for the value.
         /// </summary>
         /// <param name="value"></param>
-        /// <returns></returns>
-        protected virtual double PixelPosition(double value)
+        /// <param name="size">The render size.</param>
+        protected virtual double PixelPosition(double value, Size size)
         {
-            var scale = Interpolate.Linear(this.Minimum, this.Maximum, value)
-                                   .Clamp(0, 1);
-
-            if (this.Placement.IsHorizontal())
-            {
-                var pos = scale.Interpolate(0, this.ActualWidth);
-                return this.IsDirectionReversed
-                    ? this.ActualWidth - pos
-                    : pos;
-            }
-            else
-            {
-                var pos = scale.Interpolate(0, this.ActualHeight);
-                return this.IsDirectionReversed
-                    ? pos
-                    : this.ActualHeight - pos;
-            }
+            var interpolation = Interpolate.Linear(this.Minimum, this.Maximum, value);
+            return interpolation.Interpolate(size, this.Padding, this.Placement, this.IsDirectionReversed);
         }
     }
 }
