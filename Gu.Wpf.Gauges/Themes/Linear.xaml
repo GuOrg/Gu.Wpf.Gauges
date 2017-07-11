@@ -32,11 +32,11 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:LinearAxis}">
-                            <Border Background="{TemplateBinding Background}"
+                            <Border Padding="{TemplateBinding Padding}"
+                                    Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}">
-                                <Grid x:Name="AxisGrid"
-                                      Margin="{TemplateBinding Padding}">
+                                <Grid x:Name="AxisGrid">
                                     <Grid.RowDefinitions>
                                         <RowDefinition />
                                         <RowDefinition Height="Auto" />
@@ -82,11 +82,11 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:LinearAxis}">
-                            <Border Background="{TemplateBinding Background}"
+                            <Border Padding="{TemplateBinding Padding}"
+                                    Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}">
-                                <Grid x:Name="AxisGrid"
-                                      Margin="{TemplateBinding Padding}">
+                                <Grid x:Name="AxisGrid">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
@@ -132,11 +132,11 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:LinearAxis}">
-                            <Border Background="{TemplateBinding Background}"
+                            <Border Padding="{TemplateBinding Padding}"
+                                    Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}">
-                                <Grid x:Name="AxisGrid"
-                                      Margin="{TemplateBinding Padding}">
+                                <Grid x:Name="AxisGrid">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="Auto" />
@@ -182,11 +182,11 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type local:LinearAxis}">
-                            <Border Background="{TemplateBinding Background}"
+                            <Border Padding="{TemplateBinding Padding}"
+                                    Background="{TemplateBinding Background}"
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}">
-                                <Grid x:Name="AxisGrid"
-                                      Margin="{TemplateBinding Padding}">
+                                <Grid x:Name="AxisGrid">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
                                         <ColumnDefinition Width="Auto" />
