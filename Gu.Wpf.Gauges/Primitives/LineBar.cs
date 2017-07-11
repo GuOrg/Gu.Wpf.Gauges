@@ -63,7 +63,7 @@ namespace Gu.Wpf.Gauges
             typeof(LineBar),
             new FrameworkPropertyMetadata(
                 PenLineCap.Flat,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender,
                 (d, e) => ((LineBar)d).pen = null),
             ValidateEnums.IsPenLineCapValid);
 
@@ -76,7 +76,7 @@ namespace Gu.Wpf.Gauges
             typeof(LineBar),
             new FrameworkPropertyMetadata(
                 PenLineCap.Flat,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender,
                 (d, e) => ((LineBar)d).pen = null),
             ValidateEnums.IsPenLineCapValid);
 

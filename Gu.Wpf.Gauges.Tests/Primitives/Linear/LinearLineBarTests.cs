@@ -48,39 +48,67 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         public void Render(TickBarPlacement placement, bool isDirectionReversed, double strokeThickness, PenLineCap startLineCap, PenLineCap endLineCap, string padding)
         {
             var tickBar = new LinearLineBar
-                          {
-                              StrokeThickness = strokeThickness,
-                              Minimum = 0,
-                              Maximum = 10,
-                              Stroke = Brushes.Black,
-                              StrokeStartLineCap = startLineCap,
-                              StrokeEndLineCap = endLineCap,
-                              Placement = placement,
-                              IsDirectionReversed = isDirectionReversed,
-                              Padding = string.IsNullOrEmpty(padding) ? default(Thickness) : (Thickness)ThicknessConverter.ConvertFrom(padding)
-                          };
+            {
+                StrokeThickness = strokeThickness,
+                Minimum = 0,
+                Maximum = 10,
+                Stroke = Brushes.Black,
+                StrokeStartLineCap = startLineCap,
+                StrokeEndLineCap = endLineCap,
+                Placement = placement,
+                IsDirectionReversed = isDirectionReversed,
+                Padding = string.IsNullOrEmpty(padding) ? default(Thickness) : (Thickness)ThicknessConverter.ConvertFrom(padding)
+            };
             SaveImage(tickBar);
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
 
+        [TestCase(TickBarPlacement.Left, false, 2, PenLineCap.Flat, PenLineCap.Flat, "0 0 0 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Left, true, 2, PenLineCap.Flat, PenLineCap.Flat, "0 0 0 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Left, false, 2, PenLineCap.Round, PenLineCap.Triangle, "0 0 0 0", "0,1,0,1")]
+        [TestCase(TickBarPlacement.Left, true, 2, PenLineCap.Round, PenLineCap.Triangle, "0 0 0 0", "0,1,0,1")]
+        [TestCase(TickBarPlacement.Left, false, 2, PenLineCap.Round, PenLineCap.Flat, "0 0 0 0", "0,0,0,1")]
+        [TestCase(TickBarPlacement.Left, true, 2, PenLineCap.Round, PenLineCap.Flat, "0 0 0 0", "0,1,0,0")]
+        [TestCase(TickBarPlacement.Left, false, 2, PenLineCap.Flat, PenLineCap.Round, "0 0 0 0", "0,1,0,0")]
+        [TestCase(TickBarPlacement.Left, true, 2, PenLineCap.Flat, PenLineCap.Round, "0 0 0 0", "0,0,0,1")]
+        [TestCase(TickBarPlacement.Left, false, 2, PenLineCap.Round, PenLineCap.Flat, "0 1 0 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Left, true, 2, PenLineCap.Round, PenLineCap.Flat, "0 0 0 1", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Left, false, 2, PenLineCap.Flat, PenLineCap.Round, "0 0 0 1", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Left, true, 2, PenLineCap.Flat, PenLineCap.Round, "0 1 0 0", "0,0,0,0")]
         [TestCase(TickBarPlacement.Bottom, false, 2, PenLineCap.Flat, PenLineCap.Flat, "0 0 0 0", "0,0,0,0")]
         [TestCase(TickBarPlacement.Bottom, true, 2, PenLineCap.Flat, PenLineCap.Flat, "0 0 0 0", "0,0,0,0")]
         [TestCase(TickBarPlacement.Bottom, false, 2, PenLineCap.Round, PenLineCap.Flat, "0 0 0 0", "1,0,0,0")]
         [TestCase(TickBarPlacement.Bottom, true, 2, PenLineCap.Round, PenLineCap.Flat, "0 0 0 0", "0,0,1,0")]
+        [TestCase(TickBarPlacement.Bottom, false, 2, PenLineCap.Flat, PenLineCap.Round, "0 0 0 0", "0,0,1,0")]
+        [TestCase(TickBarPlacement.Bottom, true, 2, PenLineCap.Flat, PenLineCap.Round, "0 0 0 0", "1,0,0,0")]
+        [TestCase(TickBarPlacement.Bottom, false, 2, PenLineCap.Round, PenLineCap.Flat, "1 0 0 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Bottom, true, 2, PenLineCap.Round, PenLineCap.Flat, "0 0 1 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Bottom, false, 2, PenLineCap.Flat, PenLineCap.Round, "0 0 1 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Bottom, true, 2, PenLineCap.Flat, PenLineCap.Round, "1 0 0 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Top, false, 2, PenLineCap.Flat, PenLineCap.Flat, "0 0 0 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Top, true, 2, PenLineCap.Flat, PenLineCap.Flat, "0 0 0 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Top, false, 2, PenLineCap.Round, PenLineCap.Flat, "0 0 0 0", "1,0,0,0")]
+        [TestCase(TickBarPlacement.Top, true, 2, PenLineCap.Round, PenLineCap.Flat, "0 0 0 0", "0,0,1,0")]
+        [TestCase(TickBarPlacement.Top, false, 2, PenLineCap.Flat, PenLineCap.Round, "0 0 0 0", "0,0,1,0")]
+        [TestCase(TickBarPlacement.Top, true, 2, PenLineCap.Flat, PenLineCap.Round, "0 0 0 0", "1,0,0,0")]
+        [TestCase(TickBarPlacement.Top, false, 2, PenLineCap.Round, PenLineCap.Flat, "1 0 0 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Top, true, 2, PenLineCap.Round, PenLineCap.Flat, "0 0 1 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Top, false, 2, PenLineCap.Flat, PenLineCap.Round, "0 0 1 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Top, true, 2, PenLineCap.Flat, PenLineCap.Round, "1 0 0 0", "0,0,0,0")]
         public void Overflow(TickBarPlacement placement, bool isDirectionReversed, double strokeThickness, PenLineCap startLineCap, PenLineCap endLineCap, string padding, string expected)
         {
             var tickBar = new LinearLineBar
-                          {
-                              StrokeThickness = strokeThickness,
-                              Minimum = 0,
-                              Maximum = 10,
-                              Stroke = Brushes.Black,
-                              StrokeStartLineCap = startLineCap,
-                              StrokeEndLineCap = endLineCap,
-                              Placement = placement,
-                              IsDirectionReversed = isDirectionReversed,
-                              Padding = (Thickness)ThicknessConverter.ConvertFrom(padding)
-                          };
+            {
+                StrokeThickness = strokeThickness,
+                Minimum = 0,
+                Maximum = 10,
+                Stroke = Brushes.Black,
+                StrokeStartLineCap = startLineCap,
+                StrokeEndLineCap = endLineCap,
+                Placement = placement,
+                IsDirectionReversed = isDirectionReversed,
+                Padding = (Thickness)ThicknessConverter.ConvertFrom(padding)
+            };
 
             tickBar.Arrange(new Rect(new Size(10, 10)));
             Assert.AreEqual(expected, tickBar.Overflow.ToString());

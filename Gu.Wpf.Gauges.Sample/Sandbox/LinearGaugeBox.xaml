@@ -3,11 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
-             xmlns:local="clr-namespace:Gu.Wpf.Gauges.Sample.Sandbox"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
              d:DesignHeight="400"
-             d:DesignWidth="300"
+             d:DesignWidth="100"
              mc:Ignorable="d">
     <UserControl.Resources>
         <ControlTemplate x:Key="VerticalTemplate"
@@ -21,7 +20,7 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <gauges:LinearTextBar Grid.Column="0"
+                <!--<gauges:LinearTextBar Grid.Column="0"
                                       TickFrequency="{TemplateBinding MajorTickFrequency}"
                                       Ticks="{TemplateBinding MajorTicks}" />
 
@@ -37,7 +36,7 @@
                                       Width="4"
                                       Fill="Black"
                                       TickFrequency="{TemplateBinding MinorTickFrequency}"
-                                      Ticks="{TemplateBinding MinorTicks}" />
+                                      Ticks="{TemplateBinding MinorTicks}" />-->
 
                 <Rectangle Grid.Column="3"
                            Width="1"
@@ -50,6 +49,8 @@
 
                 <gauges:LinearLineBar Grid.Column="5"
                                       Stroke="Red"
+                                      StrokeEndLineCap="Triangle"
+                                      StrokeStartLineCap="Round"
                                       StrokeThickness="2"
                                       Value="{TemplateBinding Value}" />
             </Grid>
@@ -66,7 +67,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <gauges:LinearTextBar Grid.Row="0"
+                <!--<gauges:LinearTextBar Grid.Row="0"
                                       TickFrequency="{TemplateBinding MajorTickFrequency}"
                                       Ticks="{TemplateBinding MajorTicks}" />
 
@@ -82,7 +83,7 @@
                                       Height="4"
                                       Fill="Black"
                                       TickFrequency="{TemplateBinding MinorTickFrequency}"
-                                      Ticks="{TemplateBinding MinorTicks}" />
+                                      Ticks="{TemplateBinding MinorTicks}" />-->
 
                 <Rectangle Grid.Row="3"
                            Height="1"
@@ -95,6 +96,7 @@
 
                 <gauges:LinearLineBar Grid.Row="5"
                                       Stroke="Red"
+                                      StrokeEndLineCap="Triangle"
                                       StrokeStartLineCap="Round"
                                       StrokeThickness="2"
                                       Value="{TemplateBinding Value}" />
@@ -119,21 +121,22 @@
         </Style>
     </UserControl.Resources>
     <UserControl.DataContext>
-        <sample:TickBarVm IsDirectionReversed="False"
+        <sample:TickBarVm IsDirectionReversed="True"
                           MajorTickFrequency="25"
                           MajorTicks="100"
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="10"
                           MinorTicks="15"
-                          Placement="Bottom" />
+                          Placement="Left" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <gauges:LinearGauge MajorTickFrequency="{Binding MajorTickFrequency}"
+        <gauges:LinearGauge IsDirectionReversed="{Binding IsDirectionReversed}"
+                            MajorTickFrequency="{Binding MajorTickFrequency}"
                             MajorTicks="{Binding MajorTicks}"
                             Maximum="{Binding Maximum}"
                             Minimum="{Binding Minimum}"
