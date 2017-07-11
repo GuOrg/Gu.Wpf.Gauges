@@ -114,11 +114,9 @@
                 }
             }
 
-            this.Overflow = new Thickness(
-                Math.Max(0, -rect.Left),
-                Math.Max(0, -rect.Top),
-                Math.Max(0, rect.Right - finalSize.Width),
-                Math.Max(0, rect.Bottom - finalSize.Height));
+            this.Overflow = this.Placement.IsHorizontal()
+                ? new Thickness(Math.Max(0, -rect.Left), 0, Math.Max(0, rect.Right - finalSize.Width), 0)
+                : new Thickness(0, Math.Max(0, -rect.Top), 0, Math.Max(0, rect.Bottom - finalSize.Height));
             return finalSize;
         }
 
