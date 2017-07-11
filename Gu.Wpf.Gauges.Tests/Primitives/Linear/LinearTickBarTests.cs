@@ -195,10 +195,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 ? $"_Ticks_{tickBar.Ticks}"
                 : string.Empty;
 
-            var isReversed = tickBar.Ticks != null
-                ? $"_IsDirectionReversed_{tickBar.IsDirectionReversed}"
-                : string.Empty;
-
             var tickFrequency = tickBar.TickFrequency > 0
                 ? $"_TickFrequency_{tickBar.TickFrequency}"
                 : string.Empty;
@@ -211,7 +207,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 ? string.Empty
                 : $"_Padding_{tickBar.Padding}";
 
-            return $@"LinearTickBar_Min_{tickBar.Minimum}_Max_{tickBar.Maximum}{padding}_TickWidth_{tickBar.TickWidth}_StrokeThickness_{tickBar.StrokeThickness}{isReversed}{tickFrequency}{ticks}{orientation}.png"
+            return $@"LinearTickBar_Min_{tickBar.Minimum}_Max_{tickBar.Maximum}_IsDirectionReversed_{tickBar.IsDirectionReversed}{padding}_TickWidth_{tickBar.TickWidth}_StrokeThickness_{tickBar.StrokeThickness}{tickFrequency}{ticks}{orientation}.png"
                 .Replace(" ", "_");
         }
 
