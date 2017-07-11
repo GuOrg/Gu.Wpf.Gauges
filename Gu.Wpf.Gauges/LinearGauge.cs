@@ -4,6 +4,7 @@
 
     public partial class LinearGauge : Gauge
     {
+#pragma warning disable SA1202 // Elements must be ordered by access
         private static readonly DependencyPropertyKey ContentOverflowPropertyKey = DependencyProperty.RegisterReadOnly(
             nameof(ContentOverflow),
             typeof(Thickness),
@@ -13,6 +14,7 @@
                 FrameworkPropertyMetadataOptions.AffectsArrange));
 
         public static readonly DependencyProperty ContentOverflowProperty = ContentOverflowPropertyKey.DependencyProperty;
+#pragma warning restore SA1202 // Elements must be ordered by access
 
         private Thickness contentOverflow = default(Thickness);
 
