@@ -8,54 +8,54 @@
              d:DesignWidth="600"
              mc:Ignorable="d">
     <UserControl.Resources>
-        <ControlTemplate x:Key="VerticalTemplate"
-                         TargetType="{x:Type gauges:LinearGauge}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <gauges:LinearTextBar Margin="2,0"
-                                      Padding="0,0.5"
-                                      Ticks="{TemplateBinding MajorTicks}" />
+    <ControlTemplate x:Key="VerticalTemplate"
+                        TargetType="{x:Type gauges:LinearGauge}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <gauges:LinearTextBar Margin="2,0"
+                                    Padding="0,0.5"
+                                    Ticks="{TemplateBinding MajorTicks}" />
 
-                <gauges:LinearTickBar x:Name="MajorTicks"
-                                      Grid.Column="1"
-                                      Width="8"
-                                      Fill="Black"
-                                      Placement="Left"
-                                      Ticks="{TemplateBinding MajorTicks}" />
+            <gauges:LinearTickBar x:Name="MajorTicks"
+                                    Grid.Column="1"
+                                    Width="8"
+                                    Fill="Black"
+                                    Placement="Left"
+                                    Ticks="{TemplateBinding MajorTicks}" />
 
-                <gauges:LinearTickBar Grid.Column="1"
-                                      Width="4"
-                                      HorizontalAlignment="Right"
-                                      ExcludeTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
-                                      Fill="Black"
-                                      Placement="Left"
-                                      TickFrequency="{TemplateBinding MinorTickFrequency}" />
+            <gauges:LinearTickBar Grid.Column="1"
+                                    Width="4"
+                                    HorizontalAlignment="Right"
+                                    ExcludeTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
+                                    Fill="Black"
+                                    Placement="Left"
+                                    TickFrequency="{TemplateBinding MinorTickFrequency}" />
 
-                <Rectangle Grid.Column="1"
-                           Width="1"
-                           HorizontalAlignment="Right"
-                           Fill="Black" />
+            <Rectangle Grid.Column="1"
+                        Width="1"
+                        HorizontalAlignment="Right"
+                        Fill="Black" />
 
-                <gauges:LinearBlockBar Grid.Column="2"
-                                       Width="10"
-                                       Margin="2,0"
-                                       Fill="CornflowerBlue"
-                                       Placement="Left"
-                                       Value="{TemplateBinding Value}" />
+            <gauges:LinearBlockBar Grid.Column="2"
+                                    Width="10"
+                                    Margin="2,0"
+                                    Fill="CornflowerBlue"
+                                    Placement="Left"
+                                    Value="{TemplateBinding Value}" />
 
-                <Border Grid.Column="3"
-                        Width="6"
-                        HorizontalAlignment="Left"
-                        BorderBrush="Black"
-                        BorderThickness="1,1,0,1" />
+            <Border Grid.Column="3"
+                    Width="6"
+                    HorizontalAlignment="Left"
+                    BorderBrush="Black"
+                    BorderThickness="1,1,0,1" />
 
-            </Grid>
-        </ControlTemplate>
+        </Grid>
+    </ControlTemplate>
 
         <ControlTemplate x:Key="HorizontalTemplate"
                          TargetType="{x:Type gauges:LinearGauge}">

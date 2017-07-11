@@ -13,7 +13,7 @@
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="5"
-                          Placement="Left"
+                          Placement="Top"
                           ShowLabels="True"
                           Value="0" />
     </UserControl.DataContext>
@@ -25,8 +25,6 @@
         </Grid.RowDefinitions>
         <gauges:LinearGauge Grid.Row="0"
                             Margin="12"
-                            BorderBrush="Blue"
-                            BorderThickness="1"
                             IsDirectionReversed="{Binding IsDirectionReversed}"
                             MajorTickFrequency="{Binding MajorTickFrequency}"
                             MajorTicks="{Binding MajorTicks}"

@@ -5,6 +5,7 @@
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
+    using Gu.Wpf.Gauges.Primitives.Linear;
 
     /// <summary>
     /// Linear tick bar that renders ticks as text.
@@ -117,6 +118,7 @@
             this.Overflow = this.Placement.IsHorizontal()
                 ? new Thickness(Math.Max(0, -rect.Left), 0, Math.Max(0, rect.Right - finalSize.Width), 0)
                 : new Thickness(0, Math.Max(0, -rect.Top), 0, Math.Max(0, rect.Bottom - finalSize.Height));
+            this.RegisterOverflow(this.Overflow);
             return finalSize;
         }
 

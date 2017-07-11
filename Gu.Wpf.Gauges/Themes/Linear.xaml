@@ -44,7 +44,7 @@
                                     </Grid.RowDefinitions>
                                     <local:LinearTextBar x:Name="TickLabels"
                                                          Grid.Row="1"
-                                                         Padding="0.5,0,0.5,2"
+                                                         Padding="0,0,0,2"
                                                          TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                          Ticks="{TemplateBinding MajorTicks}" />
 
@@ -118,7 +118,7 @@
 
                                     <local:LinearTextBar x:Name="TickLabels"
                                                          Grid.Row="1"
-                                                         Padding="0.5,2,0.5,0"
+                                                         Padding="0,2,0,0"
                                                          TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                          Ticks="{TemplateBinding MajorTicks}" />
                                 </Grid>
@@ -168,7 +168,7 @@
 
                                     <local:LinearTextBar x:Name="TickLabels"
                                                          Grid.Column="1"
-                                                         Padding="2,0.5,0,0.5"
+                                                         Padding="2,0,0,0"
                                                          TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                          Ticks="{TemplateBinding MajorTicks}" />
                                 </Grid>
@@ -194,7 +194,7 @@
                                     </Grid.ColumnDefinitions>
                                     <local:LinearTextBar x:Name="TickLabels"
                                                          Grid.Column="1"
-                                                         Padding="0,0.5,2,0.5"
+                                                         Padding="0,0,2,0"
                                                          TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                          Ticks="{TemplateBinding MajorTicks}" />
 
@@ -257,7 +257,7 @@
                                         Background="{TemplateBinding Background}"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}">
-                                    <Grid>
+                                    <Grid Margin="{TemplateBinding ContentOverflow}">
                                         <Grid.RowDefinitions>
                                             <RowDefinition />
                                             <RowDefinition Height="Auto" />
@@ -265,7 +265,6 @@
                                         <local:LinearAxis />
 
                                         <local:LinearIndicator Grid.Row="1"
-                                                               Padding="0.5,0"
                                                                Value="{TemplateBinding Value}">
                                             <Path Width="10"
                                                   Height="10"
@@ -294,13 +293,12 @@
                                         Background="{TemplateBinding Background}"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}">
-                                    <Grid>
+                                    <Grid Margin="{TemplateBinding ContentOverflow}">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition />
                                         </Grid.RowDefinitions>
-                                        <local:LinearIndicator Padding="0.5,0"
-                                                               Value="{TemplateBinding Value}">
+                                        <local:LinearIndicator Value="{TemplateBinding Value}">
                                             <Path Width="10"
                                                   Height="10"
                                                   VerticalAlignment="Top"
@@ -329,13 +327,12 @@
                                         Background="{TemplateBinding Background}"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}">
-                                    <Grid>
+                                    <Grid Margin="{TemplateBinding ContentOverflow}">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
-                                        <local:LinearIndicator Padding="0,0.5"
-                                                               Value="{TemplateBinding Value}">
+                                        <local:LinearIndicator Value="{TemplateBinding Value}">
                                             <Path Width="10"
                                                   Height="10"
                                                   HorizontalAlignment="Left"
@@ -364,7 +361,7 @@
                                         Background="{TemplateBinding Background}"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}">
-                                    <Grid>
+                                    <Grid Margin="{TemplateBinding ContentOverflow}">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
@@ -372,7 +369,6 @@
                                         <local:LinearAxis Grid.Column="0" />
 
                                         <local:LinearIndicator Grid.Column="1"
-                                                               Padding="0,0.5"
                                                                Value="{TemplateBinding Value}">
                                             <Path Width="10"
                                                   Height="10"
