@@ -5,22 +5,26 @@
              xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
-             d:DesignHeight="400"
+             d:DesignHeight="300"
              d:DesignWidth="100"
              mc:Ignorable="d">
     <UserControl.Resources>
         <ControlTemplate x:Key="VerticalTemplate"
                          TargetType="{x:Type gauges:LinearGauge}">
-            <Grid Margin="{TemplateBinding ContentOverflow}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <!--<gauges:LinearTextBar Grid.Column="0"
+            <Border Padding="{TemplateBinding Padding}"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                <Grid Margin="{TemplateBinding ContentOverflow}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <!--<gauges:LinearTextBar Grid.Column="0"
                                       TickFrequency="{TemplateBinding MajorTickFrequency}"
                                       Ticks="{TemplateBinding MajorTicks}" />
 
@@ -38,36 +42,41 @@
                                       TickFrequency="{TemplateBinding MinorTickFrequency}"
                                       Ticks="{TemplateBinding MinorTicks}" />-->
 
-                <Rectangle Grid.Column="3"
-                           Width="1"
-                           Fill="Black" />
+                    <Rectangle Grid.Column="3"
+                               Width="1"
+                               Fill="Black" />
 
-                <gauges:LinearBlockBar Grid.Column="4"
-                                       Width="4"
-                                       Fill="CornflowerBlue"
-                                       Value="{TemplateBinding Value}" />
+                    <gauges:LinearBlockBar Grid.Column="4"
+                                           Width="4"
+                                           Fill="CornflowerBlue"
+                                           Value="{TemplateBinding Value}" />
 
-                <gauges:LinearLineBar Grid.Column="5"
-                                      Stroke="Red"
-                                      StrokeEndLineCap="Triangle"
-                                      StrokeStartLineCap="Round"
-                                      StrokeThickness="2"
-                                      Value="{TemplateBinding Value}" />
-            </Grid>
+                    <gauges:LinearLineBar Grid.Column="5"
+                                          Stroke="Red"
+                                          StrokeEndLineCap="Triangle"
+                                          StrokeStartLineCap="Round"
+                                          StrokeThickness="2"
+                                          Value="{TemplateBinding Value}" />
+                </Grid>
+            </Border>
         </ControlTemplate>
 
         <ControlTemplate x:Key="HorizontalTemplate"
                          TargetType="{x:Type gauges:LinearGauge}">
-            <Grid Margin="{TemplateBinding ContentOverflow}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <!--<gauges:LinearTextBar Grid.Row="0"
+            <Border Padding="{TemplateBinding Padding}"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                <Grid Margin="{TemplateBinding ContentOverflow}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <!--<gauges:LinearTextBar Grid.Row="0"
                                       TickFrequency="{TemplateBinding MajorTickFrequency}"
                                       Ticks="{TemplateBinding MajorTicks}" />
 
@@ -85,22 +94,23 @@
                                       TickFrequency="{TemplateBinding MinorTickFrequency}"
                                       Ticks="{TemplateBinding MinorTicks}" />-->
 
-                <Rectangle Grid.Row="3"
-                           Height="1"
-                           Fill="Black" />
+                    <Rectangle Grid.Row="3"
+                               Height="1"
+                               Fill="Black" />
 
-                <gauges:LinearBlockBar Grid.Row="4"
-                                       Height="4"
-                                       Fill="CornflowerBlue"
-                                       Value="{TemplateBinding Value}" />
+                    <gauges:LinearBlockBar Grid.Row="4"
+                                           Height="4"
+                                           Fill="CornflowerBlue"
+                                           Value="{TemplateBinding Value}" />
 
-                <gauges:LinearLineBar Grid.Row="5"
-                                      Stroke="Red"
-                                      StrokeEndLineCap="Triangle"
-                                      StrokeStartLineCap="Round"
-                                      StrokeThickness="2"
-                                      Value="{TemplateBinding Value}" />
-            </Grid>
+                    <gauges:LinearLineBar Grid.Row="5"
+                                          Stroke="Red"
+                                          StrokeEndLineCap="Triangle"
+                                          StrokeStartLineCap="Round"
+                                          StrokeThickness="2"
+                                          Value="{TemplateBinding Value}" />
+                </Grid>
+            </Border>
         </ControlTemplate>
 
         <Style TargetType="{x:Type gauges:LinearGauge}">
@@ -120,8 +130,9 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
+
     <UserControl.DataContext>
-        <sample:TickBarVm IsDirectionReversed="True"
+        <sample:TickBarVm IsDirectionReversed="False"
                           MajorTickFrequency="25"
                           MajorTicks="100"
                           Maximum="100"
@@ -135,7 +146,9 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <gauges:LinearGauge IsDirectionReversed="{Binding IsDirectionReversed}"
+        <gauges:LinearGauge BorderBrush="Blue"
+                            BorderThickness="1"
+                            IsDirectionReversed="{Binding IsDirectionReversed}"
                             MajorTickFrequency="{Binding MajorTickFrequency}"
                             MajorTicks="{Binding MajorTicks}"
                             Maximum="{Binding Maximum}"

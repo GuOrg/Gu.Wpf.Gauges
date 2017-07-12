@@ -110,64 +110,33 @@ namespace Gu.Wpf.Gauges
             var strokeThickness = this.GetStrokeThickness();
             if (strokeThickness > 0)
             {
-                var tickBounds = default(Rect);
+                var line = this.CreateLine(finalSize);
                 if (this.StrokeStartLineCap != PenLineCap.Flat)
                 {
-                    var position = this.PixelPosition(this.Minimum, finalSize);
-                    if (this.Placement.IsHorizontal())
-                    {
-                        if (this.IsDirectionReversed)
-                        {
-                            RectExt.SetRight(ref tickBounds, Math.Max(0, (strokeThickness / 2) + position));
-                        }
-                        else
-                        {
-                            RectExt.SetLeft(ref tickBounds, Math.Min(0, position - (strokeThickness / 2)));
-                        }
-                    }
-                    else
-                    {
-                        if (this.IsDirectionReversed)
-                        {
-                            RectExt.SetTop(ref tickBounds, Math.Max(0, (strokeThickness / 2) + position));
-                        }
-                        else
-                        {
-                            RectExt.SetBottom(ref tickBounds, Math.Max(0, (strokeThickness / 2) - position));
-                        }
-                    }
+                    line = line.OffsetStart(strokeThickness / 2);
                 }
 
                 if (this.StrokeEndLineCap != PenLineCap.Flat)
                 {
-                    var position = this.PixelPosition(this.EffectiveValue, finalSize);
-                    if (this.Placement.IsHorizontal())
-                    {
-                        if (this.IsDirectionReversed)
-                        {
-                            RectExt.SetLeft(ref tickBounds, Math.Min(0, position - (strokeThickness / 2)));
-                        }
-                        else
-                        {
-                            RectExt.SetRight(ref tickBounds, Math.Max(0, (strokeThickness / 2) + position));
-                        }
-                    }
-                    else
-                    {
-                        if (this.IsDirectionReversed)
-                        {
-                            RectExt.SetBottom(ref tickBounds, Math.Max(0, (strokeThickness / 2) - position));
-                        }
-                        else
-                        {
-                            RectExt.SetTop(ref tickBounds, Math.Max(0, (strokeThickness / 2) + position));
-                        }
-                    }
+                    line = line.OffsetEnd(strokeThickness / 2);
                 }
 
-                this.Overflow = this.Placement.IsHorizontal()
-                    ? new Thickness(Math.Max(0, -tickBounds.Left), 0, Math.Max(0, tickBounds.Right - finalSize.Width), 0)
-                    : new Thickness(0, Math.Max(0, -tickBounds.Top), 0, Math.Max(0, tickBounds.Bottom - finalSize.Height));
+                if (this.Placement.IsHorizontal())
+                {
+                    this.Overflow = new Thickness(
+                        Math.Max(0, -Math.Min(line.StartPoint.X, line.EndPoint.X)),
+                        0,
+                        Math.Max(0, Math.Max(line.StartPoint.X, line.EndPoint.X) - finalSize.Width),
+                        0);
+                }
+                else
+                {
+                    this.Overflow = new Thickness(
+                        0,
+                        Math.Max(0, -Math.Min(line.StartPoint.Y, line.EndPoint.Y)),
+                        0,
+                        Math.Max(0, Math.Max(line.StartPoint.Y, line.EndPoint.Y) - finalSize.Height));
+                }
             }
             else
             {
@@ -186,15 +155,20 @@ namespace Gu.Wpf.Gauges
                 return;
             }
 
+            var line = this.CreateLine(this.RenderSize);
+            dc.DrawLine(this.Pen, line.StartPoint, line.EndPoint);
+        }
+
+        protected virtual Line CreateLine(Size renderSize)
+        {
             var strokeThickness = this.GetStrokeThickness();
             var start = this.Placement.IsHorizontal()
-                ? new Point(this.PixelPosition(this.Minimum, this.RenderSize), strokeThickness / 2)
-                : new Point(strokeThickness / 2, this.PixelPosition(this.EffectiveValue, this.RenderSize));
+                ? new Point(this.PixelPosition(this.Minimum, renderSize), strokeThickness / 2)
+                : new Point(strokeThickness / 2, this.PixelPosition(this.EffectiveValue, renderSize));
             var end = this.Placement.IsHorizontal()
-                ? new Point(this.PixelPosition(this.EffectiveValue, this.RenderSize), strokeThickness / 2)
-                : new Point(strokeThickness / 2, this.PixelPosition(this.Minimum, this.RenderSize));
-
-            dc.DrawLine(this.Pen, start, end);
+                ? new Point(this.PixelPosition(this.EffectiveValue, renderSize), strokeThickness / 2)
+                : new Point(strokeThickness / 2, this.PixelPosition(this.Minimum, renderSize));
+            return new Line(start, end);
         }
 
         /// <summary>

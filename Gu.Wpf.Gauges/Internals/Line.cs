@@ -4,7 +4,7 @@
     using System.Windows;
     using System.Windows.Controls.Primitives;
 
-    internal struct Line
+    public struct Line
     {
         internal readonly Point StartPoint;
         internal readonly Point EndPoint;
@@ -66,6 +66,16 @@
             }
         }
 
+        public Vector Direction
+        {
+            get
+            {
+                var v = this.EndPoint - this.StartPoint;
+                v.Normalize();
+                return v;
+            }
+        }
+
         public double Length
         {
             get
@@ -84,8 +94,17 @@
 
         public override string ToString()
         {
-            return
-                $"StartPoint: ({this.StartPoint.X}, {this.StartPoint.Y}), EndPoint: ({this.EndPoint.X}, {this.EndPoint.Y}), Length: {this.Length}";
+            return $"StartPoint: ({this.StartPoint.X}, {this.StartPoint.Y}), EndPoint: ({this.EndPoint.X}, {this.EndPoint.Y}), Length: {this.Length}";
+        }
+
+        public Line OffsetStart(double offset)
+        {
+            return new Line(this.StartPoint - (offset * this.Direction), this.EndPoint);
+        }
+
+        public Line OffsetEnd(double offset)
+        {
+            return new Line(this.StartPoint, this.EndPoint + (offset * this.Direction));
         }
     }
 }
