@@ -37,7 +37,6 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -152,16 +151,8 @@
 
                     <TextBlock Grid.Row="10"
                                Grid.Column="0"
-                               Text="TextOrientation" />
-                    <ComboBox Grid.Row="10"
-                              Grid.Column="1"
-                              sample:ItemsControlExt.EnumSource="{x:Type gauges:TextOrientation}"
-                              SelectedItem="{Binding TextOrientation}" />
-
-                    <TextBlock Grid.Row="11"
-                               Grid.Column="0"
                                Text="IsDirectionReversed" />
-                    <CheckBox Grid.Row="11"
+                    <CheckBox Grid.Row="10"
                               Grid.Column="1"
                               IsChecked="{Binding IsDirectionReversed}" />
                 </Grid>
@@ -281,18 +272,6 @@
                             Maximum="{Binding Maximum}"
                             Minimum="{Binding Minimum}"
                             Value="{Binding MinorTickFrequency}" />
-
-                    <TextBlock Grid.Row="8"
-                               Grid.Column="0"
-                               Text="ReservedSpace" />
-                    <TextBox Grid.Row="8"
-                             Grid.Column="1"
-                             Text="{Binding ReservedSpace}" />
-                    <Slider Grid.Row="8"
-                            Grid.Column="2"
-                            Maximum="50"
-                            Minimum="0"
-                            Value="{Binding ReservedSpace}" />
 
                     <TextBlock Grid.Row="9"
                                Grid.Column="0"
