@@ -17,8 +17,8 @@
                     BorderThickness="{TemplateBinding BorderThickness}">
                 <StackPanel Margin="{TemplateBinding ContentOverflow}"
                             Orientation="Horizontal">
-                    <!--<gauges:LinearTextBar TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                          Ticks="{TemplateBinding MajorTicks}" />-->
+                    <gauges:LinearTextBar TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                          Ticks="{TemplateBinding MajorTicks}" />
 
                     <gauges:LinearTickBar x:Name="MajorTicks"
                                           Width="4"
@@ -63,8 +63,8 @@
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}">
                 <StackPanel Margin="{TemplateBinding ContentOverflow}">
-                    <!--<gauges:LinearTextBar TickFrequency="{TemplateBinding MajorTickFrequency}"
-                                          Ticks="{TemplateBinding MajorTicks}" />-->
+                    <gauges:LinearTextBar TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                          Ticks="{TemplateBinding MajorTicks}" />
 
                     <gauges:LinearTickBar x:Name="MajorTicks"
                                           Height="4"
@@ -129,14 +129,14 @@
     </UserControl.Resources>
 
     <UserControl.DataContext>
-        <sample:TickBarVm IsDirectionReversed="False"
+        <sample:TickBarVm IsDirectionReversed="True"
                           MajorTickFrequency="25"
                           MajorTicks="5"
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="10"
                           MinorTicks="15"
-                          Placement="Bottom" />
+                          Placement="Right" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>

@@ -84,7 +84,6 @@
                 return;
             }
 
-            var r = (this.TickDiameter - this.GetStrokeThickness()) / 2;
             var max = this.EffectiveValue;
             if (max < this.Maximum)
             {
@@ -116,6 +115,8 @@
 
                 dc.PushClip(new RectangleGeometry(rect));
             }
+
+            var r = this.TickDiameter / 2;
 
             foreach (var tick in this.AllTicks)
             {
