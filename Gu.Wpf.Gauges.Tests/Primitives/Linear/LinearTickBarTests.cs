@@ -185,7 +185,9 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 Padding = (Thickness)ThicknessConverter.ConvertFrom(padding)
             };
 
-            tickBar.Arrange(new Rect(new Size(10, 10)));
+            var gauge = new LinearGauge { Content = tickBar };
+            gauge.Arrange(new Rect(new Size(10, 10)));
+            Assert.AreEqual(expected, gauge.ContentOverflow.ToString());
             Assert.AreEqual(expected, tickBar.Overflow.ToString());
         }
 

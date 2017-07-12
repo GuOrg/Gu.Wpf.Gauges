@@ -129,9 +129,9 @@
     </UserControl.Resources>
 
     <UserControl.DataContext>
-        <sample:TickBarVm IsDirectionReversed="True"
+        <sample:TickBarVm IsDirectionReversed="False"
                           MajorTickFrequency="25"
-                          MajorTicks="100"
+                          MajorTicks="5"
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="10"
