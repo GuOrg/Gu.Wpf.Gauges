@@ -1,6 +1,5 @@
 namespace Gu.Wpf.Gauges
 {
-    using System;
     using System.Windows;
     using System.Windows.Controls.Primitives;
 
@@ -103,34 +102,6 @@ namespace Gu.Wpf.Gauges
         {
             var interpolation = Interpolate.Linear(this.Minimum, this.Maximum, value);
             return interpolation.Interpolate(size, this.Padding, this.Placement, this.IsDirectionReversed);
-        }
-
-        /// <summary>
-        /// Get the interpolated pixel position for the value.
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        [Obsolete("Don't use this.")]
-        protected virtual double PixelPosition(double value)
-        {
-            var step = Interpolate.Linear(this.Minimum, this.Maximum, value)
-                                   .Clamp(0, 1);
-
-            var strokeThickness = this.GetStrokeThickness();
-            if (this.Placement.IsHorizontal())
-            {
-                var pos = step.Interpolate(strokeThickness / 2, this.ActualWidth - (strokeThickness / 2));
-                return this.IsDirectionReversed
-                    ? this.ActualWidth - pos
-                    : pos;
-            }
-            else
-            {
-                var pos = step.Interpolate(strokeThickness / 2, this.ActualHeight - (strokeThickness / 2));
-                return this.IsDirectionReversed
-                    ? pos
-                    : this.ActualHeight - pos;
-            }
         }
     }
 }

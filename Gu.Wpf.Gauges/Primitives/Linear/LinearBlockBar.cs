@@ -35,7 +35,7 @@
                 var strokeThickness = this.GetStrokeThickness();
                 rect.Inflate(-strokeThickness / 2, -strokeThickness / 2);
                 var value = this.EffectiveValue;
-                var pos = this.PixelPosition(value);
+                var pos = this.PixelPosition(value, this.RenderSize);
                 if (this.Placement.IsHorizontal())
                 {
                     if (this.IsDirectionReversed)
@@ -64,7 +64,7 @@
 
             Rect Split(ref Rect barRect, double tickValue)
             {
-                var pos = this.PixelPosition(tickValue);
+                var pos = this.PixelPosition(tickValue, this.RenderSize);
                 var offset = (this.TickGap / 2) + (this.GetStrokeThickness() / 2);
                 if (this.Placement.IsHorizontal())
                 {

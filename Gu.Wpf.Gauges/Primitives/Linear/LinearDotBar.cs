@@ -49,7 +49,7 @@
         {
             Point CenterPoint(double tick)
             {
-                var pos = this.PixelPosition(tick);
+                var pos = this.PixelPosition(tick, this.RenderSize);
                 if (this.Placement.IsHorizontal())
                 {
                     return new Point(pos, this.ActualHeight / 2);
@@ -73,7 +73,7 @@
             {
                 var rect = new Rect(this.RenderSize);
                 rect.Inflate(new Size(this.TickDiameter, this.TickDiameter));
-                var pos = this.PixelPosition(max);
+                var pos = this.PixelPosition(max, this.RenderSize);
                 if (this.Placement.IsHorizontal())
                 {
                     if (this.IsDirectionReversed)
