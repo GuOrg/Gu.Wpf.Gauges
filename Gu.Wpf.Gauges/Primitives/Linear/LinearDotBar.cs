@@ -2,7 +2,9 @@
 {
     using System;
     using System.Windows;
+    using System.Windows.Controls.Primitives;
     using System.Windows.Media;
+    using Gu.Wpf.Gauges.Primitives.Linear;
 
     public class LinearDotBar : LinearGeometryBar
     {
@@ -41,25 +43,40 @@
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            var thickness = Math.Abs(this.TickDiameter);
+            var thickness = Math.Abs(this.TickDiameter) + this.GetStrokeThickness();
             return new Size(thickness, thickness);
+        }
+
+        protected override Size ArrangeOverride(Size finalSize)
+        {
+            var strokeThickness = this.GetStrokeThickness();
+            var line = this.CreateLine(finalSize);
+            line = line.OffsetStart((this.TickDiameter / 2) + (strokeThickness / 2));
+            line = line.OffsetEnd((this.TickDiameter / 2) + (strokeThickness / 2));
+
+            if (this.Placement.IsHorizontal())
+            {
+                this.Overflow = new Thickness(
+                    Math.Max(0, -Math.Min(line.StartPoint.X, line.EndPoint.X)),
+                    0,
+                    Math.Max(0, Math.Max(line.StartPoint.X, line.EndPoint.X) - finalSize.Width),
+                    0);
+            }
+            else
+            {
+                this.Overflow = new Thickness(
+                    0,
+                    Math.Max(0, -Math.Min(line.StartPoint.Y, line.EndPoint.Y)),
+                    0,
+                    Math.Max(0, Math.Max(line.StartPoint.Y, line.EndPoint.Y) - finalSize.Height));
+            }
+
+            this.RegisterOverflow(this.Overflow);
+            return finalSize;
         }
 
         protected override void OnRender(DrawingContext dc)
         {
-            Point CenterPoint(double tick)
-            {
-                var pos = this.PixelPosition(tick, this.RenderSize);
-                if (this.Placement.IsHorizontal())
-                {
-                    return new Point(pos, this.ActualHeight / 2);
-                }
-                else
-                {
-                    return new Point(this.ActualWidth / 2, pos);
-                }
-            }
-
             if (this.Pen == null ||
                 this.AllTicks == null ||
                 this.EffectiveValue == this.Minimum)
@@ -102,7 +119,7 @@
 
             foreach (var tick in this.AllTicks)
             {
-                dc.DrawEllipse(this.Fill, this.Pen, CenterPoint(tick), r, r);
+                dc.DrawEllipse(this.Fill, this.Pen, this.CenterPoint(tick, this.RenderSize), r, r);
                 if (tick > max)
                 {
                     break;
@@ -113,6 +130,49 @@
             {
                 dc.Pop();
             }
+        }
+
+        protected virtual Point CenterPoint(double tick, Size renderSize)
+        {
+            var pos = this.PixelPosition(tick, renderSize);
+            var strokeThickness = this.GetStrokeThickness();
+            switch (this.Placement)
+            {
+                case TickBarPlacement.Left:
+                    {
+                        var x = this.Padding.Left + (strokeThickness / 2) + (this.TickDiameter / 2);
+                        return new Point(x, pos);
+                    }
+
+                case TickBarPlacement.Top:
+                    {
+                        var y = this.Padding.Top + (strokeThickness / 2) + (this.TickDiameter / 2);
+                        return new Point(pos, y);
+                    }
+
+                case TickBarPlacement.Right:
+                    {
+                        var x = renderSize.Width - this.Padding.Right - (strokeThickness / 2) - (this.TickDiameter / 2);
+                        return new Point(x, pos);
+                    }
+
+                case TickBarPlacement.Bottom:
+                    {
+                        var y = renderSize.Height - this.Padding.Bottom - (strokeThickness / 2) - +(this.TickDiameter / 2);
+                        return new Point(pos, y);
+                    }
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        protected virtual Line CreateLine(Size renderSize)
+        {
+            var strokeThickness = this.GetStrokeThickness();
+            var startPos = this.CenterPoint(this.Minimum, renderSize);
+            var endPos = this.CenterPoint(this.EffectiveValue, renderSize);
+            return new Line(startPos, endPos);
         }
     }
 }
