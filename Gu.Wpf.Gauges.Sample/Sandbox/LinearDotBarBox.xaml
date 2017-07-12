@@ -15,7 +15,7 @@
                           MajorTicks="75"
                           Maximum="100"
                           Minimum="0"
-                          Placement="Bottom"
+                          Placement="Top"
                           SnapsToDevicePixels="False"
                           TickWidth="10"
                           Value="50" />

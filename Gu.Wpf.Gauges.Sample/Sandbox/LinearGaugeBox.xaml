@@ -136,16 +136,18 @@
                           Minimum="0"
                           MinorTickFrequency="10"
                           MinorTicks="15"
-                          Placement="Top" />
+                          Placement="Bottom" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <gauges:LinearGauge BorderBrush="Blue"
                             BorderThickness="1"
