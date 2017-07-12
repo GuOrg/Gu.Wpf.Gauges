@@ -29,7 +29,7 @@
             ? this.InterpolateHorizontal(size, padding, isDirectionReversed)
             : this.InterpolateVertical(size, padding, isDirectionReversed);
 
-        internal double InterpolateVertical(Size size, Thickness padding, bool isDirectionReversed) => this.Interpolate(padding.Top, size.Height - padding.Bottom, isDirectionReversed);
+        internal double InterpolateVertical(Size size, Thickness padding, bool isDirectionReversed) => this.Interpolate(size.Height - padding.Bottom, padding.Top, isDirectionReversed);
 
         internal double InterpolateHorizontal(Size size, Thickness padding, bool isDirectionReversed) => this.Interpolate(padding.Left, size.Width - padding.Right, isDirectionReversed);
     }

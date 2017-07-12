@@ -162,13 +162,45 @@ namespace Gu.Wpf.Gauges
         protected virtual Line CreateLine(Size renderSize)
         {
             var strokeThickness = this.GetStrokeThickness();
-            var start = this.Placement.IsHorizontal()
-                ? new Point(this.PixelPosition(this.Minimum, renderSize), strokeThickness / 2)
-                : new Point(strokeThickness / 2, this.PixelPosition(this.EffectiveValue, renderSize));
-            var end = this.Placement.IsHorizontal()
-                ? new Point(this.PixelPosition(this.EffectiveValue, renderSize), strokeThickness / 2)
-                : new Point(strokeThickness / 2, this.PixelPosition(this.Minimum, renderSize));
-            return new Line(start, end);
+            var startPos = this.PixelPosition(this.Minimum, renderSize);
+            var endPos = this.PixelPosition(this.EffectiveValue, renderSize);
+            switch (this.Placement)
+            {
+                case TickBarPlacement.Left:
+                    {
+                        var x = this.Padding.Left + (strokeThickness / 2);
+                        return new Line(
+                            new Point(x, startPos),
+                            new Point(x, endPos));
+                    }
+
+                case TickBarPlacement.Top:
+                    {
+                        var y = this.Padding.Top + (strokeThickness / 2);
+                        return new Line(
+                            new Point(startPos, y),
+                            new Point(endPos, y));
+                    }
+
+                case TickBarPlacement.Right:
+                    {
+                        var x = renderSize.Width - this.Padding.Right - (strokeThickness / 2);
+                        return new Line(
+                            new Point(x, startPos),
+                            new Point(x, endPos));
+                    }
+
+                case TickBarPlacement.Bottom:
+                    {
+                        var y = renderSize.Height - this.Padding.Bottom - (strokeThickness / 2);
+                        return new Line(
+                            new Point(startPos, y),
+                            new Point(endPos, y));
+                    }
+
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         /// <summary>

@@ -14,7 +14,7 @@
                           MajorTicks="75"
                           Maximum="100"
                           Minimum="0"
-                          Placement="Bottom"
+                          Placement="Right"
                           SnapsToDevicePixels="False"
                           TickWidth="10"
                           Value="50" />
@@ -23,9 +23,11 @@
         <Grid.RowDefinitions>
             <RowDefinition MinHeight="100" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid>
-            <gauges:LinearLineBar Padding="3,3"
+            <gauges:LinearLineBar x:Name="LineBar"
+                                  Padding="2.5"
                                   IsDirectionReversed="{Binding IsDirectionReversed}"
                                   Maximum="{Binding Maximum}"
                                   Minimum="{Binding Minimum}"
@@ -41,7 +43,9 @@
                        Stroke="Black"
                        StrokeThickness="1" />
         </Grid>
-        <ContentPresenter Grid.Row="1"
+        <TextBlock Grid.Row="1"
+                   Text="{Binding ElementName=LineBar, Path=Overflow, StringFormat='{}Overflow: {0}'}" />
+        <ContentPresenter Grid.Row="2"
                           Content="{Binding}" />
     </Grid>
 </UserControl>

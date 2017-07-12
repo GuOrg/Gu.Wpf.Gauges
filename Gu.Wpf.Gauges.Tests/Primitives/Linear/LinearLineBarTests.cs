@@ -17,34 +17,34 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         [TestCase(TickBarPlacement.Left, true, 1, PenLineCap.Flat, PenLineCap.Flat, null)]
         [TestCase(TickBarPlacement.Left, false, 6, PenLineCap.Flat, PenLineCap.Flat, null)]
         [TestCase(TickBarPlacement.Left, true, 6, PenLineCap.Flat, PenLineCap.Flat, null)]
-        [TestCase(TickBarPlacement.Left, false, 1, PenLineCap.Round, PenLineCap.Triangle, "3,0,3,0")]
-        [TestCase(TickBarPlacement.Left, true, 1, PenLineCap.Round, PenLineCap.Triangle, "3,0,3,0")]
-        [TestCase(TickBarPlacement.Left, false, 6, PenLineCap.Round, PenLineCap.Triangle, "3,0,3,0")]
-        [TestCase(TickBarPlacement.Left, true, 6, PenLineCap.Round, PenLineCap.Triangle, "3,0,3,0")]
+        [TestCase(TickBarPlacement.Left, false, 1, PenLineCap.Round, PenLineCap.Triangle, "3,3")]
+        [TestCase(TickBarPlacement.Left, true, 1, PenLineCap.Round, PenLineCap.Triangle, "3,3")]
+        [TestCase(TickBarPlacement.Left, false, 6, PenLineCap.Round, PenLineCap.Triangle, "3,3")]
+        [TestCase(TickBarPlacement.Left, true, 6, PenLineCap.Round, PenLineCap.Triangle, "3,3")]
         [TestCase(TickBarPlacement.Right, false, 1, PenLineCap.Flat, PenLineCap.Flat, null)]
         [TestCase(TickBarPlacement.Right, true, 1, PenLineCap.Flat, PenLineCap.Flat, null)]
         [TestCase(TickBarPlacement.Right, false, 6, PenLineCap.Flat, PenLineCap.Flat, null)]
         [TestCase(TickBarPlacement.Right, true, 6, PenLineCap.Flat, PenLineCap.Flat, null)]
-        [TestCase(TickBarPlacement.Right, false, 1, PenLineCap.Round, PenLineCap.Triangle, "3,0,3,0")]
-        [TestCase(TickBarPlacement.Right, true, 1, PenLineCap.Round, PenLineCap.Triangle, "3,0,3,0")]
-        [TestCase(TickBarPlacement.Right, false, 6, PenLineCap.Round, PenLineCap.Triangle, "3,0,3,0")]
-        [TestCase(TickBarPlacement.Right, true, 6, PenLineCap.Round, PenLineCap.Triangle, "3,0,3,0")]
+        [TestCase(TickBarPlacement.Right, false, 1, PenLineCap.Round, PenLineCap.Triangle, "3,3")]
+        [TestCase(TickBarPlacement.Right, true, 1, PenLineCap.Round, PenLineCap.Triangle, "3,3")]
+        [TestCase(TickBarPlacement.Right, false, 6, PenLineCap.Round, PenLineCap.Triangle, "3,3")]
+        [TestCase(TickBarPlacement.Right, true, 6, PenLineCap.Round, PenLineCap.Triangle, "3,3")]
         [TestCase(TickBarPlacement.Top, false, 1, PenLineCap.Flat, PenLineCap.Flat, null)]
         [TestCase(TickBarPlacement.Top, true, 1, PenLineCap.Flat, PenLineCap.Flat, null)]
         [TestCase(TickBarPlacement.Top, false, 6, PenLineCap.Flat, PenLineCap.Flat, null)]
         [TestCase(TickBarPlacement.Top, true, 6, PenLineCap.Flat, PenLineCap.Flat, null)]
-        [TestCase(TickBarPlacement.Top, false, 1, PenLineCap.Round, PenLineCap.Triangle, "0,3,0,3")]
-        [TestCase(TickBarPlacement.Top, true, 1, PenLineCap.Round, PenLineCap.Triangle, "0,3,0,3")]
-        [TestCase(TickBarPlacement.Top, false, 6, PenLineCap.Round, PenLineCap.Triangle, "0,3,0,3")]
-        [TestCase(TickBarPlacement.Top, true, 6, PenLineCap.Round, PenLineCap.Triangle, "0,3,0,3")]
+        [TestCase(TickBarPlacement.Top, false, 1, PenLineCap.Round, PenLineCap.Triangle, "3,3")]
+        [TestCase(TickBarPlacement.Top, true, 1, PenLineCap.Round, PenLineCap.Triangle, "3,3")]
+        [TestCase(TickBarPlacement.Top, false, 6, PenLineCap.Round, PenLineCap.Triangle, "3,3")]
+        [TestCase(TickBarPlacement.Top, true, 6, PenLineCap.Round, PenLineCap.Triangle, "3,3")]
         [TestCase(TickBarPlacement.Bottom, false, 1, PenLineCap.Flat, PenLineCap.Flat, null)]
         [TestCase(TickBarPlacement.Bottom, true, 1, PenLineCap.Flat, PenLineCap.Flat, null)]
         [TestCase(TickBarPlacement.Bottom, false, 6, PenLineCap.Flat, PenLineCap.Flat, null)]
         [TestCase(TickBarPlacement.Bottom, true, 6, PenLineCap.Flat, PenLineCap.Flat, null)]
-        [TestCase(TickBarPlacement.Bottom, false, 1, PenLineCap.Round, PenLineCap.Triangle, "0,3,0,3")]
-        [TestCase(TickBarPlacement.Bottom, true, 1, PenLineCap.Round, PenLineCap.Triangle, "0,3,0,3")]
-        [TestCase(TickBarPlacement.Bottom, false, 6, PenLineCap.Round, PenLineCap.Triangle, "0,3,0,3")]
-        [TestCase(TickBarPlacement.Bottom, true, 6, PenLineCap.Round, PenLineCap.Triangle, "0,3,0,3")]
+        [TestCase(TickBarPlacement.Bottom, false, 1, PenLineCap.Round, PenLineCap.Triangle, "3,3")]
+        [TestCase(TickBarPlacement.Bottom, true, 1, PenLineCap.Round, PenLineCap.Triangle, "3,3")]
+        [TestCase(TickBarPlacement.Bottom, false, 6, PenLineCap.Round, PenLineCap.Triangle, "3,3")]
+        [TestCase(TickBarPlacement.Bottom, true, 6, PenLineCap.Round, PenLineCap.Triangle, "3,3")]
         public void Render(TickBarPlacement placement, bool isDirectionReversed, double strokeThickness, PenLineCap startLineCap, PenLineCap endLineCap, string padding)
         {
             var tickBar = new LinearLineBar
@@ -59,7 +59,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 IsDirectionReversed = isDirectionReversed,
                 Padding = string.IsNullOrEmpty(padding) ? default(Thickness) : (Thickness)ThicknessConverter.ConvertFrom(padding)
             };
-            SaveImage(tickBar);
+
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
 
@@ -116,15 +116,11 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
 
         private static string GetFileName(LinearLineBar tickBar)
         {
-            var orientation = tickBar.Placement == TickBarPlacement.Left || tickBar.Placement == TickBarPlacement.Right
-                ? "_Vertical"
-                : "_Horizontal";
-
             var padding = tickBar.Padding.IsZero()
                 ? string.Empty
                 : $"_Padding_{tickBar.Padding}";
 
-            return $@"LinearLineBar_{orientation}_IsDirectionReversed_{tickBar.IsDirectionReversed}_Min_{tickBar.Minimum}_Max_{tickBar.Maximum}{padding}_StrokeThickness_{tickBar.StrokeThickness}_StrokeStartLineCap_{tickBar.StrokeStartLineCap}_StrokeEndLineCap_{tickBar.StrokeEndLineCap}.png"
+            return $@"LinearLineBar_Placement_{tickBar.Placement}_IsDirectionReversed_{tickBar.IsDirectionReversed}_Min_{tickBar.Minimum}_Max_{tickBar.Maximum}{padding}_StrokeThickness_{tickBar.StrokeThickness}_StrokeStartLineCap_{tickBar.StrokeStartLineCap}_StrokeEndLineCap_{tickBar.StrokeEndLineCap}.png"
                 .Replace(" ", "_");
         }
 

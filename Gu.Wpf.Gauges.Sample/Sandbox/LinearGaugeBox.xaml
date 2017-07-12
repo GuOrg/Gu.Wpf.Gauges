@@ -132,7 +132,7 @@
     </UserControl.Resources>
 
     <UserControl.DataContext>
-        <sample:TickBarVm IsDirectionReversed="False"
+        <sample:TickBarVm IsDirectionReversed="True"
                           MajorTickFrequency="25"
                           MajorTicks="100"
                           Maximum="100"

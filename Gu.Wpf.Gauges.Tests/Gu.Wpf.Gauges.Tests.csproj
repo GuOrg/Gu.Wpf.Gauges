@@ -153,7 +153,6 @@
     </Analyzer>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Primitives\Linear\LinearLineBarImages\" />
     <Folder Include="SandBox\" />
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +193,38 @@
     <Content Include="Primitives\Linear\LinearDotBarImages\LinearDotBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1 2 6_Vertical.png" />
     <Content Include="Primitives\Linear\LinearDotBarImages\LinearDotBar_Min_0_Max_10_TickFrequency_1_Horizontal.png" />
     <Content Include="Primitives\Linear\LinearDotBarImages\LinearDotBar_Min_0_Max_10_TickFrequency_1_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Bottom_IsDirectionReversed_False_Min_0_Max_10_Padding_3.3,3.3,3.3,3.3_StrokeThickness_1_StrokeStartLineCap_Round_StrokeEndLineCap_Triangle.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Bottom_IsDirectionReversed_False_Min_0_Max_10_Padding_3.3,3.3,3.3,3.3_StrokeThickness_6_StrokeStartLineCap_Round_StrokeEndLineCap_Triangle.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Bottom_IsDirectionReversed_False_Min_0_Max_10_StrokeThickness_1_StrokeStartLineCap_Flat_StrokeEndLineCap_Flat.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Bottom_IsDirectionReversed_False_Min_0_Max_10_StrokeThickness_6_StrokeStartLineCap_Flat_StrokeEndLineCap_Flat.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Bottom_IsDirectionReversed_True_Min_0_Max_10_Padding_3.3,3.3,3.3,3.3_StrokeThickness_1_StrokeStartLineCap_Round_StrokeEndLineCap_Triangle.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Bottom_IsDirectionReversed_True_Min_0_Max_10_Padding_3.3,3.3,3.3,3.3_StrokeThickness_6_StrokeStartLineCap_Round_StrokeEndLineCap_Triangle.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Bottom_IsDirectionReversed_True_Min_0_Max_10_StrokeThickness_1_StrokeStartLineCap_Flat_StrokeEndLineCap_Flat.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Bottom_IsDirectionReversed_True_Min_0_Max_10_StrokeThickness_6_StrokeStartLineCap_Flat_StrokeEndLineCap_Flat.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Left_IsDirectionReversed_False_Min_0_Max_10_Padding_3.3,3.3,3.3,3.3_StrokeThickness_1_StrokeStartLineCap_Round_StrokeEndLineCap_Triangle.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Left_IsDirectionReversed_False_Min_0_Max_10_Padding_3.3,3.3,3.3,3.3_StrokeThickness_6_StrokeStartLineCap_Round_StrokeEndLineCap_Triangle.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Left_IsDirectionReversed_False_Min_0_Max_10_StrokeThickness_1_StrokeStartLineCap_Flat_StrokeEndLineCap_Flat.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Left_IsDirectionReversed_False_Min_0_Max_10_StrokeThickness_6_StrokeStartLineCap_Flat_StrokeEndLineCap_Flat.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Left_IsDirectionReversed_True_Min_0_Max_10_Padding_3.3,3.3,3.3,3.3_StrokeThickness_1_StrokeStartLineCap_Round_StrokeEndLineCap_Triangle.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Left_IsDirectionReversed_True_Min_0_Max_10_Padding_3.3,3.3,3.3,3.3_StrokeThickness_6_StrokeStartLineCap_Round_StrokeEndLineCap_Triangle.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Left_IsDirectionReversed_True_Min_0_Max_10_StrokeThickness_1_StrokeStartLineCap_Flat_StrokeEndLineCap_Flat.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Left_IsDirectionReversed_True_Min_0_Max_10_StrokeThickness_6_StrokeStartLineCap_Flat_StrokeEndLineCap_Flat.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Right_IsDirectionReversed_False_Min_0_Max_10_Padding_3.3,3.3,3.3,3.3_StrokeThickness_1_StrokeStartLineCap_Round_StrokeEndLineCap_Triangle.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Right_IsDirectionReversed_False_Min_0_Max_10_Padding_3.3,3.3,3.3,3.3_StrokeThickness_6_StrokeStartLineCap_Round_StrokeEndLineCap_Triangle.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Right_IsDirectionReversed_False_Min_0_Max_10_StrokeThickness_1_StrokeStartLineCap_Flat_StrokeEndLineCap_Flat.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Right_IsDirectionReversed_False_Min_0_Max_10_StrokeThickness_6_StrokeStartLineCap_Flat_StrokeEndLineCap_Flat.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Right_IsDirectionReversed_True_Min_0_Max_10_Padding_3.3,3.3,3.3,3.3_StrokeThickness_1_StrokeStartLineCap_Round_StrokeEndLineCap_Triangle.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Right_IsDirectionReversed_True_Min_0_Max_10_Padding_3.3,3.3,3.3,3.3_StrokeThickness_6_StrokeStartLineCap_Round_StrokeEndLineCap_Triangle.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Right_IsDirectionReversed_True_Min_0_Max_10_StrokeThickness_1_StrokeStartLineCap_Flat_StrokeEndLineCap_Flat.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Right_IsDirectionReversed_True_Min_0_Max_10_StrokeThickness_6_StrokeStartLineCap_Flat_StrokeEndLineCap_Flat.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Top_IsDirectionReversed_False_Min_0_Max_10_Padding_3.3,3.3,3.3,3.3_StrokeThickness_1_StrokeStartLineCap_Round_StrokeEndLineCap_Triangle.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Top_IsDirectionReversed_False_Min_0_Max_10_Padding_3.3,3.3,3.3,3.3_StrokeThickness_6_StrokeStartLineCap_Round_StrokeEndLineCap_Triangle.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Top_IsDirectionReversed_False_Min_0_Max_10_StrokeThickness_1_StrokeStartLineCap_Flat_StrokeEndLineCap_Flat.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Top_IsDirectionReversed_False_Min_0_Max_10_StrokeThickness_6_StrokeStartLineCap_Flat_StrokeEndLineCap_Flat.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Top_IsDirectionReversed_True_Min_0_Max_10_Padding_3.3,3.3,3.3,3.3_StrokeThickness_1_StrokeStartLineCap_Round_StrokeEndLineCap_Triangle.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Top_IsDirectionReversed_True_Min_0_Max_10_Padding_3.3,3.3,3.3,3.3_StrokeThickness_6_StrokeStartLineCap_Round_StrokeEndLineCap_Triangle.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Top_IsDirectionReversed_True_Min_0_Max_10_StrokeThickness_1_StrokeStartLineCap_Flat_StrokeEndLineCap_Flat.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Top_IsDirectionReversed_True_Min_0_Max_10_StrokeThickness_6_StrokeStartLineCap_Flat_StrokeEndLineCap_Flat.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_False_Default_TickFrequency_5_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_False_Default_TickFrequency_5_Ticks_1_2_6_Padding_1,1,1,1.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_False_Explicit_Center_Bottom_TickFrequency_5_Ticks_1_2_6.png" />
