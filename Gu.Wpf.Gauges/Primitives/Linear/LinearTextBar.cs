@@ -116,8 +116,8 @@
             }
 
             this.Overflow = this.Placement.IsHorizontal()
-                ? new Thickness(Math.Max(0, -rect.Left), 0, Math.Max(0, rect.Right - finalSize.Width), 0)
-                : new Thickness(0, Math.Max(0, -rect.Top), 0, Math.Max(0, rect.Bottom - finalSize.Height));
+                ? new Thickness(Math.Max(0, RoundUp(-rect.Left)), 0, Math.Max(0, RoundUp(rect.Right - finalSize.Width)), 0)
+                : new Thickness(0, Math.Max(0, RoundUp(-rect.Top)), 0, Math.Max(0, RoundUp(rect.Bottom - finalSize.Height)));
             this.RegisterOverflow(this.Overflow);
             return finalSize;
         }
@@ -176,6 +176,12 @@
         private static object CoerceTextPosition(DependencyObject d, object basevalue)
         {
             return basevalue ?? LinearTextPosition.Default;
+        }
+
+        private static double RoundUp(double value)
+        {
+            var n = Math.Ceiling(value / 0.5);
+            return n * 0.5;
         }
 
         private void OnTextPositionArrange(object sender, EventArgs e)

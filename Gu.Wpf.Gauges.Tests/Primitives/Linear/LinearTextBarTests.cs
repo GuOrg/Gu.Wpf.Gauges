@@ -209,22 +209,22 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
 
-        [TestCase(TickBarPlacement.Left, false, "0 0 0 0", "0,4.365234375,0,4.341796875")]
-        [TestCase(TickBarPlacement.Left, false, "0 1 0 1", "0,3.365234375,0,3.341796875")]
-        [TestCase(TickBarPlacement.Left, true, "0 0 0 0", "0,4.341796875,0,4.365234375")]
-        [TestCase(TickBarPlacement.Left, true, "0 1 0 1", "0,3.341796875,0,3.365234375")]
-        [TestCase(TickBarPlacement.Right, false, "0 0 0 0", "0,4.365234375,0,4.341796875")]
-        [TestCase(TickBarPlacement.Right, false, "0 1 0 1", "0,3.365234375,0,3.341796875")]
-        [TestCase(TickBarPlacement.Right, true, "0 0 0 0", "0,4.341796875,0,4.365234375")]
-        [TestCase(TickBarPlacement.Right, true, "0 1 0 1", "0,3.341796875,0,3.365234375")]
-        [TestCase(TickBarPlacement.Bottom, false, "0 0 0 0", "2.736328125,0,5.73009485006332,0")]
-        [TestCase(TickBarPlacement.Bottom, false, "1 0 1 0", "1.736328125,0,4.73009485006332,0")]
-        [TestCase(TickBarPlacement.Bottom, true, "0 0 0 0", "5.73009395599365,0,2.73632806539536,0")]
-        [TestCase(TickBarPlacement.Bottom, true, "1 0 1 0", "4.73009395599365,0,1.73632806539536,0")]
-        [TestCase(TickBarPlacement.Top, false, "0 0 0 0", "2.736328125,0,5.73009485006332,0")]
-        [TestCase(TickBarPlacement.Top, false, "1 0 1 0", "1.736328125,0,4.73009485006332,0")]
-        [TestCase(TickBarPlacement.Top, true, "0 0 0 0", "5.73009395599365,0,2.73632806539536,0")]
-        [TestCase(TickBarPlacement.Top, true, "1 0 1 0", "4.73009395599365,0,1.73632806539536,0")]
+        [TestCase(TickBarPlacement.Left, false, "0 0 0 0", "0,4.5,0,4.5")]
+        [TestCase(TickBarPlacement.Left, false, "0 1 0 1", "0,3.5,0,3.5")]
+        [TestCase(TickBarPlacement.Left, true, "0 0 0 0", "0,4.5,0,4.5")]
+        [TestCase(TickBarPlacement.Left, true, "0 1 0 1", "0,3.5,0,3.5")]
+        [TestCase(TickBarPlacement.Right, false, "0 0 0 0", "0,4.5,0,4.5")]
+        [TestCase(TickBarPlacement.Right, false, "0 1 0 1", "0,3.5,0,3.5")]
+        [TestCase(TickBarPlacement.Right, true, "0 0 0 0", "0,4.5,0,4.5")]
+        [TestCase(TickBarPlacement.Right, true, "0 1 0 1", "0,3.5,0,3.5")]
+        [TestCase(TickBarPlacement.Bottom, false, "0 0 0 0", "3,0,6,0")]
+        [TestCase(TickBarPlacement.Bottom, false, "1 0 1 0", "2,0,5,0")]
+        [TestCase(TickBarPlacement.Bottom, true, "0 0 0 0", "6,0,3,0")]
+        [TestCase(TickBarPlacement.Bottom, true, "1 0 1 0", "5,0,2,0")]
+        [TestCase(TickBarPlacement.Top, false, "0 0 0 0", "3,0,6,0")]
+        [TestCase(TickBarPlacement.Top, false, "1 0 1 0", "2,0,5,0")]
+        [TestCase(TickBarPlacement.Top, true, "0 0 0 0", "6,0,3,0")]
+        [TestCase(TickBarPlacement.Top, true, "1 0 1 0", "5,0,2,0")]
         public void Overflow(TickBarPlacement placement, bool isDirectionReversed, string padding, string expected)
         {
             var tickBar = new LinearTextBar
