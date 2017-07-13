@@ -63,7 +63,7 @@
                                                        Vertical="Center" />
                 </gauges:LinearTextBar.TextPosition>
                 <gauges:LinearTextBar.TextTransform>
-                    <RotateTransform Angle="45" />
+                    <RotateTransform Angle="0" />
                 </gauges:LinearTextBar.TextTransform>
             </gauges:LinearTextBar>
             <!--<Rectangle Grid.Row="0"

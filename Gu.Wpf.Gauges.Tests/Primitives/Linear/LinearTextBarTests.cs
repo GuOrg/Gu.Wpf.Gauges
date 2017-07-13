@@ -202,6 +202,8 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
                 Foreground = Brushes.Black,
                 Placement = placement,
+                FontFamily = new FontFamily("Arial"),
+                FontSize = 12,
                 IsDirectionReversed = isDirectionReversed,
                 Padding = padding.AsThickness(),
             };
