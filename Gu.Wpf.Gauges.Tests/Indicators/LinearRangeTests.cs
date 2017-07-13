@@ -45,13 +45,12 @@
             var orientation = range.Placement.IsHorizontal()
                 ? "Orientation_Horizontal"
                 : "Orientation_Vertical";
-            return $"LinearRange_{orientation}_Min_{range.Minimum}_Max_{range.Maximum}_Start_{range.Start}_Start_{range.End}_IsDirectionReversed_{range.IsDirectionReversed}.png";
+            return $"LinearRange_{orientation}_Min_{range.Minimum}_Max_{range.Maximum}_Start_{range.Start}_End_{range.End}_IsDirectionReversed_{range.IsDirectionReversed}.png";
         }
 
         private static void SaveImage(LinearGauge gauge)
         {
             Directory.CreateDirectory($@"C:\Temp\LinearRange");
-
             gauge.SaveImage(
                 gauge.Placement.IsHorizontal() ? new Size(100, 10) : new Size(10, 100),
                 $@"C:\Temp\LinearRange\{GetFileName((LinearRange)gauge.Content)}");

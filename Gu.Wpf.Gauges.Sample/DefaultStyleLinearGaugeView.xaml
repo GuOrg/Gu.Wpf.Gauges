@@ -13,7 +13,7 @@
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="5"
-                          Placement="Left"
+                          Placement="Top"
                           ShowLabels="True"
                           Value="0" />
     </UserControl.DataContext>

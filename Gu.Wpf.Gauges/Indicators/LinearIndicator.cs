@@ -4,15 +4,26 @@
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Data;
+    using Gu.Wpf.Gauges.Primitives.Linear;
 
     public class LinearIndicator : ValueIndicator
     {
+#pragma warning disable SA1202 // Elements must be ordered by access
         public static readonly DependencyProperty PlacementProperty = LinearGauge.PlacementProperty.AddOwner(
             typeof(LinearIndicator),
             new FrameworkPropertyMetadata(
                 TickBarPlacement.Bottom,
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits,
                 OnPlacementChanged));
+
+        private static readonly DependencyPropertyKey OverflowPropertyKey = DependencyProperty.RegisterReadOnly(
+            nameof(Overflow),
+            typeof(Thickness),
+            typeof(LinearIndicator),
+            new PropertyMetadata(default(Thickness)));
+
+        public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
+#pragma warning restore SA1202 // Elements must be ordered by access
 
         private static readonly PropertyPath ValuePropertyPath = new PropertyPath(Gauge.ValueProperty);
 
@@ -25,6 +36,15 @@
         {
             get => (TickBarPlacement)this.GetValue(PlacementProperty);
             set => this.SetValue(PlacementProperty, value);
+        }
+
+        /// <summary>
+        /// Gets a <see cref="Thickness"/> with values indicating how much the control draws outside its bounds.
+        /// </summary>
+        public Thickness Overflow
+        {
+            get => (Thickness)this.GetValue(OverflowProperty);
+            protected set => this.SetValue(OverflowPropertyKey, value);
         }
 
         /// <inheritdoc />
@@ -61,17 +81,25 @@
 
         protected override Size ArrangeOverride(Size arrangeBounds)
         {
-            if (double.IsNaN(this.Value))
+            var child = this.VisualChild;
+            if (!double.IsNaN(this.Value) &&
+                child != null)
             {
-                return arrangeBounds;
+                child.Arrange(this.ChildRect(this.PixelPosition(arrangeBounds)));
+                var w = this.Placement.IsHorizontal()
+                    ? child.RenderSize.Width / 2
+                    : child.RenderSize.Height / 2;
+
+                this.Overflow = this.Placement.IsHorizontal()
+                    ? new Thickness(Math.Max(0, w - this.Padding.Left), 0, Math.Max(0, w - this.Padding.Right), 0)
+                    : new Thickness(0, Math.Max(0, w - this.Padding.Top), 0, Math.Max(0, w - this.Padding.Bottom));
+            }
+            else
+            {
+                this.Overflow = default(Thickness);
             }
 
-            if (this.VisualChild == null)
-            {
-                return arrangeBounds;
-            }
-
-            this.VisualChild.Arrange(this.ChildRect(this.PixelPosition(arrangeBounds)));
+            this.RegisterOverflow(this.Overflow);
             return arrangeBounds;
         }
 
