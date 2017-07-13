@@ -110,7 +110,7 @@ namespace Gu.Wpf.Gauges
             var strokeThickness = this.GetStrokeThickness();
             if (strokeThickness > 0)
             {
-                var line = this.CreateLine(finalSize);
+                var line = this.CreateLine(this.Maximum, finalSize);
                 if (this.StrokeStartLineCap != PenLineCap.Flat)
                 {
                     line = line.OffsetStart(strokeThickness / 2);
@@ -155,15 +155,15 @@ namespace Gu.Wpf.Gauges
                 return;
             }
 
-            var line = this.CreateLine(this.RenderSize);
+            var line = this.CreateLine(this.EffectiveValue, this.RenderSize);
             dc.DrawLine(this.Pen, line.StartPoint, line.EndPoint);
         }
 
-        protected virtual Line CreateLine(Size renderSize)
+        protected virtual Line CreateLine(double value, Size renderSize)
         {
             var strokeThickness = this.GetStrokeThickness();
             var startPos = this.PixelPosition(this.Minimum, renderSize);
-            var endPos = this.PixelPosition(this.EffectiveValue, renderSize);
+            var endPos = this.PixelPosition(value, renderSize);
             switch (this.Placement)
             {
                 case TickBarPlacement.Left:

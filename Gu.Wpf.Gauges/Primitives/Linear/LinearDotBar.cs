@@ -50,7 +50,9 @@
         protected override Size ArrangeOverride(Size finalSize)
         {
             var strokeThickness = this.GetStrokeThickness();
-            var line = this.CreateLine(finalSize);
+            var startPos = this.CenterPoint(this.Minimum, finalSize);
+            var endPos = this.CenterPoint(this.Maximum, finalSize);
+            var line = new Line(startPos, endPos);
             line = line.OffsetStart((this.TickDiameter / 2) + (strokeThickness / 2));
             line = line.OffsetEnd((this.TickDiameter / 2) + (strokeThickness / 2));
 
@@ -166,14 +168,6 @@
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-        }
-
-        protected virtual Line CreateLine(Size renderSize)
-        {
-            var strokeThickness = this.GetStrokeThickness();
-            var startPos = this.CenterPoint(this.Minimum, renderSize);
-            var endPos = this.CenterPoint(this.EffectiveValue, renderSize);
-            return new Line(startPos, endPos);
         }
     }
 }
