@@ -48,7 +48,7 @@
                 MajorTicks = new DoubleCollection { 15 },
                 MinorTickFrequency = 10,
                 MinorTicks = new DoubleCollection { 8 },
-                FontFamily = new FontFamily("Arial"), // Seoge UI is measured differently on WIn 7 and Win 10 for some reason
+                FontFamily = new FontFamily("Arial"), // Seoge UI is measured differently on Win 7 and Win 10 for some reason
                 FontSize = 12,
                 Style = StyleHelper.DefaultStyle<LinearGauge>(),
             };

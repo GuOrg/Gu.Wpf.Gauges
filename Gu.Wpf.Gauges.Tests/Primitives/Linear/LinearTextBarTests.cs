@@ -170,7 +170,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 Placement = placement,
                 TextPosition = new ExplicitLinearTextPosition(horizontalTextAlignment, verticalTextAlignment),
                 IsDirectionReversed = isDirectionReversed,
-                FontFamily = new FontFamily("Arial"), // Seoge UI is measured differently on WIn 7 and Win 10 for some reason
+                FontFamily = new FontFamily("Arial"), // Seoge UI is measured differently on Win 7 and Win 10 for some reason
                 FontSize = 12,
                 Padding = padding.AsThickness(),
             };
@@ -204,7 +204,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
                 Foreground = Brushes.Black,
                 Placement = placement,
-                FontFamily = new FontFamily("Arial"), // Seoge UI is measured differently on WIn 7 and Win 10 for some reason
+                FontFamily = new FontFamily("Arial"), // Seoge UI is measured differently on Win 7 and Win 10 for some reason
                 FontSize = 12,
                 IsDirectionReversed = isDirectionReversed,
                 Padding = padding.AsThickness(),
@@ -239,7 +239,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 Placement = placement,
                 IsDirectionReversed = isDirectionReversed,
                 Padding = padding.AsThickness(),
-                FontFamily = new FontFamily("Arial"), // Seoge UI is measured differently on WIn 7 and Win 10 for some reason
+                FontFamily = new FontFamily("Arial"), // Seoge UI is measured differently on Win 7 and Win 10 for some reason
                 FontSize = 12,
             };
 
