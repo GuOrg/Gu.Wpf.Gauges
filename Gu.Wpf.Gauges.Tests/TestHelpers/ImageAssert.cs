@@ -160,6 +160,8 @@
         {
             using (var stream = File.OpenWrite(fileName))
             {
+                element.Measure(size);
+                element.Arrange(new Rect(size));
                 var renderTargetBitmap = element.ToRenderTargetBitmap(size, pixelFormat);
                 var encoder = GetEncoder(fileName);
                 encoder.Frames.Add(BitmapFrame.Create(renderTargetBitmap));
