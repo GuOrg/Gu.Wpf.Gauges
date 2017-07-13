@@ -1,19 +1,10 @@
 ﻿namespace Gu.Wpf.Gauges.Tests
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Globalization;
     using System.IO;
-    using System.Linq;
-    using System.Resources;
     using System.Threading;
     using System.Windows;
-    using System.Windows.Baml2006;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
-    using System.Xaml;
     using Gu.Wpf.Gauges.Tests.TestHelpers;
     using NUnit.Framework;
 
@@ -46,7 +37,6 @@
         [TestCase(TickBarPlacement.Top, true, 100)]
         public void Render(TickBarPlacement placement, bool isDirectionReversed, double value)
         {
-            var resourceNames = typeof(LinearGauge).Assembly.GetManifestResourceNames();
             var gauge = new LinearGauge
             {
                 Minimum = 0,
@@ -58,7 +48,7 @@
                 MajorTicks = new DoubleCollection { 15 },
                 MinorTickFrequency = 10,
                 MinorTicks = new DoubleCollection { 8 },
-                Style = GetDefaultStyle(),
+                Style = StyleHelper.DefaultStyle<LinearGauge>(),
             };
 
             ImageAssert.AreEqual(GetFileName(gauge), gauge);
@@ -81,35 +71,6 @@
         {
             Directory.CreateDirectory(@"C:\Temp\LinearGauge");
             gauge.SaveImage(GetSize(gauge), $@"C:\Temp\LinearGauge\{GetFileName(gauge)}");
-        }
-
-        private static Style GetDefaultStyle()
-        {
-            var assembly = typeof(LinearGauge).Assembly;
-            using (var resourceReader = new ResourceReader(assembly.GetManifestResourceStream(assembly.GetManifestResourceNames().Single())))
-            {
-                foreach (DictionaryEntry entry in resourceReader)
-                {
-                    using (var reader = new Baml2006Reader((Stream)entry.Value))
-                    {
-                        using (var writer = new XamlObjectWriter(reader.SchemaContext))
-                        {
-                            while (reader.Read())
-                            {
-                                writer.WriteNode(reader);
-                            }
-
-                            var resourceDictionary = (ResourceDictionary)writer.Result;
-                            if (resourceDictionary.Contains(typeof(LinearGauge)))
-                            {
-                                return (Style)resourceDictionary[typeof(LinearGauge)];
-                            }
-                        }
-                    }
-                }
-            }
-
-            throw new ArgumentOutOfRangeException();
         }
     }
 }
