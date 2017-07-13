@@ -4,6 +4,7 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Media;
+    using Gu.Wpf.Gauges.Primitives.Linear;
 
     public class LinearBlockBar : LinearGeometryBar
     {
@@ -25,6 +26,17 @@
         }
 
         protected override Geometry DefiningGeometry => throw new InvalidOperationException("Uses OnRender");
+
+        protected override Size ArrangeOverride(Size finalSize)
+        {
+            var w = this.GetStrokeThickness() / 2;
+            this.Overflow = this.Placement.IsHorizontal()
+                ? new Thickness(Math.Max(0, w - this.Padding.Left), 0, Math.Max(0, w - this.Padding.Right), 0)
+                : new Thickness(0, Math.Max(0, w - this.Padding.Top), 0, Math.Max(0, w - this.Padding.Bottom));
+
+            this.RegisterOverflow(this.Overflow);
+            return finalSize;
+        }
 
         [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
         protected override void OnRender(DrawingContext dc)

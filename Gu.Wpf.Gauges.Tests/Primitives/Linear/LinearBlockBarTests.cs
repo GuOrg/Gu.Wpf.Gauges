@@ -1,188 +1,160 @@
 namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
 {
+    using System;
     using System.IO;
     using System.Threading;
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
+    using Gu.Wpf.Gauges.Tests.Helpers;
     using Gu.Wpf.Gauges.Tests.TestHelpers;
     using NUnit.Framework;
 
     [Apartment(ApartmentState.STA)]
     public class LinearBlockBarTests
     {
-        [TestCase(true, TickBarPlacement.Top)]
-        [TestCase(false, TickBarPlacement.Top)]
-        [TestCase(true, TickBarPlacement.Bottom)]
-        [TestCase(false, TickBarPlacement.Bottom)]
-        public void TickFrequencyOneHorizontal(bool isDirectionReversed, TickBarPlacement placement)
+        [TestCase(TickBarPlacement.Left, true, 1, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Left, false, 1, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Left, true, 1, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Left, false, 1, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Left, true, 1, 1, 1, null, "1")]
+        [TestCase(TickBarPlacement.Left, false, 1, 1, 1, null, "1")]
+        [TestCase(TickBarPlacement.Left, true, 1, 1, 1, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Left, false, 1, 1, 1, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Left, true, 2, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Left, false, 2, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Left, true, 2, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Left, false, 2, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Left, true, 2, 1, 1, null, "1.5")]
+        [TestCase(TickBarPlacement.Left, false, 2, 1, 1, null, "1.5")]
+        [TestCase(TickBarPlacement.Left, true, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(TickBarPlacement.Left, false, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(TickBarPlacement.Left, true, 3, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Left, false, 3, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Left, true, 3, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Left, false, 3, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Left, true, 3, 1, 1, null, "2")]
+        [TestCase(TickBarPlacement.Left, false, 3, 1, 1, null, "2")]
+        [TestCase(TickBarPlacement.Left, true, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(TickBarPlacement.Left, false, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(TickBarPlacement.Right, true, 1, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Right, false, 1, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Right, true, 1, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Right, false, 1, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Right, true, 1, 1, 1, null, "1")]
+        [TestCase(TickBarPlacement.Right, false, 1, 1, 1, null, "1")]
+        [TestCase(TickBarPlacement.Right, true, 1, 1, 1, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Right, false, 1, 1, 1, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Right, true, 2, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Right, false, 2, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Right, true, 2, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Right, false, 2, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Right, true, 2, 1, 1, null, "1.5")]
+        [TestCase(TickBarPlacement.Right, false, 2, 1, 1, null, "1.5")]
+        [TestCase(TickBarPlacement.Right, true, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(TickBarPlacement.Right, false, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(TickBarPlacement.Right, true, 3, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Right, false, 3, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Right, true, 3, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Right, false, 3, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Right, true, 3, 1, 1, null, "2")]
+        [TestCase(TickBarPlacement.Right, false, 3, 1, 1, null, "2")]
+        [TestCase(TickBarPlacement.Right, true, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(TickBarPlacement.Right, false, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(TickBarPlacement.Top, true, 1, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Top, false, 1, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Top, true, 1, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Top, false, 1, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Top, true, 1, 1, 1, null, "1")]
+        [TestCase(TickBarPlacement.Top, false, 1, 1, 1, null, "1")]
+        [TestCase(TickBarPlacement.Top, true, 1, 1, 1, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Top, false, 1, 1, 1, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Top, true, 2, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Top, false, 2, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Top, true, 2, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Top, false, 2, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Top, true, 2, 1, 1, null, "1.5")]
+        [TestCase(TickBarPlacement.Top, false, 2, 1, 1, null, "1.5")]
+        [TestCase(TickBarPlacement.Top, true, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(TickBarPlacement.Top, false, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(TickBarPlacement.Top, true, 3, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Top, false, 3, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Top, true, 3, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Top, false, 3, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Top, true, 3, 1, 1, null, "2")]
+        [TestCase(TickBarPlacement.Top, false, 3, 1, 1, null, "2")]
+        [TestCase(TickBarPlacement.Top, true, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(TickBarPlacement.Top, false, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(TickBarPlacement.Bottom, true, 1, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Bottom, false, 1, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Bottom, true, 1, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Bottom, false, 1, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Bottom, true, 1, 1, 1, null, "1")]
+        [TestCase(TickBarPlacement.Bottom, false, 1, 1, 1, null, "1")]
+        [TestCase(TickBarPlacement.Bottom, true, 1, 1, 1, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Bottom, false, 1, 1, 1, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Bottom, true, 2, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Bottom, false, 2, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Bottom, true, 2, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Bottom, false, 2, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Bottom, true, 2, 1, 1, null, "1.5")]
+        [TestCase(TickBarPlacement.Bottom, false, 2, 1, 1, null, "1.5")]
+        [TestCase(TickBarPlacement.Bottom, true, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(TickBarPlacement.Bottom, false, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(TickBarPlacement.Bottom, true, 3, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Bottom, false, 3, 1, 1, null, null)]
+        [TestCase(TickBarPlacement.Bottom, true, 3, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Bottom, false, 3, 1, 1, "1 2 6", null)]
+        [TestCase(TickBarPlacement.Bottom, true, 3, 1, 1, null, "2")]
+        [TestCase(TickBarPlacement.Bottom, false, 3, 1, 1, null, "2")]
+        [TestCase(TickBarPlacement.Bottom, true, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(TickBarPlacement.Bottom, false, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(TickBarPlacement.Bottom, false, 3, 2, 0, "1 2 6", "1")]
+        public void Render(TickBarPlacement placement, bool isDirectionReversed, double tickGap, double strokeThickness, double tickFrequency, string ticks, string padding)
         {
-            var blockBar = new LinearBlockBar
+            var tickBar = new LinearBlockBar
             {
+                StrokeThickness = strokeThickness,
                 Minimum = 0,
                 Maximum = 10,
-                TickFrequency = 1,
-                Fill = Brushes.Black,
-                Stroke = Brushes.Red,
-                StrokeThickness = 1,
-                TickGap = 1,
-                Value = 10,
+                TickFrequency = tickFrequency,
+                Ticks = string.IsNullOrEmpty(ticks) ? new DoubleCollection() : DoubleCollection.Parse(ticks),
+                TickGap = tickGap,
+                Stroke = Brushes.Black,
+                Fill = Brushes.Red,
                 Placement = placement,
                 IsDirectionReversed = isDirectionReversed,
+                Padding = padding.AsThickness(),
             };
 
-            ImageAssert.AreEqual(Properties.Resources.LinearBlockBar_Min_0_Max_10_TickFrequency_1_Horizontal, blockBar);
+            ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
 
-        [TestCase(true, TickBarPlacement.Top)]
-        [TestCase(false, TickBarPlacement.Top)]
-        [TestCase(true, TickBarPlacement.Bottom)]
-        [TestCase(false, TickBarPlacement.Bottom)]
-        public void TicksHorizontal(bool isDirectionReversed, TickBarPlacement placement)
-        {
-            var blockBar = new LinearBlockBar
-            {
-                Minimum = 0,
-                Maximum = 10,
-                Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
-                Fill = Brushes.Black,
-                Stroke = Brushes.Red,
-                StrokeThickness = 1,
-                TickGap = 1,
-                Value = 10,
-                Placement = placement,
-                IsDirectionReversed = isDirectionReversed,
-            };
-
-            var expected = isDirectionReversed
-                ? Properties.Resources.LinearBlockBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1_2_6_Horizontal
-                : Properties.Resources.LinearBlockBar_Min_0_Max_10_IsDirectionReversed_False_Ticks_1_2_6_Horizontal;
-            ImageAssert.AreEqual(expected, blockBar);
-        }
-
-        [TestCase(true, TickBarPlacement.Top, 5.8)]
-        [TestCase(false, TickBarPlacement.Top, 5.8)]
-        [TestCase(true, TickBarPlacement.Bottom, 5.8)]
-        [TestCase(false, TickBarPlacement.Bottom, 5.8)]
-        [TestCase(true, TickBarPlacement.Top, 6)]
-        [TestCase(false, TickBarPlacement.Top, 6)]
-        [TestCase(true, TickBarPlacement.Bottom, 6)]
-        [TestCase(false, TickBarPlacement.Bottom, 6)]
-        [TestCase(true, TickBarPlacement.Top, 6.2)]
-        [TestCase(false, TickBarPlacement.Top, 6.2)]
-        [TestCase(true, TickBarPlacement.Bottom, 6.2)]
-        [TestCase(false, TickBarPlacement.Bottom, 6.2)]
-        public void TicksHorizontalValueAtTick(bool isDirectionReversed, TickBarPlacement placement, double value)
-        {
-            var blockBar = new LinearBlockBar
-                           {
-                               Minimum = 0,
-                               Maximum = 10,
-                               Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
-                               Fill = Brushes.Black,
-                               Stroke = Brushes.Red,
-                               StrokeThickness = 1,
-                               TickGap = 1,
-                               Value = value,
-                               Placement = placement,
-                               IsDirectionReversed = isDirectionReversed,
-                           };
-
-            var expected = isDirectionReversed
-                ? Properties.Resources.LinearBlockBar_Min_0_Max_10_Value_6_IsDirectionReversed_True_Ticks_1_2_6_Horizontal
-                : Properties.Resources.LinearBlockBar_Min_0_Max_10_Value_6_IsDirectionReversed_False_Ticks_1_2_6_Horizontal;
-            ImageAssert.AreEqual(expected, blockBar);
-        }
-
-        [TestCase(true, TickBarPlacement.Top)]
-        [TestCase(false, TickBarPlacement.Top)]
-        [TestCase(true, TickBarPlacement.Bottom)]
-        [TestCase(false, TickBarPlacement.Bottom)]
-        public void TicksAndFrequencyHorizontal(bool isDirectionReversed, TickBarPlacement placement)
-        {
-            var blockBar = new LinearBlockBar
-            {
-                Minimum = 0,
-                Maximum = 10,
-                TickFrequency = 5,
-                Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
-                Fill = Brushes.Black,
-                Stroke = Brushes.Red,
-                StrokeThickness = 1,
-                TickGap = 1,
-                Value = 10,
-                Placement = placement,
-                IsDirectionReversed = isDirectionReversed,
-            };
-
-            var expected = isDirectionReversed
-                ? Properties.Resources.LinearBlockBar_Min_0_Max_10_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Horizontal
-                : Properties.Resources.LinearBlockBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Horizontal;
-            ImageAssert.AreEqual(expected, blockBar);
-        }
-
-        [TestCase(true, TickBarPlacement.Left)]
-        [TestCase(false, TickBarPlacement.Left)]
-        [TestCase(true, TickBarPlacement.Right)]
-        [TestCase(false, TickBarPlacement.Right)]
-        public void TickFrequencyOneVertical(bool isDirectionReversed, TickBarPlacement placement)
-        {
-            var blockBar = new LinearBlockBar
-            {
-                Minimum = 0,
-                Maximum = 10,
-                TickFrequency = 1,
-                Fill = Brushes.Black,
-                Stroke = Brushes.Red,
-                StrokeThickness = 1,
-                TickGap = 1,
-                Value = 10,
-                Placement = placement,
-                IsDirectionReversed = isDirectionReversed,
-            };
-
-            ImageAssert.AreEqual(Properties.Resources.LinearBlockBar_Min_0_Max_10_TickFrequency_1_Vertical, blockBar);
-        }
-
-        [TestCase(true, TickBarPlacement.Left)]
-        [TestCase(false, TickBarPlacement.Left)]
-        [TestCase(true, TickBarPlacement.Right)]
-        [TestCase(false, TickBarPlacement.Right)]
-        public void TicksVertical(bool isDirectionReversed, TickBarPlacement placement)
-        {
-            var blockBar = new LinearBlockBar
-            {
-                Minimum = 0,
-                Maximum = 10,
-                Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
-                Fill = Brushes.Black,
-                Stroke = Brushes.Red,
-                StrokeThickness = 1,
-                TickGap = 1,
-                Value = 10,
-                Placement = placement,
-                IsDirectionReversed = isDirectionReversed,
-            };
-
-            var expected = isDirectionReversed
-                ? Properties.Resources.LinearBlockBar_Min_0_Max_10_IsDirectionReversed_True_Ticks_1_2_6_Vertical
-                : Properties.Resources.LinearBlockBar_Min_0_Max_10_IsDirectionReversed_False_Ticks_1_2_6_Vertical;
-            ImageAssert.AreEqual(expected, blockBar);
-        }
-
-        [TestCase(true, TickBarPlacement.Left, 5.8)]
-        [TestCase(false, TickBarPlacement.Left, 5.8)]
-        [TestCase(true, TickBarPlacement.Right, 5.8)]
-        [TestCase(false, TickBarPlacement.Right, 5.8)]
-        [TestCase(true, TickBarPlacement.Left, 6)]
-        [TestCase(false, TickBarPlacement.Left, 6)]
-        [TestCase(true, TickBarPlacement.Right, 6)]
-        [TestCase(false, TickBarPlacement.Right, 6)]
-        [TestCase(true, TickBarPlacement.Left, 6.2)]
-        [TestCase(false, TickBarPlacement.Left, 6.2)]
-        [TestCase(true, TickBarPlacement.Right, 6.2)]
-        [TestCase(false, TickBarPlacement.Right, 6.2)]
-        public void TicksVerticalValueAtTick(bool isDirectionReversed, TickBarPlacement placement, double value)
+        [TestCase(TickBarPlacement.Left, true, 5.95)]
+        [TestCase(TickBarPlacement.Left, false, 5.95)]
+        [TestCase(TickBarPlacement.Right, true, 5.95)]
+        [TestCase(TickBarPlacement.Right, false, 5.95)]
+        [TestCase(TickBarPlacement.Left, true, 6)]
+        [TestCase(TickBarPlacement.Left, false, 6)]
+        [TestCase(TickBarPlacement.Right, true, 6)]
+        [TestCase(TickBarPlacement.Right, false, 6)]
+        [TestCase(TickBarPlacement.Left, true, 6.05)]
+        [TestCase(TickBarPlacement.Left, false, 6.05)]
+        [TestCase(TickBarPlacement.Right, true, 6.05)]
+        [TestCase(TickBarPlacement.Right, false, 6.05)]
+        [TestCase(TickBarPlacement.Top, true, 5.95)]
+        [TestCase(TickBarPlacement.Top, false, 5.95)]
+        [TestCase(TickBarPlacement.Bottom, true, 5.95)]
+        [TestCase(TickBarPlacement.Bottom, false, 5.95)]
+        [TestCase(TickBarPlacement.Top, true, 6)]
+        [TestCase(TickBarPlacement.Top, false, 6)]
+        [TestCase(TickBarPlacement.Bottom, true, 6)]
+        [TestCase(TickBarPlacement.Bottom, false, 6)]
+        [TestCase(TickBarPlacement.Top, true, 6.05)]
+        [TestCase(TickBarPlacement.Top, false, 6.05)]
+        [TestCase(TickBarPlacement.Bottom, true, 6.05)]
+        [TestCase(TickBarPlacement.Bottom, false, 6.05)]
+        public void RenderWithValue(TickBarPlacement placement, bool isDirectionReversed, double value)
         {
             var blockBar = new LinearBlockBar
             {
@@ -198,70 +170,104 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 IsDirectionReversed = isDirectionReversed,
             };
 
-            var expected = isDirectionReversed
-                ? Properties.Resources.LinearBlockBar_Min_0_Max_10_Value_6_IsDirectionReversed_True_Ticks_1_2_6_Vertical
-                : Properties.Resources.LinearBlockBar_Min_0_Max_10_Value_6_IsDirectionReversed_False_Ticks_1_2_6_Vertical;
-            ImageAssert.AreEqual(expected, blockBar);
+            ImageAssert.AreEqual(GetFileName(blockBar), blockBar);
         }
 
-        [TestCase(true, TickBarPlacement.Left)]
-        [TestCase(false, TickBarPlacement.Left)]
-        [TestCase(true, TickBarPlacement.Right)]
-        [TestCase(false, TickBarPlacement.Right)]
-        public void TicksAndFrequencyVertical(bool isDirectionReversed, TickBarPlacement placement)
+        [TestCase(TickBarPlacement.Left, true, 1, "0 0 0 0", "0,0.5,0,0.5")]
+        [TestCase(TickBarPlacement.Left, true, 2, "0 0 0 0", "0,1,0,1")]
+        [TestCase(TickBarPlacement.Left, true, 1, "0 0.5 0 0.5", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Left, true, 1, "0 1 0 1", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Left, true, 0, "0 0 0 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Left, false, 1, "0 0 0 0", "0,0.5,0,0.5")]
+        [TestCase(TickBarPlacement.Left, false, 2, "0 0 0 0", "0,1,0,1")]
+        [TestCase(TickBarPlacement.Left, false, 1, "0 0.5 0 0.5", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Left, false, 1, "0 1 0 1", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Left, false, 0, "0 0 0 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Right, true, 1, "0 0 0 0", "0,0.5,0,0.5")]
+        [TestCase(TickBarPlacement.Right, true, 2, "0 0 0 0", "0,1,0,1")]
+        [TestCase(TickBarPlacement.Right, true, 1, "0 0.5 0 0.5", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Right, true, 1, "0 1 0 1", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Right, true, 0, "0 0 0 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Right, false, 1, "0 0 0 0", "0,0.5,0,0.5")]
+        [TestCase(TickBarPlacement.Right, false, 2, "0 0 0 0", "0,1,0,1")]
+        [TestCase(TickBarPlacement.Right, false, 1, "0 0.5 0 0.5", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Right, false, 1, "0 1 0 1", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Right, false, 0, "0 0 0 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Top, true, 1, "0 0 0 0", "0.5,0,0.5,0")]
+        [TestCase(TickBarPlacement.Top, true, 2, "0 0 0 0", "1,0,1,0")]
+        [TestCase(TickBarPlacement.Top, true, 1, "0.5 0 0.5 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Top, true, 1, "1 0 1 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Top, true, 0, "0 0 0 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Top, false, 1, "0 0 0 0", "0.5,0,0.5,0")]
+        [TestCase(TickBarPlacement.Top, false, 2, "0 0 0 0", "1,0,1,0")]
+        [TestCase(TickBarPlacement.Top, false, 1, "0.5 0 0.5 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Top, false, 1, "1 0 1 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Top, false, 0, "0 0 0 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Bottom, true, 1, "0 0 0 0", "0.5,0,0.5,0")]
+        [TestCase(TickBarPlacement.Bottom, true, 2, "0 0 0 0", "1,0,1,0")]
+        [TestCase(TickBarPlacement.Bottom, true, 1, "0.5 0 0.5 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Bottom, true, 1, "1 0 1 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Bottom, true, 0, "0 0 0 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Bottom, false, 1, "0 0 0 0", "0.5,0,0.5,0")]
+        [TestCase(TickBarPlacement.Bottom, false, 2, "0 0 0 0", "1,0,1,0")]
+        [TestCase(TickBarPlacement.Bottom, false, 1, "0.5 0 0.5 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Bottom, false, 1, "1 0 1 0", "0,0,0,0")]
+        [TestCase(TickBarPlacement.Bottom, false, 0, "0 0 0 0", "0,0,0,0")]
+        public void Overflow(TickBarPlacement placement, bool isDirectionReversed, double strokeThickness, string padding, string expected)
         {
-            var blockBar = new LinearBlockBar
+            var tickBar = new LinearBlockBar
             {
+                StrokeThickness = strokeThickness,
                 Minimum = 0,
                 Maximum = 10,
-                TickFrequency = 5,
-                Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
-                Fill = Brushes.Black,
-                Stroke = Brushes.Red,
-                StrokeThickness = 1,
-                TickGap = 1,
-                Value = 10,
+                TickFrequency = 1,
+                TickGap = 3,
+                Stroke = Brushes.Black,
+                Fill = Brushes.Red,
                 Placement = placement,
                 IsDirectionReversed = isDirectionReversed,
+                Padding = padding.AsThickness(),
             };
 
-            var expected = isDirectionReversed
-                ? Properties.Resources.LinearBlockBar_Min_0_Max_10_IsDirectionReversed_True_TickFrequency_5_Ticks_1_2_6_Vertical
-                : Properties.Resources.LinearBlockBar_Min_0_Max_10_IsDirectionReversed_False_TickFrequency_5_Ticks_1_2_6_Vertical;
-            ImageAssert.AreEqual(expected, blockBar);
+            var gauge = new LinearGauge { Content = tickBar };
+            gauge.Arrange(new Rect(new Size(10, 10)));
+            Assert.AreEqual(expected, gauge.ContentOverflow.ToString());
+            Assert.AreEqual(expected, tickBar.Overflow.ToString());
         }
 
-        private static void SaveImage(LinearBlockBar blockBar)
+        private static string GetFileName(LinearBlockBar tickBar)
         {
-            var ticks = blockBar.Ticks != null
-                ? $"_Ticks_{blockBar.Ticks}"
+            var value = double.IsNaN(tickBar.Value)
+                ? string.Empty
+                : $"_Value_{Math.Round(tickBar.Value, 0)}";
+
+            var ticks = tickBar.Ticks != null
+                ? $"_Ticks_{tickBar.Ticks}"
                 : string.Empty;
 
-            var isReversed = blockBar.Ticks != null
-                ? $"_IsDirectionReversed_{blockBar.IsDirectionReversed}"
+            var tickFrequency = tickBar.TickFrequency > 0
+                ? $"_TickFrequency_{tickBar.TickFrequency}"
                 : string.Empty;
 
-            var tickFrequency = blockBar.TickFrequency > 0
-                ? $"_TickFrequency_{blockBar.TickFrequency}"
-                : string.Empty;
-
-            var orientation = blockBar.Placement == TickBarPlacement.Left ||
-                              blockBar.Placement == TickBarPlacement.Right
+            var orientation = tickBar.Placement == TickBarPlacement.Left || tickBar.Placement == TickBarPlacement.Right
                 ? "_Vertical"
                 : "_Horizontal";
 
-            var size = blockBar.Placement == TickBarPlacement.Left || blockBar.Placement == TickBarPlacement.Right
-                ? new Size(5, 40)
-                : new Size(40, 5);
+            var padding = tickBar.Padding.IsZero()
+                ? string.Empty
+                : $"_Padding_{tickBar.Padding}";
 
-            var value = blockBar.Value < blockBar.Maximum
-                ? $"_Value_{blockBar.Value}"
-                : string.Empty;
+            return $@"LinearBlockBar_Min_{tickBar.Minimum}_Max_{tickBar.Maximum}{value}_IsDirectionReversed_{tickBar.IsDirectionReversed}{padding}_TickGap_{tickBar.TickGap}_StrokeThickness_{tickBar.StrokeThickness}{tickFrequency}{ticks}{orientation}.png"
+                .Replace(" ", "_");
+        }
 
+        private static void SaveImage(LinearBlockBar tickBar)
+        {
+            var size = tickBar.Placement.IsHorizontal()
+                ? new Size(100, 10)
+                : new Size(10, 100);
             Directory.CreateDirectory(@"C:\Temp\LinearBlockBar");
-            blockBar.SaveImage(
-                size,
-                $@"C:\Temp\LinearBlockBar\LinearBlockBar_Min_{blockBar.Minimum}_Max_{blockBar.Maximum}{value}{isReversed}{tickFrequency}{ticks}{orientation}.png");
+            tickBar.SaveImage(size, $@"C:\Temp\LinearBlockBar\{GetFileName(tickBar)}");
         }
     }
 }
