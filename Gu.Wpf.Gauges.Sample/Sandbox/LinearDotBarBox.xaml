@@ -9,24 +9,24 @@
              d:DesignWidth="300"
              mc:Ignorable="d">
     <UserControl.DataContext>
-        <sample:TickBarVm IsDirectionReversed="False"
+        <sample:TickBarVm IsDirectionReversed="True"
                           MajorTickFrequency="10"
                           MajorTicks="75"
                           Maximum="100"
                           Minimum="0"
-                          Placement="Top"
+                          Placement="Left"
                           SnapsToDevicePixels="False"
                           TickWidth="10"
                           Value="100" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="15" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="15" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>

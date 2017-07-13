@@ -42,8 +42,10 @@
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            var thickness = Math.Abs(this.TickWidth);
-            return this.Placement.IsHorizontal() ? new Size(0, thickness) : new Size(thickness, 0);
+            var size = Math.Abs(this.TickWidth);
+            return this.Placement.IsHorizontal()
+                ? new Size(0, size)
+                : new Size(size, 0);
         }
 
         protected override Size ArrangeOverride(Size finalSize)
@@ -75,7 +77,7 @@
                     : new Line(new Point(0, pos), new Point(this.ActualWidth, pos));
             }
 
-            if (this.Pen == null ||
+            if ((this.Pen == null && this.Fill == null) ||
                 this.AllTicks == null ||
                 this.EffectiveValue == this.Minimum)
             {
@@ -83,7 +85,8 @@
             }
 
             var max = this.EffectiveValue;
-            if (this.TickWidth <= this.StrokeThickness)
+            var strokeThickness = this.GetStrokeThickness();
+            if (this.TickWidth <= strokeThickness)
             {
                 foreach (var tick in this.AllTicks)
                 {
@@ -100,7 +103,7 @@
                 if (max < this.Maximum)
                 {
                     var rect = new Rect(this.RenderSize);
-                    rect.Inflate(new Size(this.TickWidth, this.TickWidth));
+                    rect.Inflate(new Size(this.TickWidth + strokeThickness, this.TickWidth + strokeThickness));
                     var pos = this.PixelPosition(max, this.RenderSize);
                     if (this.Placement.IsHorizontal())
                     {

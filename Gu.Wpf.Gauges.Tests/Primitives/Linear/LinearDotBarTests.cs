@@ -5,14 +5,13 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
+    using Gu.Wpf.Gauges.Tests.Helpers;
     using Gu.Wpf.Gauges.Tests.TestHelpers;
     using NUnit.Framework;
 
     [Apartment(ApartmentState.STA)]
     public class LinearDotBarTests
     {
-        private static readonly ThicknessConverter ThicknessConverter = new ThicknessConverter();
-
         [TestCase(TickBarPlacement.Left, true, double.NaN, null)]
         [TestCase(TickBarPlacement.Left, false, double.NaN, null)]
         [TestCase(TickBarPlacement.Left, true, double.NaN, "0,6")]
@@ -60,7 +59,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 TickDiameter = 5,
                 Placement = placement,
                 IsDirectionReversed = isDirectionReversed,
-                Padding = string.IsNullOrEmpty(padding) ? default(Thickness) : (Thickness)ThicknessConverter.ConvertFrom(padding),
+                Padding = padding.AsThickness(),
             };
 
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
@@ -93,7 +92,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 Stroke = Brushes.Black,
                 Placement = placement,
                 IsDirectionReversed = isDirectionReversed,
-                Padding = (Thickness)ThicknessConverter.ConvertFrom(padding)
+                Padding = padding.AsThickness(),
             };
 
             var gauge = new LinearGauge { Content = tickBar };

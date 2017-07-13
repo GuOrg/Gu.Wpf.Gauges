@@ -78,7 +78,7 @@
 
         protected override void OnRender(DrawingContext dc)
         {
-            if (this.Pen == null ||
+            if ((this.Pen == null && this.Fill == null) ||
                 this.AllTicks == null ||
                 this.EffectiveValue == this.Minimum)
             {

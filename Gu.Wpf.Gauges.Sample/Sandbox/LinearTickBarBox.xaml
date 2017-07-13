@@ -14,27 +14,25 @@
                           MajorTicks="75"
                           Maximum="100"
                           Minimum="0"
-                          Placement="Left"
+                          Placement="Top"
                           SnapsToDevicePixels="False"
                           TickWidth="3"
                           Value="100" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="15" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="15" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="0"
-              Grid.Column="1"
-              Margin="{Binding ElementName=Horizontal, Path=Overflow}">
+              Grid.Column="1">
 
-            <gauges:LinearTickBar x:Name="Horizontal"
+            <gauges:LinearTickBar Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
                                   Fill="#550000FF"
                                   IsDirectionReversed="{Binding IsDirectionReversed}"
                                   Maximum="{Binding Maximum}"
@@ -54,10 +52,8 @@
         </Grid>
 
         <Grid Grid.Row="1"
-              Grid.Column="0"
-              Margin="{Binding ElementName=Vertical, Path=Overflow}">
-            <gauges:LinearTickBar x:Name="Vertical"
-                                  Width="6"
+              Grid.Column="0">
+            <gauges:LinearTickBar Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
                                   Fill="CornflowerBlue"
                                   IsDirectionReversed="{Binding IsDirectionReversed}"
                                   Maximum="{Binding Maximum}"

@@ -5,14 +5,13 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
+    using Gu.Wpf.Gauges.Tests.Helpers;
     using Gu.Wpf.Gauges.Tests.TestHelpers;
     using NUnit.Framework;
 
     [Apartment(ApartmentState.STA)]
     public class LinearTickBarTests
     {
-        private static readonly ThicknessConverter ThicknessConverter = new ThicknessConverter();
-
         [TestCase(TickBarPlacement.Left, true, 1, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Left, false, 1, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Left, true, 1, 1, 1, "1 2 6", null)]
@@ -25,18 +24,18 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         [TestCase(TickBarPlacement.Left, false, 2, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Left, true, 2, 1, 1, "1 2 6", null)]
         [TestCase(TickBarPlacement.Left, false, 2, 1, 1, "1 2 6", null)]
-        [TestCase(TickBarPlacement.Left, true, 2, 1, 1, null, "1")]
-        [TestCase(TickBarPlacement.Left, false, 2, 1, 1, null, "1")]
-        [TestCase(TickBarPlacement.Left, true, 2, 1, 1, "1 2 6", "1")]
-        [TestCase(TickBarPlacement.Left, false, 2, 1, 1, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Left, true, 2, 1, 1, null, "1.5")]
+        [TestCase(TickBarPlacement.Left, false, 2, 1, 1, null, "1.5")]
+        [TestCase(TickBarPlacement.Left, true, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(TickBarPlacement.Left, false, 2, 1, 1, "1 2 6", "1.5")]
         [TestCase(TickBarPlacement.Left, true, 3, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Left, false, 3, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Left, true, 3, 1, 1, "1 2 6", null)]
         [TestCase(TickBarPlacement.Left, false, 3, 1, 1, "1 2 6", null)]
-        [TestCase(TickBarPlacement.Left, true, 3, 1, 1, null, "1")]
-        [TestCase(TickBarPlacement.Left, false, 3, 1, 1, null, "1")]
-        [TestCase(TickBarPlacement.Left, true, 3, 1, 1, "1 2 6", "1")]
-        [TestCase(TickBarPlacement.Left, false, 3, 1, 1, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Left, true, 3, 1, 1, null, "2")]
+        [TestCase(TickBarPlacement.Left, false, 3, 1, 1, null, "2")]
+        [TestCase(TickBarPlacement.Left, true, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(TickBarPlacement.Left, false, 3, 1, 1, "1 2 6", "2")]
         [TestCase(TickBarPlacement.Right, true, 1, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Right, false, 1, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Right, true, 1, 1, 1, "1 2 6", null)]
@@ -49,18 +48,18 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         [TestCase(TickBarPlacement.Right, false, 2, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Right, true, 2, 1, 1, "1 2 6", null)]
         [TestCase(TickBarPlacement.Right, false, 2, 1, 1, "1 2 6", null)]
-        [TestCase(TickBarPlacement.Right, true, 2, 1, 1, null, "1")]
-        [TestCase(TickBarPlacement.Right, false, 2, 1, 1, null, "1")]
-        [TestCase(TickBarPlacement.Right, true, 2, 1, 1, "1 2 6", "1")]
-        [TestCase(TickBarPlacement.Right, false, 2, 1, 1, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Right, true, 2, 1, 1, null, "1.5")]
+        [TestCase(TickBarPlacement.Right, false, 2, 1, 1, null, "1.5")]
+        [TestCase(TickBarPlacement.Right, true, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(TickBarPlacement.Right, false, 2, 1, 1, "1 2 6", "1.5")]
         [TestCase(TickBarPlacement.Right, true, 3, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Right, false, 3, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Right, true, 3, 1, 1, "1 2 6", null)]
         [TestCase(TickBarPlacement.Right, false, 3, 1, 1, "1 2 6", null)]
-        [TestCase(TickBarPlacement.Right, true, 3, 1, 1, null, "1")]
-        [TestCase(TickBarPlacement.Right, false, 3, 1, 1, null, "1")]
-        [TestCase(TickBarPlacement.Right, true, 3, 1, 1, "1 2 6", "1")]
-        [TestCase(TickBarPlacement.Right, false, 3, 1, 1, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Right, true, 3, 1, 1, null, "2")]
+        [TestCase(TickBarPlacement.Right, false, 3, 1, 1, null, "2")]
+        [TestCase(TickBarPlacement.Right, true, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(TickBarPlacement.Right, false, 3, 1, 1, "1 2 6", "2")]
         [TestCase(TickBarPlacement.Top, true, 1, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Top, false, 1, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Top, true, 1, 1, 1, "1 2 6", null)]
@@ -73,18 +72,18 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         [TestCase(TickBarPlacement.Top, false, 2, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Top, true, 2, 1, 1, "1 2 6", null)]
         [TestCase(TickBarPlacement.Top, false, 2, 1, 1, "1 2 6", null)]
-        [TestCase(TickBarPlacement.Top, true, 2, 1, 1, null, "1")]
-        [TestCase(TickBarPlacement.Top, false, 2, 1, 1, null, "1")]
-        [TestCase(TickBarPlacement.Top, true, 2, 1, 1, "1 2 6", "1")]
-        [TestCase(TickBarPlacement.Top, false, 2, 1, 1, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Top, true, 2, 1, 1, null, "1.5")]
+        [TestCase(TickBarPlacement.Top, false, 2, 1, 1, null, "1.5")]
+        [TestCase(TickBarPlacement.Top, true, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(TickBarPlacement.Top, false, 2, 1, 1, "1 2 6", "1.5")]
         [TestCase(TickBarPlacement.Top, true, 3, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Top, false, 3, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Top, true, 3, 1, 1, "1 2 6", null)]
         [TestCase(TickBarPlacement.Top, false, 3, 1, 1, "1 2 6", null)]
-        [TestCase(TickBarPlacement.Top, true, 3, 1, 1, null, "1")]
-        [TestCase(TickBarPlacement.Top, false, 3, 1, 1, null, "1")]
-        [TestCase(TickBarPlacement.Top, true, 3, 1, 1, "1 2 6", "1")]
-        [TestCase(TickBarPlacement.Top, false, 3, 1, 1, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Top, true, 3, 1, 1, null, "2")]
+        [TestCase(TickBarPlacement.Top, false, 3, 1, 1, null, "2")]
+        [TestCase(TickBarPlacement.Top, true, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(TickBarPlacement.Top, false, 3, 1, 1, "1 2 6", "2")]
         [TestCase(TickBarPlacement.Bottom, true, 1, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Bottom, false, 1, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Bottom, true, 1, 1, 1, "1 2 6", null)]
@@ -97,18 +96,19 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         [TestCase(TickBarPlacement.Bottom, false, 2, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Bottom, true, 2, 1, 1, "1 2 6", null)]
         [TestCase(TickBarPlacement.Bottom, false, 2, 1, 1, "1 2 6", null)]
-        [TestCase(TickBarPlacement.Bottom, true, 2, 1, 1, null, "1")]
-        [TestCase(TickBarPlacement.Bottom, false, 2, 1, 1, null, "1")]
-        [TestCase(TickBarPlacement.Bottom, true, 2, 1, 1, "1 2 6", "1")]
-        [TestCase(TickBarPlacement.Bottom, false, 2, 1, 1, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Bottom, true, 2, 1, 1, null, "1.5")]
+        [TestCase(TickBarPlacement.Bottom, false, 2, 1, 1, null, "1.5")]
+        [TestCase(TickBarPlacement.Bottom, true, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(TickBarPlacement.Bottom, false, 2, 1, 1, "1 2 6", "1.5")]
         [TestCase(TickBarPlacement.Bottom, true, 3, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Bottom, false, 3, 1, 1, null, null)]
         [TestCase(TickBarPlacement.Bottom, true, 3, 1, 1, "1 2 6", null)]
         [TestCase(TickBarPlacement.Bottom, false, 3, 1, 1, "1 2 6", null)]
-        [TestCase(TickBarPlacement.Bottom, true, 3, 1, 1, null, "1")]
-        [TestCase(TickBarPlacement.Bottom, false, 3, 1, 1, null, "1")]
-        [TestCase(TickBarPlacement.Bottom, true, 3, 1, 1, "1 2 6", "1")]
-        [TestCase(TickBarPlacement.Bottom, false, 3, 1, 1, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Bottom, true, 3, 1, 1, null, "2")]
+        [TestCase(TickBarPlacement.Bottom, false, 3, 1, 1, null, "2")]
+        [TestCase(TickBarPlacement.Bottom, true, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(TickBarPlacement.Bottom, false, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(TickBarPlacement.Bottom, false, 3, 2, 0, "1 2 6", "1")]
         public void Render(TickBarPlacement placement, bool isDirectionReversed, double tickWidth, double strokeThickness, double tickFrequency, string ticks, string padding)
         {
             var tickBar = new LinearTickBar
@@ -123,52 +123,52 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 Fill = Brushes.Red,
                 Placement = placement,
                 IsDirectionReversed = isDirectionReversed,
-                Padding = string.IsNullOrEmpty(padding) ? default(Thickness) : (Thickness)ThicknessConverter.ConvertFrom(padding)
+                Padding = padding.AsThickness(),
             };
 
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
 
         [TestCase(TickBarPlacement.Left, false, 1, 1, "0 0 0 0", "0,0.5,0,0.5")]
-        [TestCase(TickBarPlacement.Left, false, 2, 1, "0 0 0 0", "0,1,0,1")]
+        [TestCase(TickBarPlacement.Left, false, 2, 1, "0 0 0 0", "0,1.5,0,1.5")]
         [TestCase(TickBarPlacement.Left, false, 2, 0, "0 1 0 1", "0,0,0,0")]
-        [TestCase(TickBarPlacement.Left, false, 2, 1, "0 1 0 1", "0,0,0,0")]
-        [TestCase(TickBarPlacement.Left, false, 3, 1, "0 1 0 1", "0,0.5,0,0.5")]
+        [TestCase(TickBarPlacement.Left, false, 2, 1, "0 1 0 1", "0,0.5,0,0.5")]
+        [TestCase(TickBarPlacement.Left, false, 3, 1, "0 1 0 1", "0,1,0,1")]
         [TestCase(TickBarPlacement.Left, true, 1, 1, "0 0 0 0", "0,0.5,0,0.5")]
-        [TestCase(TickBarPlacement.Left, true, 2, 1, "0 0 0 0", "0,1,0,1")]
+        [TestCase(TickBarPlacement.Left, true, 2, 1, "0 0 0 0", "0,1.5,0,1.5")]
         [TestCase(TickBarPlacement.Left, true, 2, 0, "0 1 0 1", "0,0,0,0")]
-        [TestCase(TickBarPlacement.Left, true, 2, 1, "0 1 0 1", "0,0,0,0")]
-        [TestCase(TickBarPlacement.Left, true, 3, 1, "0 1 0 1", "0,0.5,0,0.5")]
+        [TestCase(TickBarPlacement.Left, true, 2, 1, "0 1 0 1", "0,0.5,0,0.5")]
+        [TestCase(TickBarPlacement.Left, true, 3, 1, "0 1 0 1", "0,1,0,1")]
         [TestCase(TickBarPlacement.Right, false, 1, 1, "0 0 0 0", "0,0.5,0,0.5")]
-        [TestCase(TickBarPlacement.Right, false, 2, 1, "0 0 0 0", "0,1,0,1")]
+        [TestCase(TickBarPlacement.Right, false, 2, 1, "0 0 0 0", "0,1.5,0,1.5")]
         [TestCase(TickBarPlacement.Right, false, 2, 0, "0 1 0 1", "0,0,0,0")]
-        [TestCase(TickBarPlacement.Right, false, 2, 1, "0 1 0 1", "0,0,0,0")]
-        [TestCase(TickBarPlacement.Right, false, 3, 1, "0 1 0 1", "0,0.5,0,0.5")]
+        [TestCase(TickBarPlacement.Right, false, 2, 1, "0 1 0 1", "0,0.5,0,0.5")]
+        [TestCase(TickBarPlacement.Right, false, 3, 1, "0 1 0 1", "0,1,0,1")]
         [TestCase(TickBarPlacement.Right, true, 1, 1, "0 0 0 0", "0,0.5,0,0.5")]
-        [TestCase(TickBarPlacement.Right, true, 2, 1, "0 0 0 0", "0,1,0,1")]
+        [TestCase(TickBarPlacement.Right, true, 2, 1, "0 0 0 0", "0,1.5,0,1.5")]
         [TestCase(TickBarPlacement.Right, true, 2, 0, "0 1 0 1", "0,0,0,0")]
-        [TestCase(TickBarPlacement.Right, true, 2, 1, "0 1 0 1", "0,0,0,0")]
-        [TestCase(TickBarPlacement.Right, true, 3, 1, "0 1 0 1", "0,0.5,0,0.5")]
+        [TestCase(TickBarPlacement.Right, true, 2, 1, "0 1 0 1", "0,0.5,0,0.5")]
+        [TestCase(TickBarPlacement.Right, true, 3, 1, "0 1 0 1", "0,1,0,1")]
         [TestCase(TickBarPlacement.Bottom, false, 1, 1, "0 0 0 0", "0.5,0,0.5,0")]
-        [TestCase(TickBarPlacement.Bottom, false, 2, 1, "0 0 0 0", "1,0,1,0")]
+        [TestCase(TickBarPlacement.Bottom, false, 2, 1, "0 0 0 0", "1.5,0,1.5,0")]
         [TestCase(TickBarPlacement.Bottom, false, 2, 0, "1 0 1 0", "0,0,0,0")]
-        [TestCase(TickBarPlacement.Bottom, false, 2, 1, "1 0 1 0", "0,0,0,0")]
-        [TestCase(TickBarPlacement.Bottom, false, 3, 1, "1 0 1 0", "0.5,0,0.5,0")]
+        [TestCase(TickBarPlacement.Bottom, false, 2, 1, "1 0 1 0", "0.5,0,0.5,0")]
+        [TestCase(TickBarPlacement.Bottom, false, 3, 1, "1 0 1 0", "1,0,1,0")]
         [TestCase(TickBarPlacement.Bottom, true, 1, 1, "0 0 0 0", "0.5,0,0.5,0")]
-        [TestCase(TickBarPlacement.Bottom, true, 2, 1, "0 0 0 0", "1,0,1,0")]
+        [TestCase(TickBarPlacement.Bottom, true, 2, 1, "0 0 0 0", "1.5,0,1.5,0")]
         [TestCase(TickBarPlacement.Bottom, true, 2, 0, "1 0 1 0", "0,0,0,0")]
-        [TestCase(TickBarPlacement.Bottom, true, 2, 1, "1 0 1 0", "0,0,0,0")]
-        [TestCase(TickBarPlacement.Bottom, true, 3, 1, "1 0 1 0", "0.5,0,0.5,0")]
+        [TestCase(TickBarPlacement.Bottom, true, 2, 1, "1 0 1 0", "0.5,0,0.5,0")]
+        [TestCase(TickBarPlacement.Bottom, true, 3, 1, "1 0 1 0", "1,0,1,0")]
         [TestCase(TickBarPlacement.Top, false, 1, 1, "0 0 0 0", "0.5,0,0.5,0")]
-        [TestCase(TickBarPlacement.Top, false, 2, 1, "0 0 0 0", "1,0,1,0")]
+        [TestCase(TickBarPlacement.Top, false, 2, 1, "0 0 0 0", "1.5,0,1.5,0")]
         [TestCase(TickBarPlacement.Top, false, 2, 0, "1 0 1 0", "0,0,0,0")]
-        [TestCase(TickBarPlacement.Top, false, 2, 1, "1 0 1 0", "0,0,0,0")]
-        [TestCase(TickBarPlacement.Top, false, 3, 1, "1 0 1 0", "0.5,0,0.5,0")]
+        [TestCase(TickBarPlacement.Top, false, 2, 1, "1 0 1 0", "0.5,0,0.5,0")]
+        [TestCase(TickBarPlacement.Top, false, 3, 1, "1 0 1 0", "1,0,1,0")]
         [TestCase(TickBarPlacement.Top, true, 1, 1, "0 0 0 0", "0.5,0,0.5,0")]
-        [TestCase(TickBarPlacement.Top, true, 2, 1, "0 0 0 0", "1,0,1,0")]
+        [TestCase(TickBarPlacement.Top, true, 2, 1, "0 0 0 0", "1.5,0,1.5,0")]
         [TestCase(TickBarPlacement.Top, true, 2, 0, "1 0 1 0", "0,0,0,0")]
-        [TestCase(TickBarPlacement.Top, true, 2, 1, "1 0 1 0", "0,0,0,0")]
-        [TestCase(TickBarPlacement.Top, true, 3, 1, "1 0 1 0", "1.5,0,1.5,0")]
+        [TestCase(TickBarPlacement.Top, true, 2, 1, "1 0 1 0", "0.5,0,0.5,0")]
+        [TestCase(TickBarPlacement.Top, true, 3, 1, "1 0 1 0", "1,0,1,0")]
         public void Overflow(TickBarPlacement placement, bool isDirectionReversed, double tickWidth, double strokeThickness, string padding, string expected)
         {
             var tickBar = new LinearTickBar
@@ -182,7 +182,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 Fill = Brushes.Red,
                 Placement = placement,
                 IsDirectionReversed = isDirectionReversed,
-                Padding = (Thickness)ThicknessConverter.ConvertFrom(padding)
+                Padding = padding.AsThickness(),
             };
 
             var gauge = new LinearGauge { Content = tickBar };

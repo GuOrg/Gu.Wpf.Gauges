@@ -1,12 +1,11 @@
 namespace Gu.Wpf.Gauges.Tests.Internals
 {
     using System.Windows;
+    using Gu.Wpf.Gauges.Tests.Helpers;
     using NUnit.Framework;
 
     public class InterpolationTests
     {
-        private static readonly ThicknessConverter ThicknessConverter = new ThicknessConverter();
-
         [TestCase(0, 0, 10, false, 0)]
         [TestCase(0, 0, 10, true, 10)]
         [TestCase(0.5, 0, 10, false, 5)]
@@ -34,7 +33,7 @@ namespace Gu.Wpf.Gauges.Tests.Internals
         public void InterpolateVertical(double value, double height, string padding, bool isDirectionReversed, double expected)
         {
             var interpolation = new Interpolation(value);
-            var thickness = string.IsNullOrEmpty(padding) ? default(Thickness) : (Thickness)ThicknessConverter.ConvertFrom(padding);
+            var thickness = padding.AsThickness();
             Assert.AreEqual(expected, interpolation.InterpolateVertical(new Size(0, height), thickness, isDirectionReversed));
         }
     }

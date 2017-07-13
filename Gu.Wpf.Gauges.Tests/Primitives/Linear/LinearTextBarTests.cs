@@ -5,6 +5,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
+    using Gu.Wpf.Gauges.Tests.Helpers;
     using Gu.Wpf.Gauges.Tests.TestHelpers;
     using NUnit.Framework;
     using Brushes = System.Windows.Media.Brushes;
@@ -13,8 +14,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
     [Apartment(ApartmentState.STA)]
     public class LinearTextBarTests
     {
-        private static readonly ThicknessConverter ThicknessConverter = new ThicknessConverter();
-
         [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Left, VerticalTextAlignment.Top, false, null)]
         [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Center, VerticalTextAlignment.Top, false, null)]
         [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Right, VerticalTextAlignment.Top, false, null)]
@@ -171,7 +170,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 Placement = placement,
                 TextPosition = new ExplicitLinearTextPosition(horizontalTextAlignment, verticalTextAlignment),
                 IsDirectionReversed = isDirectionReversed,
-                Padding = string.IsNullOrEmpty(padding) ? default(Thickness) : (Thickness)ThicknessConverter.ConvertFrom(padding)
+                Padding = padding.AsThickness(),
             };
 
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
@@ -204,7 +203,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 Foreground = Brushes.Black,
                 Placement = placement,
                 IsDirectionReversed = isDirectionReversed,
-                Padding = string.IsNullOrEmpty(padding) ? default(Thickness) : (Thickness)ThicknessConverter.ConvertFrom(padding)
+                Padding = padding.AsThickness(),
             };
 
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
@@ -235,7 +234,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 TickFrequency = 1,
                 Placement = placement,
                 IsDirectionReversed = isDirectionReversed,
-                Padding = (Thickness)ThicknessConverter.ConvertFrom(padding)
+                Padding = padding.AsThickness(),
             };
 
             var gauge = new LinearGauge { Content = tickBar };

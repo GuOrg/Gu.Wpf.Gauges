@@ -5,14 +5,13 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
+    using Gu.Wpf.Gauges.Tests.Helpers;
     using Gu.Wpf.Gauges.Tests.TestHelpers;
     using NUnit.Framework;
 
     [Apartment(ApartmentState.STA)]
     public class LinearLineBarTests
     {
-        private static readonly ThicknessConverter ThicknessConverter = new ThicknessConverter();
-
         [TestCase(TickBarPlacement.Left, false, 1, double.NaN, PenLineCap.Flat, PenLineCap.Flat, null)]
         [TestCase(TickBarPlacement.Left, true, 1, double.NaN, PenLineCap.Flat, PenLineCap.Flat, null)]
         [TestCase(TickBarPlacement.Left, false, 6, double.NaN, PenLineCap.Flat, PenLineCap.Flat, null)]
@@ -89,7 +88,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 StrokeEndLineCap = endLineCap,
                 Placement = placement,
                 IsDirectionReversed = isDirectionReversed,
-                Padding = string.IsNullOrEmpty(padding) ? default(Thickness) : (Thickness)ThicknessConverter.ConvertFrom(padding),
+                Padding = padding.AsThickness(),
                 Value = value,
             };
 
@@ -140,7 +139,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 StrokeEndLineCap = endLineCap,
                 Placement = placement,
                 IsDirectionReversed = isDirectionReversed,
-                Padding = (Thickness)ThicknessConverter.ConvertFrom(padding)
+                Padding = padding.AsThickness(),
             };
 
             var gauge = new LinearGauge { Content = tickBar };
