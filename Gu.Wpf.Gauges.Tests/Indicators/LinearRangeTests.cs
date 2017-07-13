@@ -11,97 +11,50 @@
     [Apartment(ApartmentState.STA)]
     public class LinearRangeTests
     {
-        [TestCase(TickBarPlacement.Top)]
-        [TestCase(TickBarPlacement.Bottom)]
-        public void Horizontal(TickBarPlacement placement)
+        [TestCase(TickBarPlacement.Left, true, 10, 20)]
+        [TestCase(TickBarPlacement.Left, false, 10, 20)]
+        [TestCase(TickBarPlacement.Right, true, 10, 20)]
+        [TestCase(TickBarPlacement.Right, false, 10, 20)]
+        [TestCase(TickBarPlacement.Top, true, 10, 20)]
+        [TestCase(TickBarPlacement.Top, false, 10, 20)]
+        [TestCase(TickBarPlacement.Bottom, true, 10, 20)]
+        [TestCase(TickBarPlacement.Bottom, false, 10, 20)]
+        public void Render(TickBarPlacement placement, bool isDirectionReversed, double start, double end)
         {
+            var range = new LinearRange
+            {
+                Background = Brushes.Black,
+                Start = start,
+                End = end
+            };
+
             var gauge = new LinearGauge
             {
                 Minimum = 0,
                 Maximum = 100,
                 Placement = placement,
-                Content = new LinearRange
-                {
-                    Background = Brushes.Black,
-                    Start = 10,
-                    End = 20
-                }
+                IsDirectionReversed = isDirectionReversed,
+                Content = range
             };
 
-            ImageAssert.AreEqual(Properties.Resources.LinearRange_Orientation_Horizontal_IsDirectionReversed_False, gauge);
+            ImageAssert.AreEqual(GetFileName(range), gauge);
         }
 
-        [TestCase(TickBarPlacement.Top)]
-        [TestCase(TickBarPlacement.Bottom)]
-        public void HorizontalReversed(TickBarPlacement placement)
+        private static string GetFileName(LinearRange range)
         {
-            var gauge = new LinearGauge
-            {
-                Minimum = 0,
-                Maximum = 100,
-                Placement = placement,
-                IsDirectionReversed = true,
-                Content = new LinearRange
-                {
-                    Background = Brushes.Black,
-                    Start = 10,
-                    End = 20
-                }
-            };
-
-            ImageAssert.AreEqual(Properties.Resources.LinearRange_Orientation_Horizontal_IsDirectionReversed_True, gauge);
-        }
-
-        [TestCase(TickBarPlacement.Left)]
-        [TestCase(TickBarPlacement.Right)]
-        public void Vertical(TickBarPlacement placement)
-        {
-            var gauge = new LinearGauge
-            {
-                Minimum = 0,
-                Maximum = 100,
-                Placement = placement,
-                Content = new LinearRange
-                {
-                    Background = Brushes.Black,
-                    Start = 10,
-                    End = 20
-                }
-            };
-
-            ImageAssert.AreEqual(Properties.Resources.LinearRange_Orientation_Vertical_IsDirectionReversed_False, gauge);
-        }
-
-        [TestCase(TickBarPlacement.Left)]
-        [TestCase(TickBarPlacement.Right)]
-        public void VerticalReversed(TickBarPlacement placement)
-        {
-            var gauge = new LinearGauge
-            {
-                Minimum = 0,
-                Maximum = 100,
-                Placement = placement,
-                IsDirectionReversed = true,
-                Content = new LinearRange
-                {
-                    Background = Brushes.Black,
-                    Start = 10,
-                    End = 20
-                }
-            };
-
-            ImageAssert.AreEqual(Properties.Resources.LinearRange_Orientation_Vertical_IsDirectionReversed_True, gauge);
+            var orientation = range.Placement.IsHorizontal()
+                ? "Orientation_Horizontal"
+                : "Orientation_Vertical";
+            return $"LinearRange_{orientation}_Min_{range.Minimum}_Max_{range.Maximum}_Start_{range.Start}_Start_{range.End}_IsDirectionReversed_{range.IsDirectionReversed}.png";
         }
 
         private static void SaveImage(LinearGauge gauge)
         {
             Directory.CreateDirectory($@"C:\Temp\LinearRange");
-            var orientation = gauge.Placement.IsHorizontal()
-                ? "Orientation_Horizontal"
-                : "Orientation_Vertical";
+
             gauge.SaveImage(
-                gauge.Placement.IsHorizontal() ? new Size(10, 5) : new Size(5, 40),
-                $@"C:\Temp\LinearRange\LinearRange_{orientation}_IsDirectionReversed_{gauge.IsDirectionReversed}.png");
+                gauge.Placement.IsHorizontal() ? new Size(100, 10) : new Size(10, 100),
+                $@"C:\Temp\LinearRange\{GetFileName((LinearRange)gauge.Content)}");
         }
     }
 }

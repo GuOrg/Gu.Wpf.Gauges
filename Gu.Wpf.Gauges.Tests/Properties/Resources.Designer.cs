@@ -63,66 +63,6 @@ namespace Gu.Wpf.Gauges.Tests.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LinearRange_Orientation_Horizontal_IsDirectionReversed_False {
-            get {
-                object obj = ResourceManager.GetObject("LinearRange_Orientation_Horizontal_IsDirectionReversed_False", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap LinearRange_Orientation_Horizontal_IsDirectionReversed_False1 {
-            get {
-                object obj = ResourceManager.GetObject("LinearRange_Orientation_Horizontal_IsDirectionReversed_False1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap LinearRange_Orientation_Horizontal_IsDirectionReversed_True {
-            get {
-                object obj = ResourceManager.GetObject("LinearRange_Orientation_Horizontal_IsDirectionReversed_True", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap LinearRange_Orientation_Horizontal_IsDirectionReversed_True1 {
-            get {
-                object obj = ResourceManager.GetObject("LinearRange_Orientation_Horizontal_IsDirectionReversed_True1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap LinearRange_Orientation_Vertical_IsDirectionReversed_False {
-            get {
-                object obj = ResourceManager.GetObject("LinearRange_Orientation_Vertical_IsDirectionReversed_False", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap LinearRange_Orientation_Vertical_IsDirectionReversed_True {
-            get {
-                object obj = ResourceManager.GetObject("LinearRange_Orientation_Vertical_IsDirectionReversed_True", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Ring_Thickness_10_StrokeThickness_0 {
             get {
                 object obj = ResourceManager.GetObject("Ring_Thickness_10_StrokeThickness_0", resourceCulture);
