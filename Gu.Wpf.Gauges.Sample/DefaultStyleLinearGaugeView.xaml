@@ -13,18 +13,22 @@
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="5"
-                          Placement="Top"
+                          Placement="Left"
                           ShowLabels="True"
                           Value="0" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"
-                           MinHeight="100" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
         <gauges:LinearGauge Grid.Row="0"
-                            Margin="12"
+                            Grid.Column="1"
                             IsDirectionReversed="{Binding IsDirectionReversed}"
                             MajorTickFrequency="{Binding MajorTickFrequency}"
                             MajorTicks="{Binding MajorTicks}"
@@ -34,8 +38,18 @@
                             Placement="{Binding Placement}"
                             Value="{Binding Value}" />
 
+        <gauges:LinearGauge Grid.Row="1"
+                            Grid.Column="0"
+                            IsDirectionReversed="{Binding IsDirectionReversed}"
+                            MajorTickFrequency="{Binding MajorTickFrequency}"
+                            MajorTicks="{Binding MajorTicks}"
+                            Maximum="{Binding Maximum}"
+                            Minimum="{Binding Minimum}"
+                            MinorTickFrequency="{Binding MinorTickFrequency}"
+                            Placement="{Binding Placement}"
+                            Value="{Binding Value}" />
         <ContentPresenter Grid.Row="1"
-                          Grid.Column="0"
+                          Grid.Column="1"
                           Content="{Binding}" />
     </Grid>
 </UserControl>
