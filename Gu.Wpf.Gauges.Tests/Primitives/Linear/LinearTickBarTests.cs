@@ -168,7 +168,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         [TestCase(TickBarPlacement.Top, true, 2, 1, "0 0 0 0", "1,0,1,0")]
         [TestCase(TickBarPlacement.Top, true, 2, 0, "1 0 1 0", "0,0,0,0")]
         [TestCase(TickBarPlacement.Top, true, 2, 1, "1 0 1 0", "0,0,0,0")]
-        [TestCase(TickBarPlacement.Top, true, 3, 1, "1 0 1 0", "0.5,0,0.5,0")]
+        [TestCase(TickBarPlacement.Top, true, 3, 1, "1 0 1 0", "1.5,0,1.5,0")]
         public void Overflow(TickBarPlacement placement, bool isDirectionReversed, double tickWidth, double strokeThickness, string padding, string expected)
         {
             var tickBar = new LinearTickBar

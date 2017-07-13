@@ -55,7 +55,6 @@
             var line = new Line(startPos, endPos);
             line = line.OffsetStart((this.TickDiameter / 2) + (strokeThickness / 2));
             line = line.OffsetEnd((this.TickDiameter / 2) + (strokeThickness / 2));
-
             if (this.Placement.IsHorizontal())
             {
                 this.Overflow = new Thickness(

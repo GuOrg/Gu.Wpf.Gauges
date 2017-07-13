@@ -32,6 +32,13 @@
                                           TickFrequency="{TemplateBinding MinorTickFrequency}"
                                           Ticks="{TemplateBinding MinorTicks}" />
 
+                    <gauges:LinearTickBar Width="4"
+                                          Fill="Red"
+                                          Stroke="Black"
+                                          StrokeThickness="1"
+                                          TickFrequency="{TemplateBinding MinorTickFrequency}"
+                                          TickWidth="4" />
+
                     <Rectangle Width="1"
                                Fill="Black" />
 
@@ -77,6 +84,13 @@
                                           Fill="Black"
                                           TickFrequency="{TemplateBinding MinorTickFrequency}"
                                           Ticks="{TemplateBinding MinorTicks}" />
+
+                    <gauges:LinearTickBar Height="4"
+                                          Fill="Red"
+                                          Stroke="Black"
+                                          StrokeThickness="1"
+                                          TickFrequency="{TemplateBinding MinorTickFrequency}"
+                                          TickWidth="4" />
 
                     <Rectangle Height="1"
                                Fill="Black" />
@@ -136,7 +150,7 @@
                           Minimum="0"
                           MinorTickFrequency="10"
                           MinorTicks="15"
-                          Placement="Right" />
+                          Placement="Top" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>

@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
-             xmlns:local="clr-namespace:Gu.Wpf.Gauges.Sample.Sandbox"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
              d:DesignHeight="400"
@@ -18,34 +17,63 @@
                           Placement="Top"
                           SnapsToDevicePixels="False"
                           TickWidth="10"
-                          Value="50" />
+                          Value="100" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition MinHeight="100" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <GroupBox Header="BlockBar">
-            <Grid>
-                <gauges:LinearDotBar Fill="CornflowerBlue"
-                                     IsDirectionReversed="{Binding IsDirectionReversed}"
-                                     Maximum="{Binding Maximum}"
-                                     Minimum="{Binding Minimum}"
-                                     Placement="{Binding Placement}"
-                                     SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
-                                     Stroke="Black"
-                                     StrokeThickness="1"
-                                     TickDiameter="{Binding TickWidth}"
-                                     TickFrequency="{Binding MajorTickFrequency}"
-                                     Ticks="{Binding MajorTicks}"
-                                     Value="{Binding Value}" />
-                <Rectangle Fill="#55ff69b4"
-                           SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
-                           Stroke="Black"
-                           StrokeThickness="1" />
-            </Grid>
-        </GroupBox>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0"
+              Grid.Column="1"
+              Margin="{Binding ElementName=Horizontal, Path=Overflow}">
+            <gauges:LinearDotBar x:Name="Horizontal"
+                                 Fill="CornflowerBlue"
+                                 IsDirectionReversed="{Binding IsDirectionReversed}"
+                                 Maximum="{Binding Maximum}"
+                                 Minimum="{Binding Minimum}"
+                                 Placement="{Binding Placement}"
+                                 SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                                 Stroke="Black"
+                                 StrokeThickness="1"
+                                 TickDiameter="{Binding TickWidth}"
+                                 TickFrequency="{Binding MajorTickFrequency}"
+                                 Ticks="{Binding MajorTicks}"
+                                 Value="{Binding Value}" />
+            <Rectangle Fill="#55ff69b4"
+                       SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                       Stroke="Black"
+                       StrokeThickness="1" />
+        </Grid>
+        <Grid Grid.Row="1"
+              Grid.Column="0"
+              Margin="{Binding ElementName=Vertical, Path=Overflow}">
+            <gauges:LinearDotBar x:Name="Vertical"
+                                 Fill="CornflowerBlue"
+                                 IsDirectionReversed="{Binding IsDirectionReversed}"
+                                 Maximum="{Binding Maximum}"
+                                 Minimum="{Binding Minimum}"
+                                 Placement="{Binding Placement}"
+                                 SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                                 Stroke="Black"
+                                 StrokeThickness="1"
+                                 TickDiameter="{Binding TickWidth}"
+                                 TickFrequency="{Binding MajorTickFrequency}"
+                                 Ticks="{Binding MajorTicks}"
+                                 Value="{Binding Value}" />
+            <Rectangle Fill="#55ff69b4"
+                       SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                       Stroke="Black"
+                       StrokeThickness="1" />
+        </Grid>
         <ContentPresenter Grid.Row="1"
+                          Grid.Column="1"
                           Content="{Binding}" />
     </Grid>
 </UserControl>

@@ -48,30 +48,13 @@
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            if (this.AllTicks != null)
-            {
-                var tickBounds = default(Rect);
-                var strokeThickness = this.Placement.IsHorizontal()
-                    ? new Size(this.GetStrokeThickness() / 2, 0)
-                    : new Size(0, this.GetStrokeThickness() / 2);
-                var rect = this.CreateRect(this.AllTicks[0], finalSize);
-                rect.Inflate(strokeThickness);
-                tickBounds.Union(rect);
-                if (this.EffectiveValue == this.Maximum)
-                {
-                    rect = this.CreateRect(this.AllTicks[this.AllTicks.Count - 1], finalSize);
-                    rect.Inflate(strokeThickness);
-                    tickBounds.Union(rect);
-                }
-
-                this.Overflow = this.Placement.IsHorizontal()
-                    ? new Thickness(Math.Max(0, -tickBounds.Left), 0, Math.Max(0, tickBounds.Right - finalSize.Width), 0)
-                    : new Thickness(0, Math.Max(0, -tickBounds.Top), 0, Math.Max(0, tickBounds.Bottom - finalSize.Height));
-            }
-            else
-            {
-                this.Overflow = default(Thickness);
-            }
+            var strokeThickness = this.GetStrokeThickness();
+            var w = this.TickWidth > strokeThickness
+                ? (this.TickWidth + strokeThickness) / 2
+                : strokeThickness / 2;
+            this.Overflow = this.Placement.IsHorizontal()
+                ? new Thickness(Math.Max(0, w - this.Padding.Left), 0, Math.Max(0, w - this.Padding.Right), 0)
+                : new Thickness(0, Math.Max(0, w - this.Padding.Top), 0, Math.Max(0, w - this.Padding.Bottom));
 
             this.RegisterOverflow(this.Overflow);
             return finalSize;
@@ -167,15 +150,15 @@
             var strokeThickness = this.GetStrokeThickness();
             return this.Placement.IsHorizontal()
                 ? new Rect(
-                    x: position - (this.TickWidth / 2) + (strokeThickness / 2),
+                    x: position - (this.TickWidth / 2),
                     y: strokeThickness / 2,
-                    width: this.TickWidth - strokeThickness,
+                    width: this.TickWidth,
                     height: arrangeSize.Height - strokeThickness)
                 : new Rect(
                     x: strokeThickness / 2,
-                    y: position - (this.TickWidth / 2) + (strokeThickness / 2),
+                    y: position - (this.TickWidth / 2),
                     width: arrangeSize.Width - strokeThickness,
-                    height: this.TickWidth - strokeThickness);
+                    height: this.TickWidth);
         }
     }
 }
