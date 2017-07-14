@@ -19,7 +19,7 @@
                           Placement="Top"
                           SnapsToDevicePixels="False"
                           TickWidth="10"
-                          Value="10" />
+                          Value="0" />
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>

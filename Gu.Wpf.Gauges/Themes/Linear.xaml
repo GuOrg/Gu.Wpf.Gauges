@@ -321,7 +321,7 @@
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">
-                        <ContentPresenter />
+                        <ContentPresenter Margin="{TemplateBinding ContentOverflow}" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

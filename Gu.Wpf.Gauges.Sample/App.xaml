@@ -4,8 +4,8 @@
              xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample">
     <!--<Application.StartupUri>MainWindow.xaml</Application.StartupUri>-->
-    <!--<Application.StartupUri>Sandbox/LinearIndicatorWindow.xaml</Application.StartupUri>-->
-    <Application.StartupUri>Sandbox/LinearGaugeWindow.xaml</Application.StartupUri>
+    <Application.StartupUri>Sandbox/LinearIndicatorWindow.xaml</Application.StartupUri>
+    <!--<Application.StartupUri>Sandbox/LinearGaugeWindow.xaml</Application.StartupUri>-->
     <Application.Resources>
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -76,9 +76,10 @@
                                Text="Value" />
                     <TextBox Grid.Row="2"
                              Grid.Column="1"
-                             Text="{Binding Value}" />
+                             Text="{Binding Value, StringFormat='F0'}" />
                     <Slider Grid.Row="2"
                             Grid.Column="2"
+                            IsSnapToTickEnabled="False"
                             Maximum="{Binding Maximum}"
                             Minimum="{Binding Minimum}"
                             Value="{Binding Value}" />

@@ -5,8 +5,8 @@
         xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
-        d:DesignHeight="300"
-        d:DesignWidth="300"
+        d:DesignHeight="400"
+        d:DesignWidth="400"
         mc:Ignorable="d">
     <Window.Resources>
         <ControlTemplate x:Key="VerticalTemplate"
