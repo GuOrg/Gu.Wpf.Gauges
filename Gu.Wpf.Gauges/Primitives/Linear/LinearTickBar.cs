@@ -3,7 +3,6 @@
     using System;
     using System.Windows;
     using System.Windows.Media;
-    using Gu.Wpf.Gauges.Primitives.Linear;
 
     public class LinearTickBar : LinearGeometryBar
     {
@@ -58,7 +57,6 @@
                 ? new Thickness(Math.Max(0, w - this.Padding.Left), 0, Math.Max(0, w - this.Padding.Right), 0)
                 : new Thickness(0, Math.Max(0, w - this.Padding.Top), 0, Math.Max(0, w - this.Padding.Bottom));
 
-            this.RegisterOverflow(this.Overflow);
             return finalSize;
         }
 

@@ -189,6 +189,11 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
             gauge.Arrange(new Rect(new Size(10, 10)));
             Assert.AreEqual(expected, gauge.ContentOverflow.ToString());
             Assert.AreEqual(expected, tickBar.Overflow.ToString());
+
+            gauge.Measure(new Size(10, 10));
+            gauge.Arrange(new Rect(new Size(10, 10)));
+            Assert.AreEqual(expected, gauge.ContentOverflow.ToString());
+            Assert.AreEqual(expected, tickBar.Overflow.ToString());
         }
 
         private static string GetFileName(LinearTickBar tickBar)

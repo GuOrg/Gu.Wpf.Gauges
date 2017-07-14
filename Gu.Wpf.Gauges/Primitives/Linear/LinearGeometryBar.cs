@@ -2,6 +2,7 @@ namespace Gu.Wpf.Gauges
 {
     using System.Windows;
     using System.Windows.Controls.Primitives;
+    using Gu.Wpf.Gauges.Primitives.Linear;
 
     public abstract class LinearGeometryBar : GeometryBar
     {
@@ -42,7 +43,10 @@ namespace Gu.Wpf.Gauges
             nameof(Overflow),
             typeof(Thickness),
             typeof(LinearGeometryBar),
-            new PropertyMetadata(default(Thickness)));
+            new PropertyMetadata(
+                default(Thickness),
+                null,
+                CoerceOverflow));
 
         public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
 #pragma warning restore SA1202 // Elements must be ordered by access
@@ -102,6 +106,12 @@ namespace Gu.Wpf.Gauges
         {
             var interpolation = Interpolate.Linear(this.Minimum, this.Maximum, value);
             return interpolation.Interpolate(size, this.Padding, this.Placement, this.IsDirectionReversed);
+        }
+
+        private static object CoerceOverflow(DependencyObject d, object basevalue)
+        {
+            ((UIElement)d).RegisterOverflow((Thickness)basevalue);
+            return basevalue;
         }
     }
 }

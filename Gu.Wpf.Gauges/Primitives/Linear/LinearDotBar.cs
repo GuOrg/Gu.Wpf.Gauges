@@ -4,7 +4,6 @@
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
-    using Gu.Wpf.Gauges.Primitives.Linear;
 
     public class LinearDotBar : LinearGeometryBar
     {
@@ -72,7 +71,6 @@
                     Math.Max(0, Math.Max(line.StartPoint.Y, line.EndPoint.Y) - finalSize.Height));
             }
 
-            this.RegisterOverflow(this.Overflow);
             return finalSize;
         }
 
