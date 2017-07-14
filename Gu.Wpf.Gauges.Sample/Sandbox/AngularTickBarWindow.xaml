@@ -23,7 +23,7 @@
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition MinHeight="50"/>
+            <RowDefinition MinHeight="50" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Border>

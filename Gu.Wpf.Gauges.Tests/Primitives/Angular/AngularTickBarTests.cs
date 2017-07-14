@@ -4,7 +4,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
     using System.IO;
     using System.Threading;
     using System.Windows;
-    using System.Windows.Controls.Primitives;
     using Gu.Wpf.Gauges.Tests.TestHelpers;
     using NUnit.Framework;
 
@@ -168,7 +167,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
         [TestCase(true, 2, 0, "1 0 1 0", "0,0,0,0")]
         [TestCase(true, 2, 1, "1 0 1 0", "0.5,0,0.5,0")]
         [TestCase(true, 3, 1, "1 0 1 0", "1,0,1,0")]
-        public void Overflow(TickBarPlacement placement, bool isDirectionReversed, double tickWidth, double strokeThickness, string padding, string expected)
+        public void Overflow(bool isDirectionReversed, double tickWidth, double strokeThickness, string padding, string expected)
         {
             Assert.Inconclusive("Implement");
             //var tickBar = new AngularTickBar
