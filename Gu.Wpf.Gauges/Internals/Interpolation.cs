@@ -1,5 +1,6 @@
 ﻿namespace Gu.Wpf.Gauges
 {
+    using System;
     using System.Windows;
     using System.Windows.Controls.Primitives;
 
@@ -24,6 +25,13 @@
         internal double Interpolate(double min, double max, bool isDirectionReversed) => isDirectionReversed
             ? Gu.Wpf.Gauges.Interpolate.Linear(max, min, this)
             : Gu.Wpf.Gauges.Interpolate.Linear(min, max, this);
+
+        internal Point Interpolate(ArcInfo arc)
+        {
+            throw new NotImplementedException("Add a couple of tests");
+            var angle = Gu.Wpf.Gauges.Interpolate.Linear(arc.Start, arc.End, this);
+            return arc.GetPoint(angle);
+        }
 
         internal double Interpolate(Size size, Thickness padding, TickBarPlacement placement, bool isDirectionReversed) => placement.IsHorizontal()
             ? this.InterpolateHorizontal(size, padding, isDirectionReversed)

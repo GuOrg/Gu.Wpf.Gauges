@@ -5,7 +5,7 @@
     using System.Windows;
     using System.Windows.Media;
 
-    internal struct ArcInfo
+    public struct ArcInfo
     {
         internal readonly Point Center;
         internal readonly double Radius;
@@ -31,6 +31,13 @@
 
         public static ArcInfo Fill(Size availableSize, double start, double end, bool isDirectionReversed)
         {
+            var fill = Fill(availableSize, start, end);
+            return new ArcInfo(fill.Center, start, end, fill.Radius, isDirectionReversed);
+        }
+
+        public static ArcInfo Fill(Size availableSize, Thickness padding, double start, double end, bool isDirectionReversed)
+        {
+            throw new NotImplementedException("Use padding and add tests.");
             var fill = Fill(availableSize, start, end);
             return new ArcInfo(fill.Center, start, end, fill.Radius, isDirectionReversed);
         }

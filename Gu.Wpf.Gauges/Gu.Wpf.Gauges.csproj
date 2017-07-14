@@ -94,6 +94,7 @@
     <Compile Include="Primitives\Angular\AngularPanel.cs" />
     <Compile Include="Primitives\Angular\AngularTextPosition.cs" />
     <Compile Include="Primitives\Angular\DefaultAngularTextPosition.cs" />
+    <Compile Include="Primitives\Angular\AngularGeometryBar.cs" />
     <Compile Include="Primitives\GeometryBar.cs" />
     <Compile Include="Primitives\HorizontalTextAlignment.cs" />
     <Compile Include="Primitives\Linear\DefaultLinearTextPosition.cs" />
@@ -108,7 +109,7 @@
     <Compile Include="Primitives\LineBar.cs" />
     <Compile Include="Primitives\TickBarBase.cs" />
     <Compile Include="Gauge.cs" />
-    <Compile Include="Internals\ArcInfo.cs" />
+    <Compile Include="Primitives\Angular\ArcInfo.cs" />
     <Compile Include="Dimensions\DimensionArrowHead.cs" />
     <Compile Include="Dimensions\DimensionLine.cs" />
     <Compile Include="Dimensions\LineExt.cs" />

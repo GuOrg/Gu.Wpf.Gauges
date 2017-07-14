@@ -25,7 +25,7 @@ namespace Gu.Wpf.Gauges
         public static readonly DependencyProperty StrokeProperty = Shape.StrokeProperty.AddOwner(
             typeof(AngularTickBar),
             new FrameworkPropertyMetadata(
-                default(Brush),
+                Brushes.Black,
                 FrameworkPropertyMetadataOptions.AffectsRender,
                 (d, _) => ((AngularTickBar)d).pen = null));
 

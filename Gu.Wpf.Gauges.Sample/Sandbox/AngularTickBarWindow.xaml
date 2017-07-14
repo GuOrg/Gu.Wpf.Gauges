@@ -19,13 +19,11 @@
                                  MinAngle="-180"
                                  Minimum="0"
                                  MinorTickFrequency="5"
-                                 ShowLabels="True"
-                                 TextOrientation="Tangential"
                                  Value="30" />
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
+            <RowDefinition MinHeight="50"/>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Border>
@@ -33,6 +31,7 @@
                                    Maximum="{Binding Maximum}"
                                    MinAngle="{Binding MinAngle}"
                                    Minimum="{Binding Minimum}"
+                                   StrokeThickness="2"
                                    TickFrequency="{Binding MajorTickFrequency}"
                                    Ticks="{Binding MajorTicks}" />
         </Border>
