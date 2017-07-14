@@ -2,6 +2,7 @@ source https://api.nuget.org/v3/index.json
 framework net45
 
 nuget NUnit
+nuget FlaUI.UIA3
 
 nuget Gu.Analyzers
 nuget StyleCop.Analyzers
