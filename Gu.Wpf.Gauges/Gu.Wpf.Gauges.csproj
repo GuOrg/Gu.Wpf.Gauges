@@ -159,6 +159,23 @@
   -->
   <Import Project="..\.paket\paket.targets" />
   <ItemGroup>
+    <Content Include="AngularGauge.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AngularGauge.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="LinearGauge.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LinearGauge.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Gauge.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Gauge.generated.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Analyzer Include="..\packages\Gu.Analyzers\analyzers\dotnet\cs\Gu.Analyzers.Analyzers.dll">
       <Paket>True</Paket>
     </Analyzer>
@@ -181,22 +198,5 @@
     <Analyzer Include="..\packages\WpfAnalyzers\analyzers\dotnet\cs\WpfAnalyzers.CodeFixes.dll">
       <Paket>True</Paket>
     </Analyzer>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="AngularGauge.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AngularGauge.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="LinearGauge.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>LinearGauge.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="Gauge.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Gauge.generated.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
 </Project>
