@@ -72,6 +72,9 @@
     <Compile Include="Sandbox\AngularTextBarBox.xaml.cs">
       <DependentUpon>AngularTextBarBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sandbox\AngularTickBarWindow.xaml.cs">
+      <DependentUpon>AngularTickBarWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sandbox\LinearBlockBarBox.xaml.cs">
       <DependentUpon>LinearBlockBarBox.xaml</DependentUpon>
     </Compile>
@@ -150,6 +153,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Sandbox\AngularTextBarBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sandbox\AngularTickBarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
