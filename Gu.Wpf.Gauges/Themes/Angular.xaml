@@ -6,7 +6,8 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type gauges:AngularRange}">
-                    <gauges:AngularBlockBar Fill="{TemplateBinding Foreground}" Value="{TemplateBinding End}" />
+                    <gauges:AngularBlockBar Fill="{TemplateBinding Foreground}"
+                                            Value="{TemplateBinding End}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -28,36 +29,19 @@
                 <ControlTemplate TargetType="{x:Type gauges:AngularAxis}">
                     <Grid>
                         <gauges:AngularTextBar x:Name="TextBar"
-                                               FontFamily="{TemplateBinding FontFamily}"
-                                               FontSize="{TemplateBinding FontSize}"
-                                               FontStretch="{TemplateBinding FontStretch}"
-                                               FontStyle="{TemplateBinding FontStyle}"
-                                               FontWeight="{TemplateBinding FontWeight}"
-                                               Foreground="{TemplateBinding Foreground}"
-                                               IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
-                                               MaxAngle="{TemplateBinding MaxAngle}"
-                                               Maximum="{TemplateBinding Maximum}"
-                                               MinAngle="{TemplateBinding MinAngle}"
-                                               Minimum="{TemplateBinding Minimum}"
                                                TextOrientation="{TemplateBinding TextOrientation}"
                                                TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                Ticks="{TemplateBinding MajorTicks}" />
+
                         <gauges:AngularTickBar x:Name="MajorTicks"
                                                Stroke="{TemplateBinding Foreground}"
-                                               IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
-                                               MaxAngle="{TemplateBinding MaxAngle}"
-                                               Maximum="{TemplateBinding Maximum}"
-                                               MinAngle="{TemplateBinding MinAngle}"
-                                               Minimum="{TemplateBinding Minimum}"
-                                               Thickness="10"
+                                               Thickness="8"
                                                TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                Ticks="{TemplateBinding MajorTicks}" />
-                        <gauges:AngularTickBar Stroke="{TemplateBinding Foreground}"
-                                               IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
-                                               MaxAngle="{TemplateBinding MaxAngle}"
-                                               Maximum="{TemplateBinding Maximum}"
-                                               MinAngle="{TemplateBinding MinAngle}"
-                                               Minimum="{TemplateBinding Minimum}"
+
+                        <gauges:AngularTickBar x:Name="MinorTicks"
+                                               ExcludeTicks="{Binding ElementName=MajorTicks, Path=AllTicks}"
+                                               Stroke="{TemplateBinding Foreground}"
                                                Thickness="5"
                                                TickFrequency="{TemplateBinding MinorTickFrequency}" />
                     </Grid>

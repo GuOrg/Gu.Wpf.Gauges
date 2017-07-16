@@ -8,7 +8,7 @@ namespace Gu.Wpf.Gauges
 
     public class Ring : FrameworkElement
     {
-        public static readonly DependencyProperty ThicknessProperty = AngularGauge.ThicknessProperty.AddOwner(
+        public static readonly DependencyProperty ThicknessProperty = Gauge.ThicknessProperty.AddOwner(
             typeof(Ring),
             new FrameworkPropertyMetadata(
                 10.0,
