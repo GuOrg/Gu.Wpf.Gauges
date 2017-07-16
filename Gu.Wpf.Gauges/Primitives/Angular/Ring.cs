@@ -247,14 +247,7 @@ namespace Gu.Wpf.Gauges
 
         protected override Size MeasureOverride(Size constraint)
         {
-            var width = constraint.Width;
-            var height = constraint.Height;
-            if (double.IsInfinity(width) && double.IsInfinity(height))
-            {
-                return new Size(2 * this.Thickness, 2 * this.Thickness);
-            }
-
-            var d = Math.Min(width, height);
+            var d = 2 * (this.Thickness + this.GetStrokeThickness());
             return new Size(d, d);
         }
 
