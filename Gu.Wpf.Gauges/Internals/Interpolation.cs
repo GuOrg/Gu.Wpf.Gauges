@@ -1,6 +1,5 @@
 ﻿namespace Gu.Wpf.Gauges
 {
-    using System;
     using System.Windows;
     using System.Windows.Controls.Primitives;
 

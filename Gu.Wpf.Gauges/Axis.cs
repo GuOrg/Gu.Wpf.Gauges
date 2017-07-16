@@ -28,12 +28,6 @@
                 1.0,
                 FrameworkPropertyMetadataOptions.Inherits));
 
-        public static readonly DependencyProperty ShowLabelsProperty = DependencyProperty.Register(
-            nameof(ShowLabels),
-            typeof(bool),
-            typeof(Axis),
-            new PropertyMetadata(true));
-
         public static readonly DependencyProperty MajorTickFrequencyProperty = Gauge.MajorTickFrequencyProperty.AddOwner(
             typeof(Axis),
             new FrameworkPropertyMetadata(default(double)));
@@ -81,15 +75,6 @@
         {
             get => (double)this.GetValue(MaximumProperty);
             set => this.SetValue(MaximumProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets if textlabels should be visible
-        /// </summary>
-        public bool ShowLabels
-        {
-            get => (bool)this.GetValue(ShowLabelsProperty);
-            set => this.SetValue(ShowLabelsProperty, value);
         }
 
         public double MajorTickFrequency
