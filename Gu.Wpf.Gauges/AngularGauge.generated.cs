@@ -22,22 +22,6 @@
                 FrameworkPropertyMetadataOptions.Inherits,
                 OnMaxAngleChanged));
 
-        public static readonly DependencyProperty TickLengthProperty = DependencyProperty.RegisterAttached(
-            nameof(TickLength),
-            typeof(double),
-            typeof(AngularGauge),
-            new FrameworkPropertyMetadata(
-                0.0d,
-                FrameworkPropertyMetadataOptions.Inherits));
-
-        public static readonly DependencyProperty TickGapProperty = DependencyProperty.RegisterAttached(
-            nameof(TickGap),
-            typeof(double),
-            typeof(AngularGauge),
-            new FrameworkPropertyMetadata(
-                0.0d,
-                FrameworkPropertyMetadataOptions.Inherits));
-
         public static readonly DependencyProperty TextOrientationProperty = DependencyProperty.RegisterAttached(
             nameof(TextOrientation),
             typeof(TextOrientation),
@@ -56,18 +40,6 @@
         {
             get => (double)this.GetValue(MaxAngleProperty);
             set => this.SetValue(MaxAngleProperty, value);
-        }
-
-        public double TickLength
-        {
-            get => (double)this.GetValue(TickLengthProperty);
-            set => this.SetValue(TickLengthProperty, value);
-        }
-
-        public double TickGap
-        {
-            get => (double)this.GetValue(TickGapProperty);
-            set => this.SetValue(TickGapProperty, value);
         }
 
         public TextOrientation TextOrientation
@@ -94,26 +66,6 @@
         public static double GetMaxAngle(DependencyObject element)
         {
             return (double)element.GetValue(MaxAngleProperty);
-        }
-
-        public static void SetTickLength(DependencyObject element, double value)
-        {
-            element.SetValue(TickLengthProperty, value);
-        }
-
-        public static double GetTickLength(DependencyObject element)
-        {
-            return (double)element.GetValue(TickLengthProperty);
-        }
-
-        public static void SetTickGap(DependencyObject element, double value)
-        {
-            element.SetValue(TickGapProperty, value);
-        }
-
-        public static double GetTickGap(DependencyObject element)
-        {
-            return (double)element.GetValue(TickGapProperty);
         }
 
         public static void SetTextOrientation(DependencyObject element, TextOrientation value)

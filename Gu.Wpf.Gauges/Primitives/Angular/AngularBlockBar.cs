@@ -38,11 +38,13 @@ namespace Gu.Wpf.Gauges
                 default(double),
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
-        public static readonly DependencyProperty TickGapProperty = AngularGauge.TickGapProperty.AddOwner(
+        public static readonly DependencyProperty TickGapProperty = DependencyProperty.Register(
+            nameof(TickGap),
+            typeof(double),
             typeof(AngularBlockBar),
             new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.AffectsRender));
 
-        public static readonly DependencyProperty ThicknessProperty = Gauge.ThicknessProperty.AddOwner(
+        public static readonly DependencyProperty ThicknessProperty = AngularGeometryBar.ThicknessProperty.AddOwner(
             typeof(AngularBlockBar),
             new FrameworkPropertyMetadata(
                 10.0,

@@ -7,6 +7,14 @@ namespace Gu.Wpf.Gauges
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
 
+        public static readonly DependencyProperty ThicknessProperty = DependencyProperty.RegisterAttached(
+            nameof(Thickness),
+            typeof(double),
+            typeof(AngularGeometryBar),
+            new FrameworkPropertyMetadata(
+                10.0d,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
+
         public static readonly DependencyProperty MinAngleProperty = AngularGauge.MinAngleProperty.AddOwner(
             typeof(AngularGeometryBar),
             new FrameworkPropertyMetadata(
@@ -50,6 +58,12 @@ namespace Gu.Wpf.Gauges
 
         public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
 #pragma warning restore SA1202 // Elements must be ordered by access
+
+        public double Thickness
+        {
+            get => (double)this.GetValue(ThicknessProperty);
+            set => this.SetValue(ThicknessProperty, value);
+        }
 
         /// <summary>
         /// Gets or sets the <see cref="P:AngularBar.MinAngle" />

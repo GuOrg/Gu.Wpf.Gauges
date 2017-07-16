@@ -14,8 +14,6 @@ namespace Gu.Wpf.Gauges
                      {
                          new PropertyMetaData("MinAngle", "double", "-180.0d", true),
                          new PropertyMetaData("MaxAngle", "double", "0.0d", true),
-                         new PropertyMetaData("TickLength", "double", "0.0d"),
-                         new PropertyMetaData("TickGap", "double", "0.0d"),
                          new PropertyMetaData("TextOrientation", "TextOrientation", "TextOrientation.Tangential"),
                      };
 

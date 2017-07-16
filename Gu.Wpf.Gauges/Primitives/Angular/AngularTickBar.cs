@@ -29,7 +29,7 @@ namespace Gu.Wpf.Gauges
                 FrameworkPropertyMetadataOptions.AffectsRender,
                 (d, _) => ((AngularTickBar)d).pen = null));
 
-        public static readonly DependencyProperty ThicknessProperty = Gauge.ThicknessProperty.AddOwner(
+        public static readonly DependencyProperty ThicknessProperty = AngularGeometryBar.ThicknessProperty.AddOwner(
             typeof(AngularTickBar),
             new FrameworkPropertyMetadata(
                 10.0d,

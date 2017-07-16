@@ -10,8 +10,6 @@
     <UserControl.Resources>
         <Style x:Key="AngularGaugeStyle"
                TargetType="{x:Type gauges:AngularGauge}">
-            <Setter Property="TickGap" Value="1" />
-            <Setter Property="Thickness" Value="35" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type gauges:AngularGauge}">
@@ -25,7 +23,9 @@
                                                     VerticalAlignment="Bottom"
                                                     Fill="LightGray"
                                                     Opacity="0.2"
+                                                    Thickness="35"
                                                     TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                    TickGap="1"
                                                     Ticks="{TemplateBinding MajorTicks}"
                                                     Value="{TemplateBinding Maximum}" />
 
@@ -33,7 +33,9 @@
                                                     Height="60"
                                                     VerticalAlignment="Bottom"
                                                     Fill="White"
+                                                    Thickness="35"
                                                     TickFrequency="{TemplateBinding MajorTickFrequency}"
+                                                    TickGap="1"
                                                     Ticks="{TemplateBinding MajorTicks}" />
 
                             <TextBlock HorizontalAlignment="Center"
