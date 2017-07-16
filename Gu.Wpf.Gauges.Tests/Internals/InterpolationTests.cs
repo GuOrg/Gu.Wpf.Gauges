@@ -36,5 +36,15 @@ namespace Gu.Wpf.Gauges.Tests.Internals
             var thickness = padding.AsThickness();
             Assert.AreEqual(expected, interpolation.InterpolateVertical(new Size(0, height), thickness, isDirectionReversed));
         }
+
+        [TestCase(0, "0,0 1 0 360", "1.0, 0.0")]
+        [TestCase(0.25, "0,0 1 0 360", "0.0, 1.0")]
+        [TestCase(0.5, "0,0 1 0 360", "-1.0, 0.0")]
+        [TestCase(1, "0,0 1 0 360", "1.0, 0.0")]
+        public void InterpolateArc(double value, string arc, string expected)
+        {
+            var interpolation = new Interpolation(value);
+            Assert.AreEqual(expected, interpolation.Interpolate(ArcInfo.Parse(arc)).ToString("F1"));
+        }
     }
 }

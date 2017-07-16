@@ -134,7 +134,7 @@ namespace Gu.Wpf.Gauges
             var ticks = this.AllTicks
                             .Concat(new[] { this.Value })
                             .OrderBy(t => t);
-            var arc = ArcInfo.Fill(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
+            var arc = ArcInfo.Fit(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
             var previous = arc.Start;
             var gap = this.IsDirectionReversed ? -1 * this.TickGap : this.TickGap;
 

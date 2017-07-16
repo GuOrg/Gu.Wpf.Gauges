@@ -92,7 +92,7 @@ namespace Gu.Wpf.Gauges
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            this.arc = ArcInfo.Fill(finalSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
+            this.arc = ArcInfo.Fit(finalSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
             if (this.AllTexts != null)
             {
                 foreach (var tickText in this.AllTexts)

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Windows;
     using System.Windows.Media;
 
@@ -29,17 +30,112 @@
             }
         }
 
-        public static ArcInfo Fill(Size availableSize, double start, double end, bool isDirectionReversed)
+        public ArcInfo(Point center, double radius, double start, double end)
         {
-            var fill = Fill(availableSize, start, end);
-            return new ArcInfo(fill.Center, start, end, fill.Radius, isDirectionReversed);
+            this.Center = center;
+            this.Radius = radius;
+            this.Start = start;
+            this.End = end;
         }
 
-        public static ArcInfo Fill(Size availableSize, Thickness padding, double start, double end, bool isDirectionReversed)
+        public static ArcInfo Parse(string text)
         {
-            throw new NotImplementedException("Use padding and add tests.");
-            var fill = Fill(availableSize, start, end);
-            return new ArcInfo(fill.Center, start, end, fill.Radius, isDirectionReversed);
+            var texts = text.Split(' ');
+            if (texts.Length != 4)
+            {
+                throw new FormatException($"Could not parse {text}");
+            }
+
+            return new ArcInfo(
+                Point.Parse(texts[0]),
+                double.Parse(texts[1], CultureInfo.InvariantCulture),
+                double.Parse(texts[2], CultureInfo.InvariantCulture),
+                double.Parse(texts[3], CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        /// Create an arc that fits the <paramref name="availableSize"/>
+        /// </summary>
+        public static ArcInfo Fit(Size availableSize, double startAngle, double endAngle, bool isDirectionReversed)
+        {
+            if (isDirectionReversed)
+            {
+                return Fit(availableSize, endAngle, startAngle, isDirectionReversed: false);
+            }
+
+            var bounds = new Rect(availableSize);
+            if (TryGetCenterAndRadius(bounds, startAngle, endAngle, out Point center, out double r))
+            {
+                return new ArcInfo(center, r, startAngle, endAngle);
+            }
+
+            return default(ArcInfo);
+        }
+
+        /// <summary>
+        /// Create an arc that fits the <paramref name="availableSize"/>
+        /// </summary>
+        public static ArcInfo Fit(Size availableSize, Thickness padding, double startAngle, double endAngle, bool isDirectionReversed)
+        {
+            if (isDirectionReversed)
+            {
+                return Fit(availableSize, padding, endAngle, startAngle, isDirectionReversed: false);
+            }
+
+            var bounds = new Rect(availableSize).Deflate(padding);
+            if (TryGetCenterAndRadius(bounds, startAngle, endAngle, out Point center, out double r))
+            {
+                return new ArcInfo(center, r, startAngle, endAngle);
+            }
+
+            return default(ArcInfo);
+        }
+
+        public static bool TryGetCenterAndRadius(Size size, double startAngle, double endAngle, out Point center, out double radius)
+        {
+            if (size.Width == 0 ||
+                double.IsNaN(size.Width) ||
+                size.Height == 0 ||
+                double.IsNaN(size.Height))
+            {
+                center = default(Point);
+                radius = 0;
+                return false;
+            }
+
+            return TryGetCenterAndRadius(new Rect(size), startAngle, endAngle, out center, out radius);
+        }
+
+        public static bool TryGetCenterAndRadius(Rect bounds, double startAngle, double endAngle, out Point center, out double radius)
+        {
+            if (bounds.Width == 0 ||
+                double.IsNaN(bounds.Width) ||
+                bounds.Height == 0 ||
+                double.IsNaN(bounds.Height))
+            {
+                center = default(Point);
+                radius = 0;
+                return false;
+            }
+
+            var p0 = new Point(0, 0);
+            var unitArc = new ArcInfo(p0, 1, startAngle, endAngle);
+            var rect = default(Rect);
+            var ps = unitArc.GetPoint(startAngle);
+            rect.Union(ps);
+            rect.Union(unitArc.GetPoint(endAngle));
+            foreach (var quadrant in unitArc.GetQuadrants(startAngle, endAngle))
+            {
+                rect.Union(quadrant);
+            }
+
+            var wf = bounds.Width / rect.Width;
+            var hf = bounds.Height / rect.Height;
+            radius = Math.Min(wf, hf);
+            rect.Scale(radius, radius);
+            var v = rect.FindTranslationToCenter(bounds);
+            center = p0 + v;
+            return true;
         }
 
         public Point GetPoint(double angle)
@@ -95,35 +191,6 @@
         public override string ToString()
         {
             return $"Center: {this.Center}, Radius: {this.Radius}, Start: {this.Start}, End: {this.End}";
-        }
-
-        internal static ArcInfo Fill(Size availableSize, double start, double end)
-        {
-            if (availableSize.Width == 0 ||
-                double.IsNaN(availableSize.Width) ||
-                availableSize.Height == 0 ||
-                double.IsNaN(availableSize.Height))
-            {
-                return new ArcInfo(new Point(0, 0), start, end, 0, isDirectionReversed: false);
-            }
-
-            var p0 = new Point(0, 0);
-            var arc = new ArcInfo(p0, start, end, 1, isDirectionReversed: false);
-            var rect = default(Rect);
-            var ps = arc.GetPoint(start);
-            rect.Union(ps);
-            rect.Union(arc.GetPoint(end));
-            foreach (var quadrant in arc.GetQuadrants(start, end))
-            {
-                rect.Union(quadrant);
-            }
-
-            var wf = availableSize.Width / rect.Width;
-            var hf = availableSize.Height / rect.Height;
-            var r = Math.Min(wf, hf);
-            rect.Scale(r, r);
-            var v = rect.FindTranslationToCenter(availableSize);
-            return new ArcInfo(p0 + v, start, end, r, isDirectionReversed: false);
         }
     }
 }

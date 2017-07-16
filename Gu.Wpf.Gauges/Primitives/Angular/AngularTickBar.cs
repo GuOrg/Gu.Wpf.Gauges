@@ -127,7 +127,7 @@ namespace Gu.Wpf.Gauges
                 return;
             }
 
-            var arc = ArcInfo.Fill(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
+            var arc = ArcInfo.Fit(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
             foreach (var tick in this.AllTicks)
             {
                 var angle = Gauges.Ticks.ToAngle(tick, this.Minimum, this.Maximum, arc);

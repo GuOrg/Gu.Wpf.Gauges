@@ -28,7 +28,6 @@
 
         internal Point Interpolate(ArcInfo arc)
         {
-            throw new NotImplementedException("Add a couple of tests");
             var angle = Gu.Wpf.Gauges.Interpolate.Linear(arc.Start, arc.End, this);
             return arc.GetPoint(angle);
         }

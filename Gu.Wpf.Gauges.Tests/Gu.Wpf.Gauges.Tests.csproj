@@ -76,7 +76,7 @@
     <Compile Include="Primitives\AngularBlockBarTests.cs" />
     <Compile Include="Primitives\AngularTickBarTests.cs" />
     <Compile Include="Primitives\FrameworkElementExt.cs" />
-    <Compile Include="Internals\ArcTests.cs" />
+    <Compile Include="Primitives\Angular\ArcInfoTests.cs" />
     <Compile Include="TestHelpers\GeometryExt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Internals\TickHelperTests.cs" />

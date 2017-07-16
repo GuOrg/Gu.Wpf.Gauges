@@ -112,7 +112,7 @@ namespace Gu.Wpf.Gauges
         /// <param name="size">The render size.</param>
         protected virtual Point PixelPosition(double value, Size size)
         {
-            var arc = ArcInfo.Fill(size, this.Padding, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
+            var arc = ArcInfo.Fit(size, this.Padding, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
             return this.PixelPosition(value, arc);
         }
 

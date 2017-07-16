@@ -40,8 +40,7 @@
 
         protected override Size MeasureOverride(Size constraint)
         {
-            Size childConstraint = new Size(double.PositiveInfinity, double.PositiveInfinity);
-
+            var childConstraint = new Size(double.PositiveInfinity, double.PositiveInfinity);
             foreach (UIElement child in this.InternalChildren)
             {
                 child?.Measure(childConstraint);
@@ -52,8 +51,7 @@
 
         protected override Size ArrangeOverride(Size arrangeSize)
         {
-            var arc = ArcInfo.Fill(arrangeSize, 0, 360);
-            arc = new ArcInfo(arc.Center, 0, 360, 0, isDirectionReversed: false);
+            var arc = ArcInfo.Fit(availableSize: arrangeSize, startAngle: 0, endAngle: 360, isDirectionReversed: false);
             foreach (UIElement child in this.InternalChildren)
             {
                 if (child == null)
@@ -61,8 +59,8 @@
                     continue;
                 }
 
-                double r = GetRadius(child);
-                double a = GetAngle(child);
+                var r = GetRadius(child);
+                var a = GetAngle(child);
 
                 if (double.IsNaN(r) || double.IsNaN(a))
                 {

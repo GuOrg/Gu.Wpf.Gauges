@@ -3,7 +3,7 @@
     using Gu.Wpf.Gauges.Tests.Helpers;
     using NUnit.Framework;
 
-    public class ArcTests
+    public class ArcInfoTests
     {
         [TestCase("0,0", 2, 0, "2, 0")]
         [TestCase("0,0", 2, 90, "0, 2")]
@@ -42,11 +42,12 @@
             Assert.AreEqual(expected, actual.ToString("F0"));
         }
 
+        [TestCase("100, 100", -180, 180, "50, 50", 50)]
         [TestCase("100, 100", -180, 0, "50, 75", 50)]
-        public void Create(string ss, double start, double end, string expectedCentre, double expectedRadius)
+        public void Fill(string ss, double start, double end, string expectedCentre, double expectedRadius)
         {
             var availableSize = ss.AsSize();
-            var arc = ArcInfo.Fill(availableSize, start, end, isDirectionReversed: false);
+            var arc = ArcInfo.Fit(availableSize, start, end, isDirectionReversed: false);
             Assert.AreEqual(expectedCentre, arc.Center.ToString("F0"));
             Assert.AreEqual(expectedRadius, arc.Radius, 1e-6);
         }

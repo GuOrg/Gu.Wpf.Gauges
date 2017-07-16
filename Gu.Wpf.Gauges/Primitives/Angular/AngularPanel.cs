@@ -209,7 +209,7 @@ namespace Gu.Wpf.Gauges
         /// <param name="arrangeSize">Size that LinearPanel will assume to position children.</param>
         protected override Size ArrangeOverride(Size arrangeSize)
         {
-            var arc = ArcInfo.Fill(arrangeSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
+            var arc = ArcInfo.Fit(arrangeSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
             foreach (UIElement child in this.InternalChildren)
             {
                 if (child == null)
