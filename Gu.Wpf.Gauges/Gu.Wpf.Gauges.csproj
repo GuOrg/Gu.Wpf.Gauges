@@ -158,7 +158,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="..\.paket\paket.targets" />
   <ItemGroup>
     <Content Include="AngularGauge.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -203,4 +202,5 @@
   <ItemGroup>
     <Folder Include="Internals\Extensions\" />
   </ItemGroup>
+  <Import Project="..\.paket\paket.targets" />
 </Project>
