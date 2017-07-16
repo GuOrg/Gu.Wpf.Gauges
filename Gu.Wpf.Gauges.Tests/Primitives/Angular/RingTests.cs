@@ -20,7 +20,7 @@
                 Thickness = 10,
             };
 
-            ImageAssert.AreEqual(Properties.Resources.Ring_Thickness_10_StrokeThickness_0, ring);
+            ImageAssert.AreEqual(GetFileName(ring), ring);
         }
 
         [Test]
@@ -34,15 +34,20 @@
                 Thickness = 10,
             };
 
-            ImageAssert.AreEqual(Properties.Resources.Ring_Thickness_10_StrokeThickness_1, ring);
+            ImageAssert.AreEqual(GetFileName(ring), ring);
+        }
+
+        private static string GetFileName(Ring ring)
+        {
+            return $"Ring_Thickness_{ring.Thickness}_StrokeThickness_{ring.StrokeThickness}.png";
         }
 
         private static void SaveImage(Ring ring)
         {
-            Directory.CreateDirectory($@"C:\Temp\{ring.GetType().Name}");
+            var directory = Directory.CreateDirectory($@"C:\Temp\Ring");
             ring.SaveImage(
                 new Size(30, 30),
-                $@"C:\Temp\{ring.GetType().Name}\{ring.GetType().Name}_Thickness_{ring.Thickness}_StrokeThickness_{ring.StrokeThickness}.png");
+               Path.Combine(directory.FullName, GetFileName(ring)));
         }
     }
 }

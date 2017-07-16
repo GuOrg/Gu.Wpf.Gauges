@@ -183,8 +183,8 @@
     <EmbeddedResource Include="Indicators\LinearIndicatorImages\LinearIndicator_Placement_Top_Min_0_Max_100_Value_100_IsDirectionReversed_True.png" />
     <EmbeddedResource Include="Indicators\LinearIndicatorImages\LinearIndicator_Placement_Top_Min_0_Max_100_Value_10_IsDirectionReversed_False.png" />
     <EmbeddedResource Include="Indicators\LinearIndicatorImages\LinearIndicator_Placement_Top_Min_0_Max_100_Value_10_IsDirectionReversed_True.png" />
-    <Content Include="Primitives\Angular\RingImages\Ring_Thickness_10_StrokeThickness_0.png" />
-    <Content Include="Primitives\Angular\RingImages\Ring_Thickness_10_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\RingImages\Ring_Thickness_10_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\RingImages\Ring_Thickness_10_StrokeThickness_1.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Bottom_IsDirectionReversed_False_Min_0_Max_10_Padding_3,3,3,3_StrokeThickness_1_StrokeStartLineCap_Round_StrokeEndLineCap_Triangle.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Bottom_IsDirectionReversed_False_Min_0_Max_10_Padding_3,3,3,3_StrokeThickness_6_StrokeStartLineCap_Round_StrokeEndLineCap_Triangle.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearLineBarImages\LinearLineBar_Placement_Bottom_IsDirectionReversed_False_Min_0_Max_10_Value_3_Padding_3,3,3,3_StrokeThickness_1_StrokeStartLineCap_Round_StrokeEndLineCap_Triangle.png" />

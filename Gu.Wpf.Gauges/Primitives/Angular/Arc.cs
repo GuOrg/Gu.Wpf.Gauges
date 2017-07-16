@@ -6,33 +6,59 @@ namespace Gu.Wpf.Gauges
     using System.Windows.Media;
     using System.Windows.Shapes;
 
-    public class Ring : FrameworkElement
+    public class Arc : FrameworkElement
     {
         public static readonly DependencyProperty ThicknessProperty = AngularGeometryBar.ThicknessProperty.AddOwner(
-            typeof(Ring),
+            typeof(Arc),
             new FrameworkPropertyMetadata(
                 10.0,
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty FillProperty = Shape.FillProperty.AddOwner(
-            typeof(Ring),
+            typeof(Arc),
             new FrameworkPropertyMetadata(
                 default(Brush),
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         public static readonly DependencyProperty StrokeProperty = Shape.StrokeProperty.AddOwner(
-            typeof(Ring),
+            typeof(Arc),
             new FrameworkPropertyMetadata(
                 null,
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.SubPropertiesDoNotAffectRender,
-                (d, e) => ((Ring)d).pen = null));
+                (d, e) => ((Arc)d).pen = null));
 
         public static readonly DependencyProperty StrokeThicknessProperty = Shape.StrokeThicknessProperty.AddOwner(
-            typeof(Ring),
+            typeof(Arc),
             new FrameworkPropertyMetadata(
                 1.0d,
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
-                (d, e) => ((Ring)d).pen = null));
+                (d, e) => ((Arc)d).pen = null));
+
+        /// <summary>
+        /// StrokeStartLineCap property
+        /// </summary>
+        public static readonly DependencyProperty StrokeStartLineCapProperty = DependencyProperty.Register(
+            "StrokeStartLineCap",
+            typeof(PenLineCap),
+            typeof(Arc),
+            new FrameworkPropertyMetadata(
+                PenLineCap.Flat,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
+                (d, e) => ((Arc)d).pen = null),
+            ValidateEnums.IsPenLineCapValid);
+
+        /// <summary>
+        /// StrokeEndLineCap property
+        /// </summary>
+        public static readonly DependencyProperty StrokeEndLineCapProperty = DependencyProperty.Register(
+            "StrokeEndLineCap",
+            typeof(PenLineCap),
+            typeof(Arc),
+            new FrameworkPropertyMetadata(
+                PenLineCap.Flat,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
+                (d, e) => ((Arc)d).pen = null),
+            ValidateEnums.IsPenLineCapValid);
 
         /// <summary>
         /// StrokeDashCap property
@@ -41,11 +67,11 @@ namespace Gu.Wpf.Gauges
             DependencyProperty.Register(
                 "StrokeDashCap",
                 typeof(PenLineCap),
-                typeof(Ring),
+                typeof(Arc),
                 new FrameworkPropertyMetadata(
                     PenLineCap.Flat,
                     FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
-                    (d, e) => ((Ring)d).pen = null),
+                    (d, e) => ((Arc)d).pen = null),
                 ValidateEnums.IsPenLineCapValid);
 
         /// <summary>
@@ -55,11 +81,11 @@ namespace Gu.Wpf.Gauges
             DependencyProperty.Register(
                 "StrokeLineJoin",
                 typeof(PenLineJoin),
-                typeof(Ring),
+                typeof(Arc),
                 new FrameworkPropertyMetadata(
                     PenLineJoin.Miter,
                     FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
-                    (d, e) => ((Ring)d).pen = null),
+                    (d, e) => ((Arc)d).pen = null),
                 ValidateEnums.IsPenLineJoinValid);
 
         /// <summary>
@@ -69,11 +95,11 @@ namespace Gu.Wpf.Gauges
             DependencyProperty.Register(
                 "StrokeMiterLimit",
                 typeof(double),
-                typeof(Ring),
+                typeof(Arc),
                 new FrameworkPropertyMetadata(
                     10.0,
                     FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
-                    (d, e) => ((Ring)d).pen = null));
+                    (d, e) => ((Arc)d).pen = null));
 
         /// <summary>
         /// StrokeDashOffset property
@@ -82,11 +108,11 @@ namespace Gu.Wpf.Gauges
             DependencyProperty.Register(
                 "StrokeDashOffset",
                 typeof(double),
-                typeof(Ring),
+                typeof(Arc),
                 new FrameworkPropertyMetadata(
                     0.0,
                     FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
-                    (d, e) => ((Ring)d).pen = null));
+                    (d, e) => ((Arc)d).pen = null));
 
         /// <summary>
         /// StrokeDashArray property
@@ -95,16 +121,16 @@ namespace Gu.Wpf.Gauges
             DependencyProperty.Register(
                 "StrokeDashArray",
                 typeof(DoubleCollection),
-                typeof(Ring),
+                typeof(Arc),
                 new FrameworkPropertyMetadata(
                     default(DoubleCollection),
                     FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
-                    (d, e) => ((Ring)d).pen = null));
+                    (d, e) => ((Arc)d).pen = null));
 
         private Pen pen;
         private double diameter;
 
-        public Ring()
+        public Arc()
         {
             this.StrokeDashArray = new DoubleCollection();
         }
@@ -153,6 +179,24 @@ namespace Gu.Wpf.Gauges
         {
             get => (double)this.GetValue(StrokeThicknessProperty);
             set => this.SetValue(StrokeThicknessProperty, value);
+        }
+
+        /// <summary>
+        /// StrokeStartLineCap property
+        /// </summary>
+        public PenLineCap StrokeStartLineCap
+        {
+            get => (PenLineCap)this.GetValue(StrokeStartLineCapProperty);
+            set => this.SetValue(StrokeStartLineCapProperty, value);
+        }
+
+        /// <summary>
+        /// StrokeEndLineCap property
+        /// </summary>
+        public PenLineCap StrokeEndLineCap
+        {
+            get => (PenLineCap)this.GetValue(StrokeEndLineCapProperty);
+            set => this.SetValue(StrokeEndLineCapProperty, value);
         }
 
         /// <summary>
@@ -222,17 +266,19 @@ namespace Gu.Wpf.Gauges
                         // This pen is internal to the system and
                         // must not participate in freezable treeness
                         this.pen = new Pen
-                        {
-                            //// CanBeInheritanceContext = false;
-                            Thickness = Math.Abs(this.StrokeThickness),
-                            Brush = this.Stroke,
-                            DashCap = this.StrokeDashCap,
-                            LineJoin = this.StrokeLineJoin,
-                            MiterLimit = this.StrokeMiterLimit,
-                            DashStyle = this.StrokeDashOffset != 0.0 && this.StrokeDashArray.Count > 0
+                                   {
+                                       //// CanBeInheritanceContext = false;
+                                       Thickness = Math.Abs(this.StrokeThickness),
+                                       Brush = this.Stroke,
+                                       StartLineCap = this.StrokeStartLineCap,
+                                       EndLineCap = this.StrokeEndLineCap,
+                                       DashCap = this.StrokeDashCap,
+                                       LineJoin = this.StrokeLineJoin,
+                                       MiterLimit = this.StrokeMiterLimit,
+                                       DashStyle = this.StrokeDashOffset != 0.0 && this.StrokeDashArray.Count > 0
                                            ? new DashStyle(this.StrokeDashArray, this.StrokeDashOffset)
                                            : DashStyles.Solid
-                        };
+                                   };
                     }
                 }
 
