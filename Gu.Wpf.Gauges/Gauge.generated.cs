@@ -32,7 +32,7 @@
             typeof(Gauge),
             new FrameworkPropertyMetadata(
                 default(bool),
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits,
+                FrameworkPropertyMetadataOptions.Inherits,
                 OnIsDirectionReversedChanged));
 
         public static readonly DependencyProperty MajorTickFrequencyProperty = DependencyProperty.RegisterAttached(
@@ -65,14 +65,6 @@
             typeof(Gauge),
             new FrameworkPropertyMetadata(
                 default(DoubleCollection),
-                FrameworkPropertyMetadataOptions.Inherits));
-
-        public static readonly DependencyProperty ThicknessProperty = DependencyProperty.RegisterAttached(
-            nameof(Thickness),
-            typeof(double),
-            typeof(Gauge),
-            new FrameworkPropertyMetadata(
-                10.0d,
                 FrameworkPropertyMetadataOptions.Inherits));
 
         public double Minimum
@@ -115,22 +107,6 @@
         {
             get => (DoubleCollection)this.GetValue(MinorTicksProperty);
             set => this.SetValue(MinorTicksProperty, value);
-        }
-
-        public double Thickness
-        {
-            get => (double)this.GetValue(ThicknessProperty);
-            set => this.SetValue(ThicknessProperty, value);
-        }
-
-        public static void SetValue(DependencyObject element, double value)
-        {
-            element.SetValue(ValueProperty, value);
-        }
-
-        public static double GetValue(DependencyObject element)
-        {
-            return (double)element.GetValue(ValueProperty);
         }
 
         public static void SetMinimum(DependencyObject element, double value)
@@ -201,16 +177,6 @@
         public static DoubleCollection GetMinorTicks(DependencyObject element)
         {
             return (DoubleCollection)element.GetValue(MinorTicksProperty);
-        }
-
-        public static void SetThickness(DependencyObject element, double value)
-        {
-            element.SetValue(ThicknessProperty, value);
-        }
-
-        public static double GetThickness(DependencyObject element)
-        {
-            return (double)element.GetValue(ThicknessProperty);
         }
 
         private static void OnMinimumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

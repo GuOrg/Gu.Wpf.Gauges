@@ -16,7 +16,6 @@ namespace Gu.Wpf.Gauges
 <#
     var properties = new[]
                      {
-                         new PropertyMetaData("Value", "double", "double.NaN", true),
                          new PropertyMetaData("Minimum", "double", "0.0d", true),
                          new PropertyMetaData("Maximum", "double", "10.0d", true),
                          new PropertyMetaData("IsDirectionReversed", "bool", null, true),
@@ -24,7 +23,6 @@ namespace Gu.Wpf.Gauges
                          new PropertyMetaData("MajorTicks", "DoubleCollection", null),
                          new PropertyMetaData("MinorTickFrequency", "double", null),
                          new PropertyMetaData("MinorTicks", "DoubleCollection", null),
-                         new PropertyMetaData("Thickness", "double", "10.0d"),
                      };
 
     foreach (var property in properties)
