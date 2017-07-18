@@ -4,22 +4,22 @@
 
     public class AngularAxis : Axis
     {
-        public static readonly DependencyProperty MinAngleProperty = AngularGauge.MinAngleProperty.AddOwner(
+        public static readonly DependencyProperty StartProperty = AngularGauge.StartProperty.AddOwner(
             typeof(AngularAxis),
             new FrameworkPropertyMetadata(
-                -180.0d,
+                Defaults.StartAngle,
                 FrameworkPropertyMetadataOptions.Inherits));
 
-        public static readonly DependencyProperty MaxAngleProperty = AngularGauge.MaxAngleProperty.AddOwner(
+        public static readonly DependencyProperty EndProperty = AngularGauge.EndProperty.AddOwner(
             typeof(AngularAxis),
             new FrameworkPropertyMetadata(
-                0.0d,
+                Defaults.EndAngle,
                 FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty TextOrientationProperty = AngularGauge.TextOrientationProperty.AddOwner(
             typeof(AngularAxis),
             new FrameworkPropertyMetadata(
-                TextOrientation.Tangential,
+                Defaults.TextOrientation,
                 FrameworkPropertyMetadataOptions.Inherits));
 
         static AngularAxis()
@@ -28,28 +28,30 @@
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="P:AngularAxis.MinAngle" />
-        /// The default is -180
+        /// Gets or sets the start angle of the arc.
+        /// Degrees clockwise from the y axis.
+        /// The default is -140
         /// </summary>
-        public double MinAngle
+        public double Start
         {
-            get => (double)this.GetValue(MinAngleProperty);
-            set => this.SetValue(MinAngleProperty, value);
+            get => (double)this.GetValue(StartProperty);
+            set => this.SetValue(StartProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="P:AngularAxis.MaxAngle" />
-        /// The default is 0
+        /// Gets or sets the end angle of the arc.
+        /// Degrees clockwise from the y axis.
+        /// The default is 140
         /// </summary>
-        public double MaxAngle
+        public double End
         {
-            get => (double)this.GetValue(MaxAngleProperty);
-            set => this.SetValue(MaxAngleProperty, value);
+            get => (double)this.GetValue(EndProperty);
+            set => this.SetValue(EndProperty, value);
         }
 
         /// <summary>
         /// Gets or sets the <see cref="T:Gu.Wpf.Gauges.TextOrientation" />
-        /// Default is Horizontal
+        /// Default is Tangential
         /// </summary>
         public TextOrientation TextOrientation
         {

@@ -11,14 +11,13 @@
         Height="300"
         mc:Ignorable="d">
     <Window.DataContext>
-        <sample:AngularTickBarVm IsDirectionReversed="False"
+        <sample:AngularTickBarVm End="90"
+                                 IsDirectionReversed="False"
                                  MajorTickFrequency="25"
                                  MajorTicks="85"
-                                 MaxAngle="0"
                                  Maximum="100"
-                                 MinAngle="-180"
                                  Minimum="0"
-                                 MinorTickFrequency="5"
+                                 Start="-90"
                                  Value="30" />
     </Window.DataContext>
     <Grid>
@@ -27,11 +26,12 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Border>
-            <gauges:AngularTickBar MaxAngle="{Binding MaxAngle}"
+            <gauges:AngularTickBar End="{Binding Start}"
+                                   IsDirectionReversed="{Binding IsDirectionReversed}"
                                    Maximum="{Binding Maximum}"
-                                   MinAngle="{Binding MinAngle}"
                                    Minimum="{Binding Minimum}"
-                                   StrokeThickness="2"
+                                   Start="{Binding End}"
+                                   StrokeThickness="1"
                                    TickFrequency="{Binding MajorTickFrequency}"
                                    Ticks="{Binding MajorTicks}" />
         </Border>

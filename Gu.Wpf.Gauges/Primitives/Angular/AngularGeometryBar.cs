@@ -15,16 +15,16 @@ namespace Gu.Wpf.Gauges
                 10.0d,
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
 
-        public static readonly DependencyProperty MinAngleProperty = AngularGauge.MinAngleProperty.AddOwner(
+        public static readonly DependencyProperty StartProperty = AngularGauge.StartProperty.AddOwner(
             typeof(AngularGeometryBar),
             new FrameworkPropertyMetadata(
-                -180.0,
+                Defaults.StartAngle,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
-        public static readonly DependencyProperty MaxAngleProperty = AngularGauge.MaxAngleProperty.AddOwner(
+        public static readonly DependencyProperty EndProperty = AngularGauge.EndProperty.AddOwner(
             typeof(AngularGeometryBar),
             new FrameworkPropertyMetadata(
-                0.0,
+                Defaults.EndAngle,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
@@ -66,23 +66,25 @@ namespace Gu.Wpf.Gauges
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="P:AngularBar.MinAngle" />
-        /// The default is -180
+        /// Gets or sets the start angle of the arc.
+        /// Degrees clockwise from the y axis.
+        /// The default is -140
         /// </summary>
-        public double MinAngle
+        public double Start
         {
-            get => (double)this.GetValue(MinAngleProperty);
-            set => this.SetValue(MinAngleProperty, value);
+            get => (double)this.GetValue(StartProperty);
+            set => this.SetValue(StartProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="P:AngularBar.MaxAngle" />
-        /// The default is 0
+        /// Gets or sets the end angle of the arc.
+        /// Degrees clockwise from the y axis.
+        /// The default is 140
         /// </summary>
-        public double MaxAngle
+        public double End
         {
-            get => (double)this.GetValue(MaxAngleProperty);
-            set => this.SetValue(MaxAngleProperty, value);
+            get => (double)this.GetValue(EndProperty);
+            set => this.SetValue(EndProperty, value);
         }
 
         /// <summary>
@@ -126,7 +128,7 @@ namespace Gu.Wpf.Gauges
         /// <param name="size">The render size.</param>
         protected virtual Point PixelPosition(double value, Size size)
         {
-            var arc = ArcInfo.Fit(size, this.Padding, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
+            var arc = ArcInfo.Fit(size, this.Padding, this.Start, this.End);
             return this.PixelPosition(value, arc);
         }
 
@@ -136,7 +138,7 @@ namespace Gu.Wpf.Gauges
         protected virtual Point PixelPosition(double value, ArcInfo arc)
         {
             var interpolation = Interpolate.Linear(this.Minimum, this.Maximum, value);
-            return interpolation.Interpolate(arc);
+            return interpolation.Interpolate(arc, this.IsDirectionReversed);
         }
 
         private static object CoerceOverflow(DependencyObject d, object basevalue)

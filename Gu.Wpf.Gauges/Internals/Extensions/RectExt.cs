@@ -104,13 +104,6 @@
             return rect.BottomLeft + offset;
         }
 
-        internal static Vector FindTranslationToCenter(this Rect rect, Rect bounds)
-        {
-            var rectMid = rect.MidPoint();
-            var sizeMid = bounds.MidPoint();
-            return sizeMid - rectMid;
-        }
-
         internal static bool IsNaN(this Rect rect)
         {
             return double.IsNaN(rect.X) ||

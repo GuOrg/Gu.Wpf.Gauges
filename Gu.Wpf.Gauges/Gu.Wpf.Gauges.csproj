@@ -60,12 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AngularAxis.cs" />
-    <Compile Include="AngularGauge.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AngularGauge.tt</DependentUpon>
-    </Compile>
     <Compile Include="Axis.cs" />
+    <Compile Include="Defaults.cs" />
     <Compile Include="Gauge.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -91,7 +87,6 @@
     </Compile>
     <Compile Include="Primitives\Angular\AngularBlockBar.cs" />
     <Compile Include="AngularGauge.cs" />
-    <Compile Include="Primitives\Angular\AngularPanel.cs" />
     <Compile Include="Primitives\Angular\AngularTextPosition.cs" />
     <Compile Include="Primitives\Angular\Arc.cs" />
     <Compile Include="Primitives\Angular\TickShape.cs" />
@@ -136,7 +131,6 @@
     <Compile Include="Indicators\LinearRange.cs" />
     <Compile Include="LinearAxis.cs" />
     <Compile Include="LinearGauge.cs" />
-    <Compile Include="Primitives\Angular\PolarCanvas.cs" />
     <Compile Include="Primitives\TextTickBar.cs" />
     <Compile Include="Primitives\TickText.cs" />
     <Compile Include="Primitives\VerticalTextAlignment.cs" />
@@ -161,10 +155,6 @@
   </Target>
   -->
   <ItemGroup>
-    <Content Include="AngularGauge.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AngularGauge.generated.cs</LastGenOutput>
-    </Content>
     <Content Include="LinearGauge.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>LinearGauge.generated.cs</LastGenOutput>

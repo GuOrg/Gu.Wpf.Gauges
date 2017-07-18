@@ -10,8 +10,8 @@
     <UserControl.Resources>
         <Style x:Key="AngularGaugeStyle"
                TargetType="{x:Type gauges:AngularGauge}">
-            <Setter Property="MinAngle" Value="-90" />
-            <Setter Property="MaxAngle" Value="270" />
+            <Setter Property="Start" Value="-90" />
+            <Setter Property="End" Value="270" />
             <Setter Property="Background" Value="LightGray" />
             <Setter Property="Foreground" Value="CadetBlue" />
             <Setter Property="Template">

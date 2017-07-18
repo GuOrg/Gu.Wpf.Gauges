@@ -117,9 +117,9 @@
                              Margin="12"
                              MajorTickFrequency="25"
                              MajorTicks="10"
-                             MaxAngle="0"
+                             End="0"
                              Maximum="100"
-                             MinAngle="-180"
+                             Start="-180"
                              Minimum="0"
                              Style="{StaticResource AngularGaugeStyle}"
                              Value="{Binding Value, ElementName=ValueSlider}" />

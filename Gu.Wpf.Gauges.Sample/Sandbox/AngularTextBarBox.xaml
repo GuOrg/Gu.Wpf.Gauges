@@ -13,9 +13,9 @@
         <sample:AngularTickBarVm IsDirectionReversed="False"
                                  MajorTickFrequency="25"
                                  MajorTicks="85"
-                                 MaxAngle="0"
+                                 Start="0"
                                  Maximum="100"
-                                 MinAngle="-180"
+                                 End="-180"
                                  Minimum="0"
                                  MinorTickFrequency="5"
                                  ShowLabels="True"
@@ -29,9 +29,9 @@
         </Grid.RowDefinitions>
         <Border Margin="20"
                 Background="Transparent">
-            <gauges:AngularTextBar MaxAngle="{Binding MaxAngle}"
+            <gauges:AngularTextBar End="{Binding Start}"
                                    Maximum="{Binding Maximum}"
-                                   MinAngle="{Binding MinAngle}"
+                                   Start="{Binding End}"
                                    Minimum="{Binding Minimum}"
                                    TextOrientation="{Binding TextOrientation}"
                                    TickFrequency="{Binding MajorTickFrequency}"

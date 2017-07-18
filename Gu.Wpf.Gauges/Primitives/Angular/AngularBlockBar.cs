@@ -4,99 +4,20 @@ namespace Gu.Wpf.Gauges
     using System.Linq;
     using System.Windows;
     using System.Windows.Media;
-    using System.Windows.Shapes;
 
-    public class AngularBlockBar : AngularBar
+    public class AngularBlockBar : AngularGeometryBar
     {
-        /// <summary>
-        /// Identifies the <see cref="P:AngularBlockBar.Value" /> dependency property.
-        /// </summary>
-        /// <returns>
-        /// The identifier for the <see cref="P:AngularBlockBar.Value" /> dependency property.
-        /// </returns>
-        public static readonly DependencyProperty ValueProperty = Gauge.ValueProperty.AddOwner(
-            typeof(AngularBlockBar),
-            new FrameworkPropertyMetadata(
-                0.0,
-                FrameworkPropertyMetadataOptions.AffectsRender));
-
-        public static readonly DependencyProperty FillProperty = Shape.FillProperty.AddOwner(
-            typeof(AngularBlockBar),
-            new FrameworkPropertyMetadata(
-                default(Brush),
-                FrameworkPropertyMetadataOptions.AffectsRender));
-
-        public static readonly DependencyProperty StrokeProperty = Shape.StrokeProperty.AddOwner(
-            typeof(AngularBlockBar),
-            new FrameworkPropertyMetadata(
-                null,
-                FrameworkPropertyMetadataOptions.AffectsRender));
-
-        public static readonly DependencyProperty StrokeThicknessProperty = Shape.StrokeThicknessProperty.AddOwner(
-            typeof(AngularBlockBar),
-            new FrameworkPropertyMetadata(
-                default(double),
-                FrameworkPropertyMetadataOptions.AffectsRender));
-
         public static readonly DependencyProperty TickGapProperty = DependencyProperty.Register(
             nameof(TickGap),
             typeof(double),
             typeof(AngularBlockBar),
             new FrameworkPropertyMetadata(1.0, FrameworkPropertyMetadataOptions.AffectsRender));
 
-        public static readonly DependencyProperty ThicknessProperty = AngularGeometryBar.ThicknessProperty.AddOwner(
+        public static readonly DependencyProperty TickShapeProperty = DependencyProperty.Register(
+            nameof(TickShape),
+            typeof(TickShape),
             typeof(AngularBlockBar),
-            new FrameworkPropertyMetadata(
-                10.0,
-                FrameworkPropertyMetadataOptions.AffectsRender));
-
-        /// <summary>
-        /// Gets or sets the current magnitude of the range control.
-        /// </summary>
-        /// <returns>
-        /// The current magnitude of the range control. The default is 0.
-        /// </returns>
-        public double Value
-        {
-            get => (double)this.GetValue(ValueProperty);
-            set => this.SetValue(ValueProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> that specifies how the shape's interior is painted.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.Windows.Media.Brush" /> that describes how the shape's interior is painted. The default is HotPink.
-        /// </returns>
-        public Brush Fill
-        {
-            get => (Brush)this.GetValue(FillProperty);
-            set => this.SetValue(FillProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> that specifies how the <see cref="T:AngularBlockBar" /> outline is painted.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.Windows.Media.Brush" /> that specifies how the <see cref="T:AngularBlockBar" /> outline is painted. The default is null.
-        /// </returns>
-        public Brush Stroke
-        {
-            get => (Brush)this.GetValue(StrokeProperty);
-            set => this.SetValue(StrokeProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets the width of the <see cref="T:AngularBlockBar" /> outline.
-        /// </summary>
-        /// <returns>
-        /// The width of the <see cref="T:AngularBlockBar" /> outline.
-        /// </returns>
-        public double StrokeThickness
-        {
-            get => (double)this.GetValue(StrokeThicknessProperty);
-            set => this.SetValue(StrokeThicknessProperty, value);
-        }
+            new PropertyMetadata(default(TickShape)));
 
         /// <summary>
         /// Gets or sets the gap  in degrees between blocks. Default is 1.0
@@ -108,14 +29,15 @@ namespace Gu.Wpf.Gauges
         }
 
         /// <summary>
-        /// Gets or sets the length of the ticks.
-        /// The default value is 10.
+        /// Specifies if ticks are drawn as rectangles or arcs.
         /// </summary>
-        public double Thickness
+        public TickShape TickShape
         {
-            get => (double)this.GetValue(ThicknessProperty);
-            set => this.SetValue(ThicknessProperty, value);
+            get => (TickShape)this.GetValue(TickShapeProperty);
+            set => this.SetValue(TickShapeProperty, value);
         }
+
+        protected override Geometry DefiningGeometry => throw new InvalidOperationException("Uses OnRender");
 
         protected override Size MeasureOverride(Size availableSize)
         {
@@ -130,13 +52,10 @@ namespace Gu.Wpf.Gauges
                 return;
             }
 
-            var pen = new Pen(this.Stroke, this.StrokeThickness);
-            pen.Freeze();
-
             var ticks = this.AllTicks
                             .Concat(new[] { this.Value })
                             .OrderBy(t => t);
-            var arc = ArcInfo.Fit(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
+            var arc = ArcInfo.Fit(this.RenderSize, this.Padding, this.Start, this.End);
             var previous = arc.StartAngle;
             var gap = this.IsDirectionReversed ? -1 * this.TickGap : this.TickGap;
 
@@ -146,7 +65,7 @@ namespace Gu.Wpf.Gauges
                 {
                     var a = Gauges.Ticks.ToAngle(this.Value, this.Minimum, this.Maximum, arc);
                     var block = ArcBlock(arc, previous, a, this.Thickness);
-                    dc.DrawGeometry(this.Fill, pen, block);
+                    dc.DrawGeometry(this.Fill, this.Pen, block);
                     break;
                 }
 
@@ -154,7 +73,7 @@ namespace Gu.Wpf.Gauges
                 if (previous != angle)
                 {
                     var arcBlock = ArcBlock(arc, previous, angle - gap, this.Thickness);
-                    dc.DrawGeometry(this.Fill, pen, arcBlock);
+                    dc.DrawGeometry(this.Fill, this.Pen, arcBlock);
                 }
 
                 previous = angle + gap;

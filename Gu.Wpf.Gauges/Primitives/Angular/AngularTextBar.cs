@@ -10,7 +10,7 @@ namespace Gu.Wpf.Gauges
         public static readonly DependencyProperty TextOrientationProperty = AngularGauge.TextOrientationProperty.AddOwner(
             typeof(AngularTextBar),
             new FrameworkPropertyMetadata(
-                TextOrientation.Tangential,
+                Defaults.TextOrientation,
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty TextPositionProperty = DependencyProperty.Register(
@@ -23,16 +23,16 @@ namespace Gu.Wpf.Gauges
                 OnTextPositionChanged,
                 CoerceTextPosition));
 
-        public static readonly DependencyProperty MinAngleProperty = AngularBar.MinAngleProperty.AddOwner(
+        public static readonly DependencyProperty StartProperty = AngularGauge.StartProperty.AddOwner(
             typeof(AngularTextBar),
             new FrameworkPropertyMetadata(
-                -180.0,
+                Defaults.StartAngle,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
 
-        public static readonly DependencyProperty MaxAngleProperty = AngularBar.MaxAngleProperty.AddOwner(
+        public static readonly DependencyProperty EndProperty = AngularGauge.EndProperty.AddOwner(
             typeof(AngularTextBar),
             new FrameworkPropertyMetadata(
-                0.0,
+                Defaults.EndAngle,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
 
         private ArcInfo arc;
@@ -57,23 +57,25 @@ namespace Gu.Wpf.Gauges
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="P:AngularBar.MinAngle" />
-        /// The default is -180
+        /// Gets or sets the start angle of the arc.
+        /// Degrees clockwise from the y axis.
+        /// The default is -140
         /// </summary>
-        public double MinAngle
+        public double Start
         {
-            get => (double)this.GetValue(MinAngleProperty);
-            set => this.SetValue(MinAngleProperty, value);
+            get => (double)this.GetValue(StartProperty);
+            set => this.SetValue(StartProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="P:AngularBar.MaxAngle" />
-        /// The default is 0
+        /// Gets or sets the end angle of the arc.
+        /// Degrees clockwise from the y axis.
+        /// The default is 140
         /// </summary>
-        public double MaxAngle
+        public double End
         {
-            get => (double)this.GetValue(MaxAngleProperty);
-            set => this.SetValue(MaxAngleProperty, value);
+            get => (double)this.GetValue(EndProperty);
+            set => this.SetValue(EndProperty, value);
         }
 
         protected override Size MeasureOverride(Size availableSize)
@@ -92,7 +94,7 @@ namespace Gu.Wpf.Gauges
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            this.arc = ArcInfo.Fit(finalSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
+            this.arc = ArcInfo.Fit(finalSize, this.Start, this.End);
             if (this.AllTexts != null)
             {
                 foreach (var tickText in this.AllTexts)
@@ -148,7 +150,7 @@ namespace Gu.Wpf.Gauges
         {
             var linear = Interpolate.Linear(this.Minimum, this.Maximum, value)
                                     .Clamp(0, 1);
-            return linear.Interpolate(this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
+            return linear.Interpolate(this.Start, this.End, this.IsDirectionReversed);
         }
 
         protected virtual Point PixelPosition(double value)

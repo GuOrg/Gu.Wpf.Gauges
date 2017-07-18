@@ -59,9 +59,6 @@
     <Compile Include="Primitives\AngularBarsView.xaml.cs">
       <DependentUpon>AngularBarsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Primitives\AngularPanelView.xaml.cs">
-      <DependentUpon>AngularPanelView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AngularTickBarVm.cs" />
     <Compile Include="DefaultStyleAngularGaugeView.xaml.cs">
       <DependentUpon>DefaultStyleAngularGaugeView.xaml</DependentUpon>
@@ -126,9 +123,6 @@
     <Compile Include="Sandbox\GaugeBox.xaml.cs">
       <DependentUpon>GaugeBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Sandbox\PolarPanelView.xaml.cs">
-      <DependentUpon>PolarPanelView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="TickBarVm.cs" />
     <Compile Include="Vm.cs" />
     <Compile Include="WpfStuff\ItemsControlExt.cs" />
@@ -137,10 +131,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Primitives\AngularBarsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Primitives\AngularPanelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -237,10 +227,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Sandbox\GaugeBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Sandbox\PolarPanelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

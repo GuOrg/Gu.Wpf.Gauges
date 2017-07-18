@@ -1,5 +1,6 @@
 ﻿namespace Gu.Wpf.Gauges
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
 
     public class AngularRange : AngularIndicator
@@ -39,24 +40,24 @@
             set => this.SetValue(EndProperty, value);
         }
 
-        protected virtual void OnEndChanged(double newValue)
+        [SuppressMessage("ReSharper", "UnusedParameter.Global")]
+        protected virtual void OnEndChanged(double oldValue, double newValue)
         {
-            AngularPanel.SetEnd(this, newValue);
         }
 
-        protected virtual void OnStartChanged(double newValue)
+        [SuppressMessage("ReSharper", "UnusedParameter.Global")]
+        protected virtual void OnStartChanged(double oldValue, double newValue)
         {
-            AngularPanel.SetStart(this, newValue);
         }
 
         private static void OnStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((AngularRange)d).OnStartChanged((double)e.NewValue);
+            ((AngularRange)d).OnStartChanged((double)e.OldValue, (double)e.NewValue);
         }
 
         private static void OnEndChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((AngularRange)d).OnEndChanged((double)e.NewValue);
+            ((AngularRange)d).OnEndChanged((double)e.OldValue, (double)e.NewValue);
         }
     }
 }

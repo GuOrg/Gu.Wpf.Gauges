@@ -14,12 +14,12 @@
         [TestCase("100, 100", 0, 0, 100, false, "10, 0")]
         [TestCase("100, 100", 90, 90, 100, false, "0, 10")]
         [TestCase("100, 100", -180, 0, 100, false, "20, 10")]
-        public void MeasureOverride(string size, double minAngle, double maxAngle, double value, bool isDirectionReversed, string expected)
+        public void MeasureOverride(string size, double start, double end, double value, bool isDirectionReversed, string expected)
         {
             var bar = new AngularBlockBar
                               {
-                                  MinAngle = minAngle,
-                                  MaxAngle = maxAngle,
+                                  Start = start,
+                                  End = end,
                                   Minimum = 0,
                                   Maximum = 100,
                                   Value = value,

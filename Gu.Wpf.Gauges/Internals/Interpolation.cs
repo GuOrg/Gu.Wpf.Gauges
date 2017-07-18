@@ -25,9 +25,11 @@
             ? Gu.Wpf.Gauges.Interpolate.Linear(max, min, this)
             : Gu.Wpf.Gauges.Interpolate.Linear(min, max, this);
 
-        internal Point Interpolate(ArcInfo arc)
+        internal Point Interpolate(ArcInfo arc, bool isDirectionReversed)
         {
-            var angle = Gu.Wpf.Gauges.Interpolate.Linear(arc.StartAngle, arc.EndAngle, this);
+            var angle = isDirectionReversed
+                ? Gu.Wpf.Gauges.Interpolate.Linear(arc.EndAngle, arc.StartAngle, this)
+                : Gu.Wpf.Gauges.Interpolate.Linear(arc.StartAngle, arc.EndAngle, this);
             return arc.GetPoint(angle);
         }
 

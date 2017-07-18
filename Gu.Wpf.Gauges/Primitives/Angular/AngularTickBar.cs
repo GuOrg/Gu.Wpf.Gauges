@@ -63,7 +63,7 @@ namespace Gu.Wpf.Gauges
                 return default(Size);
             }
 
-            var arc = new ArcInfo(default(Point), this.Thickness, this.MinAngle, this.MaxAngle);
+            var arc = new ArcInfo(default(Point), this.Thickness, this.Start, this.End);
             var rect = default(Rect);
             rect.Union(arc.StartPoint);
             rect.Union(arc.EndPoint);
@@ -81,10 +81,16 @@ namespace Gu.Wpf.Gauges
             var w = this.TickWidth > strokeThickness
                 ? (this.TickWidth + strokeThickness) / 2
                 : strokeThickness / 2;
-            throw new NotImplementedException();
-            //this.Overflow = this.Placement.IsHorizontal()
-            //    ? new Thickness(Math.Max(0, w - this.Padding.Left), 0, Math.Max(0, w - this.Padding.Right), 0)
-            //    : new Thickness(0, Math.Max(0, w - this.Padding.Top), 0, Math.Max(0, w - this.Padding.Bottom));
+            var arc = new ArcInfo(default(Point), 1, this.Start, this.End);
+            var rect = default(Rect);
+            rect.Union(arc.StartPoint - (w * arc.StartDirection));
+            rect.Union(arc.EndPoint + (w * arc.EndDirection));
+            rect = rect.Deflate(this.Padding);
+            this.Overflow = new Thickness(
+                Math.Max(0, rect.Left),
+                Math.Max(0, rect.Top),
+                Math.Max(0, rect.Right),
+                Math.Max(0, rect.Bottom));
 
             return finalSize;
         }
@@ -97,10 +103,12 @@ namespace Gu.Wpf.Gauges
                 return;
             }
 
-            var arc = ArcInfo.Fit(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
+            var arc = ArcInfo.Fit(this.RenderSize, this.Padding, this.Start, this.End);
             foreach (var tick in this.AllTicks)
             {
-                var angle = Gauges.Ticks.ToAngle(tick, this.Minimum, this.Maximum, arc);
+                var angle = Interpolate.Linear(this.Minimum, this.Maximum, tick)
+                                       .Clamp(0, 1)
+                                       .Interpolate(this.Start, this.Start, this.IsDirectionReversed);
                 var po = arc.GetPoint(angle, 0);
                 var pi = arc.GetPoint(angle, -this.Thickness);
                 var line = new Line(po, pi);

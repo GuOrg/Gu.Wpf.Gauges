@@ -8,14 +8,14 @@
              d:DesignHeight="600"
              mc:Ignorable="d">
     <UserControl.DataContext>
-        <sample:AngularTickBarVm MajorTickFrequency="25"
+        <sample:AngularTickBarVm End="-180"
+                                 MajorTickFrequency="25"
                                  MajorTicks="10"
-                                 MaxAngle="0"
                                  Maximum="100"
-                                 MinAngle="-180"
                                  Minimum="0"
                                  MinorTickFrequency="5"
                                  Placement="Top"
+                                 Start="0"
                                  TextOrientation="Tangential"
                                  Thickness="10"
                                  Value="78" />
@@ -42,27 +42,27 @@
                 </Style>
             </UniformGrid.Resources>
             <GroupBox Header="AngularAxis">
-                <gauges:AngularAxis Foreground="Black"
+                <gauges:AngularAxis End="{Binding Start}"
+                                    Foreground="Black"
                                     IsDirectionReversed="{Binding IsDirectionReversed}"
                                     MajorTickFrequency="{Binding MajorTickFrequency}"
                                     MajorTicks="{Binding MajorTicks}"
-                                    MaxAngle="{Binding MaxAngle}"
                                     Maximum="{Binding Maximum}"
-                                    MinAngle="{Binding MinAngle}"
                                     Minimum="{Binding Minimum}"
                                     MinorTickFrequency="{Binding MinorTickFrequency}"
                                     SnapsToDevicePixels="True"
+                                    Start="{Binding End}"
                                     TextOrientation="{Binding TextOrientation}" />
             </GroupBox>
 
             <GroupBox Header="AngularTickBar">
-                <gauges:AngularTickBar IsDirectionReversed="{Binding IsDirectionReversed}"
-                                       MaxAngle="{Binding MaxAngle}"
+                <gauges:AngularTickBar End="{Binding Start}"
+                                       IsDirectionReversed="{Binding IsDirectionReversed}"
                                        Maximum="{Binding Maximum}"
-                                       MinAngle="{Binding MinAngle}"
                                        Minimum="{Binding Minimum}"
                                        Opacity="1"
                                        SnapsToDevicePixels="True"
+                                       Start="{Binding End}"
                                        Stroke="Black"
                                        StrokeThickness="1"
                                        TickFrequency="{Binding MajorTickFrequency}"
@@ -71,23 +71,23 @@
 
             <GroupBox Background="Lavender"
                       Header="AngularTextBar">
-                <gauges:AngularTextBar IsDirectionReversed="{Binding IsDirectionReversed}"
-                                       MaxAngle="{Binding MaxAngle}"
+                <gauges:AngularTextBar End="{Binding Start}"
+                                       IsDirectionReversed="{Binding IsDirectionReversed}"
                                        Maximum="{Binding Maximum}"
-                                       MinAngle="{Binding MinAngle}"
                                        Minimum="{Binding Minimum}"
+                                       Start="{Binding End}"
                                        TextOrientation="{Binding TextOrientation}"
                                        TickFrequency="{Binding MajorTickFrequency}"
                                        Ticks="{Binding MajorTicks}" />
             </GroupBox>
 
             <GroupBox Header="AngularBlockBar">
-                <gauges:AngularBlockBar Fill="Olive"
+                <gauges:AngularBlockBar End="{Binding End}"
+                                        Fill="Olive"
                                         IsDirectionReversed="{Binding IsDirectionReversed}"
-                                        MaxAngle="{Binding MaxAngle}"
                                         Maximum="{Binding Maximum}"
-                                        MinAngle="{Binding MinAngle}"
                                         Minimum="{Binding Minimum}"
+                                        Start="{Binding Start}"
                                         Stroke="Khaki"
                                         StrokeThickness="1"
                                         Thickness="{Binding Thickness}"
@@ -99,12 +99,12 @@
 
             <GroupBox Header="BlockBar and TickBar">
                 <Grid>
-                    <gauges:AngularBlockBar Fill="Olive"
+                    <gauges:AngularBlockBar End="{Binding End}"
+                                            Fill="Olive"
                                             IsDirectionReversed="{Binding IsDirectionReversed}"
-                                            MaxAngle="{Binding MaxAngle}"
                                             Maximum="{Binding Maximum}"
-                                            MinAngle="{Binding MinAngle}"
                                             Minimum="{Binding Minimum}"
+                                            Start="{Binding Start}"
                                             Stroke="Khaki"
                                             StrokeThickness="1"
                                             Thickness="{Binding Thickness}"
@@ -112,13 +112,13 @@
                                             TickGap="1"
                                             Ticks="{Binding MajorTicks}"
                                             Value="{Binding Value}" />
-                    <gauges:AngularTickBar IsDirectionReversed="{Binding IsDirectionReversed}"
-                                           MaxAngle="{Binding MaxAngle}"
+                    <gauges:AngularTickBar End="{Binding Start}"
+                                           IsDirectionReversed="{Binding IsDirectionReversed}"
                                            Maximum="{Binding Maximum}"
-                                           MinAngle="{Binding MinAngle}"
                                            Minimum="{Binding Minimum}"
                                            Opacity="1"
                                            SnapsToDevicePixels="True"
+                                           Start="{Binding End}"
                                            Stroke="Black"
                                            StrokeThickness="1"
                                            TickFrequency="{Binding MajorTickFrequency}"

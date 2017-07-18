@@ -13,16 +13,16 @@ namespace Gu.Wpf.Gauges
 
         public static readonly DependencyProperty DiameterProperty = DiameterPropertyKey.DependencyProperty;
 
-        public static readonly DependencyProperty MinAngleProperty = AngularGauge.MinAngleProperty.AddOwner(
+        public static readonly DependencyProperty StartProperty = AngularGauge.StartProperty.AddOwner(
             typeof(AngularBar),
             new FrameworkPropertyMetadata(
-                -180.0,
+                Defaults.StartAngle,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
-        public static readonly DependencyProperty MaxAngleProperty = AngularGauge.MaxAngleProperty.AddOwner(
+        public static readonly DependencyProperty EndProperty = AngularGauge.EndProperty.AddOwner(
             typeof(AngularBar),
             new FrameworkPropertyMetadata(
-                0.0,
+                Defaults.EndAngle,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 #pragma warning restore SA1202 // Elements must be ordered by access
 
@@ -37,23 +37,25 @@ namespace Gu.Wpf.Gauges
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="P:AngularBar.MinAngle" />
-        /// The default is -180
+        /// Gets or sets the start angle of the arc.
+        /// Degrees clockwise from the y axis.
+        /// The default is -140
         /// </summary>
-        public double MinAngle
+        public double Start
         {
-            get => (double)this.GetValue(MinAngleProperty);
-            set => this.SetValue(MinAngleProperty, value);
+            get => (double)this.GetValue(StartProperty);
+            set => this.SetValue(StartProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="P:AngularBar.MaxAngle" />
-        /// The default is 0
+        /// Gets or sets the end angle of the arc.
+        /// Degrees clockwise from the y axis.
+        /// The default is 140
         /// </summary>
-        public double MaxAngle
+        public double End
         {
-            get => (double)this.GetValue(MaxAngleProperty);
-            set => this.SetValue(MaxAngleProperty, value);
+            get => (double)this.GetValue(EndProperty);
+            set => this.SetValue(EndProperty, value);
         }
     }
 }
