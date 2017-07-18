@@ -52,7 +52,7 @@
                 var q = this.Start - (this.Start % 90);
                 if (this.Start < this.End)
                 {
-                    while (q < this.End)
+                    while (q <= this.End)
                     {
                         yield return this.GetPoint(q);
                         q += 90;
@@ -60,7 +60,7 @@
                 }
                 else
                 {
-                    while (q > this.End)
+                    while (q >= this.End)
                     {
                         yield return this.GetPoint(q);
                         q -= 90;

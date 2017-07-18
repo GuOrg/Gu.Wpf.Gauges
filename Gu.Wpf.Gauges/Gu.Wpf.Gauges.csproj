@@ -111,7 +111,7 @@
     <Compile Include="Primitives\LineBar.cs" />
     <Compile Include="Primitives\TickBarBase.cs" />
     <Compile Include="Gauge.cs" />
-    <Compile Include="Primitives\Angular\ArcInfo.cs" />
+    <Compile Include="ArcInfo.cs" />
     <Compile Include="Dimensions\DimensionArrowHead.cs" />
     <Compile Include="Dimensions\DimensionLine.cs" />
     <Compile Include="Dimensions\LineExt.cs" />

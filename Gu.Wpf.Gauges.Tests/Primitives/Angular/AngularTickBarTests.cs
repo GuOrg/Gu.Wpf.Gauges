@@ -75,6 +75,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
                 Padding = padding.AsThickness(),
             };
 
+            Assert.Inconclusive();
             var gauge = new AngularGauge { Content = tickBar };
             gauge.Arrange(new Rect(new Size(10, 10)));
             Assert.AreEqual(expected, gauge.ContentOverflow.ToString());
