@@ -41,10 +41,11 @@
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            var size = Math.Abs(this.TickWidth);
-            return this.Placement.IsHorizontal()
-                ? new Size(0, size)
-                : new Size(size, 0);
+            var w = Math.Abs(this.TickWidth);
+            var size = this.Placement.IsHorizontal()
+                ? new Size(0, w)
+                : new Size(w, 0);
+            return new Rect(size).Inflate(this.Padding).Size;
         }
 
         protected override Size ArrangeOverride(Size finalSize)

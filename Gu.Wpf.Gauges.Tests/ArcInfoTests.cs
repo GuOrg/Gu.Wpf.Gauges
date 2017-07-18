@@ -1,6 +1,7 @@
 ﻿namespace Gu.Wpf.Gauges.Tests
 {
     using System.Linq;
+    using System.Windows;
     using Gu.Wpf.Gauges.Tests.Helpers;
     using NUnit.Framework;
 
@@ -55,8 +56,19 @@
             Assert.AreEqual(expected, arc.EndPoint.ToString("F0"));
         }
 
+        [TestCase(-180, 0, System.Windows.Media.SweepDirection.Counterclockwise)]
+        [TestCase(-180, 0, System.Windows.Media.SweepDirection.Counterclockwise)]
+        public void SweepDirection(double startAngle, double endAngle, string expected)
+        {
+            Assert.Inconclusive();
+            var arc = new ArcInfo(default(Point), 1, startAngle, endAngle);
+            Assert.AreEqual(expected, arc.SweepDirection);
+        }
+
         [TestCase("0,0", 2, 0, 90, "2, 0 0, 2")]
         [TestCase("0,0", 2, 90, 0, "0, 2 2, 0")]
+        [TestCase("0,0", 2, 0, 180, "2, 0 0, 2 -2, 0")]
+        [TestCase("0,0", 2, 180, 0, "-2, 0 0, 2 2, 0")]
         public void QuadrantPoints(string center, double radius, double startAngle, double endAngle, string expected)
         {
             var arc = new ArcInfo(center.AsPoint(), radius, startAngle, endAngle);

@@ -99,8 +99,7 @@
                 }
             }
 
-            rect.Inflate(this.Padding.Left + this.Padding.Right, this.Padding.Top + this.Padding.Bottom);
-            return rect.Size;
+            return rect.Inflate(this.Padding).Size;
         }
 
         protected override Size ArrangeOverride(Size finalSize)

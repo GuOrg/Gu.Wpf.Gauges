@@ -15,44 +15,80 @@
             this.Radius = radius;
             if (isDirectionReversed)
             {
-                this.Start = end;
-                this.End = start;
+                this.StartAngle = end;
+                this.EndAngle = start;
             }
             else
             {
-                this.Start = start;
-                this.End = end;
+                this.StartAngle = start;
+                this.EndAngle = end;
             }
         }
 
-        public ArcInfo(Point center, double radius, double start, double end)
+        public ArcInfo(Point center, double radius, double startAngle, double endAngle)
         {
             this.Center = center;
             this.Radius = radius;
-            this.Start = start;
-            this.End = end;
+            this.StartAngle = startAngle;
+            this.EndAngle = endAngle;
         }
 
         public Point Center { get; }
 
         public double Radius { get; }
 
-        public double Start { get; }
+        /// <summary>
+        /// The start angle in degrees.
+        /// </summary>
+        public double StartAngle { get; }
 
-        public double End { get; }
+        /// <summary>
+        /// The end angle in degrees.
+        /// </summary>
+        public double EndAngle { get; }
 
-        public Point StartPoint => this.GetPoint(this.Start);
+        public Point StartPoint => this.GetPoint(this.StartAngle);
 
-        public Point EndPoint => this.GetPoint(this.End);
+        /// <summary>
+        /// A unit vector tangential to the arc.
+        /// </summary>
+        public Vector StartDirection
+        {
+            get
+            {
+                var p = this.GetPoint(this.StartAngle);
+                var v = this.Center - p;
+                return this.SweepDirection == SweepDirection.Clockwise ? v.Rotate(90) : v.Rotate(-90);
+            }
+        }
+
+        public Point EndPoint => this.GetPoint(this.EndAngle);
+
+        /// <summary>
+        /// A unit vector tangential to the arc.
+        /// </summary>
+        public Vector EndDirection
+        {
+            get
+            {
+                var p = this.GetPoint(this.EndAngle);
+                var v = this.Center - p;
+                return this.SweepDirection == SweepDirection.Clockwise ? v.Rotate(-90) : v.Rotate(90);
+            }
+        }
+
+        public SweepDirection SweepDirection => this.StartAngle - this.EndAngle >= 0
+        ? System.Windows.Media.SweepDirection.Clockwise
+        : System.Windows.Media.SweepDirection.Counterclockwise;
 
         public IEnumerable<Point> QuadrantPoints
         {
             get
             {
-                var q = this.Start - (this.Start % 90);
-                if (this.Start < this.End)
+                var q = this.StartAngle - (this.StartAngle % 90);
+                if (this.StartAngle < this.EndAngle)
                 {
-                    while (q <= this.End)
+                    while (q <= this.EndAngle)
                     {
                         yield return this.GetPoint(q);
                         q += 90;
@@ -60,7 +96,7 @@
                 }
                 else
                 {
-                    while (q >= this.End)
+                    while (q >= this.EndAngle)
                     {
                         yield return this.GetPoint(q);
                         q -= 90;
@@ -196,7 +232,7 @@
             return true;
         }
 
-        public SweepDirection SweepDirection(double fromAngle, double toAngle)
+        public SweepDirection SweepDirection_(double fromAngle, double toAngle)
         {
             var delta = toAngle - fromAngle;
             return delta >= 0
@@ -206,12 +242,12 @@
 
         public ArcInfo OffsetWith(double offset)
         {
-            return new ArcInfo(this.Center, this.Start, this.End, this.Radius + offset, isDirectionReversed: false);
+            return new ArcInfo(this.Center, this.StartAngle, this.EndAngle, this.Radius + offset, isDirectionReversed: false);
         }
 
         public override string ToString()
         {
-            return $"Center: {this.Center}, Radius: {this.Radius}, Start: {this.Start}, End: {this.End}";
+            return $"Center: {this.Center}, Radius: {this.Radius}, StartAngle: {this.StartAngle}, EndAngle: {this.EndAngle}";
         }
     }
 }

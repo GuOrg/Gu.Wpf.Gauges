@@ -43,7 +43,7 @@
         protected override Size MeasureOverride(Size availableSize)
         {
             var thickness = Math.Abs(this.TickDiameter) + this.GetStrokeThickness();
-            return new Size(thickness, thickness);
+            return new Rect(0, 0, thickness, thickness).Inflate(this.Padding).Size;
         }
 
         protected override Size ArrangeOverride(Size finalSize)

@@ -72,7 +72,21 @@ namespace Gu.Wpf.Gauges
                 rect.Union(quadrant);
             }
 
-            return rect.Size;
+            return rect.Inflate(this.Padding).Size;
+        }
+
+        protected override Size ArrangeOverride(Size finalSize)
+        {
+            var strokeThickness = this.GetStrokeThickness();
+            var w = this.TickWidth > strokeThickness
+                ? (this.TickWidth + strokeThickness) / 2
+                : strokeThickness / 2;
+            throw new NotImplementedException();
+            //this.Overflow = this.Placement.IsHorizontal()
+            //    ? new Thickness(Math.Max(0, w - this.Padding.Left), 0, Math.Max(0, w - this.Padding.Right), 0)
+            //    : new Thickness(0, Math.Max(0, w - this.Padding.Top), 0, Math.Max(0, w - this.Padding.Bottom));
+
+            return finalSize;
         }
 
         protected override void OnRender(DrawingContext dc)

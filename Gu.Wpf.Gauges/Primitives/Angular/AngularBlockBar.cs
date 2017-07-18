@@ -137,7 +137,7 @@ namespace Gu.Wpf.Gauges
                             .Concat(new[] { this.Value })
                             .OrderBy(t => t);
             var arc = ArcInfo.Fit(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
-            var previous = arc.Start;
+            var previous = arc.StartAngle;
             var gap = this.IsDirectionReversed ? -1 * this.TickGap : this.TickGap;
 
             foreach (var tick in ticks)
@@ -175,10 +175,10 @@ namespace Gu.Wpf.Gauges
             figure.StartPoint = op1;
             var rotationAngle = toAngle - fromAngle;
             var isLargeArc = arcInfo.IsLargeAngle(fromAngle, toAngle);
-            var sweepDirection = arcInfo.SweepDirection(fromAngle, toAngle);
+            var sweepDirection = arcInfo.SweepDirection_(fromAngle, toAngle);
             figure.Segments.Add(new ArcSegment(op2, new Size(arcInfo.Radius, arcInfo.Radius), rotationAngle, isLargeArc, sweepDirection, isStroked: true));
             figure.Segments.Add(new LineSegment(ip2, isStroked: true));
-            sweepDirection = arcInfo.SweepDirection(toAngle, fromAngle);
+            sweepDirection = arcInfo.SweepDirection_(toAngle, fromAngle);
             var ri = arcInfo.Radius - tickLength;
             if (ri < 0)
             {

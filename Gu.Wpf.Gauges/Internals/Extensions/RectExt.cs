@@ -135,5 +135,14 @@
                 Math.Max(0.0, rect.Width - thick.Left - thick.Right),
                 Math.Max(0.0, rect.Height - thick.Top - thick.Bottom));
         }
+
+        internal static Rect Inflate(this Rect rect, Thickness thick)
+        {
+            return new Rect(
+                rect.Left - thick.Left,
+                rect.Top - thick.Top,
+                Math.Max(0.0, rect.Width + thick.Left + thick.Right),
+                Math.Max(0.0, rect.Height + thick.Top + thick.Bottom));
+        }
     }
 }

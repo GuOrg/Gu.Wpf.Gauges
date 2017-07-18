@@ -52,7 +52,7 @@
         internal static double ToAngle(double tick, double minimum, double maximum, ArcInfo arcInfo)
         {
             var dv = (tick - minimum) / (maximum - minimum);
-            var a = (dv * (arcInfo.End - arcInfo.Start)) + arcInfo.Start;
+            var a = (dv * (arcInfo.EndAngle - arcInfo.StartAngle)) + arcInfo.StartAngle;
             return a;
         }
 

@@ -73,7 +73,7 @@
     </Compile>
     <Compile Include="Indicators\ValueIndicator.cs" />
     <Compile Include="Internals\BindingHelper.cs" />
-    <Compile Include="Internals\DependencyObjectExt.cs" />
+    <Compile Include="Internals\Extensions\DependencyObjectExt.cs" />
     <Compile Include="Internals\DoubleUtil.cs" />
     <Compile Include="Internals\Interpolate.cs" />
     <Compile Include="Internals\Interpolation.cs" />
@@ -116,20 +116,20 @@
     <Compile Include="Dimensions\DimensionLine.cs" />
     <Compile Include="Dimensions\LineExt.cs" />
     <Compile Include="Dimensions\TwoPointDimension.cs" />
-    <Compile Include="Internals\DrawingContextExt.cs" />
+    <Compile Include="Internals\Extensions\DrawingContextExt.cs" />
     <Compile Include="Internals\Horizontal.cs" />
     <Compile Include="Internals\Line.cs" />
     <Compile Include="Primitives\Linear\LinearDotBar.cs" />
-    <Compile Include="Internals\PointExt.cs" />
-    <Compile Include="Internals\RectExt.cs" />
-    <Compile Include="Internals\SizeExt.cs" />
+    <Compile Include="Internals\Extensions\PointExt.cs" />
+    <Compile Include="Internals\Extensions\RectExt.cs" />
+    <Compile Include="Internals\Extensions\SizeExt.cs" />
     <Compile Include="Internals\RotateTransformExt.cs" />
     <Compile Include="Internals\Ticks.cs" />
     <Compile Include="Primitives\Angular\AngularBar.cs" />
     <Compile Include="Primitives\Angular\AngularTextBar.cs" />
     <Compile Include="Primitives\Angular\AngularTickBar.cs" />
     <Compile Include="Primitives\Linear\LinearBlockBar.cs" />
-    <Compile Include="Internals\VectorExt.cs" />
+    <Compile Include="Internals\Extensions\VectorExt.cs" />
     <Compile Include="Internals\Vertical.cs" />
     <Compile Include="Indicators\AngularRange.cs" />
     <Compile Include="Indicators\LinearIndicator.cs" />
@@ -201,8 +201,6 @@
       <Paket>True</Paket>
     </Analyzer>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Internals\Extensions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="..\.paket\paket.targets" />
 </Project>
