@@ -94,6 +94,7 @@
     <Compile Include="Primitives\Angular\AngularPanel.cs" />
     <Compile Include="Primitives\Angular\AngularTextPosition.cs" />
     <Compile Include="Primitives\Angular\Arc.cs" />
+    <Compile Include="Primitives\Angular\TickShape.cs" />
     <Compile Include="Primitives\Angular\DefaultAngularTextPosition.cs" />
     <Compile Include="Primitives\Angular\AngularGeometryBar.cs" />
     <Compile Include="Primitives\GeometryBar.cs" />

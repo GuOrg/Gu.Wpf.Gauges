@@ -3,102 +3,57 @@ namespace Gu.Wpf.Gauges
     using System;
     using System.Windows;
     using System.Windows.Media;
-    using System.Windows.Shapes;
 
-    public class AngularTickBar : AngularBar
+    public class AngularTickBar : AngularGeometryBar
     {
         /// <summary>
-        /// Identifies the <see cref="P:AngularTickBar.StrokeThickness" /> dependency property.
+        /// Identifies the <see cref="P:LinearTickBar.TickWidth" /> dependency property.
         /// </summary>
-        public static readonly DependencyProperty StrokeThicknessProperty = DependencyProperty.Register(
-            nameof(StrokeThickness),
+        public static readonly DependencyProperty TickWidthProperty = DependencyProperty.Register(
+            nameof(TickWidth),
             typeof(double),
             typeof(AngularTickBar),
             new FrameworkPropertyMetadata(
                 1.0d,
-                FrameworkPropertyMetadataOptions.AffectsRender,
-                (d, _) => ((AngularTickBar)d).pen = null));
+                FrameworkPropertyMetadataOptions.AffectsRender));
 
-        /// <summary>
-        /// Identifies the <see cref="P:AngularTickBar.Stroke" /> dependency property. This property is read-only.
-        /// </summary>
-        public static readonly DependencyProperty StrokeProperty = Shape.StrokeProperty.AddOwner(
+        public static readonly DependencyProperty TickShapeProperty = DependencyProperty.Register(
+            nameof(TickShape),
+            typeof(TickShape),
             typeof(AngularTickBar),
-            new FrameworkPropertyMetadata(
-                Brushes.Black,
-                FrameworkPropertyMetadataOptions.AffectsRender,
-                (d, _) => ((AngularTickBar)d).pen = null));
+            new PropertyMetadata(default(TickShape)));
 
-        public static readonly DependencyProperty ThicknessProperty = AngularGeometryBar.ThicknessProperty.AddOwner(
-            typeof(AngularTickBar),
-            new FrameworkPropertyMetadata(
-                10.0d,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
-
-        private Pen pen;
-
-        /// <summary>
-        /// Gets or sets the <see cref="P:AngularTickBar.StrokeThickness" />
-        /// The default is 1
-        /// </summary>
-        public double StrokeThickness
+        static AngularTickBar()
         {
-            get => (double)this.GetValue(StrokeThicknessProperty);
-            set => this.SetValue(StrokeThicknessProperty, value);
+            StrokeProperty.OverrideMetadata(
+                typeof(AngularTickBar),
+                new FrameworkPropertyMetadata(
+                    Brushes.Black,
+                    FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.SubPropertiesDoNotAffectRender,
+                    (d, e) => ((AngularTickBar)d).ResetPen()));
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> that is used to draw the tick marks.
+        /// Gets or sets the <see cref="P:LinearTickBar.TickWidth" />
+        /// The default is 1.
+        /// For TickShape.Arc the arc length of the outer diameter.
         /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.Windows.Media.Brush" /> to use to draw tick marks. The default value is null.
-        /// </returns>
-        public Brush Stroke
+        public double TickWidth
         {
-            get => (Brush)this.GetValue(StrokeProperty);
-            set => this.SetValue(StrokeProperty, value);
+            get => (double)this.GetValue(TickWidthProperty);
+            set => this.SetValue(TickWidthProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the length of the ticks.
-        /// The default value is 10.
+        /// Specifies if ticks are drawn as rectangles or arcs.
         /// </summary>
-        public double Thickness
+        public TickShape TickShape
         {
-            get => (double)this.GetValue(ThicknessProperty);
-            set => this.SetValue(ThicknessProperty, value);
+            get => (TickShape)this.GetValue(TickShapeProperty);
+            set => this.SetValue(TickShapeProperty, value);
         }
 
-        private bool CanCreatePen
-        {
-            get
-            {
-                var strokeThickness = this.StrokeThickness;
-                return this.Stroke == null ||
-                       DoubleUtil.IsNaN(strokeThickness) ||
-                       DoubleUtil.IsZero(strokeThickness);
-            }
-        }
-
-        private Pen Pen
-        {
-            get
-            {
-                if (this.pen == null)
-                {
-                    if (!this.CanCreatePen)
-                    {
-                        this.pen = new Pen
-                        {
-                            Thickness = Math.Abs(this.StrokeThickness),
-                            Brush = this.Stroke
-                        };
-                    }
-                }
-
-                return this.pen;
-            }
-        }
+        protected override Geometry DefiningGeometry => throw new InvalidOperationException("Uses OnRender");
 
         protected override Size MeasureOverride(Size availableSize)
         {
@@ -110,10 +65,11 @@ namespace Gu.Wpf.Gauges
 
             var arc = new ArcInfo(default(Point), this.MinAngle, this.MaxAngle, this.Thickness, this.IsDirectionReversed);
             var rect = default(Rect);
-            foreach (var tick in this.AllTicks)
+            rect.Union(arc.StartPoint);
+            rect.Union(arc.EndPoint);
+            foreach (var quadrant in arc.QuadrantPoints)
             {
-                var angle = Gauges.Ticks.ToAngle(tick, this.Minimum, this.Maximum, arc);
-                rect.Union(arc.GetPoint(angle));
+                rect.Union(quadrant);
             }
 
             return rect.Size;

@@ -8,11 +8,6 @@
 
     public struct ArcInfo
     {
-        internal readonly Point Center;
-        internal readonly double Radius;
-        internal readonly double Start;
-        internal readonly double End;
-
         public ArcInfo(Point center, double start, double end, double radius, bool isDirectionReversed)
             : this()
         {
@@ -36,6 +31,42 @@
             this.Radius = radius;
             this.Start = start;
             this.End = end;
+        }
+
+        public Point Center { get; }
+
+        public double Radius { get; }
+
+        public double Start { get; }
+
+        public double End { get; }
+
+        public Point StartPoint => this.GetPoint(this.Start);
+
+        public Point EndPoint => this.GetPoint(this.End);
+
+        public IEnumerable<Point> QuadrantPoints
+        {
+            get
+            {
+                var q = this.Start - (this.Start % 90);
+                if (this.Start < this.End)
+                {
+                    while (q < this.End)
+                    {
+                        yield return this.GetPoint(q);
+                        q += 90;
+                    }
+                }
+                else
+                {
+                    while (q > this.End)
+                    {
+                        yield return this.GetPoint(q);
+                        q -= 90;
+                    }
+                }
+            }
         }
 
         public static ArcInfo Parse(string text)
@@ -121,10 +152,10 @@
             var p0 = new Point(0, 0);
             var unitArc = new ArcInfo(p0, 1, startAngle, endAngle);
             var rect = default(Rect);
-            var ps = unitArc.GetPoint(startAngle);
+            var ps = unitArc.StartPoint;
             rect.Union(ps);
-            rect.Union(unitArc.GetPoint(endAngle));
-            foreach (var quadrant in unitArc.GetQuadrants(startAngle, endAngle))
+            rect.Union(unitArc.EndPoint);
+            foreach (var quadrant in unitArc.QuadrantPoints)
             {
                 rect.Union(quadrant);
             }
@@ -171,16 +202,6 @@
             return delta >= 0
                        ? System.Windows.Media.SweepDirection.Clockwise
                        : System.Windows.Media.SweepDirection.Counterclockwise;
-        }
-
-        public IEnumerable<Point> GetQuadrants(double start, double end)
-        {
-            var q = start - (start % 90);
-            while (q < end)
-            {
-                yield return this.GetPoint(q);
-                q += 90;
-            }
         }
 
         public ArcInfo OffsetWith(double offset)
