@@ -73,9 +73,8 @@
     </Compile>
     <Compile Include="TestHelpers\DoubleComparer.cs" />
     <Compile Include="TestHelpers\ImageAssert.cs" />
-    <Compile Include="Primitives\AngularBlockBarTests.cs" />
-    <Compile Include="Primitives\AngularTickBarTests.cs" />
-    <Compile Include="Primitives\FrameworkElementExt.cs" />
+    <Compile Include="Primitives\Angular\AngularBlockBarTests.cs" />
+    <Compile Include="TestHelpers\FrameworkElementExt.cs" />
     <Compile Include="Primitives\Angular\ArcInfoTests.cs" />
     <Compile Include="TestHelpers\GeometryExt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
