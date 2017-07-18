@@ -55,7 +55,7 @@
         [TestCase(1, -1, 1, 1)]
         public void ToAngle(double tick, double min, double max, double expected)
         {
-            var actual = Ticks.ToAngle(tick, min, max, new ArcInfo(new Point(0, 0), 0, 1, 1, isDirectionReversed: false));
+            var actual = Ticks.ToAngle(tick, min, max, new ArcInfo(new Point(0, 0), 1, 0, 1));
             Assert.AreEqual(expected, actual);
         }
     }

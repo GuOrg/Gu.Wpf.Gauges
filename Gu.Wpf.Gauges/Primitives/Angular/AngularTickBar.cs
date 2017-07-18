@@ -63,7 +63,7 @@ namespace Gu.Wpf.Gauges
                 return default(Size);
             }
 
-            var arc = new ArcInfo(default(Point), this.MinAngle, this.MaxAngle, this.Thickness, this.IsDirectionReversed);
+            var arc = new ArcInfo(default(Point), this.Thickness, this.MinAngle, this.MaxAngle);
             var rect = default(Rect);
             rect.Union(arc.StartPoint);
             rect.Union(arc.EndPoint);

@@ -8,23 +8,6 @@
 
     public struct ArcInfo
     {
-        public ArcInfo(Point center, double start, double end, double radius, bool isDirectionReversed)
-            : this()
-        {
-            this.Center = center;
-            this.Radius = radius;
-            if (isDirectionReversed)
-            {
-                this.StartAngle = end;
-                this.EndAngle = start;
-            }
-            else
-            {
-                this.StartAngle = start;
-                this.EndAngle = end;
-            }
-        }
-
         public ArcInfo(Point center, double radius, double startAngle, double endAngle)
         {
             this.Center = center;
@@ -242,7 +225,7 @@
 
         public ArcInfo OffsetWith(double offset)
         {
-            return new ArcInfo(this.Center, this.StartAngle, this.EndAngle, this.Radius + offset, isDirectionReversed: false);
+            return new ArcInfo(this.Center, this.Radius + offset, this.StartAngle, this.EndAngle);
         }
 
         public override string ToString()
