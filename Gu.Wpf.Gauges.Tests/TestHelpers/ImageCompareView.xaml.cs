@@ -2,6 +2,7 @@
 {
     using System.Drawing;
     using System.IO;
+    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media.Imaging;
 
@@ -31,6 +32,14 @@
                 bitmapImage.EndInit();
                 return bitmapImage;
             }
+        }
+
+        private void OnToggleClick(object sender, RoutedEventArgs e)
+        {
+            this.ActualOpacity.SetCurrentValue(System.Windows.Controls.Primitives.RangeBase.ValueProperty, (double)1);
+            this.ExpectedOpacity.SetCurrentValue(System.Windows.Controls.Primitives.RangeBase.ValueProperty, (double)1);
+            this.ActualVisible.SetCurrentValue(System.Windows.Controls.Primitives.ToggleButton.IsCheckedProperty, !this.ActualVisible.IsChecked);
+            this.ExpectedVisible.SetCurrentValue(System.Windows.Controls.Primitives.ToggleButton.IsCheckedProperty, !this.ActualVisible.IsChecked);
         }
     }
 }

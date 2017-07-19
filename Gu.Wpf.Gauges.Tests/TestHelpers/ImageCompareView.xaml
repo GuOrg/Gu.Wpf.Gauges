@@ -15,7 +15,7 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <StackPanel>
+        <StackPanel Margin="2,2">
             <RadioButton x:Name="OverlayButton"
                          Content="Overlay"
                          IsChecked="True" />
@@ -35,29 +35,43 @@
 
             <Image Grid.Row="0"
                    Opacity="{Binding ElementName=ActualOpacity, Path=Value}"
-                   Source="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ImageCompareView}}, Path=Actual, Mode=OneWay}" />
+                   Source="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ImageCompareView}}, Path=Actual, Mode=OneWay}"
+                   Visibility="{Binding ElementName=ActualVisible, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <Image Grid.Row="0"
                    Opacity="{Binding ElementName=ExpectedOpacity, Path=Value}"
-                   Source="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ImageCompareView}}, Path=Expected, Mode=OneWay}" />
+                   Source="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ImageCompareView}}, Path=Expected, Mode=OneWay}"
+                   Visibility="{Binding ElementName=ExpectedVisible, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <GroupBox Grid.Column="0"
                           Header="Expected">
-                    <Slider x:Name="ExpectedOpacity"
-                            Maximum="1"
-                            Minimum="0"
-                            Value="0.5" />
+                    <StackPanel>
+                        <CheckBox x:Name="ExpectedVisible"
+                                  IsChecked="True" />
+                        <Slider x:Name="ExpectedOpacity"
+                                Maximum="1"
+                                Minimum="0"
+                                Value="0.5" />
+                    </StackPanel>
                 </GroupBox>
-                <GroupBox Grid.Column="1"
+                <RepeatButton Grid.Column="1"
+                              Click="OnToggleClick"
+                              Content="Toggle" />
+                <GroupBox Grid.Column="2"
                           Header="Actual">
-                    <Slider x:Name="ActualOpacity"
-                            Maximum="1"
-                            Minimum="0"
-                            Value="0.5" />
+                    <StackPanel>
+                        <CheckBox x:Name="ActualVisible"
+                                  IsChecked="True" />
+                        <Slider x:Name="ActualOpacity"
+                                Maximum="1"
+                                Minimum="0"
+                                Value="0.5" />
+                    </StackPanel>
                 </GroupBox>
             </Grid>
         </Grid>
