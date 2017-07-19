@@ -79,6 +79,9 @@
     <Compile Include="TestHelpers\GeometryExt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Internals\TickHelperTests.cs" />
+    <Compile Include="TestHelpers\ImageCompareView.xaml.cs">
+      <DependentUpon>ImageCompareView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TestHelpers\StyleHelper.cs" />
     <Compile Include="TestHelpers\VextorExtTests.cs" />
   </ItemGroup>
@@ -625,6 +628,12 @@
     <Analyzer Include="..\packages\WpfAnalyzers\analyzers\dotnet\cs\WpfAnalyzers.CodeFixes.dll">
       <Paket>True</Paket>
     </Analyzer>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="TestHelpers\ImageCompareView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="..\.paket\paket.targets" />
 </Project>

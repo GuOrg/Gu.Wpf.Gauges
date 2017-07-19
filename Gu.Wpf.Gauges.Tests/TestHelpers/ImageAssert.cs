@@ -1,6 +1,7 @@
 ﻿namespace Gu.Wpf.Gauges.Tests.TestHelpers
 {
     using System;
+    using System.Diagnostics;
     using System.Drawing;
     using System.Globalization;
     using System.IO;
@@ -57,6 +58,17 @@
             {
                 for (var y = 0; y < expected.Size.Height; y++)
                 {
+                    if (Debugger.IsAttached)
+                    {
+                        if (expected.GetPixel(x, y).Name == actual.GetPixel(x, y).Name)
+                        {
+                            continue;
+                        }
+
+                        var window = new Window{Content = new ImageCompareView(expected, actual)};
+                        window.ShowDialog();
+                    }
+
                     Assert.AreEqual(expected.GetPixel(x, y).Name, actual.GetPixel(x, y).Name);
                 }
             }

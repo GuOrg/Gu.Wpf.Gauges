@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="Gu.Wpf.Gauges.Tests.TestHelpers.ImageCompareView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Gu.Wpf.Gauges.Tests.TestHelpers"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <RadioButton x:Name="OverlayButton"
+                         Content="Overlay"
+                         IsChecked="True" />
+
+            <RadioButton x:Name="SideBySideButton"
+                         Content="Side by side" />
+
+            <RadioButton x:Name="OverUnderButton"
+                         Content="Over under" />
+        </StackPanel>
+        <Grid Grid.Column="1"
+              Visibility="{Binding ElementName=OverlayButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0"
+                   Opacity="{Binding ElementName=ActualOpacity, Path=Value}"
+                   Source="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ImageCompareView}}, Path=Actual, Mode=OneWay}" />
+            <Image Grid.Row="0"
+                   Opacity="{Binding ElementName=ExpectedOpacity, Path=Value}"
+                   Source="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ImageCompareView}}, Path=Expected, Mode=OneWay}" />
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <GroupBox Grid.Column="0"
+                          Header="Expected">
+                    <Slider x:Name="ExpectedOpacity"
+                            Maximum="1"
+                            Minimum="0"
+                            Value="0.5" />
+                </GroupBox>
+                <GroupBox Grid.Column="1"
+                          Header="Actual">
+                    <Slider x:Name="ActualOpacity"
+                            Maximum="1"
+                            Minimum="0"
+                            Value="0.5" />
+                </GroupBox>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Column="1"
+              Visibility="{Binding ElementName=OverUnderButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <GroupBox Grid.Row="0"
+                      Header="Expected">
+                <Image Source="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ImageCompareView}}, Path=Expected, Mode=OneWay}" />
+            </GroupBox>
+
+            <GroupBox Grid.Row="1"
+                      Header="Actual">
+                <Image Source="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ImageCompareView}}, Path=Actual, Mode=OneWay}" />
+            </GroupBox>
+        </Grid>
+
+        <Grid Grid.Column="1"
+              Visibility="{Binding ElementName=SideBySideButton, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <GroupBox Grid.Column="0"
+                      Header="Expected">
+                <Image Source="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ImageCompareView}}, Path=Expected, Mode=OneWay}" />
+            </GroupBox>
+
+            <GroupBox Grid.Column="1"
+                      Header="Actual">
+                <Image Source="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:ImageCompareView}}, Path=Actual, Mode=OneWay}" />
+            </GroupBox>
+        </Grid>
+    </Grid>
+</UserControl>
