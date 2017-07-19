@@ -37,16 +37,17 @@ namespace Gu.Wpf.Gauges.Tests.Internals
             Assert.AreEqual(expected, interpolation.InterpolateVertical(new Size(0, height), thickness, isDirectionReversed));
         }
 
-        [TestCase(0, "0,0 1 -90 90", false, "-1.0, 0.0")]
-        [TestCase(0.5, "0,0 1 -90 90", false, "0.0, 1.0")]
-        [TestCase(1, "0,0 1 -90 90", false, "1.0, 0.0")]
-        [TestCase(0, "0,0 1 -90 90", true, "1.0, 0.0")]
-        [TestCase(0.5, "0,0 1 -90 90", true, "0.0, 1.0")]
-        [TestCase(1, "0,0 1 -90 90", true, "-1.0, 0.0")]
-        public void InterpolateArc(double value, string arc, bool isDirectionReversed, string expected)
+        [TestCase(0, "0,0 1 -90 90", false, "-1, 0")]
+        [TestCase(0.5, "0,0 1 -90 90", false, "0, 1")]
+        [TestCase(1, "0,0 1 -90 90", false, "1, 0")]
+        [TestCase(0, "0,0 1 -90 90", true, "1, 0")]
+        [TestCase(0.5, "0,0 1 -90 90", true, "0, 1")]
+        [TestCase(1, "0,0 1 -90 90", true, "-1, 0")]
+        public void InterpolateArc(double value, string arcString, bool isDirectionReversed, string expected)
         {
             var interpolation = new Interpolation(value);
-            Assert.AreEqual(expected, interpolation.Interpolate(ArcInfo.Parse(arc), isDirectionReversed).ToString("F1"));
+            var arc = ArcInfo.Parse(arcString);
+            Assert.AreEqual(expected, interpolation.Interpolate(arc, isDirectionReversed).ToString("F0"));
         }
     }
 }

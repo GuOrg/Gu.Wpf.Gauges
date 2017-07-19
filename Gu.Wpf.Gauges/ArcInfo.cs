@@ -51,6 +51,11 @@
             }
         }
 
+        /// <summary>
+        /// Expects the format: 0,0 1 -90 90
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public static ArcInfo Parse(string text)
         {
             var texts = text.Split(' ');
@@ -157,7 +162,7 @@
 
         public Point GetPoint(double angle, double offset)
         {
-            var v0 = new Vector(0, -(this.Radius + offset));
+            var v0 = new Vector(0, -this.Radius + offset);
             var rotate = v0.RotateClockwise(angle);
             var p = this.Center + rotate;
             return p;
@@ -189,7 +194,7 @@
 
         public override string ToString()
         {
-            return $"Center: {this.Center}, Radius: {this.Radius}, StartAngle: {this.StartAngle}, EndAngle: {this.EndAngle}";
+            return $"{this.Center.X.ToString(CultureInfo.InvariantCulture)}, {this.Center.Y.ToString(CultureInfo.InvariantCulture)} {this.Radius.ToString(CultureInfo.InvariantCulture)} {this.StartAngle.ToString(CultureInfo.InvariantCulture)} {this.EndAngle.ToString(CultureInfo.InvariantCulture)}";
         }
     }
 }

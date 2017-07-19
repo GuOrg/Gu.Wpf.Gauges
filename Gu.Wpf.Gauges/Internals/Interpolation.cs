@@ -3,29 +3,29 @@
     using System.Windows;
     using System.Windows.Controls.Primitives;
 
-    internal struct Interpolation
+    public struct Interpolation
     {
-        internal static Interpolation Zero = new Interpolation(0);
+        public static Interpolation Zero = new Interpolation(0);
 
-        internal readonly double Value;
+        public readonly double Value;
 
-        internal Interpolation(double value)
+        public Interpolation(double value)
         {
             this.Value = value;
         }
 
-        internal Interpolation Clamp(double min, double max)
+        public Interpolation Clamp(double min, double max)
         {
             return new Interpolation(this.Value.Clamp(min, max));
         }
 
-        internal double Interpolate(double min, double max) => Gu.Wpf.Gauges.Interpolate.Linear(min, max, this);
+        public double Interpolate(double min, double max) => Gu.Wpf.Gauges.Interpolate.Linear(min, max, this);
 
-        internal double Interpolate(double min, double max, bool isDirectionReversed) => isDirectionReversed
+        public double Interpolate(double min, double max, bool isDirectionReversed) => isDirectionReversed
             ? Gu.Wpf.Gauges.Interpolate.Linear(max, min, this)
             : Gu.Wpf.Gauges.Interpolate.Linear(min, max, this);
 
-        internal Point Interpolate(ArcInfo arc, bool isDirectionReversed)
+        public Point Interpolate(ArcInfo arc, bool isDirectionReversed)
         {
             var angle = isDirectionReversed
                 ? Gu.Wpf.Gauges.Interpolate.Linear(arc.EndAngle, arc.StartAngle, this)
@@ -33,12 +33,17 @@
             return arc.GetPoint(angle);
         }
 
-        internal double Interpolate(Size size, Thickness padding, TickBarPlacement placement, bool isDirectionReversed) => placement.IsHorizontal()
+        public double Interpolate(Size size, Thickness padding, TickBarPlacement placement, bool isDirectionReversed) => placement.IsHorizontal()
             ? this.InterpolateHorizontal(size, padding, isDirectionReversed)
             : this.InterpolateVertical(size, padding, isDirectionReversed);
 
-        internal double InterpolateVertical(Size size, Thickness padding, bool isDirectionReversed) => this.Interpolate(size.Height - padding.Bottom, padding.Top, isDirectionReversed);
+        public double InterpolateVertical(Size size, Thickness padding, bool isDirectionReversed) => this.Interpolate(size.Height - padding.Bottom, padding.Top, isDirectionReversed);
 
-        internal double InterpolateHorizontal(Size size, Thickness padding, bool isDirectionReversed) => this.Interpolate(padding.Left, size.Width - padding.Right, isDirectionReversed);
+        public double InterpolateHorizontal(Size size, Thickness padding, bool isDirectionReversed) => this.Interpolate(padding.Left, size.Width - padding.Right, isDirectionReversed);
+
+        public override string ToString()
+        {
+            return $"{this.Value}";
+        }
     }
 }
