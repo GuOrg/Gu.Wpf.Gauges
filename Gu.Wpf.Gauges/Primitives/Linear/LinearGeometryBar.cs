@@ -17,7 +17,8 @@ namespace Gu.Wpf.Gauges
             typeof(LinearGeometryBar),
             new FrameworkPropertyMetadata(
                 double.NaN,
-                FrameworkPropertyMetadataOptions.AffectsRender));
+                FrameworkPropertyMetadataOptions.AffectsRender,
+                OnValueChanged));
 
         /// <summary>
         /// Identifies the <see cref="P:LinearGeometryBar.Placement" /> dependency property. This property is read-only.
@@ -106,6 +107,15 @@ namespace Gu.Wpf.Gauges
         {
             var interpolation = Interpolate.Linear(this.Minimum, this.Maximum, value);
             return interpolation.Interpolate(size, this.Padding, this.Placement, this.IsDirectionReversed);
+        }
+
+        protected virtual void OnValueChanged(double oldValue, double newValue)
+        {
+        }
+
+        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((LinearGeometryBar)d).OnValueChanged((double) e.OldValue, (double) e.NewValue);
         }
 
         private static object CoerceOverflow(DependencyObject d, object basevalue)
