@@ -29,9 +29,9 @@
         </Grid.RowDefinitions>
         <Border Margin="20"
                 Background="Transparent">
-            <gauges:AngularTextBar End="{Binding Start}"
+            <gauges:AngularTextBar Start="{Binding Start}"
                                    Maximum="{Binding Maximum}"
-                                   Start="{Binding End}"
+                                  End="{Binding End}"
                                    Minimum="{Binding Minimum}"
                                    TextOrientation="{Binding TextOrientation}"
                                    TickFrequency="{Binding MajorTickFrequency}"

@@ -8,14 +8,14 @@
              d:DesignHeight="600"
              mc:Ignorable="d">
     <UserControl.DataContext>
-        <sample:AngularTickBarVm End="-180"
+        <sample:AngularTickBarVm End="140"
                                  MajorTickFrequency="25"
                                  MajorTicks="10"
                                  Maximum="100"
                                  Minimum="0"
                                  MinorTickFrequency="5"
                                  Placement="Top"
-                                 Start="0"
+                                 Start="-140"
                                  TextOrientation="Tangential"
                                  Thickness="10"
                                  Value="78" />
@@ -42,7 +42,7 @@
                 </Style>
             </UniformGrid.Resources>
             <GroupBox Header="AngularAxis">
-                <gauges:AngularAxis End="{Binding Start}"
+                <gauges:AngularAxis End="{Binding End}"
                                     Foreground="Black"
                                     IsDirectionReversed="{Binding IsDirectionReversed}"
                                     MajorTickFrequency="{Binding MajorTickFrequency}"
@@ -51,18 +51,18 @@
                                     Minimum="{Binding Minimum}"
                                     MinorTickFrequency="{Binding MinorTickFrequency}"
                                     SnapsToDevicePixels="True"
-                                    Start="{Binding End}"
+                                    Start="{Binding Start}"
                                     TextOrientation="{Binding TextOrientation}" />
             </GroupBox>
 
             <GroupBox Header="AngularTickBar">
-                <gauges:AngularTickBar End="{Binding Start}"
+                <gauges:AngularTickBar End="{Binding End}"
                                        IsDirectionReversed="{Binding IsDirectionReversed}"
                                        Maximum="{Binding Maximum}"
                                        Minimum="{Binding Minimum}"
                                        Opacity="1"
                                        SnapsToDevicePixels="True"
-                                       Start="{Binding End}"
+                                       Start="{Binding Start}"
                                        Stroke="Black"
                                        StrokeThickness="1"
                                        TickFrequency="{Binding MajorTickFrequency}"
@@ -71,11 +71,11 @@
 
             <GroupBox Background="Lavender"
                       Header="AngularTextBar">
-                <gauges:AngularTextBar End="{Binding Start}"
+                <gauges:AngularTextBar End="{Binding End}"
                                        IsDirectionReversed="{Binding IsDirectionReversed}"
                                        Maximum="{Binding Maximum}"
                                        Minimum="{Binding Minimum}"
-                                       Start="{Binding End}"
+                                       Start="{Binding Start}"
                                        TextOrientation="{Binding TextOrientation}"
                                        TickFrequency="{Binding MajorTickFrequency}"
                                        Ticks="{Binding MajorTicks}" />
@@ -112,13 +112,13 @@
                                             TickGap="1"
                                             Ticks="{Binding MajorTicks}"
                                             Value="{Binding Value}" />
-                    <gauges:AngularTickBar End="{Binding Start}"
+                    <gauges:AngularTickBar End="{Binding End}"
                                            IsDirectionReversed="{Binding IsDirectionReversed}"
                                            Maximum="{Binding Maximum}"
                                            Minimum="{Binding Minimum}"
                                            Opacity="1"
                                            SnapsToDevicePixels="True"
-                                           Start="{Binding End}"
+                                           Start="{Binding Start}"
                                            Stroke="Black"
                                            StrokeThickness="1"
                                            TickFrequency="{Binding MajorTickFrequency}"

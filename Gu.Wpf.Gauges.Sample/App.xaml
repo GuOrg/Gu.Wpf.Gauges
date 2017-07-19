@@ -5,7 +5,7 @@
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample">
     <!--<Application.StartupUri>MainWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Sandbox/LinearIndicatorWindow.xaml</Application.StartupUri>-->
-    <Application.StartupUri>Sandbox/AngularTickBarWindow.xaml.xaml</Application.StartupUri>
+    <Application.StartupUri>Sandbox/AngularTickBarWindow.xaml</Application.StartupUri>
     <!--<Application.StartupUri>Sandbox/LinearGaugeWindow.xaml</Application.StartupUri>-->
     <Application.Resources>
         <Style TargetType="{x:Type TextBlock}">
@@ -185,41 +185,42 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
+
                     <TextBlock Grid.Row="0"
                                Grid.Column="0"
-                               Text="Minimum" />
+                               Text="Start" />
                     <TextBox Grid.Row="0"
                              Grid.Column="1"
-                             Text="{Binding Minimum}" />
+                             Text="{Binding Start}" />
                     <Slider Grid.Row="0"
                             Grid.Column="2"
-                            Maximum="{Binding Maximum}"
-                            Minimum="0"
-                            Value="{Binding Minimum}" />
+                            Maximum="360"
+                            Minimum="-360"
+                            Value="{Binding Start}" />
 
                     <TextBlock Grid.Row="1"
                                Grid.Column="0"
-                               Text="Start" />
+                               Text="End" />
                     <TextBox Grid.Row="1"
                              Grid.Column="1"
                              Text="{Binding End}" />
                     <Slider Grid.Row="1"
                             Grid.Column="2"
-                            Maximum="{Binding Start}"
+                            Maximum="360"
                             Minimum="-360"
                             Value="{Binding End}" />
 
                     <TextBlock Grid.Row="2"
                                Grid.Column="0"
-                               Text="Value" />
+                               Text="Minimum" />
                     <TextBox Grid.Row="2"
                              Grid.Column="1"
-                             Text="{Binding Value}" />
+                             Text="{Binding Minimum}" />
                     <Slider Grid.Row="2"
                             Grid.Column="2"
                             Maximum="{Binding Maximum}"
-                            Minimum="{Binding Minimum}"
-                            Value="{Binding Value}" />
+                            Minimum="0"
+                            Value="{Binding Minimum}" />
 
                     <TextBlock Grid.Row="3"
                                Grid.Column="0"
@@ -235,15 +236,15 @@
 
                     <TextBlock Grid.Row="4"
                                Grid.Column="0"
-                               Text="End" />
+                               Text="Value" />
                     <TextBox Grid.Row="4"
                              Grid.Column="1"
-                             Text="{Binding Start}" />
+                             Text="{Binding Value}" />
                     <Slider Grid.Row="4"
                             Grid.Column="2"
-                            Maximum="360"
-                            Minimum="{Binding End}"
-                            Value="{Binding Start}" />
+                            Maximum="{Binding Maximum}"
+                            Minimum="{Binding Minimum}"
+                            Value="{Binding Value}" />
 
                     <TextBlock Grid.Row="5"
                                Grid.Column="0"

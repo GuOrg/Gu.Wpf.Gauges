@@ -7,15 +7,15 @@
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
              mc:Ignorable="d">
     <UserControl.DataContext>
-        <sample:AngularTickBarVm IsDirectionReversed="False"
+        <sample:AngularTickBarVm End="-180"
+                                 IsDirectionReversed="False"
                                  MajorTickFrequency="25"
                                  MajorTicks="85"
-                                 Start="0"
                                  Maximum="100"
-                                 End="-180"
                                  Minimum="0"
                                  MinorTickFrequency="5"
                                  ShowLabels="True"
+                                 Start="0"
                                  TextOrientation="Tangential"
                                  Value="30" />
     </UserControl.DataContext>

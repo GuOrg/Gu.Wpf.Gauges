@@ -36,25 +36,7 @@
 
         public Point StartPoint => this.GetPoint(this.StartAngle);
 
-        /// <summary>
-        /// A unit vector tangential to the arc.
-        /// </summary>
-        public Vector StartDirection
-        {
-            get
-            {
-                var p = this.GetPoint(this.StartAngle);
-                var v = this.Center - p;
-                return v.Rotate(-90);
-            }
-        }
-
         public Point EndPoint => this.GetPoint(this.EndAngle);
-
-        /// <summary>
-        /// A unit vector tangential to the arc.
-        /// </summary>
-        public Vector EndDirection => this.GetTangent(this.EndAngle);
 
         public IEnumerable<Point> QuadrantPoints
         {
@@ -156,6 +138,7 @@
             rect.Scale(radius, radius);
             var v = bounds.MidPoint() - rect.MidPoint();
             center = p0 + v;
+            center.Y = bounds.Height - center.Y;
             return true;
         }
 
@@ -169,13 +152,13 @@
         /// </summary>
         public Vector GetTangent(double angle)
         {
-            return new Vector(1, 0).Rotate(angle);
+            return new Vector(1, 0).RotateClockwise(angle);
         }
 
         public Point GetPoint(double angle, double offset)
         {
             var v0 = new Vector(0, this.Radius + offset);
-            var rotate = v0.Rotate(angle);
+            var rotate = v0.RotateClockwise(angle);
             var p = this.Center + rotate;
             return p;
         }

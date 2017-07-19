@@ -83,8 +83,8 @@ namespace Gu.Wpf.Gauges
                 : strokeThickness / 2;
             var arc = new ArcInfo(default(Point), 1, this.Start, this.End);
             var rect = default(Rect);
-            rect.Union(arc.StartPoint - (w * arc.StartDirection));
-            rect.Union(arc.EndPoint + (w * arc.EndDirection));
+            rect.Union(arc.StartPoint - (w * arc.GetTangent(this.Start)));
+            rect.Union(arc.EndPoint + (w * arc.GetTangent(this.End)));
             rect = rect.Deflate(this.Padding);
             this.Overflow = new Thickness(
                 Math.Max(0, rect.Left),
