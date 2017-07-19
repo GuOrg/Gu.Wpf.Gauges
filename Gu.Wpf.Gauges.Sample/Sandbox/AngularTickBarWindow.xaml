@@ -13,7 +13,7 @@
     <Window.DataContext>
         <sample:AngularTickBarVm End="140"
                                  IsDirectionReversed="False"
-                                 MajorTickFrequency="25"
+                                 MajorTickFrequency="5"
                                  MajorTicks="85"
                                  Maximum="100"
                                  Minimum="0"

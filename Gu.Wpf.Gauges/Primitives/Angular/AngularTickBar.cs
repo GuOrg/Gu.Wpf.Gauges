@@ -108,11 +108,10 @@ namespace Gu.Wpf.Gauges
             {
                 var angle = Interpolate.Linear(this.Minimum, this.Maximum, tick)
                                        .Clamp(0, 1)
-                                       .Interpolate(this.Start, this.Start, this.IsDirectionReversed);
+                                       .Interpolate(this.Start, this.End, this.IsDirectionReversed);
                 var po = arc.GetPoint(angle, 0);
                 var pi = arc.GetPoint(angle, -this.Thickness);
-                var line = new Line(po, pi);
-                dc.DrawLine(this.Pen, line);
+                dc.DrawLine(this.Pen, po, pi);
             }
         }
     }

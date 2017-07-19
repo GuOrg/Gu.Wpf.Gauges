@@ -157,7 +157,7 @@
 
         public Point GetPoint(double angle, double offset)
         {
-            var v0 = new Vector(0, this.Radius + offset);
+            var v0 = new Vector(0, -(this.Radius + offset));
             var rotate = v0.RotateClockwise(angle);
             var p = this.Center + rotate;
             return p;

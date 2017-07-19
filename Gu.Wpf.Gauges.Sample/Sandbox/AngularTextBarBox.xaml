@@ -10,15 +10,15 @@
              d:DesignWidth="300"
              mc:Ignorable="d">
     <UserControl.DataContext>
-        <sample:AngularTickBarVm IsDirectionReversed="False"
+        <sample:AngularTickBarVm End="140"
+                                 IsDirectionReversed="True"
                                  MajorTickFrequency="25"
                                  MajorTicks="85"
-                                 Start="0"
                                  Maximum="100"
-                                 End="-180"
                                  Minimum="0"
                                  MinorTickFrequency="5"
                                  ShowLabels="True"
+                                 Start="-140"
                                  TextOrientation="Tangential"
                                  Value="30" />
     </UserControl.DataContext>
@@ -29,10 +29,11 @@
         </Grid.RowDefinitions>
         <Border Margin="20"
                 Background="Transparent">
-            <gauges:AngularTextBar Start="{Binding Start}"
+            <gauges:AngularTextBar End="{Binding End}"
+                                   IsDirectionReversed="{Binding IsDirectionReversed}"
                                    Maximum="{Binding Maximum}"
-                                  End="{Binding End}"
                                    Minimum="{Binding Minimum}"
+                                   Start="{Binding Start}"
                                    TextOrientation="{Binding TextOrientation}"
                                    TickFrequency="{Binding MajorTickFrequency}"
                                    Ticks="{Binding MajorTicks}">
