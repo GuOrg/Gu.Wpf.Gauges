@@ -1,33 +1,215 @@
-﻿namespace Gu.Wpf.Gauges.Tests.Bars
+namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
 {
+    using System.IO;
     using System.Threading;
+    using System.Windows;
+    using System.Windows.Media;
     using Gu.Wpf.Gauges.Tests.Helpers;
-
+    using Gu.Wpf.Gauges.Tests.TestHelpers;
     using NUnit.Framework;
 
-    [Explicit("Rewrite as image asserts")]
     [Apartment(ApartmentState.STA)]
     public class AngularBlockBarTests
     {
-        [TestCase("100, 100", -90, 0, 100, false, "10, 10")]
-        [TestCase("100, 100", -90, 0, 100, true, "10, 10")]
-        [TestCase("100, 100", 0, 0, 100, false, "10, 0")]
-        [TestCase("100, 100", 90, 90, 100, false, "0, 10")]
-        [TestCase("100, 100", -180, 0, 100, false, "20, 10")]
-        public void MeasureOverride(string size, double start, double end, double value, bool isDirectionReversed, string expected)
+        [TestCase(true, 1, 1, 1, null, null)]
+        [TestCase(false, 1, 1, 1, null, null)]
+        [TestCase(true, 1, 1, 1, "1 2 6", null)]
+        [TestCase(false, 1, 1, 1, "1 2 6", null)]
+        [TestCase(true, 1, 1, 1, null, "1")]
+        [TestCase(false, 1, 1, 1, null, "1")]
+        [TestCase(true, 1, 1, 1, "1 2 6", "1")]
+        [TestCase(false, 1, 1, 1, "1 2 6", "1")]
+        [TestCase(true, 2, 1, 1, null, null)]
+        [TestCase(false, 2, 1, 1, null, null)]
+        [TestCase(true, 2, 1, 1, "1 2 6", null)]
+        [TestCase(false, 2, 1, 1, "1 2 6", null)]
+        [TestCase(true, 2, 1, 1, null, "1.5")]
+        [TestCase(false, 2, 1, 1, null, "1.5")]
+        [TestCase(true, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(false, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(true, 3, 1, 1, null, null)]
+        [TestCase(false, 3, 1, 1, null, null)]
+        [TestCase(true, 3, 1, 1, "1 2 6", null)]
+        [TestCase(false, 3, 1, 1, "1 2 6", null)]
+        [TestCase(true, 3, 1, 1, null, "2")]
+        [TestCase(false, 3, 1, 1, null, "2")]
+        [TestCase(true, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(false, 3, 1, 1, "1 2 6", "2")]
+        public void Render(bool isDirectionReversed, double tickGap, double strokeThickness, double tickFrequency, string ticks, string padding)
         {
-            var bar = new AngularBlockBar
-                              {
-                                  Start = start,
-                                  End = end,
-                                  Minimum = 0,
-                                  Maximum = 100,
-                                  Value = value,
-                                  IsDirectionReversed = isDirectionReversed
-                              };
-            var availableSize = size.AsSize();
-            var desiredSize = bar.MeasureOverride(availableSize);
-            Assert.AreEqual(expected, desiredSize.ToString("F0"));
+            var tickBar = new AngularBlockBar
+            {
+                StrokeThickness = strokeThickness,
+                Minimum = 0,
+                Maximum = 10,
+                TickFrequency = tickFrequency,
+                Ticks = string.IsNullOrEmpty(ticks) ? new DoubleCollection() : DoubleCollection.Parse(ticks),
+                Fill = Brushes.Red,
+                TickGap = tickGap,
+                Thickness = 10,
+                Stroke = Brushes.Black,
+                IsDirectionReversed = isDirectionReversed,
+                Padding = padding.AsThickness(),
+            };
+
+            ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
+        }
+
+        [TestCase(true, 0, 1, 1, 1, null, null)]
+        [TestCase(false, 0, 1, 1, 1, null, null)]
+        [TestCase(true, 0, 1, 1, 1, "1 2 6", null)]
+        [TestCase(false, 0, 1, 1, 1, "1 2 6", null)]
+        [TestCase(true, 0, 1, 1, 1, null, "1")]
+        [TestCase(false, 0, 1, 1, 1, null, "1")]
+        [TestCase(true, 0, 1, 1, 1, "1 2 6", "1")]
+        [TestCase(false, 0, 1, 1, 1, "1 2 6", "1")]
+        [TestCase(true, 5, 1, 1, 1, null, null)]
+        [TestCase(false, 5, 1, 1, 1, null, null)]
+        [TestCase(true, 5, 1, 1, 1, "1 2 6", null)]
+        [TestCase(false, 5, 1, 1, 1, "1 2 6", null)]
+        [TestCase(true, 5, 1, 1, 1, null, "1")]
+        [TestCase(false, 5, 1, 1, 1, null, "1")]
+        [TestCase(true, 5, 1, 1, 1, "1 2 6", "1")]
+        [TestCase(false, 5, 1, 1, 1, "1 2 6", "1")]
+        [TestCase(true, 10, 1, 1, 1, null, null)]
+        [TestCase(false, 10, 1, 1, 1, null, null)]
+        [TestCase(true, 10, 1, 1, 1, "1 2 6", null)]
+        [TestCase(false, 10, 1, 1, 1, "1 2 6", null)]
+        [TestCase(true, 10, 1, 1, 1, null, "1")]
+        [TestCase(false, 10, 1, 1, 1, null, "1")]
+        [TestCase(true, 10, 1, 1, 1, "1 2 6", "1")]
+        [TestCase(false, 10, 1, 1, 1, "1 2 6", "1")]
+        [TestCase(true, 0, 2, 1, 1, null, null)]
+        [TestCase(false, 0, 2, 1, 1, null, null)]
+        [TestCase(true, 0, 2, 1, 1, "1 2 6", null)]
+        [TestCase(false, 0, 2, 1, 1, "1 2 6", null)]
+        [TestCase(true, 0, 2, 1, 1, null, "1.5")]
+        [TestCase(false, 0, 2, 1, 1, null, "1.5")]
+        [TestCase(true, 0, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(false, 0, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(true, 5, 2, 1, 1, null, null)]
+        [TestCase(false, 5, 2, 1, 1, null, null)]
+        [TestCase(true, 5, 2, 1, 1, "1 2 6", null)]
+        [TestCase(false, 5, 2, 1, 1, "1 2 6", null)]
+        [TestCase(true, 5, 2, 1, 1, null, "1.5")]
+        [TestCase(false, 5, 2, 1, 1, null, "1.5")]
+        [TestCase(true, 5, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(false, 5, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(true, 10, 2, 1, 1, null, null)]
+        [TestCase(false, 10, 2, 1, 1, null, null)]
+        [TestCase(true, 10, 2, 1, 1, "1 2 6", null)]
+        [TestCase(false, 10, 2, 1, 1, "1 2 6", null)]
+        [TestCase(true, 10, 2, 1, 1, null, "1.5")]
+        [TestCase(false, 10, 2, 1, 1, null, "1.5")]
+        [TestCase(true, 10, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(false, 10, 2, 1, 1, "1 2 6", "1.5")]
+        [TestCase(true, 0, 3, 1, 1, null, null)]
+        [TestCase(false, 0, 3, 1, 1, null, null)]
+        [TestCase(true, 0, 3, 1, 1, "1 2 6", null)]
+        [TestCase(false, 0, 3, 1, 1, "1 2 6", null)]
+        [TestCase(true, 0, 3, 1, 1, null, "2")]
+        [TestCase(false, 0, 3, 1, 1, null, "2")]
+        [TestCase(true, 0, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(false, 0, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(true, 5, 3, 1, 1, null, null)]
+        [TestCase(false, 5, 3, 1, 1, null, null)]
+        [TestCase(true, 5, 3, 1, 1, "1 2 6", null)]
+        [TestCase(false, 5, 3, 1, 1, "1 2 6", null)]
+        [TestCase(true, 5, 3, 1, 1, null, "2")]
+        [TestCase(false, 5, 3, 1, 1, null, "2")]
+        [TestCase(true, 5, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(false, 5, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(true, 10, 3, 1, 1, null, null)]
+        [TestCase(false, 10, 3, 1, 1, null, null)]
+        [TestCase(true, 10, 3, 1, 1, "1 2 6", null)]
+        [TestCase(false, 10, 3, 1, 1, "1 2 6", null)]
+        [TestCase(true, 10, 3, 1, 1, null, "2")]
+        [TestCase(false, 10, 3, 1, 1, null, "2")]
+        [TestCase(true, 10, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(false, 10, 3, 1, 1, "1 2 6", "2")]
+        public void RenderWithValue(bool isDirectionReversed, double value, double tickGap, double strokeThickness, double tickFrequency, string ticks, string padding)
+        {
+            var tickBar = new AngularBlockBar
+            {
+                StrokeThickness = strokeThickness,
+                Minimum = 0,
+                Maximum = 10,
+                Value = value,
+                TickFrequency = tickFrequency,
+                Ticks = string.IsNullOrEmpty(ticks) ? new DoubleCollection() : DoubleCollection.Parse(ticks),
+                Fill = Brushes.Red,
+                TickGap = tickGap,
+                Thickness = 10,
+                Stroke = Brushes.Black,
+                IsDirectionReversed = isDirectionReversed,
+                Padding = padding.AsThickness(),
+            };
+
+            ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
+        }
+
+        [TestCase(false, 1, 1, "0 0 0 0", "0,0,0,1")]
+        [TestCase(false, 4, 1, "0 0 0 0", "0,0,0,1")]
+        [TestCase(false, 2, 0, "0 0 0 1", "0,0,0,0")]
+        [TestCase(false, 4, 1, "0 0 0 1", "0,0,0,0")]
+        [TestCase(false, 4, 1, "0 1 0 1", "0,1,0,1")]
+        public void Overflow(bool isDirectionReversed, double tickGap, double strokeThickness, string padding, string expected)
+        {
+            var tickBar = new AngularBlockBar
+            {
+                StrokeThickness = strokeThickness,
+                Minimum = 0,
+                Maximum = 10,
+                TickFrequency = 1,
+                TickGap = tickGap,
+                Stroke = Brushes.Black,
+                Fill = Brushes.Red,
+                IsDirectionReversed = isDirectionReversed,
+                Padding = padding.AsThickness(),
+            };
+
+            var gauge = new AngularGauge { Content = tickBar };
+            gauge.Arrange(new Rect(new Size(10, 10)));
+            Assert.AreEqual(expected, tickBar.Overflow.ToString());
+            Assert.AreEqual(expected, gauge.ContentOverflow.ToString());
+
+            gauge.Measure(new Size(10, 10));
+            gauge.Arrange(new Rect(new Size(10, 10)));
+            Assert.AreEqual(expected, tickBar.Overflow.ToString());
+            Assert.AreEqual(expected, gauge.ContentOverflow.ToString());
+        }
+
+        private static string GetFileName(AngularBlockBar tickBar)
+        {
+            if (tickBar.Value == 0)
+            {
+                return "AngularBlockBar_Value=0.png";
+            }
+
+            var ticks = tickBar.Ticks != null
+                ? $"_Ticks_{tickBar.Ticks}"
+                : string.Empty;
+
+            var tickFrequency = tickBar.TickFrequency > 0
+                ? $"_TickFrequency_{tickBar.TickFrequency}"
+                : string.Empty;
+
+            var padding = tickBar.Padding.IsZero()
+                ? string.Empty
+                : $"_Padding_{tickBar.Padding}";
+
+            var value = double.IsNaN(tickBar.Value) || tickBar.Value == tickBar.Maximum
+                ? string.Empty
+                : $"_Value_{tickBar.Value}";
+
+            return $@"AngularBlockBar_Min_{tickBar.Minimum}_Max_{tickBar.Maximum}{value}_IsDirectionReversed_{tickBar.IsDirectionReversed}{padding}_TickGap_{tickBar.TickGap}_StrokeThickness_{tickBar.StrokeThickness}{tickFrequency}{ticks}.png"
+                .Replace(" ", "_");
+        }
+
+        private static void SaveImage(AngularBlockBar tickBar)
+        {
+            Directory.CreateDirectory(@"C:\Temp\AngularBlockBar");
+            tickBar.SaveImage(new Size(100, 100), $@"C:\Temp\AngularBlockBar\{GetFileName(tickBar)}");
         }
     }
 }
