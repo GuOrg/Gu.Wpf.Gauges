@@ -55,14 +55,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
 
-        [TestCase(true, 1, 1, 1, null, null)]
-        [TestCase(false, 1, 1, 1, null, null)]
-        [TestCase(true, 1, 1, 1, "1 2 6", null)]
-        [TestCase(false, 1, 1, 1, "1 2 6", null)]
-        [TestCase(true, 1, 1, 1, null, "1")]
-        [TestCase(false, 1, 1, 1, null, "1")]
-        [TestCase(true, 1, 1, 1, "1 2 6", "1")]
-        [TestCase(false, 1, 1, 1, "1 2 6", "1")]
         [TestCase(true, 0, 1, 1, 1, null, null)]
         [TestCase(false, 0, 1, 1, 1, null, null)]
         [TestCase(true, 0, 1, 1, 1, "1 2 6", null)]
@@ -111,30 +103,30 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
         [TestCase(false, 10, 2, 1, 1, null, "1.5")]
         [TestCase(true, 10, 2, 1, 1, "1 2 6", "1.5")]
         [TestCase(false, 10, 2, 1, 1, "1 2 6", "1.5")]
-        [TestCase(true, 0, 2, 1, 1, null, null)]
-        [TestCase(false, 0, 2, 1, 1, null, null)]
-        [TestCase(true, 0, 2, 1, 1, "1 2 6", null)]
-        [TestCase(false, 0, 2, 1, 1, "1 2 6", null)]
-        [TestCase(true, 0, 2, 1, 1, null, "2")]
-        [TestCase(false, 0, 2, 1, 1, null, "2")]
-        [TestCase(true, 0, 2, 1, 1, "1 2 6", "2")]
-        [TestCase(false, 0, 2, 1, 1, "1 2 6", "2")]
-        [TestCase(true, 5, 2, 1, 1, null, null)]
-        [TestCase(false, 5, 2, 1, 1, null, null)]
-        [TestCase(true, 5, 2, 1, 1, "1 2 6", null)]
-        [TestCase(false, 5, 2, 1, 1, "1 2 6", null)]
-        [TestCase(true, 5, 2, 1, 1, null, "2")]
-        [TestCase(false, 5, 2, 1, 1, null, "2")]
-        [TestCase(true, 5, 2, 1, 1, "1 2 6", "2")]
-        [TestCase(false, 5, 2, 1, 1, "1 2 6", "2")]
-        [TestCase(true, 10, 2, 1, 1, null, null)]
-        [TestCase(false, 10, 2, 1, 1, null, null)]
-        [TestCase(true, 10, 2, 1, 1, "1 2 6", null)]
-        [TestCase(false, 10, 2, 1, 1, "1 2 6", null)]
-        [TestCase(true, 10, 2, 1, 1, null, "2")]
-        [TestCase(false, 10, 2, 1, 1, null, "2")]
-        [TestCase(true, 10, 2, 1, 1, "1 2 6", "2")]
-        [TestCase(false, 10, 2, 1, 1, "1 2 6", "2")]
+        [TestCase(true, 0, 3, 1, 1, null, null)]
+        [TestCase(false, 0, 3, 1, 1, null, null)]
+        [TestCase(true, 0, 3, 1, 1, "1 2 6", null)]
+        [TestCase(false, 0, 3, 1, 1, "1 2 6", null)]
+        [TestCase(true, 0, 3, 1, 1, null, "2")]
+        [TestCase(false, 0, 3, 1, 1, null, "2")]
+        [TestCase(true, 0, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(false, 0, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(true, 5, 3, 1, 1, null, null)]
+        [TestCase(false, 5, 3, 1, 1, null, null)]
+        [TestCase(true, 5, 3, 1, 1, "1 2 6", null)]
+        [TestCase(false, 5, 3, 1, 1, "1 2 6", null)]
+        [TestCase(true, 5, 3, 1, 1, null, "2")]
+        [TestCase(false, 5, 3, 1, 1, null, "2")]
+        [TestCase(true, 5, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(false, 5, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(true, 10, 3, 1, 1, null, null)]
+        [TestCase(false, 10, 3, 1, 1, null, null)]
+        [TestCase(true, 10, 3, 1, 1, "1 2 6", null)]
+        [TestCase(false, 10, 3, 1, 1, "1 2 6", null)]
+        [TestCase(true, 10, 3, 1, 1, null, "2")]
+        [TestCase(false, 10, 3, 1, 1, null, "2")]
+        [TestCase(true, 10, 3, 1, 1, "1 2 6", "2")]
+        [TestCase(false, 10, 3, 1, 1, "1 2 6", "2")]
         public void RenderWithValue(bool isDirectionReversed, double value, double tickWidth, double strokeThickness, double tickFrequency, string ticks, string padding)
         {
             var tickBar = new AngularTickBar
@@ -190,6 +182,11 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
 
         private static string GetFileName(AngularTickBar tickBar)
         {
+            if (tickBar.Value == 0)
+            {
+                return "AngularTickBar_Value=0.png";
+            }
+
             var ticks = tickBar.Ticks != null
                 ? $"_Ticks_{tickBar.Ticks}"
                 : string.Empty;
