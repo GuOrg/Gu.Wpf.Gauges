@@ -141,20 +141,57 @@ namespace Gu.Wpf.Gauges
             }
             else
             {
-                throw new NotImplementedException();
-                //foreach (var tick in this.AllTicks)
-                //{
-                //    dc.DrawRectangle(this.Fill, this.Pen, this.CreateRect(tick, this.RenderSize));
-                //    if (tick > max)
-                //    {
-                //        break;
-                //    }
-                //}
+                var geometry = new PathGeometry();
+                foreach (var tick in this.AllTicks)
+                {
+                    geometry.Figures.Add(this.CreateTick(arc, tick, this.Pen != null));
+                    if (tick > max)
+                    {
+                        break;
+                    }
+                }
+
+                dc.DrawGeometry(this.Fill, this.Pen, geometry);
             }
 
             if (max < this.Maximum)
             {
                 dc.Pop();
+            }
+        }
+
+        protected virtual PathFigure CreateTick(ArcInfo arc, double value, bool isStroked)
+        {
+            var interpolation = Interpolate.Linear(this.Minimum, this.Maximum, value)
+                                           .Clamp(0, 1);
+            var angle = interpolation.Interpolate(this.Start, this.End, this.IsDirectionReversed);
+            switch (this.TickShape)
+            {
+                case TickShape.Arc:
+                    throw new NotImplementedException();
+                    break;
+                case TickShape.Rectangle:
+                    var p = interpolation.Interpolate(arc, this.IsDirectionReversed);
+                    var tangent = arc.GetTangent(angle);
+                    var toCenter = arc.Center - p;
+                    toCenter.Normalize();
+                    var p0 = p - (this.TickWidth / 2 * tangent);
+                    var p1 = p0 + (this.TickWidth * tangent);
+                    var p2 = p1 + (this.Thickness * toCenter);
+                    var p3 = p2 - (this.TickWidth * tangent);
+                    var p4 = p3 - (this.Thickness * toCenter);
+                    return new PathFigure(
+                        p0,
+                        new[]
+                        {
+                            new LineSegment(p1, isStroked),
+                            new LineSegment(p2, isStroked),
+                            new LineSegment(p3, isStroked),
+                            new LineSegment(p4, isStroked),
+                        },
+                        closed: true);
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
     }

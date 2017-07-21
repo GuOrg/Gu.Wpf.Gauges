@@ -3,6 +3,6 @@
     public enum TickShape
     {
         Arc,
-        Segment,
+        Rectangle,
     }
 }
