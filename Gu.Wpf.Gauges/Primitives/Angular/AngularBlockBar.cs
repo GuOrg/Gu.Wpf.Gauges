@@ -66,66 +66,64 @@ namespace Gu.Wpf.Gauges
             }
 
             var arc = ArcInfo.Fit(this.RenderSize, this.Padding, this.Start, this.End);
-            var max = this.EffectiveValue;
+            var value = this.EffectiveValue;
             var strokeThickness = this.GetStrokeThickness();
-            if (max < this.Maximum)
+            var effectiveAngle = Interpolate.Linear(this.Minimum, this.Maximum, this.EffectiveValue)
+                .Interpolate(this.Start, this.End, this.IsDirectionReversed);
+            if (value < this.Maximum)
             {
-                var effectiveAngle = Interpolate.Linear(this.Minimum, this.Maximum, this.EffectiveValue)
-                                                .Interpolate(this.Start, this.End, this.IsDirectionReversed);
-                var clipGeometry = new PathGeometry();
-                var delta = arc.GetDelta(strokeThickness, arc.Radius - this.Thickness);
-                var inflated = strokeThickness > 0
-                    ? new ArcInfo(
-                        arc.Center,
-                        arc.Radius + strokeThickness,
-                        arc.StartAngle - delta,
-                        arc.EndAngle + delta)
-                    : arc;
-                var figure = inflated.CreateArcPathFigure(
-                    this.IsDirectionReversed ? inflated.EndAngle : inflated.StartAngle,
-                    effectiveAngle,
-                    inflated.Radius,
-                    0);
-                clipGeometry.Figures.Add(figure);
-                dc.PushClip(clipGeometry);
+                dc.PushClip(
+                    Arc.CreateGeometry(
+                        arc,
+                        this.IsDirectionReversed ? this.End : this.Start,
+                        effectiveAngle,
+                        this.Thickness,
+                        0));
             }
 
             var gapsGeometry = new PathGeometry();
             foreach (var tick in this.AllTicks)
             {
-                gapsGeometry.Figures.Add(this.CreateTickGap(arc, tick));
-                if (tick > max)
+                gapsGeometry.Figures.Add(this.CreateTickGap(arc, tick, strokeThickness));
+                if (tick > value)
                 {
                     break;
                 }
             }
 
-            var arcGeometry = new PathGeometry(new[] { arc.CreateArcPathFigure(this.Minimum, this.Maximum, this.Thickness, strokeThickness) });
-            dc.DrawGeometry(this.Fill, this.Pen, new CombinedGeometry(GeometryCombineMode.Exclude, arcGeometry, gapsGeometry));
+            var arcGeometry = Arc.CreateGeometry(
+                arc,
+                this.IsDirectionReversed ? this.End : this.Start,
+                effectiveAngle,
+                this.Thickness,
+                strokeThickness);
+            dc.DrawGeometry(this.Fill, this.Pen, new CombinedGeometry(
+                GeometryCombineMode.Exclude,
+                arcGeometry,
+                gapsGeometry));
 
-            if (max < this.Maximum)
+            if (value < this.Maximum)
             {
                 dc.Pop();
             }
         }
 
-        protected virtual PathFigure CreateTickGap(ArcInfo arc, double value)
+        protected virtual PathFigure CreateTickGap(ArcInfo arc, double value, double strokeThickness)
         {
             var interpolation = Interpolate.Linear(this.Minimum, this.Maximum, value)
                                            .Clamp(0, 1);
             var angle = interpolation.Interpolate(this.Start, this.End, this.IsDirectionReversed);
-            var strokeThickness = this.GetStrokeThickness();
             switch (this.TickShape)
             {
                 case TickShape.Arc:
-                    var delta = arc.GetDelta((this.TickGap - strokeThickness) / 2);
+                    var delta = arc.GetDelta((this.TickGap + strokeThickness) / 2);
                     return arc.CreateArcPathFigure(angle - delta, angle + delta, this.Thickness, 0);
                 case TickShape.Rectangle:
                     var p = interpolation.Interpolate(arc, this.IsDirectionReversed);
                     var tangent = arc.GetTangent(angle);
                     var toCenter = arc.Center - p;
-                    var w = this.TickGap - strokeThickness;
-                    var p0 = p - (w / 2 * tangent) + (strokeThickness / 2 * toCenter);
+                    var w = this.TickGap + strokeThickness;
+                    var p0 = p - (w / 2 * tangent);
                     var p1 = p0 + (w * tangent);
                     var p2 = p1 + toCenter;
                     var p3 = p2 - (w * tangent);

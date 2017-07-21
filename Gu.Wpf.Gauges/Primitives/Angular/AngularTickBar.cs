@@ -150,6 +150,11 @@ namespace Gu.Wpf.Gauges
             }
         }
 
+        /// <summary>
+        /// Create the clip geometry that clips to current value.
+        /// If not desired override and return Geometry.Empty
+        /// </summary>
+        /// <param name="arc">The bounding arc.</param>
         protected virtual Geometry CreateClipGeometry(ArcInfo arc)
         {
             var effectiveAngle = Interpolate.Linear(this.Minimum, this.Maximum, this.EffectiveValue)
@@ -171,6 +176,11 @@ namespace Gu.Wpf.Gauges
             return geometry;
         }
 
+        /// <summary>
+        /// Create a <see cref="PathFigure"/> for the current tick.
+        /// </summary>
+        /// <param name="arc">The bounding arc.</param>
+        /// <param name="value">The tick value.</param>
         protected virtual PathFigure CreateTick(ArcInfo arc, double value, double strokeThickness)
         {
             var interpolation = Interpolate.Linear(this.Minimum, this.Maximum, value)

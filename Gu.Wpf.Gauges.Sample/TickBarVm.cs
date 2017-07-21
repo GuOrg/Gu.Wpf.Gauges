@@ -23,7 +23,7 @@ namespace Gu.Wpf.Gauges.Sample
         private DoubleCollection minorTicks;
         private double tickGap = 1.0;
         private double tickWidth = 1.0;
-        private double thickness;
+        private double thickness = 10;
         private double strokeThickness = 1;
         private bool showLabels;
 
