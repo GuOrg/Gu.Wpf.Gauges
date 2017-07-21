@@ -39,6 +39,17 @@ namespace Gu.Wpf.Gauges
 
         protected override Geometry DefiningGeometry => throw new InvalidOperationException("Uses OnRender");
 
+        public static Geometry CreateGeometry(Size renderSize, double start, double end)
+        {
+            var from = Interpolation.Zero.Interpolate(this.Start, this.End, this.IsDirectionReversed);
+            var to = Interpolate.Linear(this.Minimum, this.Maximum, value)
+                                .Clamp(0, 1)
+                                .Interpolate(this.Start, this.End, this.IsDirectionReversed);
+            var strokeThickness = this.GetStrokeThickness();
+            var figure = arc.CreateArcPathFigure(from, to, this.Thickness, strokeThickness);
+            return new PathGeometry(new[] { figure });
+        }
+
         protected override Size MeasureOverride(Size availableSize)
         {
             var thickness = Math.Max(Math.Abs(this.Thickness), this.GetStrokeThickness());
@@ -65,7 +76,7 @@ namespace Gu.Wpf.Gauges
             if (DoubleUtil.AreClose(value, this.Maximum) &&
                 DoubleUtil.AreClose(this.End - this.Start, 360))
             {
-                var geometry = this.CreateEllipseGeometry(this.RenderSize);
+                var geometry = this.CreateRingGeometry();
                 if (!ReferenceEquals(geometry, Geometry.Empty))
                 {
                     dc.DrawGeometry(this.Fill, this.Pen, geometry);
@@ -78,50 +89,16 @@ namespace Gu.Wpf.Gauges
             dc.DrawGeometry(this.Fill, this.Pen, this.CreateArcGeometry(arc, value));
         }
 
-        protected virtual Geometry CreateEllipseGeometry(Size finalSize)
-        {
-            var diameter = Math.Min(finalSize.Width, finalSize.Height);
-            if (DoubleUtil.AreClose(0, diameter))
-            {
-                return Geometry.Empty;
-            }
-
-            var strokeThickness = this.GetStrokeThickness();
-            var r = (diameter - strokeThickness) / 2;
-            var ri = r - this.Thickness;
-            var cx = this.HorizontalAlignment == HorizontalAlignment.Stretch
-                ? this.RenderSize.Width / 2
-                : r + (strokeThickness / 2);
-            var cy = this.VerticalAlignment == VerticalAlignment.Stretch
-                ? this.RenderSize.Height / 2
-                : r + (strokeThickness / 2);
-            var center = new Point(cx, cy);
-            if (this.Thickness <= 0 || ri <= 0)
-            {
-                return new EllipseGeometry(center, r, r);
-            }
-
-            return new CombinedGeometry(
-                GeometryCombineMode.Xor,
-                new EllipseGeometry(
-                    center,
-                    r,
-                    r),
-                new EllipseGeometry(
-                    center,
-                    ri,
-                    ri));
-        }
+        protected virtual Geometry CreateRingGeometry() => Ring.CreateGeometry(
+            this.RenderSize,
+            this.Thickness,
+            this.GetStrokeThickness(),
+            this.HorizontalAlignment,
+            this.VerticalAlignment);
 
         protected virtual PathGeometry CreateArcGeometry(ArcInfo arc, double value)
         {
-            var from = Interpolation.Zero.Interpolate(this.Start, this.End, this.IsDirectionReversed);
-            var to = Interpolate.Linear(this.Minimum, this.Maximum, value)
-                                .Clamp(0, 1)
-                                .Interpolate(this.Start, this.End, this.IsDirectionReversed);
-            var strokeThickness = this.GetStrokeThickness();
-            var figure = arc.CreateArcPathFigure(from, to, this.Thickness, strokeThickness);
-            return new PathGeometry(new[] { figure });
+
         }
     }
 }

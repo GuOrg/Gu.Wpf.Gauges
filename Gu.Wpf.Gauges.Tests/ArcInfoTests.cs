@@ -42,7 +42,7 @@
         public void GetPointWithOffset(string center, double radius, double offset, double angle, string expected)
         {
             var arc = new ArcInfo(center.AsPoint(), radius, 0, 0);
-            var actual = arc.GetPoint(angle, offset);
+            var actual = arc.GetOffsetPoint(angle, offset);
             Assert.AreEqual(expected, actual.ToString("F0"));
         }
 

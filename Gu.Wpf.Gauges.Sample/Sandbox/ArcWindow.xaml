@@ -15,7 +15,7 @@
                                  Maximum="100"
                                  Minimum="0"
                                  Start="-140"
-                                 Thickness="5"
+                                 Thickness="20"
                                  Value="100" />
     </Window.DataContext>
     <Grid>
@@ -24,6 +24,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <gauges:Arc Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                    Padding="2"
                     End="{Binding End}"
                     Fill="Red"
                     IsDirectionReversed="{Binding IsDirectionReversed}"
@@ -31,7 +32,8 @@
                     Minimum="{Binding Minimum}"
                     Start="{Binding Start}"
                     Stroke="Black"
-                    StrokeThickness="1"
+                    StrokeThickness="5"
+                    Thickness="{Binding Thickness}"
                     Value="{Binding Value}" />
 
         <ContentPresenter Grid.Row="1"

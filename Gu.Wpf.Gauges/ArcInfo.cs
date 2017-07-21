@@ -150,19 +150,39 @@
         /// <summary>
         /// Get the point at <paramref name="angle"/> on the arc.
         /// </summary>
-        public Point GetPoint(double angle) => this.GetPoint(angle, 0);
+        /// <param name="angle">Angle in degrees</param>
+        public Point GetPoint(double angle) => this.GetOffsetPoint(angle, 0);
 
         /// <summary>
         /// Get a unit vector with the tangent direction at <paramref name="angle"/>.
         /// </summary>
+        /// <param name="angle">Angle in degrees</param>
         public Vector GetTangent(double angle)
         {
             return new Vector(1, 0).Rotate(angle);
         }
 
-        public Point GetPoint(double angle, double offset)
+        /// <summary>
+        /// Get the point at <paramref name="angle"/> on an arc with same center as this.
+        /// </summary>
+        /// <param name="angle">Angle in degrees</param>
+        /// <param name="offset">The radial offset positive meaning bigger radius.</param>
+        /// <returns></returns>
+        public Point GetOffsetPoint(double angle, double offset) => this.GetPointAtRadius(angle, this.Radius + offset);
+
+        /// <summary>
+        /// Get the point at <paramref name="angle"/> on an arc with same center as this.
+        /// </summary>
+        /// <param name="angle">Angle in degrees</param>
+        /// <param name="radius">The radius.</param>
+        public Point GetPointAtRadius(double angle, double radius)
         {
-            var v0 = new Vector(0, -(this.Radius + offset));
+            if (DoubleUtil.LessThanOrClose(radius, 0))
+            {
+                return this.Center;
+            }
+
+            var v0 = new Vector(0, -radius);
             var rotate = v0.Rotate(angle);
             var p = this.Center + rotate;
             return p;
@@ -249,21 +269,22 @@
 
         public PathFigure CreateArcPathFigure(double fromAngle, double toAngle, double thickness, double strokeThickness)
         {
-            var op1 = this.GetPoint(fromAngle, -strokeThickness / 2);
-            var op2 = this.GetPoint(toAngle, -strokeThickness / 2);
-            var ip2 = this.GetPoint(toAngle, (strokeThickness / 2) - thickness);
+            var op1 = this.GetOffsetPoint(fromAngle, -strokeThickness / 2);
+            var op2 = this.GetOffsetPoint(toAngle, -strokeThickness / 2);
+            var ip2 = this.GetOffsetPoint(toAngle, (strokeThickness / 2) - thickness);
             var figure = new PathFigure { StartPoint = op1 };
             var rotationAngle = toAngle - fromAngle;
             var isLargeArc = Math.Abs(rotationAngle) >= 180;
             var sweepDirection = this.SweepDirection(fromAngle, toAngle);
-            bool isStroked = DoubleUtil.LessThanOrClose(0, strokeThickness);
-            figure.Segments.Add(new ArcSegment(op2, new Size(this.Radius, this.Radius), rotationAngle, isLargeArc, sweepDirection, isStroked));
+            var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
+            var ro = this.Radius - (strokeThickness / 2);
+            figure.Segments.Add(new ArcSegment(op2, new Size(ro, ro), rotationAngle, isLargeArc, sweepDirection, isStroked));
             figure.Segments.Add(new LineSegment(ip2, isStroked));
             if (thickness < this.Radius)
             {
                 sweepDirection = this.SweepDirection(toAngle, fromAngle);
-                var ri = this.Radius - thickness;
-                var ip1 = this.GetPoint(fromAngle, (strokeThickness / 2) - thickness);
+                var ri = this.Radius - thickness + (strokeThickness / 2);
+                var ip1 = this.GetPointAtRadius(fromAngle, ri);
                 figure.Segments.Add(new ArcSegment(ip1, new Size(ri, ri), rotationAngle, isLargeArc, sweepDirection, isStroked));
             }
 

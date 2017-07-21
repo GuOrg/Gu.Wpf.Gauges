@@ -143,7 +143,7 @@ namespace Gu.Wpf.Gauges
                                            .Clamp(0, 1)
                                            .Interpolate(this.Start, this.End, this.IsDirectionReversed);
                     var po = arc.GetPoint(angle);
-                    var pi = arc.GetPoint(angle, -this.Thickness);
+                    var pi = arc.GetOffsetPoint(angle, -this.Thickness);
                     dc.DrawLine(this.Pen, po, pi);
                 }
             }

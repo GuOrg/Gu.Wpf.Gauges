@@ -24,6 +24,7 @@ namespace Gu.Wpf.Gauges.Sample
         private double tickGap = 1.0;
         private double tickWidth = 1.0;
         private double thickness;
+        private double strokeThickness = 1;
         private bool showLabels;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -178,6 +179,22 @@ namespace Gu.Wpf.Gauges.Sample
                 }
 
                 this.thickness = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public double StrokeThickness
+        {
+            get => this.strokeThickness;
+
+            set
+            {
+                if (value == this.strokeThickness)
+                {
+                    return;
+                }
+
+                this.strokeThickness = value;
                 this.OnPropertyChanged();
             }
         }

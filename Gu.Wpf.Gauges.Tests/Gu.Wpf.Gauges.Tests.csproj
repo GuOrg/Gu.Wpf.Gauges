@@ -718,5 +718,11 @@
     <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_2_StrokeThickness_1_TickFrequency_1_Ticks__Horizontal.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_2_StrokeThickness_1_TickFrequency_1_Ticks__Vertical.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Primitives\Angular\ArcImages\Arc_Min0_Max1_ValueNaN_Start-140_End_140_Thickness_10_StrokeThickness_2.png" />
+    <Content Include="Primitives\Angular\ArcImages\Arc_Min0_Max1_ValueNaN_Start-140_End_140_Thickness_2_StrokeThickness_2.png" />
+    <Content Include="Primitives\Angular\ArcImages\Arc_Min0_Max1_ValueNaN_Start0_End_90_Thickness_10_StrokeThickness_2.png" />
+    <Content Include="Primitives\Angular\ArcImages\Arc_Min0_Max1_ValueNaN_Start0_End_90_Thickness_2_StrokeThickness_2.png" />
+  </ItemGroup>
   <Import Project="..\.paket\paket.targets" />
 </Project>

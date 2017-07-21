@@ -1,61 +1,36 @@
 namespace Gu.Wpf.Gauges
 {
     using System;
-    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Media;
 
     public class Ring : AngularGeometryBar
     {
-        private double diameter;
-
         protected override Geometry DefiningGeometry => throw new InvalidOperationException("Uses OnRender");
 
-        protected override Size MeasureOverride(Size constraint)
+        public static Geometry CreateGeometry(
+            Size finalSize,
+            double thickness,
+            double strokeThickness,
+            HorizontalAlignment horizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment verticalAlignment = VerticalAlignment.Center)
         {
-            var d = 2 * (this.Thickness + this.GetStrokeThickness());
-            return new Size(d, d);
-        }
-
-        protected override Size ArrangeOverride(Size finalSize)
-        {
-            this.diameter = Math.Min(finalSize.Width, finalSize.Height);
-            return finalSize;
-        }
-
-        [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
-        protected override void OnRender(DrawingContext dc)
-        {
-            if (DoubleUtil.AreClose(0, this.diameter))
-            {
-                return;
-            }
-
-            var geometry = this.CreateGeometry();
-            if (!ReferenceEquals(geometry, Geometry.Empty))
-            {
-                dc.DrawGeometry(this.Fill, this.Pen, geometry);
-            }
-        }
-
-        protected virtual Geometry CreateGeometry()
-        {
-            if (DoubleUtil.AreClose(0, this.diameter))
+            var diameter = Math.Min(finalSize.Width, finalSize.Height);
+            if (DoubleUtil.AreClose(0, diameter))
             {
                 return Geometry.Empty;
             }
 
-            var strokeThickness = this.GetStrokeThickness();
-            var r = (this.diameter - strokeThickness) / 2;
-            var ri = r - this.Thickness;
-            var cx = this.HorizontalAlignment == HorizontalAlignment.Stretch
-                ? this.RenderSize.Width / 2
+            var r = (diameter - strokeThickness) / 2;
+            var ri = r - thickness;
+            var cx = horizontalAlignment == HorizontalAlignment.Stretch
+                ? finalSize.Width / 2
                 : r + (strokeThickness / 2);
-            var cy = this.VerticalAlignment == VerticalAlignment.Stretch
-                ? this.RenderSize.Height / 2
+            var cy = verticalAlignment == VerticalAlignment.Stretch
+                ? finalSize.Height / 2
                 : r + (strokeThickness / 2);
             var center = new Point(cx, cy);
-            if (this.Thickness <= 0 || ri <= 0)
+            if (thickness <= 0 || ri <= 0)
             {
                 return new EllipseGeometry(center, r, r);
             }
@@ -71,5 +46,27 @@ namespace Gu.Wpf.Gauges
                     ri,
                     ri));
         }
+
+        protected override Size MeasureOverride(Size constraint)
+        {
+            var d = 2 * (this.Thickness + this.GetStrokeThickness());
+            return new Size(d, d);
+        }
+
+        protected override void OnRender(DrawingContext dc)
+        {
+            var geometry = this.CreateGeometry();
+            if (!ReferenceEquals(geometry, Geometry.Empty))
+            {
+                dc.DrawGeometry(this.Fill, this.Pen, geometry);
+            }
+        }
+
+        protected virtual Geometry CreateGeometry() => CreateGeometry(
+            this.RenderSize,
+            this.Thickness,
+            this.GetStrokeThickness(),
+            this.HorizontalAlignment,
+            this.VerticalAlignment);
     }
 }
