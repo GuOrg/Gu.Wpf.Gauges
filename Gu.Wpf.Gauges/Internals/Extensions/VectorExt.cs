@@ -10,9 +10,9 @@
         /// <summary>
         /// Rotates the vector clockwise
         /// </summary>
-        public static Vector RotateClockwise(this Vector v, double degrees)
+        public static Vector Rotate(this Vector v, double degrees)
         {
-            return v.RotateRadians(-degrees * DegToRad);
+            return v.RotateRadians(degrees * DegToRad);
         }
 
         /// <summary>

@@ -17,23 +17,26 @@
                                  Maximum="100"
                                  Minimum="0"
                                  Start="-140"
-                                 Value="30" />
+                                 TickWidth="1"
+                                 Value="100" />
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition MinHeight="50" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Border>
-            <gauges:AngularTickBar End="{Binding End}"
-                                   IsDirectionReversed="{Binding IsDirectionReversed}"
-                                   Maximum="{Binding Maximum}"
-                                   Minimum="{Binding Minimum}"
-                                   Start="{Binding Start}"
-                                   StrokeThickness="1"
-                                   TickFrequency="{Binding MajorTickFrequency}"
-                                   Ticks="{Binding MajorTicks}" />
-        </Border>
+        <gauges:AngularTickBar Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                               End="{Binding End}"
+                               Fill="Red"
+                               IsDirectionReversed="{Binding IsDirectionReversed}"
+                               Maximum="{Binding Maximum}"
+                               Minimum="{Binding Minimum}"
+                               Start="{Binding Start}"
+                               StrokeThickness="1"
+                               TickFrequency="{Binding MajorTickFrequency}"
+                               TickWidth="{Binding TickWidth}"
+                               Ticks="{Binding MajorTicks}"
+                               Value="{Binding Value}" />
 
         <ContentPresenter Grid.Row="1"
                           Content="{Binding}" />

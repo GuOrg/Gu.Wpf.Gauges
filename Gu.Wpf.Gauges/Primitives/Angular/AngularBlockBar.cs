@@ -80,33 +80,11 @@ namespace Gu.Wpf.Gauges
             }
         }
 
-        private static PathGeometry ArcBlock(ArcInfo arcInfo, double fromAngle, double toAngle, double tickLength)
+        private static PathGeometry ArcBlock(ArcInfo arc, double fromAngle, double toAngle, double tickLength)
         {
             var geometry = new PathGeometry();
-            var figure = new PathFigure();
-
+            var figure = arc.CreatePathFigure(fromAngle, toAngle, tickLength, isStroked: true);
             geometry.Figures.Add(figure);
-            var op1 = arcInfo.GetPoint(fromAngle);
-            var ip1 = arcInfo.GetPoint(fromAngle, -1 * tickLength);
-            var op2 = arcInfo.GetPoint(toAngle);
-            var ip2 = arcInfo.GetPoint(toAngle, -1 * tickLength);
-
-            figure.StartPoint = op1;
-            var rotationAngle = toAngle - fromAngle;
-            var isLargeArc = arcInfo.IsLargeAngle(fromAngle, toAngle);
-            var sweepDirection = arcInfo.SweepDirection_(fromAngle, toAngle);
-            figure.Segments.Add(new ArcSegment(op2, new Size(arcInfo.Radius, arcInfo.Radius), rotationAngle, isLargeArc, sweepDirection, isStroked: true));
-            figure.Segments.Add(new LineSegment(ip2, isStroked: true));
-            sweepDirection = arcInfo.SweepDirection_(toAngle, fromAngle);
-            var ri = arcInfo.Radius - tickLength;
-            if (ri < 0)
-            {
-                ri = 0;
-            }
-
-            figure.Segments.Add(new ArcSegment(ip1, new Size(ri, ri), rotationAngle, isLargeArc, sweepDirection, isStroked: true));
-            figure.Segments.Add(new LineSegment(op1, isStroked: true));
-            figure.IsClosed = true;
             figure.Freeze();
             geometry.Freeze();
             return geometry;

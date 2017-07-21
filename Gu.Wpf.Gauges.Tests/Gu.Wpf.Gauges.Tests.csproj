@@ -635,5 +635,30 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Ticks_1_2_6_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Ticks_1_2_6_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_False_Padding_1,1,1,1_TickWidth_3_StrokeThickness_2_Ticks_1_2_6_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Ticks_1_2_6_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Ticks_1_2_6_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_3_StrokeThickness_2_Ticks_1_2_6_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_3_StrokeThickness_2_Ticks_1_2_6_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_Value_0_IsDirectionReversed_False_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Ticks_1_2_6_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_Value_0_IsDirectionReversed_False_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Ticks_1_2_6_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_Value_0_IsDirectionReversed_False_Padding_1,1,1,1_TickWidth_3_StrokeThickness_2_Ticks_1_2_6_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_Value_0_IsDirectionReversed_False_Padding_1,1,1,1_TickWidth_3_StrokeThickness_2_Ticks_1_2_6_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_Value_0_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Ticks_1_2_6_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_Value_0_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Ticks_1_2_6_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_Value_0_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_3_StrokeThickness_2_Ticks_1_2_6_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_Value_0_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_3_StrokeThickness_2_Ticks_1_2_6_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Ticks_1_2_6_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Ticks_1_2_6_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_Padding_1,1,1,1_TickWidth_3_StrokeThickness_2_Ticks_1_2_6_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_Padding_1,1,1,1_TickWidth_3_StrokeThickness_2_Ticks_1_2_6_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Ticks_1_2_6_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Ticks_1_2_6_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_3_StrokeThickness_2_Ticks_1_2_6_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_3_StrokeThickness_2_Ticks_1_2_6_Vertical.png" />
+  </ItemGroup>
   <Import Project="..\.paket\paket.targets" />
 </Project>

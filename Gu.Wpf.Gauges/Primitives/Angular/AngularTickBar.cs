@@ -83,8 +83,8 @@ namespace Gu.Wpf.Gauges
                 : strokeThickness / 2;
             var arc = new ArcInfo(default(Point), 1, this.Start, this.End);
             var rect = default(Rect);
-            rect.Union(arc.StartPoint - (w * arc.GetTangent(this.Start)));
-            rect.Union(arc.EndPoint + (w * arc.GetTangent(this.End)));
+            rect.Union(default(Point) - (w * arc.GetTangent(this.Start)));
+            rect.Union(default(Point) + (w * arc.GetTangent(this.End)));
             rect = rect.Deflate(this.Padding);
             this.Overflow = new Thickness(
                 Math.Max(0, rect.Left),
@@ -97,21 +97,64 @@ namespace Gu.Wpf.Gauges
 
         protected override void OnRender(DrawingContext dc)
         {
-            if (this.Pen == null ||
-                this.AllTicks == null)
+            if ((this.Pen == null && this.Fill == null) ||
+                this.AllTicks == null ||
+                DoubleUtil.AreClose(this.EffectiveValue, this.Minimum))
             {
                 return;
             }
 
             var arc = ArcInfo.Fit(this.RenderSize, this.Padding, this.Start, this.End);
-            foreach (var tick in this.AllTicks)
+            var max = this.EffectiveValue;
+            var strokeThickness = this.GetStrokeThickness();
+            if (max < this.Maximum)
             {
-                var angle = Interpolate.Linear(this.Minimum, this.Maximum, tick)
-                                       .Clamp(0, 1)
-                                       .Interpolate(this.Start, this.End, this.IsDirectionReversed);
-                var po = arc.GetPoint(angle, 0);
-                var pi = arc.GetPoint(angle, -this.Thickness);
-                dc.DrawLine(this.Pen, po, pi);
+                var effectiveAngle = Interpolate.Linear(this.Minimum, this.Maximum, this.EffectiveValue)
+                                                .Interpolate(this.Start, this.End, this.IsDirectionReversed);
+                var geometry = new PathGeometry();
+                var w = this.TickWidth > strokeThickness
+                    ? (this.TickWidth + strokeThickness) / 2
+                    : strokeThickness / 2;
+                var figure = arc.Inflate(w)
+                                .CreatePathFigure(
+                                    this.IsDirectionReversed ? this.End : this.Start,
+                                    effectiveAngle,
+                                    2 * w,
+                                    isStroked: false);
+                geometry.Figures.Add(figure);
+                figure.Freeze();
+                geometry.Freeze();
+                dc.PushClip(geometry);
+            }
+
+            if (this.TickWidth <= strokeThickness)
+            {
+                foreach (var tick in this.AllTicks)
+                {
+                    var angle = Interpolate.Linear(this.Minimum, this.Maximum, tick)
+                                           .Clamp(0, 1)
+                                           .Interpolate(this.Start, this.End, this.IsDirectionReversed);
+                    var po = arc.GetPoint(angle);
+                    var pi = arc.GetPoint(angle, -this.Thickness);
+                    dc.DrawLine(this.Pen, po, pi);
+                }
+            }
+            else
+            {
+                throw new NotImplementedException();
+                //foreach (var tick in this.AllTicks)
+                //{
+                //    dc.DrawRectangle(this.Fill, this.Pen, this.CreateRect(tick, this.RenderSize));
+                //    if (tick > max)
+                //    {
+                //        break;
+                //    }
+                //}
+            }
+
+            if (max < this.Maximum)
+            {
+                dc.Pop();
             }
         }
     }

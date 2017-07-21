@@ -38,10 +38,10 @@ namespace Gu.Wpf.Gauges.Tests.Internals
         }
 
         [TestCase(0, "0,0 1 -90 90", false, "-1, 0")]
-        [TestCase(0.5, "0,0 1 -90 90", false, "0, 1")]
+        [TestCase(0.5, "0,0 1 -90 90", false, "0, -1")]
         [TestCase(1, "0,0 1 -90 90", false, "1, 0")]
         [TestCase(0, "0,0 1 -90 90", true, "1, 0")]
-        [TestCase(0.5, "0,0 1 -90 90", true, "0, 1")]
+        [TestCase(0.5, "0,0 1 -90 90", true, "0, -1")]
         [TestCase(1, "0,0 1 -90 90", true, "-1, 0")]
         public void InterpolateArc(double value, string arcString, bool isDirectionReversed, string expected)
         {

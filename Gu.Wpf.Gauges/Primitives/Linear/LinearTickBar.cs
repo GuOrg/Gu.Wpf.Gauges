@@ -143,7 +143,6 @@
                 }
             }
 
-
             if (max < this.Maximum)
             {
                 dc.Pop();

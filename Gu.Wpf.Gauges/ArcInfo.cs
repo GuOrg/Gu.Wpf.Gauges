@@ -143,7 +143,6 @@
             rect.Scale(radius, radius);
             var v = bounds.MidPoint() - rect.MidPoint();
             center = p0 + v;
-            center.Y = bounds.Height - center.Y;
             return true;
         }
 
@@ -157,39 +156,61 @@
         /// </summary>
         public Vector GetTangent(double angle)
         {
-            return new Vector(1, 0).RotateClockwise(angle);
+            return new Vector(1, 0).Rotate(angle);
         }
 
         public Point GetPoint(double angle, double offset)
         {
-            var v0 = new Vector(0, -this.Radius + offset);
-            var rotate = v0.RotateClockwise(angle);
+            var v0 = new Vector(0, -(this.Radius + offset));
+            var rotate = v0.Rotate(angle);
             var p = this.Center + rotate;
             return p;
         }
 
-        public bool IsLargeAngle(double fromAngle, double toAngle)
+        public double GetAngle(Point point)
         {
-            var delta = toAngle - fromAngle;
-            if (delta < 180)
-            {
-                return false;
-            }
-
-            return true;
+            return Vector.AngleBetween(new Vector(0, -1), this.Center - point);
         }
 
-        public SweepDirection SweepDirection_(double fromAngle, double toAngle)
+        public SweepDirection SweepDirection(double fromAngle, double toAngle)
         {
-            var delta = toAngle - fromAngle;
-            return delta >= 0
+            return toAngle > fromAngle
                        ? System.Windows.Media.SweepDirection.Clockwise
                        : System.Windows.Media.SweepDirection.Counterclockwise;
         }
 
-        public ArcInfo OffsetWith(double offset)
+        public ArcInfo Inflate(double value)
         {
-            return new ArcInfo(this.Center, this.Radius + offset, this.StartAngle, this.EndAngle);
+            return new ArcInfo(
+                this.Center,
+                this.Radius + value,
+                this.GetAngle(this.StartPoint - (value * this.GetTangent(this.StartAngle))),
+                this.GetAngle(this.EndPoint - (value * this.GetTangent(this.EndAngle))));
+        }
+
+        public PathFigure CreatePathFigure(double fromAngle, double toAngle, double tickLength, bool isStroked)
+        {
+            var op1 = this.GetPoint(fromAngle);
+            var ip1 = this.GetPoint(fromAngle, -1 * tickLength);
+            var op2 = this.GetPoint(toAngle);
+            var ip2 = this.GetPoint(toAngle, -1 * tickLength);
+            var figure = new PathFigure { StartPoint = op1 };
+            var rotationAngle = toAngle - fromAngle;
+            var isLargeArc = Math.Abs(rotationAngle) >= 180;
+            var sweepDirection = this.SweepDirection(fromAngle, toAngle);
+            figure.Segments.Add(new ArcSegment(op2, new Size(this.Radius, this.Radius), rotationAngle, isLargeArc, sweepDirection, isStroked));
+            figure.Segments.Add(new LineSegment(ip2, isStroked));
+            sweepDirection = this.SweepDirection(toAngle, fromAngle);
+            var ri = this.Radius - tickLength;
+            if (ri < 0)
+            {
+                ri = 0;
+            }
+
+            figure.Segments.Add(new ArcSegment(ip1, new Size(ri, ri), rotationAngle, isLargeArc, sweepDirection, isStroked));
+            figure.Segments.Add(new LineSegment(op1, isStroked));
+            figure.IsClosed = true;
+            return figure;
         }
 
         public override string ToString()

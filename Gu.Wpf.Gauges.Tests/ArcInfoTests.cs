@@ -7,11 +7,11 @@
 
     public class ArcInfoTests
     {
-        [TestCase("0,0", 2, 0, "0, 2")]
+        [TestCase("0,0", 2, 0, "0, -2")]
         [TestCase("0,0", 2, 90, "2, 0")]
         [TestCase("0,0", 2, -90, "-2, 0")]
-        [TestCase("0,0", 2, 180, "0, -2")]
-        [TestCase("0,0", 2, -180, "0, -2")]
+        [TestCase("0,0", 2, 180, "0, 2")]
+        [TestCase("0,0", 2, -180, "0, 2")]
         [TestCase("0,0", 2, 270, "-2, 0")]
         [TestCase("0,0", 2, -270, "2, 0")]
         [TestCase("1,2", 2, 0, "1, 4")]
