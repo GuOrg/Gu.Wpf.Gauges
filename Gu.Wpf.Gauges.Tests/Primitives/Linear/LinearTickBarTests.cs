@@ -286,6 +286,10 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
             var value = double.IsNaN(tickBar.Value) || tickBar.Value == tickBar.Maximum
                 ? string.Empty
                 : $"_Value_{tickBar.Value}";
+            if (tickBar.Value == 0)
+            {
+                return $"LinearTickBar_Value_0{orientation}.png";
+            }
 
             return $@"LinearTickBar_Min_{tickBar.Minimum}_Max_{tickBar.Maximum}{value}_IsDirectionReversed_{tickBar.IsDirectionReversed}{padding}_TickWidth_{tickBar.TickWidth}_StrokeThickness_{tickBar.StrokeThickness}{tickFrequency}{ticks}{orientation}.png"
                 .Replace(" ", "_");
