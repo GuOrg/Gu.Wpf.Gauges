@@ -115,7 +115,6 @@
         {
         }
 
-
         private static void OnStartChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is AngularGauge gauge)

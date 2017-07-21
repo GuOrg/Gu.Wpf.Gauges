@@ -59,12 +59,13 @@ namespace Gu.Wpf.Gauges
             var previous = arc.StartAngle;
             var gap = this.IsDirectionReversed ? -1 * this.TickGap : this.TickGap;
 
+            var strokeThickness = this.GetStrokeThickness();
             foreach (var tick in ticks)
             {
                 if (tick > this.Value)
                 {
                     var a = Gauges.Ticks.ToAngle(this.Value, this.Minimum, this.Maximum, arc);
-                    var block = ArcBlock(arc, previous, a, this.Thickness);
+                    var block = ArcBlock(arc, previous, a, this.Thickness, strokeThickness);
                     dc.DrawGeometry(this.Fill, this.Pen, block);
                     break;
                 }
@@ -72,7 +73,7 @@ namespace Gu.Wpf.Gauges
                 var angle = Gauges.Ticks.ToAngle(tick, this.Minimum, this.Maximum, arc);
                 if (previous != angle)
                 {
-                    var arcBlock = ArcBlock(arc, previous, angle - gap, this.Thickness);
+                    var arcBlock = ArcBlock(arc, previous, angle - gap, this.Thickness, strokeThickness);
                     dc.DrawGeometry(this.Fill, this.Pen, arcBlock);
                 }
 
@@ -80,10 +81,10 @@ namespace Gu.Wpf.Gauges
             }
         }
 
-        private static PathGeometry ArcBlock(ArcInfo arc, double fromAngle, double toAngle, double tickLength)
+        private static PathGeometry ArcBlock(ArcInfo arc, double fromAngle, double toAngle, double tickLength, double strokeThickness)
         {
             var geometry = new PathGeometry();
-            var figure = arc.CreatePathFigure(fromAngle, toAngle, tickLength, isStroked: true);
+            var figure = arc.CreateArcPathFigure(fromAngle, toAngle, tickLength, strokeThickness);
             geometry.Figures.Add(figure);
             figure.Freeze();
             geometry.Freeze();

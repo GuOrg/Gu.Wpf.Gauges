@@ -115,7 +115,7 @@ namespace Gu.Wpf.Gauges
 
         private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ((LinearGeometryBar)d).OnValueChanged((double) e.OldValue, (double) e.NewValue);
+            ((LinearGeometryBar)d).OnValueChanged((double)e.OldValue, (double)e.NewValue);
         }
 
         private static object CoerceOverflow(DependencyObject d, object basevalue)

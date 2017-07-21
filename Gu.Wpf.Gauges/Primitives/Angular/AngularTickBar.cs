@@ -21,7 +21,9 @@ namespace Gu.Wpf.Gauges
             nameof(TickShape),
             typeof(TickShape),
             typeof(AngularTickBar),
-            new PropertyMetadata(default(TickShape)));
+            new FrameworkPropertyMetadata(
+                default(TickShape),
+                FrameworkPropertyMetadataOptions.AffectsRender));
 
         static AngularTickBar()
         {
@@ -121,14 +123,12 @@ namespace Gu.Wpf.Gauges
                     arc.Radius + w,
                     arc.StartAngle - delta,
                     arc.EndAngle + delta);
-                var figure = inflated.CreatePathFigure(
+                var figure = inflated.CreateArcPathFigure(
                                     this.IsDirectionReversed ? inflated.EndAngle : inflated.StartAngle,
                                     effectiveAngle,
                                     inflated.Radius,
-                                    isStroked: false);
+                                    0);
                 geometry.Figures.Add(figure);
-                figure.Freeze();
-                geometry.Freeze();
                 dc.PushClip(geometry);
             }
 
@@ -170,20 +170,22 @@ namespace Gu.Wpf.Gauges
             var interpolation = Interpolate.Linear(this.Minimum, this.Maximum, value)
                                            .Clamp(0, 1);
             var angle = interpolation.Interpolate(this.Start, this.End, this.IsDirectionReversed);
+            var strokeThickness = this.GetStrokeThickness();
             switch (this.TickShape)
             {
                 case TickShape.Arc:
-                    throw new NotImplementedException();
-                    break;
+                    var delta = arc.GetDelta(this.TickWidth - (strokeThickness / 2));
+                    return arc.CreateArcPathFigure(angle - delta, angle + delta, this.Thickness, strokeThickness);
                 case TickShape.Rectangle:
                     var p = interpolation.Interpolate(arc, this.IsDirectionReversed);
                     var tangent = arc.GetTangent(angle);
                     var toCenter = arc.Center - p;
                     toCenter.Normalize();
-                    var p0 = p - (this.TickWidth / 2 * tangent);
-                    var p1 = p0 + (this.TickWidth * tangent);
+                    var w = this.TickWidth - (strokeThickness / 2);
+                    var p0 = p - (w / 2 * tangent) + (strokeThickness / 2 * toCenter);
+                    var p1 = p0 + (w * tangent);
                     var p2 = p1 + (this.Thickness * toCenter);
-                    var p3 = p2 - (this.TickWidth * tangent);
+                    var p3 = p2 - (w * tangent);
                     var p4 = p3 - (this.Thickness * toCenter);
                     return new PathFigure(
                         p0,

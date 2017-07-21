@@ -6,7 +6,7 @@
     {
         public LinearIndicatorWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

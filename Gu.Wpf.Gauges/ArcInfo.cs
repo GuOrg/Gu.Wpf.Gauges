@@ -214,22 +214,23 @@
                 this.EndAngle + delta);
         }
 
-        public PathFigure CreatePathFigure(double fromAngle, double toAngle, double thickness, bool isStroked)
+        public PathFigure CreateArcPathFigure(double fromAngle, double toAngle, double thickness, double strokeThickness)
         {
-            var op1 = this.GetPoint(fromAngle);
-            var op2 = this.GetPoint(toAngle);
-            var ip2 = this.GetPoint(toAngle, -1 * thickness);
+            var op1 = this.GetPoint(fromAngle, -strokeThickness / 2);
+            var op2 = this.GetPoint(toAngle, -strokeThickness / 2);
+            var ip2 = this.GetPoint(toAngle, (strokeThickness / 2) - thickness);
             var figure = new PathFigure { StartPoint = op1 };
             var rotationAngle = toAngle - fromAngle;
             var isLargeArc = Math.Abs(rotationAngle) >= 180;
             var sweepDirection = this.SweepDirection(fromAngle, toAngle);
+            bool isStroked = DoubleUtil.LessThanOrClose(0, strokeThickness);
             figure.Segments.Add(new ArcSegment(op2, new Size(this.Radius, this.Radius), rotationAngle, isLargeArc, sweepDirection, isStroked));
             figure.Segments.Add(new LineSegment(ip2, isStroked));
             if (thickness < this.Radius)
             {
                 sweepDirection = this.SweepDirection(toAngle, fromAngle);
                 var ri = this.Radius - thickness;
-                var ip1 = this.GetPoint(fromAngle, -1 * thickness);
+                var ip1 = this.GetPoint(fromAngle, (strokeThickness / 2) - thickness);
                 figure.Segments.Add(new ArcSegment(ip1, new Size(ri, ri), rotationAngle, isLargeArc, sweepDirection, isStroked));
             }
 
