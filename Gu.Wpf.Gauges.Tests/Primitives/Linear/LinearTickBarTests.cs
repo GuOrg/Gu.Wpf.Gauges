@@ -129,6 +129,75 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
 
+        [TestCase(TickBarPlacement.Left, 0, false, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Left, 0, true, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Left, 5, false, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Left, 5, true, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Left, 10, false, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Left, 10, true, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Left, 0, false, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Left, 0, true, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Left, 5, false, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Left, 5, true, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Left, 10, false, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Left, 10, true, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Right, 0, false, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Right, 0, true, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Right, 5, false, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Right, 5, true, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Right, 10, false, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Right, 10, true, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Right, 0, false, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Right, 0, true, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Right, 5, false, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Right, 5, true, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Right, 10, false, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Right, 10, true, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Bottom, 0, false, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Bottom, 0, true, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Bottom, 5, false, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Bottom, 5, true, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Bottom, 10, false, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Bottom, 10, true, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Bottom, 0, false, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Bottom, 0, true, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Bottom, 5, false, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Bottom, 5, true, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Bottom, 10, false, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Bottom, 10, true, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Top, 0, false, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Top, 0, true, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Top, 5, false, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Top, 5, true, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Top, 10, false, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Top, 10, true, 1, 1, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Top, 0, false, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Top, 0, true, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Top, 5, false, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Top, 5, true, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Top, 10, false, 3, 2, 0, "1 2 6", "1")]
+        [TestCase(TickBarPlacement.Top, 10, true, 3, 2, 0, "1 2 6", "1")]
+        public void RenderWithValue(TickBarPlacement placement, double value, bool isDirectionReversed, double tickWidth, double strokeThickness, double tickFrequency, string ticks, string padding)
+        {
+            var tickBar = new LinearTickBar
+            {
+                StrokeThickness = strokeThickness,
+                Minimum = 0,
+                Maximum = 10,
+                Value = value,
+                TickFrequency = tickFrequency,
+                Ticks = string.IsNullOrEmpty(ticks) ? new DoubleCollection() : DoubleCollection.Parse(ticks),
+                TickWidth = tickWidth,
+                Stroke = Brushes.Black,
+                Fill = Brushes.Red,
+                Placement = placement,
+                IsDirectionReversed = isDirectionReversed,
+                Padding = padding.AsThickness(),
+            };
+
+            ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
+        }
+
         [TestCase(TickBarPlacement.Left, false, 1, 1, "0 0 0 0", "0,0.5,0,0.5")]
         [TestCase(TickBarPlacement.Left, false, 2, 1, "0 0 0 0", "0,1.5,0,1.5")]
         [TestCase(TickBarPlacement.Left, false, 2, 0, "0 1 0 1", "0,0,0,0")]
@@ -214,7 +283,11 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 ? string.Empty
                 : $"_Padding_{tickBar.Padding}";
 
-            return $@"LinearTickBar_Min_{tickBar.Minimum}_Max_{tickBar.Maximum}_IsDirectionReversed_{tickBar.IsDirectionReversed}{padding}_TickWidth_{tickBar.TickWidth}_StrokeThickness_{tickBar.StrokeThickness}{tickFrequency}{ticks}{orientation}.png"
+            var value = double.IsNaN(tickBar.Value) || tickBar.Value == tickBar.Maximum
+                ? string.Empty
+                : $"_Value_{tickBar.Value}";
+
+            return $@"LinearTickBar_Min_{tickBar.Minimum}_Max_{tickBar.Maximum}{value}_IsDirectionReversed_{tickBar.IsDirectionReversed}{padding}_TickWidth_{tickBar.TickWidth}_StrokeThickness_{tickBar.StrokeThickness}{tickFrequency}{ticks}{orientation}.png"
                 .Replace(" ", "_");
         }
 

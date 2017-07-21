@@ -78,13 +78,47 @@
 
             if ((this.Pen == null && this.Fill == null) ||
                 this.AllTicks == null ||
-                this.EffectiveValue == this.Minimum)
+                DoubleUtil.AreClose(this.EffectiveValue, this.Minimum))
             {
                 return;
             }
 
             var max = this.EffectiveValue;
             var strokeThickness = this.GetStrokeThickness();
+            if (max < this.Maximum)
+            {
+                var rect = new Rect(this.RenderSize);
+                var w = this.TickWidth > strokeThickness
+                    ? strokeThickness + this.TickWidth
+                    : strokeThickness;
+                rect.Inflate(new Size(w, w));
+                var pos = this.PixelPosition(max, this.RenderSize);
+                if (this.Placement.IsHorizontal())
+                {
+                    if (this.IsDirectionReversed)
+                    {
+                        RectExt.SetLeft(ref rect, pos);
+                    }
+                    else
+                    {
+                        RectExt.SetRight(ref rect, pos);
+                    }
+                }
+                else
+                {
+                    if (this.IsDirectionReversed)
+                    {
+                        RectExt.SetBottom(ref rect, pos);
+                    }
+                    else
+                    {
+                        RectExt.SetTop(ref rect, pos);
+                    }
+                }
+
+                dc.PushClip(new RectangleGeometry(rect));
+            }
+
             if (this.TickWidth <= strokeThickness)
             {
                 foreach (var tick in this.AllTicks)
@@ -99,37 +133,6 @@
             }
             else
             {
-                if (max < this.Maximum)
-                {
-                    var rect = new Rect(this.RenderSize);
-                    rect.Inflate(new Size(this.TickWidth + strokeThickness, this.TickWidth + strokeThickness));
-                    var pos = this.PixelPosition(max, this.RenderSize);
-                    if (this.Placement.IsHorizontal())
-                    {
-                        if (this.IsDirectionReversed)
-                        {
-                            RectExt.SetLeft(ref rect, pos);
-                        }
-                        else
-                        {
-                            RectExt.SetRight(ref rect, pos);
-                        }
-                    }
-                    else
-                    {
-                        if (this.IsDirectionReversed)
-                        {
-                            RectExt.SetBottom(ref rect, pos);
-                        }
-                        else
-                        {
-                            RectExt.SetTop(ref rect, pos);
-                        }
-                    }
-
-                    dc.PushClip(new RectangleGeometry(rect));
-                }
-
                 foreach (var tick in this.AllTicks)
                 {
                     dc.DrawRectangle(this.Fill, this.Pen, this.CreateRect(tick, this.RenderSize));
@@ -138,11 +141,12 @@
                         break;
                     }
                 }
+            }
 
-                if (max < this.Maximum)
-                {
-                    dc.Pop();
-                }
+
+            if (max < this.Maximum)
+            {
+                dc.Pop();
             }
         }
 
