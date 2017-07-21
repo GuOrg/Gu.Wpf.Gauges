@@ -39,15 +39,9 @@ namespace Gu.Wpf.Gauges
 
         protected override Geometry DefiningGeometry => throw new InvalidOperationException("Uses OnRender");
 
-        public static Geometry CreateGeometry(Size renderSize, double start, double end)
+        public static Geometry CreateGeometry(ArcInfo arc, double startAngle, double endAngle, double thickness, double strokeThickness)
         {
-            var from = Interpolation.Zero.Interpolate(this.Start, this.End, this.IsDirectionReversed);
-            var to = Interpolate.Linear(this.Minimum, this.Maximum, value)
-                                .Clamp(0, 1)
-                                .Interpolate(this.Start, this.End, this.IsDirectionReversed);
-            var strokeThickness = this.GetStrokeThickness();
-            var figure = arc.CreateArcPathFigure(from, to, this.Thickness, strokeThickness);
-            return new PathGeometry(new[] { figure });
+            return new PathGeometry(new[] { arc.CreateArcPathFigure(startAngle, endAngle, thickness, strokeThickness) });
         }
 
         protected override Size MeasureOverride(Size availableSize)
@@ -85,8 +79,7 @@ namespace Gu.Wpf.Gauges
                 return;
             }
 
-            var arc = ArcInfo.Fit(this.RenderSize, this.Padding, this.Start, this.End);
-            dc.DrawGeometry(this.Fill, this.Pen, this.CreateArcGeometry(arc, value));
+            dc.DrawGeometry(this.Fill, this.Pen, this.CreateArcGeometry(value));
         }
 
         protected virtual Geometry CreateRingGeometry() => Ring.CreateGeometry(
@@ -96,9 +89,20 @@ namespace Gu.Wpf.Gauges
             this.HorizontalAlignment,
             this.VerticalAlignment);
 
-        protected virtual PathGeometry CreateArcGeometry(ArcInfo arc, double value)
+        protected virtual Geometry CreateArcGeometry(double value)
         {
+            var arc = ArcInfo.Fit(this.RenderSize, this.Padding, this.Start, this.End);
+            if (double.IsNaN(value) || DoubleUtil.AreClose(value, this.Maximum))
+            {
+                return CreateGeometry(arc, this.Start, this.End, this.Thickness, this.GetStrokeThickness());
+            }
 
+            var from = Interpolation.Zero
+                                    .Interpolate(this.Start, this.End, this.IsDirectionReversed);
+            var to = Interpolate.Linear(this.Minimum, this.Maximum, value)
+                .Clamp(0, 1)
+                .Interpolate(this.Start, this.End, this.IsDirectionReversed);
+            return CreateGeometry(arc, from, to, this.Thickness, this.GetStrokeThickness());
         }
     }
 }

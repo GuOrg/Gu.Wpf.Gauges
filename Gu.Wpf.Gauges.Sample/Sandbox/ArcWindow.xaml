@@ -23,19 +23,52 @@
             <RowDefinition MinHeight="50" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <gauges:Arc Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
-                    Padding="2"
-                    End="{Binding End}"
-                    Fill="Red"
-                    IsDirectionReversed="{Binding IsDirectionReversed}"
-                    Maximum="{Binding Maximum}"
-                    Minimum="{Binding Minimum}"
-                    Start="{Binding Start}"
-                    Stroke="Black"
-                    StrokeThickness="5"
-                    Thickness="{Binding Thickness}"
-                    Value="{Binding Value}" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <gauges:Arc Grid.Column="0"
+                        Width="50"
+                        Height="50"
+                        End="{Binding End}"
+                        Fill="Red"
+                        IsDirectionReversed="{Binding IsDirectionReversed}"
+                        Maximum="{Binding Maximum}"
+                        Minimum="{Binding Minimum}"
+                        Start="-180"
+                        Stroke="Black"
+                        StrokeThickness="0"
+                        Thickness="10"
+                        Value="{Binding Value}" />
+            <Ellipse Grid.Column="0"
+                     Width="50"
+                     Height="50"
+                     Fill="#55ff0000"
+                     Stroke="#5500FF00"
+                     StrokeThickness="1" />
 
+            <Ellipse Grid.Column="0"
+                     Width="30"
+                     Height="30"
+                     Fill="#55ff0000"
+                     Stroke="#5500FF00"
+                     StrokeThickness="1" />
+
+            <gauges:Arc Grid.Column="1"
+                        Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                        End="{Binding End}"
+                        Fill="Red"
+                        IsDirectionReversed="{Binding IsDirectionReversed}"
+                        Maximum="{Binding Maximum}"
+                        Minimum="{Binding Minimum}"
+                        Start="{Binding Start}"
+                        Stroke="Black"
+                        StrokeThickness="5"
+                        Thickness="{Binding Thickness}"
+                        Value="{Binding Value}" />
+
+        </Grid>
         <ContentPresenter Grid.Row="1"
                           Content="{Binding}" />
     </Grid>

@@ -8,18 +8,23 @@
     using Gu.Wpf.Gauges.Tests.TestHelpers;
     using NUnit.Framework;
 
-    [Explicit]
     [Apartment(ApartmentState.STA)]
     public class ArcTests
     {
-        [Test]
-        public void NoStroke()
+        [TestCase(0, 90, 10)]
+        [TestCase(0, 90, 2)]
+        [TestCase(-140, 140, 10)]
+        [TestCase(-140, 140, 2)]
+        public void RenderNoStroke(double start, double end, double thickness)
         {
             var arc = new Arc
             {
+                Minimum = 0,
+                Maximum = 10,
                 Fill = Brushes.Black,
-                StrokeThickness = 0,
-                Thickness = 10,
+                Start = start,
+                End = end,
+                Thickness = thickness,
             };
 
             ImageAssert.AreEqual(GetFileName(arc), arc);
@@ -29,10 +34,12 @@
         [TestCase(0, 90, 2, 2)]
         [TestCase(-140, 140, 10, 2)]
         [TestCase(-140, 140, 2, 2)]
-        public void WithStroke(double start, double end, double thickness, double strokeThickness)
+        public void RenderWithStroke(double start, double end, double thickness, double strokeThickness)
         {
             var arc = new Arc
             {
+                Minimum = 0,
+                Maximum = 10,
                 Fill = Brushes.Black,
                 Stroke = Brushes.Red,
                 Start = start,
@@ -41,7 +48,49 @@
                 Thickness = thickness,
             };
 
-            SaveImage(arc);
+            ImageAssert.AreEqual(GetFileName(arc), arc);
+        }
+
+        [TestCase(0, true, 0, 90, 10, 2)]
+        [TestCase(0, true, 0, 90, 2, 2)]
+        [TestCase(0, true, -140, 140, 10, 2)]
+        [TestCase(0, true, -140, 140, 2, 2)]
+        [TestCase(0, false, 0, 90, 10, 2)]
+        [TestCase(0, false, 0, 90, 2, 2)]
+        [TestCase(0, false, -140, 140, 10, 2)]
+        [TestCase(0, false, -140, 140, 2, 2)]
+        [TestCase(5, true, 0, 90, 10, 2)]
+        [TestCase(5, true, 0, 90, 2, 2)]
+        [TestCase(5, true, -140, 140, 10, 2)]
+        [TestCase(5, true, -140, 140, 2, 2)]
+        [TestCase(5, false, 0, 90, 10, 2)]
+        [TestCase(5, false, 0, 90, 2, 2)]
+        [TestCase(5, false, -140, 140, 10, 2)]
+        [TestCase(5, false, -140, 140, 2, 2)]
+        [TestCase(10, true, 0, 90, 10, 2)]
+        [TestCase(10, true, 0, 90, 2, 2)]
+        [TestCase(10, true, -140, 140, 10, 2)]
+        [TestCase(10, true, -140, 140, 2, 2)]
+        [TestCase(10, false, 0, 90, 10, 2)]
+        [TestCase(10, false, 0, 90, 2, 2)]
+        [TestCase(10, false, -140, 140, 10, 2)]
+        [TestCase(10, false, -140, 140, 2, 2)]
+        public void RenderWithStrokeAndValue(double value, bool isDirectionReversed, double start, double end, double thickness, double strokeThickness)
+        {
+            var arc = new Arc
+            {
+                Minimum = 0,
+                Maximum = 10,
+                Value = value,
+                IsDirectionReversed = isDirectionReversed,
+                Fill = Brushes.Black,
+                Stroke = Brushes.Red,
+                Start = start,
+                End = end,
+                StrokeThickness = strokeThickness,
+                Thickness = thickness,
+            };
+
             ImageAssert.AreEqual(GetFileName(arc), arc);
         }
 
@@ -49,14 +98,15 @@
         [TestCase(true, 1, 1, "0 0 0 0", "0,0,0,1")]
         [TestCase(false, 4, 1, "0 0 0 0", "0,0,0,1")]
         [TestCase(false, 2, 0, "0 0 0 1", "0,0,0,0")]
-        [TestCase(false, 4, 1, "0 0 0 1", "0,0,0,1")]
-        [TestCase(true, 4, 1, "0 0 0 1", "0,0,0,1")]
-        [TestCase(false, 4, 1, "0 1 0 1", "0,0,0,0")]
+        [TestCase(false, 4, 2, "0 0 0 1", "0,0,0,0")]
+        [TestCase(true, 4, 2, "0 0 0 1", "0,0,0,0")]
         public void Overflow(bool isDirectionReversed, double tickWidth, double strokeThickness, string padding, string expected)
         {
             var tickBar = new Arc
             {
                 StrokeThickness = strokeThickness,
+                Start = -140,
+                End = 140,
                 Minimum = 0,
                 Maximum = 10,
                 Stroke = Brushes.Black,
@@ -78,7 +128,15 @@
 
         private static string GetFileName(Arc arc)
         {
-            return $"Arc_Min{arc.Minimum}_Max{arc.Maximum}_Value{arc.Value}_Start{arc.Start}_End_{arc.End}_Thickness_{arc.Thickness}_StrokeThickness_{arc.StrokeThickness}.png";
+            if (double.IsNaN(arc.Value) ||
+                arc.Value == arc.Maximum)
+            {
+                return $"Arc_Start_{arc.Start}_End_{arc.End}_Thickness_{arc.Thickness}_StrokeThickness_{arc.StrokeThickness}.png";
+            }
+
+            return arc.Value == 0
+                ? $"Arc_Value_0.png"
+                : $"Arc_Value_{arc.Value}_Min_{arc.Minimum}_Max_{arc.Maximum}_IsDirectionReversed_{arc.IsDirectionReversed}_Start_{arc.Start}_End_{arc.End}_Thickness_{arc.Thickness}_StrokeThickness_{arc.StrokeThickness}.png";
         }
 
         private static void SaveImage(Arc arc)
