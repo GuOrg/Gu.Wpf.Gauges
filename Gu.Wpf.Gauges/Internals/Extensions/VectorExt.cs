@@ -5,14 +5,13 @@
 
     internal static class VectorExt
     {
-        private const double DegToRad = Math.PI / 180;
-
         /// <summary>
         /// Rotates the vector clockwise
         /// </summary>
         public static Vector Rotate(this Vector v, double degrees)
         {
-            return v.RotateRadians(degrees * DegToRad);
+            const double degToRad = Math.PI / 180;
+            return v.RotateRadians(degrees * degToRad);
         }
 
         /// <summary>

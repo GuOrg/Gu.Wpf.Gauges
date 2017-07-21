@@ -18,7 +18,7 @@
                                  Minimum="0"
                                  Start="-140"
                                  TickWidth="5"
-                                 Value="100" />
+                                 Value="51" />
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>

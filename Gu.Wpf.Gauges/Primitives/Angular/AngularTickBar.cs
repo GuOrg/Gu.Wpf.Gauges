@@ -115,11 +115,16 @@ namespace Gu.Wpf.Gauges
                 var w = this.TickWidth > strokeThickness
                     ? (this.TickWidth + strokeThickness) / 2
                     : strokeThickness / 2;
-                var figure = arc.Inflate(w)
-                                .CreatePathFigure(
-                                    this.IsDirectionReversed ? this.End : this.Start,
+                var delta = arc.GetDelta(w, arc.Radius - this.Thickness);
+                var inflated = new ArcInfo(
+                    arc.Center,
+                    arc.Radius + w,
+                    arc.StartAngle - delta,
+                    arc.EndAngle + delta);
+                var figure = inflated.CreatePathFigure(
+                                    this.IsDirectionReversed ? inflated.EndAngle : inflated.StartAngle,
                                     effectiveAngle,
-                                    2 * w,
+                                    inflated.Radius,
                                     isStroked: false);
                 geometry.Figures.Add(figure);
                 figure.Freeze();

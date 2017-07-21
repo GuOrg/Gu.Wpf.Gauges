@@ -179,35 +179,60 @@
                        : System.Windows.Media.SweepDirection.Counterclockwise;
         }
 
+        /// <summary>
+        /// Returns the angle <paramref name="value"/> corresponds to on the circumference
+        /// value = radius * central angle
+        /// </summary>
+        public double GetDelta(double value)
+        {
+            const double radToDeg = 180 / Math.PI;
+            return radToDeg * value / this.Radius;
+        }
+
+        /// <summary>
+        /// Returns the angle <paramref name="value"/> corresponds to on the circumference
+        /// value = radius * central angle
+        /// </summary>
+        public double GetDelta(double value, double radius)
+        {
+            const double radToDeg = 180 / Math.PI;
+            if (radius <= 0)
+            {
+                return this.GetDelta(value);
+            }
+
+            return radToDeg * value / radius;
+        }
+
         public ArcInfo Inflate(double value)
         {
+            var delta = this.GetDelta(value);
             return new ArcInfo(
                 this.Center,
                 this.Radius + value,
-                this.GetAngle(this.StartPoint - (value * this.GetTangent(this.StartAngle))),
-                this.GetAngle(this.EndPoint - (value * this.GetTangent(this.EndAngle))));
+                this.StartAngle - delta,
+                this.EndAngle + delta);
         }
 
-        public PathFigure CreatePathFigure(double fromAngle, double toAngle, double tickLength, bool isStroked)
+        public PathFigure CreatePathFigure(double fromAngle, double toAngle, double thickness, bool isStroked)
         {
             var op1 = this.GetPoint(fromAngle);
-            var ip1 = this.GetPoint(fromAngle, -1 * tickLength);
             var op2 = this.GetPoint(toAngle);
-            var ip2 = this.GetPoint(toAngle, -1 * tickLength);
+            var ip2 = this.GetPoint(toAngle, -1 * thickness);
             var figure = new PathFigure { StartPoint = op1 };
             var rotationAngle = toAngle - fromAngle;
             var isLargeArc = Math.Abs(rotationAngle) >= 180;
             var sweepDirection = this.SweepDirection(fromAngle, toAngle);
             figure.Segments.Add(new ArcSegment(op2, new Size(this.Radius, this.Radius), rotationAngle, isLargeArc, sweepDirection, isStroked));
             figure.Segments.Add(new LineSegment(ip2, isStroked));
-            sweepDirection = this.SweepDirection(toAngle, fromAngle);
-            var ri = this.Radius - tickLength;
-            if (ri < 0)
+            if (thickness < this.Radius)
             {
-                ri = 0;
+                sweepDirection = this.SweepDirection(toAngle, fromAngle);
+                var ri = this.Radius - thickness;
+                var ip1 = this.GetPoint(fromAngle, -1 * thickness);
+                figure.Segments.Add(new ArcSegment(ip1, new Size(ri, ri), rotationAngle, isLargeArc, sweepDirection, isStroked));
             }
 
-            figure.Segments.Add(new ArcSegment(ip1, new Size(ri, ri), rotationAngle, isLargeArc, sweepDirection, isStroked));
             figure.Segments.Add(new LineSegment(op1, isStroked));
             figure.IsClosed = true;
             return figure;
