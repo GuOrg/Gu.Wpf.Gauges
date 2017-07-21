@@ -9,7 +9,7 @@
         {
             while (element != null)
             {
-                if (element is LinearGauge gauge)
+                if (element is Gauge gauge)
                 {
                     gauge.RegisterOverflow(overflow);
                     return;

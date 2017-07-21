@@ -84,16 +84,7 @@ namespace Gu.Wpf.Gauges
                 ? (this.TickWidth + strokeThickness) / 2
                 : strokeThickness / 2;
             var arc = new ArcInfo(default(Point), 1, this.Start, this.End);
-            var rect = default(Rect);
-            rect.Union(default(Point) - (w * arc.GetTangent(this.Start)));
-            rect.Union(default(Point) + (w * arc.GetTangent(this.End)));
-            rect = rect.Deflate(this.Padding);
-            this.Overflow = new Thickness(
-                Math.Max(0, rect.Left),
-                Math.Max(0, rect.Top),
-                Math.Max(0, rect.Right),
-                Math.Max(0, rect.Bottom));
-
+            this.Overflow = arc.Overflow(w, this.Padding);
             return finalSize;
         }
 

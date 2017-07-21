@@ -148,10 +148,10 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
 
-        [TestCase(false, 1, 1, "0 0 0 0", "0,0.5,0,0.5")]
-        [TestCase(false, 2, 1, "0 0 0 0", "0,1.5,0,1.5")]
-        [TestCase(false, 2, 0, "0 1 0 1", "0,0,0,0")]
-        [TestCase(false, 2, 1, "0 1 0 1", "0,0.5,0,0.5")]
+        [TestCase(false, 1, 1, "0 0 0 0", "0,0,0,1")]
+        [TestCase(false, 3, 1, "0 0 0 0", "0,0,0,2")]
+        [TestCase(false, 2, 0, "0 0 0 1", "0,0,0,0")]
+        [TestCase(false, 3, 1, "0 0 0 1", "0,0,0,1")]
         [TestCase(false, 3, 1, "0 1 0 1", "0,1,0,1")]
         public void Overflow(bool isDirectionReversed, double tickWidth, double strokeThickness, string padding, string expected)
         {
@@ -168,7 +168,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
                 Padding = padding.AsThickness(),
             };
 
-            Assert.Inconclusive();
             var gauge = new AngularGauge { Content = tickBar };
             gauge.Arrange(new Rect(new Size(10, 10)));
             Assert.AreEqual(expected, tickBar.Overflow.ToString());

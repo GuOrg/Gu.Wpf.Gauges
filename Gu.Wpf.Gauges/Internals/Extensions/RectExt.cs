@@ -112,6 +112,14 @@
                    double.IsNaN(rect.Height);
         }
 
+        internal static bool IsZero(this Rect rect)
+        {
+            return DoubleUtil.IsZero(rect.X) &&
+                   DoubleUtil.IsZero(rect.Y) &&
+                   DoubleUtil.IsZero(rect.Width) &&
+                   DoubleUtil.IsZero(rect.Height);
+        }
+
         internal static bool IsInfinity(this Rect rect)
         {
             return double.IsInfinity(rect.X) ||

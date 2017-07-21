@@ -179,6 +179,38 @@
                        : System.Windows.Media.SweepDirection.Counterclockwise;
         }
 
+        public Rect Bounds()
+        {
+            var rect = default(Rect);
+            rect.Union(this.StartPoint);
+            rect.Union(this.EndPoint);
+            foreach (var quadrantPoint in this.QuadrantPoints)
+            {
+                rect.Union(quadrantPoint);
+            }
+
+            return rect;
+        }
+
+        public Thickness Overflow(double w, Thickness padding)
+        {
+            var rect = default(Rect);
+            rect.Union(this.StartPoint - (w * this.GetTangent(this.StartAngle)));
+            rect.Union(this.StartPoint + (w * this.GetTangent(this.EndAngle)));
+            rect = rect.Deflate(padding);
+            if (rect.IsZero())
+            {
+                return default(Thickness);
+            }
+
+            var bounds = this.Bounds();
+            return new Thickness(
+                Math.Max(0, Math.Ceiling(rect.Left)),
+                Math.Max(0, Math.Ceiling(rect.Top)),
+                Math.Max(0, Math.Ceiling(rect.Right - bounds.Right)),
+                Math.Max(0, Math.Ceiling(rect.Bottom - bounds.Bottom)));
+        }
+
         /// <summary>
         /// Returns the angle <paramref name="value"/> corresponds to on the circumference
         /// value = radius * central angle
