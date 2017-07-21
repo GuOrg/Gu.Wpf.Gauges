@@ -15,7 +15,8 @@
             typeof(LinearTickBar),
             new FrameworkPropertyMetadata(
                 1.0d,
-                FrameworkPropertyMetadataOptions.AffectsRender));
+                FrameworkPropertyMetadataOptions.AffectsRender,
+                (d, e) => ((LinearTickBar)d).ResetPen()));
 
         static LinearTickBar()
         {
@@ -39,9 +40,20 @@
 
         protected override Geometry DefiningGeometry => throw new InvalidOperationException("Uses OnRender");
 
+        protected override double GetStrokeThickness()
+        {
+            var strokeThickness = base.GetStrokeThickness();
+            if (this.TickWidth <= 2 * strokeThickness)
+            {
+                return this.TickWidth;
+            }
+
+            return strokeThickness;
+        }
+
         protected override Size MeasureOverride(Size availableSize)
         {
-            var w = Math.Abs(this.TickWidth);
+            var w = Math.Max(Math.Abs(this.TickWidth), this.GetStrokeThickness());
             var size = this.Placement.IsHorizontal()
                 ? new Size(0, w)
                 : new Size(w, 0);
