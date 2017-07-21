@@ -149,10 +149,10 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
         }
 
         [TestCase(false, 1, 1, "0 0 0 0", "0,0,0,1")]
-        [TestCase(false, 3, 1, "0 0 0 0", "0,0,0,2")]
+        [TestCase(false, 4, 1, "0 0 0 0", "0,0,0,2")]
         [TestCase(false, 2, 0, "0 0 0 1", "0,0,0,0")]
-        [TestCase(false, 3, 1, "0 0 0 1", "0,0,0,1")]
-        [TestCase(false, 3, 1, "0 1 0 1", "0,1,0,1")]
+        [TestCase(false, 4, 1, "0 0 0 1", "0,0,0,1")]
+        [TestCase(false, 4, 1, "0 1 0 1", "0,1,0,1")]
         public void Overflow(bool isDirectionReversed, double tickWidth, double strokeThickness, string padding, string expected)
         {
             var tickBar = new AngularTickBar

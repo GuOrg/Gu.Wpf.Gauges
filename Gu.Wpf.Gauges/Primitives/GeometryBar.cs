@@ -253,7 +253,7 @@ namespace Gu.Wpf.Gauges
                         this.pen = new Pen
                         {
                             //// CanBeInheritanceContext = false;
-                            Thickness = Math.Abs(this.StrokeThickness),
+                            Thickness = this.GetStrokeThickness(),
                             Brush = this.Stroke,
                             StartLineCap = this.StrokeStartLineCap,
                             EndLineCap = this.StrokeEndLineCap,
@@ -271,7 +271,7 @@ namespace Gu.Wpf.Gauges
             }
         }
 
-        protected double GetStrokeThickness()
+        protected virtual double GetStrokeThickness()
         {
             return this.CanCreatePen ? 0 : Math.Abs(this.StrokeThickness);
         }

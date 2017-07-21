@@ -23,7 +23,8 @@ namespace Gu.Wpf.Gauges
             typeof(AngularTickBar),
             new FrameworkPropertyMetadata(
                 default(TickShape),
-                FrameworkPropertyMetadataOptions.AffectsRender));
+                FrameworkPropertyMetadataOptions.AffectsRender,
+                (d, e) => ((AngularTickBar)d).ResetPen()));
 
         static AngularTickBar()
         {
@@ -57,6 +58,17 @@ namespace Gu.Wpf.Gauges
 
         protected override Geometry DefiningGeometry => throw new InvalidOperationException("Uses OnRender");
 
+        protected override double GetStrokeThickness()
+        {
+            var strokeThickness = base.GetStrokeThickness();
+            if (this.TickWidth <= 2 * strokeThickness)
+            {
+                return this.TickWidth;
+            }
+
+            return strokeThickness;
+        }
+
         protected override Size MeasureOverride(Size availableSize)
         {
             if (this.Thickness <= 0 ||
@@ -81,7 +93,7 @@ namespace Gu.Wpf.Gauges
         {
             var strokeThickness = this.GetStrokeThickness();
             var w = this.TickWidth > strokeThickness
-                ? (this.TickWidth + strokeThickness) / 2
+                ? this.TickWidth / 2
                 : strokeThickness / 2;
             var arc = new ArcInfo(default(Point), 1, this.Start, this.End);
             this.Overflow = arc.Overflow(w, this.Padding);
