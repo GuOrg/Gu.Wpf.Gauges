@@ -236,7 +236,9 @@ namespace Gu.Wpf.Gauges
             get
             {
                 var strokeThickness = this.StrokeThickness;
-                return (this.Stroke == null) || DoubleUtil.IsNaN(strokeThickness) || DoubleUtil.IsZero(strokeThickness);
+                return (this.Stroke != null) &&
+                       !DoubleUtil.IsNaN(strokeThickness) &&
+                       !DoubleUtil.IsZero(strokeThickness);
             }
         }
 
@@ -246,7 +248,7 @@ namespace Gu.Wpf.Gauges
             {
                 if (this.pen == null)
                 {
-                    if (!this.CanCreatePen)
+                    if (this.CanCreatePen)
                     {
                         // This pen is internal to the system and
                         // must not participate in freezable treeness
@@ -273,7 +275,9 @@ namespace Gu.Wpf.Gauges
 
         protected virtual double GetStrokeThickness()
         {
-            return this.CanCreatePen ? 0 : Math.Abs(this.StrokeThickness);
+            return this.CanCreatePen
+                ? Math.Abs(this.StrokeThickness)
+                : 0;
         }
 
         protected override Size MeasureOverride(Size availableSize)

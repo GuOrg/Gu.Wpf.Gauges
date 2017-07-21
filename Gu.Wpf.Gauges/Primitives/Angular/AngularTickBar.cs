@@ -110,31 +110,13 @@ namespace Gu.Wpf.Gauges
             }
 
             var arc = ArcInfo.Fit(this.RenderSize, this.Padding, this.Start, this.End);
-            var max = this.EffectiveValue;
-            var strokeThickness = this.GetStrokeThickness();
-            if (max < this.Maximum)
+            var value = this.EffectiveValue;
+            if (value < this.Maximum)
             {
-                var effectiveAngle = Interpolate.Linear(this.Minimum, this.Maximum, this.EffectiveValue)
-                                                .Interpolate(this.Start, this.End, this.IsDirectionReversed);
-                var geometry = new PathGeometry();
-                var w = this.TickWidth > strokeThickness
-                    ? (this.TickWidth + strokeThickness) / 2
-                    : strokeThickness / 2;
-                var delta = arc.GetDelta(w, arc.Radius - this.Thickness);
-                var inflated = new ArcInfo(
-                    arc.Center,
-                    arc.Radius + w,
-                    arc.StartAngle - delta,
-                    arc.EndAngle + delta);
-                var figure = inflated.CreateArcPathFigure(
-                                    this.IsDirectionReversed ? inflated.EndAngle : inflated.StartAngle,
-                                    effectiveAngle,
-                                    inflated.Radius,
-                                    0);
-                geometry.Figures.Add(figure);
-                dc.PushClip(geometry);
+                dc.PushClip(this.CreateClipGeometry(arc));
             }
 
+            var strokeThickness = this.GetStrokeThickness();
             if (this.TickWidth <= strokeThickness)
             {
                 foreach (var tick in this.AllTicks)
@@ -152,8 +134,8 @@ namespace Gu.Wpf.Gauges
                 var geometry = new PathGeometry();
                 foreach (var tick in this.AllTicks)
                 {
-                    geometry.Figures.Add(this.CreateTick(arc, tick, this.Pen != null));
-                    if (tick > max)
+                    geometry.Figures.Add(this.CreateTick(arc, tick, strokeThickness));
+                    if (tick > value)
                     {
                         break;
                     }
@@ -162,18 +144,38 @@ namespace Gu.Wpf.Gauges
                 dc.DrawGeometry(this.Fill, this.Pen, geometry);
             }
 
-            if (max < this.Maximum)
+            if (value < this.Maximum)
             {
                 dc.Pop();
             }
         }
 
-        protected virtual PathFigure CreateTick(ArcInfo arc, double value, bool isStroked)
+        protected virtual Geometry CreateClipGeometry(ArcInfo arc)
+        {
+            var effectiveAngle = Interpolate.Linear(this.Minimum, this.Maximum, this.EffectiveValue)
+                .Interpolate(this.Start, this.End, this.IsDirectionReversed);
+            var geometry = new PathGeometry();
+            var w = this.TickWidth;
+            var delta = arc.GetDelta(w, arc.Radius - this.Thickness);
+            var inflated = new ArcInfo(
+                arc.Center,
+                arc.Radius + w,
+                arc.StartAngle - delta,
+                arc.EndAngle + delta);
+            var figure = inflated.CreateArcPathFigure(
+                this.IsDirectionReversed ? inflated.EndAngle : inflated.StartAngle,
+                effectiveAngle,
+                inflated.Radius,
+                0);
+            geometry.Figures.Add(figure);
+            return geometry;
+        }
+
+        protected virtual PathFigure CreateTick(ArcInfo arc, double value, double strokeThickness)
         {
             var interpolation = Interpolate.Linear(this.Minimum, this.Maximum, value)
                                            .Clamp(0, 1);
             var angle = interpolation.Interpolate(this.Start, this.End, this.IsDirectionReversed);
-            var strokeThickness = this.GetStrokeThickness();
             switch (this.TickShape)
             {
                 case TickShape.Arc:
@@ -190,6 +192,7 @@ namespace Gu.Wpf.Gauges
                     var p2 = p1 + (this.Thickness * toCenter);
                     var p3 = p2 - (w * tangent);
                     var p4 = p3 - (this.Thickness * toCenter);
+                    var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
                     return new PathFigure(
                         p0,
                         new[]

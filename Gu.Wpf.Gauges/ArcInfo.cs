@@ -233,28 +233,28 @@
         }
 
         /// <summary>
-        /// Returns the angle <paramref name="value"/> corresponds to on the circumference
+        /// Returns the angle <paramref name="arcLength"/> corresponds to on the circumference
         /// value = radius * central angle
         /// </summary>
-        public double GetDelta(double value)
+        public double GetDelta(double arcLength)
         {
             const double radToDeg = 180 / Math.PI;
-            return radToDeg * value / this.Radius;
+            return radToDeg * arcLength / this.Radius;
         }
 
         /// <summary>
-        /// Returns the angle <paramref name="value"/> corresponds to on the circumference
+        /// Returns the angle <paramref name="arcLength"/> corresponds to on the circumference
         /// value = radius * central angle
         /// </summary>
-        public double GetDelta(double value, double radius)
+        public double GetDelta(double arcLength, double radius)
         {
             const double radToDeg = 180 / Math.PI;
             if (radius <= 0)
             {
-                return this.GetDelta(value);
+                return this.GetDelta(arcLength);
             }
 
-            return radToDeg * value / radius;
+            return radToDeg * arcLength / radius;
         }
 
         public ArcInfo Inflate(double value)

@@ -18,7 +18,7 @@
                                  Minimum="0"
                                  Start="-140"
                                  TickWidth="5"
-                                 Value="100" />
+                                 Value="10" />
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -32,6 +32,7 @@
                                Maximum="{Binding Maximum}"
                                Minimum="{Binding Minimum}"
                                Start="{Binding Start}"
+                               Stroke="Black"
                                StrokeThickness="1"
                                TickFrequency="{Binding MajorTickFrequency}"
                                TickShape="Arc"
