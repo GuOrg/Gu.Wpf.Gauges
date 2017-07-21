@@ -177,14 +177,14 @@ namespace Gu.Wpf.Gauges
             switch (this.TickShape)
             {
                 case TickShape.Arc:
-                    var delta = arc.GetDelta(this.TickWidth - (strokeThickness / 2));
+                    var delta = arc.GetDelta((this.TickWidth - strokeThickness) / 2);
                     return arc.CreateArcPathFigure(angle - delta, angle + delta, this.Thickness, strokeThickness);
                 case TickShape.Rectangle:
                     var p = interpolation.Interpolate(arc, this.IsDirectionReversed);
                     var tangent = arc.GetTangent(angle);
                     var toCenter = arc.Center - p;
                     toCenter.Normalize();
-                    var w = this.TickWidth - (strokeThickness / 2);
+                    var w = this.TickWidth - strokeThickness;
                     var p0 = p - (w / 2 * tangent) + (strokeThickness / 2 * toCenter);
                     var p1 = p0 + (w * tangent);
                     var p2 = p1 + (this.Thickness * toCenter);
