@@ -12,13 +12,13 @@
                  Opacity="0.5"
                  Stroke="Black"
                  StrokeThickness="1" />
-        
+
         <gauges:Ring Fill="Blue"
                      Opacity="0.5"
                      Stroke="Black"
                      StrokeThickness="1"
                      Thickness="10" />
-        
+
         <Ellipse Width="30"
                  Height="30"
                  Fill="HotPink"

@@ -74,6 +74,7 @@
         /// <summary>
         /// Create an arc that fits the <paramref name="availableSize"/>
         /// </summary>
+        [Obsolete("Don't use this")]
         public static ArcInfo Fit(Size availableSize, double startAngle, double endAngle)
         {
             var bounds = new Rect(availableSize);

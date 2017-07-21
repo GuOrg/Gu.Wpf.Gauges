@@ -66,5 +66,12 @@
         {
             return new Point(size.Width / 2, size.Height / 2);
         }
+
+        internal static Size Deflate(this Size size, Thickness padding)
+        {
+            return new Size(
+                Math.Max(0.0, size.Width - padding.Left - padding.Right),
+                Math.Max(0.0, size.Height - padding.Top - padding.Bottom));
+        }
     }
 }

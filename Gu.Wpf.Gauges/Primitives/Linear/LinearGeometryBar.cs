@@ -4,7 +4,7 @@ namespace Gu.Wpf.Gauges
     using System.Windows.Controls.Primitives;
     using Gu.Wpf.Gauges.Primitives.Linear;
 
-    public abstract class LinearGeometryBar : GeometryBar
+    public abstract class LinearGeometryBar : GeometryTickBar
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
         /// <summary>

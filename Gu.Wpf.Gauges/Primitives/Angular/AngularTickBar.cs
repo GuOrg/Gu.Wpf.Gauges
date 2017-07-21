@@ -4,7 +4,7 @@ namespace Gu.Wpf.Gauges
     using System.Windows;
     using System.Windows.Media;
 
-    public class AngularTickBar : AngularGeometryBar
+    public class AngularTickBar : AngularGeometryTickBar
     {
         /// <summary>
         /// Identifies the <see cref="P:LinearTickBar.TickWidth" /> dependency property.

@@ -106,10 +106,10 @@
         [TestCase("100, 100", -180, 180, "50, 50", 50)]
         [TestCase("100, 100", -90, 90, "50, 75", 50)]
         [TestCase("100, 100", -180, 0, "75, 50", 50)]
-        public void Fit(string ss, double start, double end, string expectedCentre, double expectedRadius)
+        public void FitZeroPadding(string ss, double start, double end, string expectedCentre, double expectedRadius)
         {
             var availableSize = ss.AsSize();
-            var arc = ArcInfo.Fit(availableSize, start, end);
+            var arc = ArcInfo.Fit(availableSize, default(Thickness), start, end);
             Assert.AreEqual(expectedCentre, arc.Center.ToString("F0"));
             Assert.AreEqual(expectedRadius, arc.Radius, 1e-6);
         }

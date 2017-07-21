@@ -39,6 +39,15 @@ namespace Gu.Wpf.Gauges
                 (d, _) => ((TickBarBase)d).UpdateTicks()));
 
         /// <summary>
+        /// Identifies the <see cref="P:Bar.IsDirectionReversed" /> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty IsDirectionReversedProperty = Gauge.IsDirectionReversedProperty.AddOwner(
+            typeof(TickBarBase),
+            new FrameworkPropertyMetadata(
+                false,
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+
+        /// <summary>
         /// Identifies the <see cref="P:Bar.TickFrequency" /> dependency property.
         /// </summary>
         public static readonly DependencyProperty TickFrequencyProperty = Slider.TickFrequencyProperty.AddOwner(
@@ -66,15 +75,6 @@ namespace Gu.Wpf.Gauges
                 null,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits,
                 OnTicksChanged));
-
-        /// <summary>
-        /// Identifies the <see cref="P:Bar.IsDirectionReversed" /> dependency property.
-        /// </summary>
-        public static readonly DependencyProperty IsDirectionReversedProperty = Gauge.IsDirectionReversedProperty.AddOwner(
-            typeof(TickBarBase),
-            new FrameworkPropertyMetadata(
-                false,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
         private static readonly DependencyPropertyKey AllTicksPropertyKey = DependencyProperty.RegisterReadOnly(
             nameof(AllTicks),

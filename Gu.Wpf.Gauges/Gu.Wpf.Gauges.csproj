@@ -87,12 +87,14 @@
     </Compile>
     <Compile Include="Primitives\Angular\AngularBlockBar.cs" />
     <Compile Include="AngularGauge.cs" />
+    <Compile Include="Primitives\Angular\AngularGeometryBar.cs" />
     <Compile Include="Primitives\Angular\AngularTextPosition.cs" />
     <Compile Include="Primitives\Angular\Arc.cs" />
     <Compile Include="Primitives\Angular\TickShape.cs" />
     <Compile Include="Primitives\Angular\DefaultAngularTextPosition.cs" />
-    <Compile Include="Primitives\Angular\AngularGeometryBar.cs" />
+    <Compile Include="Primitives\Angular\AngularGeometryTickBar.cs" />
     <Compile Include="Primitives\GeometryBar.cs" />
+    <Compile Include="Primitives\GeometryTickBar.cs" />
     <Compile Include="Primitives\HorizontalTextAlignment.cs" />
     <Compile Include="Primitives\Linear\DefaultLinearTextPosition.cs" />
     <Compile Include="Primitives\Linear\ExplicitLinearTextPosition.cs" />

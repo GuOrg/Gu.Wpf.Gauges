@@ -128,13 +128,13 @@
                    double.IsInfinity(rect.Height);
         }
 
-        internal static Rect Deflate(this Rect rect, Thickness thick)
+        internal static Rect Deflate(this Rect rect, Thickness padding)
         {
             return new Rect(
-                rect.Left + thick.Left,
-                rect.Top + thick.Top,
-                Math.Max(0.0, rect.Width - thick.Left - thick.Right),
-                Math.Max(0.0, rect.Height - thick.Top - thick.Bottom));
+                rect.Left + padding.Left,
+                rect.Top + padding.Top,
+                Math.Max(0.0, rect.Width - padding.Left - padding.Right),
+                Math.Max(0.0, rect.Height - padding.Top - padding.Bottom));
         }
 
         internal static Rect Inflate(this Rect rect, Thickness thick)
