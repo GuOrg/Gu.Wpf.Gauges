@@ -16,7 +16,7 @@
                                  Minimum="0"
                                  Start="-140"
                                  StrokeThickness="2"
-                                 Thickness="2"
+                                 Thickness="6"
                                  Value="100" />
     </Window.DataContext>
     <Grid>
@@ -24,41 +24,41 @@
             <RowDefinition MinHeight="50" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <gauges:Arc Grid.Column="0"
-                        Width="50"
-                        Height="50"
-                        End="{Binding End}"
-                        Fill="Red"
-                        IsDirectionReversed="{Binding IsDirectionReversed}"
-                        Maximum="{Binding Maximum}"
-                        Minimum="{Binding Minimum}"
-                        Start="-180"
+        <UniformGrid Rows="1">
+            <gauges:Arc Fill="Blue"
                         Stroke="Black"
-                        StrokeThickness="{Binding StrokeThickness}"
-                        Thickness="10"
-                        Value="{Binding Value}" />
+                        StrokeDashArray="0 2"
+                        StrokeDashCap="Round"
+                        StrokeThickness="2"
+                        Thickness="2" />
 
-            <Ellipse Grid.Column="0"
-                     Width="50"
-                     Height="50"
-                     Fill="#55ff0000"
-                     Stroke="#5500FF00"
-                     StrokeThickness="1" />
+            <gauges:Arc Fill="Blue"
+                        Stroke="Black"
+                        StrokeDashArray="0 2"
+                        StrokeDashCap="Round"
+                        StrokeThickness="1"
+                        Thickness="0" />
 
-            <Ellipse Grid.Column="0"
-                     Width="30"
-                     Height="30"
-                     Fill="#55ff0000"
-                     Stroke="#5500FF00"
-                     StrokeThickness="1" />
+            <gauges:Arc Fill="Blue"
+                        Stroke="Black"
+                        StrokeDashCap="Round"
+                        StrokeThickness="1"
+                        Thickness="30" />
 
-            <gauges:Arc Grid.Column="1"
-                        Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+            <gauges:Arc Fill="Blue"
+                        Stroke="Black"
+                        StrokeDashCap="Round"
+                        StrokeThickness="1"
+                        Thickness="Infinity" />
+
+            <StackPanel>
+                <gauges:Arc Fill="Blue"
+                            Stroke="Black"
+                            StrokeThickness="2"
+                            Thickness="2" />
+            </StackPanel>
+
+            <gauges:Arc Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
                         End="{Binding End}"
                         Fill="Red"
                         IsDirectionReversed="{Binding IsDirectionReversed}"
@@ -71,7 +71,36 @@
                         Thickness="{Binding Thickness}"
                         Value="{Binding Value}" />
 
-        </Grid>
+            <Grid>
+                <gauges:Arc End="{Binding End}"
+                            Fill="Red"
+                            IsDirectionReversed="{Binding IsDirectionReversed}"
+                            Maximum="{Binding Maximum}"
+                            Minimum="{Binding Minimum}"
+                            Opacity="0.5"
+                            Start="-180"
+                            Stroke="Black"
+                            StrokeThickness="{Binding StrokeThickness}"
+                            Thickness="{Binding Thickness}"
+                            Value="{Binding Value}" />
+
+                <gauges:Ring Grid.Column="0"
+                             Fill="Blue"
+                             Opacity="0.5"
+                             Stroke="Yellow"
+                             StrokeThickness="{Binding StrokeThickness}"
+                             Thickness="{Binding Thickness}" />
+
+            </Grid>
+
+
+
+            <Rectangle Stroke="Black"
+                       StrokeDashArray="0 2"
+                       StrokeDashCap="Square"
+                       StrokeDashOffset="2"
+                       StrokeThickness="2" />
+        </UniformGrid>
         <ContentPresenter Grid.Row="1"
                           Content="{Binding}" />
     </Grid>

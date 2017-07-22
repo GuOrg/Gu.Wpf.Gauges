@@ -2,10 +2,10 @@ namespace Gu.Wpf.Gauges.UiTests
 {
     using NUnit.Framework;
 
-    public sealed class RingWindowTests : WindowTests
+    public sealed class ArcWindowTests : WindowTests
     {
-        public RingWindowTests()
-            : base("RingWindow")
+        public ArcWindowTests()
+            : base("ArcWindow")
         {
         }
 

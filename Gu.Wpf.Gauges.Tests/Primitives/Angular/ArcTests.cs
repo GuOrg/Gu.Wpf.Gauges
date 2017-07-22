@@ -11,10 +11,16 @@
     [Apartment(ApartmentState.STA)]
     public class ArcTests
     {
-        [TestCase(0, 90, 10)]
+        [TestCase(0, 90, 0)]
         [TestCase(0, 90, 2)]
-        [TestCase(-140, 140, 10)]
+        [TestCase(0, 90, 10)]
+        [TestCase(0, 90, 30)]
+        [TestCase(0, 90, double.PositiveInfinity)]
+        [TestCase(-140, 140, 0)]
         [TestCase(-140, 140, 2)]
+        [TestCase(-140, 140, 10)]
+        [TestCase(-140, 140, 30)]
+        [TestCase(-140, 140, double.PositiveInfinity)]
         public void RenderNoStroke(double start, double end, double thickness)
         {
             var arc = new Arc
@@ -30,18 +36,26 @@
             ImageAssert.AreEqual(GetFileName(arc), arc);
         }
 
-        [TestCase(0, 90, 10, 2)]
+        [TestCase(0, 90, 0, 2)]
         [TestCase(0, 90, 2, 2)]
-        [TestCase(-140, 140, 10, 2)]
+        [TestCase(0, 90, 10, 2)]
+        [TestCase(0, 90, 30, 2)]
+        [TestCase(0, 90, double.PositiveInfinity, 2)]
+        [TestCase(-140, 140, 0, 2)]
         [TestCase(-140, 140, 2, 2)]
+        [TestCase(-140, 140, 10, 2)]
+        [TestCase(-140, 140, 30, 2)]
+        [TestCase(-140, 140, double.PositiveInfinity, 2)]
         public void RenderWithStroke(double start, double end, double thickness, double strokeThickness)
         {
             var arc = new Arc
             {
                 Minimum = 0,
                 Maximum = 10,
-                Fill = Brushes.Black,
-                Stroke = Brushes.Red,
+                Fill = Brushes.Red,
+                Stroke = Brushes.Black,
+                StrokeDashArray = new DoubleCollection(new[] { 0.0, 1 }),
+                StrokeDashCap = PenLineCap.Round,
                 Start = start,
                 End = end,
                 StrokeThickness = strokeThickness,
@@ -83,12 +97,14 @@
                 Maximum = 10,
                 Value = value,
                 IsDirectionReversed = isDirectionReversed,
-                Fill = Brushes.Black,
-                Stroke = Brushes.Red,
+                Fill = Brushes.Red,
+                Thickness = thickness,
+                StrokeThickness = strokeThickness,
+                Stroke = Brushes.Black,
+                StrokeDashArray = new DoubleCollection(new[] { 0.0, 1 }),
+                StrokeDashCap = PenLineCap.Round,
                 Start = start,
                 End = end,
-                StrokeThickness = strokeThickness,
-                Thickness = thickness,
             };
 
             ImageAssert.AreEqual(GetFileName(arc), arc);

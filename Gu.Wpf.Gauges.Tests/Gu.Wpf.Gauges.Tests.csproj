@@ -799,5 +799,19 @@
     <EmbeddedResource Include="Primitives\Angular\RingImages\Ring_Thickness_INF_StrokeThickness_0.png" />
     <EmbeddedResource Include="Primitives\Angular\RingImages\Ring_Thickness_INF_StrokeThickness_1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_0_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_0_StrokeThickness_2.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_30_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_30_StrokeThickness_2.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_INF_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_INF_StrokeThickness_2.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_0_End_90_Thickness_0_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_0_End_90_Thickness_0_StrokeThickness_2.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_0_End_90_Thickness_30_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_0_End_90_Thickness_30_StrokeThickness_2.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_0_End_90_Thickness_INF_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_0_End_90_Thickness_INF_StrokeThickness_2.png" />
+  </ItemGroup>
   <Import Project="..\.paket\paket.targets" />
 </Project>

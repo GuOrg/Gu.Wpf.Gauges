@@ -1,6 +1,7 @@
 namespace Gu.Wpf.Gauges
 {
     using System.Windows;
+    using System.Windows.Media;
     using Gu.Wpf.Gauges.Primitives.Linear;
 
     public abstract class AngularGeometryBar : GeometryBar
@@ -89,6 +90,10 @@ namespace Gu.Wpf.Gauges
             get => (Thickness)this.GetValue(OverflowProperty);
             protected set => this.SetValue(OverflowPropertyKey, value);
         }
+
+        protected virtual Brush EffectiveFill => DoubleUtil.LessThanOrClose(this.Thickness, this.GetStrokeThickness())
+            ? null
+            : this.Fill;
 
         private static object CoerceOverflow(DependencyObject d, object basevalue)
         {

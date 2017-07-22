@@ -46,8 +46,13 @@ namespace Gu.Wpf.Gauges
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            var thickness = Math.Max(Math.Abs(this.Thickness), this.GetStrokeThickness());
-            return new Size(thickness, thickness);
+            var d = Math.Max(Math.Abs(this.Thickness), this.GetStrokeThickness());
+            if (double.IsInfinity(d))
+            {
+                return default(Size);
+            }
+
+            return new Size(d, d);
         }
 
         protected override Size ArrangeOverride(Size finalSize)
@@ -73,13 +78,13 @@ namespace Gu.Wpf.Gauges
                 var geometry = this.CreateRingGeometry();
                 if (!ReferenceEquals(geometry, Geometry.Empty))
                 {
-                    dc.DrawGeometry(this.Fill, this.Pen, geometry);
+                    dc.DrawGeometry(this.EffectiveFill, this.Pen, geometry);
                 }
 
                 return;
             }
 
-            dc.DrawGeometry(this.Fill, this.Pen, this.CreateArcGeometry(value));
+            dc.DrawGeometry(this.EffectiveFill, this.Pen, this.CreateArcGeometry(value));
         }
 
         protected virtual Geometry CreateRingGeometry() => Ring.CreateGeometry(
@@ -92,7 +97,8 @@ namespace Gu.Wpf.Gauges
         protected virtual Geometry CreateArcGeometry(double value)
         {
             var arc = ArcInfo.Fit(this.RenderSize, this.Padding, this.Start, this.End);
-            if (double.IsNaN(value) || DoubleUtil.AreClose(value, this.Maximum))
+            if (double.IsNaN(value) ||
+                DoubleUtil.AreClose(value, this.Maximum))
             {
                 return CreateGeometry(arc, this.Start, this.End, this.Thickness, this.GetStrokeThickness());
             }

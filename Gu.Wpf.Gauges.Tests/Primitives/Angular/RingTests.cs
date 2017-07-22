@@ -24,7 +24,6 @@
                 Thickness = thickness,
             };
 
-            SaveImage(ring);
             ImageAssert.AreEqual(GetFileName(ring), ring);
         }
 
@@ -39,11 +38,12 @@
             {
                 Fill = Brushes.Black,
                 Stroke = Brushes.Red,
+                StrokeDashArray = new DoubleCollection(new[] { 0.0, 1 }),
+                StrokeDashCap = PenLineCap.Round,
                 StrokeThickness = 1,
                 Thickness = thickness,
             };
 
-            SaveImage(ring);
             ImageAssert.AreEqual(GetFileName(ring), ring);
         }
 

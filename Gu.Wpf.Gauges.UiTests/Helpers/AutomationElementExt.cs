@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Gauges.UiTests.Helpers
+﻿namespace Gu.Wpf.Gauges.UiTests
 {
     using FlaUI.Core.AutomationElements;
     using FlaUI.Core.AutomationElements.Infrastructure;
