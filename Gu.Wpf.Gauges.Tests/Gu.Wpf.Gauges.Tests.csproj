@@ -789,5 +789,15 @@
     <EmbeddedResource Include="Primitives\Angular\AngularBlockBarImages\AngularBlockBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickGap_3_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Angular\AngularBlockBarImages\AngularBlockBar_Value=0.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Primitives\Angular\RingImages\Ring_Thickness_0_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\RingImages\Ring_Thickness_0_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\RingImages\Ring_Thickness_1_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\RingImages\Ring_Thickness_1_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\RingImages\Ring_Thickness_25_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\RingImages\Ring_Thickness_25_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\RingImages\Ring_Thickness_INF_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\RingImages\Ring_Thickness_INF_StrokeThickness_1.png" />
+  </ItemGroup>
   <Import Project="..\.paket\paket.targets" />
 </Project>

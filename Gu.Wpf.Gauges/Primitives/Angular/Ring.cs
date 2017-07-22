@@ -22,7 +22,7 @@ namespace Gu.Wpf.Gauges
             }
 
             var r = (diameter - strokeThickness) / 2;
-            var ri = r - thickness;
+            var ri = r - thickness + strokeThickness;
             var cx = horizontalAlignment == HorizontalAlignment.Stretch
                 ? finalSize.Width / 2
                 : r + (strokeThickness / 2);
@@ -65,10 +65,7 @@ namespace Gu.Wpf.Gauges
             var geometry = this.CreateGeometry();
             if (!ReferenceEquals(geometry, Geometry.Empty))
             {
-                dc.DrawGeometry(
-                    DoubleUtil.LessThanOrClose(this.Thickness, this.GetStrokeThickness()) ? null : this.Fill,
-                    this.Pen,
-                    geometry);
+                dc.DrawGeometry(this.EffectiveFill, this.Pen, geometry);
             }
         }
 
