@@ -90,9 +90,6 @@
     <Compile Include="Sandbox\LinearTickBarBox.xaml.cs">
       <DependentUpon>LinearTickBarBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Sandbox\RingBox.xaml.cs">
-      <DependentUpon>RingBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Sandbox\SandboxWindow.xaml.cs">
       <DependentUpon>SandboxWindow.xaml</DependentUpon>
     </Compile>
@@ -183,7 +180,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sandbox\RingBox.xaml">
+    <Page Include="Sandbox\RingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

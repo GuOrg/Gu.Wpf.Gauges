@@ -88,6 +88,7 @@ namespace Gu.Wpf.Gauges
 
         /// <summary>
         /// StrokeDashCap property
+        /// PenLineCap.Square is probably a better default but keeping the same default as <see cref="Shape"/>.
         /// </summary>
         public static readonly DependencyProperty StrokeDashCapProperty =
             DependencyProperty.Register(
@@ -328,7 +329,7 @@ namespace Gu.Wpf.Gauges
                                        DashCap = this.StrokeDashCap,
                                        LineJoin = this.StrokeLineJoin,
                                        MiterLimit = this.StrokeMiterLimit,
-                                       DashStyle = this.StrokeDashOffset != 0.0 && this.StrokeDashArray.Count > 0
+                                       DashStyle = this.StrokeDashCap != PenLineCap.Flat && this.StrokeDashArray.Count > 0
                                            ? new DashStyle(this.StrokeDashArray, this.StrokeDashOffset)
                                            : DashStyles.Solid
                                    };

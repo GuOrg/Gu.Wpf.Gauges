@@ -43,8 +43,9 @@
   <ItemGroup>
     <Compile Include="Helpers\AutomationElementExt.cs" />
     <Compile Include="Helpers\Info.cs" />
-    <Compile Include="Helpers\MainWindowTests.cs" />
+    <Compile Include="MainWindowTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RingWindowTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Gu.Wpf.Gauges.UiTests.ruleset" />

@@ -15,7 +15,8 @@
                                  Maximum="100"
                                  Minimum="0"
                                  Start="-140"
-                                 Thickness="20"
+                                 StrokeThickness="2"
+                                 Thickness="2"
                                  Value="100" />
     </Window.DataContext>
     <Grid>
@@ -38,9 +39,10 @@
                         Minimum="{Binding Minimum}"
                         Start="-180"
                         Stroke="Black"
-                        StrokeThickness="0"
+                        StrokeThickness="{Binding StrokeThickness}"
                         Thickness="10"
                         Value="{Binding Value}" />
+
             <Ellipse Grid.Column="0"
                      Width="50"
                      Height="50"
@@ -64,7 +66,8 @@
                         Minimum="{Binding Minimum}"
                         Start="{Binding Start}"
                         Stroke="Black"
-                        StrokeThickness="5"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="{Binding StrokeThickness}"
                         Thickness="{Binding Thickness}"
                         Value="{Binding Value}" />
 

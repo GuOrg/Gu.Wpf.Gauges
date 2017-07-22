@@ -1,8 +1,9 @@
-namespace Gu.Wpf.Gauges.UiTests.Helpers
+namespace Gu.Wpf.Gauges.UiTests
 {
     using FlaUI.Core;
     using FlaUI.Core.Definitions;
     using FlaUI.UIA3;
+    using Gu.Wpf.Gauges.UiTests.Helpers;
     using NUnit.Framework;
 
     public class MainWindowTests

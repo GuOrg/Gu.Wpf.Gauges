@@ -65,9 +65,5 @@
         <TabItem Header="LinearDotBarBox">
             <sandbox:LinearDotBarBox />
         </TabItem>
-
-        <TabItem Header="RingBox">
-            <sandbox:RingBox />
-        </TabItem>
     </TabControl>
 </Window>

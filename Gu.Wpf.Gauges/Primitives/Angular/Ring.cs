@@ -30,7 +30,9 @@ namespace Gu.Wpf.Gauges
                 ? finalSize.Height / 2
                 : r + (strokeThickness / 2);
             var center = new Point(cx, cy);
-            if (thickness <= 0 || ri <= 0)
+            if (thickness <= 0 ||
+                ri <= 0 ||
+                DoubleUtil.LessThanOrClose(thickness, strokeThickness))
             {
                 return new EllipseGeometry(center, r, r);
             }
@@ -50,6 +52,11 @@ namespace Gu.Wpf.Gauges
         protected override Size MeasureOverride(Size constraint)
         {
             var d = 2 * (this.Thickness + this.GetStrokeThickness());
+            if (double.IsInfinity(d))
+            {
+                return default(Size);
+            }
+
             return new Size(d, d);
         }
 
@@ -58,7 +65,10 @@ namespace Gu.Wpf.Gauges
             var geometry = this.CreateGeometry();
             if (!ReferenceEquals(geometry, Geometry.Empty))
             {
-                dc.DrawGeometry(this.Fill, this.Pen, geometry);
+                dc.DrawGeometry(
+                    DoubleUtil.AreClose(this.GetStrokeThickness(), this.Thickness) ? null : this.Fill,
+                    this.Pen,
+                    geometry);
             }
         }
 
