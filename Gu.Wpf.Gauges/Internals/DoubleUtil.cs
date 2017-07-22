@@ -44,41 +44,41 @@ namespace Gu.Wpf.Gauges
             return false;
         }
 
-        internal static bool LessThan(double value1, double value2)
+        internal static bool LessThan(double value1, double max)
         {
-            if (value1 < value2)
+            if (value1 < max)
             {
-                return !AreClose(value1, value2);
+                return !AreClose(value1, max);
             }
 
             return false;
         }
 
-        internal static bool GreaterThan(double value1, double value2)
+        internal static bool GreaterThan(double value1, double min)
         {
-            if (value1 > value2)
+            if (value1 > min)
             {
-                return !AreClose(value1, value2);
+                return !AreClose(value1, min);
             }
 
             return false;
         }
 
-        internal static bool LessThanOrClose(double value1, double value2)
+        internal static bool LessThanOrClose(double value1, double max)
         {
-            if (value1 >= value2)
+            if (value1 >= max)
             {
-                return AreClose(value1, value2);
+                return AreClose(value1, max);
             }
 
             return true;
         }
 
-        internal static bool GreaterThanOrClose(double value1, double value2)
+        internal static bool GreaterThanOrClose(double value1, double min)
         {
-            if (value1 <= value2)
+            if (value1 <= min)
             {
-                return AreClose(value1, value2);
+                return AreClose(value1, min);
             }
 
             return true;
