@@ -1,5 +1,6 @@
 ﻿namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
 {
+    using System.Globalization;
     using System.IO;
     using System.Threading;
     using System.Windows;
@@ -49,7 +50,7 @@
 
         private static string GetFileName(Ring ring)
         {
-            return $"Ring_Thickness_{ring.Thickness}_StrokeThickness_{ring.StrokeThickness}.png";
+            return $"Ring_Thickness_{(double.IsInfinity(ring.Thickness) ? "inf" : ring.Thickness.ToString(CultureInfo.InvariantCulture))}_StrokeThickness_{ring.StrokeThickness}.png";
         }
 
         private static void SaveImage(Ring ring)
