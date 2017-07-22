@@ -30,8 +30,7 @@ namespace Gu.Wpf.Gauges
                 ? finalSize.Height / 2
                 : r + (strokeThickness / 2);
             var center = new Point(cx, cy);
-            if (thickness <= 0 ||
-                ri <= 0 ||
+            if (DoubleUtil.LessThanOrClose(ri, 0) ||
                 DoubleUtil.LessThanOrClose(thickness, strokeThickness))
             {
                 return new EllipseGeometry(center, r, r);

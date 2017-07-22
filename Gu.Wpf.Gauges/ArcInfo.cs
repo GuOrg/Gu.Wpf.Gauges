@@ -279,6 +279,13 @@
             var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
             var ro = this.Radius - (strokeThickness / 2);
             figure.Segments.Add(new ArcSegment(op2, new Size(ro, ro), rotationAngle, isLargeArc, sweepDirection, isStroked));
+            if (DoubleUtil.LessThanOrClose(thickness, strokeThickness))
+            {
+                figure.IsClosed = false;
+                figure.IsFilled = false;
+                return figure;
+            }
+
             figure.Segments.Add(new LineSegment(ip2, isStroked));
             if (thickness < this.Radius)
             {

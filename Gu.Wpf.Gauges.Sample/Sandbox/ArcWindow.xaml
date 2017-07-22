@@ -29,14 +29,17 @@
                         Stroke="Black"
                         StrokeDashArray="0 2"
                         StrokeDashCap="Round"
+                        StrokeEndLineCap="Round"
+                        StrokeStartLineCap="Round"
                         StrokeThickness="2"
                         Thickness="2" />
 
-            <gauges:Arc Fill="Blue"
-                        Stroke="Black"
-                        StrokeDashArray="0 2"
+            <gauges:Arc Stroke="Black"
+                        StrokeDashArray="0 1"
                         StrokeDashCap="Round"
-                        StrokeThickness="1"
+                        StrokeEndLineCap="Round"
+                        StrokeStartLineCap="Round"
+                        StrokeThickness="2"
                         Thickness="0" />
 
             <gauges:Arc Fill="Blue"
@@ -50,6 +53,11 @@
                         StrokeDashCap="Round"
                         StrokeThickness="1"
                         Thickness="Infinity" />
+
+            <gauges:Arc Fill="Red"
+                        Stroke="Black"
+                        StrokeThickness="1"
+                        Thickness="5" />
 
             <StackPanel>
                 <gauges:Arc Fill="Blue"
@@ -66,7 +74,6 @@
                         Minimum="{Binding Minimum}"
                         Start="{Binding Start}"
                         Stroke="Black"
-                        StrokeStartLineCap="Round"
                         StrokeThickness="{Binding StrokeThickness}"
                         Thickness="{Binding Thickness}"
                         Value="{Binding Value}" />
@@ -92,8 +99,6 @@
                              Thickness="{Binding Thickness}" />
 
             </Grid>
-
-
 
             <Rectangle Stroke="Black"
                        StrokeDashArray="0 2"
