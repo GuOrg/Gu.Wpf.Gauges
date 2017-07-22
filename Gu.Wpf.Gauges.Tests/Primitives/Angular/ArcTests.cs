@@ -145,12 +145,12 @@
         private static string GetFileName(Arc arc)
         {
             if (double.IsNaN(arc.Value) ||
-                arc.Value == arc.Maximum)
+                DoubleUtil.AreClose(arc.Value, arc.Maximum))
             {
                 return $"Arc_Start_{arc.Start}_End_{arc.End}_Thickness_{arc.Thickness}_StrokeThickness_{arc.StrokeThickness}.png";
             }
 
-            return arc.Value == 0
+            return DoubleUtil.IsZero(arc.Value)
                 ? $"Arc_Value_0.png"
                 : $"Arc_Value_{arc.Value}_Min_{arc.Minimum}_Max_{arc.Maximum}_IsDirectionReversed_{arc.IsDirectionReversed}_Start_{arc.Start}_End_{arc.End}_Thickness_{arc.Thickness}_StrokeThickness_{arc.StrokeThickness}.png";
         }
