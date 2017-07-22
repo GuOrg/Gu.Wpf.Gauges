@@ -145,15 +145,16 @@
 
         private static string GetFileName(Arc arc)
         {
+            var thickness = double.IsInfinity(arc.Thickness) ? "inf" : arc.Thickness.ToString(CultureInfo.InvariantCulture);
             if (double.IsNaN(arc.Value) ||
                 DoubleUtil.AreClose(arc.Value, arc.Maximum))
             {
-                return $"Arc_Start_{arc.Start}_End_{arc.End}_Thickness_{arc.Thickness}_StrokeThickness_{arc.StrokeThickness}.png";
+                return $"Arc_Start_{arc.Start}_End_{arc.End}_Thickness_{thickness}_StrokeThickness_{arc.StrokeThickness}.png";
             }
 
             return DoubleUtil.IsZero(arc.Value)
                 ? $"Arc_Value_0.png"
-                : $"Arc_Value_{arc.Value}_Min_{arc.Minimum}_Max_{arc.Maximum}_IsDirectionReversed_{arc.IsDirectionReversed}_Start_{arc.Start}_End_{arc.End}_Thickness_{(double.IsInfinity(arc.Thickness) ? "inf" : arc.Thickness.ToString(CultureInfo.InvariantCulture))}_StrokeThickness_{arc.StrokeThickness}.png";
+                : $"Arc_Value_{arc.Value}_Min_{arc.Minimum}_Max_{arc.Maximum}_IsDirectionReversed_{arc.IsDirectionReversed}_Start_{arc.Start}_End_{arc.End}_Thickness_{thickness}_StrokeThickness_{arc.StrokeThickness}.png";
         }
 
         private static void SaveImage(Arc arc)
