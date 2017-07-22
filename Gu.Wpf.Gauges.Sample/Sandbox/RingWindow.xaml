@@ -21,6 +21,7 @@
 
         <gauges:Ring Fill="Blue"
                      Stroke="Black"
+                     StrokeDashArray="0 2"
                      StrokeDashCap="Round"
                      StrokeThickness="1"
                      Thickness="0" />

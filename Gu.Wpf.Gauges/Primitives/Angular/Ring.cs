@@ -66,7 +66,7 @@ namespace Gu.Wpf.Gauges
             if (!ReferenceEquals(geometry, Geometry.Empty))
             {
                 dc.DrawGeometry(
-                    DoubleUtil.AreClose(this.GetStrokeThickness(), this.Thickness) ? null : this.Fill,
+                    DoubleUtil.LessThanOrClose(this.Thickness, this.GetStrokeThickness()) ? null : this.Fill,
                     this.Pen,
                     geometry);
             }
