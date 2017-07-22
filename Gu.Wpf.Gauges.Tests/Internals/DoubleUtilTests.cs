@@ -4,8 +4,8 @@
 
     public class DoubleUtilTests
     {
-        [TestCase(1, 1, false)]
-        [TestCase(0, 1, true)]
+        [TestCase(1, 1, true)]
+        [TestCase(0, 1, false)]
         public void AreClose(double x, double max, bool expected)
         {
             Assert.AreEqual(expected, DoubleUtil.AreClose(x, max));
