@@ -71,7 +71,8 @@ namespace Gu.Wpf.Gauges
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            if (this.Thickness <= 0 ||
+            if (DoubleUtil.LessThanOrClose(this.Thickness, 0) ||
+                double.IsInfinity(this.Thickness) ||
                 this.AllTicks == null)
             {
                 return default(Size);
