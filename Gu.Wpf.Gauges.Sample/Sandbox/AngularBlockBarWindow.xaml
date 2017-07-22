@@ -5,7 +5,7 @@
         xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
-        Title="AngularTickBarWindow"
+        Title="AngularBlockBarWindow"
         Width="300"
         Height="300"
         mc:Ignorable="d">
