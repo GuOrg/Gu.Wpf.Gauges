@@ -197,12 +197,14 @@ namespace Gu.Wpf.Gauges
         private static void OnTicksChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var bar = (TickBarBase)d;
-            if (e.OldValue is DoubleCollection oldTicks)
+            if (e.OldValue is DoubleCollection oldTicks &&
+                !oldTicks.IsFrozen)
             {
                 oldTicks.Changed -= bar.OnTickCollectionChanged;
             }
 
-            if (e.NewValue is DoubleCollection newTicks)
+            if (e.NewValue is DoubleCollection newTicks &&
+                !newTicks.IsFrozen)
             {
                 newTicks.Changed += bar.OnTickCollectionChanged;
             }
