@@ -197,12 +197,13 @@ namespace Gu.Wpf.Gauges
                     var tangent = arc.GetTangent(angle);
                     var toCenter = arc.Center - p;
                     toCenter.Normalize();
+                    toCenter = Math.Min(arc.Radius, this.Thickness) * toCenter;
                     var w = this.TickWidth - strokeThickness;
                     var p0 = p - (w / 2 * tangent) + (strokeThickness / 2 * toCenter);
                     var p1 = p0 + (w * tangent);
-                    var p2 = p1 + (this.Thickness * toCenter);
+                    var p2 = p1 + toCenter;
                     var p3 = p2 - (w * tangent);
-                    var p4 = p3 - (this.Thickness * toCenter);
+                    var p4 = p3 - toCenter;
                     var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
                     return new PathFigure(
                         p0,

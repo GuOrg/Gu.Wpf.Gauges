@@ -1,5 +1,6 @@
 namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
 {
+    using System.Globalization;
     using System.IO;
     using System.Threading;
     using System.Windows;
@@ -201,8 +202,8 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
             var value = double.IsNaN(tickBar.Value) || tickBar.Value == tickBar.Maximum
                 ? string.Empty
                 : $"_Value_{tickBar.Value}";
-
-            return $@"AngularTickBar_Min_{tickBar.Minimum}_Max_{tickBar.Maximum}{value}_IsDirectionReversed_{tickBar.IsDirectionReversed}{padding}_TickWidth_{tickBar.TickWidth}_StrokeThickness_{tickBar.StrokeThickness}{tickFrequency}{ticks}.png"
+            var thickness = double.IsInfinity(tickBar.Thickness) ? "inf" : tickBar.Thickness.ToString(CultureInfo.InvariantCulture);
+            return $@"AngularTickBar_Min_{tickBar.Minimum}_Max_{tickBar.Maximum}{value}_IsDirectionReversed_{tickBar.IsDirectionReversed}{padding}_TickWidth_{tickBar.TickWidth}_StrokeThickness_{tickBar.StrokeThickness}_Thickness{thickness}_{tickFrequency}{ticks}.png"
                 .Replace(" ", "_");
         }
 

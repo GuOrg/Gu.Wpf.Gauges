@@ -655,57 +655,6 @@
     <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_3_StrokeThickness_2_Ticks_1_2_6_Vertical.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_Padding_1.5,1.5,1.5,1.5_TickWidth_2_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_Padding_1.5,1.5,1.5,1.5_TickWidth_2_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_Padding_2,2,2,2_TickWidth_3_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_Padding_2,2,2,2_TickWidth_3_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_TickWidth_1_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_TickWidth_1_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_TickWidth_2_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_TickWidth_2_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_TickWidth_3_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_TickWidth_3_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_1.5,1.5,1.5,1.5_TickWidth_2_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_1.5,1.5,1.5,1.5_TickWidth_2_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_2,2,2,2_TickWidth_3_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_2,2,2,2_TickWidth_3_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_TickWidth_1_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_TickWidth_1_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_TickWidth_2_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_TickWidth_2_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_TickWidth_3_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_TickWidth_3_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_Padding_1.5,1.5,1.5,1.5_TickWidth_2_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_Padding_1.5,1.5,1.5,1.5_TickWidth_2_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_Padding_2,2,2,2_TickWidth_3_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_Padding_2,2,2,2_TickWidth_3_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_1_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_1_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_2_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_2_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_3_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_3_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_Padding_1.5,1.5,1.5,1.5_TickWidth_2_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_Padding_1.5,1.5,1.5,1.5_TickWidth_2_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_Padding_2,2,2,2_TickWidth_3_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_Padding_2,2,2,2_TickWidth_3_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_1_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_1_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_2_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_2_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_3_StrokeThickness_1_TickFrequency_1_Ticks_.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_3_StrokeThickness_1_TickFrequency_1_Ticks_1_2_6.png" />
-    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Value=0.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Value_0_Horizontal.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Value_0_Vertical.png" />
   </ItemGroup>
@@ -812,6 +761,57 @@
     <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_0_End_90_Thickness_30_StrokeThickness_2.png" />
     <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_0_End_90_Thickness_INF_StrokeThickness_1.png" />
     <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_0_End_90_Thickness_INF_StrokeThickness_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_Padding_1.5,1.5,1.5,1.5_TickWidth_2_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_Padding_1.5,1.5,1.5,1.5_TickWidth_2_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_Padding_2,2,2,2_TickWidth_3_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_Padding_2,2,2,2_TickWidth_3_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_TickWidth_1_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_TickWidth_1_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_TickWidth_2_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_TickWidth_2_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_TickWidth_3_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_TickWidth_3_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_1.5,1.5,1.5,1.5_TickWidth_2_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_1.5,1.5,1.5,1.5_TickWidth_2_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_2,2,2,2_TickWidth_3_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_2,2,2,2_TickWidth_3_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_TickWidth_1_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_TickWidth_1_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_TickWidth_2_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_TickWidth_2_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_TickWidth_3_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_TickWidth_3_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_Padding_1.5,1.5,1.5,1.5_TickWidth_2_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_Padding_1.5,1.5,1.5,1.5_TickWidth_2_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_Padding_2,2,2,2_TickWidth_3_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_Padding_2,2,2,2_TickWidth_3_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_1_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_1_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_2_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_2_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_3_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_3_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_1_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_Padding_1.5,1.5,1.5,1.5_TickWidth_2_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_Padding_1.5,1.5,1.5,1.5_TickWidth_2_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_Padding_2,2,2,2_TickWidth_3_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_Padding_2,2,2,2_TickWidth_3_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_1_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_1_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_2_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_2_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_3_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_3_StrokeThickness_1_Thickness10__TickFrequency_1_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Value=0.png" />
   </ItemGroup>
   <Import Project="..\.paket\paket.targets" />
 </Project>
