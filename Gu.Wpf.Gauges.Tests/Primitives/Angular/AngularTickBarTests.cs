@@ -36,8 +36,8 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
         [TestCase(false, 10, 3, 1, 1, null, "2")]
         [TestCase(true, 10, 3, 1, 1, "1 2 6", "2")]
         [TestCase(false, 10, 3, 1, 1, "1 2 6", "2")]
-        [TestCase(true, 0, 3, 1, 3, "1 2 6", "2")]
-        [TestCase(false, 0, 3, 1, 3, "1 2 6", "2")]
+        [TestCase(true, 3, 3, 1, 3, "1 2 6", "2")]
+        [TestCase(false, 3, 3, 1, 3, "1 2 6", "2")]
         public void Render(bool isDirectionReversed, double thickness, double tickWidth, double strokeThickness, double tickFrequency, string ticks, string padding)
         {
             var tickBar = new AngularTickBar

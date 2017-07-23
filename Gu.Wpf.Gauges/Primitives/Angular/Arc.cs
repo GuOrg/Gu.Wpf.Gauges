@@ -41,6 +41,18 @@ namespace Gu.Wpf.Gauges
 
         public static Geometry CreateGeometry(ArcInfo arc, double startAngle, double endAngle, double thickness, double strokeThickness)
         {
+            if (DoubleUtil.AreClose(startAngle, endAngle) ||
+                (DoubleUtil.AreClose(thickness, 0) && DoubleUtil.AreClose(strokeThickness, 0)) ||
+                DoubleUtil.AreClose(arc.Radius, 0))
+            {
+                return Geometry.Empty;
+            }
+
+            if (DoubleUtil.LessThanOrClose(thickness, strokeThickness))
+            {
+                return new PathGeometry(new[] { arc.CreateArcPathFigure(startAngle, endAngle, strokeThickness, strokeThickness) });
+            }
+
             return new PathGeometry(new[] { arc.CreateArcPathFigure(startAngle, endAngle, thickness, strokeThickness) });
         }
 

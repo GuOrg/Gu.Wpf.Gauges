@@ -58,6 +58,16 @@ namespace Gu.Wpf.Gauges
 
         protected override Geometry DefiningGeometry => throw new InvalidOperationException("Uses OnRender");
 
+        protected bool IsFilled
+        {
+            get
+            {
+                var strokeThickness = this.GetStrokeThickness();
+                return this.Thickness > strokeThickness &&
+                       this.TickWidth > strokeThickness;
+            }
+        }
+
         protected override double GetStrokeThickness()
         {
             var strokeThickness = base.GetStrokeThickness();
@@ -143,13 +153,13 @@ namespace Gu.Wpf.Gauges
                     }
                 }
 
-                if (this.Thickness <= this.StrokeThickness)
+                if (this.IsFilled)
                 {
-                    dc.DrawGeometry(this.Stroke, null, geometry);
+                    dc.DrawGeometry(this.Fill, this.Pen, geometry);
                 }
                 else
                 {
-                    dc.DrawGeometry(this.Fill, this.Pen, geometry);
+                    dc.DrawGeometry(this.Stroke, null, geometry);
                 }
             }
 
@@ -190,6 +200,7 @@ namespace Gu.Wpf.Gauges
         /// </summary>
         /// <param name="arc">The bounding arc.</param>
         /// <param name="value">The tick value.</param>
+        /// <param name="strokeThickness">The stroke thickness.</param>
         protected virtual PathFigure CreateTick(ArcInfo arc, double value, double strokeThickness)
         {
             var interpolation = Interpolate.Linear(this.Minimum, this.Maximum, value)
@@ -198,7 +209,7 @@ namespace Gu.Wpf.Gauges
             switch (this.TickShape)
             {
                 case TickShape.Arc:
-                    if (this.Thickness > this.StrokeThickness)
+                    if (this.IsFilled)
                     {
                         var delta = arc.GetDelta((this.TickWidth - strokeThickness) / 2);
                         return arc.CreateArcPathFigure(angle - delta, angle + delta, this.Thickness, strokeThickness);
@@ -206,7 +217,7 @@ namespace Gu.Wpf.Gauges
                     else
                     {
                         var delta = arc.GetDelta(this.TickWidth / 2);
-                        return arc.CreateArcPathFigure(angle - delta, angle + delta, strokeThickness, 0);
+                        return arc.CreateArcPathFigure(angle - delta, angle + delta, this.Thickness, 0);
                     }
 
                 case TickShape.Rectangle:

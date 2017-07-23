@@ -54,6 +54,18 @@
                         StrokeThickness="1"
                         Thickness="Infinity" />
 
+            <gauges:Arc Fill="Blue"
+                        Stroke="Black"
+                        StrokeDashCap="Round"
+                        StrokeThickness="Infinity"
+                        Thickness="0" />
+
+            <gauges:Arc Fill="Blue"
+                        Stroke="Black"
+                        StrokeDashCap="Round"
+                        StrokeThickness="Infinity"
+                        Thickness="3" />
+
             <gauges:Arc Fill="Red"
                         Stroke="Black"
                         StrokeThickness="1"

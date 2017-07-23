@@ -269,9 +269,18 @@
 
         public PathFigure CreateArcPathFigure(double fromAngle, double toAngle, double thickness, double strokeThickness)
         {
+            if (strokeThickness > thickness)
+            {
+                return this.CreateArcPathFigure(fromAngle, toAngle, thickness, 0);
+            }
+
+            if (double.IsInfinity(strokeThickness))
+            {
+                strokeThickness = 0;
+            }
+
             var op1 = this.GetOffsetPoint(fromAngle, -strokeThickness / 2);
             var op2 = this.GetOffsetPoint(toAngle, -strokeThickness / 2);
-            var ip2 = this.GetOffsetPoint(toAngle, (strokeThickness / 2) - thickness);
             var figure = new PathFigure { StartPoint = op1 };
             var rotationAngle = toAngle - fromAngle;
             var isLargeArc = Math.Abs(rotationAngle) >= 180;
@@ -286,6 +295,9 @@
                 return figure;
             }
 
+            var ip2 = double.IsInfinity(thickness)
+                ? this.Center
+                : this.GetOffsetPoint(toAngle, (strokeThickness / 2) - thickness);
             figure.Segments.Add(new LineSegment(ip2, isStroked));
             if (thickness < this.Radius)
             {

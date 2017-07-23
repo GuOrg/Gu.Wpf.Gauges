@@ -873,5 +873,9 @@
     <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_3_StrokeThickness_1_Thickness_10_TickFrequency_1_Ticks_.png" />
     <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_3_StrokeThickness_1_Thickness_10_TickFrequency_1_Ticks_1_2_6.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_False_Padding_2,2,2,2_TickWidth_3_StrokeThickness_1_Thickness_3_TickFrequency_3_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_2,2,2,2_TickWidth_3_StrokeThickness_1_Thickness_3_TickFrequency_3_Ticks_1_2_6.png" />
+  </ItemGroup>
   <Import Project="..\.paket\paket.targets" />
 </Project>

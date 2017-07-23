@@ -39,10 +39,27 @@
                                    Thickness="Infinity"
                                    TickFrequency="{Binding MajorTickFrequency}"
                                    TickShape="Arc"
+                                   TickWidth="3"
+                                   Ticks="{Binding MajorTicks}"
+                                   Value="{Binding Value}" />
+
+            <gauges:AngularTickBar Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                                   End="{Binding End}"
+                                   Fill="Red"
+                                   IsDirectionReversed="{Binding IsDirectionReversed}"
+                                   Maximum="{Binding Maximum}"
+                                   Minimum="{Binding Minimum}"
+                                   Start="{Binding Start}"
+                                   Stroke="Black"
+                                   StrokeThickness="Infinity"
+                                   Thickness="0"
+                                   TickFrequency="{Binding MajorTickFrequency}"
+                                   TickShape="Arc"
                                    TickWidth="{Binding TickWidth}"
                                    Ticks="{Binding MajorTicks}"
                                    Value="{Binding Value}" />
-            <Grid>
+
+            <Grid Margin="2">
                 <gauges:Ring Fill="Blue"
                              Stroke="GreenYellow"
                              StrokeThickness="{Binding ElementName=ArcTickBar, Path=StrokeThickness}"
@@ -56,7 +73,7 @@
                                        Start="-180"
                                        Stroke="Black"
                                        StrokeThickness="{Binding StrokeThickness}"
-                                       Thickness="{Binding Thickness}"
+                                       Thickness="10"
                                        TickFrequency="{Binding MajorTickFrequency}"
                                        TickShape="Arc"
                                        TickWidth="{Binding TickWidth}"
