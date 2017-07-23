@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
         Title="AngularTickBarWindow"
-        Width="300"
+        Width="350"
         Height="300"
         mc:Ignorable="d">
     <Window.DataContext>
@@ -42,22 +42,51 @@
                                    TickWidth="{Binding TickWidth}"
                                    Ticks="{Binding MajorTicks}"
                                    Value="{Binding Value}" />
+            <Grid>
+                <gauges:Ring Fill="Blue"
+                             Stroke="GreenYellow"
+                             StrokeThickness="{Binding ElementName=ArcTickBar, Path=StrokeThickness}"
+                             Thickness="{Binding ElementName=ArcTickBar, Path=Thickness}" />
+                <gauges:AngularTickBar x:Name="ArcTickBar"
+                                       End="{Binding End}"
+                                       Fill="Red"
+                                       IsDirectionReversed="{Binding IsDirectionReversed}"
+                                       Maximum="{Binding Maximum}"
+                                       Minimum="{Binding Minimum}"
+                                       Start="-180"
+                                       Stroke="Black"
+                                       StrokeThickness="{Binding StrokeThickness}"
+                                       Thickness="{Binding Thickness}"
+                                       TickFrequency="{Binding MajorTickFrequency}"
+                                       TickShape="Arc"
+                                       TickWidth="{Binding TickWidth}"
+                                       Ticks="{Binding MajorTicks}"
+                                       Value="100" />
 
-            <gauges:AngularTickBar Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
-                                   End="{Binding End}"
-                                   Fill="Red"
-                                   IsDirectionReversed="{Binding IsDirectionReversed}"
-                                   Maximum="{Binding Maximum}"
-                                   Minimum="{Binding Minimum}"
-                                   Start="{Binding Start}"
-                                   Stroke="Black"
-                                   StrokeThickness="1"
-                                   Thickness="Infinity"
-                                   TickFrequency="{Binding MajorTickFrequency}"
-                                   TickShape="Rectangle"
-                                   TickWidth="{Binding TickWidth}"
-                                   Ticks="{Binding MajorTicks}"
-                                   Value="{Binding Value}" />
+            </Grid>
+
+            <Grid>
+                <gauges:Ring Fill="Blue"
+                             Stroke="YellowGreen"
+                             StrokeThickness="{Binding ElementName=RecTickBar, Path=StrokeThickness}"
+                             Thickness="{Binding ElementName=RecTickBar, Path=Thickness}" />
+                <gauges:AngularTickBar x:Name="AngularTickBar"
+                                       End="{Binding End}"
+                                       Fill="Red"
+                                       IsDirectionReversed="{Binding IsDirectionReversed}"
+                                       Maximum="{Binding Maximum}"
+                                       Minimum="{Binding Minimum}"
+                                       Start="-180"
+                                       Stroke="Black"
+                                       StrokeThickness="1"
+                                       Thickness="10"
+                                       TickFrequency="{Binding MajorTickFrequency}"
+                                       TickShape="Rectangle"
+                                       TickWidth="{Binding TickWidth}"
+                                       Ticks="{Binding MajorTicks}"
+                                       Value="{Binding Value}" />
+
+            </Grid>
 
             <gauges:AngularTickBar Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
                                    End="{Binding End}"

@@ -65,7 +65,11 @@
                             continue;
                         }
 
-                        var window = new Window { Content = new ImageCompareView(expected, actual) };
+                        var window = new Window
+                                     {
+                                         SizeToContent = SizeToContent.WidthAndHeight,
+                                         Content = new ImageCompareView(expected, actual)
+                                     };
                         window.ShowDialog();
                     }
 

@@ -118,7 +118,8 @@ namespace Gu.Wpf.Gauges
             }
 
             var strokeThickness = this.GetStrokeThickness();
-            if (this.TickWidth <= strokeThickness)
+            if (this.TickWidth <= strokeThickness &&
+                this.TickShape == TickShape.Rectangle)
             {
                 foreach (var tick in this.AllTicks)
                 {
@@ -142,7 +143,14 @@ namespace Gu.Wpf.Gauges
                     }
                 }
 
-                dc.DrawGeometry(this.Fill, this.Pen, geometry);
+                if (this.Thickness <= this.StrokeThickness)
+                {
+                    dc.DrawGeometry(this.Stroke, null, geometry);
+                }
+                else
+                {
+                    dc.DrawGeometry(this.Fill, this.Pen, geometry);
+                }
             }
 
             if (value < this.Maximum)
@@ -190,14 +198,24 @@ namespace Gu.Wpf.Gauges
             switch (this.TickShape)
             {
                 case TickShape.Arc:
-                    var delta = arc.GetDelta((this.TickWidth - strokeThickness) / 2);
-                    return arc.CreateArcPathFigure(angle - delta, angle + delta, this.Thickness, strokeThickness);
+                    if (this.Thickness > this.StrokeThickness)
+                    {
+                        var delta = arc.GetDelta((this.TickWidth - strokeThickness) / 2);
+                        return arc.CreateArcPathFigure(angle - delta, angle + delta, this.Thickness, strokeThickness);
+                    }
+                    else
+                    {
+                        var delta = arc.GetDelta(this.TickWidth / 2);
+                        return arc.CreateArcPathFigure(angle - delta, angle + delta, strokeThickness, 0);
+                    }
+
                 case TickShape.Rectangle:
                     var p = interpolation.Interpolate(arc, this.IsDirectionReversed);
                     var tangent = arc.GetTangent(angle);
                     var toCenter = arc.Center - p;
                     toCenter.Normalize();
-                    toCenter = Math.Min(arc.Radius, this.Thickness) * toCenter;
+                    var t = Math.Max(this.Thickness, this.StrokeThickness);
+                    toCenter = Math.Min(arc.Radius, t) * toCenter;
                     var w = this.TickWidth - strokeThickness;
                     var p0 = p - (w / 2 * tangent) + (strokeThickness / 2 * toCenter);
                     var p1 = p0 + (w * tangent);
