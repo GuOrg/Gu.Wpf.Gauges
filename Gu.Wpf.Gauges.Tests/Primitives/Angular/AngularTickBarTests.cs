@@ -44,6 +44,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
                 Minimum = 0,
                 Maximum = 10,
                 Value = testCase.Value,
+                TickShape = testCase.TickShape,
                 TickFrequency = testCase.TickFrequency,
                 Ticks = testCase.Ticks,
                 Fill = Brushes.Red,
@@ -67,6 +68,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
                 Maximum = 10,
                 Value = testCase.Value,
                 TickFrequency = testCase.TickFrequency,
+                TickShape = testCase.TickShape,
                 Ticks = testCase.Ticks,
                 Fill = Brushes.Red,
                 TickWidth = testCase.TickWidth,
@@ -118,7 +120,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
             }
 
             var ticks = tickBar.Ticks != null
-                ? $"_Ticks_{tickBar.Ticks}"
+                ? $"_Ticks_{tickBar.Ticks.ToString(CultureInfo.InvariantCulture)}"
                 : string.Empty;
 
             var tickFrequency = tickBar.TickFrequency > 0
@@ -127,7 +129,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
 
             var padding = tickBar.Padding.IsZero()
                 ? string.Empty
-                : $"_Padding_{tickBar.Padding}";
+                : $"_Padding_{tickBar.Padding.ToString().Replace(",", "_")}";
 
             var value = double.IsNaN(tickBar.Value) ||
                         DoubleUtil.AreClose(tickBar.Value, tickBar.Maximum)
