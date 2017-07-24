@@ -1,5 +1,6 @@
 ﻿namespace Gu.Wpf.Gauges.Tests
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Threading;
     using System.Windows;
@@ -69,6 +70,7 @@
                 : new Size(40, 200);
         }
 
+        [SuppressMessage("ReSharper", "UnusedMember.Local")]
         private static void SaveImage(LinearGauge gauge)
         {
             Directory.CreateDirectory(@"C:\Temp\LinearGauge");

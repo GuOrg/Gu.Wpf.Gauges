@@ -19,8 +19,8 @@
         [TestCase(-1.2, 0.8, 1, TickSnap.TickFrequency, new double[] { -1, -0 })]
         [TestCase(0.8, 3, 1, TickSnap.TickFrequency, new double[] { 1, 2, 3 })]
         [TestCase(0.8, 3.2, 1, TickSnap.TickFrequency, new double[] { 1, 2, 3 })]
-        [TestCase(-1.2, 0.8, 1, TickSnap.Minimum, new double[] { -1.2, -0.2, 0.8 })]
-        [TestCase(-1, 1.2, 1, TickSnap.Maximum, new double[] { -0.8, 0.2, 1.2 })]
+        [TestCase(-1.2, 0.8, 1, TickSnap.Minimum, new[] { -1.2, -0.2, 0.8 })]
+        [TestCase(-1, 1.2, 1, TickSnap.Maximum, new[] { -0.8, 0.2, 1.2 })]
         public void CreateTicks(double min, double max, double frequency, TickSnap tickSnap, double[] expected)
         {
             var ticks = Ticks.Create(min, max, frequency, tickSnap).ToArray();

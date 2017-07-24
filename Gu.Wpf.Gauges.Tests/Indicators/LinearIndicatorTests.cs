@@ -1,5 +1,6 @@
 namespace Gu.Wpf.Gauges.Tests.Indicators
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Threading;
     using System.Windows;
@@ -113,6 +114,7 @@ namespace Gu.Wpf.Gauges.Tests.Indicators
             return $"LinearIndicator_Placement_{indicator.Placement}_Min_{indicator.Minimum}_Max_{indicator.Maximum}_Value_{indicator.Value}_IsDirectionReversed_{indicator.IsDirectionReversed}.png";
         }
 
+        [SuppressMessage("ReSharper", "UnusedMember.Local")]
         private static void SaveImage(LinearGauge gauge)
         {
             Directory.CreateDirectory($@"C:\Temp\LinearIndicator");

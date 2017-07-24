@@ -198,7 +198,7 @@
 
         public double GetAngle(Point point)
         {
-            return Vector.AngleBetween(new Vector(0, -1), this.Center - point);
+            return Vector.AngleBetween(new Vector(0, -1), point - this.Center);
         }
 
         public SweepDirection SweepDirection(double fromAngle, double toAngle)
@@ -331,7 +331,8 @@
             var rotationAngle = toAngle - fromAngle;
             var isLargeArc = Math.Abs(rotationAngle) > 180;
             var sweepDirection = this.SweepDirection(fromAngle, toAngle);
-            return new ArcSegment(this.GetPointAtRadius(toAngle, radius), new Size(radius, radius), rotationAngle, isLargeArc, sweepDirection, isStroked);
+            var endPoint = this.GetPointAtRadius(toAngle, radius);
+            return new ArcSegment(endPoint, new Size(radius, radius), Math.Abs(rotationAngle), isLargeArc, sweepDirection, isStroked);
         }
 
         public override string ToString()

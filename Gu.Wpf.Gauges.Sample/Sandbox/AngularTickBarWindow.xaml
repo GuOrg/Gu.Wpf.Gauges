@@ -6,8 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
         Title="AngularTickBarWindow"
-        Width="350"
-        Height="300"
+        SizeToContent="WidthAndHeight"
         mc:Ignorable="d">
     <Window.DataContext>
         <sample:AngularTickBarVm End="140"
@@ -23,8 +22,8 @@
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition MinHeight="50" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <UniformGrid Rows="1">
             <gauges:AngularTickBar Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
@@ -99,6 +98,29 @@
                                        Thickness="10"
                                        TickFrequency="{Binding MajorTickFrequency}"
                                        TickShape="Rectangle"
+                                       TickWidth="{Binding TickWidth}"
+                                       Ticks="{Binding MajorTicks}"
+                                       Value="{Binding Value}" />
+
+            </Grid>
+
+            <Grid>
+                <gauges:Ring Fill="Blue"
+                             Stroke="YellowGreen"
+                             StrokeThickness="{Binding ElementName=RingSectionTickBar, Path=StrokeThickness}"
+                             Thickness="{Binding ElementName=RingSectionTickBar, Path=Thickness}" />
+                <gauges:AngularTickBar x:Name="RingSectionTickBar"
+                                       End="{Binding End}"
+                                       Fill="Red"
+                                       IsDirectionReversed="{Binding IsDirectionReversed}"
+                                       Maximum="{Binding Maximum}"
+                                       Minimum="{Binding Minimum}"
+                                       Start="-180"
+                                       Stroke="Black"
+                                       StrokeThickness="1"
+                                       Thickness="10"
+                                       TickFrequency="{Binding MajorTickFrequency}"
+                                       TickShape="RingSection"
                                        TickWidth="{Binding TickWidth}"
                                        Ticks="{Binding MajorTicks}"
                                        Value="{Binding Value}" />

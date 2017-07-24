@@ -1,5 +1,6 @@
 ﻿namespace Gu.Wpf.Gauges.Tests.Indicators
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Threading;
     using System.Windows;
@@ -48,6 +49,7 @@
             return $"LinearRange_{orientation}_Min_{range.Minimum}_Max_{range.Maximum}_Start_{range.Start}_End_{range.End}_IsDirectionReversed_{range.IsDirectionReversed}.png";
         }
 
+        [SuppressMessage("ReSharper", "UnusedMember.Local")]
         private static void SaveImage(LinearGauge gauge)
         {
             Directory.CreateDirectory($@"C:\Temp\LinearRange");

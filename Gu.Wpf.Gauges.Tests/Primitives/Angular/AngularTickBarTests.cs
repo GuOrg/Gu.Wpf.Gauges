@@ -205,7 +205,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
                     {
                         foreach (var value in values)
                         {
-                            foreach (var tickShape in new[] { TickShape.Arc, TickShape.Rectangle, })
+                            foreach (var tickShape in new[] { TickShape.Arc, TickShape.Rectangle })
                             {
                                 foreach (var tickWidth in tickWidths)
                                 {

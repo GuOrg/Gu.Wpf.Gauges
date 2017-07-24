@@ -100,7 +100,7 @@
                             Start="-180"
                             Stroke="Black"
                             StrokeThickness="{Binding StrokeThickness}"
-                            Thickness="{Binding Thickness}"
+                            Thickness="0"
                             Value="{Binding Value}" />
 
                 <gauges:Ring Grid.Column="0"

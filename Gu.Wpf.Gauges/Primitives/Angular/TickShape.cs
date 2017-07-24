@@ -4,6 +4,6 @@
     {
         Arc,
         Rectangle,
-        ArcsAndParallelLines,
+        RingSection,
     }
 }
