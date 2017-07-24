@@ -1,6 +1,7 @@
 namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
     using System.Linq;
@@ -20,9 +21,9 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
             tickWidths: new[] { 1.0, 5 },
             strokeThicknesses: new[] { 0.0, 1 },
             tickFrequencies: new[] { 0, 5.0 },
-            tickses: new[] { null, (DoubleCollection)new DoubleCollection(new[] { 1.0, 2, 6 }).GetCurrentValueAsFrozen() },
+            tickCollections: new[] { null, (DoubleCollection)new DoubleCollection(new[] { 1.0, 2, 6 }).GetCurrentValueAsFrozen() },
             paddings: new[] { default(Thickness) })
-                                                                  .Where(x => !(x.TickFrequency == 0 && x.Ticks == null))
+                                                                  .Where(x => !(x.TickFrequency <= 0 && x.Ticks == null))
                                                                   .ToArray();
 
         private static readonly IReadOnlyList<TestCase> RenderWithPaddingCases = TestCase.Create(
@@ -31,7 +32,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
                                                                                   tickWidths: new[] { 5.0 },
                                                                                   strokeThicknesses: new[] { 1.0 },
                                                                                   tickFrequencies: new[] { 1.0 },
-                                                                                  tickses: new[] { (DoubleCollection)new DoubleCollection(new[] { 1.5, }).GetCurrentValueAsFrozen() },
+                                                                                  tickCollections: new[] { (DoubleCollection)new DoubleCollection(new[] { 1.5, }).GetCurrentValueAsFrozen() },
                                                                                   paddings: new[] { new Thickness(1, 2, 3, 4), })
                                                                               .ToArray();
 
@@ -114,7 +115,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
 
         private static string GetFileName(AngularTickBar tickBar)
         {
-            if (tickBar.Value == 0)
+            if (DoubleUtil.AreClose(tickBar.Value, 0))
             {
                 return "AngularTickBar_Value_0.png";
             }
@@ -140,6 +141,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
                 .Replace(" ", "_");
         }
 
+        [SuppressMessage("ReSharper", "UnusedMember.Local")]
         private static void SaveImage(AngularTickBar tickBar)
         {
             Directory.CreateDirectory(@"C:\Temp\AngularTickBar");
@@ -194,7 +196,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
                 double[] tickWidths,
                 double[] strokeThicknesses,
                 double[] tickFrequencies,
-                DoubleCollection[] tickses,
+                DoubleCollection[] tickCollections,
                 Thickness[] paddings)
             {
                 foreach (var isDirectionReversed in new[] { true, false })
@@ -203,7 +205,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
                     {
                         foreach (var value in values)
                         {
-                            foreach (var tickShape in new[] { Gauges.TickShape.Arc, TickShape.Rectangle, })
+                            foreach (var tickShape in new[] { TickShape.Arc, TickShape.Rectangle, })
                             {
                                 foreach (var tickWidth in tickWidths)
                                 {
@@ -211,7 +213,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
                                     {
                                         foreach (var tickFrequency in tickFrequencies)
                                         {
-                                            foreach (var ticks in tickses)
+                                            foreach (var ticks in tickCollections)
                                             {
                                                 foreach (var padding in paddings)
                                                 {

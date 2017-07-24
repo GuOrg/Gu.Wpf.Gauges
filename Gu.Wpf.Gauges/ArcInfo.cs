@@ -151,7 +151,7 @@
         /// Get the point at <paramref name="angle"/> on the arc.
         /// </summary>
         /// <param name="angle">Angle in degrees</param>
-        public Point GetPoint(double angle) => this.GetOffsetPoint(angle, 0);
+        public Point GetPoint(double angle) => this.GetPointAtRadiusOffset(angle, 0);
 
         /// <summary>
         /// Get a unit vector with the tangent direction at <paramref name="angle"/>.
@@ -168,7 +168,15 @@
         /// <param name="angle">Angle in degrees</param>
         /// <param name="offset">The radial offset positive meaning bigger radius.</param>
         /// <returns></returns>
-        public Point GetOffsetPoint(double angle, double offset) => this.GetPointAtRadius(angle, this.Radius + offset);
+        public Point GetPointAtRadiusOffset(double angle, double offset) => this.GetPointAtRadius(angle, this.Radius + offset);
+
+        /// <summary>
+        /// Get the point an arc with same center as this.
+        /// </summary>
+        /// <param name="angle"></param>
+        /// <param name="offset">The offset arc length positive clockwise</param>
+        /// <returns></returns>
+        public Point GetPointAtArcOffset(double angle, double offset) => this.GetPointAtRadius(angle + this.GetDelta(offset), this.Radius);
 
         /// <summary>
         /// Get the point at <paramref name="angle"/> on an arc with same center as this.
@@ -279,8 +287,8 @@
                 strokeThickness = 0;
             }
 
-            var op1 = this.GetOffsetPoint(fromAngle, -strokeThickness / 2);
-            var op2 = this.GetOffsetPoint(toAngle, -strokeThickness / 2);
+            var op1 = this.GetPointAtRadiusOffset(fromAngle, -strokeThickness / 2);
+            var op2 = this.GetPointAtRadiusOffset(toAngle, -strokeThickness / 2);
             var figure = new PathFigure { StartPoint = op1 };
             var rotationAngle = toAngle - fromAngle;
             var isLargeArc = Math.Abs(rotationAngle) >= 180;
@@ -297,7 +305,7 @@
 
             var ip2 = double.IsInfinity(thickness)
                 ? this.Center
-                : this.GetOffsetPoint(toAngle, (strokeThickness / 2) - thickness);
+                : this.GetPointAtRadiusOffset(toAngle, (strokeThickness / 2) - thickness);
             figure.Segments.Add(new LineSegment(ip2, isStroked));
             if (thickness < this.Radius)
             {

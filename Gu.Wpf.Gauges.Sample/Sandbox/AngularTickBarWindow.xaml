@@ -87,7 +87,7 @@
                              Stroke="YellowGreen"
                              StrokeThickness="{Binding ElementName=RecTickBar, Path=StrokeThickness}"
                              Thickness="{Binding ElementName=RecTickBar, Path=Thickness}" />
-                <gauges:AngularTickBar x:Name="AngularTickBar"
+                <gauges:AngularTickBar x:Name="RecTickBar"
                                        End="{Binding End}"
                                        Fill="Red"
                                        IsDirectionReversed="{Binding IsDirectionReversed}"

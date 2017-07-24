@@ -4,5 +4,6 @@
     {
         Arc,
         Rectangle,
+        ArcsAndParallelLines,
     }
 }

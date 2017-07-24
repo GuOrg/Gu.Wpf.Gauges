@@ -39,7 +39,7 @@ namespace Gu.Wpf.Gauges
         /// <summary>
         /// Gets or sets the <see cref="P:LinearTickBar.TickWidth" />
         /// The default is 1.
-        /// For TickShape.Arc the arc length of the outer diameter.
+        /// For TickShape.Arc the arc length on the outer diameter.
         /// </summary>
         public double TickWidth
         {
@@ -137,7 +137,7 @@ namespace Gu.Wpf.Gauges
                                            .Clamp(0, 1)
                                            .Interpolate(this.Start, this.End, this.IsDirectionReversed);
                     var po = arc.GetPoint(angle);
-                    var pi = arc.GetOffsetPoint(angle, -this.Thickness);
+                    var pi = arc.GetPointAtRadiusOffset(angle, -this.Thickness);
                     dc.DrawLine(this.Pen, po, pi);
                 }
             }
@@ -221,29 +221,28 @@ namespace Gu.Wpf.Gauges
                     }
 
                 case TickShape.Rectangle:
-                    var p = interpolation.Interpolate(arc, this.IsDirectionReversed);
-                    var tangent = arc.GetTangent(angle);
-                    var toCenter = arc.Center - p;
-                    toCenter.Normalize();
-                    var t = Math.Max(this.Thickness, this.StrokeThickness);
-                    toCenter = Math.Min(arc.Radius, t) * toCenter;
-                    var w = this.TickWidth - strokeThickness;
-                    var p0 = p - (w / 2 * tangent) + (strokeThickness / 2 * toCenter);
-                    var p1 = p0 + (w * tangent);
-                    var p2 = p1 + toCenter;
-                    var p3 = p2 - (w * tangent);
-                    var p4 = p3 - toCenter;
-                    var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
-                    return new PathFigure(
-                        p0,
-                        new[]
-                        {
+                    {
+                        var w = this.TickWidth - strokeThickness;
+                        var delta = arc.GetDelta(w / 2);
+                        var p1 = arc.GetPointAtRadiusOffset(angle - delta, -strokeThickness / 2);
+                        var p2 = arc.GetPointAtRadiusOffset(angle + delta, -strokeThickness / 2);
+                        var ip = arc.GetPointAtRadiusOffset(angle, -this.Thickness + (strokeThickness / 2));
+                        var v = p1 - p2;
+                        var p3 = ip - (v / 2);
+                        var p4 = p3 + v;
+                        var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
+                        return new PathFigure(
+                            p4,
+                            new[]
+                            {
                             new LineSegment(p1, isStroked),
                             new LineSegment(p2, isStroked),
                             new LineSegment(p3, isStroked),
                             new LineSegment(p4, isStroked),
-                        },
-                        closed: true);
+                            },
+                            closed: true);
+                    }
+
                 default:
                     throw new ArgumentOutOfRangeException();
             }

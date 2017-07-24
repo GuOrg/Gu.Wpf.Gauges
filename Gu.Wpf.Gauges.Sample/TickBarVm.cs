@@ -1,4 +1,5 @@
 ﻿// ReSharper disable ExplicitCallerInfoArgument
+// ReSharper disable CompareOfFloatsByEqualityOperator
 namespace Gu.Wpf.Gauges.Sample
 {
     using System.ComponentModel;
