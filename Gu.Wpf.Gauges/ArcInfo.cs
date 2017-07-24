@@ -288,14 +288,10 @@
             }
 
             var op1 = this.GetPointAtRadiusOffset(fromAngle, -strokeThickness / 2);
-            var op2 = this.GetPointAtRadiusOffset(toAngle, -strokeThickness / 2);
             var figure = new PathFigure { StartPoint = op1 };
-            var rotationAngle = toAngle - fromAngle;
-            var isLargeArc = Math.Abs(rotationAngle) >= 180;
-            var sweepDirection = this.SweepDirection(fromAngle, toAngle);
             var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
             var ro = this.Radius - (strokeThickness / 2);
-            figure.Segments.Add(new ArcSegment(op2, new Size(ro, ro), rotationAngle, isLargeArc, sweepDirection, isStroked));
+            figure.Segments.Add(this.CreateArcSegment(fromAngle, toAngle, ro, isStroked));
             if (DoubleUtil.LessThanOrClose(thickness, strokeThickness))
             {
                 figure.IsClosed = false;
@@ -309,15 +305,33 @@
             figure.Segments.Add(new LineSegment(ip2, isStroked));
             if (thickness < this.Radius)
             {
-                sweepDirection = this.SweepDirection(toAngle, fromAngle);
                 var ri = this.Radius - thickness + (strokeThickness / 2);
-                var ip1 = this.GetPointAtRadius(fromAngle, ri);
-                figure.Segments.Add(new ArcSegment(ip1, new Size(ri, ri), rotationAngle, isLargeArc, sweepDirection, isStroked));
+                figure.Segments.Add(this.CreateArcSegment(toAngle, fromAngle, ri, isStroked));
             }
 
             figure.Segments.Add(new LineSegment(op1, isStroked));
             figure.IsClosed = true;
             return figure;
+        }
+
+        /// <summary>
+        /// Create an <see cref="ArcSegment"/> for this arc.
+        /// </summary>
+        public ArcSegment CreateArcSegment(double fromAngle, double toAngle, bool isStroked) => this.CreateArcSegment(
+            fromAngle,
+            toAngle,
+            this.Radius,
+            isStroked);
+
+        /// <summary>
+        /// Create an <see cref="ArcSegment"/> with same center point as this arc.
+        /// </summary>
+        public ArcSegment CreateArcSegment(double fromAngle, double toAngle, double radius, bool isStroked)
+        {
+            var rotationAngle = toAngle - fromAngle;
+            var isLargeArc = Math.Abs(rotationAngle) > 180;
+            var sweepDirection = this.SweepDirection(fromAngle, toAngle);
+            return new ArcSegment(this.GetPointAtRadius(toAngle, radius), new Size(radius, radius), rotationAngle, isLargeArc, sweepDirection, isStroked);
         }
 
         public override string ToString()
