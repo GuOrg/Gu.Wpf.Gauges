@@ -70,20 +70,16 @@ namespace Gu.Wpf.Gauges
             var strokeThickness = this.GetStrokeThickness();
             var effectiveAngle = Interpolate.Linear(this.Minimum, this.Maximum, this.EffectiveValue)
                 .Interpolate(this.Start, this.End, this.IsDirectionReversed);
-            if (value < this.Maximum)
-            {
-                dc.PushClip(
-                    Arc.CreateGeometry(
-                        arc,
-                        this.IsDirectionReversed ? this.End : this.Start,
-                        effectiveAngle,
-                        this.Thickness,
-                        0));
-            }
 
             var gapsGeometry = new PathGeometry();
             foreach (var tick in this.AllTicks)
             {
+                if (DoubleUtil.AreClose(tick, this.Minimum) ||
+                    DoubleUtil.AreClose(tick, this.Maximum))
+                {
+                    continue;
+                }
+
                 gapsGeometry.Figures.Add(this.CreateTickGap(arc, tick, strokeThickness));
                 if (tick > value)
                 {
@@ -97,15 +93,12 @@ namespace Gu.Wpf.Gauges
                 effectiveAngle,
                 this.Thickness,
                 strokeThickness);
-            dc.DrawGeometry(this.Fill, this.Pen, new CombinedGeometry(
-                GeometryCombineMode.Exclude,
-                arcGeometry,
-                gapsGeometry));
-
-            if (value < this.Maximum)
-            {
-                dc.Pop();
-            }
+            //dc.DrawGeometry(this.Fill, this.Pen, arcGeometry);
+            //dc.DrawGeometry(Brushes.HotPink, null, gapsGeometry);
+            dc.DrawGeometry(
+                this.Fill,
+                this.Pen,
+                new CombinedGeometry(GeometryCombineMode.Exclude, arcGeometry, gapsGeometry));
         }
 
         protected virtual PathFigure CreateTickGap(ArcInfo arc, double value, double strokeThickness)
@@ -116,28 +109,10 @@ namespace Gu.Wpf.Gauges
             switch (this.TickShape)
             {
                 case TickShape.Arc:
-                    var delta = arc.GetDelta((this.TickGap + strokeThickness) / 2);
-                    return arc.CreateArcPathFigure(angle - delta, angle + delta, this.Thickness, 0);
+                    return AngularTickBar.CreateTick(arc, angle, this.TickShape, this.TickGap + strokeThickness, this.Thickness, 0);
                 case TickShape.Rectangle:
-                    var p = interpolation.Interpolate(arc, this.IsDirectionReversed);
-                    var tangent = arc.GetTangent(angle);
-                    var toCenter = arc.Center - p;
-                    var w = this.TickGap + strokeThickness;
-                    var p0 = p - (w / 2 * tangent);
-                    var p1 = p0 + (w * tangent);
-                    var p2 = p1 + toCenter;
-                    var p3 = p2 - (w * tangent);
-                    var p4 = p3 - toCenter;
-                    return new PathFigure(
-                        p0,
-                        new[]
-                        {
-                            new LineSegment(p1, isStroked: false),
-                            new LineSegment(p2, isStroked: false),
-                            new LineSegment(p3, isStroked: false),
-                            new LineSegment(p4, isStroked: false),
-                        },
-                        closed: true);
+                case TickShape.RingSection:
+                    return AngularTickBar.CreateTick(arc, angle, TickShape.RingSection, this.TickGap + strokeThickness, this.Thickness, 0);
                 default:
                     throw new ArgumentOutOfRangeException();
             }

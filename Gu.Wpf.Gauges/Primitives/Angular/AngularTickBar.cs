@@ -197,6 +197,11 @@ namespace Gu.Wpf.Gauges
             }
 
             var arc = ArcInfo.Fit(this.RenderSize, this.Padding, this.Start, this.End);
+            if (DoubleUtil.AreClose(arc.Radius, 0))
+            {
+                return;
+            }
+
             var value = this.EffectiveValue;
             if (value < this.Maximum)
             {

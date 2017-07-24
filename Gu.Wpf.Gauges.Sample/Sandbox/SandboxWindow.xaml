@@ -4,14 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        d:DesignHeight="100"
         SizeToContent="WidthAndHeight"
         mc:Ignorable="d">
-    <Grid Height="50"
-          Margin="2">
-        <gauges:Ring Fill="Blue"
+    <Grid Margin="2">
+        <!--<gauges:Ring Fill="Blue"
                      Stroke="YellowGreen"
                      StrokeThickness="{Binding ElementName=RecTickBar, Path=StrokeThickness}"
-                     Thickness="{Binding ElementName=RecTickBar, Path=Thickness}" />
+                     Thickness="{Binding ElementName=RecTickBar, Path=Thickness}" />-->
         <gauges:AngularTickBar x:Name="RecTickBar"
                                Fill="Red"
                                Maximum="10"
@@ -19,8 +19,8 @@
                                Start="-180"
                                Stroke="Black"
                                StrokeThickness="1"
-                               Thickness="10"
-                               TickFrequency="1"
+                               Thickness="Infinity"
+                               TickFrequency="2.5"
                                TickShape="Arc"
                                TickWidth="8" />
 

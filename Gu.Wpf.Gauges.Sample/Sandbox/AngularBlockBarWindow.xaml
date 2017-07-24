@@ -18,29 +18,198 @@
                                  Minimum="0"
                                  Start="-140"
                                  Thickness="10"
-                                 TickWidth="2"
+                                 TickGap="1"
                                  Value="100" />
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition MinHeight="50" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <gauges:AngularBlockBar Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
-                                End="{Binding End}"
-                                Fill="Red"
-                                IsDirectionReversed="{Binding IsDirectionReversed}"
-                                Maximum="{Binding Maximum}"
-                                Minimum="{Binding Minimum}"
-                                Start="{Binding Start}"
-                                Stroke="Black"
-                                StrokeThickness="2"
-                                Thickness="{Binding Thickness}"
-                                TickFrequency="{Binding MajorTickFrequency}"
-                                TickGap="{Binding TickWidth}"
-                                TickShape="Rectangle"
-                                Ticks="{Binding MajorTicks}"
-                                Value="{Binding Value}" />
+        <UniformGrid Rows="1">
+            <gauges:AngularBlockBar Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                                    End="{Binding End}"
+                                    Fill="Red"
+                                    IsDirectionReversed="{Binding IsDirectionReversed}"
+                                    Maximum="{Binding Maximum}"
+                                    Minimum="{Binding Minimum}"
+                                    Start="{Binding Start}"
+                                    Stroke="Black"
+                                    StrokeThickness="1"
+                                    Thickness="Infinity"
+                                    TickFrequency="{Binding MajorTickFrequency}"
+                                    TickGap="3"
+                                    TickShape="Arc"
+                                    Ticks="{Binding MajorTicks}"
+                                    Value="{Binding Value}" />
+
+            <gauges:AngularBlockBar Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                                    End="{Binding End}"
+                                    Fill="Red"
+                                    IsDirectionReversed="{Binding IsDirectionReversed}"
+                                    Maximum="{Binding Maximum}"
+                                    Minimum="{Binding Minimum}"
+                                    Start="{Binding Start}"
+                                    Stroke="Black"
+                                    StrokeThickness="Infinity"
+                                    Thickness="0"
+                                    TickFrequency="{Binding MajorTickFrequency}"
+                                    TickGap="{Binding TickGap}"
+                                    TickShape="Arc"
+                                    Ticks="{Binding MajorTicks}"
+                                    Value="{Binding Value}" />
+
+            <Grid Margin="2">
+                <gauges:Ring Fill="Blue"
+                             Stroke="GreenYellow"
+                             StrokeThickness="{Binding ElementName=ArcTickBar, Path=StrokeThickness}"
+                             Thickness="{Binding ElementName=ArcTickBar, Path=Thickness}" />
+                <gauges:AngularBlockBar x:Name="ArcTickBar"
+                                        End="{Binding End}"
+                                        Fill="Red"
+                                        IsDirectionReversed="{Binding IsDirectionReversed}"
+                                        Maximum="{Binding Maximum}"
+                                        Minimum="{Binding Minimum}"
+                                        Start="-180"
+                                        Stroke="Black"
+                                        StrokeThickness="{Binding StrokeThickness}"
+                                        Thickness="10"
+                                        TickFrequency="{Binding MajorTickFrequency}"
+                                        TickGap="{Binding TickGap}"
+                                        TickShape="Arc"
+                                        Ticks="{Binding MajorTicks}"
+                                        Value="100" />
+
+            </Grid>
+
+            <Grid>
+                <gauges:Ring Fill="Blue"
+                             Stroke="YellowGreen"
+                             StrokeThickness="{Binding ElementName=RecTickBar, Path=StrokeThickness}"
+                             Thickness="{Binding ElementName=RecTickBar, Path=Thickness}" />
+                <gauges:AngularBlockBar x:Name="RecTickBar"
+                                        End="{Binding End}"
+                                        Fill="Red"
+                                        IsDirectionReversed="{Binding IsDirectionReversed}"
+                                        Maximum="{Binding Maximum}"
+                                        Minimum="{Binding Minimum}"
+                                        Start="-180"
+                                        Stroke="Black"
+                                        StrokeThickness="1"
+                                        Thickness="5"
+                                        TickFrequency="{Binding MajorTickFrequency}"
+                                        TickGap="{Binding TickGap}"
+                                        TickShape="Rectangle"
+                                        Ticks="{Binding MajorTicks}"
+                                        Value="{Binding Value}" />
+
+            </Grid>
+
+            <Grid>
+                <gauges:Ring Fill="Blue"
+                             Stroke="YellowGreen"
+                             StrokeThickness="{Binding ElementName=RingSectionTickBar, Path=StrokeThickness}"
+                             Thickness="{Binding ElementName=RingSectionTickBar, Path=Thickness}" />
+                <gauges:AngularBlockBar x:Name="RingSectionTickBar"
+                                        End="{Binding End}"
+                                        Fill="Red"
+                                        IsDirectionReversed="{Binding IsDirectionReversed}"
+                                        Maximum="{Binding Maximum}"
+                                        Minimum="{Binding Minimum}"
+                                        Start="-180"
+                                        Stroke="Black"
+                                        StrokeThickness="1"
+                                        Thickness="10"
+                                        TickFrequency="{Binding MajorTickFrequency}"
+                                        TickGap="{Binding TickGap}"
+                                        TickShape="RingSection"
+                                        Ticks="{Binding MajorTicks}"
+                                        Value="{Binding Value}" />
+
+            </Grid>
+
+            <gauges:AngularBlockBar Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                                    End="{Binding End}"
+                                    Fill="Red"
+                                    IsDirectionReversed="{Binding IsDirectionReversed}"
+                                    Maximum="{Binding Maximum}"
+                                    Minimum="{Binding Minimum}"
+                                    Start="{Binding Start}"
+                                    Stroke="Black"
+                                    StrokeThickness="{Binding StrokeThickness}"
+                                    Thickness="{Binding Thickness}"
+                                    TickFrequency="{Binding MajorTickFrequency}"
+                                    TickGap="100"
+                                    TickShape="Rectangle"
+                                    Ticks="{Binding MajorTicks}"
+                                    Value="{Binding Value}" />
+
+            <gauges:AngularBlockBar Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                                    End="{Binding End}"
+                                    Fill="Red"
+                                    IsDirectionReversed="{Binding IsDirectionReversed}"
+                                    Maximum="{Binding Maximum}"
+                                    Minimum="{Binding Minimum}"
+                                    Start="{Binding Start}"
+                                    Stroke="Black"
+                                    StrokeThickness="{Binding StrokeThickness}"
+                                    Thickness="{Binding Thickness}"
+                                    TickFrequency="{Binding MajorTickFrequency}"
+                                    TickGap="100"
+                                    TickShape="Arc"
+                                    Ticks="{Binding MajorTicks}"
+                                    Value="{Binding Value}" />
+
+            <gauges:AngularBlockBar Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                                    End="{Binding End}"
+                                    Fill="Red"
+                                    IsDirectionReversed="{Binding IsDirectionReversed}"
+                                    Maximum="{Binding Maximum}"
+                                    Minimum="{Binding Minimum}"
+                                    Start="{Binding Start}"
+                                    Stroke="Black"
+                                    StrokeThickness="{Binding StrokeThickness}"
+                                    Thickness="{Binding Thickness}"
+                                    TickFrequency="{Binding MajorTickFrequency}"
+                                    TickGap="{Binding TickGap}"
+                                    TickShape="Arc"
+                                    Ticks="{Binding MajorTicks}"
+                                    Value="{Binding Value}" />
+
+            <gauges:AngularBlockBar Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                                    End="{Binding End}"
+                                    Fill="Red"
+                                    IsDirectionReversed="{Binding IsDirectionReversed}"
+                                    Maximum="{Binding Maximum}"
+                                    Minimum="{Binding Minimum}"
+                                    Start="{Binding Start}"
+                                    Stroke="Black"
+                                    StrokeThickness="{Binding StrokeThickness}"
+                                    Thickness="{Binding Thickness}"
+                                    TickFrequency="{Binding MajorTickFrequency}"
+                                    TickGap="{Binding TickGap}"
+                                    TickShape="Rectangle"
+                                    Ticks="{Binding MajorTicks}"
+                                    Value="{Binding Value}" />
+
+            <StackPanel>
+                <gauges:AngularBlockBar Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                                        End="{Binding End}"
+                                        Fill="Red"
+                                        IsDirectionReversed="{Binding IsDirectionReversed}"
+                                        Maximum="{Binding Maximum}"
+                                        Minimum="{Binding Minimum}"
+                                        Start="{Binding Start}"
+                                        Stroke="Black"
+                                        StrokeThickness="{Binding StrokeThickness}"
+                                        Thickness="{Binding Thickness}"
+                                        TickFrequency="{Binding MajorTickFrequency}"
+                                        TickGap="{Binding TickGap}"
+                                        TickShape="Arc"
+                                        Ticks="{Binding MajorTicks}"
+                                        Value="{Binding Value}" />
+            </StackPanel>
+        </UniformGrid>
 
         <ContentPresenter Grid.Row="1"
                           Content="{Binding}" />
