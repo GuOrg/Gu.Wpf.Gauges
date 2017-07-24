@@ -1,8 +1,10 @@
 ﻿namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
 {
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
+    using System.Linq;
     using System.Threading;
     using System.Windows;
     using System.Windows.Media;
@@ -11,100 +13,36 @@
     [Apartment(ApartmentState.STA)]
     public class ArcTests
     {
-        [TestCase(0, 90, 0)]
-        [TestCase(0, 90, 2)]
-        [TestCase(0, 90, 10)]
-        [TestCase(0, 90, 30)]
-        [TestCase(0, 90, double.PositiveInfinity)]
-        [TestCase(-140, 140, 0)]
-        [TestCase(-140, 140, 2)]
-        [TestCase(-140, 140, 10)]
-        [TestCase(-140, 140, 30)]
-        [TestCase(-140, 140, double.PositiveInfinity)]
-        public void RenderNoStroke(double start, double end, double thickness)
-        {
-            var arc = new Arc
-            {
-                Minimum = 0,
-                Maximum = 10,
-                Fill = Brushes.Black,
-                Start = start,
-                End = end,
-                Thickness = thickness,
-            };
+        private static readonly IReadOnlyList<TestCase> RenderCases = TestCase.Create(
+            starts: new[] { -90.0, -140.0 },
+            ends: new[] { 90.0, 140.0 },
+            thicknesses: new[] { 0, 10, double.PositiveInfinity },
+            values: new[] { double.NaN, 0, 5, 10 },
+            strokeThicknesses: new[] { 0.0, 1 },
+            paddings: new[] { default(Thickness) })
+            .Where(x => !(DoubleUtil.IsZero(x.StrokeThickness) && DoubleUtil.IsZero(x.Thickness)))
+            .ToArray();
 
-            ImageAssert.AreEqual(GetFileName(arc), arc);
-        }
-
-        [TestCase(0, 90, 0, 2)]
-        [TestCase(0, 90, 2, 2)]
-        [TestCase(0, 90, 10, 2)]
-        [TestCase(0, 90, 30, 2)]
-        [TestCase(0, 90, double.PositiveInfinity, 2)]
-        [TestCase(-140, 140, 0, 2)]
-        [TestCase(-140, 140, 2, 2)]
-        [TestCase(-140, 140, 10, 2)]
-        [TestCase(-140, 140, 30, 2)]
-        [TestCase(-140, 140, double.PositiveInfinity, 2)]
-        public void RenderWithStroke(double start, double end, double thickness, double strokeThickness)
+        [TestCaseSource(nameof(RenderCases))]
+        public void RenderNoStroke(TestCase testCase)
         {
             var arc = new Arc
             {
                 Minimum = 0,
                 Maximum = 10,
                 Fill = Brushes.Red,
+                Start = testCase.Start,
+                End = testCase.End,
+                IsDirectionReversed = testCase.IsDirectionReversed,
+                Thickness = testCase.Thickness,
                 Stroke = Brushes.Black,
-                StrokeDashArray = new DoubleCollection(new[] { 0.0, 1 }),
-                StrokeDashCap = PenLineCap.Round,
-                Start = start,
-                End = end,
-                StrokeThickness = strokeThickness,
-                Thickness = thickness,
-            };
-
-            ImageAssert.AreEqual(GetFileName(arc), arc);
-        }
-
-        [TestCase(0, true, 0, 90, 10, 2)]
-        [TestCase(0, true, 0, 90, 2, 2)]
-        [TestCase(0, true, -140, 140, 10, 2)]
-        [TestCase(0, true, -140, 140, 2, 2)]
-        [TestCase(0, false, 0, 90, 10, 2)]
-        [TestCase(0, false, 0, 90, 2, 2)]
-        [TestCase(0, false, -140, 140, 10, 2)]
-        [TestCase(0, false, -140, 140, 2, 2)]
-        [TestCase(5, true, 0, 90, 10, 2)]
-        [TestCase(5, true, 0, 90, 2, 2)]
-        [TestCase(5, true, -140, 140, 10, 2)]
-        [TestCase(5, true, -140, 140, 2, 2)]
-        [TestCase(5, false, 0, 90, 10, 2)]
-        [TestCase(5, false, 0, 90, 2, 2)]
-        [TestCase(5, false, -140, 140, 10, 2)]
-        [TestCase(5, false, -140, 140, 2, 2)]
-        [TestCase(10, true, 0, 90, 10, 2)]
-        [TestCase(10, true, 0, 90, 2, 2)]
-        [TestCase(10, true, -140, 140, 10, 2)]
-        [TestCase(10, true, -140, 140, 2, 2)]
-        [TestCase(10, false, 0, 90, 10, 2)]
-        [TestCase(10, false, 0, 90, 2, 2)]
-        [TestCase(10, false, -140, 140, 10, 2)]
-        [TestCase(10, false, -140, 140, 2, 2)]
-        public void RenderWithStrokeAndValue(double value, bool isDirectionReversed, double start, double end, double thickness, double strokeThickness)
-        {
-            var arc = new Arc
-            {
-                Minimum = 0,
-                Maximum = 10,
-                Value = value,
-                IsDirectionReversed = isDirectionReversed,
-                Fill = Brushes.Red,
-                Thickness = thickness,
-                StrokeThickness = strokeThickness,
-                Stroke = Brushes.Black,
-                StrokeDashArray = new DoubleCollection(new[] { 0.0, 1 }),
-                StrokeDashCap = PenLineCap.Round,
-                Start = start,
-                End = end,
+                StrokeThickness = testCase.StrokeThickness,
+                StrokeStartLineCap = testCase.StrokeStartLineCap,
+                StrokeEndLineCap = testCase.StrokeEndLineCap,
+                StrokeDashCap = testCase.StrokeDashCap,
+                StrokeDashArray = testCase.StrokeDashArray,
+                Value = testCase.Value,
+                Padding = testCase.Padding
             };
 
             ImageAssert.AreEqual(GetFileName(arc), arc);
@@ -163,6 +101,101 @@
             arc.SaveImage(
                 new Size(30, 30),
                 Path.Combine(directory.FullName, GetFileName(arc)));
+        }
+
+        public class TestCase
+        {
+            public TestCase(
+                double start,
+                double end,
+                bool isDirectionReversed,
+                double thickness,
+                double value,
+                double strokeThickness,
+                Thickness padding)
+            {
+                this.Start = start;
+                this.End = end;
+                this.IsDirectionReversed = isDirectionReversed;
+                this.Thickness = thickness;
+                this.Value = value;
+                this.StrokeThickness = strokeThickness;
+                this.Padding = padding;
+            }
+
+            public double Start { get; }
+
+            public double End { get; }
+
+            public bool IsDirectionReversed { get; }
+
+            public double Thickness { get; }
+
+            public double Value { get; }
+
+            public double StrokeThickness { get; }
+
+            public Thickness Padding { get; }
+
+            public PenLineCap StrokeStartLineCap => this.StrokeThickness >= this.Thickness
+                ? PenLineCap.Round
+                : PenLineCap.Flat;
+
+            public PenLineCap StrokeEndLineCap => this.StrokeThickness >= this.Thickness
+                ? PenLineCap.Round
+                : PenLineCap.Flat;
+
+            public PenLineCap StrokeDashCap => this.StrokeThickness >= this.Thickness
+                ? PenLineCap.Round
+                : PenLineCap.Flat;
+
+            public DoubleCollection StrokeDashArray => this.StrokeThickness >= this.Thickness
+                ? new DoubleCollection(new[] { 0.0, 1.0 })
+                : null;
+
+            public static IEnumerable<TestCase> Create(
+                double[] starts,
+                double[] ends,
+                double[] thicknesses,
+                double[] values,
+                double[] strokeThicknesses,
+                Thickness[] paddings)
+            {
+                foreach (var start in starts)
+                {
+                    foreach (var end in ends)
+                    {
+                        foreach (var isDirectionReversed in new[] { true, false })
+                        {
+                            foreach (var thickness in thicknesses)
+                            {
+                                foreach (var value in values)
+                                {
+                                    foreach (var strokeThickness in strokeThicknesses)
+                                    {
+                                        foreach (var padding in paddings)
+                                        {
+                                            yield return new TestCase(
+                                                start: start,
+                                                end: end,
+                                                isDirectionReversed: isDirectionReversed,
+                                                thickness: thickness,
+                                                value: value,
+                                                strokeThickness: strokeThickness,
+                                                padding: padding);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            public override string ToString()
+            {
+                return $"{nameof(this.Start)}: {this.Start}, {nameof(this.End)}: {this.End}, {nameof(this.IsDirectionReversed)}: {this.IsDirectionReversed}, {nameof(this.Thickness)}: {this.Thickness}, {nameof(this.Value)}: {this.Value}, {nameof(this.StrokeThickness)}: {this.StrokeThickness}, {nameof(this.Padding)}: {this.Padding}, {nameof(this.StrokeStartLineCap)}: {this.StrokeStartLineCap}, {nameof(this.StrokeEndLineCap)}: {this.StrokeEndLineCap}, {nameof(this.StrokeDashCap)}: {this.StrokeDashCap}, {nameof(this.StrokeDashArray)}: {this.StrokeDashArray}";
+            }
         }
     }
 }

@@ -669,25 +669,6 @@
     <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_IsDirectionReversed_True_Padding_1,1,1,1_TickWidth_2_StrokeThickness_1_TickFrequency_1_Ticks__Vertical.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_10_StrokeThickness_1.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_10_StrokeThickness_2.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_2_StrokeThickness_1.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_2_StrokeThickness_2.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_0_End_90_Thickness_10_StrokeThickness_1.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_0_End_90_Thickness_10_StrokeThickness_2.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_0_End_90_Thickness_2_StrokeThickness_1.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_0_End_90_Thickness_2_StrokeThickness_2.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_0.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-140_End_140_Thickness_10_StrokeThickness_2.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-140_End_140_Thickness_2_StrokeThickness_2.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_0_End_90_Thickness_10_StrokeThickness_2.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_0_End_90_Thickness_2_StrokeThickness_2.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-140_End_140_Thickness_10_StrokeThickness_2.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-140_End_140_Thickness_2_StrokeThickness_2.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_0_End_90_Thickness_10_StrokeThickness_2.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_0_End_90_Thickness_2_StrokeThickness_2.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Primitives\Angular\RingImages\Ring_Thickness_0_StrokeThickness_0.png" />
     <EmbeddedResource Include="Primitives\Angular\RingImages\Ring_Thickness_0_StrokeThickness_1.png" />
     <EmbeddedResource Include="Primitives\Angular\RingImages\Ring_Thickness_1_StrokeThickness_0.png" />
@@ -696,20 +677,6 @@
     <EmbeddedResource Include="Primitives\Angular\RingImages\Ring_Thickness_25_StrokeThickness_1.png" />
     <EmbeddedResource Include="Primitives\Angular\RingImages\Ring_Thickness_INF_StrokeThickness_0.png" />
     <EmbeddedResource Include="Primitives\Angular\RingImages\Ring_Thickness_INF_StrokeThickness_1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_0_StrokeThickness_1.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_0_StrokeThickness_2.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_30_StrokeThickness_1.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_30_StrokeThickness_2.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_INF_StrokeThickness_1.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_INF_StrokeThickness_2.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_0_End_90_Thickness_0_StrokeThickness_1.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_0_End_90_Thickness_0_StrokeThickness_2.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_0_End_90_Thickness_30_StrokeThickness_1.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_0_End_90_Thickness_30_StrokeThickness_2.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_0_End_90_Thickness_INF_StrokeThickness_1.png" />
-    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_0_End_90_Thickness_INF_StrokeThickness_2.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Primitives\Angular\AngularTickbarImages\AngularTickBar_IsDirectionReversed_False_Padding_1_2_3_4_TickWidth_5_TickShape_Arc_StrokeThickness_1_Thickness_10_TickFrequency_1_Ticks_1.5.png" />
@@ -1018,6 +985,69 @@
     <EmbeddedResource Include="Primitives\Angular\AngularBlockBarImages\AngularBlockBar_IsDirectionReversed_False_Padding_1_2_3_4_TickGap_5_TickShape_Rectangle_StrokeThickness_1_Thickness_10_TickFrequency_1_Ticks_1.5.png" />
     <EmbeddedResource Include="Primitives\Angular\AngularBlockBarImages\AngularBlockBar_IsDirectionReversed_True_Padding_1_2_3_4_TickGap_5_TickShape_Arc_StrokeThickness_1_Thickness_10_TickFrequency_1_Ticks_1.5.png" />
     <EmbeddedResource Include="Primitives\Angular\AngularBlockBarImages\AngularBlockBar_IsDirectionReversed_True_Padding_1_2_3_4_TickGap_5_TickShape_Rectangle_StrokeThickness_1_Thickness_10_TickFrequency_1_Ticks_1.5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_0_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_10_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_10_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_inf_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_140_Thickness_inf_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_90_Thickness_0_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_90_Thickness_10_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_90_Thickness_10_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_90_Thickness_inf_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-140_End_90_Thickness_inf_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-90_End_140_Thickness_0_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-90_End_140_Thickness_10_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-90_End_140_Thickness_10_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-90_End_140_Thickness_inf_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-90_End_140_Thickness_inf_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-90_End_90_Thickness_0_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-90_End_90_Thickness_10_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-90_End_90_Thickness_10_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-90_End_90_Thickness_inf_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Start_-90_End_90_Thickness_inf_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-140_End_140_Thickness_0_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-140_End_140_Thickness_10_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-140_End_140_Thickness_10_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-140_End_140_Thickness_inf_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-140_End_140_Thickness_inf_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-140_End_90_Thickness_0_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-140_End_90_Thickness_10_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-140_End_90_Thickness_10_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-140_End_90_Thickness_inf_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-140_End_90_Thickness_inf_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-90_End_140_Thickness_0_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-90_End_140_Thickness_10_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-90_End_140_Thickness_10_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-90_End_140_Thickness_inf_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-90_End_140_Thickness_inf_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-90_End_90_Thickness_0_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-90_End_90_Thickness_10_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-90_End_90_Thickness_10_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-90_End_90_Thickness_inf_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_False_Start_-90_End_90_Thickness_inf_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-140_End_140_Thickness_0_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-140_End_140_Thickness_10_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-140_End_140_Thickness_10_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-140_End_140_Thickness_inf_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-140_End_140_Thickness_inf_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-140_End_90_Thickness_0_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-140_End_90_Thickness_10_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-140_End_90_Thickness_10_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-140_End_90_Thickness_inf_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-140_End_90_Thickness_inf_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-90_End_140_Thickness_0_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-90_End_140_Thickness_10_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-90_End_140_Thickness_10_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-90_End_140_Thickness_inf_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-90_End_140_Thickness_inf_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-90_End_90_Thickness_0_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-90_End_90_Thickness_10_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-90_End_90_Thickness_10_StrokeThickness_1.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-90_End_90_Thickness_inf_StrokeThickness_0.png" />
+    <EmbeddedResource Include="Primitives\Angular\ArcImages\Arc_Value_5_Min_0_Max_10_IsDirectionReversed_True_Start_-90_End_90_Thickness_inf_StrokeThickness_1.png" />
   </ItemGroup>
   <Import Project="..\.paket\paket.targets" />
 </Project>
