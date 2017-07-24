@@ -91,7 +91,14 @@
                         Value="{Binding Value}" />
 
             <Grid>
-                <gauges:Arc End="{Binding End}"
+                <gauges:Ring Grid.Column="0"
+                             Fill="Blue"
+                             Opacity="0.5"
+                             Stroke="Yellow"
+                             StrokeThickness="{Binding ElementName=Arc, Path=StrokeThickness}"
+                             Thickness="{Binding ElementName=Arc, Path=Thickness}" />
+                <gauges:Arc x:Name="Arc"
+                            End="{Binding End}"
                             Fill="Red"
                             IsDirectionReversed="{Binding IsDirectionReversed}"
                             Maximum="{Binding Maximum}"
@@ -100,16 +107,8 @@
                             Start="-180"
                             Stroke="Black"
                             StrokeThickness="{Binding StrokeThickness}"
-                            Thickness="0"
+                            Thickness="5"
                             Value="{Binding Value}" />
-
-                <gauges:Ring Grid.Column="0"
-                             Fill="Blue"
-                             Opacity="0.5"
-                             Stroke="Yellow"
-                             StrokeThickness="{Binding StrokeThickness}"
-                             Thickness="{Binding Thickness}" />
-
             </Grid>
 
             <Rectangle Stroke="Black"
