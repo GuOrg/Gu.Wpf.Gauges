@@ -4,7 +4,6 @@ namespace Gu.Wpf.Gauges
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
-    using Gu.Wpf.Gauges.Primitives.Linear;
 
     public class LinearLineBar : LineBar
     {
@@ -150,7 +149,7 @@ namespace Gu.Wpf.Gauges
         protected override void OnRender(DrawingContext dc)
         {
             if (this.Pen == null ||
-                this.EffectiveValue == this.Minimum)
+               DoubleUtil.AreClose(this.EffectiveValue, this.Minimum))
             {
                 return;
             }

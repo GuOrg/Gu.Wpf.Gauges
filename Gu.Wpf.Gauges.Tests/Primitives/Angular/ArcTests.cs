@@ -1,12 +1,11 @@
 ﻿namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
     using System.Threading;
     using System.Windows;
     using System.Windows.Media;
-    using Gu.Wpf.Gauges.Tests.Helpers;
-    using Gu.Wpf.Gauges.Tests.TestHelpers;
     using NUnit.Framework;
 
     [Apartment(ApartmentState.STA)]
@@ -157,6 +156,7 @@
                 : $"Arc_Value_{arc.Value}_Min_{arc.Minimum}_Max_{arc.Maximum}_IsDirectionReversed_{arc.IsDirectionReversed}_Start_{arc.Start}_End_{arc.End}_Thickness_{thickness}_StrokeThickness_{arc.StrokeThickness}.png";
         }
 
+        [SuppressMessage("ReSharper", "UnusedMember.Local")]
         private static void SaveImage(Arc arc)
         {
             var directory = Directory.CreateDirectory($@"C:\Temp\Arc");

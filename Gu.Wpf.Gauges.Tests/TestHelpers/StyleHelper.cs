@@ -1,8 +1,9 @@
-﻿namespace Gu.Wpf.Gauges.Tests.TestHelpers
+﻿namespace Gu.Wpf.Gauges.Tests
 {
     using System;
     using System.Collections;
     using System.Collections.Concurrent;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Resources;
@@ -20,6 +21,7 @@
             return Cache.GetOrAdd(typeof(T), ReadDefaultStyle);
         }
 
+        [SuppressMessage("ReSharper", "AssignNullToNotNullAttribute")]
         private static Style ReadDefaultStyle(Type type)
         {
             var assembly = type.Assembly;

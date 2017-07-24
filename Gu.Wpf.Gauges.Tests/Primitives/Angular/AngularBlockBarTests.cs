@@ -1,14 +1,13 @@
 namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
     using System.Linq;
     using System.Threading;
     using System.Windows;
     using System.Windows.Media;
-    using Gu.Wpf.Gauges.Tests.Helpers;
-    using Gu.Wpf.Gauges.Tests.TestHelpers;
     using NUnit.Framework;
 
     [Apartment(ApartmentState.STA)]
@@ -140,6 +139,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
                 .Replace(" ", "_");
         }
 
+        [SuppressMessage("ReSharper", "UnusedMember.Local")]
         private static void SaveImage(AngularBlockBar tickBar)
         {
             Directory.CreateDirectory(@"C:\Temp\AngularBlockBar");

@@ -5,7 +5,6 @@ namespace Gu.Wpf.Gauges.Tests.Indicators
     using System.Threading;
     using System.Windows;
     using System.Windows.Controls.Primitives;
-    using Gu.Wpf.Gauges.Tests.TestHelpers;
     using NUnit.Framework;
 
     [Apartment(ApartmentState.STA)]

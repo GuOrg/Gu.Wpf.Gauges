@@ -81,10 +81,10 @@ public class PropertyMetaData
 {
     public PropertyMetaData(string name, string type, string defaultValue, bool notifyOnChange = false)
     {
-        Name = name;
-        Type = type;
-        DefaultValue = defaultValue ?? $"default({type})";
-        NotifyOnChange = notifyOnChange;
+        this.Name = name;
+        this.Type = type;
+        this.DefaultValue = defaultValue ?? $"default({type})";
+        this.NotifyOnChange = notifyOnChange;
     }
 
     public string Name { get; }

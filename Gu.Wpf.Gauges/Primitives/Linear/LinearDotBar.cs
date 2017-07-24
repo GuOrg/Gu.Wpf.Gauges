@@ -78,7 +78,7 @@
         {
             if ((this.Pen == null && this.Fill == null) ||
                 this.AllTicks == null ||
-                this.EffectiveValue == this.Minimum)
+                DoubleUtil.AreClose(this.EffectiveValue, this.Minimum))
             {
                 return;
             }

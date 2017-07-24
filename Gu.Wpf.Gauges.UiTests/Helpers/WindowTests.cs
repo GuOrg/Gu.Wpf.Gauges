@@ -9,14 +9,15 @@ namespace Gu.Wpf.Gauges.UiTests
     {
         private readonly Application app;
         private readonly UIA3Automation automation;
-        private Window window;
 
         protected WindowTests(string windowName)
         {
             this.app = Application.Launch(Info.CreateStartInfo(windowName));
             this.automation = new UIA3Automation();
-            this.window = this.app.GetMainWindow(this.automation);
+            this.Window = this.app.GetMainWindow(this.automation);
         }
+
+        public Window Window { get; }
 
         public void Dispose()
         {

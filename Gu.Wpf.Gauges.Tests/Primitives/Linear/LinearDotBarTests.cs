@@ -1,12 +1,11 @@
 namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Threading;
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
-    using Gu.Wpf.Gauges.Tests.Helpers;
-    using Gu.Wpf.Gauges.Tests.TestHelpers;
     using NUnit.Framework;
 
     [Apartment(ApartmentState.STA)]
@@ -124,6 +123,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 .Replace(" ", "_");
         }
 
+        [SuppressMessage("ReSharper", "UnusedMember.Local")]
         private static void SaveImage(LinearDotBar tickBar)
         {
             var size = tickBar.Placement.IsHorizontal()

@@ -1,12 +1,11 @@
 namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Threading;
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
-    using Gu.Wpf.Gauges.Tests.Helpers;
-    using Gu.Wpf.Gauges.Tests.TestHelpers;
     using NUnit.Framework;
 
     [Apartment(ApartmentState.STA)]
@@ -283,10 +282,10 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 ? string.Empty
                 : $"_Padding_{tickBar.Padding}";
 
-            var value = double.IsNaN(tickBar.Value) || tickBar.Value == tickBar.Maximum
+            var value = double.IsNaN(tickBar.Value) || DoubleUtil.AreClose(tickBar.Value, tickBar.Maximum)
                 ? string.Empty
                 : $"_Value_{tickBar.Value}";
-            if (tickBar.Value == 0)
+            if (DoubleUtil.AreClose(tickBar.Value, 0))
             {
                 return $"LinearTickBar_Value_0{orientation}.png";
             }
@@ -295,6 +294,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 .Replace(" ", "_");
         }
 
+        [SuppressMessage("ReSharper", "UnusedMember.Local")]
         private static void SaveImage(LinearTickBar tickBar)
         {
             var size = tickBar.Placement == TickBarPlacement.Left || tickBar.Placement == TickBarPlacement.Right

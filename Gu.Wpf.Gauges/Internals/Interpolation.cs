@@ -19,17 +19,17 @@
             return new Interpolation(this.Value.Clamp(min, max));
         }
 
-        public double Interpolate(double min, double max) => Gu.Wpf.Gauges.Interpolate.Linear(min, max, this);
+        public double Interpolate(double min, double max) => Gauges.Interpolate.Linear(min, max, this);
 
         public double Interpolate(double min, double max, bool isDirectionReversed) => isDirectionReversed
-            ? Gu.Wpf.Gauges.Interpolate.Linear(max, min, this)
-            : Gu.Wpf.Gauges.Interpolate.Linear(min, max, this);
+            ? Gauges.Interpolate.Linear(max, min, this)
+            : Gauges.Interpolate.Linear(min, max, this);
 
         public Point Interpolate(ArcInfo arc, bool isDirectionReversed)
         {
             var angle = isDirectionReversed
-                ? Gu.Wpf.Gauges.Interpolate.Linear(arc.EndAngle, arc.StartAngle, this)
-                : Gu.Wpf.Gauges.Interpolate.Linear(arc.StartAngle, arc.EndAngle, this);
+                ? Gauges.Interpolate.Linear(arc.EndAngle, arc.StartAngle, this)
+                : Gauges.Interpolate.Linear(arc.StartAngle, arc.EndAngle, this);
             return arc.GetPoint(angle);
         }
 

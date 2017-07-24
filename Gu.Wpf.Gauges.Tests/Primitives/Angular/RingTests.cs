@@ -1,11 +1,11 @@
 ﻿namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
     using System.IO;
     using System.Threading;
     using System.Windows;
     using System.Windows.Media;
-    using Gu.Wpf.Gauges.Tests.TestHelpers;
     using NUnit.Framework;
 
     [Apartment(ApartmentState.STA)]
@@ -53,6 +53,7 @@
             return $"Ring_Thickness_{(double.IsInfinity(ring.Thickness) ? "inf" : ring.Thickness.ToString(CultureInfo.InvariantCulture))}_StrokeThickness_{ring.StrokeThickness}.png";
         }
 
+        [SuppressMessage("ReSharper", "UnusedMember.Local")]
         private static void SaveImage(Ring ring)
         {
             var directory = Directory.CreateDirectory($@"C:\Temp\Ring");

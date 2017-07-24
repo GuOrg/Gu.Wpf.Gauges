@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using System.Windows;
-    using Gu.Wpf.Gauges.Tests.Helpers;
     using NUnit.Framework;
 
     public class ArcInfoTests

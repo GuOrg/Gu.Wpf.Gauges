@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Gauges.Primitives.Linear
+﻿namespace Gu.Wpf.Gauges
 {
     using System.Windows;
     using System.Windows.Media;

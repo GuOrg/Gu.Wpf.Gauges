@@ -2,7 +2,6 @@ namespace Gu.Wpf.Gauges
 {
     using System.Windows;
     using System.Windows.Controls.Primitives;
-    using Gu.Wpf.Gauges.Primitives.Linear;
 
     public abstract class LinearGeometryBar : GeometryTickBar
     {

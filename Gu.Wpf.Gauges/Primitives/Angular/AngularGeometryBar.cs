@@ -2,7 +2,6 @@ namespace Gu.Wpf.Gauges
 {
     using System.Windows;
     using System.Windows.Media;
-    using Gu.Wpf.Gauges.Primitives.Linear;
 
     public abstract class AngularGeometryBar : GeometryBar
     {

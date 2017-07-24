@@ -8,8 +8,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
     using System.Threading;
     using System.Windows;
     using System.Windows.Media;
-    using Gu.Wpf.Gauges.Tests.Helpers;
-    using Gu.Wpf.Gauges.Tests.TestHelpers;
     using NUnit.Framework;
 
     [Apartment(ApartmentState.STA)]

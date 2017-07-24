@@ -29,6 +29,7 @@ namespace Gu.Wpf.Gauges
 
         internal static bool AreClose(double value1, double value2)
         {
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
             if (value1 == value2)
             {
                 return true;

@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Gauges.Tests.TestHelpers
+﻿namespace Gu.Wpf.Gauges.Tests
 {
     using System;
     using System.Diagnostics;
@@ -23,6 +23,7 @@
             Assert.NotNull(name, $"Did not find a resource named {fileName}");
             using (var stream = assembly.GetManifestResourceStream(name))
             {
+                Assert.NotNull(stream);
                 using (var expected = (Bitmap)Image.FromStream(stream))
                 {
                     AreEqual(expected, tickBar);
@@ -216,32 +217,9 @@
             {
                 case System.Drawing.Imaging.PixelFormat.Format32bppArgb:
                     return PixelFormats.Pbgra32;
-                case System.Drawing.Imaging.PixelFormat.Format32bppPArgb:
-                case System.Drawing.Imaging.PixelFormat.Indexed:
-                case System.Drawing.Imaging.PixelFormat.Gdi:
-                case System.Drawing.Imaging.PixelFormat.Alpha:
-                case System.Drawing.Imaging.PixelFormat.PAlpha:
-                case System.Drawing.Imaging.PixelFormat.Extended:
-                case System.Drawing.Imaging.PixelFormat.Canonical:
-                case System.Drawing.Imaging.PixelFormat.Undefined:
-                case System.Drawing.Imaging.PixelFormat.Format1bppIndexed:
-                case System.Drawing.Imaging.PixelFormat.Format4bppIndexed:
-                case System.Drawing.Imaging.PixelFormat.Format8bppIndexed:
-                case System.Drawing.Imaging.PixelFormat.Format16bppGrayScale:
-                case System.Drawing.Imaging.PixelFormat.Format16bppRgb555:
-                case System.Drawing.Imaging.PixelFormat.Format16bppRgb565:
-                case System.Drawing.Imaging.PixelFormat.Format16bppArgb1555:
-                case System.Drawing.Imaging.PixelFormat.Format24bppRgb:
-                case System.Drawing.Imaging.PixelFormat.Format32bppRgb:
-                case System.Drawing.Imaging.PixelFormat.Format48bppRgb:
-                case System.Drawing.Imaging.PixelFormat.Format64bppArgb:
-                case System.Drawing.Imaging.PixelFormat.Format64bppPArgb:
-                case System.Drawing.Imaging.PixelFormat.Max:
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            throw new ArgumentOutOfRangeException();
         }
     }
 }

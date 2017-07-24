@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Gauges.Tests.TestHelpers
+﻿namespace Gu.Wpf.Gauges.Tests
 {
     using System.Drawing;
     using System.IO;
@@ -19,7 +19,7 @@
 
         public BitmapSource Actual { get; }
 
-        private static BitmapSource CreateBitmapSource(System.Drawing.Bitmap bitmap)
+        private static BitmapSource CreateBitmapSource(Bitmap bitmap)
         {
             using (var memory = new MemoryStream())
             {

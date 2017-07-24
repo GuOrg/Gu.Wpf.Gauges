@@ -5,7 +5,6 @@
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
-    using Gu.Wpf.Gauges.Primitives.Linear;
 
     /// <summary>
     /// Linear tick bar that renders ticks as text.

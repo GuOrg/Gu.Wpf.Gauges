@@ -1,4 +1,4 @@
-namespace Gu.Wpf.Gauges.Tests.Helpers
+namespace Gu.Wpf.Gauges.Tests
 {
     using System;
     using System.Globalization;

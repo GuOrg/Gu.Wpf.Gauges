@@ -152,7 +152,7 @@
         /// </summary>
         /// <param name="value"></param>
         /// <param name="finalSize"></param>
-        /// <returns></returns>
+        /// <param name="textBar">The <see cref="LinearTextBar"/> to generate the tick for.</param>
         protected virtual double PixelPosition(double value, Size finalSize, LinearTextBar textBar)
         {
             var step = Interpolate.Linear(textBar.Minimum, textBar.Maximum, value)

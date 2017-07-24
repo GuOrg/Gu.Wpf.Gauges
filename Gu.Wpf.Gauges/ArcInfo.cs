@@ -102,9 +102,9 @@
 
         public static bool TryGetCenterAndRadius(Size size, double startAngle, double endAngle, out Point center, out double radius)
         {
-            if (size.Width == 0 ||
+            if (DoubleUtil.IsZero(size.Width) ||
                 double.IsNaN(size.Width) ||
-                size.Height == 0 ||
+                DoubleUtil.IsZero(size.Height) ||
                 double.IsNaN(size.Height))
             {
                 center = default(Point);
@@ -117,9 +117,9 @@
 
         public static bool TryGetCenterAndRadius(Rect bounds, double startAngle, double endAngle, out Point center, out double radius)
         {
-            if (bounds.Width == 0 ||
+            if (DoubleUtil.IsZero(bounds.Width) ||
                 double.IsNaN(bounds.Width) ||
-                bounds.Height == 0 ||
+                DoubleUtil.IsZero(bounds.Height) ||
                 double.IsNaN(bounds.Height))
             {
                 center = default(Point);

@@ -1,9 +1,9 @@
 ﻿namespace Gu.Wpf.Gauges
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Controls.Primitives;
-    using Gu.Wpf.Gauges.Primitives.Linear;
 
     public class LinearIndicator : ValueIndicator
     {
@@ -23,8 +23,6 @@
 
         public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
 #pragma warning restore SA1202 // Elements must be ordered by access
-
-        private static readonly PropertyPath ValuePropertyPath = new PropertyPath(Gauge.ValueProperty);
 
         static LinearIndicator()
         {
@@ -120,6 +118,7 @@
             }
         }
 
+        [SuppressMessage("ReSharper", "UnusedParameter.Global")]
         protected virtual void OnPlacementChanged(TickBarPlacement oldValue, TickBarPlacement newValue)
         {
         }

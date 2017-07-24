@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using System.Windows;
-    using Gu.Wpf.Gauges.Tests.TestHelpers;
     using NUnit.Framework;
 
     public class TickHelperTests

@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Gauges.Tests.TestHelpers
+﻿namespace Gu.Wpf.Gauges.Tests
 {
     using System.Collections.Generic;
 
