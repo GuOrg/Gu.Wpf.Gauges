@@ -275,11 +275,11 @@
                 this.EndAngle + delta);
         }
 
-        public PathFigure CreateArcPathFigure(double fromAngle, double toAngle, double thickness, double strokeThickness)
+        public PathFigure CreateArcPathFigure(double startAngle, double endAngle, double thickness, double strokeThickness)
         {
             if (strokeThickness > thickness)
             {
-                return this.CreateArcPathFigure(fromAngle, toAngle, thickness, 0);
+                return this.CreateArcPathFigure(startAngle, endAngle, thickness, 0);
             }
 
             if (double.IsInfinity(strokeThickness))
@@ -287,11 +287,11 @@
                 strokeThickness = 0;
             }
 
-            var op1 = this.GetPointAtRadiusOffset(fromAngle, -strokeThickness / 2);
+            var op1 = this.GetPointAtRadiusOffset(startAngle, -strokeThickness / 2);
             var figure = new PathFigure { StartPoint = op1 };
             var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
             var ro = this.Radius - (strokeThickness / 2);
-            figure.Segments.Add(this.CreateArcSegment(fromAngle, toAngle, ro, isStroked));
+            figure.Segments.Add(this.CreateArcSegment(startAngle, endAngle, ro, isStroked));
             if (DoubleUtil.LessThanOrClose(thickness, strokeThickness))
             {
                 figure.IsClosed = false;
@@ -301,15 +301,14 @@
 
             var ip2 = double.IsInfinity(thickness)
                 ? this.Center
-                : this.GetPointAtRadiusOffset(toAngle, (strokeThickness / 2) - thickness);
+                : this.GetPointAtRadiusOffset(endAngle, (strokeThickness / 2) - thickness);
             figure.Segments.Add(new LineSegment(ip2, isStroked));
             if (thickness < this.Radius)
             {
                 var ri = this.Radius - thickness + (strokeThickness / 2);
-                figure.Segments.Add(this.CreateArcSegment(toAngle, fromAngle, ri, isStroked));
+                figure.Segments.Add(this.CreateArcSegment(endAngle, startAngle, ri, isStroked));
             }
 
-            figure.Segments.Add(new LineSegment(op1, isStroked));
             figure.IsClosed = true;
             return figure;
         }

@@ -8,21 +8,23 @@
         SizeToContent="WidthAndHeight"
         mc:Ignorable="d">
     <Grid Margin="2">
-        <!--<gauges:Ring Fill="Blue"
-                     Stroke="YellowGreen"
-                     StrokeThickness="{Binding ElementName=RecTickBar, Path=StrokeThickness}"
-                     Thickness="{Binding ElementName=RecTickBar, Path=Thickness}" />-->
-        <gauges:AngularTickBar x:Name="RecTickBar"
-                               Fill="Red"
-                               Maximum="10"
-                               Minimum="0"
-                               Start="-180"
-                               Stroke="Black"
-                               StrokeThickness="1"
-                               Thickness="Infinity"
-                               TickFrequency="2.5"
-                               TickShape="Arc"
-                               TickWidth="8" />
+        <gauges:Ring Fill="Blue"
+                     Stroke="GreenYellow"
+                     StrokeThickness="{Binding ElementName=ArcTickBar, Path=StrokeThickness}"
+                     Thickness="{Binding ElementName=ArcTickBar, Path=Thickness}" />
+        <gauges:AngularBlockBar x:Name="ArcTickBar"
+                                End="140"
+                                Fill="Red"
+                                IsDirectionReversed="False"
+                                Maximum="10"
+                                Minimum="0"
+                                Start="-180"
+                                Stroke="Black"
+                                StrokeThickness="1"
+                                Thickness="Infinity"
+                                TickFrequency="5"
+                                TickGap="1"
+                                TickShape="Rectangle" />
 
     </Grid>
 </Window>

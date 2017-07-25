@@ -14,24 +14,24 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
     public class AngularBlockBarTests
     {
         private static readonly IReadOnlyList<TestCase> RenderCases = TestCase.Create(
-                                                                                  thicknesses: new[] { 10.0 },
-                                                                                  values: new[] { double.NaN, 0, 5, 10 },
-                                                                                  tickGaps: new[] { 1.0, 5 },
-                                                                                  strokeThicknesses: new[] { 0.0, 1 },
-                                                                                  tickFrequencies: new[] { 0, 5.0 },
-                                                                                  tickCollections: new[] { null, (DoubleCollection)new DoubleCollection(new[] { 1.0, 2, 6 }).GetCurrentValueAsFrozen() },
-                                                                                  paddings: new[] { default(Thickness) })
+            thicknesses: new[] { 10.0 },
+            values: new[] { double.NaN, 0, 5, 10 },
+            tickGaps: new[] { 1.0, 5 },
+            strokeThicknesses: new[] { 0.0, 1 },
+            tickFrequencies: new[] { 0, 5.0 },
+            tickCollections: new[] { null, (DoubleCollection)new DoubleCollection(new[] { 1.0, 2, 6 }).GetCurrentValueAsFrozen() },
+            paddings: new[] { default(Thickness) })
                                                                               .Where(x => !(x.TickFrequency <= 0 && x.Ticks == null))
                                                                               .ToArray();
 
         private static readonly IReadOnlyList<TestCase> RenderWithPaddingCases = TestCase.Create(
-                                                                                             thicknesses: new[] { 10.0 },
-                                                                                             values: new[] { double.NaN },
-                                                                                             tickGaps: new[] { 5.0 },
-                                                                                             strokeThicknesses: new[] { 1.0 },
-                                                                                             tickFrequencies: new[] { 1.0 },
-                                                                                             tickCollections: new[] { (DoubleCollection)new DoubleCollection(new[] { 1.5, }).GetCurrentValueAsFrozen() },
-                                                                                             paddings: new[] { new Thickness(1, 2, 3, 4), })
+            thicknesses: new[] { 10.0 },
+            values: new[] { double.NaN },
+            tickGaps: new[] { 5.0 },
+            strokeThicknesses: new[] { 1.0 },
+            tickFrequencies: new[] { 1.0 },
+            tickCollections: new[] { (DoubleCollection)new DoubleCollection(new[] { 1.5, }).GetCurrentValueAsFrozen() },
+            paddings: new[] { new Thickness(1, 2, 3, 4), })
                                                                                          .ToArray();
 
         [TestCaseSource(nameof(RenderCases))]

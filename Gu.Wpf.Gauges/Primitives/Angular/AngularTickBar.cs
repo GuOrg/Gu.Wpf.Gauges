@@ -93,20 +93,20 @@ namespace Gu.Wpf.Gauges
                     return arc.CreateArcPathFigure(startAngle, endAngle, thickness, strokeThickness);
                 case TickShape.Rectangle:
                     {
-                        var po1 = arc.GetPointAtRadiusOffset(startAngle, -strokeThickness / 2);
-                        var po2 = arc.GetPointAtRadiusOffset(endAngle, -strokeThickness / 2);
-                        var ip = arc.GetPointAtRadiusOffset((startAngle + endAngle) / 2, -thickness + (strokeThickness / 2));
-                        var v = po1 - po2;
-                        var pi1 = ip - (v / 2);
-                        var pi2 = pi1 + v;
+                        var outerStartPoint = arc.GetPointAtRadiusOffset(startAngle, -strokeThickness / 2);
+                        var outerEndPoint = arc.GetPointAtRadiusOffset(endAngle, -strokeThickness / 2);
+                        var innerCenterPoint = arc.GetPointAtRadiusOffset((startAngle + endAngle) / 2, -thickness + (strokeThickness / 2));
+                        var v = outerStartPoint - outerEndPoint;
+                        var innerStartPoint = innerCenterPoint - (v / 2);
+                        var innerEndPoint = innerStartPoint + v;
                         var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
                         return new PathFigure(
-                            pi2,
+                            innerEndPoint,
                             new[]
                             {
-                            new LineSegment(po1, isStroked),
-                            new LineSegment(po2, isStroked),
-                            new LineSegment(pi1, isStroked),
+                            new LineSegment(outerStartPoint, isStroked),
+                            new LineSegment(outerEndPoint, isStroked),
+                            new LineSegment(innerStartPoint, isStroked),
                             },
                             closed: true);
                     }
@@ -138,7 +138,6 @@ namespace Gu.Wpf.Gauges
                                 ai2,
                                 ri,
                                 strokeThickness > 0),
-                            new LineSegment(po1, isStroked),
                             },
                             closed: true);
                     }

@@ -17,7 +17,7 @@
                                  Maximum="100"
                                  Minimum="0"
                                  Start="-140"
-                                 Thickness="10"
+                                 Thickness="5"
                                  TickGap="1"
                                  Value="100" />
     </Window.DataContext>
@@ -73,12 +73,12 @@
                                         Start="-180"
                                         Stroke="Black"
                                         StrokeThickness="{Binding StrokeThickness}"
-                                        Thickness="10"
+                                        Thickness="{Binding Thickness}"
                                         TickFrequency="{Binding MajorTickFrequency}"
                                         TickGap="{Binding TickGap}"
                                         TickShape="Arc"
                                         Ticks="{Binding MajorTicks}"
-                                        Value="100" />
+                                        Value="{Binding Value}" />
 
             </Grid>
 
@@ -119,7 +119,7 @@
                                         Start="-180"
                                         Stroke="Black"
                                         StrokeThickness="1"
-                                        Thickness="10"
+                                        Thickness="{Binding Thickness}"
                                         TickFrequency="{Binding MajorTickFrequency}"
                                         TickGap="{Binding TickGap}"
                                         TickShape="RingSection"

@@ -44,7 +44,13 @@ namespace Gu.Wpf.Gauges
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            var thickness = Math.Max(Math.Abs(this.Thickness), this.GetStrokeThickness());
+            var strokeThickness = this.GetStrokeThickness();
+            var thickness = Math.Max(Math.Abs(this.Thickness), strokeThickness);
+            if (double.IsInfinity(thickness))
+            {
+                return new Size(strokeThickness, strokeThickness);
+            }
+
             return new Size(thickness, thickness);
         }
 
@@ -66,56 +72,97 @@ namespace Gu.Wpf.Gauges
             }
 
             var arc = ArcInfo.Fit(this.RenderSize, this.Padding, this.Start, this.End);
-            var value = this.EffectiveValue;
+            var effectiveValue = this.EffectiveValue;
             var strokeThickness = this.GetStrokeThickness();
-            var effectiveAngle = Interpolate.Linear(this.Minimum, this.Maximum, this.EffectiveValue)
-                .Interpolate(this.Start, this.End, this.IsDirectionReversed);
-
-            var gapsGeometry = new PathGeometry();
+            var ticksGeometry = new PathGeometry();
+            var prevoius = this.Minimum;
             foreach (var tick in this.AllTicks)
             {
                 if (DoubleUtil.AreClose(tick, this.Minimum) ||
-                    DoubleUtil.AreClose(tick, this.Maximum))
+                    DoubleUtil.AreClose(tick, prevoius))
                 {
                     continue;
                 }
 
-                gapsGeometry.Figures.Add(this.CreateTickGap(arc, tick, strokeThickness));
-                if (tick > value)
+                ticksGeometry.Figures.Add(this.CreateTick(arc, prevoius, Math.Min(effectiveValue, tick), strokeThickness));
+                prevoius = tick;
+                if (tick >= effectiveValue)
                 {
                     break;
                 }
             }
 
-            var arcGeometry = Arc.CreateGeometry(
-                arc,
-                this.IsDirectionReversed ? this.End : this.Start,
-                effectiveAngle,
-                this.Thickness,
-                strokeThickness);
-            //dc.DrawGeometry(this.Fill, this.Pen, arcGeometry);
-            //dc.DrawGeometry(Brushes.HotPink, null, gapsGeometry);
-            dc.DrawGeometry(
-                this.Fill,
-                this.Pen,
-                new CombinedGeometry(GeometryCombineMode.Exclude, arcGeometry, gapsGeometry));
+            if (prevoius < effectiveValue)
+            {
+                ticksGeometry.Figures.Add(this.CreateTick(arc, prevoius, effectiveValue, strokeThickness));
+            }
+
+            dc.DrawGeometry(this.Fill, this.Pen, ticksGeometry);
         }
 
-        protected virtual PathFigure CreateTickGap(ArcInfo arc, double value, double strokeThickness)
+        protected virtual PathFigure CreateTick(ArcInfo arc, double from, double value, double strokeThickness)
         {
-            var interpolation = Interpolate.Linear(this.Minimum, this.Maximum, value)
-                                           .Clamp(0, 1);
-            var angle = interpolation.Interpolate(this.Start, this.End, this.IsDirectionReversed);
-            switch (this.TickShape)
+            double Adjust(double angle, double gap)
             {
-                case TickShape.Arc:
-                    return AngularTickBar.CreateTick(arc, angle, this.TickShape, this.TickGap + strokeThickness, this.Thickness, 0);
-                case TickShape.Rectangle:
-                case TickShape.RingSection:
-                    return AngularTickBar.CreateTick(arc, angle, TickShape.RingSection, this.TickGap + strokeThickness, this.Thickness, 0);
-                default:
-                    throw new ArgumentOutOfRangeException();
+                if (this.IsDirectionReversed)
+                {
+                    gap = -gap;
+                }
+
+                return DoubleUtil.AreClose(angle, this.Start) ||
+                       DoubleUtil.AreClose(angle, this.End)
+                    ? angle
+                    : (angle + gap).Clamp(this.Start, this.End);
             }
+
+            var startAngle = Interpolate.Linear(this.Minimum, this.Maximum, @from)
+                                        .Interpolate(this.Start, this.End, this.IsDirectionReversed);
+
+            var endAngle = Interpolate.Linear(this.Minimum, this.Maximum, value)
+                                      .Interpolate(this.Start, this.End, this.IsDirectionReversed);
+
+            var w = (this.TickGap + strokeThickness) / 2;
+            if (this.TickShape == TickShape.Arc)
+            {
+                var gapAngle = arc.GetDelta(w);
+                return AngularTickBar.CreateTick(
+                    arc,
+                    Adjust(startAngle, gapAngle),
+                    Adjust(endAngle, -gapAngle),
+                    this.TickShape,
+                    this.Thickness,
+                    strokeThickness);
+            }
+
+            var innerRadius = Math.Max(0, arc.Radius - this.Thickness + (strokeThickness / 2));
+            var innerGapAngle = arc.GetDelta(w, innerRadius);
+            var innerStartAngle = Adjust(startAngle, innerGapAngle);
+            var innerEndAngle = Adjust(endAngle, -innerGapAngle);
+            var innerEndPoint = arc.GetPointAtRadius(innerEndAngle, innerRadius);
+
+            var outerRadius = Math.Max(0, arc.Radius - (strokeThickness / 2));
+            var outerGapAngle = arc.GetDelta(w, outerRadius);
+            var outerStartAngle = Adjust(startAngle, outerGapAngle);
+            var outerEndAngle = Adjust(endAngle, -outerGapAngle);
+            var outerStartPoint = arc.GetPointAtRadius(outerStartAngle, outerRadius);
+            var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
+            return new PathFigure(
+                outerStartPoint,
+                new PathSegment[]
+                {
+                    arc.CreateArcSegment(
+                        outerStartAngle,
+                        outerEndAngle,
+                        outerRadius,
+                        strokeThickness > 0),
+                    new LineSegment(innerEndPoint, isStroked),
+                    arc.CreateArcSegment(
+                        innerEndAngle,
+                        innerStartAngle,
+                        innerRadius,
+                        strokeThickness > 0),
+                },
+                closed: true);
         }
     }
 }
