@@ -68,27 +68,34 @@ namespace Gu.Wpf.Gauges
             double thickness,
             double strokeThickness)
         {
+            var w = tickWidth - strokeThickness;
+            var delta = arc.GetDelta(w / 2);
+            if (!IsFilledCore(tickWidth, thickness, strokeThickness) &&
+                tickShape == TickShape.Arc)
+            {
+                return arc.CreateArcPathFigure(angle - delta, angle + delta, thickness, strokeThickness);
+            }
+
+            return CreateTick(arc, angle - delta, angle + delta, tickShape, thickness, strokeThickness);
+        }
+
+        public static PathFigure CreateTick(
+            ArcInfo arc,
+            double startAngle,
+            double endAngle,
+            TickShape tickShape,
+            double thickness,
+            double strokeThickness)
+        {
             switch (tickShape)
             {
                 case TickShape.Arc:
-                    if (IsFilledCore(tickWidth, thickness, strokeThickness))
-                    {
-                        var delta = arc.GetDelta((tickWidth - strokeThickness) / 2);
-                        return arc.CreateArcPathFigure(angle - delta, angle + delta, thickness, strokeThickness);
-                    }
-                    else
-                    {
-                        var delta = arc.GetDelta(tickWidth / 2);
-                        return arc.CreateArcPathFigure(angle - delta, angle + delta, thickness, 0);
-                    }
-
+                    return arc.CreateArcPathFigure(startAngle, endAngle, thickness, strokeThickness);
                 case TickShape.Rectangle:
                     {
-                        var w = tickWidth - strokeThickness;
-                        var delta = arc.GetDelta(w / 2);
-                        var po1 = arc.GetPointAtRadiusOffset(angle - delta, -strokeThickness / 2);
-                        var po2 = arc.GetPointAtRadiusOffset(angle + delta, -strokeThickness / 2);
-                        var ip = arc.GetPointAtRadiusOffset(angle, -thickness + (strokeThickness / 2));
+                        var po1 = arc.GetPointAtRadiusOffset(startAngle, -strokeThickness / 2);
+                        var po2 = arc.GetPointAtRadiusOffset(endAngle, -strokeThickness / 2);
+                        var ip = arc.GetPointAtRadiusOffset((startAngle + endAngle) / 2, -thickness + (strokeThickness / 2));
                         var v = po1 - po2;
                         var pi1 = ip - (v / 2);
                         var pi2 = pi1 + v;
@@ -100,23 +107,20 @@ namespace Gu.Wpf.Gauges
                             new LineSegment(po1, isStroked),
                             new LineSegment(po2, isStroked),
                             new LineSegment(pi1, isStroked),
-                            new LineSegment(pi2, isStroked),
                             },
                             closed: true);
                     }
 
                 case TickShape.RingSection:
                     {
-                        var w = tickWidth - strokeThickness;
-                        var deltaO = arc.GetDelta(w / 2);
-                        var po1 = arc.GetPointAtRadiusOffset(angle - deltaO, -strokeThickness / 2);
-                        var po2 = arc.GetPointAtRadiusOffset(angle + deltaO, -strokeThickness / 2);
-                        var ip = arc.GetPointAtRadiusOffset(angle, -thickness + (strokeThickness / 2));
+                        var po1 = arc.GetPointAtRadiusOffset(startAngle, -strokeThickness / 2);
+                        var po2 = arc.GetPointAtRadiusOffset(endAngle, -strokeThickness / 2);
+                        var ip = arc.GetPointAtRadiusOffset((startAngle + endAngle) / 2, -thickness + (strokeThickness / 2));
                         var v = (po1 - po2) / 2;
                         var ri = arc.Radius - thickness + (strokeThickness / 2);
                         var ai1 = arc.GetAngle(ip - v);
                         var pi1 = arc.GetPointAtRadius(ai1, ri);
-                        var deltaI = 2 * Vector.AngleBetween(arc.GetPoint(angle) - arc.Center, pi1 - arc.Center);
+                        var deltaI = 2 * Vector.AngleBetween(ip - arc.Center, pi1 - arc.Center);
                         var ai2 = ai1 - deltaI;
                         var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
                         return new PathFigure(
@@ -124,8 +128,8 @@ namespace Gu.Wpf.Gauges
                             new PathSegment[]
                             {
                             arc.CreateArcSegment(
-                                angle - deltaO,
-                                angle + deltaO,
+                                startAngle,
+                                endAngle,
                                 arc.Radius - (strokeThickness / 2),
                                 strokeThickness > 0),
                             new LineSegment(pi1, isStroked),
@@ -142,17 +146,6 @@ namespace Gu.Wpf.Gauges
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-        }
-
-        protected override double GetStrokeThickness()
-        {
-            var strokeThickness = base.GetStrokeThickness();
-            if (this.TickWidth <= 2 * strokeThickness)
-            {
-                return this.TickWidth;
-            }
-
-            return strokeThickness;
         }
 
         protected override Size MeasureOverride(Size availableSize)
@@ -209,8 +202,7 @@ namespace Gu.Wpf.Gauges
             }
 
             var strokeThickness = this.GetStrokeThickness();
-            if (this.TickWidth <= strokeThickness &&
-                this.TickShape == TickShape.Rectangle)
+            if (this.TickWidth <= strokeThickness)
             {
                 foreach (var tick in this.AllTicks)
                 {
@@ -284,9 +276,9 @@ namespace Gu.Wpf.Gauges
         /// <param name="strokeThickness">The stroke thickness.</param>
         protected virtual PathFigure CreateTick(ArcInfo arc, double value, double strokeThickness)
         {
-            var interpolation = Interpolate.Linear(this.Minimum, this.Maximum, value)
-                                           .Clamp(0, 1);
-            var angle = interpolation.Interpolate(this.Start, this.End, this.IsDirectionReversed);
+            var angle = Interpolate.Linear(this.Minimum, this.Maximum, value)
+                                   .Clamp(0, 1)
+                                   .Interpolate(this.Start, this.End, this.IsDirectionReversed);
             return CreateTick(arc, angle, this.TickShape, this.TickWidth, this.Thickness, strokeThickness);
         }
 
