@@ -59,6 +59,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Angle.cs" />
+    <Compile Include="AngleTypeConverter.cs" />
     <Compile Include="AngularAxis.cs" />
     <Compile Include="Axis.cs" />
     <Compile Include="Defaults.cs" />

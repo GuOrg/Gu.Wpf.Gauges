@@ -59,7 +59,7 @@
                                     Ticks="{Binding MajorTicks}"
                                     Value="{Binding Value}" />
 
-            <Grid Margin="2">
+            <Grid>
                 <gauges:Ring Fill="Blue"
                              Stroke="GreenYellow"
                              StrokeThickness="{Binding ElementName=ArcTickBar, Path=StrokeThickness}"
