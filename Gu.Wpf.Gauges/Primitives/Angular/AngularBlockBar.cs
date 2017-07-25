@@ -143,7 +143,8 @@ namespace Gu.Wpf.Gauges
             var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
             if (double.IsInfinity(this.Thickness))
             {
-                var innerPoint = arc.GetPointAtRadius((startAngle + endAngle) / 2, strokeThickness / Math.Sin(outerStartAngle - outerEndAngle));
+                const double degToRad = Math.PI / 180;
+                var innerPoint = arc.GetPointAtRadius((startAngle + endAngle) / 2, strokeThickness / Math.Sin(degToRad * (outerStartAngle - outerEndAngle)));
                 return new PathFigure(
                     outerStartPoint,
                     new PathSegment[]

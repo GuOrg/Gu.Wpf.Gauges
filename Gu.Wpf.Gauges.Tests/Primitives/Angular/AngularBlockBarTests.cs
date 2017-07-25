@@ -27,7 +27,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
         private static readonly IReadOnlyList<TestCase> RenderWithInfiniteThicknessCases = TestCase.Create(
             thicknesses: new[] { double.PositiveInfinity },
             values: new[] { double.NaN, 0, 5, 10 },
-            tickGaps: new[] { 1.0},
+            tickGaps: new[] { 1.0 },
             strokeThicknesses: new[] { 0.0, 1 },
             tickFrequencies: new[] { 5.0 },
             tickCollections: new[] { null, (DoubleCollection)new DoubleCollection(new[] { 1.0, 2, 6 }).GetCurrentValueAsFrozen() },
@@ -88,7 +88,6 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
                               Padding = testCase.Padding,
                           };
 
-            SaveImage(tickBar);
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
 

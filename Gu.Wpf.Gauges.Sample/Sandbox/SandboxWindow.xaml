@@ -7,7 +7,8 @@
         d:DesignHeight="100"
         SizeToContent="WidthAndHeight"
         mc:Ignorable="d">
-    <Grid Margin="2">
+    <Grid MinWidth="100"
+          Margin="2">
         <gauges:Ring Fill="Blue"
                      Stroke="GreenYellow"
                      StrokeThickness="{Binding ElementName=ArcTickBar, Path=StrokeThickness}"
@@ -15,16 +16,17 @@
         <gauges:AngularBlockBar x:Name="ArcTickBar"
                                 End="140"
                                 Fill="Red"
-                                IsDirectionReversed="False"
+                                IsDirectionReversed="True"
                                 Maximum="10"
                                 Minimum="0"
-                                Start="-180"
+                                Start="-140"
                                 Stroke="Black"
                                 StrokeThickness="1"
                                 Thickness="Infinity"
-                                TickFrequency="2"
+                                TickFrequency="5"
                                 TickGap="1"
-                                TickShape="RingSection" />
+                                TickShape="Rectangle"
+                                Ticks="1 2 6" />
 
     </Grid>
 </Window>

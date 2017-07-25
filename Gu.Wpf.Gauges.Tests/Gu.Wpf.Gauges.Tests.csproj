@@ -1082,5 +1082,8 @@
     <EmbeddedResource Include="Primitives\Angular\AngularBlockBarImages\AngularBlockBar_Value_5_IsDirectionReversed_True_TickGap_1_TickShape_Rectangle_StrokeThickness_1_Thickness_inf_TickFrequency_5.png" />
     <EmbeddedResource Include="Primitives\Angular\AngularBlockBarImages\AngularBlockBar_Value_5_IsDirectionReversed_True_TickGap_1_TickShape_Rectangle_StrokeThickness_1_Thickness_inf_TickFrequency_5_Ticks_1_2_6.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Primitives\Angular\AngularBlockBarImages\AngularBlockBar_IsDirectionReversed_True_TickGap_1_TickShape_Rectangle_StrokeThickness_1_Thickness_inf_TickFrequency_5_Ticks_1_2_6.png" />
+  </ItemGroup>
   <Import Project="..\.paket\paket.targets" />
 </Project>
