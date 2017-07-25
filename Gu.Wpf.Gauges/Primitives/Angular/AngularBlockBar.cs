@@ -134,18 +134,36 @@ namespace Gu.Wpf.Gauges
                     strokeThickness);
             }
 
+            var outerRadius = Math.Max(0, arc.Radius - (strokeThickness / 2));
+            var outerGapAngle = arc.GetDelta(w, outerRadius);
+            var outerStartAngle = Adjust(startAngle, outerGapAngle);
+            var outerEndAngle = Adjust(endAngle, -outerGapAngle);
+            var outerStartPoint = arc.GetPointAtRadius(outerStartAngle, outerRadius);
+
+            var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
+            if (double.IsInfinity(this.Thickness))
+            {
+                var innerPoint = arc.GetPointAtRadius((startAngle + endAngle) / 2, strokeThickness / Math.Sin(outerStartAngle - outerEndAngle));
+                return new PathFigure(
+                    outerStartPoint,
+                    new PathSegment[]
+                    {
+                        arc.CreateArcSegment(
+                            outerStartAngle,
+                            outerEndAngle,
+                            outerRadius,
+                            strokeThickness > 0),
+                        new LineSegment(innerPoint, isStroked),
+                    },
+                    closed: true);
+            }
+
             var innerRadius = Math.Max(0, arc.Radius - this.Thickness + (strokeThickness / 2));
             var innerGapAngle = arc.GetDelta(w, innerRadius);
             var innerStartAngle = Adjust(startAngle, innerGapAngle);
             var innerEndAngle = Adjust(endAngle, -innerGapAngle);
             var innerEndPoint = arc.GetPointAtRadius(innerEndAngle, innerRadius);
 
-            var outerRadius = Math.Max(0, arc.Radius - (strokeThickness / 2));
-            var outerGapAngle = arc.GetDelta(w, outerRadius);
-            var outerStartAngle = Adjust(startAngle, outerGapAngle);
-            var outerEndAngle = Adjust(endAngle, -outerGapAngle);
-            var outerStartPoint = arc.GetPointAtRadius(outerStartAngle, outerRadius);
-            var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
             return new PathFigure(
                 outerStartPoint,
                 new PathSegment[]

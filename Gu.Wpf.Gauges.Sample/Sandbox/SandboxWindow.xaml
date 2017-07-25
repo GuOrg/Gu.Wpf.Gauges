@@ -22,9 +22,9 @@
                                 Stroke="Black"
                                 StrokeThickness="1"
                                 Thickness="Infinity"
-                                TickFrequency="5"
+                                TickFrequency="2"
                                 TickGap="1"
-                                TickShape="Rectangle" />
+                                TickShape="RingSection" />
 
     </Grid>
 </Window>

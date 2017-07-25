@@ -24,6 +24,17 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
                                                                               .Where(x => !(x.TickFrequency <= 0 && x.Ticks == null))
                                                                               .ToArray();
 
+        private static readonly IReadOnlyList<TestCase> RenderWithInfiniteThicknessCases = TestCase.Create(
+            thicknesses: new[] { double.PositiveInfinity },
+            values: new[] { double.NaN, 0, 5, 10 },
+            tickGaps: new[] { 1.0},
+            strokeThicknesses: new[] { 0.0, 1 },
+            tickFrequencies: new[] { 5.0 },
+            tickCollections: new[] { null, (DoubleCollection)new DoubleCollection(new[] { 1.0, 2, 6 }).GetCurrentValueAsFrozen() },
+            paddings: new[] { default(Thickness) })
+                                                                              .Where(x => !(x.TickFrequency <= 0 && x.Ticks == null))
+                                                                              .ToArray();
+
         private static readonly IReadOnlyList<TestCase> RenderWithPaddingCases = TestCase.Create(
             thicknesses: new[] { 10.0 },
             values: new[] { double.NaN },
@@ -54,6 +65,30 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
                               Padding = testCase.Padding,
                           };
 
+            ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
+        }
+
+        [TestCaseSource(nameof(RenderWithInfiniteThicknessCases))]
+        public void RenderWithInfiniteThickness(TestCase testCase)
+        {
+            var tickBar = new AngularBlockBar
+                          {
+                              StrokeThickness = testCase.StrokeThickness,
+                              Minimum = 0,
+                              Maximum = 10,
+                              Value = testCase.Value,
+                              TickShape = testCase.TickShape,
+                              TickFrequency = testCase.TickFrequency,
+                              Ticks = testCase.Ticks,
+                              Fill = Brushes.Red,
+                              TickGap = testCase.TickGap,
+                              Thickness = testCase.Thickness,
+                              Stroke = Brushes.Black,
+                              IsDirectionReversed = testCase.IsDirectionReversed,
+                              Padding = testCase.Padding,
+                          };
+
+            SaveImage(tickBar);
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
 
