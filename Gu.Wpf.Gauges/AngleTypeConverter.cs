@@ -5,6 +5,7 @@
     using System.ComponentModel.Design.Serialization;
     using System.Globalization;
     using System.Reflection;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// Provides a unified way of converting types of values to other types, as well as for accessing standard values and subproperties.
@@ -51,6 +52,28 @@
                 if (double.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out double d1))
                 {
                     return Angle.FromDegrees(d1);
+                }
+
+                var match = Regex.Match(text, "(?<number>.+) ?(°|deg|degrees)", RegexOptions.IgnoreCase | RegexOptions.RightToLeft);
+                if (match.Success &&
+                    double.TryParse(
+                        match.Groups["number"].Value,
+                        NumberStyles.Float,
+                        CultureInfo.InvariantCulture,
+                        out double d2))
+                {
+                    return Angle.FromDegrees(d2);
+                }
+
+                match = Regex.Match(text, "(?<number>.+) ?(rad|radians)", RegexOptions.IgnoreCase | RegexOptions.RightToLeft);
+                if (match.Success &&
+                    double.TryParse(
+                        match.Groups["number"].Value,
+                        NumberStyles.Float,
+                        CultureInfo.InvariantCulture,
+                        out double d3))
+                {
+                    return Angle.FromRadians(d3);
                 }
             }
 
