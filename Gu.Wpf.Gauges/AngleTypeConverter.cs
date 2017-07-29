@@ -5,7 +5,6 @@
     using System.ComponentModel.Design.Serialization;
     using System.Globalization;
     using System.Reflection;
-    using System.Text.RegularExpressions;
 
     /// <summary>
     /// Provides a unified way of converting types of values to other types, as well as for accessing standard values and subproperties.
@@ -17,7 +16,7 @@
     /// </devdoc>
     public class AngleTypeConverter : TypeConverter
     {
-        private static readonly MethodInfo FromDegreesMethod = typeof(Angle).GetMethod(nameof(Angle.FromDegrees), BindingFlags.Public | BindingFlags.Static, null, new Type[] { typeof(double) }, null);
+        private static readonly MethodInfo FromDegreesMethod = typeof(Angle).GetMethod(nameof(Angle.FromDegrees), BindingFlags.Public | BindingFlags.Static, null, new[] { typeof(double) }, null);
 
         /// <inheritdoc />
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
@@ -47,33 +46,11 @@
         /// <inheritdoc />
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            if (value is string text)
+            if (value is string s)
             {
-                if (double.TryParse(text, NumberStyles.Float, CultureInfo.InvariantCulture, out double d1))
+                if (Angle.TryParse(s, out Angle angle))
                 {
-                    return Angle.FromDegrees(d1);
-                }
-
-                var match = Regex.Match(text, "(?<number>.+) ?(°|deg|degrees)", RegexOptions.IgnoreCase | RegexOptions.RightToLeft);
-                if (match.Success &&
-                    double.TryParse(
-                        match.Groups["number"].Value,
-                        NumberStyles.Float,
-                        CultureInfo.InvariantCulture,
-                        out double d2))
-                {
-                    return Angle.FromDegrees(d2);
-                }
-
-                match = Regex.Match(text, "(?<number>.+) ?(rad|radians)", RegexOptions.IgnoreCase | RegexOptions.RightToLeft);
-                if (match.Success &&
-                    double.TryParse(
-                        match.Groups["number"].Value,
-                        NumberStyles.Float,
-                        CultureInfo.InvariantCulture,
-                        out double d3))
-                {
-                    return Angle.FromRadians(d3);
+                    return angle;
                 }
             }
 
@@ -93,14 +70,14 @@
         /// <inheritdoc />
         public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
-            if (value is Angle && 
-                destinationType != null)
+            if (value is Angle)
             {
                 var angle = (Angle)value;
                 if (destinationType == typeof(string))
                 {
                     return angle.Degrees.ToString(culture);
                 }
+
                 if (destinationType == typeof(InstanceDescriptor))
                 {
                     if (FromDegreesMethod != null)

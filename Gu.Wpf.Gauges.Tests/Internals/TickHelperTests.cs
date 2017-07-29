@@ -1,7 +1,6 @@
 ﻿namespace Gu.Wpf.Gauges.Tests.Internals
 {
     using System.Linq;
-    using System.Windows;
     using NUnit.Framework;
 
     public class TickHelperTests
@@ -35,27 +34,6 @@
         public void CreateReturnsEmptyWhen(double min, double max, double frequency, TickSnap tickSnap, double[] expected)
         {
             CollectionAssert.IsEmpty(Ticks.Create(min, max, frequency, tickSnap));
-        }
-
-        [TestCase(0, 0, 1, 0, 0)]
-        [TestCase(1, 0, 1, 1, 0)]
-        [TestCase(0, -1, 1, 0.5, 0)]
-        [TestCase(1, -1, 1, 1, 0)]
-        public void ToPos(double tick, double min, double max, double expectedX, double expectedY)
-        {
-            var point = Ticks.ToPos(tick, min, max, new Line(new Point(0, 0), new Point(1, 0)));
-            Assert.AreEqual(expectedX, point.X);
-            Assert.AreEqual(expectedY, point.Y);
-        }
-
-        [TestCase(0, 0, 1, 0)]
-        [TestCase(1, 0, 1, 1)]
-        [TestCase(0, -1, 1, 0.5)]
-        [TestCase(1, -1, 1, 1)]
-        public void ToAngle(double tick, double min, double max, double expected)
-        {
-            var actual = Ticks.ToAngle(tick, min, max, new ArcInfo(new Point(0, 0), 1, 0, 1));
-            Assert.AreEqual(expected, actual);
         }
     }
 }

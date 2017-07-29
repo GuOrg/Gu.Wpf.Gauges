@@ -39,9 +39,9 @@ namespace Gu.Wpf.Gauges
 
         protected override Geometry DefiningGeometry => throw new InvalidOperationException("Uses OnRender");
 
-        public static Geometry CreateGeometry(ArcInfo arc, double startAngle, double endAngle, double thickness, double strokeThickness)
+        public static Geometry CreateGeometry(ArcInfo arc, Angle start, Angle end, double thickness, double strokeThickness)
         {
-            if (DoubleUtil.AreClose(startAngle, endAngle) ||
+            if (DoubleUtil.AreClose(start, end) ||
                 (DoubleUtil.AreClose(thickness, 0) && DoubleUtil.AreClose(strokeThickness, 0)) ||
                 DoubleUtil.AreClose(arc.Radius, 0))
             {
@@ -50,10 +50,10 @@ namespace Gu.Wpf.Gauges
 
             if (DoubleUtil.LessThanOrClose(thickness, strokeThickness))
             {
-                return new PathGeometry(new[] { arc.CreateArcPathFigure(startAngle, endAngle, strokeThickness, strokeThickness) });
+                return new PathGeometry(new[] { arc.CreateArcPathFigure(start, end, strokeThickness, strokeThickness) });
             }
 
-            return new PathGeometry(new[] { arc.CreateArcPathFigure(startAngle, endAngle, thickness, strokeThickness) });
+            return new PathGeometry(new[] { arc.CreateArcPathFigure(start, end, thickness, strokeThickness) });
         }
 
         protected override Size MeasureOverride(Size availableSize)
@@ -85,7 +85,7 @@ namespace Gu.Wpf.Gauges
             }
 
             if (DoubleUtil.AreClose(value, this.Maximum) &&
-                DoubleUtil.AreClose(this.End - this.Start, 360))
+                DoubleUtil.AreClose(this.End - this.Start, Angle.Zero))
             {
                 var geometry = this.CreateRingGeometry();
                 if (!ReferenceEquals(geometry, Geometry.Empty))
@@ -115,8 +115,7 @@ namespace Gu.Wpf.Gauges
                 return CreateGeometry(arc, this.Start, this.End, this.Thickness, this.GetStrokeThickness());
             }
 
-            var from = Interpolation.Zero
-                                    .Interpolate(this.Start, this.End, this.IsDirectionReversed);
+            var from = this.IsDirectionReversed ? this.End : this.Start;
             var to = Interpolate.Linear(this.Minimum, this.Maximum, value)
                 .Clamp(0, 1)
                 .Interpolate(this.Start, this.End, this.IsDirectionReversed);

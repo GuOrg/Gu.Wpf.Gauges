@@ -62,7 +62,7 @@ namespace Gu.Wpf.Gauges
 
         public static PathFigure CreateTick(
             ArcInfo arc,
-            double angle,
+            Angle angle,
             TickShape tickShape,
             double tickWidth,
             double thickness,
@@ -81,8 +81,8 @@ namespace Gu.Wpf.Gauges
 
         public static PathFigure CreateTick(
             ArcInfo arc,
-            double startAngle,
-            double endAngle,
+            Angle start,
+            Angle end,
             TickShape tickShape,
             double thickness,
             double strokeThickness)
@@ -90,12 +90,12 @@ namespace Gu.Wpf.Gauges
             switch (tickShape)
             {
                 case TickShape.Arc:
-                    return arc.CreateArcPathFigure(startAngle, endAngle, thickness, strokeThickness);
+                    return arc.CreateArcPathFigure(start, end, thickness, strokeThickness);
                 case TickShape.Rectangle:
                     {
-                        var outerStartPoint = arc.GetPointAtRadiusOffset(startAngle, -strokeThickness / 2);
-                        var outerEndPoint = arc.GetPointAtRadiusOffset(endAngle, -strokeThickness / 2);
-                        var innerCenterPoint = arc.GetPointAtRadiusOffset((startAngle + endAngle) / 2, -thickness + (strokeThickness / 2));
+                        var outerStartPoint = arc.GetPointAtRadiusOffset(start, -strokeThickness / 2);
+                        var outerEndPoint = arc.GetPointAtRadiusOffset(end, -strokeThickness / 2);
+                        var innerCenterPoint = arc.GetPointAtRadiusOffset((start + end) / 2, -thickness + (strokeThickness / 2));
                         var v = outerStartPoint - outerEndPoint;
                         var innerStartPoint = innerCenterPoint - (v / 2);
                         var innerEndPoint = innerStartPoint + v;
@@ -113,14 +113,14 @@ namespace Gu.Wpf.Gauges
 
                 case TickShape.RingSection:
                     {
-                        var po1 = arc.GetPointAtRadiusOffset(startAngle, -strokeThickness / 2);
-                        var po2 = arc.GetPointAtRadiusOffset(endAngle, -strokeThickness / 2);
-                        var ip = arc.GetPointAtRadiusOffset((startAngle + endAngle) / 2, -thickness + (strokeThickness / 2));
+                        var po1 = arc.GetPointAtRadiusOffset(start, -strokeThickness / 2);
+                        var po2 = arc.GetPointAtRadiusOffset(end, -strokeThickness / 2);
+                        var ip = arc.GetPointAtRadiusOffset((start + end) / 2, -thickness + (strokeThickness / 2));
                         var v = (po1 - po2) / 2;
                         var ri = arc.Radius - thickness + (strokeThickness / 2);
                         var ai1 = arc.GetAngle(ip - v);
                         var pi1 = arc.GetPointAtRadius(ai1, ri);
-                        var deltaI = 2 * Vector.AngleBetween(ip - arc.Center, pi1 - arc.Center);
+                        var deltaI = 2 * Angle.FromDegrees(Vector.AngleBetween(ip - arc.Center, pi1 - arc.Center));
                         var ai2 = ai1 - deltaI;
                         var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
                         return new PathFigure(
@@ -128,8 +128,8 @@ namespace Gu.Wpf.Gauges
                             new PathSegment[]
                             {
                             arc.CreateArcSegment(
-                                startAngle,
-                                endAngle,
+                                start,
+                                end,
                                 arc.Radius - (strokeThickness / 2),
                                 strokeThickness > 0),
                             new LineSegment(pi1, isStroked),
@@ -256,10 +256,10 @@ namespace Gu.Wpf.Gauges
             var inflated = new ArcInfo(
                 arc.Center,
                 arc.Radius + w,
-                arc.StartAngle - delta,
-                arc.EndAngle + delta);
+                arc.Start - delta,
+                arc.End + delta);
             var figure = inflated.CreateArcPathFigure(
-                this.IsDirectionReversed ? inflated.EndAngle : inflated.StartAngle,
+                this.IsDirectionReversed ? inflated.End : inflated.Start,
                 effectiveAngle,
                 inflated.Radius,
                 0);

@@ -28,5 +28,18 @@
 
             return min + (linear.Value * (max - min));
         }
+
+        /// <summary>
+        /// Returns start + (linear.Value * (max - start))
+        /// </summary>
+        internal static Angle Linear(Angle start, Angle end, Interpolation linear)
+        {
+            if (DoubleUtil.AreClose(start.Degrees, end.Degrees))
+            {
+                return start;
+            }
+
+            return Angle.FromDegrees(start.Degrees + (linear.Value * (end.Degrees - start.Degrees)));
+        }
     }
 }

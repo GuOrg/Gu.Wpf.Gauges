@@ -8,12 +8,12 @@
 
     public struct ArcInfo
     {
-        public ArcInfo(Point center, double radius, double startAngle, double endAngle)
+        public ArcInfo(Point center, double radius, Angle start, Angle end)
         {
             this.Center = center;
             this.Radius = radius;
-            this.StartAngle = startAngle;
-            this.EndAngle = endAngle;
+            this.Start = start;
+            this.End = end;
         }
 
         public Point Center { get; }
@@ -25,28 +25,28 @@
         /// Degrees clockwise from the y axis.
         /// The default is -140
         /// </summary>
-        public double StartAngle { get; }
+        public Angle Start { get; }
 
         /// <summary>
         /// Gets or sets the end angle of the arc.
         /// Degrees clockwise from the y axis.
         /// The default is 140
         /// </summary>
-        public double EndAngle { get; }
+        public Angle End { get; }
 
-        public Point StartPoint => this.GetPoint(this.StartAngle);
+        public Point StartPoint => this.GetPoint(this.Start);
 
-        public Point EndPoint => this.GetPoint(this.EndAngle);
+        public Point EndPoint => this.GetPoint(this.End);
 
         public IEnumerable<Point> QuadrantPoints
         {
             get
             {
-                var q = this.StartAngle - (this.StartAngle % 90);
-                while (q <= this.EndAngle)
+                var q = this.Start - Angle.FromDegrees(this.Start.Degrees % 90);
+                while (q <= this.End)
                 {
                     yield return this.GetPoint(q);
-                    q += 90;
+                    q += Angle.FromDegrees(90);
                 }
             }
         }
@@ -67,20 +67,20 @@
             return new ArcInfo(
                 Point.Parse(texts[0]),
                 double.Parse(texts[1], CultureInfo.InvariantCulture),
-                double.Parse(texts[2], CultureInfo.InvariantCulture),
-                double.Parse(texts[3], CultureInfo.InvariantCulture));
+                Angle.Parse(texts[2]),
+                Angle.Parse(texts[3]));
         }
 
         /// <summary>
         /// Create an arc that fits the <paramref name="availableSize"/>
         /// </summary>
         [Obsolete("Don't use this")]
-        public static ArcInfo Fit(Size availableSize, double startAngle, double endAngle)
+        public static ArcInfo Fit(Size availableSize, Angle start, Angle end)
         {
             var bounds = new Rect(availableSize);
-            if (TryGetCenterAndRadius(bounds, startAngle, endAngle, out Point center, out double r))
+            if (TryGetCenterAndRadius(bounds, start, end, out Point center, out double r))
             {
-                return new ArcInfo(center, r, startAngle, endAngle);
+                return new ArcInfo(center, r, start, end);
             }
 
             return default(ArcInfo);
@@ -89,18 +89,18 @@
         /// <summary>
         /// Create an arc that fits the <paramref name="availableSize"/>
         /// </summary>
-        public static ArcInfo Fit(Size availableSize, Thickness padding, double startAngle, double endAngle)
+        public static ArcInfo Fit(Size availableSize, Thickness padding, Angle start, Angle end)
         {
             var bounds = new Rect(availableSize).Deflate(padding);
-            if (TryGetCenterAndRadius(bounds, startAngle, endAngle, out Point center, out double r))
+            if (TryGetCenterAndRadius(bounds, start, end, out Point center, out double r))
             {
-                return new ArcInfo(center, r, startAngle, endAngle);
+                return new ArcInfo(center, r, start, end);
             }
 
             return default(ArcInfo);
         }
 
-        public static bool TryGetCenterAndRadius(Size size, double startAngle, double endAngle, out Point center, out double radius)
+        public static bool TryGetCenterAndRadius(Size size, Angle start, Angle end, out Point center, out double radius)
         {
             if (DoubleUtil.IsZero(size.Width) ||
                 double.IsNaN(size.Width) ||
@@ -112,10 +112,10 @@
                 return false;
             }
 
-            return TryGetCenterAndRadius(new Rect(size), startAngle, endAngle, out center, out radius);
+            return TryGetCenterAndRadius(new Rect(size), start, end, out center, out radius);
         }
 
-        public static bool TryGetCenterAndRadius(Rect bounds, double startAngle, double endAngle, out Point center, out double radius)
+        public static bool TryGetCenterAndRadius(Rect bounds, Angle start, Angle end, out Point center, out double radius)
         {
             if (DoubleUtil.IsZero(bounds.Width) ||
                 double.IsNaN(bounds.Width) ||
@@ -128,7 +128,7 @@
             }
 
             var p0 = new Point(0, 0);
-            var unitArc = new ArcInfo(p0, 1, startAngle, endAngle);
+            var unitArc = new ArcInfo(p0, 1, start, end);
             var rect = default(Rect);
             var ps = unitArc.StartPoint;
             rect.Union(ps);
@@ -151,13 +151,13 @@
         /// Get the point at <paramref name="angle"/> on the arc.
         /// </summary>
         /// <param name="angle">Angle in degrees</param>
-        public Point GetPoint(double angle) => this.GetPointAtRadiusOffset(angle, 0);
+        public Point GetPoint(Angle angle) => this.GetPointAtRadiusOffset(angle, 0);
 
         /// <summary>
         /// Get a unit vector with the tangent direction at <paramref name="angle"/>.
         /// </summary>
         /// <param name="angle">Angle in degrees</param>
-        public Vector GetTangent(double angle)
+        public Vector GetTangent(Angle angle)
         {
             return new Vector(1, 0).Rotate(angle);
         }
@@ -168,7 +168,7 @@
         /// <param name="angle">Angle in degrees</param>
         /// <param name="offset">The radial offset positive meaning bigger radius.</param>
         /// <returns></returns>
-        public Point GetPointAtRadiusOffset(double angle, double offset) => this.GetPointAtRadius(angle, this.Radius + offset);
+        public Point GetPointAtRadiusOffset(Angle angle, double offset) => this.GetPointAtRadius(angle, this.Radius + offset);
 
         /// <summary>
         /// Get the point an arc with same center as this.
@@ -176,14 +176,14 @@
         /// <param name="angle"></param>
         /// <param name="offset">The offset arc length positive clockwise</param>
         /// <returns></returns>
-        public Point GetPointAtArcOffset(double angle, double offset) => this.GetPointAtRadius(angle + this.GetDelta(offset), this.Radius);
+        public Point GetPointAtArcOffset(Angle angle, double offset) => this.GetPointAtRadius(angle + this.GetDelta(offset), this.Radius);
 
         /// <summary>
         /// Get the point at <paramref name="angle"/> on an arc with same center as this.
         /// </summary>
         /// <param name="angle">Angle in degrees</param>
         /// <param name="radius">The radius.</param>
-        public Point GetPointAtRadius(double angle, double radius)
+        public Point GetPointAtRadius(Angle angle, double radius)
         {
             if (DoubleUtil.LessThanOrClose(radius, 0))
             {
@@ -196,14 +196,14 @@
             return p;
         }
 
-        public double GetAngle(Point point)
+        public Angle GetAngle(Point point)
         {
-            return Vector.AngleBetween(new Vector(0, -1), point - this.Center);
+            return Angle.FromDegrees(Vector.AngleBetween(new Vector(0, -1), point - this.Center));
         }
 
-        public SweepDirection SweepDirection(double fromAngle, double toAngle)
+        public SweepDirection SweepDirection(Angle fromAngle, Angle toAngle)
         {
-            return toAngle > fromAngle
+            return toAngle.Degrees > fromAngle.Degrees
                        ? System.Windows.Media.SweepDirection.Clockwise
                        : System.Windows.Media.SweepDirection.Counterclockwise;
         }
@@ -224,8 +224,8 @@
         public Thickness Overflow(double w, Thickness padding)
         {
             var rect = default(Rect);
-            rect.Union(this.StartPoint - (w * this.GetTangent(this.StartAngle)));
-            rect.Union(this.StartPoint + (w * this.GetTangent(this.EndAngle)));
+            rect.Union(this.StartPoint - (w * this.GetTangent(this.Start)));
+            rect.Union(this.StartPoint + (w * this.GetTangent(this.End)));
             rect = rect.Deflate(padding);
             if (rect.IsZero())
             {
@@ -244,25 +244,23 @@
         /// Returns the angle <paramref name="arcLength"/> corresponds to on the circumference
         /// value = radius * central angle
         /// </summary>
-        public double GetDelta(double arcLength)
+        public Angle GetDelta(double arcLength)
         {
-            const double radToDeg = 180 / Math.PI;
-            return radToDeg * arcLength / this.Radius;
+            return Angle.FromRadians(arcLength / this.Radius);
         }
 
         /// <summary>
         /// Returns the angle <paramref name="arcLength"/> corresponds to on the circumference
         /// value = radius * central angle
         /// </summary>
-        public double GetDelta(double arcLength, double radius)
+        public Angle GetDelta(double arcLength, double radius)
         {
-            const double radToDeg = 180 / Math.PI;
             if (radius <= 0)
             {
                 return this.GetDelta(arcLength);
             }
 
-            return radToDeg * arcLength / radius;
+            return Angle.FromRadians(arcLength / radius);
         }
 
         public ArcInfo Inflate(double value)
@@ -271,11 +269,11 @@
             return new ArcInfo(
                 this.Center,
                 this.Radius + value,
-                this.StartAngle - delta,
-                this.EndAngle + delta);
+                this.Start - delta,
+                this.End + delta);
         }
 
-        public PathFigure CreateArcPathFigure(double startAngle, double endAngle, double thickness, double strokeThickness)
+        public PathFigure CreateArcPathFigure(Angle startAngle, Angle endAngle, double thickness, double strokeThickness)
         {
             if (strokeThickness > thickness)
             {
@@ -316,27 +314,27 @@
         /// <summary>
         /// Create an <see cref="ArcSegment"/> for this arc.
         /// </summary>
-        public ArcSegment CreateArcSegment(double fromAngle, double toAngle, bool isStroked) => this.CreateArcSegment(
-            fromAngle,
-            toAngle,
+        public ArcSegment CreateArcSegment(Angle start, Angle end, bool isStroked) => this.CreateArcSegment(
+            start,
+            end,
             this.Radius,
             isStroked);
 
         /// <summary>
         /// Create an <see cref="ArcSegment"/> with same center point as this arc.
         /// </summary>
-        public ArcSegment CreateArcSegment(double fromAngle, double toAngle, double radius, bool isStroked)
+        public ArcSegment CreateArcSegment(Angle start, Angle end, double radius, bool isStroked)
         {
-            var rotationAngle = toAngle - fromAngle;
-            var isLargeArc = Math.Abs(rotationAngle) > 180;
-            var sweepDirection = this.SweepDirection(fromAngle, toAngle);
-            var endPoint = this.GetPointAtRadius(toAngle, radius);
-            return new ArcSegment(endPoint, new Size(radius, radius), Math.Abs(rotationAngle), isLargeArc, sweepDirection, isStroked);
+            var rotationAngle = end - start;
+            var isLargeArc = Math.Abs(rotationAngle.Degrees) > 180;
+            var sweepDirection = this.SweepDirection(start, end);
+            var endPoint = this.GetPointAtRadius(end, radius);
+            return new ArcSegment(endPoint, new Size(radius, radius), Math.Abs(rotationAngle.Degrees), isLargeArc, sweepDirection, isStroked);
         }
 
         public override string ToString()
         {
-            return $"{this.Center.X.ToString(CultureInfo.InvariantCulture)}, {this.Center.Y.ToString(CultureInfo.InvariantCulture)} {this.Radius.ToString(CultureInfo.InvariantCulture)} {this.StartAngle.ToString(CultureInfo.InvariantCulture)} {this.EndAngle.ToString(CultureInfo.InvariantCulture)}";
+            return $"{this.Center.X.ToString(CultureInfo.InvariantCulture)}, {this.Center.Y.ToString(CultureInfo.InvariantCulture)} {this.Radius.ToString(CultureInfo.InvariantCulture)} {this.Start.ToString(CultureInfo.InvariantCulture)} {this.End.ToString(CultureInfo.InvariantCulture)}";
         }
     }
 }

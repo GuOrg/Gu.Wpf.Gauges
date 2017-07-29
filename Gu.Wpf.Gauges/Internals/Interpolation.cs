@@ -25,11 +25,15 @@
             ? Gauges.Interpolate.Linear(max, min, this)
             : Gauges.Interpolate.Linear(min, max, this);
 
+        public Angle Interpolate(Angle start, Angle end, bool isDirectionReversed) => isDirectionReversed
+            ? Gauges.Interpolate.Linear(end, start, this)
+            : Gauges.Interpolate.Linear(start, end, this);
+
         public Point Interpolate(ArcInfo arc, bool isDirectionReversed)
         {
             var angle = isDirectionReversed
-                ? Gauges.Interpolate.Linear(arc.EndAngle, arc.StartAngle, this)
-                : Gauges.Interpolate.Linear(arc.StartAngle, arc.EndAngle, this);
+                ? Gauges.Interpolate.Linear(arc.End, arc.Start, this)
+                : Gauges.Interpolate.Linear(arc.Start, arc.End, this);
             return arc.GetPoint(angle);
         }
 

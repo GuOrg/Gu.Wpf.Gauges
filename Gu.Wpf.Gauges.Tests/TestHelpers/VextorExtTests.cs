@@ -9,9 +9,9 @@
         [TestCase("1,0", 0, "1, 0")]
         [TestCase("1,0", 90, "0, 1")]
         [TestCase("1,0", -90, "0, -1")]
-        public void Rotate(string vs, double angle, string expected)
+        public void Rotate(string vs, double degrees, string expected)
         {
-            var actual = vs.AsVector().Rotate(angle);
+            var actual = vs.AsVector().Rotate(Angle.FromDegrees(degrees));
             Assert.AreEqual(expected, actual.ToString("F0"));
         }
 

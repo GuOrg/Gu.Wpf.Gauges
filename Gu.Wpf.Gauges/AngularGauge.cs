@@ -1,24 +1,25 @@
 ﻿namespace Gu.Wpf.Gauges
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
 
     public class AngularGauge : Gauge
     {
         public static readonly DependencyProperty StartProperty = DependencyProperty.RegisterAttached(
             nameof(Start),
-            typeof(double),
+            typeof(Angle),
             typeof(AngularGauge),
             new FrameworkPropertyMetadata(
-                Defaults.StartAngle,
+                Angle.DefaultStart,
                 FrameworkPropertyMetadataOptions.Inherits,
                 OnStartChanged));
 
         public static readonly DependencyProperty EndProperty = DependencyProperty.RegisterAttached(
             nameof(End),
-            typeof(double),
+            typeof(Angle),
             typeof(AngularGauge),
             new FrameworkPropertyMetadata(
-                Defaults.EndAngle,
+                Angle.DefaultEnd,
                 FrameworkPropertyMetadataOptions.Inherits,
                 OnEndChanged));
 
@@ -40,9 +41,9 @@
         /// Degrees clockwise from the y axis.
         /// The default is -140
         /// </summary>
-        public double Start
+        public Angle Start
         {
-            get => (double)this.GetValue(StartProperty);
+            get => (Angle)this.GetValue(StartProperty);
             set => this.SetValue(StartProperty, value);
         }
 
@@ -51,9 +52,9 @@
         /// Degrees clockwise from the y axis.
         /// The default is 140
         /// </summary>
-        public double End
+        public Angle End
         {
-            get => (double)this.GetValue(EndProperty);
+            get => (Angle)this.GetValue(EndProperty);
             set => this.SetValue(EndProperty, value);
         }
 
@@ -67,24 +68,24 @@
             set => this.SetValue(TextOrientationProperty, value);
         }
 
-        public static void SetStart(DependencyObject element, double value)
+        public static void SetStart(DependencyObject element, Angle value)
         {
             element.SetValue(StartProperty, value);
         }
 
-        public static double GetStart(DependencyObject element)
+        public static Angle GetStart(DependencyObject element)
         {
-            return (double)element.GetValue(StartProperty);
+            return (Angle)element.GetValue(StartProperty);
         }
 
-        public static void SetEnd(DependencyObject element, double value)
+        public static void SetEnd(DependencyObject element, Angle value)
         {
             element.SetValue(EndProperty, value);
         }
 
-        public static double GetEnd(DependencyObject element)
+        public static Angle GetEnd(DependencyObject element)
         {
-            return (double)element.GetValue(EndProperty);
+            return (Angle)element.GetValue(EndProperty);
         }
 
         public static void SetTextOrientation(DependencyObject element, TextOrientation value)
@@ -100,18 +101,20 @@
         /// <summary>
         ///     This method is invoked when the <see cref="Start"/> property changes.
         /// </summary>
-        /// <param name="oldStartAngle">The old value of the <see cref="Start"/> property.</param>
-        /// <param name="newStartAngle">The new value of the <see cref="Start"/> property.</param>
-        protected virtual void OnStartChanged(double oldStartAngle, double newStartAngle)
+        /// <param name="oldValue">The old value of the <see cref="Start"/> property.</param>
+        /// <param name="newValue">The new value of the <see cref="Start"/> property.</param>
+        [SuppressMessage("ReSharper", "UnusedParameter.Global")]
+        protected virtual void OnStartChanged(Angle oldValue, Angle newValue)
         {
         }
 
         /// <summary>
         ///     This method is invoked when the <see cref="End"/> property changes.
         /// </summary>
-        /// <param name="oldEndAngle">The old value of the <see cref="End"/> property.</param>
-        /// <param name="newEndAngle">The new value of the <see cref="End"/> property.</param>
-        protected virtual void OnEndChanged(double oldEndAngle, double newEndAngle)
+        /// <param name="oldValue">The old value of the <see cref="End"/> property.</param>
+        /// <param name="newValue">The new value of the <see cref="End"/> property.</param>
+        [SuppressMessage("ReSharper", "UnusedParameter.Global")]
+        protected virtual void OnEndChanged(Angle oldValue, Angle newValue)
         {
         }
 
@@ -119,7 +122,7 @@
         {
             if (d is AngularGauge gauge)
             {
-                gauge.OnStartChanged((double)e.OldValue, (double)e.NewValue);
+                gauge.OnStartChanged((Angle)e.OldValue, (Angle)e.NewValue);
             }
         }
 
@@ -127,7 +130,7 @@
         {
             if (d is AngularGauge gauge)
             {
-                gauge.OnEndChanged((double)e.OldValue, (double)e.NewValue);
+                gauge.OnEndChanged((Angle)e.OldValue, (Angle)e.NewValue);
             }
         }
     }

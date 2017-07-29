@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Windows;
 
     internal static class Ticks
     {
@@ -47,20 +46,6 @@
                 yield return from;
                 from += step;
             }
-        }
-
-        internal static double ToAngle(double tick, double minimum, double maximum, ArcInfo arcInfo)
-        {
-            var dv = (tick - minimum) / (maximum - minimum);
-            var a = (dv * (arcInfo.EndAngle - arcInfo.StartAngle)) + arcInfo.StartAngle;
-            return a;
-        }
-
-        internal static Point ToPos(double tick, double minimum, double maximum, Line line)
-        {
-            var dv = (tick - minimum) / (maximum - minimum);
-            var v = line.EndPoint - line.StartPoint;
-            return line.StartPoint + (dv * v);
         }
     }
 }

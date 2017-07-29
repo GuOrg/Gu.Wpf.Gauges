@@ -102,7 +102,7 @@ namespace Gu.Wpf.Gauges
 
         protected virtual PathFigure CreateTick(ArcInfo arc, double from, double value, double strokeThickness)
         {
-            double Adjust(double angle, double gap)
+            Angle Adjust(Angle angle, Angle gap)
             {
                 if (this.IsDirectionReversed)
                 {
@@ -143,8 +143,7 @@ namespace Gu.Wpf.Gauges
             var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
             if (double.IsInfinity(this.Thickness))
             {
-                const double degToRad = Math.PI / 180;
-                var innerPoint = arc.GetPointAtRadius((startAngle + endAngle) / 2, strokeThickness / Math.Sin(degToRad * (outerStartAngle - outerEndAngle)));
+                var innerPoint = arc.GetPointAtRadius((startAngle + endAngle) / 2, strokeThickness / Math.Sin((outerStartAngle - outerEndAngle).Radians));
                 return new PathFigure(
                     outerStartPoint,
                     new PathSegment[]

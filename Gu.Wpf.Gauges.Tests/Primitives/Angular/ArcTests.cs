@@ -59,8 +59,8 @@
             var tickBar = new Arc
             {
                 StrokeThickness = strokeThickness,
-                Start = -140,
-                End = 140,
+                Start = Angle.FromDegrees(-140),
+                End = Angle.FromDegrees(140),
                 Minimum = 0,
                 Maximum = 10,
                 Stroke = Brushes.Black,
@@ -114,8 +114,8 @@
                 double strokeThickness,
                 Thickness padding)
             {
-                this.Start = start;
-                this.End = end;
+                this.Start = Angle.FromDegrees(start);
+                this.End = Angle.FromDegrees(end);
                 this.IsDirectionReversed = isDirectionReversed;
                 this.Thickness = thickness;
                 this.Value = value;
@@ -123,9 +123,9 @@
                 this.Padding = padding;
             }
 
-            public double Start { get; }
+            public Angle Start { get; }
 
-            public double End { get; }
+            public Angle End { get; }
 
             public bool IsDirectionReversed { get; }
 

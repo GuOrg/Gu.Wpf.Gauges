@@ -8,10 +8,9 @@
         /// <summary>
         /// Rotates the vector clockwise
         /// </summary>
-        public static Vector Rotate(this Vector v, double degrees)
+        public static Vector Rotate(this Vector v, Angle angle)
         {
-            const double degToRad = Math.PI / 180;
-            return v.RotateRadians(degrees * degToRad);
+            return v.RotateRadians(angle.Radians);
         }
 
         /// <summary>

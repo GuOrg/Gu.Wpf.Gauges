@@ -17,13 +17,13 @@ namespace Gu.Wpf.Gauges
         public static readonly DependencyProperty StartProperty = AngularGauge.StartProperty.AddOwner(
             typeof(AngularGeometryTickBar),
             new FrameworkPropertyMetadata(
-                Defaults.StartAngle,
+                Angle.DefaultStart,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty EndProperty = AngularGauge.EndProperty.AddOwner(
             typeof(AngularGeometryTickBar),
             new FrameworkPropertyMetadata(
-                Defaults.EndAngle,
+                Angle.DefaultEnd,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
@@ -69,9 +69,9 @@ namespace Gu.Wpf.Gauges
         /// Degrees clockwise from the y axis.
         /// The default is -140
         /// </summary>
-        public double Start
+        public Angle Start
         {
-            get => (double)this.GetValue(StartProperty);
+            get => (Angle)this.GetValue(StartProperty);
             set => this.SetValue(StartProperty, value);
         }
 
@@ -80,9 +80,9 @@ namespace Gu.Wpf.Gauges
         /// Degrees clockwise from the y axis.
         /// The default is 140
         /// </summary>
-        public double End
+        public Angle End
         {
-            get => (double)this.GetValue(EndProperty);
+            get => (Angle)this.GetValue(EndProperty);
             set => this.SetValue(EndProperty, value);
         }
 

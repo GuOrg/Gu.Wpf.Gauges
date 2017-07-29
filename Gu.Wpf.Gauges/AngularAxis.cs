@@ -7,13 +7,13 @@
         public static readonly DependencyProperty StartProperty = AngularGauge.StartProperty.AddOwner(
             typeof(AngularAxis),
             new FrameworkPropertyMetadata(
-                Defaults.StartAngle,
+                Angle.DefaultStart,
                 FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty EndProperty = AngularGauge.EndProperty.AddOwner(
             typeof(AngularAxis),
             new FrameworkPropertyMetadata(
-                Defaults.EndAngle,
+                Angle.DefaultEnd,
                 FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty TextOrientationProperty = AngularGauge.TextOrientationProperty.AddOwner(
@@ -32,9 +32,9 @@
         /// Degrees clockwise from the y axis.
         /// The default is -140
         /// </summary>
-        public double Start
+        public Angle Start
         {
-            get => (double)this.GetValue(StartProperty);
+            get => (Angle)this.GetValue(StartProperty);
             set => this.SetValue(StartProperty, value);
         }
 
@@ -43,9 +43,9 @@
         /// Degrees clockwise from the y axis.
         /// The default is 140
         /// </summary>
-        public double End
+        public Angle End
         {
-            get => (double)this.GetValue(EndProperty);
+            get => (Angle)this.GetValue(EndProperty);
             set => this.SetValue(EndProperty, value);
         }
 

@@ -11,6 +11,15 @@
             Assert.AreEqual(expected, DoubleUtil.AreClose(x, max));
         }
 
+        [TestCase(0, 0, true)]
+        [TestCase(0, 360, true)]
+        [TestCase(1, 1, true)]
+        [TestCase(0, 1, false)]
+        public void AreCloseAngle(double x, double max, bool expected)
+        {
+            Assert.AreEqual(expected, DoubleUtil.AreClose(Angle.FromDegrees(x), Angle.FromDegrees(max)));
+        }
+
         [TestCase(0, 1, true)]
         [TestCase(1, 1, false)]
         [TestCase(2, 1, false)]

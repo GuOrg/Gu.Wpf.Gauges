@@ -26,13 +26,13 @@ namespace Gu.Wpf.Gauges
         public static readonly DependencyProperty StartProperty = AngularGauge.StartProperty.AddOwner(
             typeof(AngularTextBar),
             new FrameworkPropertyMetadata(
-                Defaults.StartAngle,
+                Gauges.Angle.DefaultStart,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty EndProperty = AngularGauge.EndProperty.AddOwner(
             typeof(AngularTextBar),
             new FrameworkPropertyMetadata(
-                Defaults.EndAngle,
+                Gauges.Angle.DefaultEnd,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
 
         private ArcInfo arc;
@@ -61,9 +61,9 @@ namespace Gu.Wpf.Gauges
         /// Degrees clockwise from the y axis.
         /// The default is -140
         /// </summary>
-        public double Start
+        public Angle Start
         {
-            get => (double)this.GetValue(StartProperty);
+            get => (Angle)this.GetValue(StartProperty);
             set => this.SetValue(StartProperty, value);
         }
 
@@ -72,9 +72,9 @@ namespace Gu.Wpf.Gauges
         /// Degrees clockwise from the y axis.
         /// The default is 140
         /// </summary>
-        public double End
+        public Angle End
         {
-            get => (double)this.GetValue(EndProperty);
+            get => (Angle)this.GetValue(EndProperty);
             set => this.SetValue(EndProperty, value);
         }
 
@@ -104,16 +104,16 @@ namespace Gu.Wpf.Gauges
                     switch (this.TextOrientation)
                     {
                         case TextOrientation.Tangential:
-                            tickText.Transform = new RotateTransform(this.Angle(tickText.Value) + 90);
+                            tickText.Transform = new RotateTransform(this.Angle(tickText.Value).Degrees + 90);
                             break;
                         case TextOrientation.TangentialFlipped:
-                            tickText.Transform = new RotateTransform(this.Angle(tickText.Value) - 90);
+                            tickText.Transform = new RotateTransform(this.Angle(tickText.Value).Degrees - 90);
                             break;
                         case TextOrientation.RadialOut:
-                            tickText.Transform = new RotateTransform(this.Angle(tickText.Value));
+                            tickText.Transform = new RotateTransform(this.Angle(tickText.Value).Degrees);
                             break;
                         case TextOrientation.RadialIn:
-                            tickText.Transform = new RotateTransform(this.Angle(tickText.Value) - 180);
+                            tickText.Transform = new RotateTransform(this.Angle(tickText.Value).Degrees - 180);
                             break;
                         case TextOrientation.UseTransform:
                             tickText.Transform = this.TextTransform;
@@ -146,11 +146,11 @@ namespace Gu.Wpf.Gauges
             }
         }
 
-        protected virtual double Angle(double value)
+        protected virtual Angle Angle(double value)
         {
-            var linear = Interpolate.Linear(this.Minimum, this.Maximum, value)
-                                    .Clamp(0, 1);
-            return linear.Interpolate(this.Start, this.End, this.IsDirectionReversed);
+            return Interpolate.Linear(this.Minimum, this.Maximum, value)
+                              .Clamp(0, 1)
+                              .Interpolate(this.Start, this.End, this.IsDirectionReversed);
         }
 
         protected virtual Point PixelPosition(double value)
