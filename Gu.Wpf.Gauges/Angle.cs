@@ -134,7 +134,7 @@
             return new Angle(RadToDeg * radians);
         }
 
-        public static Angle FromRadians(Vector v1, Vector v2)
+        public static Angle Between(Vector v1, Vector v2)
         {
             return FromDegrees(Vector.AngleBetween(v1, v2));
         }

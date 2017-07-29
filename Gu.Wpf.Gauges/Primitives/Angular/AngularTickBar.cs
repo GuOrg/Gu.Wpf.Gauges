@@ -120,7 +120,7 @@ namespace Gu.Wpf.Gauges
                         var ri = arc.Radius - thickness + (strokeThickness / 2);
                         var ai1 = arc.GetAngle(ip - v);
                         var pi1 = arc.GetPointAtRadius(ai1, ri);
-                        var deltaI = 2 * Angle.FromDegrees(Vector.AngleBetween(ip - arc.Center, pi1 - arc.Center));
+                        var deltaI = 2 * Angle.Between(ip - arc.Center, pi1 - arc.Center);
                         var ai2 = ai1 - deltaI;
                         var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
                         return new PathFigure(

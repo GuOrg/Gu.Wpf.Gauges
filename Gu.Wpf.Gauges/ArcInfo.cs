@@ -198,7 +198,7 @@
 
         public Angle GetAngle(Point point)
         {
-            return Angle.FromDegrees(Vector.AngleBetween(new Vector(0, -1), point - this.Center));
+            return Angle.Between(new Vector(0, -1), point - this.Center);
         }
 
         public SweepDirection SweepDirection(Angle fromAngle, Angle toAngle)
