@@ -50,10 +50,53 @@ namespace Gu.Wpf.Gauges
 
             if (DoubleUtil.LessThanOrClose(thickness, strokeThickness))
             {
-                return new PathGeometry(new[] { arc.CreateArcPathFigure(start, end, strokeThickness, strokeThickness) });
+                return new PathGeometry(new[] { CreateArcPathFigure(arc, start, end, strokeThickness, strokeThickness) });
             }
 
-            return new PathGeometry(new[] { arc.CreateArcPathFigure(start, end, thickness, strokeThickness) });
+            return new PathGeometry(new[] { CreateArcPathFigure(arc, start, end, thickness, strokeThickness) });
+        }
+
+        public static PathFigure CreateArcPathFigure(ArcInfo arc, Angle startAngle, Angle endAngle, double thickness, double strokeThickness)
+        {
+            if (strokeThickness > thickness)
+            {
+                return CreateArcPathFigure(arc, startAngle, endAngle, thickness, 0);
+            }
+
+            if (double.IsInfinity(strokeThickness))
+            {
+                strokeThickness = 0;
+            }
+
+            var op1 = arc.GetPointAtRadiusOffset(startAngle, -strokeThickness / 2);
+            var figure = new PathFigure { StartPoint = op1 };
+            var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
+            var ro = arc.Radius - (strokeThickness / 2);
+            figure.Segments.Add(arc.CreateArcSegment(startAngle, endAngle, ro, isStroked));
+            if (DoubleUtil.LessThanOrClose(thickness, strokeThickness))
+            {
+                figure.IsClosed = false;
+                figure.IsFilled = false;
+                return figure;
+            }
+
+            if (double.IsInfinity(thickness))
+            {
+                figure.Segments.Add(new LineSegment(arc.Center, isStroked));
+            }
+            else
+            {
+                var ip2 = arc.GetPointAtRadiusOffset(endAngle, (strokeThickness / 2) - thickness);
+                figure.Segments.Add(new LineSegment(ip2, isStroked));
+                if (thickness < arc.Radius)
+                {
+                    var ri = arc.Radius - thickness + (strokeThickness / 2);
+                    figure.Segments.Add(arc.CreateArcSegment(endAngle, startAngle, ri, isStroked));
+                }
+            }
+
+            figure.IsClosed = true;
+            return figure;
         }
 
         protected override Size MeasureOverride(Size availableSize)

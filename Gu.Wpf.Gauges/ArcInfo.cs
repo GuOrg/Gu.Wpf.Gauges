@@ -263,63 +263,6 @@
             return Angle.FromRadians(arcLength / radius);
         }
 
-        public ArcInfo Inflate(double value)
-        {
-            var delta = this.GetDelta(value);
-            return new ArcInfo(
-                this.Center,
-                this.Radius + value,
-                this.Start - delta,
-                this.End + delta);
-        }
-
-        public PathFigure CreateArcPathFigure(Angle startAngle, Angle endAngle, double thickness, double strokeThickness)
-        {
-            if (strokeThickness > thickness)
-            {
-                return this.CreateArcPathFigure(startAngle, endAngle, thickness, 0);
-            }
-
-            if (double.IsInfinity(strokeThickness))
-            {
-                strokeThickness = 0;
-            }
-
-            var op1 = this.GetPointAtRadiusOffset(startAngle, -strokeThickness / 2);
-            var figure = new PathFigure { StartPoint = op1 };
-            var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
-            var ro = this.Radius - (strokeThickness / 2);
-            figure.Segments.Add(this.CreateArcSegment(startAngle, endAngle, ro, isStroked));
-            if (DoubleUtil.LessThanOrClose(thickness, strokeThickness))
-            {
-                figure.IsClosed = false;
-                figure.IsFilled = false;
-                return figure;
-            }
-
-            var ip2 = double.IsInfinity(thickness)
-                ? this.Center
-                : this.GetPointAtRadiusOffset(endAngle, (strokeThickness / 2) - thickness);
-            figure.Segments.Add(new LineSegment(ip2, isStroked));
-            if (thickness < this.Radius)
-            {
-                var ri = this.Radius - thickness + (strokeThickness / 2);
-                figure.Segments.Add(this.CreateArcSegment(endAngle, startAngle, ri, isStroked));
-            }
-
-            figure.IsClosed = true;
-            return figure;
-        }
-
-        /// <summary>
-        /// Create an <see cref="ArcSegment"/> for this arc.
-        /// </summary>
-        public ArcSegment CreateArcSegment(Angle start, Angle end, bool isStroked) => this.CreateArcSegment(
-            start,
-            end,
-            this.Radius,
-            isStroked);
-
         /// <summary>
         /// Create an <see cref="ArcSegment"/> with same center point as this arc.
         /// </summary>
