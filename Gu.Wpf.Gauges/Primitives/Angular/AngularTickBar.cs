@@ -103,7 +103,7 @@ namespace Gu.Wpf.Gauges
                 return figure;
             }
 
-            if (double.IsInfinity(thickness))
+            if (thickness >= arc.Radius)
             {
                 figure.Segments.Add(new LineSegment(arc.Center, isStroked));
             }

@@ -80,7 +80,7 @@ namespace Gu.Wpf.Gauges
                 return figure;
             }
 
-            if (double.IsInfinity(thickness))
+            if (thickness >= arc.Radius)
             {
                 figure.Segments.Add(new LineSegment(arc.Center, isStroked));
             }
@@ -88,11 +88,8 @@ namespace Gu.Wpf.Gauges
             {
                 var ip2 = arc.GetPointAtRadiusOffset(endAngle, (strokeThickness / 2) - thickness);
                 figure.Segments.Add(new LineSegment(ip2, isStroked));
-                if (thickness < arc.Radius)
-                {
-                    var ri = arc.Radius - thickness + (strokeThickness / 2);
-                    figure.Segments.Add(arc.CreateArcSegment(endAngle, startAngle, ri, isStroked));
-                }
+                var ri = arc.Radius - thickness + (strokeThickness / 2);
+                figure.Segments.Add(arc.CreateArcSegment(endAngle, startAngle, ri, isStroked));
             }
 
             figure.IsClosed = true;
