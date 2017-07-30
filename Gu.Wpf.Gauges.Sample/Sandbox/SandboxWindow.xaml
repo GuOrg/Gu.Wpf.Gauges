@@ -7,31 +7,26 @@
         SizeToContent="WidthAndHeight"
         mc:Ignorable="d">
     <Grid Width="100"
-          Height="100"
-          ShowGridLines="True">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <gauges:Ring Grid.RowSpan="2"
-                     Grid.ColumnSpan="2"
-                     Fill="Blue"
+          Height="100">
+        <Grid ShowGridLines="True">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+        </Grid>
+        <gauges:Ring Fill="Blue"
                      Stroke="GreenYellow"
                      StrokeThickness="1"
                      Thickness="10" />
-        <gauges:AngularTickBar Grid.Row="0"
-                               Grid.RowSpan="2"
-                               Grid.Column="0"
-                               Grid.ColumnSpan="2"
-                               End="180"
+        <gauges:AngularTickBar End="180"
                                Fill="Red"
                                Maximum="10"
                                Minimum="0"
-                               Opacity="0.5"
+                               Opacity="0.8"
                                Start="-180"
                                Stroke="Black"
                                StrokeThickness="2"
@@ -39,6 +34,5 @@
                                TickShape="Arc"
                                TickWidth="6"
                                Ticks="5" />
-
     </Grid>
 </Window>

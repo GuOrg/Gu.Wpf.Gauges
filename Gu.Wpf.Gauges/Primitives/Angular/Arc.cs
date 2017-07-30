@@ -58,14 +58,10 @@ namespace Gu.Wpf.Gauges
 
         public static PathFigure CreateArcPathFigure(ArcInfo arc, Angle startAngle, Angle endAngle, double thickness, double strokeThickness)
         {
-            if (strokeThickness > thickness)
+            if (strokeThickness > thickness ||
+                double.IsInfinity(strokeThickness))
             {
                 return CreateArcPathFigure(arc, startAngle, endAngle, thickness, 0);
-            }
-
-            if (double.IsInfinity(strokeThickness))
-            {
-                strokeThickness = 0;
             }
 
             var op1 = arc.GetPointAtRadiusOffset(startAngle, -strokeThickness / 2);
