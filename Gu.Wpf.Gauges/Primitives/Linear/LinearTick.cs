@@ -2,12 +2,13 @@
 {
     using System;
     using System.Windows;
+    using System.Windows.Controls.Primitives;
     using System.Windows.Media;
 
     /// <summary>
-    /// A tick bar that draws ticks similar to <see cref="System.Windows.Controls.Primitives.TickBar"/>
+    /// A tick bar that draws a tick at the position of Value
     /// </summary>
-    public class LinearTickBar : LinearGeometryTickBar
+    public class LinearTick : LinearGeometryBar
     {
         /// <summary>
         /// Identifies the <see cref="P:LinearTickBar.TickWidth" /> dependency property.
@@ -15,20 +16,20 @@
         public static readonly DependencyProperty TickWidthProperty = DependencyProperty.Register(
             nameof(TickWidth),
             typeof(double),
-            typeof(LinearTickBar),
+            typeof(LinearTick),
             new FrameworkPropertyMetadata(
                 1.0d,
                 FrameworkPropertyMetadataOptions.AffectsRender,
-                (d, e) => ((LinearTickBar)d).ResetPen()));
+                (d, e) => ((LinearTick)d).ResetPen()));
 
-        static LinearTickBar()
+        static LinearTick()
         {
             StrokeProperty.OverrideMetadata(
-                typeof(LinearTickBar),
+                typeof(LinearTick),
                 new FrameworkPropertyMetadata(
                     Brushes.Black,
                     FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.SubPropertiesDoNotAffectRender,
-                    (d, e) => ((LinearTickBar)d).ResetPen()));
+                    (d, e) => ((LinearTick)d).ResetPen()));
         }
 
         /// <summary>
@@ -42,6 +43,16 @@
         }
 
         protected override Geometry DefiningGeometry => throw new InvalidOperationException("Uses OnRender");
+
+        public static Line CreateLine(double pos, TickBarPlacement placement, bool snapsToDevicePixels, Size arrangeSize)
+        {
+            var line = placement.IsHorizontal()
+                ? new Line(new Point(pos, 0), new Point(pos, arrangeSize.Height))
+                : new Line(new Point(0, pos), new Point(arrangeSize.Width, pos));
+            return snapsToDevicePixels
+                ? new Line(line.StartPoint.Round(0), line.EndPoint.Round(0))
+                : line;
+        }
 
         protected override double GetStrokeThickness()
         {
@@ -79,80 +90,23 @@
         protected override void OnRender(DrawingContext dc)
         {
             if ((this.Pen == null && this.Fill == null) ||
-                this.AllTicks == null ||
-                DoubleUtil.AreClose(this.EffectiveValue, this.Minimum))
+                double.IsNaN(this.Value))
             {
                 return;
             }
 
-            var max = this.EffectiveValue;
-            var strokeThickness = this.GetStrokeThickness();
-            if (max < this.Maximum)
+            if (this.TickWidth > 0)
             {
-                var rect = new Rect(this.RenderSize);
-                var w = this.TickWidth > strokeThickness
-                    ? strokeThickness + this.TickWidth
-                    : strokeThickness;
-                rect.Inflate(new Size(w, w));
-                var pos = this.PixelPosition(max, this.RenderSize);
-                if (this.Placement.IsHorizontal())
-                {
-                    if (this.IsDirectionReversed)
-                    {
-                        RectExt.SetLeft(ref rect, pos);
-                    }
-                    else
-                    {
-                        RectExt.SetRight(ref rect, pos);
-                    }
-                }
-                else
-                {
-                    if (this.IsDirectionReversed)
-                    {
-                        RectExt.SetBottom(ref rect, pos);
-                    }
-                    else
-                    {
-                        RectExt.SetTop(ref rect, pos);
-                    }
-                }
-
-                dc.PushClip(new RectangleGeometry(rect));
-            }
-
-            if (this.TickWidth <= strokeThickness)
-            {
-                foreach (var tick in this.AllTicks)
-                {
-                    if (tick > max)
-                    {
-                        break;
-                    }
-
-                    dc.DrawLine(this.Pen, this.CreateLine(tick, this.RenderSize));
-                }
+                dc.DrawRectangle(this.Fill, this.Pen, this.CreateRect(this.Value, this.RenderSize));
             }
             else
             {
-                foreach (var tick in this.AllTicks)
-                {
-                    dc.DrawRectangle(this.Fill, this.Pen, this.CreateRect(tick, this.RenderSize));
-                    if (tick > max)
-                    {
-                        break;
-                    }
-                }
-            }
-
-            if (max < this.Maximum)
-            {
-                dc.Pop();
+                dc.DrawLine(this.Pen, this.CreateLine(this.Value, this.RenderSize));
             }
         }
 
-        protected virtual Line CreateLine(double tick, Size arrangeSize) => LinearTick.CreateLine(
-            this.PixelPosition(tick, arrangeSize),
+        protected virtual Line CreateLine(double value, Size arrangeSize) => CreateLine(
+            this.PixelPosition(value, arrangeSize),
             this.Placement,
             this.SnapsToDevicePixels,
             arrangeSize);
