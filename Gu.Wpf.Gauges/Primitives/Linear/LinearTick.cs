@@ -44,14 +44,41 @@
 
         protected override Geometry DefiningGeometry => throw new InvalidOperationException("Uses OnRender");
 
-        public static Line CreateLine(double pos, TickBarPlacement placement, bool snapsToDevicePixels, Size arrangeSize)
+        /// <summary>
+        /// Create a line for the tick at the position.
+        /// This is useful when stroke thickness &gt; thickness.
+        /// </summary>
+        public static Line CreateLine(double position, TickBarPlacement placement, Size arrangeSize, bool snapsToDevicePixels)
         {
             var line = placement.IsHorizontal()
-                ? new Line(new Point(pos, 0), new Point(pos, arrangeSize.Height))
-                : new Line(new Point(0, pos), new Point(arrangeSize.Width, pos));
+                ? new Line(new Point(position, 0), new Point(position, arrangeSize.Height))
+                : new Line(new Point(0, position), new Point(arrangeSize.Width, position));
             return snapsToDevicePixels
                 ? new Line(line.StartPoint.Round(0), line.EndPoint.Round(0))
                 : line;
+        }
+
+        /// <summary>
+        /// Create a <see cref="Rect"/> for the tick at the position.
+        /// This is useful when stroke thickness &lt; thickness.
+        /// </summary>
+        public static Rect CreateRect(double position, TickBarPlacement placement, Size arrangeSize, double tickWidth, double strokeThickness, bool snapsToDevicePixels)
+        {
+            var rect = placement.IsHorizontal()
+                ? new Rect(
+                    x: position - (tickWidth / 2),
+                    y: strokeThickness / 2,
+                    width: tickWidth,
+                    height: arrangeSize.Height - strokeThickness)
+                : new Rect(
+                    x: strokeThickness / 2,
+                    y: position - (tickWidth / 2),
+                    width: arrangeSize.Width - strokeThickness,
+                    height: tickWidth);
+
+            return snapsToDevicePixels
+                ? new Rect(rect.TopLeft.Round(0), rect.BottomRight.Round(0))
+                : rect;
         }
 
         protected override double GetStrokeThickness()
@@ -108,24 +135,15 @@
         protected virtual Line CreateLine(double value, Size arrangeSize) => CreateLine(
             this.PixelPosition(value, arrangeSize),
             this.Placement,
-            this.SnapsToDevicePixels,
-            arrangeSize);
+            arrangeSize,
+            this.SnapsToDevicePixels);
 
-        protected virtual Rect CreateRect(double tick, Size arrangeSize)
-        {
-            var position = this.PixelPosition(tick, arrangeSize);
-            var strokeThickness = this.GetStrokeThickness();
-            return this.Placement.IsHorizontal()
-                ? new Rect(
-                    x: position - (this.TickWidth / 2),
-                    y: strokeThickness / 2,
-                    width: this.TickWidth,
-                    height: arrangeSize.Height - strokeThickness)
-                : new Rect(
-                    x: strokeThickness / 2,
-                    y: position - (this.TickWidth / 2),
-                    width: arrangeSize.Width - strokeThickness,
-                    height: this.TickWidth);
-        }
+        protected virtual Rect CreateRect(double tick, Size arrangeSize) => CreateRect(
+            this.PixelPosition(tick, arrangeSize),
+            this.Placement,
+            arrangeSize,
+            this.TickWidth,
+            this.GetStrokeThickness(),
+            this.SnapsToDevicePixels);
     }
 }

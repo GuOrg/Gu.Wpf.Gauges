@@ -154,24 +154,15 @@
         protected virtual Line CreateLine(double tick, Size arrangeSize) => LinearTick.CreateLine(
             this.PixelPosition(tick, arrangeSize),
             this.Placement,
-            this.SnapsToDevicePixels,
-            arrangeSize);
+            arrangeSize,
+            this.SnapsToDevicePixels);
 
-        protected virtual Rect CreateRect(double tick, Size arrangeSize)
-        {
-            var position = this.PixelPosition(tick, arrangeSize);
-            var strokeThickness = this.GetStrokeThickness();
-            return this.Placement.IsHorizontal()
-                ? new Rect(
-                    x: position - (this.TickWidth / 2),
-                    y: strokeThickness / 2,
-                    width: this.TickWidth,
-                    height: arrangeSize.Height - strokeThickness)
-                : new Rect(
-                    x: strokeThickness / 2,
-                    y: position - (this.TickWidth / 2),
-                    width: arrangeSize.Width - strokeThickness,
-                    height: this.TickWidth);
-        }
+        protected virtual Rect CreateRect(double tick, Size arrangeSize) => LinearTick.CreateRect(
+            this.PixelPosition(tick, arrangeSize),
+            this.Placement,
+            arrangeSize,
+            this.TickWidth,
+            this.GetStrokeThickness(),
+            this.SnapsToDevicePixels);
     }
 }

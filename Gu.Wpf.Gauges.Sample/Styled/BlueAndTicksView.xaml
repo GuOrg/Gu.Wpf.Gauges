@@ -33,10 +33,10 @@
                                       Fill="Black"
                                       TickFrequency="{TemplateBinding MinorTickFrequency}" />
 
-                <Rectangle Grid.Column="1"
-                           Width="1"
-                           HorizontalAlignment="Right"
-                           Fill="Black" />
+                <gauges:LinearLineBar Grid.Column="1"
+                                      HorizontalAlignment="Right"
+                                      Stroke="Black"
+                                      StrokeThickness="1" />
 
                 <gauges:LinearBlockBar Grid.Column="2"
                                        Width="10"
@@ -44,11 +44,25 @@
                                        Fill="CornflowerBlue"
                                        Value="{TemplateBinding Value}" />
 
-                <Border Grid.Column="3"
+                <gauges:LinearLineBar Grid.Column="3"
+                                      HorizontalAlignment="Left"
+                                      Stroke="Black"
+                                      StrokeThickness="1" />
+                <gauges:LinearTick Grid.Column="3"
+                                   Width="6"
+                                   Stroke="Black"
+                                   StrokeThickness="1"
+                                   Value="{TemplateBinding Minimum}" />
+                <gauges:LinearTick Grid.Column="3"
+                                   Width="6"
+                                   Stroke="Black"
+                                   StrokeThickness="1"
+                                   Value="{TemplateBinding Maximum}" />
+                <!--<Border Grid.Column="3"
                         Width="6"
                         HorizontalAlignment="Left"
                         BorderBrush="Black"
-                        BorderThickness="1,1,0,1" />
+                        BorderThickness="1,1,0,1" />-->
 
             </Grid>
         </ControlTemplate>
@@ -78,10 +92,10 @@
                                       Fill="Black"
                                       TickFrequency="{TemplateBinding MinorTickFrequency}" />
 
-                <Rectangle Grid.Row="1"
-                           Height="1"
-                           VerticalAlignment="Bottom"
-                           Fill="Black" />
+                <gauges:LinearLineBar Grid.Row="1"
+                                      VerticalAlignment="Bottom"
+                                      Stroke="Black"
+                                      StrokeThickness="1" />
 
                 <gauges:LinearBlockBar Grid.Row="2"
                                        Height="10"
@@ -89,12 +103,25 @@
                                        Fill="CornflowerBlue"
                                        Value="{TemplateBinding Value}" />
 
-                <Border Grid.Row="3"
+                <gauges:LinearLineBar Grid.Row="3"
+                                      VerticalAlignment="Bottom"
+                                      Stroke="Black"
+                                      StrokeThickness="1" />
+                <gauges:LinearTick Grid.Row="3"
+                                   Width="6"
+                                   Stroke="Black"
+                                   StrokeThickness="1"
+                                   Value="{TemplateBinding Minimum}" />
+                <gauges:LinearTick Grid.Row="3"
+                                   Width="6"
+                                   Stroke="Black"
+                                   StrokeThickness="1"
+                                   Value="{TemplateBinding Maximum}" />
+                <!--<Border Grid.Row="3"
                         Height="6"
                         VerticalAlignment="Top"
                         BorderBrush="Black"
-                        BorderThickness="1,1,1,0" />
-
+                        BorderThickness="1,1,1,0" />-->
             </Grid>
         </ControlTemplate>
 
