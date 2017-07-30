@@ -1,34 +1,14 @@
 namespace Gu.Wpf.Gauges
 {
     using System.Windows;
+    using System.Windows.Controls.Primitives;
 
     /// <summary>
-    /// Base class for creating angular tick bars that renders ticks.
+    /// Base class for creating linear tick bars that renders ticks.
     /// </summary>
-    public abstract class AngularGeometryTickBar : GeometryTickBar
+    public abstract class LinearGeometryTickBar : GeometryTickBar
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
-
-        public static readonly DependencyProperty ThicknessProperty = DependencyProperty.RegisterAttached(
-            nameof(Thickness),
-            typeof(double),
-            typeof(AngularGeometryTickBar),
-            new FrameworkPropertyMetadata(
-                10.0d,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
-
-        public static readonly DependencyProperty StartProperty = AngularGauge.StartProperty.AddOwner(
-            typeof(AngularGeometryTickBar),
-            new FrameworkPropertyMetadata(
-                Angle.DefaultStart,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
-
-        public static readonly DependencyProperty EndProperty = AngularGauge.EndProperty.AddOwner(
-            typeof(AngularGeometryTickBar),
-            new FrameworkPropertyMetadata(
-                Angle.DefaultEnd,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
-
         /// <summary>
         /// Identifies the <see cref="P:LinearGeometryBar.Value" /> dependency property.
         /// </summary>
@@ -36,15 +16,28 @@ namespace Gu.Wpf.Gauges
         /// The identifier for the <see cref="P:LinearGeometryBar.Value" /> dependency property.
         /// </returns>
         public static readonly DependencyProperty ValueProperty = Gauge.ValueProperty.AddOwner(
-            typeof(AngularGeometryTickBar),
+            typeof(LinearGeometryTickBar),
             new FrameworkPropertyMetadata(
                 double.NaN,
-                FrameworkPropertyMetadataOptions.AffectsRender));
+                FrameworkPropertyMetadataOptions.AffectsRender,
+                OnValueChanged));
+
+        /// <summary>
+        /// Identifies the <see cref="P:LinearGeometryBar.Placement" /> dependency property. This property is read-only.
+        /// </summary>
+        /// <returns>
+        /// The identifier for the <see cref="P:LinearGeometryBar.Placement" /> dependency property.
+        /// </returns>
+        public static readonly DependencyProperty PlacementProperty = LinearGauge.PlacementProperty.AddOwner(
+            typeof(LinearGeometryTickBar),
+            new FrameworkPropertyMetadata(
+                TickBarPlacement.Bottom,
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty PaddingProperty = DependencyProperty.Register(
             nameof(Padding),
             typeof(Thickness),
-            typeof(AngularGeometryTickBar),
+            typeof(LinearGeometryTickBar),
             new FrameworkPropertyMetadata(
                 default(Thickness),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
@@ -52,7 +45,7 @@ namespace Gu.Wpf.Gauges
         private static readonly DependencyPropertyKey OverflowPropertyKey = DependencyProperty.RegisterReadOnly(
             nameof(Overflow),
             typeof(Thickness),
-            typeof(AngularGeometryTickBar),
+            typeof(LinearGeometryTickBar),
             new PropertyMetadata(
                 default(Thickness),
                 null,
@@ -60,34 +53,6 @@ namespace Gu.Wpf.Gauges
 
         public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
 #pragma warning restore SA1202 // Elements must be ordered by access
-
-        public double Thickness
-        {
-            get => (double)this.GetValue(ThicknessProperty);
-            set => this.SetValue(ThicknessProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets the start angle of the arc.
-        /// Degrees clockwise from the y axis.
-        /// The default is -140
-        /// </summary>
-        public Angle Start
-        {
-            get => (Angle)this.GetValue(StartProperty);
-            set => this.SetValue(StartProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets the end angle of the arc.
-        /// Degrees clockwise from the y axis.
-        /// The default is 140
-        /// </summary>
-        public Angle End
-        {
-            get => (Angle)this.GetValue(EndProperty);
-            set => this.SetValue(EndProperty, value);
-        }
 
         /// <summary>
         /// Gets or sets the current magnitude of the range control.
@@ -99,6 +64,18 @@ namespace Gu.Wpf.Gauges
         {
             get => (double)this.GetValue(ValueProperty);
             set => this.SetValue(ValueProperty, value);
+        }
+
+        /// <summary>
+        /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:TickBarPlacement" /> enumeration value that identifies the position of the <see cref="T:LinearTextTickBar" /> in the <see cref="T:System.Windows.Style" /> layout of a <see cref="T:System.Windows.Controls.Slider" />. The default value is <see cref="F:LinearGeometryBar.Top" />.
+        /// </returns>
+        public TickBarPlacement Placement
+        {
+            get => (TickBarPlacement)this.GetValue(PlacementProperty);
+            set => this.SetValue(PlacementProperty, value);
         }
 
         public Thickness Padding
@@ -128,19 +105,19 @@ namespace Gu.Wpf.Gauges
         /// </summary>
         /// <param name="value"></param>
         /// <param name="size">The render size.</param>
-        protected virtual Point PixelPosition(double value, Size size)
-        {
-            var arc = ArcInfo.Fit(size, this.Padding, this.Start, this.End);
-            return this.PixelPosition(value, arc);
-        }
-
-        /// <summary>
-        /// Get the interpolated pixel position for the value.
-        /// </summary>
-        protected virtual Point PixelPosition(double value, ArcInfo arc)
+        protected virtual double PixelPosition(double value, Size size)
         {
             var interpolation = Interpolate.Linear(this.Minimum, this.Maximum, value);
-            return interpolation.Interpolate(arc, this.IsDirectionReversed);
+            return interpolation.Interpolate(size, this.Padding, this.Placement, this.IsDirectionReversed);
+        }
+
+        protected virtual void OnValueChanged(double oldValue, double newValue)
+        {
+        }
+
+        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((LinearGeometryTickBar)d).OnValueChanged((double)e.OldValue, (double)e.NewValue);
         }
 
         private static object CoerceOverflow(DependencyObject d, object basevalue)

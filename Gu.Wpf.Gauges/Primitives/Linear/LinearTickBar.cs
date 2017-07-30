@@ -4,7 +4,10 @@
     using System.Windows;
     using System.Windows.Media;
 
-    public class LinearTickBar : LinearGeometryBar
+    /// <summary>
+    /// A tick bar that draws ticks similar to <see cref="System.Windows.Controls.Primitives.TickBar"/>
+    /// </summary>
+    public class LinearTickBar : LinearGeometryTickBar
     {
         /// <summary>
         /// Identifies the <see cref="P:LinearTickBar.TickWidth" /> dependency property.

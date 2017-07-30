@@ -5,7 +5,10 @@
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
 
-    public class LinearDotBar : LinearGeometryBar
+    /// <summary>
+    /// A tick bar that draws circles.
+    /// </summary>
+    public class LinearDotBar : LinearGeometryTickBar
     {
         /// <summary>
         /// Identifies the <see cref="P:LinearTickBar.TickDiameter" /> dependency property.

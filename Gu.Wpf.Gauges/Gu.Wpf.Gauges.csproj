@@ -101,6 +101,7 @@
     <Compile Include="Primitives\Linear\DefaultLinearTextPosition.cs" />
     <Compile Include="Primitives\Linear\ExplicitLinearTextPosition.cs" />
     <Compile Include="Primitives\Linear\LinearGeometryBar.cs" />
+    <Compile Include="Primitives\Linear\LinearGeometryTickBar.cs" />
     <Compile Include="Primitives\Linear\LinearLineBar.cs" />
     <Compile Include="Primitives\Linear\LinearTextBar.cs" />
     <Compile Include="Primitives\Angular\Ring.cs" />

@@ -5,7 +5,7 @@
     using System.Windows;
     using System.Windows.Media;
 
-    public class LinearBlockBar : LinearGeometryBar
+    public class LinearBlockBar : LinearGeometryTickBar
     {
         public static readonly DependencyProperty TickGapProperty = DependencyProperty.Register(
             nameof(TickGap),
