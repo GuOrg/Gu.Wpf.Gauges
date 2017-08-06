@@ -20,20 +20,12 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
             tickCollections: new[] { null, (DoubleCollection)new DoubleCollection(new[] { 1.0, 2, 6 }).GetCurrentValueAsFrozen() },
             horizontalTextAlignments: Enum.GetValues(typeof(HorizontalTextAlignment)).Cast<HorizontalTextAlignment>(),
             verticalTextAlignments: Enum.GetValues(typeof(VerticalTextAlignment)).Cast<VerticalTextAlignment>(),
-                                                                                  paddings: new[] { default(Thickness) })
-
-                                                                              .Where(x => !(x.TickFrequency <= 0 && x.Ticks == null))
-                                                                              .ToArray();
+            paddings: new[] { default(Thickness) });
 
         private static readonly IReadOnlyList<TestCase> RenderWithDefaultPositionCases = TestCase.Create(
-                                                                                                      tickFrequencies: new[] { 0, 5.0 },
-                                                                                                      tickCollections: new[] { null, (DoubleCollection)new DoubleCollection(new[] { 1.0, 2, 6 }).GetCurrentValueAsFrozen() },
-                                                                                                      horizontalTextAlignments: Enumerable.Empty<HorizontalTextAlignment>(),
-                                                                                                      verticalTextAlignments: Enumerable.Empty<VerticalTextAlignment>(),
-                                                                                                      paddings: new[] { default(Thickness) })
-
-                                                                                                  .Where(x => !(x.TickFrequency <= 0 && x.Ticks == null))
-                                                                                                  .ToArray();
+            tickFrequencies: new[] { 0, 5.0 },
+            tickCollections: new[] { null, (DoubleCollection)new DoubleCollection(new[] { 1.0, 2, 6 }).GetCurrentValueAsFrozen() },
+            paddings: new[] { default(Thickness) });
 
         [TestCaseSource(nameof(RenderWithExplicitPositionCases))]
         public void RenderWithExplicitPosition(TestCase testCase)
@@ -48,7 +40,9 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                               Placement = testCase.Placement,
                               IsDirectionReversed = testCase.IsDirectionReversed,
                               Padding = testCase.Padding,
-                          };
+                              FontFamily = new FontFamily("Arial"), // Seoge UI is measured differently on Win 7 and Win 10 for some reason
+                              FontSize = 12,
+            };
 
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
@@ -65,7 +59,9 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                               Placement = testCase.Placement,
                               IsDirectionReversed = testCase.IsDirectionReversed,
                               Padding = testCase.Padding,
-                          };
+                              FontFamily = new FontFamily("Arial"), // Seoge UI is measured differently on Win 7 and Win 10 for some reason
+                              FontSize = 12,
+            };
 
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
@@ -113,6 +109,12 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
 
         private static string GetFileName(LinearTextBar tickBar)
         {
+            if (tickBar.Ticks == null &&
+                DoubleUtil.AreClose(tickBar.TickFrequency, 0))
+            {
+                return $"LinearTextBar_Placement_{tickBar.Placement}_Empty.png";
+            }
+
             var ticks = tickBar.Ticks != null
                 ? $"_Ticks_{tickBar.Ticks}"
                 : string.Empty;
@@ -177,13 +179,14 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
 
             public Thickness Padding { get; }
 
-            public static IEnumerable<TestCase> Create(
+            public static IReadOnlyList<TestCase> Create(
                 double[] tickFrequencies,
                 DoubleCollection[] tickCollections,
                 IEnumerable<HorizontalTextAlignment> horizontalTextAlignments,
-                IEnumerable<VerticalTextAlignment> verticalTextAlignments, 
+                IEnumerable<VerticalTextAlignment> verticalTextAlignments,
                 Thickness[] paddings)
             {
+                var testCases = new List<TestCase>();
                 foreach (var placement in new[] { TickBarPlacement.Left, TickBarPlacement.Top, TickBarPlacement.Right, TickBarPlacement.Bottom })
                 {
                     foreach (var isDirectionReversed in new[] { true, false })
@@ -199,14 +202,14 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                                         {
                                             foreach (var padding in paddings)
                                             {
-                                                yield return new TestCase(
-                                                    placement: placement,
-                                                    isDirectionReversed: isDirectionReversed,
-                                                    horizontalTextAlignment: horizontalTextAlignment,
-                                                    verticalTextAlignment: verticalTextAlignment,
-                                                    tickFrequency: tickFrequency,
-                                                    ticks: ticks,
-                                                    padding: padding);
+                                                testCases.Add(new TestCase(
+                                                                  placement: placement,
+                                                                  isDirectionReversed: isDirectionReversed,
+                                                                  horizontalTextAlignment: horizontalTextAlignment,
+                                                                  verticalTextAlignment: verticalTextAlignment,
+                                                                  tickFrequency: tickFrequency,
+                                                                  ticks: ticks,
+                                                                  padding: padding));
                                             }
                                         }
                                     }
@@ -215,6 +218,42 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                         }
                     }
                 }
+
+                return testCases;
+            }
+
+            public static IReadOnlyList<TestCase> Create(
+                double[] tickFrequencies,
+                DoubleCollection[] tickCollections,
+                Thickness[] paddings)
+            {
+                var testCases = new List<TestCase>();
+                foreach (var placement in new[] { TickBarPlacement.Left, TickBarPlacement.Top, TickBarPlacement.Right, TickBarPlacement.Bottom })
+                {
+                    foreach (var isDirectionReversed in new[] { true, false })
+                    {
+                        foreach (var tickFrequency in tickFrequencies)
+                        {
+                            foreach (var ticks in tickCollections)
+                            {
+                                foreach (var padding in paddings)
+                                {
+                                    testCases.Add(
+                                        new TestCase(
+                                            placement: placement,
+                                            isDirectionReversed: isDirectionReversed,
+                                            horizontalTextAlignment: default(HorizontalTextAlignment),
+                                            verticalTextAlignment: default(VerticalTextAlignment),
+                                            tickFrequency: tickFrequency,
+                                            ticks: ticks,
+                                            padding: padding));
+                                }
+                            }
+                        }
+                    }
+                }
+
+                return testCases;
             }
 
             public override string ToString()

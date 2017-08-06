@@ -1239,6 +1239,9 @@
     <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Value_0_Vertical.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_False_Default_TickFrequency_5.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_False_Default_TickFrequency_5_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_False_Default_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_False_Explicit_Center_Bottom_TickFrequency_5.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_False_Explicit_Center_Bottom_TickFrequency_5_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_False_Explicit_Center_Bottom_Ticks_1_2_6.png" />
@@ -1266,6 +1269,9 @@
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_False_Explicit_Right_Top_TickFrequency_5.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_False_Explicit_Right_Top_TickFrequency_5_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_False_Explicit_Right_Top_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_True_Default_TickFrequency_5.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_True_Default_TickFrequency_5_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_True_Default_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_True_Explicit_Center_Bottom_TickFrequency_5.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_True_Explicit_Center_Bottom_TickFrequency_5_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_True_Explicit_Center_Bottom_Ticks_1_2_6.png" />
@@ -1293,6 +1299,9 @@
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_True_Explicit_Right_Top_TickFrequency_5.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_True_Explicit_Right_Top_TickFrequency_5_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Min_0_Max_10_IsDirectionReversed_True_Explicit_Right_Top_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Left_Min_0_Max_10_IsDirectionReversed_False_Default_TickFrequency_5.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Left_Min_0_Max_10_IsDirectionReversed_False_Default_TickFrequency_5_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Left_Min_0_Max_10_IsDirectionReversed_False_Default_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Left_Min_0_Max_10_IsDirectionReversed_False_Explicit_Center_Bottom_TickFrequency_5.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Left_Min_0_Max_10_IsDirectionReversed_False_Explicit_Center_Bottom_TickFrequency_5_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Left_Min_0_Max_10_IsDirectionReversed_False_Explicit_Center_Bottom_Ticks_1_2_6.png" />
@@ -1320,6 +1329,9 @@
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Left_Min_0_Max_10_IsDirectionReversed_False_Explicit_Right_Top_TickFrequency_5.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Left_Min_0_Max_10_IsDirectionReversed_False_Explicit_Right_Top_TickFrequency_5_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Left_Min_0_Max_10_IsDirectionReversed_False_Explicit_Right_Top_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Left_Min_0_Max_10_IsDirectionReversed_True_Default_TickFrequency_5.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Left_Min_0_Max_10_IsDirectionReversed_True_Default_TickFrequency_5_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Left_Min_0_Max_10_IsDirectionReversed_True_Default_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Left_Min_0_Max_10_IsDirectionReversed_True_Explicit_Center_Bottom_TickFrequency_5.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Left_Min_0_Max_10_IsDirectionReversed_True_Explicit_Center_Bottom_TickFrequency_5_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Left_Min_0_Max_10_IsDirectionReversed_True_Explicit_Center_Bottom_Ticks_1_2_6.png" />
@@ -1347,6 +1359,9 @@
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Left_Min_0_Max_10_IsDirectionReversed_True_Explicit_Right_Top_TickFrequency_5.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Left_Min_0_Max_10_IsDirectionReversed_True_Explicit_Right_Top_TickFrequency_5_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Left_Min_0_Max_10_IsDirectionReversed_True_Explicit_Right_Top_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Right_Min_0_Max_10_IsDirectionReversed_False_Default_TickFrequency_5.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Right_Min_0_Max_10_IsDirectionReversed_False_Default_TickFrequency_5_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Right_Min_0_Max_10_IsDirectionReversed_False_Default_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Right_Min_0_Max_10_IsDirectionReversed_False_Explicit_Center_Bottom_TickFrequency_5.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Right_Min_0_Max_10_IsDirectionReversed_False_Explicit_Center_Bottom_TickFrequency_5_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Right_Min_0_Max_10_IsDirectionReversed_False_Explicit_Center_Bottom_Ticks_1_2_6.png" />
@@ -1374,6 +1389,9 @@
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Right_Min_0_Max_10_IsDirectionReversed_False_Explicit_Right_Top_TickFrequency_5.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Right_Min_0_Max_10_IsDirectionReversed_False_Explicit_Right_Top_TickFrequency_5_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Right_Min_0_Max_10_IsDirectionReversed_False_Explicit_Right_Top_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Right_Min_0_Max_10_IsDirectionReversed_True_Default_TickFrequency_5.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Right_Min_0_Max_10_IsDirectionReversed_True_Default_TickFrequency_5_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Right_Min_0_Max_10_IsDirectionReversed_True_Default_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Right_Min_0_Max_10_IsDirectionReversed_True_Explicit_Center_Bottom_TickFrequency_5.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Right_Min_0_Max_10_IsDirectionReversed_True_Explicit_Center_Bottom_TickFrequency_5_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Right_Min_0_Max_10_IsDirectionReversed_True_Explicit_Center_Bottom_Ticks_1_2_6.png" />
@@ -1401,6 +1419,9 @@
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Right_Min_0_Max_10_IsDirectionReversed_True_Explicit_Right_Top_TickFrequency_5.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Right_Min_0_Max_10_IsDirectionReversed_True_Explicit_Right_Top_TickFrequency_5_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Right_Min_0_Max_10_IsDirectionReversed_True_Explicit_Right_Top_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Top_Min_0_Max_10_IsDirectionReversed_False_Default_TickFrequency_5.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Top_Min_0_Max_10_IsDirectionReversed_False_Default_TickFrequency_5_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Top_Min_0_Max_10_IsDirectionReversed_False_Default_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Top_Min_0_Max_10_IsDirectionReversed_False_Explicit_Center_Bottom_TickFrequency_5.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Top_Min_0_Max_10_IsDirectionReversed_False_Explicit_Center_Bottom_TickFrequency_5_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Top_Min_0_Max_10_IsDirectionReversed_False_Explicit_Center_Bottom_Ticks_1_2_6.png" />
@@ -1428,6 +1449,9 @@
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Top_Min_0_Max_10_IsDirectionReversed_False_Explicit_Right_Top_TickFrequency_5.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Top_Min_0_Max_10_IsDirectionReversed_False_Explicit_Right_Top_TickFrequency_5_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Top_Min_0_Max_10_IsDirectionReversed_False_Explicit_Right_Top_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Top_Min_0_Max_10_IsDirectionReversed_True_Default_TickFrequency_5.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Top_Min_0_Max_10_IsDirectionReversed_True_Default_TickFrequency_5_Ticks_1_2_6.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Top_Min_0_Max_10_IsDirectionReversed_True_Default_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Top_Min_0_Max_10_IsDirectionReversed_True_Explicit_Center_Bottom_TickFrequency_5.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Top_Min_0_Max_10_IsDirectionReversed_True_Explicit_Center_Bottom_TickFrequency_5_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Top_Min_0_Max_10_IsDirectionReversed_True_Explicit_Center_Bottom_Ticks_1_2_6.png" />
@@ -1455,6 +1479,12 @@
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Top_Min_0_Max_10_IsDirectionReversed_True_Explicit_Right_Top_TickFrequency_5.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Top_Min_0_Max_10_IsDirectionReversed_True_Explicit_Right_Top_TickFrequency_5_Ticks_1_2_6.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Top_Min_0_Max_10_IsDirectionReversed_True_Explicit_Right_Top_Ticks_1_2_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Bottom_Empty.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Left_Empty.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Right_Empty.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTextBarImages\LinearTextBar_Placement_Top_Empty.png" />
   </ItemGroup>
   <Import Project="..\.paket\paket.targets" />
 </Project>
