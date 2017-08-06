@@ -1,5 +1,6 @@
 namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
@@ -14,7 +15,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
     public class LinearTickBarTests
     {
         private static readonly IReadOnlyList<TestCase> RenderCases = TestCase.Create(
-                                                                                  values: new[] { double.NaN, 0, 5, 10 },
+                                                                                  values: new[] { double.NaN, 0, 1, 5, 10 },
                                                                                   tickWidths: new[] { 1.0, 5 },
                                                                                   strokeThicknesses: new[] { 0.0, 1 },
                                                                                   tickFrequencies: new[] { 0, 5.0 },
@@ -23,56 +24,24 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                                                                               .Where(x => !(x.TickFrequency <= 0 && x.Ticks == null))
                                                                               .ToArray();
 
-        private static readonly IReadOnlyList<TestCase> RenderWithValueCases = TestCase.Create(
-                                                                                           values: new[] { double.NaN, 5.96, 6, 6.05 },
-                                                                                           tickWidths: new[] { 1.0, 5 },
-                                                                                           strokeThicknesses: new[] { 0.0, 1 },
-                                                                                           tickFrequencies: new[] { 0, 5.0 },
-                                                                                           tickCollections: new[] { null, (DoubleCollection)new DoubleCollection(new[] { 1.0, 2, 6 }).GetCurrentValueAsFrozen() },
-                                                                                           paddings: new[] { default(Thickness) })
-                                                                                       .Where(x => !(x.TickFrequency <= 0 && x.Ticks == null))
-                                                                                       .ToArray();
-
         [TestCaseSource(nameof(RenderCases))]
         public void Render(TestCase testCase)
         {
             var tickBar = new LinearTickBar
-                          {
-                              StrokeThickness = testCase.StrokeThickness,
-                              Minimum = 0,
-                              Maximum = 10,
-                              Value = testCase.Value,
-                              TickFrequency = testCase.TickFrequency,
-                              Ticks = testCase.Ticks,
-                              TickWidth = testCase.TickWidth,
-                              Stroke = Brushes.Black,
-                              Fill = Brushes.Red,
-                              Placement = testCase.Placement,
-                              IsDirectionReversed = testCase.IsDirectionReversed,
-                              Padding = testCase.Padding,
-                          };
-
-            ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
-        }
-
-        [TestCaseSource(nameof(RenderWithValueCases))]
-        public void RenderWithValue(TestCase testCase)
-        {
-            var tickBar = new LinearTickBar
-                          {
-                              StrokeThickness = testCase.StrokeThickness,
-                              Minimum = 0,
-                              Maximum = 10,
-                              Value = testCase.Value,
-                              TickFrequency = testCase.TickFrequency,
-                              Ticks = testCase.Ticks,
-                              TickWidth = testCase.TickWidth,
-                              Stroke = Brushes.Black,
-                              Fill = Brushes.Red,
-                              Placement = testCase.Placement,
-                              IsDirectionReversed = testCase.IsDirectionReversed,
-                              Padding = testCase.Padding,
-                          };
+            {
+                StrokeThickness = testCase.StrokeThickness,
+                Minimum = 0,
+                Maximum = 10,
+                Value = testCase.Value,
+                TickFrequency = testCase.TickFrequency,
+                Ticks = testCase.Ticks,
+                TickWidth = testCase.TickWidth,
+                Stroke = Brushes.Black,
+                Fill = Brushes.Red,
+                Placement = testCase.Placement,
+                IsDirectionReversed = testCase.IsDirectionReversed,
+                Padding = testCase.Padding,
+            };
 
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
@@ -164,7 +133,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
 
             var value = double.IsNaN(tickBar.Value) || DoubleUtil.AreClose(tickBar.Value, tickBar.Maximum)
                 ? string.Empty
-                : $"_Value_{tickBar.Value}";
+                : $"_Value_{Math.Round(tickBar.Value, 0)}";
             if (DoubleUtil.AreClose(tickBar.Value, 0))
             {
                 return $"LinearTickBar_Value_0{orientation}.png";
