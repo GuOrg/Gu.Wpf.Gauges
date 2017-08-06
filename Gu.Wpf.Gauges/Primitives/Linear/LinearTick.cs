@@ -122,7 +122,7 @@
                 return;
             }
 
-            if (this.TickWidth > 0)
+            if (this.TickWidth > this.StrokeThickness)
             {
                 dc.DrawRectangle(this.Fill, this.Pen, this.CreateRect(this.Value, this.RenderSize));
             }

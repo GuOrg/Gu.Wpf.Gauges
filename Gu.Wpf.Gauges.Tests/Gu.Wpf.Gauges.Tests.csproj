@@ -70,6 +70,7 @@
     <Compile Include="Primitives\Linear\LinearLineBarTests.cs" />
     <Compile Include="Primitives\Linear\LinearTextBarTests.cs" />
     <Compile Include="Primitives\Linear\LinearTickBarTests.cs" />
+    <Compile Include="Primitives\Linear\LinearTickTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1438,6 +1439,60 @@
     <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Min_0_Max_10_Value_6_IsDirectionReversed_True_TickWidth_5_StrokeThickness_1_Ticks_1_2_6_Vertical.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Value_0_Horizontal.png" />
     <EmbeddedResource Include="Primitives\Linear\LinearTickBarImages\LinearTickBar_Value_0_Vertical.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_0_IsDirectionReversed_False_TickWidth_1_StrokeThickness_0_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_0_IsDirectionReversed_False_TickWidth_1_StrokeThickness_0_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_0_IsDirectionReversed_False_TickWidth_1_StrokeThickness_1_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_0_IsDirectionReversed_False_TickWidth_1_StrokeThickness_1_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_0_IsDirectionReversed_False_TickWidth_5_StrokeThickness_0_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_0_IsDirectionReversed_False_TickWidth_5_StrokeThickness_0_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_0_IsDirectionReversed_False_TickWidth_5_StrokeThickness_1_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_0_IsDirectionReversed_False_TickWidth_5_StrokeThickness_1_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_0_IsDirectionReversed_True_TickWidth_1_StrokeThickness_0_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_0_IsDirectionReversed_True_TickWidth_1_StrokeThickness_0_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_0_IsDirectionReversed_True_TickWidth_1_StrokeThickness_1_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_0_IsDirectionReversed_True_TickWidth_1_StrokeThickness_1_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_0_IsDirectionReversed_True_TickWidth_5_StrokeThickness_0_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_0_IsDirectionReversed_True_TickWidth_5_StrokeThickness_0_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_0_IsDirectionReversed_True_TickWidth_5_StrokeThickness_1_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_0_IsDirectionReversed_True_TickWidth_5_StrokeThickness_1_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_10_IsDirectionReversed_False_TickWidth_1_StrokeThickness_0_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_10_IsDirectionReversed_False_TickWidth_1_StrokeThickness_0_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_10_IsDirectionReversed_False_TickWidth_1_StrokeThickness_1_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_10_IsDirectionReversed_False_TickWidth_1_StrokeThickness_1_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_10_IsDirectionReversed_False_TickWidth_5_StrokeThickness_0_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_10_IsDirectionReversed_False_TickWidth_5_StrokeThickness_0_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_10_IsDirectionReversed_False_TickWidth_5_StrokeThickness_1_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_10_IsDirectionReversed_False_TickWidth_5_StrokeThickness_1_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_10_IsDirectionReversed_True_TickWidth_1_StrokeThickness_0_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_10_IsDirectionReversed_True_TickWidth_1_StrokeThickness_0_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_10_IsDirectionReversed_True_TickWidth_1_StrokeThickness_1_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_10_IsDirectionReversed_True_TickWidth_1_StrokeThickness_1_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_10_IsDirectionReversed_True_TickWidth_5_StrokeThickness_0_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_10_IsDirectionReversed_True_TickWidth_5_StrokeThickness_0_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_10_IsDirectionReversed_True_TickWidth_5_StrokeThickness_1_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_10_IsDirectionReversed_True_TickWidth_5_StrokeThickness_1_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_1_StrokeThickness_0_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_1_StrokeThickness_0_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_1_StrokeThickness_1_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_1_StrokeThickness_1_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_5_StrokeThickness_0_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_5_StrokeThickness_0_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_5_StrokeThickness_1_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_5_IsDirectionReversed_False_TickWidth_5_StrokeThickness_1_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_1_StrokeThickness_0_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_1_StrokeThickness_0_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_1_StrokeThickness_1_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_1_StrokeThickness_1_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_5_StrokeThickness_0_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_5_StrokeThickness_0_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_5_StrokeThickness_1_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Min_0_Max_10_Value_5_IsDirectionReversed_True_TickWidth_5_StrokeThickness_1_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Value_0_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Value_0_Vertical.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Value_NaN_Horizontal.png" />
+    <EmbeddedResource Include="Primitives\Linear\LinearTickImages\LinearTick_Value_NaN_Vertical.png" />
   </ItemGroup>
   <Import Project="..\.paket\paket.targets" />
 </Project>

@@ -1,0 +1,73 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
+        d:DesignHeight="300"
+        d:DesignWidth="300"
+        mc:Ignorable="d">
+    <Window.DataContext>
+        <sample:TickBarVm IsDirectionReversed="True"
+                          MajorTickFrequency="10"
+                          MajorTicks="75"
+                          Maximum="100"
+                          Minimum="0"
+                          Placement="Top"
+                          TickWidth="1"
+                          StrokeThickness="1"
+                          Value="100" />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0"
+              Grid.Column="1">
+
+            <gauges:LinearTick Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                               Fill="#550000FF"
+                               IsDirectionReversed="{Binding IsDirectionReversed}"
+                               Maximum="{Binding Maximum}"
+                               Minimum="{Binding Minimum}"
+                               Placement="{Binding Placement}"
+                               SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                               Stroke="Black"
+                               StrokeThickness="1"
+                               TickWidth="{Binding TickWidth}"
+                               Value="{Binding Value}" />
+            <Rectangle Fill="#55ff69b4"
+                       SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                       Stroke="#55000000"
+                       StrokeThickness="1" />
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Grid.Column="0">
+            <gauges:LinearTick Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                               Fill="CornflowerBlue"
+                               IsDirectionReversed="{Binding IsDirectionReversed}"
+                               Maximum="{Binding Maximum}"
+                               Minimum="{Binding Minimum}"
+                               Placement="{Binding Placement}"
+                               SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                               Stroke="Black"
+                               StrokeThickness="1"
+                               TickWidth="{Binding TickWidth}"
+                               Value="{Binding Value}" />
+            <Rectangle Fill="#55ff69b4"
+                       SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                       Stroke="Black"
+                       StrokeThickness="1" />
+        </Grid>
+        <ContentPresenter Grid.Row="1"
+                          Grid.Column="1"
+                          Content="{Binding}" />
+    </Grid>
+</Window>
