@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Gu.Wpf.Gauges.Sample.Sandbox.AngularTextBarBox"
+﻿<Window x:Class="Gu.Wpf.Gauges.Sample.Sandbox.AngularTextBarWindow"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,7 +8,7 @@
              d:DesignHeight="400"
              d:DesignWidth="300"
              mc:Ignorable="d">
-    <UserControl.DataContext>
+    <Window.DataContext>
         <sample:AngularTickBarVm End="140"
                                  IsDirectionReversed="True"
                                  MajorTickFrequency="25"
@@ -20,7 +20,7 @@
                                  Start="-140"
                                  TextOrientation="Tangential"
                                  Value="30" />
-    </UserControl.DataContext>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -46,5 +46,5 @@
         <ContentPresenter Grid.Row="1"
                           Content="{Binding}" />
     </Grid>
-</UserControl>
+</Window>
 

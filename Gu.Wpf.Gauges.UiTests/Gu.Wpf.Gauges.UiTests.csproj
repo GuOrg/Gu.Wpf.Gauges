@@ -42,10 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AngularBlockBarWindowTests.cs" />
+    <Compile Include="AngularTextBarWindowTests.cs" />
     <Compile Include="AngularTickBarWindowTests.cs" />
     <Compile Include="Helpers\AutomationElementExt.cs" />
     <Compile Include="Helpers\Info.cs" />
     <Compile Include="LinearGaugeWindowTests.cs" />
+    <Compile Include="LinearLineBarWindowTests.cs" />
     <Compile Include="LinearTextBarWindowTests.cs" />
     <Compile Include="LinearTickBarWindowTests.cs" />
     <Compile Include="LinearTickWindowTests.cs" />

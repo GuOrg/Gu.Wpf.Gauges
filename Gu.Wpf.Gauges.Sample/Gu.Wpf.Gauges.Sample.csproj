@@ -66,9 +66,6 @@
     <Compile Include="DefaultStyleLinearGaugeView.xaml.cs">
       <DependentUpon>DefaultStyleLinearGaugeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Sandbox\AngularTextBarBox.xaml.cs">
-      <DependentUpon>AngularTextBarBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Sandbox\LinearBlockBarBox.xaml.cs">
       <DependentUpon>LinearBlockBarBox.xaml</DependentUpon>
     </Compile>
@@ -80,9 +77,6 @@
     </Compile>
     <Compile Include="Sandbox\LinearIndicatorWindow.xaml.cs">
       <DependentUpon>LinearIndicatorWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Sandbox\LinearLineBarBox.xaml.cs">
-      <DependentUpon>LinearLineBarBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Sandbox\SandboxWindow.xaml.cs">
       <DependentUpon>SandboxWindow.xaml</DependentUpon>
@@ -134,7 +128,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Sandbox\AngularTextBarBox.xaml">
+    <Page Include="Sandbox\AngularTextBarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -162,7 +156,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sandbox\LinearLineBarBox.xaml">
+    <Page Include="Sandbox\LinearLineBarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
