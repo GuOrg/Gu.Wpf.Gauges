@@ -179,6 +179,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
 
             public Thickness Padding { get; }
 
+            [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
             public static IReadOnlyList<TestCase> Create(
                 double[] tickFrequencies,
                 DoubleCollection[] tickCollections,
