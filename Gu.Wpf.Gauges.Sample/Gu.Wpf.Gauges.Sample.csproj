@@ -84,12 +84,6 @@
     <Compile Include="Sandbox\LinearLineBarBox.xaml.cs">
       <DependentUpon>LinearLineBarBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Sandbox\LinearTextBarBox.xaml.cs">
-      <DependentUpon>LinearTextBarBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Sandbox\LinearTickBarBox.xaml.cs">
-      <DependentUpon>LinearTickBarBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Sandbox\SandboxWindow.xaml.cs">
       <DependentUpon>SandboxWindow.xaml</DependentUpon>
     </Compile>
@@ -172,11 +166,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sandbox\LinearTextBarBox.xaml">
+    <Page Include="Sandbox\LinearTextBarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sandbox\LinearTickBarBox.xaml">
+    <Page Include="Sandbox\LinearTickBarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
