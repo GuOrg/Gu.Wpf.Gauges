@@ -7,30 +7,6 @@ namespace Gu.Wpf.Gauges
     public class Arc : AngularGeometryBar
     {
         /// <summary>
-        /// Identifies the <see cref="P:LinearGeometryBar.Value" /> dependency property.
-        /// </summary>
-        /// <returns>
-        /// The identifier for the <see cref="P:LinearGeometryBar.Value" /> dependency property.
-        /// </returns>
-        public static readonly DependencyProperty ValueProperty = Gauge.ValueProperty.AddOwner(
-            typeof(Arc),
-            new FrameworkPropertyMetadata(
-                double.NaN,
-                FrameworkPropertyMetadataOptions.AffectsRender));
-
-        /// <summary>
-        /// Gets or sets the current magnitude of the range control.
-        /// </summary>
-        /// <returns>
-        /// The current magnitude of the range control. The default is 0.
-        /// </returns>
-        public double Value
-        {
-            get => (double)this.GetValue(ValueProperty);
-            set => this.SetValue(ValueProperty, value);
-        }
-
-        /// <summary>
         /// Get the value if not NaN, returns Maximum otherwise.
         /// </summary>
         protected double EffectiveValue => double.IsNaN(this.Value)

@@ -125,7 +125,7 @@ namespace Gu.Wpf.Gauges
             if (this.TickShape == TickShape.Arc)
             {
                 var gapAngle = arc.GetDelta(w);
-                return AngularTickBar.CreateTick(
+                return AngularTick.CreateTick(
                     arc,
                     Adjust(startAngle, gapAngle),
                     Adjust(endAngle, -gapAngle),

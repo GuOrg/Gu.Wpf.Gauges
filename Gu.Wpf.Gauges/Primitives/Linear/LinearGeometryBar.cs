@@ -10,19 +10,6 @@ namespace Gu.Wpf.Gauges
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
         /// <summary>
-        /// Identifies the <see cref="P:LinearGeometryBar.Value" /> dependency property.
-        /// </summary>
-        /// <returns>
-        /// The identifier for the <see cref="P:LinearGeometryBar.Value" /> dependency property.
-        /// </returns>
-        public static readonly DependencyProperty ValueProperty = Gauge.ValueProperty.AddOwner(
-            typeof(LinearGeometryBar),
-            new FrameworkPropertyMetadata(
-                double.NaN,
-                FrameworkPropertyMetadataOptions.AffectsRender,
-                OnValueChanged));
-
-        /// <summary>
         /// Identifies the <see cref="P:LinearGeometryBar.Placement" /> dependency property. This property is read-only.
         /// </summary>
         /// <returns>
@@ -53,18 +40,6 @@ namespace Gu.Wpf.Gauges
 
         public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
 #pragma warning restore SA1202 // Elements must be ordered by access
-
-        /// <summary>
-        /// Gets or sets the current magnitude of the range control.
-        /// </summary>
-        /// <returns>
-        /// The current magnitude of the range control. The default is 0.
-        /// </returns>
-        public double Value
-        {
-            get => (double)this.GetValue(ValueProperty);
-            set => this.SetValue(ValueProperty, value);
-        }
 
         /// <summary>
         /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.
@@ -109,15 +84,6 @@ namespace Gu.Wpf.Gauges
         {
             var interpolation = Interpolate.Linear(this.Minimum, this.Maximum, value);
             return interpolation.Interpolate(size, this.Padding, this.Placement, this.IsDirectionReversed);
-        }
-
-        protected virtual void OnValueChanged(double oldValue, double newValue)
-        {
-        }
-
-        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((LinearGeometryBar)d).OnValueChanged((double)e.OldValue, (double)e.NewValue);
         }
 
         private static object CoerceOverflow(DependencyObject d, object basevalue)

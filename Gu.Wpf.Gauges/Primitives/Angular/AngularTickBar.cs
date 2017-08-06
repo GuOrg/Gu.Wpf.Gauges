@@ -58,133 +58,7 @@ namespace Gu.Wpf.Gauges
 
         protected override Geometry DefiningGeometry => throw new InvalidOperationException("Uses OnRender");
 
-        protected bool IsFilled => IsFilledCore(this.TickWidth, this.Thickness, this.GetStrokeThickness());
-
-        public static PathFigure CreateTick(
-            ArcInfo arc,
-            Angle angle,
-            TickShape tickShape,
-            double tickWidth,
-            double thickness,
-            double strokeThickness)
-        {
-            var w = tickWidth - strokeThickness;
-            var delta = arc.GetDelta(w / 2);
-            if (!IsFilledCore(tickWidth, thickness, strokeThickness) &&
-                tickShape == TickShape.Arc)
-            {
-                return CreateArcPathFigure(arc, angle - delta, angle + delta, thickness, strokeThickness);
-            }
-
-            return CreateTick(arc, angle - delta, angle + delta, tickShape, thickness, strokeThickness);
-        }
-
-        public static PathFigure CreateArcPathFigure(ArcInfo arc, Angle startAngle, Angle endAngle, double thickness, double strokeThickness)
-        {
-            if (strokeThickness > thickness ||
-                double.IsInfinity(strokeThickness))
-            {
-                return CreateArcPathFigure(arc, startAngle, endAngle, thickness, 0);
-            }
-
-            var op1 = arc.GetPointAtRadiusOffset(startAngle, -strokeThickness / 2);
-            var figure = new PathFigure { StartPoint = op1 };
-            var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
-            var ro = arc.Radius - (strokeThickness / 2);
-            figure.Segments.Add(arc.CreateArcSegment(startAngle, endAngle, ro, isStroked));
-            if (DoubleUtil.LessThanOrClose(thickness, strokeThickness))
-            {
-                figure.IsClosed = false;
-                figure.IsFilled = false;
-                return figure;
-            }
-
-            if (thickness >= arc.Radius)
-            {
-                figure.Segments.Add(new LineSegment(arc.Center, isStroked));
-            }
-            else
-            {
-                var ip2 = arc.GetPointAtRadiusOffset(endAngle, (strokeThickness / 2) - thickness);
-                figure.Segments.Add(new LineSegment(ip2, isStroked));
-                if (thickness < arc.Radius)
-                {
-                    var ri = arc.Radius - thickness + (strokeThickness / 2);
-                    figure.Segments.Add(arc.CreateArcSegment(endAngle, startAngle, ri, isStroked));
-                }
-            }
-
-            figure.IsClosed = true;
-            return figure;
-        }
-
-        public static PathFigure CreateTick(
-            ArcInfo arc,
-            Angle start,
-            Angle end,
-            TickShape tickShape,
-            double thickness,
-            double strokeThickness)
-        {
-            switch (tickShape)
-            {
-                case TickShape.Arc:
-                    return CreateArcPathFigure(arc, start, end, thickness, strokeThickness);
-                case TickShape.Rectangle:
-                    {
-                        var outerStartPoint = arc.GetPointAtRadiusOffset(start, -strokeThickness / 2);
-                        var outerEndPoint = arc.GetPointAtRadiusOffset(end, -strokeThickness / 2);
-                        var innerCenterPoint = arc.GetPointAtRadiusOffset((start + end) / 2, -thickness + (strokeThickness / 2));
-                        var v = outerStartPoint - outerEndPoint;
-                        var innerStartPoint = innerCenterPoint - (v / 2);
-                        var innerEndPoint = innerStartPoint + v;
-                        var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
-                        return new PathFigure(
-                            innerEndPoint,
-                            new[]
-                            {
-                            new LineSegment(outerStartPoint, isStroked),
-                            new LineSegment(outerEndPoint, isStroked),
-                            new LineSegment(innerStartPoint, isStroked),
-                            },
-                            closed: true);
-                    }
-
-                case TickShape.RingSection:
-                    {
-                        var po1 = arc.GetPointAtRadiusOffset(start, -strokeThickness / 2);
-                        var po2 = arc.GetPointAtRadiusOffset(end, -strokeThickness / 2);
-                        var ip = arc.GetPointAtRadiusOffset((start + end) / 2, -thickness + (strokeThickness / 2));
-                        var v = (po1 - po2) / 2;
-                        var ri = arc.Radius - thickness + (strokeThickness / 2);
-                        var ai1 = arc.GetAngle(ip - v);
-                        var pi1 = arc.GetPointAtRadius(ai1, ri);
-                        var deltaI = 2 * Angle.Between(ip - arc.Center, pi1 - arc.Center);
-                        var ai2 = ai1 - deltaI;
-                        var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
-                        return new PathFigure(
-                            po1,
-                            new PathSegment[]
-                            {
-                            arc.CreateArcSegment(
-                                start,
-                                end,
-                                arc.Radius - (strokeThickness / 2),
-                                strokeThickness > 0),
-                            new LineSegment(pi1, isStroked),
-                            arc.CreateArcSegment(
-                                ai1,
-                                ai2,
-                                ri,
-                                strokeThickness > 0),
-                            },
-                            closed: true);
-                    }
-
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
+        protected bool IsFilled => AngularTick.IsFilled(this.TickWidth, this.Thickness, this.GetStrokeThickness());
 
         protected override Size MeasureOverride(Size availableSize)
         {
@@ -297,7 +171,7 @@ namespace Gu.Wpf.Gauges
                 arc.Radius + w,
                 arc.Start - delta,
                 arc.End + delta);
-            var figure = CreateArcPathFigure(
+            var figure = AngularTick.CreateArcPathFigure(
                 inflated,
                 this.IsDirectionReversed ? inflated.End : inflated.Start,
                 effectiveAngle,
@@ -318,13 +192,7 @@ namespace Gu.Wpf.Gauges
             var angle = Interpolate.Linear(this.Minimum, this.Maximum, value)
                                    .Clamp(0, 1)
                                    .Interpolate(this.Start, this.End, this.IsDirectionReversed);
-            return CreateTick(arc, angle, this.TickShape, this.TickWidth, this.Thickness, strokeThickness);
-        }
-
-        private static bool IsFilledCore(double tickWidth, double thickness, double strokeThickness)
-        {
-            return thickness > strokeThickness &&
-                   tickWidth > strokeThickness;
+            return AngularTick.CreateTick(arc, angle, this.TickShape, this.TickWidth, this.Thickness, strokeThickness);
         }
     }
 }

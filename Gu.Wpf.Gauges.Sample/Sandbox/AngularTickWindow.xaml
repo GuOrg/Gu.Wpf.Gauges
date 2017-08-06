@@ -1,0 +1,211 @@
+﻿<Window x:Class="Gu.Wpf.Gauges.Sample.Sandbox.AngularTickWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
+        Title="AngularTickWindow"
+        SizeToContent="WidthAndHeight"
+        mc:Ignorable="d">
+    <Window.DataContext>
+        <sample:AngularTickBarVm End="140"
+                                 IsDirectionReversed="False"
+                                 MajorTickFrequency="10"
+                                 MajorTicks="85"
+                                 Maximum="100"
+                                 Minimum="0"
+                                 Start="-140"
+                                 Thickness="10"
+                                 TickWidth="5"
+                                 Value="100" />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <UniformGrid Rows="1">
+            <gauges:AngularTick Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                                   End="{Binding End}"
+                                   Fill="Red"
+                                   IsDirectionReversed="{Binding IsDirectionReversed}"
+                                   Maximum="{Binding Maximum}"
+                                   Minimum="{Binding Minimum}"
+                                   Start="{Binding Start}"
+                                   Stroke="Black"
+                                   StrokeDashArray="0 1"
+                                   StrokeDashCap="Round"
+                                   StrokeEndLineCap="Round"
+                                   StrokeStartLineCap="Round"
+                                   StrokeThickness="1"
+                                   Thickness="0"
+                                   TickShape="Arc"
+                                   TickWidth="4"
+                                   Value="{Binding Value}" />
+
+            <gauges:AngularTick Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                                   End="{Binding End}"
+                                   Fill="Red"
+                                   IsDirectionReversed="{Binding IsDirectionReversed}"
+                                   Maximum="{Binding Maximum}"
+                                   Minimum="{Binding Minimum}"
+                                   Start="{Binding Start}"
+                                   Stroke="Black"
+                                   StrokeThickness="1"
+                                   Thickness="Infinity"
+                                   TickShape="Arc"
+                                   TickWidth="3"
+                                   Value="{Binding Value}" />
+
+            <gauges:AngularTick Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                                   End="{Binding End}"
+                                   Fill="Red"
+                                   IsDirectionReversed="{Binding IsDirectionReversed}"
+                                   Maximum="{Binding Maximum}"
+                                   Minimum="{Binding Minimum}"
+                                   Start="{Binding Start}"
+                                   Stroke="Black"
+                                   StrokeThickness="Infinity"
+                                   Thickness="0"
+                                   TickShape="Arc"
+                                   TickWidth="{Binding TickWidth}"
+                                   Value="{Binding Value}" />
+
+            <Grid Margin="2">
+                <gauges:Ring Fill="Blue"
+                             Stroke="GreenYellow"
+                             StrokeThickness="{Binding ElementName=ArcTickBar, Path=StrokeThickness}"
+                             Thickness="{Binding ElementName=ArcTickBar, Path=Thickness}" />
+                <gauges:AngularTick x:Name="ArcTickBar"
+                                       End="{Binding End}"
+                                       Fill="Red"
+                                       IsDirectionReversed="{Binding IsDirectionReversed}"
+                                       Maximum="{Binding Maximum}"
+                                       Minimum="{Binding Minimum}"
+                                       Start="-180"
+                                       Stroke="Black"
+                                       StrokeThickness="{Binding StrokeThickness}"
+                                       Thickness="10"
+                                       TickShape="Arc"
+                                       TickWidth="{Binding TickWidth}"
+                                       Value="100" />
+            </Grid>
+
+            <Grid>
+                <gauges:Ring Fill="Blue"
+                             Stroke="YellowGreen"
+                             StrokeThickness="{Binding ElementName=RecTickBar, Path=StrokeThickness}"
+                             Thickness="{Binding ElementName=RecTickBar, Path=Thickness}" />
+                <gauges:AngularTick x:Name="RecTickBar"
+                                       End="{Binding End}"
+                                       Fill="Red"
+                                       IsDirectionReversed="{Binding IsDirectionReversed}"
+                                       Maximum="{Binding Maximum}"
+                                       Minimum="{Binding Minimum}"
+                                       Start="-180"
+                                       Stroke="Black"
+                                       StrokeThickness="1"
+                                       Thickness="10"
+                                       TickShape="Rectangle"
+                                       TickWidth="{Binding TickWidth}"
+                                       Value="{Binding Value}" />
+            </Grid>
+
+            <Grid>
+                <gauges:Ring Fill="Blue"
+                             Stroke="YellowGreen"
+                             StrokeThickness="{Binding ElementName=RingSectionTickBar, Path=StrokeThickness}"
+                             Thickness="{Binding ElementName=RingSectionTickBar, Path=Thickness}" />
+                <gauges:AngularTick x:Name="RingSectionTickBar"
+                                       End="{Binding End}"
+                                       Fill="Red"
+                                       IsDirectionReversed="{Binding IsDirectionReversed}"
+                                       Maximum="{Binding Maximum}"
+                                       Minimum="{Binding Minimum}"
+                                       Start="-180"
+                                       Stroke="Black"
+                                       StrokeThickness="1"
+                                       Thickness="10"
+                                       TickShape="RingSection"
+                                       TickWidth="{Binding TickWidth}"
+                                       Value="{Binding Value}" />
+            </Grid>
+
+            <gauges:AngularTick Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                                   End="{Binding End}"
+                                   Fill="Red"
+                                   IsDirectionReversed="{Binding IsDirectionReversed}"
+                                   Maximum="{Binding Maximum}"
+                                   Minimum="{Binding Minimum}"
+                                   Start="{Binding Start}"
+                                   Stroke="Black"
+                                   StrokeThickness="{Binding StrokeThickness}"
+                                   Thickness="{Binding Thickness}"
+                                   TickShape="Rectangle"
+                                   TickWidth="100"
+                                   Value="{Binding Value}" />
+
+            <gauges:AngularTick Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                                   End="{Binding End}"
+                                   Fill="Red"
+                                   IsDirectionReversed="{Binding IsDirectionReversed}"
+                                   Maximum="{Binding Maximum}"
+                                   Minimum="{Binding Minimum}"
+                                   Start="{Binding Start}"
+                                   Stroke="Black"
+                                   StrokeThickness="{Binding StrokeThickness}"
+                                   Thickness="{Binding Thickness}"
+                                   TickShape="Arc"
+                                   TickWidth="100"
+                                   Value="{Binding Value}" />
+
+            <gauges:AngularTick Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                                   End="{Binding End}"
+                                   Fill="Red"
+                                   IsDirectionReversed="{Binding IsDirectionReversed}"
+                                   Maximum="{Binding Maximum}"
+                                   Minimum="{Binding Minimum}"
+                                   Start="{Binding Start}"
+                                   Stroke="Black"
+                                   StrokeThickness="{Binding StrokeThickness}"
+                                   Thickness="{Binding Thickness}"
+                                   TickShape="Arc"
+                                   TickWidth="{Binding TickWidth}"
+                                   Value="{Binding Value}" />
+
+            <gauges:AngularTick Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                                   End="{Binding End}"
+                                   Fill="Red"
+                                   IsDirectionReversed="{Binding IsDirectionReversed}"
+                                   Maximum="{Binding Maximum}"
+                                   Minimum="{Binding Minimum}"
+                                   Start="{Binding Start}"
+                                   Stroke="Black"
+                                   StrokeThickness="{Binding StrokeThickness}"
+                                   Thickness="{Binding Thickness}"
+                                   TickShape="Rectangle"
+                                   TickWidth="{Binding TickWidth}"
+                                   Value="{Binding Value}" />
+
+            <StackPanel>
+                <gauges:AngularTick Margin="{Binding RelativeSource={RelativeSource Self}, Path=Overflow}"
+                                       End="{Binding End}"
+                                       Fill="Red"
+                                       IsDirectionReversed="{Binding IsDirectionReversed}"
+                                       Maximum="{Binding Maximum}"
+                                       Minimum="{Binding Minimum}"
+                                       Start="{Binding Start}"
+                                       Stroke="Black"
+                                       StrokeThickness="{Binding StrokeThickness}"
+                                       Thickness="{Binding Thickness}"
+                                       TickShape="Arc"
+                                       TickWidth="{Binding TickWidth}"
+                                       Value="{Binding Value}" />
+            </StackPanel>
+        </UniformGrid>
+
+        <ContentPresenter Grid.Row="1"
+                          Content="{Binding}" />
+    </Grid>
+</Window>

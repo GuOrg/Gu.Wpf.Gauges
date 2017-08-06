@@ -1,12 +1,26 @@
 namespace Gu.Wpf.Gauges
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Media;
     using System.Windows.Shapes;
 
     public abstract class GeometryBar : FrameworkElement
     {
+        /// <summary>
+        /// Identifies the <see cref="P:LinearGeometryBar.Value" /> dependency property.
+        /// </summary>
+        /// <returns>
+        /// The identifier for the <see cref="P:LinearGeometryBar.Value" /> dependency property.
+        /// </returns>
+        public static readonly DependencyProperty ValueProperty = Gauge.ValueProperty.AddOwner(
+            typeof(GeometryBar),
+            new FrameworkPropertyMetadata(
+                double.NaN,
+                FrameworkPropertyMetadataOptions.AffectsRender,
+                OnValueChanged));
+
         /// <summary>
         /// Identifies the <see cref="P:Bar.Minimum" /> dependency property.
         /// </summary>
@@ -159,6 +173,18 @@ namespace Gu.Wpf.Gauges
         protected GeometryBar()
         {
             this.StrokeDashArray = new DoubleCollection();
+        }
+
+        /// <summary>
+        /// Gets or sets the current magnitude of the range control.
+        /// </summary>
+        /// <returns>
+        /// The current magnitude of the range control. The default is 0.
+        /// </returns>
+        public double Value
+        {
+            get => (double)this.GetValue(ValueProperty);
+            set => this.SetValue(ValueProperty, value);
         }
 
         /// <summary>
@@ -366,6 +392,16 @@ namespace Gu.Wpf.Gauges
         protected void ResetPen()
         {
             this.pen = null;
+        }
+
+        [SuppressMessage("ReSharper", "UnusedParameter.Global")]
+        protected virtual void OnValueChanged(double oldValue, double newValue)
+        {
+        }
+
+        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((GeometryBar)d).OnValueChanged((double)e.OldValue, (double)e.NewValue);
         }
     }
 }
