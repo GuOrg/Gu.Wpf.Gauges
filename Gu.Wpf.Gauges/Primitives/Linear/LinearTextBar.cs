@@ -11,7 +11,6 @@
     /// </summary>
     public class LinearTextBar : TextTickBar
     {
-#pragma warning disable SA1202 // Elements must be ordered by access
         /// <summary>
         /// Identifies the <see cref="P:LinearTextBar.Placement" /> dependency property. This property is read-only.
         /// </summary>
@@ -34,23 +33,6 @@
                 OnTextPositionChanged,
                 CoerceTextPosition));
 
-        public static readonly DependencyProperty PaddingProperty = DependencyProperty.Register(
-            nameof(Padding),
-            typeof(Thickness),
-            typeof(LinearTextBar),
-            new FrameworkPropertyMetadata(
-                default(Thickness),
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
-
-        private static readonly DependencyPropertyKey OverflowPropertyKey = DependencyProperty.RegisterReadOnly(
-            nameof(Overflow),
-            typeof(Thickness),
-            typeof(LinearTextBar),
-            new PropertyMetadata(default(Thickness)));
-
-        public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
-#pragma warning restore SA1202 // Elements must be ordered by access
-
         /// <summary>
         /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.
         /// </summary>
@@ -70,21 +52,6 @@
         {
             get => (LinearTextPosition)this.GetValue(TextPositionProperty);
             set => this.SetValue(TextPositionProperty, value);
-        }
-
-        public Thickness Padding
-        {
-            get => (Thickness)this.GetValue(PaddingProperty);
-            set => this.SetValue(PaddingProperty, value);
-        }
-
-        /// <summary>
-        /// Gets a <see cref="Thickness"/> with values indicating how much the control draws outside its bounds.
-        /// </summary>
-        public Thickness Overflow
-        {
-            get => (Thickness)this.GetValue(OverflowProperty);
-            protected set => this.SetValue(OverflowPropertyKey, value);
         }
 
         protected override Size MeasureOverride(Size availableSize)

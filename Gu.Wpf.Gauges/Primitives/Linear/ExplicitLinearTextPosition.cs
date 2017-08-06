@@ -62,10 +62,13 @@
 
         public override void ArrangeTick(TickText tickText, Size arrangeSize, LinearTextBar textBar)
         {
-            tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, 0.0d);
-            tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, 0.0d);
             var pos = this.PixelPosition(tickText.Value, arrangeSize, textBar);
             var bounds = tickText.Geometry.Bounds;
+            if (tickText.TranslateTransform != null)
+            {
+                bounds.Offset(-new Vector(tickText.TranslateTransform.X, tickText.TranslateTransform.Y));
+            }
+
             if (textBar.Placement.IsHorizontal())
             {
                 var x = -bounds.Left;
@@ -155,19 +158,19 @@
         /// <param name="textBar">The <see cref="LinearTextBar"/> to generate the tick for.</param>
         protected virtual double PixelPosition(double value, Size finalSize, LinearTextBar textBar)
         {
-            var step = Interpolate.Linear(textBar.Minimum, textBar.Maximum, value)
-                                  .Clamp(0, 1);
+            var interpolation = Interpolate.Linear(textBar.Minimum, textBar.Maximum, value)
+                                           .Clamp(0, 1);
 
             if (textBar.Placement.IsHorizontal())
             {
-                var pos = step.Interpolate(textBar.Padding.Left, finalSize.Width - textBar.Padding.Right);
+                var pos = interpolation.Interpolate(textBar.Padding.Left, finalSize.Width - textBar.Padding.Right);
                 return textBar.IsDirectionReversed
                     ? finalSize.Width - pos
                     : pos;
             }
             else
             {
-                var pos = step.Interpolate(textBar.Padding.Bottom, finalSize.Height - textBar.Padding.Top);
+                var pos = interpolation.Interpolate(textBar.Padding.Bottom, finalSize.Height - textBar.Padding.Top);
                 return textBar.IsDirectionReversed
                     ? pos
                     : finalSize.Height - pos;

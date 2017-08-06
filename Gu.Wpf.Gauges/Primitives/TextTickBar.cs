@@ -11,6 +11,23 @@
     public abstract class TextTickBar : TickBarBase
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
+
+        public static readonly DependencyProperty PaddingProperty = DependencyProperty.Register(
+            nameof(Padding),
+            typeof(Thickness),
+            typeof(TextTickBar),
+            new FrameworkPropertyMetadata(
+                default(Thickness),
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
+
+        private static readonly DependencyPropertyKey OverflowPropertyKey = DependencyProperty.RegisterReadOnly(
+            nameof(Overflow),
+            typeof(Thickness),
+            typeof(TextTickBar),
+            new PropertyMetadata(default(Thickness)));
+
+        public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
+
         private static readonly DependencyPropertyKey AllTextsPropertyKey = DependencyProperty.RegisterReadOnly(
             nameof(AllTexts),
             typeof(IReadOnlyList<TickText>),
@@ -132,6 +149,21 @@
 
         private Typeface typeFace;
 #pragma warning restore SA1202 // Elements must be ordered by access
+
+        public Thickness Padding
+        {
+            get => (Thickness)this.GetValue(PaddingProperty);
+            set => this.SetValue(PaddingProperty, value);
+        }
+
+        /// <summary>
+        /// Gets a <see cref="Thickness"/> with values indicating how much the control draws outside its bounds.
+        /// </summary>
+        public Thickness Overflow
+        {
+            get => (Thickness)this.GetValue(OverflowProperty);
+            protected set => this.SetValue(OverflowPropertyKey, value);
+        }
 
         public IReadOnlyList<TickText> AllTexts
         {
