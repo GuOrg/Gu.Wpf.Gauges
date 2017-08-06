@@ -48,6 +48,11 @@ namespace Gu.Wpf.Gauges
             var thickness = Math.Max(Math.Abs(this.Thickness), strokeThickness);
             if (double.IsInfinity(thickness))
             {
+                if (double.IsInfinity(strokeThickness))
+                {
+                    return default(Size);
+                }
+
                 return new Size(strokeThickness, strokeThickness);
             }
 

@@ -74,41 +74,41 @@
                 case TickShape.Arc:
                     return CreateArcPathFigure(arc, start, end, thickness, strokeThickness);
                 case TickShape.Rectangle:
-                {
-                    var outerStartPoint = arc.GetPointAtRadiusOffset(start, -strokeThickness / 2);
-                    var outerEndPoint = arc.GetPointAtRadiusOffset(end, -strokeThickness / 2);
-                    var innerCenterPoint = arc.GetPointAtRadiusOffset((start + end) / 2, -thickness + (strokeThickness / 2));
-                    var v = outerStartPoint - outerEndPoint;
-                    var innerStartPoint = innerCenterPoint - (v / 2);
-                    var innerEndPoint = innerStartPoint + v;
-                    var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
-                    return new PathFigure(
-                        innerEndPoint,
-                        new[]
-                        {
+                    {
+                        var outerStartPoint = arc.GetPointAtRadiusOffset(start, -strokeThickness / 2);
+                        var outerEndPoint = arc.GetPointAtRadiusOffset(end, -strokeThickness / 2);
+                        var innerCenterPoint = arc.GetPointAtRadiusOffset((start + end) / 2, -thickness + (strokeThickness / 2));
+                        var v = outerStartPoint - outerEndPoint;
+                        var innerStartPoint = innerCenterPoint - (v / 2);
+                        var innerEndPoint = innerStartPoint + v;
+                        var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
+                        return new PathFigure(
+                            innerEndPoint,
+                            new[]
+                            {
                             new LineSegment(outerStartPoint, isStroked),
                             new LineSegment(outerEndPoint, isStroked),
                             new LineSegment(innerStartPoint, isStroked),
-                        },
-                        closed: true);
-                }
+                            },
+                            closed: true);
+                    }
 
                 case TickShape.RingSection:
-                {
-                    var po1 = arc.GetPointAtRadiusOffset(start, -strokeThickness / 2);
-                    var po2 = arc.GetPointAtRadiusOffset(end, -strokeThickness / 2);
-                    var ip = arc.GetPointAtRadiusOffset((start + end) / 2, -thickness + (strokeThickness / 2));
-                    var v = (po1 - po2) / 2;
-                    var ri = arc.Radius - thickness + (strokeThickness / 2);
-                    var ai1 = arc.GetAngle(ip - v);
-                    var pi1 = arc.GetPointAtRadius(ai1, ri);
-                    var deltaI = 2 * Angle.Between(ip - arc.Center, pi1 - arc.Center);
-                    var ai2 = ai1 - deltaI;
-                    var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
-                    return new PathFigure(
-                        po1,
-                        new PathSegment[]
-                        {
+                    {
+                        var po1 = arc.GetPointAtRadiusOffset(start, -strokeThickness / 2);
+                        var po2 = arc.GetPointAtRadiusOffset(end, -strokeThickness / 2);
+                        var ip = arc.GetPointAtRadiusOffset((start + end) / 2, -thickness + (strokeThickness / 2));
+                        var v = (po1 - po2) / 2;
+                        var ri = arc.Radius - thickness + (strokeThickness / 2);
+                        var ai1 = arc.GetAngle(ip - v);
+                        var pi1 = arc.GetPointAtRadius(ai1, ri);
+                        var deltaI = 2 * Angle.Between(ip - arc.Center, pi1 - arc.Center);
+                        var ai2 = ai1 - deltaI;
+                        var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
+                        return new PathFigure(
+                            po1,
+                            new PathSegment[]
+                            {
                             arc.CreateArcSegment(
                                 start,
                                 end,
@@ -120,9 +120,9 @@
                                 ai2,
                                 ri,
                                 strokeThickness > 0),
-                        },
-                        closed: true);
-                }
+                            },
+                            closed: true);
+                    }
 
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -176,7 +176,17 @@
 
             if (thickness >= arc.Radius)
             {
-                figure.Segments.Add(new LineSegment(arc.Center, isStroked));
+                if (DoubleUtil.AreClose(strokeThickness, 0))
+                {
+                    figure.Segments.Add(new LineSegment(arc.Center, isStroked));
+                }
+                else
+                {
+                    var mid = (startAngle + endAngle) / 2;
+                    var a = endAngle - mid;
+                    var ri = strokeThickness / (2 * Math.Sin(Math.Abs(a.Radians)));
+                    figure.Segments.Add(new LineSegment(arc.GetPointAtRadius(mid, ri), isStroked));
+                }
             }
             else
             {

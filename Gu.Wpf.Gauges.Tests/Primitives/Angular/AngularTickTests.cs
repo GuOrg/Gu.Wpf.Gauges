@@ -23,7 +23,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
 
         private static readonly IReadOnlyList<TestCase> RenderWithPaddingCases = TestCase.Create(
                                                                                              thicknesses: new[] { 10, double.PositiveInfinity },
-                                                                                             values: new[] { 5.0},
+                                                                                             values: new[] { 5.0 },
                                                                                              tickWidths: new[] { 5.0 },
                                                                                              strokeThicknesses: new[] { 1.0 },
                                                                                              paddings: new[] { new Thickness(1, 2, 3, 4), })
