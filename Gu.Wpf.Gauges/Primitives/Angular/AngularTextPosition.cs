@@ -9,7 +9,11 @@ namespace Gu.Wpf.Gauges
 
         public static AngularTextPosition Default { get; } = DefaultAngularTextPosition.Instance;
 
-        public abstract void ArrangeTick(TickText tickText, Size arrangeSize, AngularTextBar textBar);
+        /// <summary>
+        /// Updates the transform of <paramref name="tickText"/>
+        /// </summary>
+        /// <returns>Returns the overflow.</returns>
+        public abstract Thickness ArrangeTick(TickText tickText, ArcInfo arc, AngularTextBar textBar);
 
         protected virtual void OnArrangeDirty()
         {

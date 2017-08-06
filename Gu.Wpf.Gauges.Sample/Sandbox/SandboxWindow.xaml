@@ -22,17 +22,17 @@
                      Stroke="GreenYellow"
                      StrokeThickness="1"
                      Thickness="10" />
-        <gauges:AngularTickBar End="180"
-                               Fill="Red"
-                               Maximum="10"
-                               Minimum="0"
-                               Opacity="0.8"
-                               Start="-180"
-                               Stroke="Black"
-                               StrokeThickness="2"
-                               Thickness="50"
-                               TickShape="Arc"
-                               TickWidth="6"
-                               Ticks="5" />
+        <gauges:AngularTick End="180"
+                            Fill="Red"
+                            Maximum="10"
+                            Minimum="0"
+                            Opacity="0.8"
+                            Start="-180"
+                            Stroke="Black"
+                            StrokeThickness="1"
+                            Thickness="50"
+                            TickShape="Arc"
+                            TickWidth="5"
+                            Value="5" />
     </Grid>
 </Window>

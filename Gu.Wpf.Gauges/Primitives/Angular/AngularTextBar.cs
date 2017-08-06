@@ -89,45 +89,25 @@ namespace Gu.Wpf.Gauges
                 }
             }
 
-            return rect.Size;
+            return rect.Inflate(this.Padding).Size;
         }
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            this.arc = ArcInfo.Fit(finalSize, this.Start, this.End);
             if (this.AllTexts != null)
             {
+                var arc = ArcInfo.Fit(finalSize, this.Padding, this.Start, this.End);
                 foreach (var tickText in this.AllTexts)
                 {
-                    tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, 0.0d);
-                    tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, 0.0d);
-                    switch (this.TextOrientation)
-                    {
-                        case TextOrientation.Tangential:
-                            tickText.Transform = new RotateTransform(this.Angle(tickText.Value).Degrees + 90);
-                            break;
-                        case TextOrientation.TangentialFlipped:
-                            tickText.Transform = new RotateTransform(this.Angle(tickText.Value).Degrees - 90);
-                            break;
-                        case TextOrientation.RadialOut:
-                            tickText.Transform = new RotateTransform(this.Angle(tickText.Value).Degrees);
-                            break;
-                        case TextOrientation.RadialIn:
-                            tickText.Transform = new RotateTransform(this.Angle(tickText.Value).Degrees - 180);
-                            break;
-                        case TextOrientation.UseTransform:
-                            tickText.Transform = this.TextTransform;
-                            break;
-                        default:
-                            throw new ArgumentOutOfRangeException();
-                    }
-
-                    var pos = this.PixelPosition(tickText);
-                    tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, pos.X);
-                    tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, pos.Y);
+                    this.Overflow = this.Overflow.Union(this.TextPosition.ArrangeTick(tickText, arc, this));
                 }
             }
+            else
+            {
+                this.Overflow = default(Thickness);
+            }
 
+            this.RegisterOverflow(this.Overflow);
             return finalSize;
         }
 
@@ -202,6 +182,12 @@ namespace Gu.Wpf.Gauges
         private static object CoerceTextPosition(DependencyObject d, object basevalue)
         {
             return basevalue ?? LinearTextPosition.Default;
+        }
+
+        private static double RoundUp(double value)
+        {
+            var n = Math.Ceiling(value / 0.5);
+            return n * 0.5;
         }
 
         private void OnTextPositionArrange(object sender, EventArgs e)
