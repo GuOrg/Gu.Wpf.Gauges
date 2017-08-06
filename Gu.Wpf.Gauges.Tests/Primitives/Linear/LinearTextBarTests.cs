@@ -1,213 +1,71 @@
 namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
 {
+    using System;
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Linq;
     using System.Threading;
     using System.Windows;
     using System.Windows.Controls.Primitives;
     using System.Windows.Media;
     using NUnit.Framework;
-    using Brushes = System.Windows.Media.Brushes;
     using Size = System.Windows.Size;
 
     [Apartment(ApartmentState.STA)]
     public class LinearTextBarTests
     {
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Left, VerticalTextAlignment.Top, false, null)]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Center, VerticalTextAlignment.Top, false, null)]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Right, VerticalTextAlignment.Top, false, null)]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Left, VerticalTextAlignment.Center, false, null)]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Center, VerticalTextAlignment.Center, false, null)]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Right, VerticalTextAlignment.Center, false, null)]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Left, VerticalTextAlignment.Bottom, false, null)]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Center, VerticalTextAlignment.Bottom, false, null)]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Right, VerticalTextAlignment.Bottom, false, null)]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Left, VerticalTextAlignment.Top, true, null)]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Center, VerticalTextAlignment.Top, true, null)]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Right, VerticalTextAlignment.Top, true, null)]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Left, VerticalTextAlignment.Center, true, null)]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Center, VerticalTextAlignment.Center, true, null)]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Right, VerticalTextAlignment.Center, true, null)]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Left, VerticalTextAlignment.Bottom, true, null)]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Center, VerticalTextAlignment.Bottom, true, null)]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Right, VerticalTextAlignment.Bottom, true, null)]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Left, VerticalTextAlignment.Top, false, "1")]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Center, VerticalTextAlignment.Top, false, "1")]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Right, VerticalTextAlignment.Top, false, "1")]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Left, VerticalTextAlignment.Center, false, "1")]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Center, VerticalTextAlignment.Center, false, "1")]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Right, VerticalTextAlignment.Center, false, "1")]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Left, VerticalTextAlignment.Bottom, false, "1")]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Center, VerticalTextAlignment.Bottom, false, "1")]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Right, VerticalTextAlignment.Bottom, false, "1")]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Left, VerticalTextAlignment.Top, true, "1")]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Center, VerticalTextAlignment.Top, true, "1")]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Right, VerticalTextAlignment.Top, true, "1")]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Left, VerticalTextAlignment.Center, true, "1")]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Center, VerticalTextAlignment.Center, true, "1")]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Right, VerticalTextAlignment.Center, true, "1")]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Left, VerticalTextAlignment.Bottom, true, "1")]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Center, VerticalTextAlignment.Bottom, true, "1")]
-        [TestCase(TickBarPlacement.Top, HorizontalTextAlignment.Right, VerticalTextAlignment.Bottom, true, "1")]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Left, VerticalTextAlignment.Top, false, null)]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Center, VerticalTextAlignment.Top, false, null)]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Right, VerticalTextAlignment.Top, false, null)]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Left, VerticalTextAlignment.Center, false, null)]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Center, VerticalTextAlignment.Center, false, null)]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Right, VerticalTextAlignment.Center, false, null)]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Left, VerticalTextAlignment.Bottom, false, null)]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Center, VerticalTextAlignment.Bottom, false, null)]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Right, VerticalTextAlignment.Bottom, false, null)]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Left, VerticalTextAlignment.Top, true, null)]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Center, VerticalTextAlignment.Top, true, null)]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Right, VerticalTextAlignment.Top, true, null)]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Left, VerticalTextAlignment.Center, true, null)]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Center, VerticalTextAlignment.Center, true, null)]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Right, VerticalTextAlignment.Center, true, null)]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Left, VerticalTextAlignment.Bottom, true, null)]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Center, VerticalTextAlignment.Bottom, true, null)]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Right, VerticalTextAlignment.Bottom, true, null)]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Left, VerticalTextAlignment.Top, false, "1")]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Center, VerticalTextAlignment.Top, false, "1")]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Right, VerticalTextAlignment.Top, false, "1")]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Left, VerticalTextAlignment.Center, false, "1")]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Center, VerticalTextAlignment.Center, false, "1")]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Right, VerticalTextAlignment.Center, false, "1")]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Left, VerticalTextAlignment.Bottom, false, "1")]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Center, VerticalTextAlignment.Bottom, false, "1")]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Right, VerticalTextAlignment.Bottom, false, "1")]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Left, VerticalTextAlignment.Top, true, "1")]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Center, VerticalTextAlignment.Top, true, "1")]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Right, VerticalTextAlignment.Top, true, "1")]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Left, VerticalTextAlignment.Center, true, "1")]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Center, VerticalTextAlignment.Center, true, "1")]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Right, VerticalTextAlignment.Center, true, "1")]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Left, VerticalTextAlignment.Bottom, true, "1")]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Center, VerticalTextAlignment.Bottom, true, "1")]
-        [TestCase(TickBarPlacement.Bottom, HorizontalTextAlignment.Right, VerticalTextAlignment.Bottom, true, "1")]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Left, VerticalTextAlignment.Top, false, null)]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Center, VerticalTextAlignment.Top, false, null)]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Right, VerticalTextAlignment.Top, false, null)]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Left, VerticalTextAlignment.Center, false, null)]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Center, VerticalTextAlignment.Center, false, null)]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Right, VerticalTextAlignment.Center, false, null)]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Left, VerticalTextAlignment.Bottom, false, null)]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Center, VerticalTextAlignment.Bottom, false, null)]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Right, VerticalTextAlignment.Bottom, false, null)]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Left, VerticalTextAlignment.Top, true, null)]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Center, VerticalTextAlignment.Top, true, null)]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Right, VerticalTextAlignment.Top, true, null)]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Left, VerticalTextAlignment.Center, true, null)]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Center, VerticalTextAlignment.Center, true, null)]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Right, VerticalTextAlignment.Center, true, null)]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Left, VerticalTextAlignment.Bottom, true, null)]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Center, VerticalTextAlignment.Bottom, true, null)]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Right, VerticalTextAlignment.Bottom, true, null)]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Left, VerticalTextAlignment.Top, false, "1")]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Center, VerticalTextAlignment.Top, false, "1")]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Right, VerticalTextAlignment.Top, false, "1")]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Left, VerticalTextAlignment.Center, false, "1")]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Center, VerticalTextAlignment.Center, false, "1")]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Right, VerticalTextAlignment.Center, false, "1")]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Left, VerticalTextAlignment.Bottom, false, "1")]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Center, VerticalTextAlignment.Bottom, false, "1")]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Right, VerticalTextAlignment.Bottom, false, "1")]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Left, VerticalTextAlignment.Top, true, "1")]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Center, VerticalTextAlignment.Top, true, "1")]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Right, VerticalTextAlignment.Top, true, "1")]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Left, VerticalTextAlignment.Center, true, "1")]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Center, VerticalTextAlignment.Center, true, "1")]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Right, VerticalTextAlignment.Center, true, "1")]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Left, VerticalTextAlignment.Bottom, true, "1")]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Center, VerticalTextAlignment.Bottom, true, "1")]
-        [TestCase(TickBarPlacement.Left, HorizontalTextAlignment.Right, VerticalTextAlignment.Bottom, true, "1")]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Left, VerticalTextAlignment.Top, false, null)]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Center, VerticalTextAlignment.Top, false, null)]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Right, VerticalTextAlignment.Top, false, null)]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Left, VerticalTextAlignment.Center, false, null)]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Center, VerticalTextAlignment.Center, false, null)]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Right, VerticalTextAlignment.Center, false, null)]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Left, VerticalTextAlignment.Bottom, false, null)]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Center, VerticalTextAlignment.Bottom, false, null)]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Right, VerticalTextAlignment.Bottom, false, null)]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Left, VerticalTextAlignment.Top, true, null)]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Center, VerticalTextAlignment.Top, true, null)]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Right, VerticalTextAlignment.Top, true, null)]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Left, VerticalTextAlignment.Center, true, null)]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Center, VerticalTextAlignment.Center, true, null)]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Right, VerticalTextAlignment.Center, true, null)]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Left, VerticalTextAlignment.Bottom, true, null)]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Center, VerticalTextAlignment.Bottom, true, null)]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Right, VerticalTextAlignment.Bottom, true, null)]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Left, VerticalTextAlignment.Top, false, "1")]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Center, VerticalTextAlignment.Top, false, "1")]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Right, VerticalTextAlignment.Top, false, "1")]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Left, VerticalTextAlignment.Center, false, "1")]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Center, VerticalTextAlignment.Center, false, "1")]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Right, VerticalTextAlignment.Center, false, "1")]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Left, VerticalTextAlignment.Bottom, false, "1")]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Center, VerticalTextAlignment.Bottom, false, "1")]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Right, VerticalTextAlignment.Bottom, false, "1")]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Left, VerticalTextAlignment.Top, true, "1")]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Center, VerticalTextAlignment.Top, true, "1")]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Right, VerticalTextAlignment.Top, true, "1")]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Left, VerticalTextAlignment.Center, true, "1")]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Center, VerticalTextAlignment.Center, true, "1")]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Right, VerticalTextAlignment.Center, true, "1")]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Left, VerticalTextAlignment.Bottom, true, "1")]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Center, VerticalTextAlignment.Bottom, true, "1")]
-        [TestCase(TickBarPlacement.Right, HorizontalTextAlignment.Right, VerticalTextAlignment.Bottom, true, "1")]
-        public void RenderExplicitTextPosition(TickBarPlacement placement, HorizontalTextAlignment horizontalTextAlignment, VerticalTextAlignment verticalTextAlignment, bool isDirectionReversed, string padding)
+        private static readonly IReadOnlyList<TestCase> RenderWithExplicitPositionCases = TestCase.Create(
+            tickFrequencies: new[] { 0, 5.0 },
+            tickCollections: new[] { null, (DoubleCollection)new DoubleCollection(new[] { 1.0, 2, 6 }).GetCurrentValueAsFrozen() },
+            horizontalTextAlignments: Enum.GetValues(typeof(HorizontalTextAlignment)).Cast<HorizontalTextAlignment>(),
+            verticalTextAlignments: Enum.GetValues(typeof(VerticalTextAlignment)).Cast<VerticalTextAlignment>(),
+                                                                                  paddings: new[] { default(Thickness) })
+
+                                                                              .Where(x => !(x.TickFrequency <= 0 && x.Ticks == null))
+                                                                              .ToArray();
+
+        private static readonly IReadOnlyList<TestCase> RenderWithDefaultPositionCases = TestCase.Create(
+                                                                                                      tickFrequencies: new[] { 0, 5.0 },
+                                                                                                      tickCollections: new[] { null, (DoubleCollection)new DoubleCollection(new[] { 1.0, 2, 6 }).GetCurrentValueAsFrozen() },
+                                                                                                      horizontalTextAlignments: Enumerable.Empty<HorizontalTextAlignment>(),
+                                                                                                      verticalTextAlignments: Enumerable.Empty<VerticalTextAlignment>(),
+                                                                                                      paddings: new[] { default(Thickness) })
+
+                                                                                                  .Where(x => !(x.TickFrequency <= 0 && x.Ticks == null))
+                                                                                                  .ToArray();
+
+        [TestCaseSource(nameof(RenderWithExplicitPositionCases))]
+        public void RenderWithExplicitPosition(TestCase testCase)
         {
             var tickBar = new LinearTextBar
-            {
-                Minimum = 0,
-                Maximum = 10,
-                TickFrequency = 5,
-                Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
-                Foreground = Brushes.Black,
-                Placement = placement,
-                TextPosition = new ExplicitLinearTextPosition(horizontalTextAlignment, verticalTextAlignment),
-                IsDirectionReversed = isDirectionReversed,
-                FontFamily = new FontFamily("Arial"), // Seoge UI is measured differently on Win 7 and Win 10 for some reason
-                FontSize = 12,
-                Padding = padding.AsThickness(),
-            };
+                          {
+                              Minimum = 0,
+                              Maximum = 10,
+                              TickFrequency = testCase.TickFrequency,
+                              Ticks = testCase.Ticks,
+                              TextPosition = new ExplicitLinearTextPosition(testCase.HorizontalTextAlignment, testCase.VerticalTextAlignment),
+                              Placement = testCase.Placement,
+                              IsDirectionReversed = testCase.IsDirectionReversed,
+                              Padding = testCase.Padding,
+                          };
 
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
 
-        [TestCase(TickBarPlacement.Left, false, null)]
-        [TestCase(TickBarPlacement.Left, true, null)]
-        [TestCase(TickBarPlacement.Left, false, "1")]
-        [TestCase(TickBarPlacement.Left, true, "1")]
-        [TestCase(TickBarPlacement.Right, false, null)]
-        [TestCase(TickBarPlacement.Right, true, null)]
-        [TestCase(TickBarPlacement.Right, false, "1")]
-        [TestCase(TickBarPlacement.Right, true, "1")]
-        [TestCase(TickBarPlacement.Top, false, null)]
-        [TestCase(TickBarPlacement.Top, true, null)]
-        [TestCase(TickBarPlacement.Top, false, "1")]
-        [TestCase(TickBarPlacement.Top, true, "1")]
-        [TestCase(TickBarPlacement.Bottom, false, null)]
-        [TestCase(TickBarPlacement.Bottom, true, null)]
-        [TestCase(TickBarPlacement.Bottom, false, "1")]
-        [TestCase(TickBarPlacement.Bottom, true, "1")]
-        public void RenderDefaultTextPosition(TickBarPlacement placement, bool isDirectionReversed, string padding)
+        [TestCaseSource(nameof(RenderWithDefaultPositionCases))]
+        public void RenderWithDefaultPosition(TestCase testCase)
         {
             var tickBar = new LinearTextBar
-            {
-                Minimum = 0,
-                Maximum = 10,
-                TickFrequency = 5,
-                Ticks = new DoubleCollection(new double[] { 1, 2, 6 }),
-                Foreground = Brushes.Black,
-                Placement = placement,
-                FontFamily = new FontFamily("Arial"), // Seoge UI is measured differently on Win 7 and Win 10 for some reason
-                FontSize = 12,
-                IsDirectionReversed = isDirectionReversed,
-                Padding = padding.AsThickness(),
-            };
+                          {
+                              Minimum = 0,
+                              Maximum = 10,
+                              TickFrequency = testCase.TickFrequency,
+                              Ticks = testCase.Ticks,
+                              Placement = testCase.Placement,
+                              IsDirectionReversed = testCase.IsDirectionReversed,
+                              Padding = testCase.Padding,
+                          };
 
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
@@ -283,6 +141,86 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 ? new Size(100, 15)
                 : new Size(15, 100);
             tickBar.SaveImage(size, $@"C:\Temp\LinearTextBar\{GetFileName(tickBar)}");
+        }
+
+        public class TestCase
+        {
+            public TestCase(
+                TickBarPlacement placement,
+                bool isDirectionReversed,
+                HorizontalTextAlignment horizontalTextAlignment,
+                VerticalTextAlignment verticalTextAlignment,
+                double tickFrequency,
+                DoubleCollection ticks,
+                Thickness padding)
+            {
+                this.Placement = placement;
+                this.IsDirectionReversed = isDirectionReversed;
+                this.TickFrequency = tickFrequency;
+                this.Ticks = ticks;
+                this.Padding = padding;
+                this.HorizontalTextAlignment = horizontalTextAlignment;
+                this.VerticalTextAlignment = verticalTextAlignment;
+            }
+
+            public TickBarPlacement Placement { get; }
+
+            public bool IsDirectionReversed { get; }
+
+            public double TickFrequency { get; }
+
+            public DoubleCollection Ticks { get; }
+
+            public HorizontalTextAlignment HorizontalTextAlignment { get; }
+
+            public VerticalTextAlignment VerticalTextAlignment { get; }
+
+            public Thickness Padding { get; }
+
+            public static IEnumerable<TestCase> Create(
+                double[] tickFrequencies,
+                DoubleCollection[] tickCollections,
+                IEnumerable<HorizontalTextAlignment> horizontalTextAlignments,
+                IEnumerable<VerticalTextAlignment> verticalTextAlignments, 
+                Thickness[] paddings)
+            {
+                foreach (var placement in new[] { TickBarPlacement.Left, TickBarPlacement.Top, TickBarPlacement.Right, TickBarPlacement.Bottom })
+                {
+                    foreach (var isDirectionReversed in new[] { true, false })
+                    {
+                        foreach (var horizontalTextAlignment in horizontalTextAlignments)
+                        {
+                            foreach (var verticalTextAlignment in verticalTextAlignments)
+                            {
+                                {
+                                    foreach (var tickFrequency in tickFrequencies)
+                                    {
+                                        foreach (var ticks in tickCollections)
+                                        {
+                                            foreach (var padding in paddings)
+                                            {
+                                                yield return new TestCase(
+                                                    placement: placement,
+                                                    isDirectionReversed: isDirectionReversed,
+                                                    horizontalTextAlignment: horizontalTextAlignment,
+                                                    verticalTextAlignment: verticalTextAlignment,
+                                                    tickFrequency: tickFrequency,
+                                                    ticks: ticks,
+                                                    padding: padding);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            public override string ToString()
+            {
+                return $"{nameof(this.Placement)}: {this.Placement}, {nameof(this.IsDirectionReversed)}: {this.IsDirectionReversed}, {nameof(this.TickFrequency)}: {this.TickFrequency}, {nameof(this.Ticks)}: {this.Ticks}, {nameof(this.HorizontalTextAlignment)}: {this.HorizontalTextAlignment}, {nameof(this.VerticalTextAlignment)}: {this.VerticalTextAlignment}, {nameof(this.Padding)}: {this.Padding}";
+            }
         }
     }
 }
