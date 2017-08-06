@@ -25,10 +25,10 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 .ToArray();
 
         private static readonly IReadOnlyList<TestCase> RenderWithValueCases = TestCase.Create(
-                values: new[] { double.NaN, 5.96, 6, 6.05 },
+                values: new[] { double.NaN, 5.97, 6, 6.03 },
                 tickGaps: new[] { 1.0, 5 },
                 strokeThicknesses: new[] { 0.0, 1 },
-                tickFrequencies: new[] { 0, 5.0 },
+                tickFrequencies: new[] { 0.0 },
                 tickCollections: new[] { null, (DoubleCollection)new DoubleCollection(new[] { 1.0, 2, 6 }).GetCurrentValueAsFrozen() },
                 paddings: new[] { default(Thickness) })
             .Where(x => !(x.TickFrequency <= 0 && x.Ticks == null))
