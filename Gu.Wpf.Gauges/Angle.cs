@@ -52,7 +52,7 @@
         /// <param name="angle">An instance of <see cref="Angle"/></param>
         public static Angle operator -(Angle angle)
         {
-            return new Angle(-1 * angle.Degrees);
+            return new Angle(-angle.Degrees);
         }
 
         public static Angle operator *(double left, Angle right)

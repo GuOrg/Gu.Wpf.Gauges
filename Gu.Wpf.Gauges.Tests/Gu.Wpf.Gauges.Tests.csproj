@@ -53,6 +53,7 @@
     </When>
   </Choose>
   <ItemGroup>
+    <Compile Include="AngleTests.cs" />
     <Compile Include="AngleTypeConverterTests.cs" />
     <Compile Include="Indicators\LinearIndicatorTests.cs" />
     <Compile Include="Internals\DoubleUtilTests.cs" />
