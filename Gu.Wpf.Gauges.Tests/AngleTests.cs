@@ -34,8 +34,8 @@
         {
             var angle1 = Angle.FromDegrees(deg1);
             var angle2 = Angle.FromDegrees(deg2);
-            Assert.AreEqual(expected, angle1== angle2);
-            Assert.AreEqual(expected, angle2== angle1);
+            Assert.AreEqual(expected, angle1 == angle2);
+            Assert.AreEqual(expected, angle2 == angle1);
             Assert.AreEqual(!expected, angle1 != angle2);
             Assert.AreEqual(!expected, angle2 != angle1);
         }

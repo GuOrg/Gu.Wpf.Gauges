@@ -14,8 +14,8 @@
                           Maximum="100"
                           Minimum="0"
                           Placement="Top"
-                          TickWidth="1"
                           StrokeThickness="1"
+                          TickWidth="1"
                           Value="100" />
     </Window.DataContext>
     <Grid>

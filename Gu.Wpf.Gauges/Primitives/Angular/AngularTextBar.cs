@@ -35,8 +35,6 @@ namespace Gu.Wpf.Gauges
                 Gauges.Angle.DefaultEnd,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
 
-        private ArcInfo arc;
-
         /// <summary>
         /// Gets or sets the <see cref="T:Gu.Wpf.Gauges.TextOrientation" />
         /// Default is Tangential
@@ -96,11 +94,18 @@ namespace Gu.Wpf.Gauges
         {
             if (this.AllTexts != null)
             {
+                var overflow = default(Thickness);
                 var arc = ArcInfo.Fit(finalSize, this.Padding, this.Start, this.End);
                 foreach (var tickText in this.AllTexts)
                 {
-                    this.Overflow = this.Overflow.Union(this.TextPosition.ArrangeTick(tickText, arc, this));
+                    overflow = overflow.Union(this.TextPosition.ArrangeTick(tickText, arc, this));
                 }
+
+                this.Overflow = new Thickness(
+                    left: RoundUp(overflow.Left),
+                    top: RoundUp(overflow.Top),
+                    right: RoundUp(overflow.Right),
+                    bottom: RoundUp(overflow.Bottom));
             }
             else
             {
@@ -124,23 +129,6 @@ namespace Gu.Wpf.Gauges
             {
                 dc.DrawGeometry(this.Foreground, null, tickText.Geometry);
             }
-        }
-
-        protected virtual Angle Angle(double value)
-        {
-            return Interpolate.Linear(this.Minimum, this.Maximum, value)
-                              .Clamp(0, 1)
-                              .Interpolate(this.Start, this.End, this.IsDirectionReversed);
-        }
-
-        protected virtual Point PixelPosition(double value)
-        {
-            return this.arc.GetPoint(this.Angle(value));
-        }
-
-        protected virtual Point PixelPosition(TickText tickText)
-        {
-            return this.PixelPosition(tickText.Value);
         }
 
         protected virtual TickText CreateTickText(double value)
