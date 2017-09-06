@@ -30,3 +30,4 @@ $tf*/
 *.orig
 packages/*
 publish/*
+/.vs/*
