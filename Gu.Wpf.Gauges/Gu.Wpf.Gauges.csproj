@@ -59,13 +59,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Angle.cs" />
+    <Compile Include="AngleTypeConverter.cs" />
     <Compile Include="AngularAxis.cs" />
-    <Compile Include="AngularGauge.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AngularGauge.tt</DependentUpon>
-    </Compile>
     <Compile Include="Axis.cs" />
+    <Compile Include="Defaults.cs" />
     <Compile Include="Gauge.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -73,11 +71,12 @@
     </Compile>
     <Compile Include="Indicators\ValueIndicator.cs" />
     <Compile Include="Internals\BindingHelper.cs" />
-    <Compile Include="Internals\DependencyObjectExt.cs" />
+    <Compile Include="Internals\Extensions\DependencyObjectExt.cs" />
     <Compile Include="Internals\DoubleUtil.cs" />
     <Compile Include="Internals\Interpolate.cs" />
+    <Compile Include="Internals\Interpolation.cs" />
     <Compile Include="Internals\NameOf.cs" />
-    <Compile Include="Internals\TextPositionOptions.cs" />
+    <Compile Include="Internals\ThicknessExt.cs" />
     <Compile Include="Internals\TickBarPlacementExt.cs" />
     <Compile Include="Internals\ValidateEnums.cs" />
     <Compile Include="Internals\WeakKeyValuePair.cs" />
@@ -90,46 +89,55 @@
     </Compile>
     <Compile Include="Primitives\Angular\AngularBlockBar.cs" />
     <Compile Include="AngularGauge.cs" />
-    <Compile Include="Primitives\Angular\AngularPanel.cs" />
+    <Compile Include="Primitives\Angular\AngularGeometryBar.cs" />
+    <Compile Include="Primitives\Angular\AngularTextPosition.cs" />
+    <Compile Include="Primitives\Angular\Arc.cs" />
+    <Compile Include="Primitives\Angular\AngularTick.cs" />
+    <Compile Include="Primitives\Angular\TickShape.cs" />
+    <Compile Include="Primitives\Angular\DefaultAngularTextPosition.cs" />
+    <Compile Include="Primitives\Angular\AngularGeometryTickBar.cs" />
     <Compile Include="Primitives\GeometryBar.cs" />
+    <Compile Include="Primitives\GeometryTickBar.cs" />
     <Compile Include="Primitives\HorizontalTextAlignment.cs" />
+    <Compile Include="Primitives\Linear\DefaultLinearTextPosition.cs" />
+    <Compile Include="Primitives\Linear\ExplicitLinearTextPosition.cs" />
     <Compile Include="Primitives\Linear\LinearGeometryBar.cs" />
+    <Compile Include="Primitives\Linear\LinearGeometryTickBar.cs" />
     <Compile Include="Primitives\Linear\LinearLineBar.cs" />
-    <Compile Include="Primitives\Linear\LinearTextTickBar.cs" />
+    <Compile Include="Primitives\Linear\LinearTextBar.cs" />
     <Compile Include="Primitives\Angular\Ring.cs" />
+    <Compile Include="Primitives\Linear\LinearTextPosition.cs" />
+    <Compile Include="Primitives\Linear\LinearTick.cs" />
     <Compile Include="Primitives\Linear\LinearTickBar.cs" />
+    <Compile Include="Primitives\Linear\Overflow.cs" />
     <Compile Include="Primitives\LineBar.cs" />
     <Compile Include="Primitives\TickBarBase.cs" />
     <Compile Include="Gauge.cs" />
-    <Compile Include="Internals\ArcInfo.cs" />
+    <Compile Include="ArcInfo.cs" />
     <Compile Include="Dimensions\DimensionArrowHead.cs" />
     <Compile Include="Dimensions\DimensionLine.cs" />
     <Compile Include="Dimensions\LineExt.cs" />
     <Compile Include="Dimensions\TwoPointDimension.cs" />
-    <Compile Include="Internals\DrawingContextExt.cs" />
-    <Compile Include="Primitives\ITextFormat.cs" />
+    <Compile Include="Internals\Extensions\DrawingContextExt.cs" />
     <Compile Include="Internals\Horizontal.cs" />
     <Compile Include="Internals\Line.cs" />
     <Compile Include="Primitives\Linear\LinearDotBar.cs" />
-    <Compile Include="Internals\PointExt.cs" />
-    <Compile Include="Internals\RectExt.cs" />
-    <Compile Include="Internals\SizeExt.cs" />
+    <Compile Include="Internals\Extensions\PointExt.cs" />
+    <Compile Include="Internals\Extensions\RectExt.cs" />
+    <Compile Include="Internals\Extensions\SizeExt.cs" />
     <Compile Include="Internals\RotateTransformExt.cs" />
-    <Compile Include="Internals\TextHelper.cs" />
-    <Compile Include="Internals\TextPosition.cs" />
     <Compile Include="Internals\Ticks.cs" />
     <Compile Include="Primitives\Angular\AngularBar.cs" />
     <Compile Include="Primitives\Angular\AngularTextBar.cs" />
     <Compile Include="Primitives\Angular\AngularTickBar.cs" />
     <Compile Include="Primitives\Linear\LinearBlockBar.cs" />
-    <Compile Include="Internals\VectorExt.cs" />
+    <Compile Include="Internals\Extensions\VectorExt.cs" />
     <Compile Include="Internals\Vertical.cs" />
     <Compile Include="Indicators\AngularRange.cs" />
     <Compile Include="Indicators\LinearIndicator.cs" />
     <Compile Include="Indicators\LinearRange.cs" />
     <Compile Include="LinearAxis.cs" />
     <Compile Include="LinearGauge.cs" />
-    <Compile Include="Primitives\Angular\PolarCanvas.cs" />
     <Compile Include="Primitives\TextTickBar.cs" />
     <Compile Include="Primitives\TickText.cs" />
     <Compile Include="Primitives\VerticalTextAlignment.cs" />
@@ -137,7 +145,7 @@
       <SubType>Code</SubType>
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="TextOrientation.cs" />
+    <Compile Include="Primitives\Angular\TextOrientation.cs" />
     <Compile Include="Internals\WeakDictionary.cs" />
     <Compile Include="TickSnap.cs" />
     <None Include="Gu.Wpf.Gauges.ruleset" />
@@ -153,7 +161,19 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="..\.paket\paket.targets" />
+  <ItemGroup>
+    <Content Include="LinearGauge.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LinearGauge.generated.cs</LastGenOutput>
+    </Content>
+    <Content Include="Gauge.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Gauge.generated.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Gu.Analyzers\analyzers\dotnet\cs\Gu.Analyzers.Analyzers.dll">
       <Paket>True</Paket>
@@ -178,21 +198,6 @@
       <Paket>True</Paket>
     </Analyzer>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="AngularGauge.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AngularGauge.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="LinearGauge.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>LinearGauge.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="Gauge.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Gauge.generated.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
+  <ItemGroup />
+  <Import Project="..\.paket\paket.targets" />
 </Project>

@@ -8,14 +8,6 @@
     [DefaultProperty("Value")]
     public partial class Gauge
     {
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.RegisterAttached(
-            nameof(Value),
-            typeof(double),
-            typeof(Gauge),
-            new PropertyMetadata(
-                double.NaN,
-                OnValueChanged));
-
         public static readonly DependencyProperty MinimumProperty = DependencyProperty.RegisterAttached(
             nameof(Minimum),
             typeof(double),
@@ -75,28 +67,6 @@
                 default(DoubleCollection),
                 FrameworkPropertyMetadataOptions.Inherits));
 
-        public static readonly DependencyProperty ThicknessProperty = DependencyProperty.RegisterAttached(
-            nameof(Thickness),
-            typeof(double),
-            typeof(Gauge),
-            new FrameworkPropertyMetadata(
-                10.0d,
-                FrameworkPropertyMetadataOptions.Inherits));
-
-        public static readonly DependencyProperty TextOrientationProperty = DependencyProperty.RegisterAttached(
-            nameof(TextOrientation),
-            typeof(TextOrientation),
-            typeof(Gauge),
-            new FrameworkPropertyMetadata(
-                TextOrientation.Horizontal,
-                FrameworkPropertyMetadataOptions.Inherits));
-
-        public double Value
-        {
-            get => (double)this.GetValue(ValueProperty);
-            set => this.SetValue(ValueProperty, value);
-        }
-
         public double Minimum
         {
             get => (double)this.GetValue(MinimumProperty);
@@ -137,28 +107,6 @@
         {
             get => (DoubleCollection)this.GetValue(MinorTicksProperty);
             set => this.SetValue(MinorTicksProperty, value);
-        }
-
-        public double Thickness
-        {
-            get => (double)this.GetValue(ThicknessProperty);
-            set => this.SetValue(ThicknessProperty, value);
-        }
-
-        public TextOrientation TextOrientation
-        {
-            get => (TextOrientation)this.GetValue(TextOrientationProperty);
-            set => this.SetValue(TextOrientationProperty, value);
-        }
-
-        public static void SetValue(DependencyObject element, double value)
-        {
-            element.SetValue(ValueProperty, value);
-        }
-
-        public static double GetValue(DependencyObject element)
-        {
-            return (double)element.GetValue(ValueProperty);
         }
 
         public static void SetMinimum(DependencyObject element, double value)
@@ -229,34 +177,6 @@
         public static DoubleCollection GetMinorTicks(DependencyObject element)
         {
             return (DoubleCollection)element.GetValue(MinorTicksProperty);
-        }
-
-        public static void SetThickness(DependencyObject element, double value)
-        {
-            element.SetValue(ThicknessProperty, value);
-        }
-
-        public static double GetThickness(DependencyObject element)
-        {
-            return (double)element.GetValue(ThicknessProperty);
-        }
-
-        public static void SetTextOrientation(DependencyObject element, TextOrientation value)
-        {
-            element.SetValue(TextOrientationProperty, value);
-        }
-
-        public static TextOrientation GetTextOrientation(DependencyObject element)
-        {
-            return (TextOrientation)element.GetValue(TextOrientationProperty);
-        }
-
-        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is Gauge gauge)
-            {
-                gauge.OnValueChanged((double)e.OldValue, (double)e.NewValue);
-            }
         }
 
         private static void OnMinimumChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

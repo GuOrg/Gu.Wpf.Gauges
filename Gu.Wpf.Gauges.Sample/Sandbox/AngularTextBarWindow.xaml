@@ -1,0 +1,50 @@
+﻿<Window x:Class="Gu.Wpf.Gauges.Sample.Sandbox.AngularTextBarWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
+             d:DesignHeight="400"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <Window.DataContext>
+        <sample:AngularTickBarVm End="140"
+                                 IsDirectionReversed="True"
+                                 MajorTickFrequency="25"
+                                 MajorTicks="85"
+                                 Maximum="100"
+                                 Minimum="0"
+                                 MinorTickFrequency="5"
+                                 ShowLabels="True"
+                                 Start="-140"
+                                 TextOrientation="Tangential"
+                                 Value="30" />
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Border Margin="20"
+                Background="Transparent">
+            <gauges:AngularTextBar End="{Binding End}"
+                                   IsDirectionReversed="{Binding IsDirectionReversed}"
+                                   Maximum="{Binding Maximum}"
+                                   Minimum="{Binding Minimum}"
+                                   Start="{Binding Start}"
+                                   TextOrientation="{Binding TextOrientation}"
+                                   TickFrequency="{Binding MajorTickFrequency}"
+                                   Ticks="{Binding MajorTicks}">
+                <gauges:AngularTextBar.TextTransform>
+                    <RotateTransform Angle="0" />
+                </gauges:AngularTextBar.TextTransform>
+            </gauges:AngularTextBar>
+        </Border>
+
+
+        <ContentPresenter Grid.Row="1"
+                          Content="{Binding}" />
+    </Grid>
+</Window>
+

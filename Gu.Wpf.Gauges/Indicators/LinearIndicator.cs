@@ -1,17 +1,28 @@
 ﻿namespace Gu.Wpf.Gauges
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Controls.Primitives;
 
     public class LinearIndicator : ValueIndicator
     {
+#pragma warning disable SA1202 // Elements must be ordered by access
         public static readonly DependencyProperty PlacementProperty = LinearGauge.PlacementProperty.AddOwner(
             typeof(LinearIndicator),
             new FrameworkPropertyMetadata(
                 TickBarPlacement.Bottom,
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits,
                 OnPlacementChanged));
+
+        private static readonly DependencyPropertyKey OverflowPropertyKey = DependencyProperty.RegisterReadOnly(
+            nameof(Overflow),
+            typeof(Thickness),
+            typeof(LinearIndicator),
+            new PropertyMetadata(default(Thickness)));
+
+        public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
+#pragma warning restore SA1202 // Elements must be ordered by access
 
         static LinearIndicator()
         {
@@ -24,12 +35,23 @@
             set => this.SetValue(PlacementProperty, value);
         }
 
+        /// <summary>
+        /// Gets a <see cref="Thickness"/> with values indicating how much the control draws outside its bounds.
+        /// </summary>
+        public Thickness Overflow
+        {
+            get => (Thickness)this.GetValue(OverflowProperty);
+            protected set => this.SetValue(OverflowPropertyKey, value);
+        }
+
         protected override Size MeasureOverride(Size constraint)
         {
             if (this.VisualChild != null)
             {
                 this.VisualChild.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-                return this.VisualChild.DesiredSize;
+                return this.Placement.IsHorizontal()
+                    ? new Size(0, this.VisualChild.DesiredSize.Height)
+                    : new Size(this.VisualChild.DesiredSize.Width, 0);
             }
 
             return default(Size);
@@ -37,47 +59,66 @@
 
         protected override Size ArrangeOverride(Size arrangeBounds)
         {
-            if (double.IsNaN(this.Value))
+            var child = this.VisualChild;
+            if (!double.IsNaN(this.Value) &&
+                child != null)
             {
-                return arrangeBounds;
+                child.Arrange(this.ChildRect(this.PixelPosition(arrangeBounds)));
+                var w = this.Placement.IsHorizontal()
+                    ? child.RenderSize.Width / 2
+                    : child.RenderSize.Height / 2;
+
+                this.Overflow = this.Placement.IsHorizontal()
+                    ? new Thickness(Math.Max(0, w - this.Padding.Left), 0, Math.Max(0, w - this.Padding.Right), 0)
+                    : new Thickness(0, Math.Max(0, w - this.Padding.Top), 0, Math.Max(0, w - this.Padding.Bottom));
+            }
+            else
+            {
+                this.Overflow = default(Thickness);
             }
 
-            if (this.VisualChild == null)
-            {
-                return arrangeBounds;
-            }
-
-            Line l1;
-            Line l2;
-            switch (this.Placement)
-            {
-                case TickBarPlacement.Left:
-                case TickBarPlacement.Right:
-                    l1 = new Line(arrangeBounds, 0, TickBarPlacement.Left, this.IsDirectionReversed);
-                    l2 = new Line(arrangeBounds, 0, TickBarPlacement.Right, this.IsDirectionReversed);
-                    break;
-                case TickBarPlacement.Top:
-                case TickBarPlacement.Bottom:
-                    l1 = new Line(arrangeBounds, 0, TickBarPlacement.Top, this.IsDirectionReversed);
-                    l2 = new Line(arrangeBounds, 0, TickBarPlacement.Bottom, this.IsDirectionReversed);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            var p1 = l1.Interpolate(this.Value, this.Minimum, this.Maximum);
-            var p2 = l2.Interpolate(this.Value, this.Minimum, this.Maximum);
-            var w2 = this.VisualChild.DesiredSize.Width / 2;
-            var h2 = this.VisualChild.DesiredSize.Height / 2;
-            var ps = new Point(p1.X - w2, p1.Y - h2);
-            var pe = new Point(p2.X + w2, p2.Y + h2);
-            var rect = new Rect(arrangeBounds);
-            var rect1 = new Rect(ps, pe);
-            rect.Intersect(rect1);
-            this.VisualChild.Arrange(rect.IsEmpty ? default(Rect) : rect);
+            this.RegisterOverflow(this.Overflow);
             return arrangeBounds;
         }
 
+        protected Rect ChildRect(Point position)
+        {
+            var size = this.VisualChild.DesiredSize;
+            switch (this.Placement)
+            {
+                case TickBarPlacement.Left:
+                    return new Rect(position.X, position.Y - (size.Height / 2), size.Width, size.Height);
+                case TickBarPlacement.Right:
+                    return new Rect(position.X - size.Width, position.Y - (size.Height / 2), size.Width, size.Height);
+                case TickBarPlacement.Top:
+                    return new Rect(position.X - (size.Width / 2), position.Y, size.Width, size.Height);
+                case TickBarPlacement.Bottom:
+                    return new Rect(position.X - (size.Width / 2), position.Y - size.Height, size.Width, size.Height);
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        protected Point PixelPosition(Size arrangeBounds)
+        {
+            var step = Interpolate.Linear(this.Minimum, this.Maximum, this.Value)
+                                  .Clamp(0, 1);
+            switch (this.Placement)
+            {
+                case TickBarPlacement.Left:
+                    return new Point(this.Padding.Left, step.InterpolateVertical(arrangeBounds, this.Padding, this.IsDirectionReversed));
+                case TickBarPlacement.Right:
+                    return new Point(arrangeBounds.Width - this.Padding.Right, step.InterpolateVertical(arrangeBounds, this.Padding, this.IsDirectionReversed));
+                case TickBarPlacement.Top:
+                    return new Point(step.InterpolateHorizontal(arrangeBounds, this.Padding, this.IsDirectionReversed), this.Padding.Top);
+                case TickBarPlacement.Bottom:
+                    return new Point(step.InterpolateHorizontal(arrangeBounds, this.Padding, this.IsDirectionReversed), arrangeBounds.Height - this.Padding.Bottom);
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        [SuppressMessage("ReSharper", "UnusedParameter.Global")]
         protected virtual void OnPlacementChanged(TickBarPlacement oldValue, TickBarPlacement newValue)
         {
         }

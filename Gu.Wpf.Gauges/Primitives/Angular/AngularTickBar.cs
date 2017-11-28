@@ -3,139 +3,196 @@ namespace Gu.Wpf.Gauges
     using System;
     using System.Windows;
     using System.Windows.Media;
-    using System.Windows.Shapes;
 
-    public class AngularTickBar : AngularBar
+    public class AngularTickBar : AngularGeometryTickBar
     {
         /// <summary>
-        /// Identifies the <see cref="P:AngularTickBar.StrokeThickness" /> dependency property.
+        /// Identifies the <see cref="P:LinearTickBar.TickWidth" /> dependency property.
         /// </summary>
-        public static readonly DependencyProperty StrokeThicknessProperty = DependencyProperty.Register(
-            nameof(StrokeThickness),
+        public static readonly DependencyProperty TickWidthProperty = DependencyProperty.Register(
+            nameof(TickWidth),
             typeof(double),
             typeof(AngularTickBar),
             new FrameworkPropertyMetadata(
                 1.0d,
-                FrameworkPropertyMetadataOptions.AffectsRender,
-                (d, _) => ((AngularTickBar)d).pen = null));
+                FrameworkPropertyMetadataOptions.AffectsRender));
 
-        /// <summary>
-        /// Identifies the <see cref="P:AngularTickBar.Stroke" /> dependency property. This property is read-only.
-        /// </summary>
-        public static readonly DependencyProperty StrokeProperty = Shape.StrokeProperty.AddOwner(
+        public static readonly DependencyProperty TickShapeProperty = DependencyProperty.Register(
+            nameof(TickShape),
+            typeof(TickShape),
             typeof(AngularTickBar),
             new FrameworkPropertyMetadata(
-                default(Brush),
+                default(TickShape),
                 FrameworkPropertyMetadataOptions.AffectsRender,
-                (d, _) => ((AngularTickBar)d).pen = null));
+                (d, e) => ((AngularTickBar)d).ResetPen()));
 
-        public static readonly DependencyProperty ThicknessProperty = Gauge.ThicknessProperty.AddOwner(
-            typeof(AngularTickBar),
-            new FrameworkPropertyMetadata(
-                10.0d,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
-
-        private Pen pen;
-
-        /// <summary>
-        /// Gets or sets the <see cref="P:AngularTickBar.StrokeThickness" />
-        /// The default is 1
-        /// </summary>
-        public double StrokeThickness
+        static AngularTickBar()
         {
-            get => (double)this.GetValue(StrokeThicknessProperty);
-            set => this.SetValue(StrokeThicknessProperty, value);
+            StrokeProperty.OverrideMetadata(
+                typeof(AngularTickBar),
+                new FrameworkPropertyMetadata(
+                    Brushes.Black,
+                    FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.SubPropertiesDoNotAffectRender,
+                    (d, e) => ((AngularTickBar)d).ResetPen()));
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="T:System.Windows.Media.Brush" /> that is used to draw the tick marks.
+        /// Gets or sets the <see cref="P:LinearTickBar.TickWidth" />
+        /// The default is 1.
+        /// For TickShape.Arc the arc length on the outer diameter.
         /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.Windows.Media.Brush" /> to use to draw tick marks. The default value is null.
-        /// </returns>
-        public Brush Stroke
+        public double TickWidth
         {
-            get => (Brush)this.GetValue(StrokeProperty);
-            set => this.SetValue(StrokeProperty, value);
+            get => (double)this.GetValue(TickWidthProperty);
+            set => this.SetValue(TickWidthProperty, value);
         }
 
         /// <summary>
-        /// Gets or sets the length of the ticks.
-        /// The default value is 10.
+        /// Specifies if ticks are drawn as rectangles or arcs.
         /// </summary>
-        public double Thickness
+        public TickShape TickShape
         {
-            get => (double)this.GetValue(ThicknessProperty);
-            set => this.SetValue(ThicknessProperty, value);
+            get => (TickShape)this.GetValue(TickShapeProperty);
+            set => this.SetValue(TickShapeProperty, value);
         }
 
-        private bool CanCreatePen
-        {
-            get
-            {
-                var strokeThickness = this.StrokeThickness;
-                return this.Stroke == null ||
-                       DoubleUtil.IsNaN(strokeThickness) ||
-                       DoubleUtil.IsZero(strokeThickness);
-            }
-        }
+        protected override Geometry DefiningGeometry => throw new InvalidOperationException("Uses OnRender");
 
-        private Pen Pen
-        {
-            get
-            {
-                if (this.pen == null)
-                {
-                    if (!this.CanCreatePen)
-                    {
-                        this.pen = new Pen
-                        {
-                            Thickness = Math.Abs(this.StrokeThickness),
-                            Brush = this.Stroke
-                        };
-                    }
-                }
-
-                return this.pen;
-            }
-        }
+        protected bool IsFilled => AngularTick.IsFilled(this.TickWidth, this.Thickness, this.GetStrokeThickness());
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            if (this.Thickness <= 0 ||
+            if (DoubleUtil.LessThanOrClose(this.Thickness, 0) ||
+                double.IsInfinity(this.Thickness) ||
                 this.AllTicks == null)
             {
                 return default(Size);
             }
 
-            var arc = new ArcInfo(default(Point), this.MinAngle, this.MaxAngle, this.Thickness, this.IsDirectionReversed);
+            var arc = new ArcInfo(default(Point), this.Thickness, this.Start, this.End);
             var rect = default(Rect);
-            foreach (var tick in this.AllTicks)
+            rect.Union(arc.StartPoint);
+            rect.Union(arc.EndPoint);
+            foreach (var quadrant in arc.QuadrantPoints)
             {
-                var angle = Gauges.Ticks.ToAngle(tick, this.Minimum, this.Maximum, arc);
-                rect.Union(arc.GetPoint(angle));
+                rect.Union(quadrant);
             }
 
-            return rect.Size;
+            return rect.Inflate(this.Padding).Size;
+        }
+
+        protected override Size ArrangeOverride(Size finalSize)
+        {
+            var strokeThickness = this.GetStrokeThickness();
+            var w = this.TickWidth > strokeThickness
+                ? this.TickWidth / 2
+                : strokeThickness / 2;
+            var arc = new ArcInfo(default(Point), 1, this.Start, this.End);
+            this.Overflow = arc.Overflow(w, this.Padding);
+            return finalSize;
         }
 
         protected override void OnRender(DrawingContext dc)
         {
-            if (this.Pen == null ||
-                this.AllTicks == null)
+            if ((this.Pen == null && this.Fill == null) ||
+                this.AllTicks == null ||
+                DoubleUtil.AreClose(this.EffectiveValue, this.Minimum))
             {
                 return;
             }
 
-            var arc = ArcInfo.Fill(this.RenderSize, this.MinAngle, this.MaxAngle, this.IsDirectionReversed);
-            foreach (var tick in this.AllTicks)
+            var arc = ArcInfo.Fit(this.RenderSize, this.Padding, this.Start, this.End);
+            if (DoubleUtil.AreClose(arc.Radius, 0))
             {
-                var angle = Gauges.Ticks.ToAngle(tick, this.Minimum, this.Maximum, arc);
-                var po = arc.GetPoint(angle, 0);
-                var pi = arc.GetPoint(angle, -this.Thickness);
-                var line = new Line(po, pi);
-                dc.DrawLine(this.Pen, line);
+                return;
             }
+
+            var value = this.EffectiveValue;
+            if (value < this.Maximum)
+            {
+                dc.PushClip(this.CreateClipGeometry(arc));
+            }
+
+            var strokeThickness = this.GetStrokeThickness();
+            if (this.TickWidth <= strokeThickness)
+            {
+                foreach (var tick in this.AllTicks)
+                {
+                    var angle = Interpolate.Linear(this.Minimum, this.Maximum, tick)
+                                           .Clamp(0, 1)
+                                           .Interpolate(this.Start, this.End, this.IsDirectionReversed);
+                    var po = arc.GetPoint(angle);
+                    var pi = arc.GetPointAtRadiusOffset(angle, -this.Thickness);
+                    dc.DrawLine(this.Pen, po, pi);
+                }
+            }
+            else
+            {
+                var geometry = new PathGeometry();
+                foreach (var tick in this.AllTicks)
+                {
+                    geometry.Figures.Add(this.CreateTick(arc, tick, strokeThickness));
+                    if (tick > value)
+                    {
+                        break;
+                    }
+                }
+
+                if (this.IsFilled)
+                {
+                    dc.DrawGeometry(this.Fill, this.Pen, geometry);
+                }
+                else
+                {
+                    dc.DrawGeometry(this.Stroke, null, geometry);
+                }
+            }
+
+            if (value < this.Maximum)
+            {
+                dc.Pop();
+            }
+        }
+
+        /// <summary>
+        /// Create the clip geometry that clips to current value.
+        /// If not desired override and return Geometry.Empty
+        /// </summary>
+        /// <param name="arc">The bounding arc.</param>
+        protected virtual Geometry CreateClipGeometry(ArcInfo arc)
+        {
+            var effectiveAngle = Interpolate.Linear(this.Minimum, this.Maximum, this.EffectiveValue)
+                .Interpolate(this.Start, this.End, this.IsDirectionReversed);
+            var geometry = new PathGeometry();
+            var w = this.TickWidth;
+            var delta = arc.GetDelta(w, arc.Radius - this.Thickness);
+            var inflated = new ArcInfo(
+                arc.Center,
+                arc.Radius + w,
+                arc.Start - delta,
+                arc.End + delta);
+            var figure = AngularTick.CreateArcPathFigure(
+                inflated,
+                this.IsDirectionReversed ? inflated.End : inflated.Start,
+                effectiveAngle,
+                inflated.Radius,
+                0);
+            geometry.Figures.Add(figure);
+            return geometry;
+        }
+
+        /// <summary>
+        /// Create a <see cref="PathFigure"/> for the current tick.
+        /// </summary>
+        /// <param name="arc">The bounding arc.</param>
+        /// <param name="value">The tick value.</param>
+        /// <param name="strokeThickness">The stroke thickness.</param>
+        protected virtual PathFigure CreateTick(ArcInfo arc, double value, double strokeThickness)
+        {
+            var angle = Interpolate.Linear(this.Minimum, this.Maximum, value)
+                                   .Clamp(0, 1)
+                                   .Interpolate(this.Start, this.End, this.IsDirectionReversed);
+            return AngularTick.CreateTick(arc, angle, this.TickShape, this.TickWidth, this.Thickness, strokeThickness);
         }
     }
 }

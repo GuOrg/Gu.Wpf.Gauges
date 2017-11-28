@@ -7,24 +7,28 @@
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
              mc:Ignorable="d">
     <UserControl.DataContext>
-        <sample:TickBarVm MajorTickFrequency="25"
+        <sample:TickBarVm IsDirectionReversed="False"
+                          MajorTickFrequency="25"
                           MajorTicks="10 85"
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="5"
                           Placement="Top"
                           ShowLabels="True"
-                          TextOrientation="Horizontal"
-                          Value="60" />
+                          Value="0" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"
-                           MinHeight="100" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
         <gauges:LinearGauge Grid.Row="0"
-                            Margin="12"
+                            Grid.Column="1"
                             IsDirectionReversed="{Binding IsDirectionReversed}"
                             MajorTickFrequency="{Binding MajorTickFrequency}"
                             MajorTicks="{Binding MajorTicks}"
@@ -32,11 +36,20 @@
                             Minimum="{Binding Minimum}"
                             MinorTickFrequency="{Binding MinorTickFrequency}"
                             Placement="{Binding Placement}"
-                            TextOrientation="{Binding TextOrientation}"
                             Value="{Binding Value}" />
 
+        <gauges:LinearGauge Grid.Row="1"
+                            Grid.Column="0"
+                            IsDirectionReversed="{Binding IsDirectionReversed}"
+                            MajorTickFrequency="{Binding MajorTickFrequency}"
+                            MajorTicks="{Binding MajorTicks}"
+                            Maximum="{Binding Maximum}"
+                            Minimum="{Binding Minimum}"
+                            MinorTickFrequency="{Binding MinorTickFrequency}"
+                            Placement="{Binding Placement}"
+                            Value="{Binding Value}" />
         <ContentPresenter Grid.Row="1"
-                          Grid.Column="0"
+                          Grid.Column="1"
                           Content="{Binding}" />
     </Grid>
 </UserControl>

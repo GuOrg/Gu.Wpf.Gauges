@@ -39,6 +39,15 @@ namespace Gu.Wpf.Gauges
                 (d, _) => ((TickBarBase)d).UpdateTicks()));
 
         /// <summary>
+        /// Identifies the <see cref="P:Bar.IsDirectionReversed" /> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty IsDirectionReversedProperty = Gauge.IsDirectionReversedProperty.AddOwner(
+            typeof(TickBarBase),
+            new FrameworkPropertyMetadata(
+                false,
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+
+        /// <summary>
         /// Identifies the <see cref="P:Bar.TickFrequency" /> dependency property.
         /// </summary>
         public static readonly DependencyProperty TickFrequencyProperty = Slider.TickFrequencyProperty.AddOwner(
@@ -67,22 +76,14 @@ namespace Gu.Wpf.Gauges
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits,
                 OnTicksChanged));
 
-        /// <summary>
-        /// Identifies the <see cref="P:Bar.IsDirectionReversed" /> dependency property.
-        /// </summary>
-        public static readonly DependencyProperty IsDirectionReversedProperty = Gauge.IsDirectionReversedProperty.AddOwner(
-            typeof(TickBarBase),
-            new FrameworkPropertyMetadata(
-                false,
-                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
-
         private static readonly DependencyPropertyKey AllTicksPropertyKey = DependencyProperty.RegisterReadOnly(
             nameof(AllTicks),
             typeof(IReadOnlyList<double>),
             typeof(TickBarBase),
             new FrameworkPropertyMetadata(
                 default(IReadOnlyList<double>),
-                FrameworkPropertyMetadataOptions.AffectsRender));
+                FrameworkPropertyMetadataOptions.AffectsRender,
+                OnAllTicksChanged));
 
         public static readonly DependencyProperty AllTicksProperty = AllTicksPropertyKey.DependencyProperty;
 
@@ -189,20 +190,31 @@ namespace Gu.Wpf.Gauges
                                       .ToArray();
         }
 
+        protected virtual void OnAllTicksChanged(IReadOnlyList<double> oldValue, IReadOnlyList<double> newValue)
+        {
+        }
+
         private static void OnTicksChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var bar = (TickBarBase)d;
-            if (e.OldValue is DoubleCollection oldTicks)
+            if (e.OldValue is DoubleCollection oldTicks &&
+                !oldTicks.IsFrozen)
             {
                 oldTicks.Changed -= bar.OnTickCollectionChanged;
             }
 
-            if (e.NewValue is DoubleCollection newTicks)
+            if (e.NewValue is DoubleCollection newTicks &&
+                !newTicks.IsFrozen)
             {
                 newTicks.Changed += bar.OnTickCollectionChanged;
             }
 
             bar.UpdateTicks();
+        }
+
+        private static void OnAllTicksChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((TickBarBase)d).OnAllTicksChanged((IReadOnlyList<double>)e.OldValue, (IReadOnlyList<double>)e.NewValue);
         }
 
         private static void OnExcludeTicksChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

@@ -1,48 +1,65 @@
 ﻿namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
     using System.IO;
     using System.Threading;
     using System.Windows;
     using System.Windows.Media;
-    using Gu.Wpf.Gauges.Tests.TestHelpers;
     using NUnit.Framework;
 
     [Apartment(ApartmentState.STA)]
     public class RingTests
     {
-        [Test]
-        public void NoStroke()
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(10)]
+        [TestCase(double.PositiveInfinity)]
+        [TestCase(25)]
+        public void NoStroke(double thickness)
         {
             var ring = new Ring
             {
                 Fill = Brushes.Black,
                 StrokeThickness = 0,
-                Thickness = 10,
+                Thickness = thickness,
             };
 
-            ImageAssert.AreEqual(Properties.Resources.Ring_Thickness_10_StrokeThickness_0, ring);
+            ImageAssert.AreEqual(GetFileName(ring), ring);
         }
 
-        [Test]
-        public void WithStroke()
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(10)]
+        [TestCase(double.PositiveInfinity)]
+        [TestCase(25)]
+        public void WithStroke(double thickness)
         {
             var ring = new Ring
             {
                 Fill = Brushes.Black,
                 Stroke = Brushes.Red,
+                StrokeDashArray = new DoubleCollection(new[] { 0.0, 1 }),
+                StrokeDashCap = PenLineCap.Round,
                 StrokeThickness = 1,
-                Thickness = 10,
+                Thickness = thickness,
             };
 
-            ImageAssert.AreEqual(Properties.Resources.Ring_Thickness_10_StrokeThickness_1, ring);
+            ImageAssert.AreEqual(GetFileName(ring), ring);
         }
 
+        private static string GetFileName(Ring ring)
+        {
+            return $"Ring_Thickness_{(double.IsInfinity(ring.Thickness) ? "inf" : ring.Thickness.ToString(CultureInfo.InvariantCulture))}_StrokeThickness_{ring.StrokeThickness}.png";
+        }
+
+        [SuppressMessage("ReSharper", "UnusedMember.Local")]
         private static void SaveImage(Ring ring)
         {
-            Directory.CreateDirectory($@"C:\Temp\{ring.GetType().Name}");
+            var directory = Directory.CreateDirectory($@"C:\Temp\Ring");
             ring.SaveImage(
                 new Size(30, 30),
-                $@"C:\Temp\{ring.GetType().Name}\{ring.GetType().Name}_Thickness_{ring.Thickness}_StrokeThickness_{ring.StrokeThickness}.png");
+               Path.Combine(directory.FullName, GetFileName(ring)));
         }
     }
 }

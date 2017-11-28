@@ -22,7 +22,7 @@ namespace Gu.Wpf.Gauges
             ? $@",
                 On{property.Name}Changed"
             : string.Empty;
-        WriteLineIfNotFirst(property, properties);
+        this.WriteLineIfNotFirst(property, properties);
     #>
         public static readonly DependencyProperty <#= property.Name #>Property = DependencyProperty.RegisterAttached(
             nameof(<#= property.Name #>),
@@ -81,10 +81,10 @@ public class PropertyMetaData
 {
     public PropertyMetaData(string name, string type, string defaultValue, bool notifyOnChange = false)
     {
-        Name = name;
-        Type = type;
-        DefaultValue = defaultValue ?? $"default({type})";
-        NotifyOnChange = notifyOnChange;
+        this.Name = name;
+        this.Type = type;
+        this.DefaultValue = defaultValue ?? $"default({type})";
+        this.NotifyOnChange = notifyOnChange;
     }
 
     public string Name { get; }

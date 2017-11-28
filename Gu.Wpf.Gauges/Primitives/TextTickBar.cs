@@ -1,27 +1,50 @@
 ﻿namespace Gu.Wpf.Gauges
 {
-    using System.Linq;
+    using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Documents;
     using System.Windows.Media;
 
     /// <summary>
-    /// http://stackoverflow.com/a/3578214/1069200
+    /// Base class for a tick bar that renders ticks as text.
     /// </summary>
-    public class TextTickBar : TickBarBase, ITextFormat
+    public abstract class TextTickBar : TickBarBase
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
-        public static readonly DependencyProperty TextOrientationProperty = Gauge.TextOrientationProperty.AddOwner(
+
+        public static readonly DependencyProperty PaddingProperty = DependencyProperty.Register(
+            nameof(Padding),
+            typeof(Thickness),
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
-                TextOrientation.Tangential,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+                default(Thickness),
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
 
-        public static readonly DependencyProperty HorizontalTextAlignmentProperty = DependencyProperty.Register(
-            "HorizontalTextAlignment",
-            typeof(HorizontalTextAlignment),
+        private static readonly DependencyPropertyKey OverflowPropertyKey = DependencyProperty.RegisterReadOnly(
+            nameof(Overflow),
+            typeof(Thickness),
             typeof(TextTickBar),
-            new FrameworkPropertyMetadata(default(HorizontalTextAlignment), FrameworkPropertyMetadataOptions.AffectsRender));
+            new PropertyMetadata(default(Thickness)));
+
+        public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
+
+        private static readonly DependencyPropertyKey AllTextsPropertyKey = DependencyProperty.RegisterReadOnly(
+            nameof(AllTexts),
+            typeof(IReadOnlyList<TickText>),
+            typeof(TextTickBar),
+            new FrameworkPropertyMetadata(
+                default(IReadOnlyList<TickText>),
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static readonly DependencyProperty AllTextsProperty = AllTextsPropertyKey.DependencyProperty;
+
+        public static readonly DependencyProperty TextTransformProperty = DependencyProperty.Register(
+            nameof(TextTransform),
+            typeof(Transform),
+            typeof(TextTickBar),
+            new FrameworkPropertyMetadata(
+                default(Transform),
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.FontFamily" /> dependency property.
@@ -32,8 +55,9 @@
         public static readonly DependencyProperty FontFamilyProperty = TextElement.FontFamilyProperty.AddOwner(
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
-               new FontFamily("Segoe UI"),
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+                new FontFamily("Segoe UI"),
+                FrameworkPropertyMetadataOptions.Inherits,
+                (d, _) => ((TextTickBar)d).UpdateTypeFace()));
 
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.FontStyle" /> dependency property.
@@ -45,7 +69,8 @@
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
                 FontStyles.Normal,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.Inherits,
+                (d, _) => ((TextTickBar)d).UpdateTypeFace()));
 
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.FontWeight" /> dependency property.
@@ -57,7 +82,8 @@
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
                 FontWeights.Normal,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.Inherits,
+                (d, _) => ((TextTickBar)d).UpdateTypeFace()));
 
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.FontStretch" /> dependency property.
@@ -69,7 +95,8 @@
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
                 FontStretches.Normal,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.Inherits,
+                (d, _) => ((TextTickBar)d).UpdateTypeFace()));
 
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.FontSize" /> dependency property.
@@ -81,7 +108,8 @@
             typeof(TextTickBar),
             new FrameworkPropertyMetadata(
                 12.0,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+                FrameworkPropertyMetadataOptions.Inherits,
+                (d, _) => ((TextTickBar)d).UpdateTexts()));
 
         /// <summary>
         /// Identifies the <see cref="P:TextTickBar.Foreground" /> dependency property.
@@ -115,41 +143,38 @@
             "StringFormat",
             typeof(string),
             typeof(TextTickBar),
-            new FrameworkPropertyMetadata(
+            new PropertyMetadata(
                 default(string),
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+                (d, _) => ((TextTickBar)d).UpdateTexts()));
 
-        private static readonly DependencyPropertyKey TextSpacePropertyKey = DependencyProperty.RegisterReadOnly(
-            nameof(TextSpace),
-            typeof(double),
-            typeof(TextTickBar),
-            new PropertyMetadata(default(double)));
-
-        public static readonly DependencyProperty TextSpaceProperty = TextSpacePropertyKey.DependencyProperty;
-
-        private static readonly DependencyPropertyKey TextSpaceMarginPropertyKey = DependencyProperty.RegisterReadOnly(
-            nameof(TextSpaceMargin),
-            typeof(Thickness),
-            typeof(TextTickBar),
-            new PropertyMetadata(default(Thickness)));
-
-        public static readonly DependencyProperty TextSpaceMarginProperty = TextSpaceMarginPropertyKey.DependencyProperty;
+        private Typeface typeFace;
 #pragma warning restore SA1202 // Elements must be ordered by access
 
-        /// <summary>
-        /// Gets or sets the <see cref="T:Gu.Wpf.Gauges.TextOrientation" />
-        /// Default is Tangential
-        /// </summary>
-        public TextOrientation TextOrientation
+        public Thickness Padding
         {
-            get => (TextOrientation)this.GetValue(TextOrientationProperty);
-            set => this.SetValue(TextOrientationProperty, value);
+            get => (Thickness)this.GetValue(PaddingProperty);
+            set => this.SetValue(PaddingProperty, value);
         }
 
-        public HorizontalTextAlignment HorizontalTextAlignment
+        /// <summary>
+        /// Gets a <see cref="Thickness"/> with values indicating how much the control draws outside its bounds.
+        /// </summary>
+        public Thickness Overflow
         {
-            get => (HorizontalTextAlignment)this.GetValue(HorizontalTextAlignmentProperty);
-            set => this.SetValue(HorizontalTextAlignmentProperty, value);
+            get => (Thickness)this.GetValue(OverflowProperty);
+            protected set => this.SetValue(OverflowPropertyKey, value);
+        }
+
+        public IReadOnlyList<TickText> AllTexts
+        {
+            get => (IReadOnlyList<TickText>)this.GetValue(AllTextsProperty);
+            protected set => this.SetValue(AllTextsPropertyKey, value);
+        }
+
+        public Transform TextTransform
+        {
+            get => (Transform)this.GetValue(TextTransformProperty);
+            set => this.SetValue(TextTransformProperty, value);
         }
 
         /// <summary>
@@ -248,35 +273,25 @@
             set => this.SetValue(StringFormatProperty, value);
         }
 
-        /// <summary>
-        /// Gets the Reserved space due to the text
-        /// </summary>
-        public double TextSpace
-        {
-            get => (double)this.GetValue(TextSpaceProperty);
-            protected set => this.SetValue(TextSpacePropertyKey, value);
-        }
+        protected Typeface TypeFace => this.typeFace ??
+                                       (this.typeFace = new Typeface(
+                                           this.FontFamily,
+                                           this.FontStyle,
+                                           this.FontWeight,
+                                           this.FontStretch));
 
-        public Thickness TextSpaceMargin
+        protected void UpdateTypeFace()
         {
-            get => (Thickness)this.GetValue(TextSpaceMarginProperty);
-            protected set => this.SetValue(TextSpaceMarginPropertyKey, value);
+            this.typeFace = null;
+            this.UpdateTexts();
         }
-
-        protected FormattedText[] AllTexts { get; private set; }
 
         protected override void UpdateTicks()
         {
             base.UpdateTicks();
-            if (this.AllTicks == null)
-            {
-                this.AllTexts = new FormattedText[0];
-                return;
-            }
-
-            var typeFace = this.TypeFace();
-            this.AllTexts = this.AllTicks.Select(x => TextHelper.AsFormattedText(x, this, typeFace))
-                                         .ToArray();
+            this.UpdateTexts();
         }
+
+        protected abstract void UpdateTexts();
     }
 }

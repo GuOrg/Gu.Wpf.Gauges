@@ -5,7 +5,7 @@
              xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
-             d:DesignHeight="300"
+             d:DesignHeight="400"
              d:DesignWidth="300"
              mc:Ignorable="d">
     <UserControl.DataContext>
@@ -13,45 +13,45 @@
                           MajorTicks="10 85"
                           Maximum="100"
                           Minimum="0"
+                          IsDirectionReversed="False"
                           MinorTickFrequency="5"
-                          Placement="Top"
+                          Placement="Bottom"
                           ShowLabels="True"
-                          TextOrientation="Horizontal"
-                          Value="50" />
+                          Value="10" />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <gauges:LinearGauge Grid.Row="0"
-                            Height="80"
-                            Margin="10"
+                            Margin="5"
                             IsDirectionReversed="{Binding IsDirectionReversed}"
                             Maximum="{Binding Maximum}"
                             Minimum="{Binding Minimum}"
                             Placement="{Binding Placement}"
                             Value="{Binding Value}">
             <Grid>
-                <gauges:LinearAxis MajorTickFrequency="10" />
-
-                <gauges:LinearIndicator>
+                <gauges:LinearIndicator Padding="1,0">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="40" />
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Rectangle Grid.Row="0"
                                    Width="1"
+                                   Height="20"
                                    HorizontalAlignment="Center"
-                                   Fill="Black" />
+                                   Fill="Blue" />
                         <!--<TextBlock Grid.Row="1"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Text="{Binding Value, RelativeSource={RelativeSource AncestorType={x:Type gauges:LinearGauge}}}" />-->
                     </Grid>
                 </gauges:LinearIndicator>
+
+                <gauges:LinearAxis MajorTickFrequency="10" />
             </Grid>
         </gauges:LinearGauge>
 

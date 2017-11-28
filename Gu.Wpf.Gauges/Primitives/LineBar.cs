@@ -63,7 +63,7 @@ namespace Gu.Wpf.Gauges
             typeof(LineBar),
             new FrameworkPropertyMetadata(
                 PenLineCap.Flat,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender,
                 (d, e) => ((LineBar)d).pen = null),
             ValidateEnums.IsPenLineCapValid);
 
@@ -76,7 +76,7 @@ namespace Gu.Wpf.Gauges
             typeof(LineBar),
             new FrameworkPropertyMetadata(
                 PenLineCap.Flat,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender,
                 (d, e) => ((LineBar)d).pen = null),
             ValidateEnums.IsPenLineCapValid);
 
@@ -310,7 +310,7 @@ namespace Gu.Wpf.Gauges
                                        DashCap = this.StrokeDashCap,
                                        LineJoin = this.StrokeLineJoin,
                                        MiterLimit = this.StrokeMiterLimit,
-                                       DashStyle = this.StrokeDashOffset != 0.0 && this.StrokeDashArray.Count > 0
+                                       DashStyle = this.StrokeDashCap != PenLineCap.Flat && this.StrokeDashArray.Count > 0
                                            ? new DashStyle(this.StrokeDashArray, this.StrokeDashOffset)
                                            : DashStyles.Solid
                                    };

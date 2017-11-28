@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Gu.Wpf.Gauges.Sample.LinearRangesView"
+﻿<UserControl x:Class="Gu.Wpf.Gauges.Sample.Indicators.LinearRangesView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -16,7 +16,6 @@
                           MinorTickFrequency="5"
                           Placement="Top"
                           ShowLabels="True"
-                          TextOrientation="Horizontal"
                           Value="60" />
     </UserControl.DataContext>
     <Grid>

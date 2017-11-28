@@ -1,4 +1,4 @@
-namespace Gu.Wpf.Gauges.Tests.Helpers
+namespace Gu.Wpf.Gauges.Tests
 {
     using System;
     using System.Globalization;
@@ -43,6 +43,38 @@ namespace Gu.Wpf.Gauges.Tests.Helpers
             var width = double.Parse(strings[0], CultureInfo.InvariantCulture);
             var height = double.Parse(strings[1], CultureInfo.InvariantCulture);
             return new Size(width, height);
+        }
+
+        public static Thickness AsThickness(this string text)
+        {
+            if (string.IsNullOrEmpty(text))
+            {
+                return default(Thickness);
+            }
+
+            var strings = text.Split(new[] { ',', ';', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            if (strings.Length == 1)
+            {
+                return new Thickness(double.Parse(strings[0], CultureInfo.InvariantCulture));
+            }
+
+            if (strings.Length == 2)
+            {
+                var d0 = double.Parse(strings[0], CultureInfo.InvariantCulture);
+                var d1 = double.Parse(strings[1], CultureInfo.InvariantCulture);
+                return new Thickness(d0, d1, d0, d1);
+            }
+
+            if (strings.Length == 4)
+            {
+                return new Thickness(
+                    double.Parse(strings[0], CultureInfo.InvariantCulture),
+                    double.Parse(strings[1], CultureInfo.InvariantCulture),
+                    double.Parse(strings[2], CultureInfo.InvariantCulture),
+                    double.Parse(strings[3], CultureInfo.InvariantCulture));
+            }
+
+            throw new FormatException($"Could not parse {text}");
         }
 
         public static string ToString(this Point p, string format)

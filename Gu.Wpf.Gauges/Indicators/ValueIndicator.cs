@@ -20,7 +20,7 @@
             typeof(ValueIndicator),
             new FrameworkPropertyMetadata(
                 double.NaN,
-                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.Inherits,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange,
                 OnValueChanged));
 
         /// <summary>

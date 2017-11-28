@@ -1,10 +1,12 @@
-﻿namespace Gu.Wpf.Gauges.Tests.TestHelpers
+﻿namespace Gu.Wpf.Gauges.Tests
 {
     using System.Collections.Generic;
 
     public class DoubleComparer : Comparer<double>
     {
-        public new static DoubleComparer Default = new DoubleComparer();
+#pragma warning disable SA1206 // Declaration keywords must follow order
+        public new static DoubleComparer Default { get; } = new DoubleComparer();
+#pragma warning restore SA1206 // Declaration keywords must follow order
 
         public override int Compare(double x, double y)
         {

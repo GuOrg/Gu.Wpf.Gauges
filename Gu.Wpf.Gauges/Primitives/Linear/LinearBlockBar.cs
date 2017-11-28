@@ -5,7 +5,7 @@
     using System.Windows;
     using System.Windows.Media;
 
-    public class LinearBlockBar : LinearGeometryBar
+    public class LinearBlockBar : LinearGeometryTickBar
     {
         public static readonly DependencyProperty TickGapProperty = DependencyProperty.Register(
             nameof(TickGap),
@@ -26,6 +26,16 @@
 
         protected override Geometry DefiningGeometry => throw new InvalidOperationException("Uses OnRender");
 
+        protected override Size ArrangeOverride(Size finalSize)
+        {
+            var w = this.GetStrokeThickness() / 2;
+            this.Overflow = this.Placement.IsHorizontal()
+                ? new Thickness(Math.Max(0, w - this.Padding.Left), 0, Math.Max(0, w - this.Padding.Right), 0)
+                : new Thickness(0, Math.Max(0, w - this.Padding.Top), 0, Math.Max(0, w - this.Padding.Bottom));
+
+            return finalSize;
+        }
+
         [SuppressMessage("ReSharper", "CompareOfFloatsByEqualityOperator")]
         protected override void OnRender(DrawingContext dc)
         {
@@ -35,7 +45,7 @@
                 var strokeThickness = this.GetStrokeThickness();
                 rect.Inflate(-strokeThickness / 2, -strokeThickness / 2);
                 var value = this.EffectiveValue;
-                var pos = this.PixelPosition(value);
+                var pos = this.PixelPosition(value, this.RenderSize);
                 if (this.Placement.IsHorizontal())
                 {
                     if (this.IsDirectionReversed)
@@ -64,7 +74,7 @@
 
             Rect Split(ref Rect barRect, double tickValue)
             {
-                var pos = this.PixelPosition(tickValue);
+                var pos = this.PixelPosition(tickValue, this.RenderSize);
                 var offset = (this.TickGap / 2) + (this.GetStrokeThickness() / 2);
                 if (this.Placement.IsHorizontal())
                 {

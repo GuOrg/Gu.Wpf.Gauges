@@ -2,7 +2,8 @@ source https://api.nuget.org/v3/index.json
 framework net45
 
 nuget NUnit
+nuget FlaUI.UIA3
 
-nuget Gu.Analyzers 0.1.11.25-dev
-nuget StyleCop.Analyzers 1.0.2
-nuget WpfAnalyzers 0.2.7.10
+nuget Gu.Analyzers
+nuget StyleCop.Analyzers
+nuget WpfAnalyzers

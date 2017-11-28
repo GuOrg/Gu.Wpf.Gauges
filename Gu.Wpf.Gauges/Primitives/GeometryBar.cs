@@ -1,12 +1,59 @@
 namespace Gu.Wpf.Gauges
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Media;
     using System.Windows.Shapes;
 
-    public abstract class GeometryBar : TickBarBase
+    public abstract class GeometryBar : FrameworkElement
     {
+        /// <summary>
+        /// Identifies the <see cref="P:LinearGeometryBar.Value" /> dependency property.
+        /// </summary>
+        /// <returns>
+        /// The identifier for the <see cref="P:LinearGeometryBar.Value" /> dependency property.
+        /// </returns>
+        public static readonly DependencyProperty ValueProperty = Gauge.ValueProperty.AddOwner(
+            typeof(GeometryBar),
+            new FrameworkPropertyMetadata(
+                double.NaN,
+                FrameworkPropertyMetadataOptions.AffectsRender,
+                OnValueChanged));
+
+        /// <summary>
+        /// Identifies the <see cref="P:Bar.Minimum" /> dependency property.
+        /// </summary>
+        /// <returns>
+        /// The identifier for the <see cref="P:Bar.Minimum" /> dependency property.
+        /// </returns>
+        public static readonly DependencyProperty MinimumProperty = Gauge.MinimumProperty.AddOwner(
+            typeof(GeometryBar),
+            new FrameworkPropertyMetadata(
+                0.0,
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+
+        /// <summary>
+        /// Identifies the <see cref="P:Bar.Maximum" /> dependency property.
+        /// </summary>
+        /// <returns>
+        /// The identifier for the <see cref="P:Bar.Maximum" /> dependency property.
+        /// </returns>
+        public static readonly DependencyProperty MaximumProperty = Gauge.MaximumProperty.AddOwner(
+            typeof(GeometryBar),
+            new FrameworkPropertyMetadata(
+                1.0,
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+
+        /// <summary>
+        /// Identifies the <see cref="P:Bar.IsDirectionReversed" /> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty IsDirectionReversedProperty = Gauge.IsDirectionReversedProperty.AddOwner(
+            typeof(GeometryBar),
+            new FrameworkPropertyMetadata(
+                false,
+                FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+
         public static readonly DependencyProperty FillProperty = Shape.FillProperty.AddOwner(
             typeof(GeometryBar),
             new FrameworkPropertyMetadata(
@@ -55,6 +102,7 @@ namespace Gu.Wpf.Gauges
 
         /// <summary>
         /// StrokeDashCap property
+        /// PenLineCap.Square is probably a better default but keeping the same default as <see cref="Shape"/>.
         /// </summary>
         public static readonly DependencyProperty StrokeDashCapProperty =
             DependencyProperty.Register(
@@ -125,6 +173,53 @@ namespace Gu.Wpf.Gauges
         protected GeometryBar()
         {
             this.StrokeDashArray = new DoubleCollection();
+        }
+
+        /// <summary>
+        /// Gets or sets the current magnitude of the range control.
+        /// </summary>
+        /// <returns>
+        /// The current magnitude of the range control. The default is 0.
+        /// </returns>
+        public double Value
+        {
+            get => (double)this.GetValue(ValueProperty);
+            set => this.SetValue(ValueProperty, value);
+        }
+
+        /// <summary>
+        /// Gets or sets the <see cref="P:Bar.Minimum" />
+        /// The default is 0
+        /// </summary>
+        public double Minimum
+        {
+            get => (double)this.GetValue(MinimumProperty);
+            set => this.SetValue(MinimumProperty, value);
+        }
+
+        /// <summary>
+        /// Gets or sets the highest possible <see cref="P:Bar.Maximum" /> of the range element.
+        /// </summary>
+        /// <returns>
+        /// The highest possible <see cref="P:Bar.Maximum" /> of the range element. The default is 1.
+        /// </returns>
+        public double Maximum
+        {
+            get => (double)this.GetValue(MaximumProperty);
+            set => this.SetValue(MaximumProperty, value);
+        }
+
+        /// <summary>
+        /// Gets or sets the direction of increasing value.
+        /// </summary>
+        /// <returns>
+        /// true if the direction of increasing value is to the left for a horizontal tickbar or down for a vertical tickbar; otherwise, false.
+        /// The default is false.
+        /// </returns>
+        public bool IsDirectionReversed
+        {
+            get => (bool)this.GetValue(IsDirectionReversedProperty);
+            set => this.SetValue(IsDirectionReversedProperty, value);
         }
 
         /// <summary>
@@ -251,19 +346,19 @@ namespace Gu.Wpf.Gauges
                         // This pen is internal to the system and
                         // must not participate in freezable treeness
                         this.pen = new Pen
-                        {
-                            //// CanBeInheritanceContext = false;
-                            Thickness = Math.Abs(this.StrokeThickness),
-                            Brush = this.Stroke,
-                            StartLineCap = this.StrokeStartLineCap,
-                            EndLineCap = this.StrokeEndLineCap,
-                            DashCap = this.StrokeDashCap,
-                            LineJoin = this.StrokeLineJoin,
-                            MiterLimit = this.StrokeMiterLimit,
-                            DashStyle = this.StrokeDashOffset != 0.0 && this.StrokeDashArray.Count > 0
+                                   {
+                                       //// CanBeInheritanceContext = false;
+                                       Thickness = this.GetStrokeThickness(),
+                                       Brush = this.Stroke,
+                                       StartLineCap = this.StrokeStartLineCap,
+                                       EndLineCap = this.StrokeEndLineCap,
+                                       DashCap = this.StrokeDashCap,
+                                       LineJoin = this.StrokeLineJoin,
+                                       MiterLimit = this.StrokeMiterLimit,
+                                       DashStyle = this.StrokeDashCap != PenLineCap.Flat && this.StrokeDashArray.Count > 0
                                            ? new DashStyle(this.StrokeDashArray, this.StrokeDashOffset)
                                            : DashStyles.Solid
-                        };
+                                   };
                     }
                 }
 
@@ -271,7 +366,7 @@ namespace Gu.Wpf.Gauges
             }
         }
 
-        protected double GetStrokeThickness()
+        protected virtual double GetStrokeThickness()
         {
             return this.CanCreatePen ? 0 : Math.Abs(this.StrokeThickness);
         }
@@ -297,6 +392,16 @@ namespace Gu.Wpf.Gauges
         protected void ResetPen()
         {
             this.pen = null;
+        }
+
+        [SuppressMessage("ReSharper", "UnusedParameter.Global")]
+        protected virtual void OnValueChanged(double oldValue, double newValue)
+        {
+        }
+
+        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            ((GeometryBar)d).OnValueChanged((double)e.OldValue, (double)e.NewValue);
         }
     }
 }

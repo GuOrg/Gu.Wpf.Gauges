@@ -15,12 +15,11 @@
                           Maximum="100"
                           Minimum="0"
                           MinorTickFrequency="5"
-                          Placement="Right"
+                          Placement="Left"
                           SnapsToDevicePixels="False"
-                          TextOrientation="Horizontal"
                           TickGap="3"
                           TickWidth="3"
-                          VerticalTextAlignment="Top"
+                          VerticalTextAlignment="Center"
                           Value="80" />
     </UserControl.DataContext>
     <Grid>
@@ -52,8 +51,7 @@
                                    Minimum="{Binding Minimum}"
                                    MinorTickFrequency="{Binding MinorTickFrequency}"
                                    Placement="{Binding Placement}"
-                                   SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
-                                   TextOrientation="{Binding TextOrientation}" />
+                                   SnapsToDevicePixels="{Binding SnapsToDevicePixels}" />
             </GroupBox>
 
             <GroupBox Header="Framework TickBar">
@@ -189,20 +187,18 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <gauges:LinearTextTickBar Grid.Row="0"
-                                              Grid.RowSpan="2"
-                                              Grid.Column="0"
-                                              Grid.ColumnSpan="2"
-                                              Foreground="Black"
-                                              HorizontalTextAlignment="{Binding HorizontalTextAlignment}"
-                                              IsDirectionReversed="{Binding IsDirectionReversed}"
-                                              Maximum="{Binding Maximum}"
-                                              Minimum="{Binding Minimum}"
-                                              Placement="{Binding Placement}"
-                                              SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
-                                              TextOrientation="{Binding TextOrientation}"
-                                              TickFrequency="{Binding MajorTickFrequency}"
-                                              Ticks="{Binding MajorTicks}" />
+                    <gauges:LinearTextBar Grid.Row="0"
+                                          Grid.RowSpan="2"
+                                          Grid.Column="0"
+                                          Grid.ColumnSpan="2"
+                                          Foreground="Black"
+                                          IsDirectionReversed="{Binding IsDirectionReversed}"
+                                          Maximum="{Binding Maximum}"
+                                          Minimum="{Binding Minimum}"
+                                          Placement="{Binding Placement}"
+                                          SnapsToDevicePixels="{Binding SnapsToDevicePixels}"
+                                          TickFrequency="{Binding MajorTickFrequency}"
+                                          Ticks="{Binding MajorTicks}" />
                     <Rectangle Grid.Row="0"
                                Grid.RowSpan="2"
                                Grid.Column="0"

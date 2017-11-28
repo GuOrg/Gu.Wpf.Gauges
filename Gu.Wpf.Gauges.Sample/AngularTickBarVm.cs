@@ -2,43 +2,60 @@
 {
     public class AngularTickBarVm : TickBarVm
     {
-        private double minAngle;
-        private double maxAngle;
+        private double start;
+        private double end;
+
+        private TextOrientation textOrientation;
 
         public AngularTickBarVm()
         {
-            this.minAngle = -180;
-            this.maxAngle = 0;
+            this.end = -180;
+            this.start = 0;
             this.Maximum = 100;
             this.MajorTickFrequency = 25;
         }
 
-        public double MinAngle
+        public double Start
         {
-            get => this.minAngle;
+            get => this.start;
             set
             {
-                if (value.Equals(this.minAngle))
+                if (value.Equals(this.start))
                 {
                     return;
                 }
 
-                this.minAngle = value;
+                this.start = value;
                 this.OnPropertyChanged();
             }
         }
 
-        public double MaxAngle
+        public double End
         {
-            get => this.maxAngle;
+            get => this.end;
             set
             {
-                if (value.Equals(this.maxAngle))
+                if (value.Equals(this.end))
                 {
                     return;
                 }
 
-                this.maxAngle = value;
+                this.end = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public TextOrientation TextOrientation
+        {
+            get => this.textOrientation;
+            set
+            {
+                if (value == this.textOrientation)
+                {
+                    return;
+                }
+
+                this.textOrientation = value;
                 this.OnPropertyChanged();
             }
         }

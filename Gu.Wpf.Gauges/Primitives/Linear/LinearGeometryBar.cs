@@ -3,20 +3,12 @@ namespace Gu.Wpf.Gauges
     using System.Windows;
     using System.Windows.Controls.Primitives;
 
+    /// <summary>
+    /// Base class for creating linear geometry.
+    /// </summary>
     public abstract class LinearGeometryBar : GeometryBar
     {
-        /// <summary>
-        /// Identifies the <see cref="P:LinearGeometryBar.Value" /> dependency property.
-        /// </summary>
-        /// <returns>
-        /// The identifier for the <see cref="P:LinearGeometryBar.Value" /> dependency property.
-        /// </returns>
-        public static readonly DependencyProperty ValueProperty = Gauge.ValueProperty.AddOwner(
-            typeof(LinearGeometryBar),
-            new FrameworkPropertyMetadata(
-                double.NaN,
-                FrameworkPropertyMetadataOptions.AffectsRender));
-
+#pragma warning disable SA1202 // Elements must be ordered by access
         /// <summary>
         /// Identifies the <see cref="P:LinearGeometryBar.Placement" /> dependency property. This property is read-only.
         /// </summary>
@@ -29,17 +21,25 @@ namespace Gu.Wpf.Gauges
                 TickBarPlacement.Bottom,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
-        /// <summary>
-        /// Gets or sets the current magnitude of the range control.
-        /// </summary>
-        /// <returns>
-        /// The current magnitude of the range control. The default is 0.
-        /// </returns>
-        public double Value
-        {
-            get => (double)this.GetValue(ValueProperty);
-            set => this.SetValue(ValueProperty, value);
-        }
+        public static readonly DependencyProperty PaddingProperty = DependencyProperty.Register(
+            nameof(Padding),
+            typeof(Thickness),
+            typeof(LinearGeometryBar),
+            new FrameworkPropertyMetadata(
+                default(Thickness),
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsArrange | FrameworkPropertyMetadataOptions.AffectsRender));
+
+        private static readonly DependencyPropertyKey OverflowPropertyKey = DependencyProperty.RegisterReadOnly(
+            nameof(Overflow),
+            typeof(Thickness),
+            typeof(LinearGeometryBar),
+            new PropertyMetadata(
+                default(Thickness),
+                null,
+                CoerceOverflow));
+
+        public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
+#pragma warning restore SA1202 // Elements must be ordered by access
 
         /// <summary>
         /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.
@@ -53,6 +53,24 @@ namespace Gu.Wpf.Gauges
             set => this.SetValue(PlacementProperty, value);
         }
 
+        public Thickness Padding
+        {
+            get => (Thickness)this.GetValue(PaddingProperty);
+            set => this.SetValue(PaddingProperty, value);
+        }
+
+        /// <summary>
+        /// Gets a <see cref="Thickness"/> with values indicating how much the control draws outside its bounds.
+        /// </summary>
+        public Thickness Overflow
+        {
+            get => (Thickness)this.GetValue(OverflowProperty);
+            protected set => this.SetValue(OverflowPropertyKey, value);
+        }
+
+        /// <summary>
+        /// Get the value if not NaN, returns Maximum otherwise.
+        /// </summary>
         protected double EffectiveValue => double.IsNaN(this.Value)
             ? this.Maximum
             : this.Value;
@@ -61,27 +79,17 @@ namespace Gu.Wpf.Gauges
         /// Get the interpolated pixel position for the value.
         /// </summary>
         /// <param name="value"></param>
-        /// <returns></returns>
-        protected virtual double PixelPosition(double value)
+        /// <param name="size">The render size.</param>
+        protected virtual double PixelPosition(double value, Size size)
         {
-            var scale = Interpolate.Linear(this.Minimum, this.Maximum, value)
-                                   .Clamp(0, 1);
+            var interpolation = Interpolate.Linear(this.Minimum, this.Maximum, value);
+            return interpolation.Interpolate(size, this.Padding, this.Placement, this.IsDirectionReversed);
+        }
 
-            var strokeThickness = this.GetStrokeThickness();
-            if (this.Placement.IsHorizontal())
-            {
-                var pos = (strokeThickness / 2) + (scale * (this.ActualWidth - strokeThickness));
-                return this.IsDirectionReversed
-                    ? this.ActualWidth - pos
-                    : pos;
-            }
-            else
-            {
-                var pos = (strokeThickness / 2) + (scale * (this.ActualHeight - strokeThickness));
-                return this.IsDirectionReversed
-                    ? pos
-                    : this.ActualHeight - pos;
-            }
+        private static object CoerceOverflow(DependencyObject d, object basevalue)
+        {
+            ((UIElement)d).RegisterOverflow((Thickness)basevalue);
+            return basevalue;
         }
     }
 }

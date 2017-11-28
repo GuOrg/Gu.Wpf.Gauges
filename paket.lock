@@ -1,6 +1,9 @@
 RESTRICTION: == net45
 NUGET
   remote: https://api.nuget.org/v3/index.json
+    FlaUI.Core (1.2)
+    FlaUI.UIA3 (1.2)
+      FlaUI.Core (>= 1.2)
     Gu.Analyzers (0.1.11.25-dev)
     NUnit (3.7.1)
     StyleCop.Analyzers (1.0.2)

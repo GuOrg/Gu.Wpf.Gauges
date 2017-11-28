@@ -7,16 +7,16 @@
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample"
              mc:Ignorable="d">
     <UserControl.DataContext>
-        <sample:AngularTickBarVm IsDirectionReversed="False"
-                                 MaxAngle="0"
+        <sample:AngularTickBarVm End="-180"
+                                 IsDirectionReversed="False"
+                                 MajorTickFrequency="25"
+                                 MajorTicks="85"
                                  Maximum="100"
-                                 MinAngle="-180"
                                  Minimum="0"
                                  MinorTickFrequency="5"
                                  ShowLabels="True"
+                                 Start="0"
                                  TextOrientation="Tangential"
-                                 MajorTickFrequency="25"
-                                 MajorTicks="85"
                                  Value="30" />
     </UserControl.DataContext>
     <Grid>
@@ -36,9 +36,10 @@
                              TextOrientation="{Binding TextOrientation}"
                              Value="{Binding Value}">
             <Grid>
-                <gauges:AngularAxis ShowLabels="{Binding ShowLabels}" />
+                <gauges:AngularAxis />
 
-                <gauges:AngularIndicator Foreground="Blue" Value="{Binding Value, RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}">
+                <gauges:AngularIndicator Foreground="Blue"
+                                         Value="{Binding Value, RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}">
                     <Grid VerticalAlignment="Bottom">
                         <Ellipse Width="5"
                                  Height="5"
@@ -55,6 +56,7 @@
             </Grid>
         </gauges:AngularGauge>
 
-        <ContentPresenter Grid.Row="1" Content="{Binding}" />
+        <ContentPresenter Grid.Row="1"
+                          Content="{Binding}" />
     </Grid>
 </UserControl>

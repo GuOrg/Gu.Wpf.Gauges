@@ -1,4 +1,6 @@
-﻿namespace Gu.Wpf.Gauges.Sample
+﻿// ReSharper disable ExplicitCallerInfoArgument
+// ReSharper disable CompareOfFloatsByEqualityOperator
+namespace Gu.Wpf.Gauges.Sample
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
@@ -16,14 +18,14 @@
         private bool isDirectionReversed;
 
         private double value;
-        private TextOrientation textOrientation;
         private HorizontalTextAlignment horizontalTextAlignment;
         private VerticalTextAlignment verticalTextAlignment;
         private double minorTickFrequency;
         private DoubleCollection minorTicks;
         private double tickGap = 1.0;
         private double tickWidth = 1.0;
-        private double thickness;
+        private double thickness = 10;
+        private double strokeThickness = 1;
         private bool showLabels;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -182,6 +184,22 @@
             }
         }
 
+        public double StrokeThickness
+        {
+            get => this.strokeThickness;
+
+            set
+            {
+                if (value == this.strokeThickness)
+                {
+                    return;
+                }
+
+                this.strokeThickness = value;
+                this.OnPropertyChanged();
+            }
+        }
+
         public bool SnapsToDevicePixels
         {
             get => this.snapsToDevicePixels;
@@ -213,21 +231,6 @@
             }
         }
 
-        public TextOrientation TextOrientation
-        {
-            get => this.textOrientation;
-            set
-            {
-                if (value == this.textOrientation)
-                {
-                    return;
-                }
-
-                this.textOrientation = value;
-                this.OnPropertyChanged();
-            }
-        }
-
         public HorizontalTextAlignment HorizontalTextAlignment
         {
             get => this.horizontalTextAlignment;
@@ -241,6 +244,7 @@
 
                 this.horizontalTextAlignment = value;
                 this.OnPropertyChanged();
+                this.OnPropertyChanged(nameof(this.ExplicitLinearTextPosition));
             }
         }
 
@@ -257,8 +261,11 @@
 
                 this.verticalTextAlignment = value;
                 this.OnPropertyChanged();
+                this.OnPropertyChanged(nameof(this.ExplicitLinearTextPosition));
             }
         }
+
+        public ExplicitLinearTextPosition ExplicitLinearTextPosition => new ExplicitLinearTextPosition(this.horizontalTextAlignment, this.verticalTextAlignment);
 
         public bool IsDirectionReversed
         {

@@ -1,0 +1,38 @@
+﻿<Window x:Class="Gu.Wpf.Gauges.Sample.Sandbox.SandboxWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        SizeToContent="WidthAndHeight"
+        mc:Ignorable="d">
+    <Grid Width="100"
+          Height="100">
+        <Grid ShowGridLines="True">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+        </Grid>
+        <gauges:Ring Fill="Blue"
+                     Stroke="GreenYellow"
+                     StrokeThickness="1"
+                     Thickness="10" />
+        <gauges:AngularTick End="180"
+                            Fill="Red"
+                            Maximum="10"
+                            Minimum="0"
+                            Opacity="0.8"
+                            Start="-180"
+                            Stroke="Black"
+                            StrokeThickness="1"
+                            Thickness="50"
+                            TickShape="Arc"
+                            TickWidth="5"
+                            Value="5" />
+    </Grid>
+</Window>

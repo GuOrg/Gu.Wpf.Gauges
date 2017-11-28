@@ -10,10 +10,8 @@
     <UserControl.Resources>
         <Style x:Key="AngularGaugeStyle"
                TargetType="{x:Type gauges:AngularGauge}">
-            <Setter Property="TickGap" Value="0" />
-            <Setter Property="Thickness" Value="25" />
-            <Setter Property="MinAngle" Value="-90" />
-            <Setter Property="MaxAngle" Value="270" />
+            <Setter Property="Start" Value="-90" />
+            <Setter Property="End" Value="270" />
             <Setter Property="Background" Value="LightGray" />
             <Setter Property="Foreground" Value="CadetBlue" />
             <Setter Property="Template">
@@ -22,10 +20,12 @@
                         <Grid>
                             <gauges:Ring x:Name="Axis"
                                          Fill="{TemplateBinding Background}"
-                                         Thickness="{TemplateBinding Thickness}" />
+                                         Thickness="25" />
 
                             <gauges:AngularBlockBar x:Name="ValueIndicator"
-                                                    Fill="{TemplateBinding Foreground}" />
+                                                    Fill="{TemplateBinding Foreground}"
+                                                    Thickness="25"
+                                                    TickGap="0" />
 
                             <TextBlock HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
@@ -56,7 +56,8 @@
 
                             <gauges:LinearBlockBar x:Name="ValueBar"
                                                    Grid.Column="0"
-                                                   Fill="{TemplateBinding Foreground}" />
+                                                   Fill="{TemplateBinding Foreground}"
+                                                   Value="{TemplateBinding Value}" />
 
                             <TextBlock Grid.Column="1"
                                        Margin="6,0"
@@ -86,7 +87,8 @@
                                        Fill="{TemplateBinding Background}" />
 
                             <gauges:LinearBlockBar x:Name="ValueBar"
-                                                   Fill="{TemplateBinding Foreground}" />
+                                                   Fill="{TemplateBinding Foreground}"
+                                                   Value="{TemplateBinding Value}" />
                             <gauges:LinearIndicator>
                                 <Grid>
                                     <Grid.ColumnDefinitions>

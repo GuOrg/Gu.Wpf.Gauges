@@ -59,9 +59,6 @@
     <Compile Include="Primitives\AngularBarsView.xaml.cs">
       <DependentUpon>AngularBarsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Primitives\AngularPanelView.xaml.cs">
-      <DependentUpon>AngularPanelView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AngularTickBarVm.cs" />
     <Compile Include="DefaultStyleAngularGaugeView.xaml.cs">
       <DependentUpon>DefaultStyleAngularGaugeView.xaml</DependentUpon>
@@ -75,14 +72,14 @@
     <Compile Include="Sandbox\LinearDotBarBox.xaml.cs">
       <DependentUpon>LinearDotBarBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Sandbox\LinearTextBarBox.xaml.cs">
-      <DependentUpon>LinearTextBarBox.xaml</DependentUpon>
+    <Compile Include="Sandbox\LinearGaugeWindow.xaml.cs">
+      <DependentUpon>LinearGaugeWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Sandbox\LinearTickBarBox.xaml.cs">
-      <DependentUpon>LinearTickBarBox.xaml</DependentUpon>
+    <Compile Include="Sandbox\LinearIndicatorWindow.xaml.cs">
+      <DependentUpon>LinearIndicatorWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Sandbox\RingBox.xaml.cs">
-      <DependentUpon>RingBox.xaml</DependentUpon>
+    <Compile Include="Sandbox\SandboxWindow.xaml.cs">
+      <DependentUpon>SandboxWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Styled\BlueAndTicksView.xaml.cs">
       <DependentUpon>BlueAndTicksView.xaml</DependentUpon>
@@ -108,9 +105,6 @@
     <Compile Include="Sandbox\GaugeBox.xaml.cs">
       <DependentUpon>GaugeBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Sandbox\PolarPanelView.xaml.cs">
-      <DependentUpon>PolarPanelView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="TickBarVm.cs" />
     <Compile Include="Vm.cs" />
     <Compile Include="WpfStuff\ItemsControlExt.cs" />
@@ -122,15 +116,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Primitives\AngularPanelView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="DefaultStyleAngularGaugeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DefaultStyleLinearGaugeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sandbox\AngularTickWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Sandbox\ArcWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Sandbox\AngularTextBarWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sandbox\AngularBlockBarWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Sandbox\AngularTickBarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -142,15 +152,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sandbox\LinearTextBarBox.xaml">
+    <Page Include="Sandbox\LinearGaugeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sandbox\LinearTickBarBox.xaml">
+    <Page Include="Sandbox\LinearIndicatorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Sandbox\RingBox.xaml">
+    <Page Include="Sandbox\LinearLineBarWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sandbox\LinearTextBarWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sandbox\LinearTickWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Sandbox\LinearTickBarWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sandbox\RingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sandbox\SandboxWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -195,10 +225,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Sandbox\GaugeBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Sandbox\PolarPanelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -250,7 +276,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <Import Project="..\.paket\paket.targets" />
   <ItemGroup>
     <Analyzer Include="..\packages\Gu.Analyzers\analyzers\dotnet\cs\Gu.Analyzers.Analyzers.dll">
       <Paket>True</Paket>
@@ -275,5 +300,5 @@
       <Paket>True</Paket>
     </Analyzer>
   </ItemGroup>
-  <ItemGroup />
+  <Import Project="..\.paket\paket.targets" />
 </Project>

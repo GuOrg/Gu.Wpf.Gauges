@@ -16,7 +16,7 @@
         [TestCase(-1, 1, 1, 1)]
         public void Linear(double min, double max, double value, double expected)
         {
-            Assert.AreEqual(expected, Interpolate.Linear(min, max, value), 1E-6);
+            Assert.AreEqual(expected, Interpolate.Linear(min, max, value).Value, 1E-6);
         }
     }
 }
