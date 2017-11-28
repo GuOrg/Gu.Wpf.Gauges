@@ -44,12 +44,12 @@
                         <Ellipse Width="5"
                                  Height="5"
                                  VerticalAlignment="Bottom"
-                                 Fill="Black" />
+                                 Fill="HotPink" />
                         <Path Width="3"
                               Height="40"
                               VerticalAlignment="Bottom"
                               Data="M-0.5,1 L0.5,1 0,0z"
-                              Fill="Black"
+                              Fill="Aqua"
                               Stretch="Fill" />
                     </Grid>
                 </gauges:AngularIndicator>
