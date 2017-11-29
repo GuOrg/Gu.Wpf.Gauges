@@ -269,7 +269,6 @@
         public IEnumerable<ArcSegment> CreateArcSegments(Angle start, Angle end, double radius, bool isStroked)
         {
             var fullRotations = Math.Truncate(Math.Abs((end - start).Degrees / 360));
-            var finalSegmentAngle = Angle.FromDegrees(end.Degrees % 360);
             for (int i = 0; i < fullRotations; i++)
             {
                 foreach (var arcSegment in this.GetCircle(start, radius, isStroked))
@@ -278,9 +277,11 @@
                 }
             }
 
-            if (!DoubleUtil.AreCloseWithoutSign(finalSegmentAngle, start))
+            var finalSegmentStartAngle = Angle.FromDegrees(start.Degrees % 360);
+            var finalSegmentEndAngle = Angle.FromDegrees(end.Degrees % 360);
+            if (!DoubleUtil.AreCloseWithoutSign(finalSegmentStartAngle, finalSegmentEndAngle))
             {
-                yield return this.CreateArcSegment(start, finalSegmentAngle, radius, isStroked);
+                yield return this.CreateArcSegment(finalSegmentStartAngle, finalSegmentEndAngle, radius, isStroked);
             }
         }
 

@@ -15,6 +15,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
     {
         public class CreatTickTests
         {
+            [TestCase(-90, 0)]
             [TestCase(-90, 269)]
             [TestCase(-90, 269.999)]
             [TestCase(-90, 270)]
