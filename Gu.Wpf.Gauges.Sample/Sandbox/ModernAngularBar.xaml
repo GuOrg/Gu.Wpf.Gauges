@@ -1,0 +1,62 @@
+﻿<Window x:Class="Gu.Wpf.Gauges.Sample.Sandbox.ModernAngularBar"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gu.Wpf.Gauges.Sample.Sandbox"
+        xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
+        mc:Ignorable="d"
+        Title="ModernAngularBar" Height="300" Width="300">
+    <Window.Resources>
+        <Style x:Key="AngularGaugeStyle"
+               TargetType="{x:Type gauges:AngularGauge}">
+            <Setter Property="Start" Value="-90" />
+            <Setter Property="End" Value="270" />
+            <Setter Property="Background" Value="LightGray" />
+            <Setter Property="Foreground" Value="CadetBlue" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type gauges:AngularGauge}">
+                        <Grid>
+                            <gauges:Ring x:Name="Axis"
+                                         Fill="{TemplateBinding Background}"
+                                         Thickness="25" />
+
+                            <gauges:AngularBlockBar x:Name="ValueIndicator"
+                                                    Fill="{TemplateBinding Foreground}"
+                                                    Thickness="25"
+                                                    TickGap="0"
+                                                    Value="{TemplateBinding Value}"/>
+
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding Value, RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="10"
+          ShowGridLines="True"
+          TextElement.FontSize="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <gauges:AngularGauge Height="100"
+                             Margin="12"
+                             Maximum="100"
+                             Minimum="0"
+                             Style="{StaticResource AngularGaugeStyle}"
+                             Value="{Binding Value, ElementName=ValueSlider}" />
+
+        <Slider x:Name="ValueSlider"
+                Grid.Row="1"
+                Width="200"
+                Maximum="110"
+                Minimum="0"
+                Value="10" />
+    </Grid>
+    </Window>

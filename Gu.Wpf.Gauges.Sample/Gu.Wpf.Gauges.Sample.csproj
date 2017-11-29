@@ -78,6 +78,9 @@
     <Compile Include="Sandbox\LinearIndicatorWindow.xaml.cs">
       <DependentUpon>LinearIndicatorWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sandbox\ModernAngularBar.xaml.cs">
+      <DependentUpon>ModernAngularBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sandbox\SandboxWindow.xaml.cs">
       <DependentUpon>SandboxWindow.xaml</DependentUpon>
     </Compile>
@@ -173,6 +176,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Sandbox\LinearTickBarWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sandbox\ModernAngularBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:gauges="https://github.com/JohanLarsson/Gu.Wpf.Gauges"
              xmlns:sample="clr-namespace:Gu.Wpf.Gauges.Sample">
-    <Application.StartupUri>MainWindow.xaml</Application.StartupUri>
+    <!--<Application.StartupUri>MainWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Sandbox/SandboxWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Sandbox/LinearIndicatorWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Sandbox/AngularTickBarWindow.xaml</Application.StartupUri>-->
@@ -12,6 +12,7 @@
     <!--<Application.StartupUri>Sandbox/RingWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Sandbox/LinearGaugeWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Sandbox/LinearTickWindow.xaml</Application.StartupUri>-->
+    <Application.StartupUri>Sandbox/ModernAngularBar.xaml</Application.StartupUri>
     <Application.Resources>
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="VerticalAlignment" Value="Center" />
