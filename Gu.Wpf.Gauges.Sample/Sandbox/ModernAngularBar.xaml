@@ -23,10 +23,13 @@
                                          Thickness="25" />
 
                             <gauges:AngularBlockBar x:Name="ValueIndicator"
-                                                    Fill="{TemplateBinding Foreground}"
                                                     Thickness="25"
                                                     TickGap="0"
-                                                    Value="{TemplateBinding Value}"/>
+                                                    Value="{TemplateBinding Value}">
+                                <gauges:AngularBlockBar.Fill>
+                                    <SolidColorBrush Color="Green" Opacity=".3"></SolidColorBrush>
+                                </gauges:AngularBlockBar.Fill>
+                            </gauges:AngularBlockBar>
 
                             <TextBlock HorizontalAlignment="Center"
                                        VerticalAlignment="Center"

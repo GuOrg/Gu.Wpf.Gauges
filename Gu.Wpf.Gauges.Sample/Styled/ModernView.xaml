@@ -25,7 +25,8 @@
                             <gauges:AngularBlockBar x:Name="ValueIndicator"
                                                     Fill="{TemplateBinding Foreground}"
                                                     Thickness="25"
-                                                    TickGap="0" />
+                                                    TickGap="0"
+                                                    Value="{TemplateBinding Value}"/>
 
                             <TextBlock HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
