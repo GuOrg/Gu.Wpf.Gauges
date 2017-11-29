@@ -266,10 +266,37 @@
         /// <summary>
         /// Create an <see cref="ArcSegment"/> with same center point as this arc.
         /// </summary>
+        public IEnumerable<ArcSegment> CreateArcSegments(Angle start, Angle end, double radius, bool isStroked)
+        {
+            var fullRotations = Math.Abs((end - start).Degrees / 360);
+            var finalSegmentAngle = Angle.FromDegrees(end.Degrees % 360);
+            for (int i = 0; i < fullRotations; i++)
+            {
+                foreach (var arcSegment in this.GetCircle(start, radius, isStroked))
+                {
+                    yield return arcSegment;
+                }
+            }
+
+            if (!DoubleUtil.AreCloseWithoutSign(finalSegmentAngle, start))
+            {
+                yield return this.CreateArcSegment(start, finalSegmentAngle, radius, isStroked);
+            }
+        }
+
+        private IEnumerable<ArcSegment> GetCircle(Angle start, double radius, bool isStroked)
+        {
+            var midAngle = start + Angle.FromDegrees(180);
+            var endAngle = midAngle + Angle.FromDegrees(180);
+            yield return this.CreateArcSegment(start, midAngle, radius, isStroked);
+            yield return this.CreateArcSegment(midAngle, endAngle, radius, isStroked);
+        }
+
         public ArcSegment CreateArcSegment(Angle start, Angle end, double radius, bool isStroked)
         {
-            var rotationAngle = end - start;
-            var isLargeArc = Math.Abs(rotationAngle.Degrees) > 180;
+            var rotationAngle = Angle.Zero; // Since this is only used for circle rotation angle has no meaning. The rotation would rotate the main axis of an ellipse
+            var sweepAngle = end - start;
+            var isLargeArc = Math.Abs(sweepAngle.Degrees) > 180;
             var sweepDirection = this.SweepDirection(start, end);
             var endPoint = this.GetPointAtRadius(end, radius);
             return new ArcSegment(endPoint, new Size(radius, radius), Math.Abs(rotationAngle.Degrees), isLargeArc, sweepDirection, isStroked);

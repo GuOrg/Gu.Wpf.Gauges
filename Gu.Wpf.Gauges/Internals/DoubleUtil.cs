@@ -29,6 +29,23 @@ namespace Gu.Wpf.Gauges
 
         internal static bool AreClose(Angle x, Angle y) => AreClose(x.Degrees % 360, y.Degrees % 360);
 
+        internal static bool AreCloseWithoutSign(Angle x, Angle y)
+        {
+            var angleInDegreesX = x.Degrees;
+            while (angleInDegreesX < 0)
+            {
+                angleInDegreesX += 360;
+            }
+
+            var angleInDegreesY = y.Degrees;
+            while (angleInDegreesY < 0)
+            {
+                angleInDegreesY += 360;
+            }
+
+            return AreClose(angleInDegreesX, angleInDegreesY % 360);
+        }
+
         internal static bool AreClose(double x, double y)
         {
             // ReSharper disable once CompareOfFloatsByEqualityOperator

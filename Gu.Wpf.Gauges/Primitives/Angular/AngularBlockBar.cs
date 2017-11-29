@@ -1,6 +1,7 @@
 namespace Gu.Wpf.Gauges
 {
     using System;
+    using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Media;
 
@@ -146,19 +147,22 @@ namespace Gu.Wpf.Gauges
             var outerStartPoint = arc.GetPointAtRadius(outerStartAngle, outerRadius);
 
             var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
+
+            
+
+
             if (double.IsInfinity(this.Thickness))
             {
                 var innerPoint = arc.GetPointAtRadius((startAngle + endAngle) / 2, strokeThickness / Math.Sin((outerStartAngle - outerEndAngle).Radians));
                 return new PathFigure(
                     outerStartPoint,
-                    new PathSegment[]
+                    new List<PathSegment>(arc.CreateArcSegments(
+                                              outerStartAngle,
+                                              outerEndAngle,
+                                              outerRadius,
+                                              strokeThickness > 0))
                     {
-                        arc.CreateArcSegment(
-                            outerStartAngle,
-                            outerEndAngle,
-                            outerRadius,
-                            strokeThickness > 0),
-                        new LineSegment(innerPoint, isStroked),
+                        new LineSegment(innerPoint, isStroked)
                     },
                     closed: true);
             }
@@ -169,22 +173,21 @@ namespace Gu.Wpf.Gauges
             var innerEndAngle = Adjust(endAngle, -innerGapAngle);
             var innerEndPoint = arc.GetPointAtRadius(innerEndAngle, innerRadius);
 
+            var segments = new List<PathSegment>();
+            segments.AddRange(arc.CreateArcSegments(
+                                  outerStartAngle,
+                                  outerEndAngle,
+                                  outerRadius,
+                                  strokeThickness > 0));
+            segments.Add(new LineSegment(innerEndPoint, isStroked));
+            segments.AddRange(arc.CreateArcSegments(
+                                  innerEndAngle,
+                                  innerStartAngle,
+                                  innerRadius,
+                                  strokeThickness > 0));
             return new PathFigure(
                 outerStartPoint,
-                new PathSegment[]
-                {
-                    arc.CreateArcSegment(
-                        outerStartAngle,
-                        outerEndAngle,
-                        outerRadius,
-                        strokeThickness > 0),
-                    new LineSegment(innerEndPoint, isStroked),
-                    arc.CreateArcSegment(
-                        innerEndAngle,
-                        innerStartAngle,
-                        innerRadius,
-                        strokeThickness > 0),
-                },
+                segments,
                 closed: true);
         }
     }
