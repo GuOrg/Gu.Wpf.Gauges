@@ -16,27 +16,15 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
         public class CreatTickTests
         {
             [TestCase(-90, 269)]
-            [TestCase(-90, 270)]
             [TestCase(-90, 269.999)]
+            [TestCase(-90, 270)]
+            [TestCase(-90, 360)]
             public void CreateTickTests(double start, double end)
             {
                 var arcInfo = new ArcInfo(new Point(100, 100), 80, Angle.FromDegrees(start), Angle.FromDegrees(end));
-                var result =
-                    AngularTick.CreateArcPathFigure(arcInfo, Angle.FromDegrees(start), Angle.FromDegrees(end), 10, 0);
+                var result = AngularTick.CreateArcPathFigure(arcInfo, Angle.FromDegrees(start), Angle.FromDegrees(end), 10, 0);
                 var path = result.ToString(CultureInfo.InvariantCulture).Replace(";", " ");
                 Console.WriteLine(path);
-            }
-
-            [Test]
-            public void GetCircle()
-            {
-                var start = Angle.FromDegrees(-90);
-                var radius = 80;
-                var arcInfo = new ArcInfo(new Point(100, 100), 80, Angle.FromDegrees(-90), Angle.FromDegrees(270));
-                var midAngle = start + Angle.FromDegrees(180);
-                var midAngleNeg = start - Angle.FromDegrees(180);
-                var arc1 = arcInfo.CreateArcSegment(start, midAngle, radius, isStroked: false);
-                var arc2 = arcInfo.CreateArcSegment(start, midAngleNeg, radius, isStroked: false);
             }
         }
     }

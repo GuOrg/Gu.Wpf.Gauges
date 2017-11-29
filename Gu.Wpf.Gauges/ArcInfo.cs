@@ -268,7 +268,7 @@
         /// </summary>
         public IEnumerable<ArcSegment> CreateArcSegments(Angle start, Angle end, double radius, bool isStroked)
         {
-            var fullRotations = Math.Abs((end - start).Degrees / 360);
+            var fullRotations = Math.Truncate(Math.Abs((end - start).Degrees / 360));
             var finalSegmentAngle = Angle.FromDegrees(end.Degrees % 360);
             for (int i = 0; i < fullRotations; i++)
             {
