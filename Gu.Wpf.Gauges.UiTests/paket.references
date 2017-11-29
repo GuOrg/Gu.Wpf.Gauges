@@ -1,6 +1,5 @@
 NUnit
-FlaUI.UIA3
-
+Gu.Wpf.UiAutomation
 Gu.Analyzers
 StyleCop.Analyzers
 WpfAnalyzers

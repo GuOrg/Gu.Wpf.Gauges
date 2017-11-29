@@ -1,18 +1,18 @@
 namespace Gu.Wpf.Gauges.UiTests
 {
+    using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
-    public sealed class AngularTextBarWindowTests : WindowTests
+    public sealed class AngularTextBarWindowTests
     {
-        public AngularTextBarWindowTests()
-            : base("AngularTextBarWindow")
-        {
-        }
-
         [Test]
         public void Loads()
         {
-            Assert.Pass("Just checking that it loads for now");
+            using (var app = Application.Launch("Gu.Wpf.Gauges.Sample.exe", "AngularTextBarWindow"))
+            {
+                app.WaitForMainWindow();
+                Assert.Pass("Just checking that it loads for now");
+            }
         }
     }
 }

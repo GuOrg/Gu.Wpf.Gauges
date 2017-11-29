@@ -1,18 +1,18 @@
 namespace Gu.Wpf.Gauges.UiTests
 {
+    using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
-    public sealed class AngularTickBarWindowTests : WindowTests
+    public class AngularTickBarWindowTests
     {
-        public AngularTickBarWindowTests()
-            : base("AngularTickBarWindow")
-        {
-        }
-
         [Test]
         public void Loads()
         {
-            Assert.Pass("Just checking that it loads for now");
+            using (var app = Application.Launch("Gu.Wpf.Gauges.Sample.exe", "AngularTickBarWindow"))
+            {
+                app.WaitForMainWindow();
+                Assert.Pass("Just checking that it loads for now");
+            }
         }
     }
 }

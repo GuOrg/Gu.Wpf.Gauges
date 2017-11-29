@@ -1,18 +1,18 @@
 namespace Gu.Wpf.Gauges.UiTests
 {
+    using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
-    public sealed class LinearTickWindowTests : WindowTests
+    public sealed class LinearTickWindowTests
     {
-        public LinearTickWindowTests()
-            : base("LinearTickWindow")
-        {
-        }
-
         [Test]
         public void Loads()
         {
-            Assert.Pass("Just checking that it loads for now");
+            using (var app = Application.Launch("Gu.Wpf.Gauges.Sample.exe", "LinearTickWindow"))
+            {
+                app.WaitForMainWindow();
+                Assert.Pass("Just checking that it loads for now");
+            }
         }
     }
 }
