@@ -118,7 +118,7 @@ namespace Gu.Wpf.Gauges
                 return DoubleUtil.AreClose(angle, this.Start) ||
                        DoubleUtil.AreClose(angle, this.End)
                     ? angle
-                    : (angle + gap).Clamp(this.Start, this.End);
+                    : (angle + gap);
             }
 
             var startAngle = Interpolate.Linear(this.Minimum, this.Maximum, @from)
