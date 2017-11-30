@@ -79,7 +79,7 @@ namespace Gu.Wpf.Gauges
 
             var arc = ArcInfo.Fit(this.RenderSize, this.Padding, this.Start, this.End);
             var effectiveValue = this.EffectiveValue;
-            var strokeThickness = this.GetStrokeThickness();
+            var strokeThickness = this.GetStrokeThickness().Clamp(0, arc.Radius);
             var ticksGeometry = new PathGeometry();
             var prevoius = this.Minimum;
             foreach (var tick in this.AllTicks)
