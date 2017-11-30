@@ -201,26 +201,6 @@
             return Angle.Between(new Vector(0, -1), point - this.Center);
         }
 
-        public SweepDirection SweepDirection(Angle fromAngle, Angle toAngle)
-        {
-            return toAngle.Degrees > fromAngle.Degrees
-                       ? System.Windows.Media.SweepDirection.Clockwise
-                       : System.Windows.Media.SweepDirection.Counterclockwise;
-        }
-
-        public Rect Bounds()
-        {
-            var rect = default(Rect);
-            rect.Union(this.StartPoint);
-            rect.Union(this.EndPoint);
-            foreach (var quadrantPoint in this.QuadrantPoints)
-            {
-                rect.Union(quadrantPoint);
-            }
-
-            return rect;
-        }
-
         public Thickness Overflow(double w, Thickness padding)
         {
             var rect = default(Rect);
@@ -285,6 +265,31 @@
             }
         }
 
+        public override string ToString()
+        {
+            return $"{this.Center.X.ToString(CultureInfo.InvariantCulture)}, {this.Center.Y.ToString(CultureInfo.InvariantCulture)} {this.Radius.ToString(CultureInfo.InvariantCulture)} {this.Start.ToString(CultureInfo.InvariantCulture)} {this.End.ToString(CultureInfo.InvariantCulture)}";
+        }
+
+        private SweepDirection SweepDirection(Angle fromAngle, Angle toAngle)
+        {
+            return toAngle.Degrees > fromAngle.Degrees
+                ? System.Windows.Media.SweepDirection.Clockwise
+                : System.Windows.Media.SweepDirection.Counterclockwise;
+        }
+
+        private Rect Bounds()
+        {
+            var rect = default(Rect);
+            rect.Union(this.StartPoint);
+            rect.Union(this.EndPoint);
+            foreach (var quadrantPoint in this.QuadrantPoints)
+            {
+                rect.Union(quadrantPoint);
+            }
+
+            return rect;
+        }
+
         private IEnumerable<ArcSegment> GetCircle(Angle start, double radius, bool isStroked)
         {
             var midAngle = start + Angle.FromDegrees(180);
@@ -293,7 +298,7 @@
             yield return this.CreateArcSegment(midAngle, endAngle, radius, isStroked);
         }
 
-        public ArcSegment CreateArcSegment(Angle start, Angle end, double radius, bool isStroked)
+        private ArcSegment CreateArcSegment(Angle start, Angle end, double radius, bool isStroked)
         {
             var rotationAngle = Angle.Zero; // Since this is only used for circle rotation angle has no meaning. The rotation would rotate the main axis of an ellipse
             var sweepAngle = end - start;
@@ -301,11 +306,6 @@
             var sweepDirection = this.SweepDirection(start, end);
             var endPoint = this.GetPointAtRadius(end, radius);
             return new ArcSegment(endPoint, new Size(radius, radius), Math.Abs(rotationAngle.Degrees), isLargeArc, sweepDirection, isStroked);
-        }
-
-        public override string ToString()
-        {
-            return $"{this.Center.X.ToString(CultureInfo.InvariantCulture)}, {this.Center.Y.ToString(CultureInfo.InvariantCulture)} {this.Radius.ToString(CultureInfo.InvariantCulture)} {this.Start.ToString(CultureInfo.InvariantCulture)} {this.End.ToString(CultureInfo.InvariantCulture)}";
         }
     }
 }
