@@ -103,6 +103,11 @@
                         throw new ArgumentOutOfRangeException();
                 }
 
+                if (tickText.TranslateTransform == null)
+                {
+                    return;
+                }
+
                 tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, x);
                 tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, y);
             }
@@ -138,6 +143,11 @@
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
+                }
+
+                if (tickText.TranslateTransform == null)
+                {
+                    return;
                 }
 
                 tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, x);

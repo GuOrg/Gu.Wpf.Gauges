@@ -26,13 +26,13 @@ namespace Gu.Wpf.Gauges
         public static readonly DependencyProperty StartProperty = AngularGauge.StartProperty.AddOwner(
             typeof(AngularTextBar),
             new FrameworkPropertyMetadata(
-                Gauges.Angle.DefaultStart,
+                Angle.DefaultStart,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
 
         public static readonly DependencyProperty EndProperty = AngularGauge.EndProperty.AddOwner(
             typeof(AngularTextBar),
             new FrameworkPropertyMetadata(
-                Gauges.Angle.DefaultEnd,
+                Angle.DefaultEnd,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>

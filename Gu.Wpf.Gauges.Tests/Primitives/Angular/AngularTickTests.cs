@@ -1,6 +1,5 @@
 namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
