@@ -151,7 +151,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type gauges:AngularGauge}">
-                        <Grid VerticalAlignment="Top">
+                        <Grid>
                             <gauges:AngularTextBar Margin="0"
                                                    Ticks="{TemplateBinding MajorTicks}" />
                             <gauges:AngularTickBar Stroke="Black"
@@ -162,7 +162,8 @@
                                                    Thickness="2"
                                                    TickFrequency="1" />
                             <gauges:AngularBlockBar Fill="CornflowerBlue"
-                                                    Thickness="6" />
+                                                    Thickness="6"
+                                                    Value="{TemplateBinding Value}"/>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -170,6 +171,10 @@
         </Style>
     </UserControl.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
@@ -179,15 +184,16 @@
                              Maximum="37"
                              Minimum="0"
                              Style="{StaticResource AngularGaugeStyle}"
-                             Value="29" />
+                             Value="{Binding ElementName=ValueSlider, Path=Value}" />
 
-        <gauges:LinearGauge Grid.Column="1"
+        <gauges:LinearGauge Grid.Row="0" Grid.Column="1"
                             Margin="24"
                             MajorTicks="0 9 19 28 37"
                             Maximum="37"
                             Minimum="0"
                             Placement="Right"
                             Style="{StaticResource LinearGaugeStyle}"
-                            Value="29" />
+                            Value="{Binding ElementName=ValueSlider, Path=Value}" />
+        <Slider Grid.Row="1" Grid.Column="0" x:Name="ValueSlider" Minimum="0" Maximum="40" Value="20"></Slider>
     </Grid>
 </UserControl>
