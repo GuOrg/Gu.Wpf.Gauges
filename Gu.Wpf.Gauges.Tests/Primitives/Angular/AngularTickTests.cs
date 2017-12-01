@@ -10,8 +10,27 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
     using System.Windows.Media;
     using NUnit.Framework;
 
+    public partial class AngularTickTests
+    {
+        public class CreatTickTests
+        {
+            [TestCase(-90, 0, "M20,100A80,80,0,0,1,100,20L100,30A70,70,0,0,0,30,100z")]
+            [TestCase(-90, 269, "M20,100A80,80,0,1,1,20.0121843874887,101.396192514983L30.0106613390526,101.22166845061A70,70,0,1,0,30,100z")]
+            [TestCase(-90, 269.999, "M20,100A80,80,0,1,1,20.0000000121847,100.001396263402L30.0000000106616,100.001221730476A70,70,0,1,0,30,100z")]
+            [TestCase(-90, 270, "M20,100A80,80,0,0,1,180,100A80,80,0,0,1,20,100L30,100A70,70,0,0,1,170,100A70,70,0,0,1,30,100z")]
+            [TestCase(-90, 360, "M20,100A80,80,0,0,1,180,100A80,80,0,0,1,20,100A80,80,0,0,1,100,20L100,30A70,70,0,0,1,100,170A70,70,0,0,1,100,30A70,70,0,0,0,30,100z")]
+            public void CreateArcPathFigureTests(double start, double end, string expected)
+            {
+                var arcInfo = new ArcInfo(new Point(100, 100), 80, Angle.FromDegrees(start), Angle.FromDegrees(end));
+                var result = AngularTick.CreateArcPathFigure(arcInfo, Angle.FromDegrees(start), Angle.FromDegrees(end), 10, 0);
+                var path = result.ToString(CultureInfo.InvariantCulture).Replace(";", " ");
+                Assert.AreEqual(expected, path);
+            }
+        }
+    }
+
     [Apartment(ApartmentState.STA)]
-    public class AngularTickTests
+    public partial class AngularTickTests
     {
         private static readonly IReadOnlyList<TestCase> RenderCases = TestCase.Create(
                                                                                   thicknesses: new[] { 10, double.PositiveInfinity },

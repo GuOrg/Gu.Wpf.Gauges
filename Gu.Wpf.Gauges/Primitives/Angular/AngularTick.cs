@@ -1,6 +1,7 @@
 ﻿namespace Gu.Wpf.Gauges
 {
     using System;
+    using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Media;
 
@@ -105,22 +106,21 @@
                         var deltaI = 2 * Angle.Between(ip - arc.Center, pi1 - arc.Center);
                         var ai2 = ai1 - deltaI;
                         var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
+                        var segments = new List<PathSegment>();
+                        segments.AddRange(arc.CreateArcSegments(
+                                              start,
+                                              end,
+                                              arc.Radius - (strokeThickness / 2),
+                                              strokeThickness > 0));
+                        segments.Add(new LineSegment(pi1, isStroked));
+                        segments.AddRange(arc.CreateArcSegments(
+                                              ai1,
+                                              ai2,
+                                              ri,
+                                              strokeThickness > 0));
                         return new PathFigure(
                             po1,
-                            new PathSegment[]
-                            {
-                            arc.CreateArcSegment(
-                                start,
-                                end,
-                                arc.Radius - (strokeThickness / 2),
-                                strokeThickness > 0),
-                            new LineSegment(pi1, isStroked),
-                            arc.CreateArcSegment(
-                                ai1,
-                                ai2,
-                                ri,
-                                strokeThickness > 0),
-                            },
+                            segments,
                             closed: true);
                     }
 
@@ -166,7 +166,11 @@
             var figure = new PathFigure { StartPoint = op1 };
             var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
             var ro = arc.Radius - (strokeThickness / 2);
-            figure.Segments.Add(arc.CreateArcSegment(startAngle, endAngle, ro, isStroked));
+            foreach (var arcSegment in arc.CreateArcSegments(startAngle, endAngle, ro, isStroked))
+            {
+                figure.Segments.Add(arcSegment);
+            }
+
             if (DoubleUtil.LessThanOrClose(thickness, strokeThickness))
             {
                 figure.IsClosed = false;
@@ -195,7 +199,10 @@
                 if (thickness < arc.Radius)
                 {
                     var ri = arc.Radius - thickness + (strokeThickness / 2);
-                    figure.Segments.Add(arc.CreateArcSegment(endAngle, startAngle, ri, isStroked));
+                    foreach (var arcSegment in arc.CreateArcSegments(endAngle, startAngle, ri, isStroked))
+                    {
+                        figure.Segments.Add(arcSegment);
+                    }
                 }
             }
 

@@ -44,7 +44,11 @@ namespace Gu.Wpf.Gauges
             var figure = new PathFigure { StartPoint = op1 };
             var isStroked = DoubleUtil.GreaterThan(strokeThickness, 0);
             var ro = arc.Radius - (strokeThickness / 2);
-            figure.Segments.Add(arc.CreateArcSegment(startAngle, endAngle, ro, isStroked));
+            foreach (var arcSegment in arc.CreateArcSegments(startAngle, endAngle, ro, isStroked))
+            {
+                figure.Segments.Add(arcSegment);
+            }
+
             if (DoubleUtil.LessThanOrClose(thickness, strokeThickness))
             {
                 figure.IsClosed = false;
@@ -61,7 +65,10 @@ namespace Gu.Wpf.Gauges
                 var ip2 = arc.GetPointAtRadiusOffset(endAngle, (strokeThickness / 2) - thickness);
                 figure.Segments.Add(new LineSegment(ip2, isStroked));
                 var ri = arc.Radius - thickness + (strokeThickness / 2);
-                figure.Segments.Add(arc.CreateArcSegment(endAngle, startAngle, ri, isStroked));
+                foreach (var arcSegment in arc.CreateArcSegments(endAngle, startAngle, ri, isStroked))
+                {
+                    figure.Segments.Add(arcSegment);
+                }
             }
 
             figure.IsClosed = true;

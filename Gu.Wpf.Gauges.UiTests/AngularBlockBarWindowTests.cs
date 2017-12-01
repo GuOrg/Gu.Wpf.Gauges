@@ -1,5 +1,6 @@
 namespace Gu.Wpf.Gauges.UiTests
 {
+    using System;
     using Gu.Wpf.UiAutomation;
     using NUnit.Framework;
 
@@ -10,7 +11,7 @@ namespace Gu.Wpf.Gauges.UiTests
         {
             using (var app = Application.Launch("Gu.Wpf.Gauges.Sample.exe", "AngularBlockBarWindow"))
             {
-                app.WaitForMainWindow();
+                app.WaitForMainWindow(TimeSpan.FromSeconds(1));
                 Assert.Pass("Just checking that it loads for now");
             }
         }

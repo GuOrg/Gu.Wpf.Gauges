@@ -3,6 +3,6 @@ NUGET
   remote: https://api.nuget.org/v3/index.json
     Gu.Analyzers (1.1.0-dev)
     Gu.Wpf.UiAutomation (0.1.17)
-    NUnit (3.7.1)
+    NUnit (3.9)
     StyleCop.Analyzers (1.0.2)
-    WpfAnalyzers (0.2.7.10)
+    WpfAnalyzers (0.3.3)

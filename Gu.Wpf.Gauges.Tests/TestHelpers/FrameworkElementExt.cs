@@ -10,8 +10,13 @@ namespace Gu.Wpf.Gauges.Tests
             where T : FrameworkElement
         {
             var measureOverrideMethod = typeof(T).GetMethod(nameof(MeasureOverride), BindingFlags.NonPublic | BindingFlags.Instance);
-            var desiredSize = (Size)measureOverrideMethod.Invoke(element, new object[] { availableSize });
-            return desiredSize;
+            if (measureOverrideMethod != null)
+            {
+                var desiredSize = (Size)measureOverrideMethod.Invoke(element, new object[] { availableSize });
+                return desiredSize;
+            }
+
+            return Size.Empty;
         }
     }
 }

@@ -36,7 +36,8 @@
                                                     Thickness="35"
                                                     TickFrequency="{TemplateBinding MajorTickFrequency}"
                                                     TickGap="1"
-                                                    Ticks="{TemplateBinding MajorTicks}" />
+                                                    Ticks="{TemplateBinding MajorTicks}"
+                                                    Value="{TemplateBinding Value}"/>
 
                             <TextBlock HorizontalAlignment="Center"
                                        VerticalAlignment="Bottom"

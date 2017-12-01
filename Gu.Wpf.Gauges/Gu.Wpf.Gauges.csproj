@@ -69,6 +69,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Gauge.tt</DependentUpon>
     </Compile>
+    <Compile Include="Internals\EmptyEnumerator.cs" />
     <Compile Include="Indicators\ValueIndicator.cs" />
     <Compile Include="Internals\BindingHelper.cs" />
     <Compile Include="Internals\Extensions\DependencyObjectExt.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Internals\Interpolate.cs" />
     <Compile Include="Internals\Interpolation.cs" />
     <Compile Include="Internals\NameOf.cs" />
+    <Compile Include="Internals\SingleChildEnumerator.cs" />
     <Compile Include="Internals\ThicknessExt.cs" />
     <Compile Include="Internals\TickBarPlacementExt.cs" />
     <Compile Include="Internals\ValidateEnums.cs" />
