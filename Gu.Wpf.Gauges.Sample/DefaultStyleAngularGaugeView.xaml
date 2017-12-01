@@ -34,6 +34,8 @@
                              Minimum="{Binding Minimum}"
                              MinorTickFrequency="{Binding MinorTickFrequency}"
                              TextOrientation="{Binding TextOrientation}"
+                             Start="{Binding Start}"
+                             End="{Binding End}"
                              Value="{Binding Value}">
             <Grid>
                 <gauges:AngularAxis />
