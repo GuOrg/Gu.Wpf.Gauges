@@ -42,11 +42,24 @@
         {
             get
             {
-                var q = this.Start - Angle.FromDegrees(this.Start.Degrees % 90);
-                while (q <= this.End)
+                if (this.Start > this.End)
                 {
-                    yield return this.GetPoint(q);
-                    q += Angle.FromDegrees(90);
+
+                    var q = this.End - Angle.FromDegrees(this.End.Degrees % 90);
+                    while (q <= this.Start)
+                    {
+                        yield return this.GetPoint(q);
+                        q += Angle.FromDegrees(90);
+                    }
+                }
+                else
+                {
+                    var q = this.Start - Angle.FromDegrees(this.Start.Degrees % 90);
+                    while (q <= this.End)
+                    {
+                        yield return this.GetPoint(q);
+                        q += Angle.FromDegrees(90);
+                    }
                 }
             }
         }
