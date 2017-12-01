@@ -66,6 +66,9 @@
     <Compile Include="DefaultStyleLinearGaugeView.xaml.cs">
       <DependentUpon>DefaultStyleLinearGaugeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sandbox\AngularDefaultWindow.xaml.cs">
+      <DependentUpon>AngularDefaultWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sandbox\LinearBlockBarBox.xaml.cs">
       <DependentUpon>LinearBlockBarBox.xaml</DependentUpon>
     </Compile>
@@ -124,6 +127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DefaultStyleLinearGaugeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sandbox\AngularDefaultWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
