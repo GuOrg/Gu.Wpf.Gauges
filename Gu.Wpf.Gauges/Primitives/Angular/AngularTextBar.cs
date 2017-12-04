@@ -125,6 +125,11 @@ namespace Gu.Wpf.Gauges
                 return;
             }
 
+            dc.DrawRectangle(Brushes.Aquamarine, null, new Rect(0, 0, 10, 10));
+            dc.DrawRectangle(Brushes.HotPink, null, new Rect(10, 10, 10, 10));
+            dc.DrawRectangle(Brushes.Black, null, new Rect(20, 20, 10, 10));
+            dc.DrawRectangle(Brushes.HotPink, null, new Rect(1386.58, 438.58, 10, 10));
+
             foreach (var tickText in this.AllTexts)
             {
                 dc.DrawGeometry(this.Foreground, null, tickText.Geometry);

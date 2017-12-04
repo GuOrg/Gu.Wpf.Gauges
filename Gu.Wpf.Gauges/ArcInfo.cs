@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using System.Linq;
     using System.Windows;
     using System.Windows.Media;
 
@@ -207,6 +208,27 @@
             var rotate = v0.Rotate(angle);
             var p = this.Center + rotate;
             return p;
+        }
+
+        public Point GetUpperLeftPointAtOffset(Size size, Angle angle, double offset)
+        {
+            var pointAtArc = this.GetPointAtRadius(angle, this.Radius + offset);
+            var vectorFromCenterToPointAtArc = pointAtArc - this.Center;
+            var cornerVectorsFromCenter = new Vector[]
+            {
+                new Vector(size.Width / 2.0, size.Height / 2.0),
+                new Vector(-size.Width / 2.0, size.Height / 2.0),
+                new Vector(size.Width / 2.0, -size.Height / 2.0),
+                new Vector(-size.Width / 2.0, -size.Height / 2.0),
+            };
+
+            var vectorsFromArcCenter = cornerVectorsFromCenter.Select(x => new { TotalVector = new Vector(vectorFromCenterToPointAtArc.X, vectorFromCenterToPointAtArc.Y) + x, LocalVector = x });
+            var farthestCorner = vectorsFromArcCenter.MaxBy(v => v.TotalVector.Length);
+            var vectorToMoveCenter = farthestCorner.LocalVector;
+            var newCenterPoint = vectorFromCenterToPointAtArc - vectorToMoveCenter;
+            var angleDiffFromOriginal = angle - newCenterPoint.GaugeAngle(); // Angle zero starts at -Y
+            var rotatedCenterPoint = newCenterPoint.Rotate(angleDiffFromOriginal);
+            return rotatedCenterPoint + cornerVectorsFromCenter[3] + this.Center;
         }
 
         public Angle GetAngle(Point point)

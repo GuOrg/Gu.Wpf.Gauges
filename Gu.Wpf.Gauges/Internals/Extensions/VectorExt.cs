@@ -27,5 +27,20 @@
         {
             return new Vector(Math.Round(v.X, decimals), Math.Round(v.Y, decimals));
         }
+
+        internal static Angle Angle(this Vector v)
+        {
+            return Gauges.Angle.FromRadians(Math.Atan2(v.Y, v.X));
+        }
+
+        internal static Angle GaugeAngle(this Vector v) // Has zero at -Y
+        {
+            return Gauges.Angle.FromRadians(Math.Atan2(v.Y, v.X) + (Math.PI / 2));
+        }
+
+        internal static Point ToPoint(this Vector v)
+        {
+            return new Point(v.X, v.Y);
+        }
     }
 }

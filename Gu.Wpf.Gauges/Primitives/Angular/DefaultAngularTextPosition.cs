@@ -14,19 +14,15 @@ namespace Gu.Wpf.Gauges
             var angle = Interpolate.Linear(textBar.Minimum, textBar.Maximum, tickText.Value)
                                    .Clamp(0, 1)
                                    .Interpolate(textBar.Start, textBar.End, textBar.IsDirectionReversed);
+            var compVector = new Vector(0, -5);
             switch (textBar.TextOrientation)
             {
                 case TextOrientation.Tangential:
-                    tickText.Transform = new RotateTransform(angle.Degrees + 90);
-                    break;
-                case TextOrientation.TangentialFlipped:
-                    tickText.Transform = new RotateTransform(angle.Degrees - 90);
-                    break;
-                case TextOrientation.RadialOut:
                     tickText.Transform = new RotateTransform(angle.Degrees);
+                    //compVector = compVector.Rotate(angle);
                     break;
-                case TextOrientation.RadialIn:
-                    tickText.Transform = new RotateTransform(angle.Degrees - 180);
+                case TextOrientation.Horizontal:
+                    tickText.Transform = MatrixTransform.Identity;
                     break;
                 case TextOrientation.UseTransform:
                     tickText.Transform = textBar.TextTransform;
@@ -35,9 +31,12 @@ namespace Gu.Wpf.Gauges
                     throw new ArgumentOutOfRangeException();
             }
 
-            var pos = arc.GetPoint(angle);
-            tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, pos.X);
-            tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, pos.Y);
+            var textSize = tickText.Geometry.Bounds.Size;
+            var pos = arc.GetUpperLeftPointAtOffset(tickText.Geometry.Bounds.Size, angle, 0);
+            var pos2 = arc.GetPointAtRadius(angle, arc.Radius);
+
+            tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, pos.X + compVector.X);
+            tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, pos.Y + compVector.Y);
             return default(Thickness);
         }
     }
