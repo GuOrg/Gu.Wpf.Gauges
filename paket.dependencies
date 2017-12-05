@@ -7,3 +7,4 @@ nuget Gu.Wpf.UiAutomation
 nuget Gu.Analyzers
 nuget StyleCop.Analyzers
 nuget WpfAnalyzers
+nuget PropertyChangedAnalyzers
