@@ -14,10 +14,5 @@
         /// Draws text horizontally.
         /// </summary>
         Horizontal,
-
-        /// <summary>
-        /// Use <see cref="TextTickBar.TextTransform"/>
-        /// </summary>
-        UseTransform
     }
 }
