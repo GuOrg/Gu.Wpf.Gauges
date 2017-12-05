@@ -40,7 +40,7 @@ namespace Gu.Wpf.Gauges
             }
 
             var pos = arc.GetUpperLeftPointAtOffset(textGeometry.Bounds.Size.Rotate(textAngle), angle, 0);
-            tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, pos.X + diffVector.X  - rotatedCompVector.X);
+            tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, pos.X + diffVector.X - rotatedCompVector.X);
             tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, pos.Y + diffVector.Y - rotatedCompVector.Y);
             return default(Thickness);
         }

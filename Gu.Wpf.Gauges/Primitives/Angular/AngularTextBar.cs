@@ -139,7 +139,7 @@ namespace Gu.Wpf.Gauges
                 this.TypeFace,
                 this.FontSize,
                 this.Foreground,
-                this.TextOrientation == TextOrientation.UseTransform ? this.TextTransform : null);
+                null);
         }
 
         protected override void UpdateTexts()
