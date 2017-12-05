@@ -1,6 +1,7 @@
 namespace Gu.Wpf.Gauges
 {
     using System;
+    using System.Globalization;
     using System.Linq;
     using System.Windows;
     using System.Windows.Media;
@@ -129,6 +130,28 @@ namespace Gu.Wpf.Gauges
             dc.DrawRectangle(Brushes.HotPink, null, new Rect(10, 10, 10, 10));
             dc.DrawRectangle(Brushes.Black, null, new Rect(20, 20, 10, 10));
             dc.DrawRectangle(Brushes.HotPink, null, new Rect(1386.58, 438.58, 10, 10));
+
+            FormattedText formattedText = new FormattedText(
+                "100",
+                CultureInfo.GetCultureInfo("en-us"),
+                FlowDirection.LeftToRight,
+                new Typeface("Verdana"),
+                32,
+                Brushes.Black);
+
+            var width1 = formattedText.WidthIncludingTrailingWhitespace;
+            var width2 = formattedText.Width;
+
+            var comp = formattedText.Baseline - formattedText.Extent;
+            var compWidth = formattedText.OverhangLeading;
+
+            var width = formattedText.Width;
+            var height = formattedText.Height;
+            var geometry = formattedText.BuildGeometry(new Point(10, 10));
+            compWidth = geometry.Bounds.Left - 10;
+            comp = geometry.Bounds.Top - 10;
+
+            dc.DrawText(formattedText, new Point(10- compWidth, 10-comp));
 
             foreach (var tickText in this.AllTexts)
             {

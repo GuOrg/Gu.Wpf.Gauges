@@ -14,7 +14,6 @@ namespace Gu.Wpf.Gauges
             var angle = Interpolate.Linear(textBar.Minimum, textBar.Maximum, tickText.Value)
                                    .Clamp(0, 1)
                                    .Interpolate(textBar.Start, textBar.End, textBar.IsDirectionReversed);
-            var compVector = new Vector(0, -5);
             switch (textBar.TextOrientation)
             {
                 case TextOrientation.Tangential:
@@ -31,12 +30,15 @@ namespace Gu.Wpf.Gauges
                     throw new ArgumentOutOfRangeException();
             }
 
-            var textSize = tickText.Geometry.Bounds.Size;
+            var textGeometry = tickText.BuildGeometry(new Point(0, 0));
+
+            var compVector = textGeometry.Bounds.TopLeft.ToVector();
+
             var pos = arc.GetUpperLeftPointAtOffset(tickText.Geometry.Bounds.Size, angle, 0);
             var pos2 = arc.GetPointAtRadius(angle, arc.Radius);
 
-            tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, pos.X + compVector.X);
-            tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, pos.Y + compVector.Y);
+            tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, pos.X - compVector.X);
+            tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, pos.Y - compVector.Y);
             return default(Thickness);
         }
     }
