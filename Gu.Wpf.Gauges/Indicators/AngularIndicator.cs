@@ -132,6 +132,11 @@ namespace Gu.Wpf.Gauges
         protected override Size ArrangeOverride(Size arrangeSize)
         {
             var child = this.InternalChild;
+            if (child == null)
+            {
+                return arrangeSize;
+            }
+
             var angularArc = ArcInfo.Fit(arrangeSize, this.Padding, this.Start, this.End);
             var width = child.DesiredSize.Width;
             var height = angularArc.Radius;

@@ -40,7 +40,6 @@
                              Value="{Binding Value}"
                              TextOffset="{Binding TextOffset}">
             <Grid>
-                <gauges:AngularAxis />
 
                 <gauges:AngularIndicator Foreground="Blue"
                                          Value="{Binding Value, RelativeSource={RelativeSource AncestorType={x:Type gauges:AngularGauge}}}">

@@ -13,7 +13,8 @@
     <!--<Application.StartupUri>Sandbox/LinearGaugeWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Sandbox/LinearTickWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Sandbox/ModernAngularBar.xaml</Application.StartupUri>-->
-    <Application.StartupUri>Sandbox/AngularDefaultWindow.xaml</Application.StartupUri>
+    <!--<Application.StartupUri>Sandbox/AngularDefaultWindow.xaml</Application.StartupUri>-->
+    <Application.StartupUri>Sandbox/Clock.xaml</Application.StartupUri>
     <Application.Resources>
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="VerticalAlignment" Value="Center" />
