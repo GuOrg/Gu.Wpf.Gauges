@@ -18,7 +18,8 @@
                                  Start="-140"
                                  TextOrientation="Tangential"
                                  Thickness="10"
-                                 Value="78" />
+                                 Value="78"
+                                 TextOffset="0"/>
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -52,7 +53,7 @@
                                     MinorTickFrequency="{Binding MinorTickFrequency}"
                                     SnapsToDevicePixels="True"
                                     Start="{Binding Start}"
-                                    TextOrientation="{Binding TextOrientation}" />
+                                    TextOrientation="{Binding TextOrientation}"/>
             </GroupBox>
 
             <GroupBox Header="AngularTickBar">
@@ -78,7 +79,8 @@
                                        Start="{Binding Start}"
                                        TextOrientation="{Binding TextOrientation}"
                                        TickFrequency="{Binding MajorTickFrequency}"
-                                       Ticks="{Binding MajorTicks}" />
+                                       Ticks="{Binding MajorTicks}"
+                                       TextOffset="{Binding TextOffset}"/>
             </GroupBox>
 
             <GroupBox Header="AngularBlockBar">

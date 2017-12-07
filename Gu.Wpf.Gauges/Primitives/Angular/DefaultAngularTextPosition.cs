@@ -39,7 +39,7 @@ namespace Gu.Wpf.Gauges
                     throw new ArgumentOutOfRangeException();
             }
 
-            var pos = arc.GetUpperLeftPointAtOffset(textGeometry.Bounds.Size.Rotate(textAngle), angle, 0);
+            var pos = arc.GetUpperLeftPointAtOffset(textGeometry.Bounds.Size.Rotate(textAngle), angle, textBar.TextOffset);
             tickText.TranslateTransform.SetCurrentValue(TranslateTransform.XProperty, pos.X + diffVector.X - rotatedCompVector.X);
             tickText.TranslateTransform.SetCurrentValue(TranslateTransform.YProperty, pos.Y + diffVector.Y - rotatedCompVector.Y);
             return default(Thickness);

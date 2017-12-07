@@ -13,6 +13,12 @@ namespace Gu.Wpf.Gauges
                 Defaults.TextOrientation,
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
+        public static readonly DependencyProperty TextOffsetProperty = AngularGauge.TextOffsetProperty.AddOwner(
+            typeof(AngularTextBar),
+            new FrameworkPropertyMetadata(
+                0d,
+                FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
+
         public static readonly DependencyProperty TextPositionProperty = DependencyProperty.Register(
             nameof(TextPosition),
             typeof(AngularTextPosition),
@@ -52,6 +58,12 @@ namespace Gu.Wpf.Gauges
         {
             get => (AngularTextPosition)this.GetValue(TextPositionProperty);
             set => this.SetValue(TextPositionProperty, value);
+        }
+
+        public double TextOffset
+        {
+            get => (double)this.GetValue(TextOffsetProperty);
+            set => this.SetValue(TextOffsetProperty, value);
         }
 
         /// <summary>

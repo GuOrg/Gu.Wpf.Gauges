@@ -31,6 +31,15 @@
                 Defaults.TextOrientation,
                 FrameworkPropertyMetadataOptions.Inherits));
 
+        public static readonly DependencyProperty TextOffsetProperty = DependencyProperty.RegisterAttached(
+            nameof(TextOffset),
+            typeof(double),
+            typeof(AngularGauge),
+            new FrameworkPropertyMetadata(
+                0d,
+                FrameworkPropertyMetadataOptions.Inherits));
+
+
         static AngularGauge()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(typeof(AngularGauge)));
@@ -68,6 +77,12 @@
             set => this.SetValue(TextOrientationProperty, value);
         }
 
+        public double TextOffset
+        {
+            get => (double)this.GetValue(TextOffsetProperty);
+            set => this.SetValue(TextOffsetProperty, value);
+        }
+
         public static void SetStart(DependencyObject element, Angle value)
         {
             element.SetValue(StartProperty, value);
@@ -96,6 +111,16 @@
         public static TextOrientation GetTextOrientation(DependencyObject element)
         {
             return (TextOrientation)element.GetValue(TextOrientationProperty);
+        }
+
+        public static void SetTextOffset(DependencyObject element, double value)
+        {
+            element.SetValue(TextOffsetProperty, value);
+        }
+
+        public static double GetTextOffset(DependencyObject element)
+        {
+            return (double)element.GetValue(TextOffsetProperty);
         }
 
         /// <summary>

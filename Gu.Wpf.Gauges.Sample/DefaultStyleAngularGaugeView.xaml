@@ -17,7 +17,8 @@
                                  ShowLabels="True"
                                  Start="0"
                                  TextOrientation="Tangential"
-                                 Value="30" />
+                                 Value="30"
+                                 TextOffset="0"/>
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -36,7 +37,8 @@
                              TextOrientation="{Binding TextOrientation}"
                              Start="{Binding Start}"
                              End="{Binding End}"
-                             Value="{Binding Value}">
+                             Value="{Binding Value}"
+                             TextOffset="{Binding TextOffset}">
             <Grid>
                 <gauges:AngularAxis />
 
