@@ -222,9 +222,20 @@
             };
 
             var vectorsFromArcCenter = cornerVectorsFromCenter.Select(x => new { TotalVector = new Vector(vectorFromCenterToPointAtArc.X, vectorFromCenterToPointAtArc.Y) + x, LocalVector = x });
-            var farthestCorner = vectorsFromArcCenter.MaxBy(v => v.TotalVector.Length);
-            var vectorToMoveCenter = farthestCorner.LocalVector;
-            var newCenterPoint = vectorFromCenterToPointAtArc - vectorToMoveCenter;
+            Vector newCenterPoint;
+            if (offset < 0)
+            {
+                var farthestCorner = vectorsFromArcCenter.MaxBy(v => v.TotalVector.Length);
+                var vectorToMoveCenter = farthestCorner.LocalVector;
+                newCenterPoint = vectorFromCenterToPointAtArc - vectorToMoveCenter;
+            }
+            else
+            {
+                var closestCorner = vectorsFromArcCenter.MinBy(v => v.TotalVector.Length);
+                var vectorToMoveCenter = closestCorner.LocalVector;
+                newCenterPoint = vectorFromCenterToPointAtArc + vectorToMoveCenter;
+            }
+
             var angleDiffFromOriginal = angle - newCenterPoint.GaugeAngle(); // Angle zero starts at -Y
             var rotatedCenterPoint = newCenterPoint.Rotate(angleDiffFromOriginal);
             return rotatedCenterPoint + cornerVectorsFromCenter[3] + this.Center;
