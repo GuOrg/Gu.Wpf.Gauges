@@ -6,28 +6,13 @@
     public enum TextOrientation
     {
         /// <summary>
-        /// Draws text at -90° angle to line tick.
+        /// Draws text tangentially to angle.
         /// </summary>
         Tangential,
 
         /// <summary>
-        /// Draws text at 90° angle to line tick.
+        /// Draws text horizontally.
         /// </summary>
-        TangentialFlipped,
-
-        /// <summary>
-        /// Draws text parallel to line tick, text starting from center.
-        /// </summary>
-        RadialOut,
-
-        /// <summary>
-        /// Draws text parallel to line tick, text starting from periphery.
-        /// </summary>
-        RadialIn,
-
-        /// <summary>
-        /// Use <see cref="TextTickBar.TextTransform"/>
-        /// </summary>
-        UseTransform
+        Horizontal,
     }
 }

@@ -6,6 +6,7 @@
         private double end;
 
         private TextOrientation textOrientation;
+        private double textOffset;
 
         public AngularTickBarVm()
         {
@@ -56,6 +57,21 @@
                 }
 
                 this.textOrientation = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public double TextOffset
+        {
+            get => this.textOffset;
+            set
+            {
+                if (value.Equals(this.textOffset))
+                {
+                    return;
+                }
+
+                this.textOffset = value;
                 this.OnPropertyChanged();
             }
         }

@@ -106,22 +106,14 @@ namespace Gu.Wpf.Gauges
             }
         }
 
-        private Angle Start
-        {
-            get => (Angle)this.GetValue(StartProperty);
-            set => this.SetValue(StartProperty, value);
-        }
+        private Angle Start => (Angle)this.GetValue(StartProperty);
 
         /// <summary>
         /// Gets or sets the end angle of the arc.
         /// Degrees clockwise from the y axis.
         /// The default is 140
         /// </summary>
-        private Angle End
-        {
-            get => (Angle)this.GetValue(EndProperty);
-            set => this.SetValue(EndProperty, value);
-        }
+        private Angle End => (Angle)this.GetValue(EndProperty);
 
         protected override void OnContentChanged(object oldContent, object newContent)
         {
@@ -140,6 +132,11 @@ namespace Gu.Wpf.Gauges
         protected override Size ArrangeOverride(Size arrangeSize)
         {
             var child = this.InternalChild;
+            if (child == null)
+            {
+                return arrangeSize;
+            }
+
             var angularArc = ArcInfo.Fit(arrangeSize, this.Padding, this.Start, this.End);
             var width = child.DesiredSize.Width;
             var height = angularArc.Radius;

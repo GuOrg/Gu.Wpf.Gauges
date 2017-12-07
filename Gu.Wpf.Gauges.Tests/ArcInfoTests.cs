@@ -1,5 +1,6 @@
 ﻿namespace Gu.Wpf.Gauges.Tests
 {
+    using System;
     using System.Linq;
     using System.Windows;
     using NUnit.Framework;
@@ -112,6 +113,41 @@
             var arc = ArcInfo.Fit(availableSize, default(Thickness), Angle.FromDegrees(start), Angle.FromDegrees(end));
             Assert.AreEqual(expectedCentre, arc.Center.ToString("F0"));
             Assert.AreEqual(expectedRadius, arc.Radius, 1e-6);
+        }
+
+        [Test]
+        public void GetRectAtOffsetAtZeroAngle()
+        {
+            var arc = new ArcInfo(new Point(100,100), 100, Angle.FromDegrees(0), Angle.FromDegrees(360));
+            var positionAtZero = arc.GetPointAtRadius(Angle.Zero, arc.Radius);
+            var textSize = new Size(10, 10);
+            var newPos = arc.GetUpperLeftPointAtOffset(textSize, Angle.FromDegrees(0),  0);
+            Console.WriteLine(newPos);
+            Console.WriteLine(positionAtZero + new Vector(-5, 0));
+        }
+
+        [Test]
+        public void GetRectAtOffsetAt90Degrees()
+        {
+            var arc = new ArcInfo(new Point(100, 100), 100, Angle.FromDegrees(0), Angle.FromDegrees(360));
+            var positionAtZero = arc.GetPointAtRadius(Angle.FromDegrees(90), arc.Radius);
+            var textSize = new Size(10, 10);
+            var newPos = arc.GetUpperLeftPointAtOffset(textSize, Angle.FromDegrees(90), 0);
+            Console.WriteLine(newPos);
+            Console.WriteLine(positionAtZero + new Vector(-10, -5));
+        }
+
+        [TestCase(100, 100, 10, 0, 0)]
+        [TestCase(100, 100, 100, 100, 10)]
+        [TestCase(1, 1, 1, 1, 1)]
+        public void GetRectAtOffsetSize0(double centerX, double centerY, double radius, double angle, double offset)
+        {
+            var arc = new ArcInfo(new Point(centerX, centerY), radius, Angle.FromDegrees(0), Angle.FromDegrees(360));
+            var textSize = new Size(0, 0);
+            var pointFromRectAtOffset = arc.GetUpperLeftPointAtOffset(textSize, Angle.FromDegrees(angle), offset);
+            var pointFromAtRadius = arc.GetPointAtRadius(Angle.FromDegrees(angle), arc.Radius + offset);
+            Assert.AreEqual(pointFromAtRadius.X, pointFromRectAtOffset.X);
+            Assert.AreEqual(pointFromAtRadius.Y, pointFromRectAtOffset.Y);
         }
     }
 }

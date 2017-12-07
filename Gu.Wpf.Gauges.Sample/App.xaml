@@ -14,6 +14,7 @@
     <!--<Application.StartupUri>Sandbox/LinearTickWindow.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Sandbox/ModernAngularBar.xaml</Application.StartupUri>-->
     <!--<Application.StartupUri>Sandbox/AngularDefaultWindow.xaml</Application.StartupUri>-->
+    <!--<Application.StartupUri>Sandbox/Clock.xaml</Application.StartupUri>-->
     <Application.Resources>
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -298,6 +299,14 @@
                     <CheckBox Grid.Row="10"
                               Grid.Column="1"
                               IsChecked="{Binding IsDirectionReversed}" />
+
+                    <TextBlock Grid.Row="11"
+                               Grid.Column="0"
+                               Text="TextOffset" />
+                    <TextBox Grid.Row="11"
+                             Grid.Column="1"
+                             Text="{Binding TextOffset}" />
+                    
                 </Grid>
             </GroupBox>
         </DataTemplate>
