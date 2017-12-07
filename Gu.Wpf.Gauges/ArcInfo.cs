@@ -45,7 +45,6 @@
             {
                 if (this.Start > this.End)
                 {
-
                     var q = this.End - Angle.FromDegrees(this.End.Degrees % 90);
                     while (q <= this.Start)
                     {
@@ -214,7 +213,7 @@
         {
             var pointAtArc = this.GetPointAtRadius(angle, this.Radius + offset);
             var vectorFromCenterToPointAtArc = pointAtArc - this.Center;
-            var cornerVectorsFromCenter = new Vector[]
+            var cornerVectorsFromCenter = new[]
             {
                 new Vector(size.Width / 2.0, size.Height / 2.0),
                 new Vector(-size.Width / 2.0, size.Height / 2.0),

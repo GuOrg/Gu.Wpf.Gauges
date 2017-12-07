@@ -66,7 +66,7 @@
             get => this.textOffset;
             set
             {
-                if (value == this.textOffset)
+                if (value.Equals(this.textOffset))
                 {
                     return;
                 }
