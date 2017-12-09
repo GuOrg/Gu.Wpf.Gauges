@@ -118,10 +118,10 @@
         [Test]
         public void GetRectAtOffsetAtZeroAngle()
         {
-            var arc = new ArcInfo(new Point(100,100), 100, Angle.FromDegrees(0), Angle.FromDegrees(360));
+            var arc = new ArcInfo(new Point(100, 100), 100, Angle.FromDegrees(0), Angle.FromDegrees(360));
             var positionAtZero = arc.GetPointAtRadius(Angle.Zero, arc.Radius);
             var textSize = new Size(10, 10);
-            var newPos = arc.GetUpperLeftPointAtOffset(textSize, Angle.FromDegrees(0),  0);
+            var newPos = arc.GetUpperLeftPointAtOffset(textSize, Angle.FromDegrees(0), 0);
             Console.WriteLine(newPos);
             Console.WriteLine(positionAtZero + new Vector(-5, 0));
         }

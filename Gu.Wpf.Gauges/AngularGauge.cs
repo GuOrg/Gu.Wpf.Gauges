@@ -39,7 +39,6 @@
                 0d,
                 FrameworkPropertyMetadataOptions.Inherits));
 
-
         static AngularGauge()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(AngularGauge), new FrameworkPropertyMetadata(typeof(AngularGauge)));

@@ -75,8 +75,7 @@
     <Compile Include="Internals\Extensions\AngleExtention.cs" />
     <Compile Include="Internals\Extensions\DependencyObjectExt.cs" />
     <Compile Include="Internals\DoubleUtil.cs" />
-    <Compile Include="Internals\Extensions\MaxBy.cs" />
-    <Compile Include="Internals\Extensions\MinBy.cs" />
+    <Compile Include="Internals\Extensions\EnumerableExt.cs" />
     <Compile Include="Internals\Interpolate.cs" />
     <Compile Include="Internals\Interpolation.cs" />
     <Compile Include="Internals\NameOf.cs" />
