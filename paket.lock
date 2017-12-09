@@ -6,4 +6,4 @@ NUGET
     NUnit (3.9)
     PropertyChangedAnalyzers (2.5.1)
     StyleCop.Analyzers (1.0.2)
-    WpfAnalyzers (0.3.3)
+    WpfAnalyzers (0.4.0.1)
