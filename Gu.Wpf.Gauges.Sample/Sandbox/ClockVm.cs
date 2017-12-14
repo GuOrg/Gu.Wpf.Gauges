@@ -6,7 +6,8 @@ namespace Gu.Wpf.Gauges.Sample.Sandbox
 
     public class ClockVm : INotifyPropertyChanged
     {
-        private Timer timer;
+        // ReSharper disable once NotAccessedField.Local
+        private readonly Timer timer;
 
         public ClockVm()
         {

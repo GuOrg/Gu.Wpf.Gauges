@@ -96,7 +96,7 @@ namespace Gu.Wpf.Gauges
 
         private static object CoerceOverflow(DependencyObject d, object basevalue)
         {
-            ((UIElement)d).RegisterOverflow((Thickness)basevalue);
+            ((AngularGeometryBar)d).RegisterOverflow((Thickness)basevalue);
             return basevalue;
         }
     }
