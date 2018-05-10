@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Gauges.Tests
+namespace Gu.Wpf.Gauges.Tests
 {
     using System;
     using System.Windows.Media;
@@ -19,7 +19,6 @@
         [TestCase("1,2", 90)]
         [TestCase("1,2", -90)]
         [TestCase("1,2", 180)]
-        [TestCase("-1,2", 270)]
         [TestCase("-1,2", 0)]
         [TestCase("-1,2", 90)]
         [TestCase("-1,2", -90)]

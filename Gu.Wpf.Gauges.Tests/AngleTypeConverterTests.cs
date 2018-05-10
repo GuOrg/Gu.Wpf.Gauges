@@ -1,4 +1,4 @@
-﻿// ReSharper disable PossibleNullReferenceException
+// ReSharper disable PossibleNullReferenceException
 namespace Gu.Wpf.Gauges.Tests
 {
     using NUnit.Framework;
@@ -8,7 +8,6 @@ namespace Gu.Wpf.Gauges.Tests
         [TestCase(1, 1)]
         [TestCase(1.2, 1.2)]
         [TestCase("1.2", 1.2)]
-        [TestCase("1.2°", 1.2)]
         [TestCase("1.2°", 1.2)]
         [TestCase("1.2 deg", 1.2)]
         [TestCase("1.2 Deg", 1.2)]
