@@ -1,10 +1,14 @@
 source https://api.nuget.org/v3/index.json
-framework net45
 
-nuget NUnit
-nuget Gu.Wpf.UiAutomation
+group Test
+  source https://api.nuget.org/v3/index.json
+  storage: none
+  nuget NUnit
+  nuget Gu.Wpf.UiAutomation
 
-nuget Gu.Analyzers
-nuget StyleCop.Analyzers
-nuget WpfAnalyzers
-nuget PropertyChangedAnalyzers
+group Analyzers
+  source https://api.nuget.org/v3/index.json
+  nuget Gu.Analyzers
+  nuget StyleCop.Analyzers
+  nuget WpfAnalyzers
+  nuget PropertyChangedAnalyzers

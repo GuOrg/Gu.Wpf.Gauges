@@ -1,4 +1,7 @@
-Gu.Analyzers
-NUnit
-StyleCop.Analyzers
-WpfAnalyzers
+group Test
+  NUnit
+
+group Analyzers
+  Gu.Analyzers
+  StyleCop.Analyzers
+  WpfAnalyzers

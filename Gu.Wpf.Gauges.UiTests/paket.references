@@ -1,5 +1,8 @@
-NUnit
-Gu.Wpf.UiAutomation
-Gu.Analyzers
-StyleCop.Analyzers
-WpfAnalyzers
+group Test
+  NUnit
+  Gu.Wpf.UiAutomation
+
+group Analyzers
+  Gu.Analyzers
+  StyleCop.Analyzers
+  WpfAnalyzers

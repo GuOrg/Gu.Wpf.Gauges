@@ -1,3 +1,4 @@
-Gu.Analyzers
-StyleCop.Analyzers
-WpfAnalyzers
+group Analyzers
+  Gu.Analyzers
+  StyleCop.Analyzers
+  WpfAnalyzers
