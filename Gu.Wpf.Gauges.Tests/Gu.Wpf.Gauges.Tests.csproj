@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net45</TargetFramework>
@@ -7,6 +7,11 @@
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="SandBox\**" />
+    <EmbeddedResource Remove="SandBox\**" />
+    <None Remove="SandBox\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System.Xaml" />
@@ -14,9 +19,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Gu.Wpf.Gauges\Gu.Wpf.Gauges.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SandBox\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Indicators\LinearRangeImages\LinearRange_Orientation_Horizontal_Min_0_Max_100_Start_10_End_20_IsDirectionReversed_False.png" />
