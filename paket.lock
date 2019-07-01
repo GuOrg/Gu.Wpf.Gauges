@@ -6,7 +6,7 @@ NUGET
     Gu.Analyzers (1.3.2-dev)
     PropertyChangedAnalyzers (2.7.1)
     StyleCop.Analyzers (1.1.118)
-    WpfAnalyzers (2.2.0.2)
+    WpfAnalyzers (2.2.0.3)
 
 GROUP Test
 STORAGE: NONE
