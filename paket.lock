@@ -4,7 +4,7 @@ GROUP Analyzers
 NUGET
   remote: https://api.nuget.org/v3/index.json
     Gu.Analyzers (1.5.3-dev)
-    PropertyChangedAnalyzers (2.7.1)
+    PropertyChangedAnalyzers (2.7.2)
     StyleCop.Analyzers (1.1.118)
     WpfAnalyzers (2.2.0.3)
 
