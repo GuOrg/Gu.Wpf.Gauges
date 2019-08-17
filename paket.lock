@@ -3,10 +3,10 @@
 GROUP Analyzers
 NUGET
   remote: https://api.nuget.org/v3/index.json
-    Gu.Analyzers (1.5.4-dev)
+    Gu.Analyzers (1.5.5-dev)
     PropertyChangedAnalyzers (2.7.2)
     StyleCop.Analyzers (1.1.118)
-    WpfAnalyzers (2.3)
+    WpfAnalyzers (2.3.1)
 
 GROUP Test
 STORAGE: NONE
