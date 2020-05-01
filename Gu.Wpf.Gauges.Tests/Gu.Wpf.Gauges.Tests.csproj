@@ -10,13 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Include="TestHelpers\ImageCompareView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Gu.Wpf.Gauges\Gu.Wpf.Gauges.csproj" />
   </ItemGroup>
 

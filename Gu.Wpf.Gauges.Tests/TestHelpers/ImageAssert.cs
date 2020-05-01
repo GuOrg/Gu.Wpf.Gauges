@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Gauges.Tests
+namespace Gu.Wpf.Gauges.Tests
 {
     using System;
     using System.Diagnostics;
@@ -26,55 +26,10 @@
                 Assert.NotNull(stream);
                 using (var expected = (Bitmap)Image.FromStream(stream))
                 {
-                    AreEqual(expected, tickBar);
-                }
-            }
-        }
-
-        public static void AreEqual(Bitmap expected, UIElement actual)
-        {
-            using (var actualBmp = actual.ToBitmap(expected.Size(), expected.PixelFormat()))
-            {
-                AreEqual(expected, actualBmp);
-            }
-        }
-
-        public static void AreEqual(Bitmap expected, Bitmap actual)
-        {
-            if (expected.Size != actual.Size)
-            {
-                Assert.Fail("Sizes did not match\r\n" +
-                            $"Expected: {expected.Size}\r\n" +
-                            $"Actual:   {actual.Size}");
-            }
-
-            if (expected.PixelFormat != actual.PixelFormat)
-            {
-                Assert.Fail("PixelFormats did not match\r\n" +
-                            $"Expected: {expected.PixelFormat}\r\n" +
-                            $"Actual:   {actual.PixelFormat}");
-            }
-
-            for (var x = 0; x < expected.Size.Width; x++)
-            {
-                for (var y = 0; y < expected.Size.Height; y++)
-                {
-                    if (Debugger.IsAttached)
+                    using (var actual = tickBar.ToBitmap(expected.Size(), expected.PixelFormat()))
                     {
-                        if (expected.GetPixel(x, y).Name == actual.GetPixel(x, y).Name)
-                        {
-                            continue;
-                        }
-
-                        var window = new Window
-                                     {
-                                         SizeToContent = SizeToContent.WidthAndHeight,
-                                         Content = new ImageCompareView(expected, actual)
-                                     };
-                        window.ShowDialog();
+                        Gu.Wpf.UiAutomation.ImageAssert.AreEqual(expected, actual);
                     }
-
-                    Assert.AreEqual(expected.GetPixel(x, y).Name, actual.GetPixel(x, y).Name);
                 }
             }
         }
@@ -135,17 +90,6 @@
         {
             return element.ToRenderTargetBitmap(size, pixelFormat)
                           .ToBitmap();
-        }
-
-        public static Bitmap ToBitmap(this UIElement element, Size size)
-        {
-            return element.ToRenderTargetBitmap(size, PixelFormats.Pbgra32)
-                          .ToBitmap();
-        }
-
-        public static RenderTargetBitmap ToRenderTargetBitmap(this UIElement element, Size size)
-        {
-            return element.ToRenderTargetBitmap(size, PixelFormats.Pbgra32);
         }
 
         public static RenderTargetBitmap ToRenderTargetBitmap(this UIElement element, Size size, PixelFormat pixelFormat)
