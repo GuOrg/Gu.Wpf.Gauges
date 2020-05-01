@@ -185,13 +185,13 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
         {
             public TestCase(
             TickBarPlacement placement,
-                bool isDirectionReversed,
-                double value,
-                double tickGap,
-                double strokeThickness,
-                double tickFrequency,
-                DoubleCollection ticks,
-                Thickness padding)
+            bool isDirectionReversed,
+            double value,
+            double tickGap,
+            double strokeThickness,
+            double tickFrequency,
+            DoubleCollection ticks,
+            Thickness padding)
             {
                 this.Placement = placement;
                 this.IsDirectionReversed = isDirectionReversed;

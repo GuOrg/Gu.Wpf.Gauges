@@ -42,7 +42,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                               Padding = testCase.Padding,
                               FontFamily = new FontFamily("Arial"), // Seoge UI is measured differently on Win 7 and Win 10 for some reason
                               FontSize = 12,
-            };
+                          };
 
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }
@@ -61,7 +61,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                               Padding = testCase.Padding,
                               FontFamily = new FontFamily("Arial"), // Seoge UI is measured differently on Win 7 and Win 10 for some reason
                               FontSize = 12,
-            };
+                          };
 
             ImageAssert.AreEqual(GetFileName(tickBar), tickBar);
         }

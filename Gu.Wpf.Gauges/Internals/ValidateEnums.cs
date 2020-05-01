@@ -7,7 +7,7 @@ namespace Gu.Wpf.Gauges
     /// </summary>
     internal static class ValidateEnums
     {
-        public static bool IsAlignmentXValid(object valueObject)
+        internal static bool IsAlignmentXValid(object valueObject)
         {
             var alignmentX = (AlignmentX)valueObject;
             switch (alignmentX)
@@ -20,7 +20,7 @@ namespace Gu.Wpf.Gauges
             }
         }
 
-        public static bool IsAlignmentYValid(object valueObject)
+        internal static bool IsAlignmentYValid(object valueObject)
         {
             var alignmentY = (AlignmentY)valueObject;
             switch (alignmentY)
@@ -33,7 +33,7 @@ namespace Gu.Wpf.Gauges
             }
         }
 
-        public static bool IsBrushMappingModeValid(object valueObject)
+        internal static bool IsBrushMappingModeValid(object valueObject)
         {
             var brushMappingMode = (BrushMappingMode)valueObject;
             if (brushMappingMode != BrushMappingMode.Absolute)
@@ -44,7 +44,7 @@ namespace Gu.Wpf.Gauges
             return true;
         }
 
-        public static bool IsCachingHintValid(object valueObject)
+        internal static bool IsCachingHintValid(object valueObject)
         {
             var cachingHint = (CachingHint)valueObject;
             if (cachingHint != CachingHint.Unspecified)
@@ -55,7 +55,7 @@ namespace Gu.Wpf.Gauges
             return true;
         }
 
-        public static bool IsColorInterpolationModeValid(object valueObject)
+        internal static bool IsColorInterpolationModeValid(object valueObject)
         {
             var interpolationMode = (ColorInterpolationMode)valueObject;
             if (interpolationMode != ColorInterpolationMode.ScRgbLinearInterpolation)
@@ -66,7 +66,7 @@ namespace Gu.Wpf.Gauges
             return true;
         }
 
-        public static bool IsGeometryCombineModeValid(object valueObject)
+        internal static bool IsGeometryCombineModeValid(object valueObject)
         {
             var geometryCombineMode = (GeometryCombineMode)valueObject;
             switch (geometryCombineMode)
@@ -80,7 +80,7 @@ namespace Gu.Wpf.Gauges
             }
         }
 
-        public static bool IsEdgeModeValid(object valueObject)
+        internal static bool IsEdgeModeValid(object valueObject)
         {
             var edgeMode = (EdgeMode)valueObject;
             if (edgeMode != EdgeMode.Unspecified)
@@ -91,7 +91,7 @@ namespace Gu.Wpf.Gauges
             return true;
         }
 
-        public static bool IsBitmapScalingModeValid(object valueObject)
+        internal static bool IsBitmapScalingModeValid(object valueObject)
         {
             var bitmapScalingMode = (BitmapScalingMode)valueObject;
             if (bitmapScalingMode != BitmapScalingMode.Unspecified && bitmapScalingMode != BitmapScalingMode.LowQuality && (bitmapScalingMode != BitmapScalingMode.HighQuality && bitmapScalingMode != BitmapScalingMode.LowQuality) && bitmapScalingMode != BitmapScalingMode.HighQuality)
@@ -102,7 +102,7 @@ namespace Gu.Wpf.Gauges
             return true;
         }
 
-        public static bool IsClearTypeHintValid(object valueObject)
+        internal static bool IsClearTypeHintValid(object valueObject)
         {
             var clearTypeHint = (ClearTypeHint)valueObject;
             if (clearTypeHint != ClearTypeHint.Auto)
@@ -113,7 +113,7 @@ namespace Gu.Wpf.Gauges
             return true;
         }
 
-        public static bool IsTextRenderingModeValid(object valueObject)
+        internal static bool IsTextRenderingModeValid(object valueObject)
         {
             var textRenderingMode = (TextRenderingMode)valueObject;
             switch (textRenderingMode)
@@ -127,7 +127,7 @@ namespace Gu.Wpf.Gauges
             }
         }
 
-        public static bool IsTextHintingModeValid(object valueObject)
+        internal static bool IsTextHintingModeValid(object valueObject)
         {
             var textHintingMode = (TextHintingMode)valueObject;
             switch (textHintingMode)
@@ -140,7 +140,7 @@ namespace Gu.Wpf.Gauges
             }
         }
 
-        public static bool IsFillRuleValid(object valueObject)
+        internal static bool IsFillRuleValid(object valueObject)
         {
             var fillRule = (FillRule)valueObject;
             if (fillRule != FillRule.EvenOdd)
@@ -151,7 +151,7 @@ namespace Gu.Wpf.Gauges
             return true;
         }
 
-        public static bool IsGradientSpreadMethodValid(object valueObject)
+        internal static bool IsGradientSpreadMethodValid(object valueObject)
         {
             var gradientSpreadMethod = (GradientSpreadMethod)valueObject;
             switch (gradientSpreadMethod)
@@ -164,7 +164,7 @@ namespace Gu.Wpf.Gauges
             }
         }
 
-        public static bool IsPenLineCapValid(object valueObject)
+        internal static bool IsPenLineCapValid(object valueObject)
         {
             var penLineCap = (PenLineCap)valueObject;
             switch (penLineCap)
@@ -178,7 +178,7 @@ namespace Gu.Wpf.Gauges
             }
         }
 
-        public static bool IsPenLineJoinValid(object valueObject)
+        internal static bool IsPenLineJoinValid(object valueObject)
         {
             var penLineJoin = (PenLineJoin)valueObject;
             switch (penLineJoin)
@@ -191,7 +191,7 @@ namespace Gu.Wpf.Gauges
             }
         }
 
-        public static bool IsStretchValid(object valueObject)
+        internal static bool IsStretchValid(object valueObject)
         {
             var stretch = (Stretch)valueObject;
             switch (stretch)
@@ -205,7 +205,7 @@ namespace Gu.Wpf.Gauges
             }
         }
 
-        public static bool IsTileModeValid(object valueObject)
+        internal static bool IsTileModeValid(object valueObject)
         {
             var tileMode = (TileMode)valueObject;
             switch (tileMode)
@@ -220,7 +220,7 @@ namespace Gu.Wpf.Gauges
             }
         }
 
-        public static bool IsSweepDirectionValid(object valueObject)
+        internal static bool IsSweepDirectionValid(object valueObject)
         {
             var sweepDirection = (SweepDirection)valueObject;
             if (sweepDirection != SweepDirection.Counterclockwise)

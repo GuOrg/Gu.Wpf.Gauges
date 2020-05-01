@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
+namespace Gu.Wpf.Gauges.Tests.Primitives.Angular
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Globalization;
@@ -59,7 +59,7 @@
             var directory = Directory.CreateDirectory($@"C:\Temp\Ring");
             ring.SaveImage(
                 new Size(30, 30),
-               Path.Combine(directory.FullName, GetFileName(ring)));
+                Path.Combine(directory.FullName, GetFileName(ring)));
         }
     }
 }
