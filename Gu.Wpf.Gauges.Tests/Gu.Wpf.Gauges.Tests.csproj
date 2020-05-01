@@ -6,23 +6,19 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="SandBox\**" />
-    <EmbeddedResource Remove="SandBox\**" />
-    <None Remove="SandBox\**" />
-  </ItemGroup>
+
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Gu.Wpf.Gauges\Gu.Wpf.Gauges.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="**\*.png" />
     <EmbeddedResource Include="**\*.png" />
   </ItemGroup>
 
