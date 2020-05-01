@@ -4,6 +4,6 @@ namespace Gu.Wpf.Gauges
     {
         Top,
         Center,
-        Bottom
+        Bottom,
     }
 }

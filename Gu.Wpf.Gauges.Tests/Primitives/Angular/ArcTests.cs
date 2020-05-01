@@ -42,7 +42,7 @@
                 StrokeDashCap = testCase.StrokeDashCap,
                 StrokeDashArray = testCase.StrokeDashArray,
                 Value = testCase.Value,
-                Padding = testCase.Padding
+                Padding = testCase.Padding,
             };
 
             ImageAssert.AreEqual(GetFileName(arc), arc);

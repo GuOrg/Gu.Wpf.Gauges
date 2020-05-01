@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Gauges
+namespace Gu.Wpf.Gauges
 {
     using System.Collections.Generic;
     using System.Windows;
@@ -140,7 +140,7 @@
         /// The identifier for the <see cref="P:TextTickBar.ContentStringFormat" /> dependency property.
         /// </returns>
         public static readonly DependencyProperty StringFormatProperty = DependencyProperty.Register(
-            "StringFormat",
+            nameof(StringFormat),
             typeof(string),
             typeof(TextTickBar),
             new PropertyMetadata(

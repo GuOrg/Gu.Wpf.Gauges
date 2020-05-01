@@ -31,7 +31,7 @@ namespace Gu.Wpf.Gauges
         /// StrokeStartLineCap property
         /// </summary>
         public static readonly DependencyProperty StrokeStartLineCapProperty = DependencyProperty.Register(
-            "StrokeStartLineCap",
+            nameof(StrokeStartLineCap),
             typeof(PenLineCap),
             typeof(GeometryTickBar),
             new FrameworkPropertyMetadata(
@@ -44,7 +44,7 @@ namespace Gu.Wpf.Gauges
         /// StrokeEndLineCap property
         /// </summary>
         public static readonly DependencyProperty StrokeEndLineCapProperty = DependencyProperty.Register(
-            "StrokeEndLineCap",
+            nameof(StrokeEndLineCap),
             typeof(PenLineCap),
             typeof(GeometryTickBar),
             new FrameworkPropertyMetadata(
@@ -58,7 +58,7 @@ namespace Gu.Wpf.Gauges
         /// </summary>
         public static readonly DependencyProperty StrokeDashCapProperty =
             DependencyProperty.Register(
-                "StrokeDashCap",
+                nameof(StrokeDashCap),
                 typeof(PenLineCap),
                 typeof(GeometryTickBar),
                 new FrameworkPropertyMetadata(
@@ -72,7 +72,7 @@ namespace Gu.Wpf.Gauges
         /// </summary>
         public static readonly DependencyProperty StrokeLineJoinProperty =
             DependencyProperty.Register(
-                "StrokeLineJoin",
+                nameof(StrokeLineJoin),
                 typeof(PenLineJoin),
                 typeof(GeometryTickBar),
                 new FrameworkPropertyMetadata(
@@ -86,7 +86,7 @@ namespace Gu.Wpf.Gauges
         /// </summary>
         public static readonly DependencyProperty StrokeMiterLimitProperty =
             DependencyProperty.Register(
-                "StrokeMiterLimit",
+                nameof(StrokeMiterLimit),
                 typeof(double),
                 typeof(GeometryTickBar),
                 new FrameworkPropertyMetadata(
@@ -99,7 +99,7 @@ namespace Gu.Wpf.Gauges
         /// </summary>
         public static readonly DependencyProperty StrokeDashOffsetProperty =
             DependencyProperty.Register(
-                "StrokeDashOffset",
+                nameof(StrokeDashOffset),
                 typeof(double),
                 typeof(GeometryTickBar),
                 new FrameworkPropertyMetadata(
@@ -112,7 +112,7 @@ namespace Gu.Wpf.Gauges
         /// </summary>
         public static readonly DependencyProperty StrokeDashArrayProperty =
             DependencyProperty.Register(
-                "StrokeDashArray",
+                nameof(StrokeDashArray),
                 typeof(DoubleCollection),
                 typeof(GeometryTickBar),
                 new FrameworkPropertyMetadata(
@@ -264,7 +264,7 @@ namespace Gu.Wpf.Gauges
                             MiterLimit = this.StrokeMiterLimit,
                             DashStyle = this.StrokeDashCap != PenLineCap.Flat && this.StrokeDashArray.Count > 0
                                            ? new DashStyle(this.StrokeDashArray, this.StrokeDashOffset)
-                                           : DashStyles.Solid
+                                           : DashStyles.Solid,
                         };
                     }
                 }

@@ -4,6 +4,6 @@ namespace Gu.Wpf.Gauges
     {
         Left,
         Center,
-        Right
+        Right,
     }
 }

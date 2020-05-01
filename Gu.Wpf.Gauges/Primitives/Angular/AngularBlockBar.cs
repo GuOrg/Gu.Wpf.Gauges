@@ -159,7 +159,7 @@ namespace Gu.Wpf.Gauges
                                               outerRadius,
                                               strokeThickness > 0))
                     {
-                        new LineSegment(innerPoint, isStroked)
+                        new LineSegment(innerPoint, isStroked),
                     },
                     closed: true);
             }

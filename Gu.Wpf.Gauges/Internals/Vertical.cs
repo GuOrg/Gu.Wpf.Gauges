@@ -4,6 +4,6 @@
     {
         Top,
         Mid,
-        Bottom
+        Bottom,
     }
 }

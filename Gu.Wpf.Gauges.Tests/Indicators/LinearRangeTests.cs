@@ -25,7 +25,7 @@
             {
                 Background = Brushes.Black,
                 Start = start,
-                End = end
+                End = end,
             };
 
             var gauge = new LinearGauge
@@ -34,7 +34,7 @@
                 Maximum = 100,
                 Placement = placement,
                 IsDirectionReversed = isDirectionReversed,
-                Content = range
+                Content = range,
             };
 
             ImageAssert.AreEqual(GetFileName(range), gauge);

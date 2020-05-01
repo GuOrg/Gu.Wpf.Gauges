@@ -6,7 +6,7 @@ namespace Gu.Wpf.Gauges.Tests
 
     internal static class GeometryExt
     {
-        public static Point AsPoint(this string text)
+        internal static Point AsPoint(this string text)
         {
             var strings = text.Split(',');
             if (strings.Length != 2)
@@ -19,7 +19,7 @@ namespace Gu.Wpf.Gauges.Tests
             return new Point(x, y);
         }
 
-        public static Vector AsVector(this string text)
+        internal static Vector AsVector(this string text)
         {
             var strings = text.Split(',');
             if (strings.Length != 2)
@@ -32,7 +32,7 @@ namespace Gu.Wpf.Gauges.Tests
             return new Vector(x, y);
         }
 
-        public static Size AsSize(this string text)
+        internal static Size AsSize(this string text)
         {
             var strings = text.Split(',');
             if (strings.Length != 2)
@@ -45,7 +45,7 @@ namespace Gu.Wpf.Gauges.Tests
             return new Size(width, height);
         }
 
-        public static Thickness AsThickness(this string text)
+        internal static Thickness AsThickness(this string text)
         {
             if (string.IsNullOrEmpty(text))
             {
@@ -77,17 +77,17 @@ namespace Gu.Wpf.Gauges.Tests
             throw new FormatException($"Could not parse {text}");
         }
 
-        public static string ToString(this Point p, string format)
+        internal static string ToString(this Point p, string format)
         {
             return $"{p.X.ToString(format, CultureInfo.InvariantCulture)}, {p.Y.ToString(format, CultureInfo.InvariantCulture)}";
         }
 
-        public static string ToString(this Vector v, string format)
+        internal static string ToString(this Vector v, string format)
         {
             return $"{v.X.ToString(format, CultureInfo.InvariantCulture)}, {v.Y.ToString(format, CultureInfo.InvariantCulture)}";
         }
 
-        public static string ToString(this Size size, string format)
+        internal static string ToString(this Size size, string format)
         {
             return $"{size.Width.ToString(format, CultureInfo.InvariantCulture)}, {size.Height.ToString(format, CultureInfo.InvariantCulture)}";
         }

@@ -71,7 +71,6 @@
     </Compile>
     <Compile Include="Internals\EmptyEnumerator.cs" />
     <Compile Include="Indicators\ValueIndicator.cs" />
-    <Compile Include="Internals\BindingHelper.cs" />
     <Compile Include="Internals\Extensions\AngleExtention.cs" />
     <Compile Include="Internals\Extensions\DependencyObjectExt.cs" />
     <Compile Include="Internals\DoubleUtil.cs" />

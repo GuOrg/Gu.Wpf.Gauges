@@ -39,7 +39,7 @@ namespace Gu.Wpf.Gauges.Tests.Indicators
             var range = new LinearIndicator
             {
                 Value = value,
-                Style = StyleHelper.DefaultStyle<LinearIndicator>()
+                Style = StyleHelper.DefaultStyle<LinearIndicator>(),
             };
 
             var gauge = new LinearGauge
@@ -49,7 +49,7 @@ namespace Gu.Wpf.Gauges.Tests.Indicators
                 Value = value,
                 Placement = placement,
                 IsDirectionReversed = isDirectionReversed,
-                Content = range
+                Content = range,
             };
 
             ImageAssert.AreEqual(GetFileName(range), gauge);
@@ -84,7 +84,7 @@ namespace Gu.Wpf.Gauges.Tests.Indicators
             var range = new LinearIndicator
             {
                 Value = value,
-                Style = StyleHelper.DefaultStyle<LinearIndicator>()
+                Style = StyleHelper.DefaultStyle<LinearIndicator>(),
             };
 
             var gauge = new LinearGauge
@@ -95,7 +95,7 @@ namespace Gu.Wpf.Gauges.Tests.Indicators
                 Placement = placement,
                 IsDirectionReversed = isDirectionReversed,
                 Content = range,
-                Style = StyleHelper.DefaultStyle<LinearGauge>()
+                Style = StyleHelper.DefaultStyle<LinearGauge>(),
             };
 
             gauge.Arrange(new Rect(new Size(10, 10)));
