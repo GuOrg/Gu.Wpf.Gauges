@@ -14,10 +14,10 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
-  <!--<PropertyGroup>
+  <PropertyGroup>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\Gu.Wpf.Gauges.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>-->
+  </PropertyGroup>
 
   <PropertyGroup>
     <Version>0.2.0.0</Version>
