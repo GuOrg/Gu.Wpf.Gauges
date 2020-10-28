@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gu.Wpf.FlipView\Gu.Wpf.Gauges.csproj" />
+    <ProjectReference Include="..\Gu.Wpf.Gauges\Gu.Wpf.Gauges.csproj" />
   </ItemGroup>
 
   <ItemGroup>
