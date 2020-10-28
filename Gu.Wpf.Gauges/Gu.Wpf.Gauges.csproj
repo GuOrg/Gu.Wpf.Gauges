@@ -1,226 +1,84 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{02C21720-28AF-4A11-8B4E-AD4D71668883}</ProjectGuid>
     <OutputType>library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Gu.Wpf.Gauges</RootNamespace>
-    <AssemblyName>Gu.Wpf.Gauges</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
+    <UseWpf>true</UseWpf>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <CodeAnalysisRuleSet>Gu.Wpf.Gauges.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>Gu.Wpf.Gauges.ruleset</CodeAnalysisRuleSet>
+
+  <PropertyGroup>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+  <!--<PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\Gu.Wpf.Gauges.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>-->
+
+  <PropertyGroup>
+    <Version>0.2.0.0</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Authors>Johan Larsson, Erik Wahlström</Authors>
+    <Description>A flip view that works on Win7. Handles mouse &amp; touch.</Description>
+    <NeutralLanguage>en</NeutralLanguage>
+    <RepositoryUrl>https://github.com/GuOrg/Gu.Wpf.Gauges</RepositoryUrl>
+    <PackageReleaseNotes>
+
+    </PackageReleaseNotes>
+    <PackageTags>xaml wpf Gauge</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
+    <AdditionalFiles Include="PublicAPI.Shipped.txt" />
+    <AdditionalFiles Include="PublicAPI.Unshipped.txt" />
   </ItemGroup>
+
   <ItemGroup>
-    <Page Include="Themes\Angular.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Linear.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <PackageReference Include="Gu.Analyzers" Version="1.8.1" PrivateAssets="all" />
+    <PackageReference Include="IDisposableAnalyzers" Version="3.4.3" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.3.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.0.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.0-beta-20204-02" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="16.8.51" PrivateAssets="all" />
+    <PackageReference Include="PropertyChangedAnalyzers" Version="3.2.1" PrivateAssets="all" />
+    <PackageReference Include="ReflectionAnalyzers" Version="0.1.21-dev" PrivateAssets="all" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.164" PrivateAssets="all" />
+    <PackageReference Include="WpfAnalyzers" Version="3.2.0" PrivateAssets="all" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Angle.cs" />
-    <Compile Include="AngleTypeConverter.cs" />
-    <Compile Include="AngularAxis.cs" />
-    <Compile Include="Axis.cs" />
-    <Compile Include="Defaults.cs" />
-    <Compile Include="Gauge.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Gauge.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Internals\EmptyEnumerator.cs" />
-    <Compile Include="Indicators\ValueIndicator.cs" />
-    <Compile Include="Internals\Extensions\AngleExtention.cs" />
-    <Compile Include="Internals\Extensions\DependencyObjectExt.cs" />
-    <Compile Include="Internals\DoubleUtil.cs" />
-    <Compile Include="Internals\Extensions\EnumerableExt.cs" />
-    <Compile Include="Internals\Interpolate.cs" />
-    <Compile Include="Internals\Interpolation.cs" />
-    <Compile Include="Internals\NameOf.cs" />
-    <Compile Include="Internals\SingleChildEnumerator.cs" />
-    <Compile Include="Internals\ThicknessExt.cs" />
-    <Compile Include="Internals\TickBarPlacementExt.cs" />
-    <Compile Include="Internals\ValidateEnums.cs" />
-    <Compile Include="Internals\WeakKeyValuePair.cs" />
-    <Compile Include="Indicators\AngularIndicator.cs" />
-    <Compile Include="Indicators\Indicator.cs" />
-    <Compile Include="LinearGauge.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LinearGauge.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Primitives\Angular\AngularBlockBar.cs" />
-    <Compile Include="AngularGauge.cs" />
-    <Compile Include="Primitives\Angular\AngularGeometryBar.cs" />
-    <Compile Include="Primitives\Angular\AngularTextPosition.cs" />
-    <Compile Include="Primitives\Angular\Arc.cs" />
-    <Compile Include="Primitives\Angular\AngularTick.cs" />
-    <Compile Include="Primitives\Angular\TickShape.cs" />
-    <Compile Include="Primitives\Angular\DefaultAngularTextPosition.cs" />
-    <Compile Include="Primitives\Angular\AngularGeometryTickBar.cs" />
-    <Compile Include="Primitives\GeometryBar.cs" />
-    <Compile Include="Primitives\GeometryTickBar.cs" />
-    <Compile Include="Primitives\HorizontalTextAlignment.cs" />
-    <Compile Include="Primitives\Linear\DefaultLinearTextPosition.cs" />
-    <Compile Include="Primitives\Linear\ExplicitLinearTextPosition.cs" />
-    <Compile Include="Primitives\Linear\LinearGeometryBar.cs" />
-    <Compile Include="Primitives\Linear\LinearGeometryTickBar.cs" />
-    <Compile Include="Primitives\Linear\LinearLineBar.cs" />
-    <Compile Include="Primitives\Linear\LinearTextBar.cs" />
-    <Compile Include="Primitives\Angular\Ring.cs" />
-    <Compile Include="Primitives\Linear\LinearTextPosition.cs" />
-    <Compile Include="Primitives\Linear\LinearTick.cs" />
-    <Compile Include="Primitives\Linear\LinearTickBar.cs" />
-    <Compile Include="Primitives\Linear\Overflow.cs" />
-    <Compile Include="Primitives\LineBar.cs" />
-    <Compile Include="Primitives\TickBarBase.cs" />
-    <Compile Include="Gauge.cs" />
-    <Compile Include="ArcInfo.cs" />
-    <Compile Include="Dimensions\DimensionArrowHead.cs" />
-    <Compile Include="Dimensions\DimensionLine.cs" />
-    <Compile Include="Dimensions\LineExt.cs" />
-    <Compile Include="Dimensions\TwoPointDimension.cs" />
-    <Compile Include="Internals\Extensions\DrawingContextExt.cs" />
-    <Compile Include="Internals\Horizontal.cs" />
-    <Compile Include="Internals\Line.cs" />
-    <Compile Include="Primitives\Linear\LinearDotBar.cs" />
-    <Compile Include="Internals\Extensions\PointExt.cs" />
-    <Compile Include="Internals\Extensions\RectExt.cs" />
-    <Compile Include="Internals\Extensions\SizeExt.cs" />
-    <Compile Include="Internals\RotateTransformExt.cs" />
-    <Compile Include="Internals\Ticks.cs" />
-    <Compile Include="Primitives\Angular\AngularBar.cs" />
-    <Compile Include="Primitives\Angular\AngularTextBar.cs" />
-    <Compile Include="Primitives\Angular\AngularTickBar.cs" />
-    <Compile Include="Primitives\Linear\LinearBlockBar.cs" />
-    <Compile Include="Internals\Extensions\VectorExt.cs" />
-    <Compile Include="Internals\Vertical.cs" />
-    <Compile Include="Indicators\AngularRange.cs" />
-    <Compile Include="Indicators\LinearIndicator.cs" />
-    <Compile Include="Indicators\LinearRange.cs" />
-    <Compile Include="LinearAxis.cs" />
-    <Compile Include="LinearGauge.cs" />
-    <Compile Include="Primitives\TextTickBar.cs" />
-    <Compile Include="Primitives\TickText.cs" />
-    <Compile Include="Primitives\VerticalTextAlignment.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="Primitives\Angular\TextOrientation.cs" />
-    <Compile Include="Internals\WeakDictionary.cs" />
-    <Compile Include="TickSnap.cs" />
-    <None Include="Gu.Wpf.Gauges.ruleset" />
-    <None Include="paket.references" />
-    <AppDesigner Include="Properties\" />
-    <None Include="paket.template" />
+    <PackageDownload Include="Microsoft.NETCore.App.Ref" Version="[3.1.0]" />
+    <PackageReference Include="TunnelVisionLabs.ReferenceAssemblyAnnotator" Version="1.0.0-alpha.154" PrivateAssets="all" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
   <ItemGroup>
-    <Content Include="LinearGauge.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>LinearGauge.generated.cs</LastGenOutput>
-    </Content>
-    <Content Include="Gauge.tt">
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+
+    <None Update="Gauge.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Gauge.generated.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <Import Project="..\.paket\paket.targets" />
-  <ItemGroup>
-    <Analyzer Include="..\packages\analyzers\Gu.Analyzers\analyzers\dotnet\cs\Gu.Analyzers.dll">
-      <Paket>True</Paket>
-    </Analyzer>
-    <Analyzer Include="..\packages\analyzers\Gu.Analyzers\analyzers\dotnet\cs\Gu.Roslyn.Extensions.dll">
-      <Paket>True</Paket>
-    </Analyzer>
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\packages\analyzers\StyleCop.Analyzers\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll">
-      <Paket>True</Paket>
-    </Analyzer>
-    <Analyzer Include="..\packages\analyzers\StyleCop.Analyzers\analyzers\dotnet\cs\StyleCop.Analyzers.dll">
-      <Paket>True</Paket>
-    </Analyzer>
-    <Analyzer Include="..\packages\analyzers\StyleCop.Analyzers\analyzers\dotnet\cs\de-DE\StyleCop.Analyzers.resources.dll">
-      <Paket>True</Paket>
-    </Analyzer>
-    <Analyzer Include="..\packages\analyzers\StyleCop.Analyzers\analyzers\dotnet\cs\en-GB\StyleCop.Analyzers.resources.dll">
-      <Paket>True</Paket>
-    </Analyzer>
-    <Analyzer Include="..\packages\analyzers\StyleCop.Analyzers\analyzers\dotnet\cs\es-MX\StyleCop.Analyzers.resources.dll">
-      <Paket>True</Paket>
-    </Analyzer>
-    <Analyzer Include="..\packages\analyzers\StyleCop.Analyzers\analyzers\dotnet\cs\fr-FR\StyleCop.Analyzers.resources.dll">
-      <Paket>True</Paket>
-    </Analyzer>
-    <Analyzer Include="..\packages\analyzers\StyleCop.Analyzers\analyzers\dotnet\cs\pl-PL\StyleCop.Analyzers.resources.dll">
-      <Paket>True</Paket>
-    </Analyzer>
-    <Analyzer Include="..\packages\analyzers\StyleCop.Analyzers\analyzers\dotnet\cs\pt-BR\StyleCop.Analyzers.resources.dll">
-      <Paket>True</Paket>
-    </Analyzer>
-    <Analyzer Include="..\packages\analyzers\StyleCop.Analyzers\analyzers\dotnet\cs\ru-RU\StyleCop.Analyzers.resources.dll">
-      <Paket>True</Paket>
-    </Analyzer>
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\packages\analyzers\WpfAnalyzers\analyzers\dotnet\cs\Gu.Roslyn.Extensions.dll">
-      <Paket>True</Paket>
-    </Analyzer>
-    <Analyzer Include="..\packages\analyzers\WpfAnalyzers\analyzers\dotnet\cs\WpfAnalyzers.dll">
-      <Paket>True</Paket>
-    </Analyzer>
+    </None>
+
+    <Compile Update="Gauge.generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Gauge.tt</DependentUpon>
+    </Compile>
+
+    <None Update="LinearGauge.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LinearGauge.generated.cs</LastGenOutput>
+    </None>
+
+    <Compile Update="LinearGauge.generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LinearGauge.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
