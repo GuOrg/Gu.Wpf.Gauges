@@ -5,6 +5,11 @@
     <CodeAnalysisRuleSet>Gu.Wpf.Gauges.Tests.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\Gu.Wpf.Gauges.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <EmbeddedResource Include="**\*.png" />
   </ItemGroup>
