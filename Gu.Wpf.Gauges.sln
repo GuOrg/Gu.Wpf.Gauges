@@ -5,14 +5,16 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 15.0.0.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".sln", ".sln", "{DC561C28-FEEE-410B-B299-F5FC218E2634}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
 		appveyor.yml = appveyor.yml
 		azure-pipelines.yml = azure-pipelines.yml
-		.paket\Readme.paket.md = .paket\Readme.paket.md
+		Settings.XamlStyler = Settings.XamlStyler
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Gauges", "Gu.Wpf.Gauges\Gu.Wpf.Gauges.csproj", "{02C21720-28AF-4A11-8B4E-AD4D71668883}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gu.Wpf.Gauges", "Gu.Wpf.Gauges\Gu.Wpf.Gauges.csproj", "{02C21720-28AF-4A11-8B4E-AD4D71668883}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gu.Wpf.Gauges.Sample", "Gu.Wpf.Gauges.Sample\Gu.Wpf.Gauges.Sample.csproj", "{89497D9C-CE65-4104-B64B-E4F3ECE49A51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gu.Wpf.Gauges.Sample", "Gu.Wpf.Gauges.Sample\Gu.Wpf.Gauges.Sample.csproj", "{89497D9C-CE65-4104-B64B-E4F3ECE49A51}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gu.Wpf.Gauges.Tests", "Gu.Wpf.Gauges.Tests\Gu.Wpf.Gauges.Tests.csproj", "{906C5B9F-C44D-4E32-B363-39A23462EE66}"
 EndProject
