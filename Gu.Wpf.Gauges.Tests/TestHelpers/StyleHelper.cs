@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Gauges.Tests
+namespace Gu.Wpf.Gauges.Tests
 {
     using System;
     using System.Collections;
@@ -25,26 +25,20 @@
         private static Style ReadDefaultStyle(Type type)
         {
             var assembly = type.Assembly;
-            using (var resourceReader = new ResourceReader(assembly.GetManifestResourceStream(assembly.GetManifestResourceNames().Single())))
+            using var resourceReader = new ResourceReader(assembly.GetManifestResourceStream(assembly.GetManifestResourceNames().Single()));
+            foreach (DictionaryEntry entry in resourceReader)
             {
-                foreach (DictionaryEntry entry in resourceReader)
+                using var reader = new Baml2006Reader((Stream)entry.Value);
+                using var writer = new XamlObjectWriter(reader.SchemaContext);
+                while (reader.Read())
                 {
-                    using (var reader = new Baml2006Reader((Stream)entry.Value))
-                    {
-                        using (var writer = new XamlObjectWriter(reader.SchemaContext))
-                        {
-                            while (reader.Read())
-                            {
-                                writer.WriteNode(reader);
-                            }
+                    writer.WriteNode(reader);
+                }
 
-                            var resourceDictionary = (ResourceDictionary)writer.Result;
-                            if (resourceDictionary.Contains(type))
-                            {
-                                return (Style)resourceDictionary[type];
-                            }
-                        }
-                    }
+                var resourceDictionary = (ResourceDictionary)writer.Result;
+                if (resourceDictionary.Contains(type))
+                {
+                    return (Style)resourceDictionary[type];
                 }
             }
 
