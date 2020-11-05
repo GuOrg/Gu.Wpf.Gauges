@@ -61,9 +61,9 @@ namespace Gu.Wpf.Gauges
             get
             {
                 var geometry = new StreamGeometry
-                               {
-                                   FillRule = FillRule.EvenOdd,
-                               };
+                {
+                    FillRule = FillRule.EvenOdd,
+                };
 
                 using (var context = geometry.Open())
                 {
