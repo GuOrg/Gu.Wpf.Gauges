@@ -142,7 +142,7 @@ namespace Gu.Wpf.Gauges
                     FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
                     (d, e) => ((GeometryBar)d).pen = null));
 
-        private Pen pen;
+        private Pen? pen;
 
         protected GeometryBar()
         {
