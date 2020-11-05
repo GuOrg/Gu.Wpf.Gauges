@@ -52,7 +52,7 @@ namespace Gu.Wpf.Gauges
         {
             get
             {
-                if (this.InternalChild == null)
+                if (this.InternalChild is null)
                 {
                     return EmptyEnumerator.Instance;
                 }
@@ -92,7 +92,7 @@ namespace Gu.Wpf.Gauges
         {
             get
             {
-                if (this.internalVisual == null)
+                if (this.internalVisual is null)
                 {
                     this.rotateTransform = new RotateTransform();
                     this.internalVisual = new ContainerVisual
@@ -132,7 +132,7 @@ namespace Gu.Wpf.Gauges
         protected override Size ArrangeOverride(Size arrangeSize)
         {
             var child = this.InternalChild;
-            if (child == null)
+            if (child is null)
             {
                 return arrangeSize;
             }

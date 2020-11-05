@@ -76,7 +76,7 @@
         private static void OnPointChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             var dl = o as LinearDimension;
-            if (dl == null || IsNan(dl.P1, dl.P2))
+            if (dl is null || IsNan(dl.P1, dl.P2))
             {
                 return;
             }
@@ -97,7 +97,7 @@
         private static void OnOffsetPointChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             var dl = o as LinearDimension;
-            if (dl == null)
+            if (dl is null)
             {
                 return;
             }
@@ -109,7 +109,7 @@
         private static void OnOffsetDirectionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             var dl = o as LinearDimension;
-            if (dl == null)
+            if (dl is null)
             {
                 return;
             }
@@ -121,7 +121,7 @@
         private static void OnFlowDirectionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             var dl = o as LinearDimension;
-            if (dl == null || IsNan(dl.OffsetDirection) || dl.hasExplicitOffsetDirection)
+            if (dl is null || IsNan(dl.OffsetDirection) || dl.hasExplicitOffsetDirection)
             {
                 return;
             }
@@ -137,7 +137,7 @@
         private static void OnOffsetChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             var dl = o as LinearDimension;
-            if (dl?.OffsetPoint == null || IsNan(dl.P1, dl.P2, dl.OffsetPoint.Value) || IsNan(dl.OffsetDirection))
+            if (dl?.OffsetPoint is null || IsNan(dl.P1, dl.P2, dl.OffsetPoint.Value) || IsNan(dl.OffsetDirection))
             {
                 return;
             }
@@ -171,7 +171,7 @@
             Point op = d < 0
                 ? dl.P2
                 : dl.P1;
-            if (dl.OffsetPoint == null)
+            if (dl.OffsetPoint is null)
             {
                 return;
             }

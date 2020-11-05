@@ -21,7 +21,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
             tickFrequencies: new[] { 0, 5.0 },
             tickCollections: new[] { null, (DoubleCollection)new DoubleCollection(new[] { 1.0, 2, 6 }).GetCurrentValueAsFrozen() },
             paddings: new[] { default(Thickness) })
-                .Where(x => !(x.TickFrequency <= 0 && x.Ticks == null))
+                .Where(x => !(x.TickFrequency <= 0 && x.Ticks is null))
                 .ToArray();
 
         private static readonly IReadOnlyList<TestCase> RenderWithValueCases = TestCase.Create(
@@ -31,7 +31,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
                 tickFrequencies: new[] { 0.0 },
                 tickCollections: new[] { null, (DoubleCollection)new DoubleCollection(new[] { 1.0, 2, 6 }).GetCurrentValueAsFrozen() },
                 paddings: new[] { default(Thickness) })
-            .Where(x => !(x.TickFrequency <= 0 && x.Ticks == null))
+            .Where(x => !(x.TickFrequency <= 0 && x.Ticks is null))
             .ToArray();
 
         [TestCaseSource(nameof(RenderCases))]

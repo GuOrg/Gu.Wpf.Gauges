@@ -97,7 +97,7 @@ namespace Gu.Wpf.Gauges
         protected override void OnRender(DrawingContext dc)
         {
             var value = this.EffectiveValue;
-            if ((this.Pen == null && this.Fill == null) ||
+            if ((this.Pen is null && this.Fill is null) ||
                 DoubleUtil.AreClose(value, this.Minimum))
             {
                 return;

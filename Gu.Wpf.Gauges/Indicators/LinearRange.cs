@@ -65,7 +65,7 @@
             }
 
             var child = this.GetVisualChild(0) as UIElement;
-            if (child == null)
+            if (child is null)
             {
                 return arrangeBounds;
             }

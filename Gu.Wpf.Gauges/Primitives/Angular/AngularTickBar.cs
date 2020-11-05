@@ -64,7 +64,7 @@ namespace Gu.Wpf.Gauges
         {
             if (DoubleUtil.LessThanOrClose(this.Thickness, 0) ||
                 double.IsInfinity(this.Thickness) ||
-                this.AllTicks == null)
+                this.AllTicks is null)
             {
                 return default(Size);
             }
@@ -94,8 +94,8 @@ namespace Gu.Wpf.Gauges
 
         protected override void OnRender(DrawingContext dc)
         {
-            if ((this.Pen == null && this.Fill == null) ||
-                this.AllTicks == null ||
+            if ((this.Pen is null && this.Fill is null) ||
+                this.AllTicks is null ||
                 DoubleUtil.AreClose(this.EffectiveValue, this.Minimum))
             {
                 return;

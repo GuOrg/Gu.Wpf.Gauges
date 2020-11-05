@@ -79,8 +79,8 @@
 
         protected override void OnRender(DrawingContext dc)
         {
-            if ((this.Pen == null && this.Fill == null) ||
-                this.AllTicks == null ||
+            if ((this.Pen is null && this.Fill is null) ||
+                this.AllTicks is null ||
                 DoubleUtil.AreClose(this.EffectiveValue, this.Minimum))
             {
                 return;

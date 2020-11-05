@@ -116,7 +116,7 @@
 
         protected override void OnRender(DrawingContext dc)
         {
-            if ((this.Pen == null && this.Fill == null) ||
+            if ((this.Pen is null && this.Fill is null) ||
                 double.IsNaN(this.Value))
             {
                 return;

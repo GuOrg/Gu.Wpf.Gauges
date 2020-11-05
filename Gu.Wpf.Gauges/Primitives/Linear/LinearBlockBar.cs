@@ -151,7 +151,7 @@
             }
 
             if (this.Value == this.Minimum ||
-                (this.Fill == null && this.Stroke == null))
+                (this.Fill is null && this.Stroke is null))
             {
                 return;
             }

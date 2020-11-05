@@ -11,7 +11,7 @@ namespace Gu.Wpf.Gauges
 
         public IEnumerator<WeakKeyValuePair<TKey, TValue>> GetEnumerator()
         {
-            this.inner.RemoveAll(x => x.Key == null);
+            this.inner.RemoveAll(x => x.Key is null);
             return this.inner.GetEnumerator();
         }
 
@@ -32,7 +32,7 @@ namespace Gu.Wpf.Gauges
                 this.inner.Add(new WeakKeyValuePair<TKey, TValue>(key, value));
             }
 
-            this.inner.RemoveAll(x => x.Key == null);
+            this.inner.RemoveAll(x => x.Key is null);
         }
 
         public void Clear()

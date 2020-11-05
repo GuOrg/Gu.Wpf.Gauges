@@ -103,7 +103,7 @@
                         throw new ArgumentOutOfRangeException();
                 }
 
-                if (tickText.TranslateTransform == null)
+                if (tickText.TranslateTransform is null)
                 {
                     return;
                 }
@@ -145,7 +145,7 @@
                         throw new ArgumentOutOfRangeException();
                 }
 
-                if (tickText.TranslateTransform == null)
+                if (tickText.TranslateTransform is null)
                 {
                     return;
                 }

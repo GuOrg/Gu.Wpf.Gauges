@@ -24,13 +24,13 @@
         private static void OnEnumSourceChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             var itemsControl = o as System.Windows.Controls.ItemsControl;
-            if (itemsControl == null)
+            if (itemsControl is null)
             {
                 return;
             }
 
             var type = e.NewValue as Type;
-            if (type == null)
+            if (type is null)
             {
                 return;
             }

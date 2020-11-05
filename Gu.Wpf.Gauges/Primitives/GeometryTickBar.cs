@@ -246,7 +246,7 @@ namespace Gu.Wpf.Gauges
         {
             get
             {
-                if (this.pen == null)
+                if (this.pen is null)
                 {
                     if (this.CanCreatePen)
                     {
@@ -289,7 +289,7 @@ namespace Gu.Wpf.Gauges
         protected override void OnRender(DrawingContext dc)
         {
             var geometry = this.DefiningGeometry;
-            if (geometry == null ||
+            if (geometry is null ||
                 ReferenceEquals(geometry, Geometry.Empty))
             {
                 return;

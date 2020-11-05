@@ -89,8 +89,8 @@
 
         protected override void OnRender(DrawingContext dc)
         {
-            if (this.Foreground == null ||
-                this.AllTexts == null ||
+            if (this.Foreground is null ||
+                this.AllTexts is null ||
                 this.AllTexts.Count == 0)
             {
                 return;
@@ -115,7 +115,7 @@
 
         protected override void UpdateTexts()
         {
-            if (this.AllTicks == null || this.AllTicks.Count == 0)
+            if (this.AllTicks is null || this.AllTicks.Count == 0)
             {
                 this.AllTexts = null;
                 return;

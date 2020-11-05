@@ -331,7 +331,7 @@ namespace Gu.Wpf.Gauges
             get
             {
                 var strokeThickness = this.StrokeThickness;
-                return (this.Stroke == null) || DoubleUtil.IsNaN(strokeThickness) || DoubleUtil.IsZero(strokeThickness);
+                return (this.Stroke is null) || DoubleUtil.IsNaN(strokeThickness) || DoubleUtil.IsZero(strokeThickness);
             }
         }
 
@@ -339,7 +339,7 @@ namespace Gu.Wpf.Gauges
         {
             get
             {
-                if (this.pen == null)
+                if (this.pen is null)
                 {
                     if (!this.CanCreatePen)
                     {
@@ -380,7 +380,7 @@ namespace Gu.Wpf.Gauges
         protected override void OnRender(DrawingContext dc)
         {
             var geometry = this.DefiningGeometry;
-            if (geometry == null ||
+            if (geometry is null ||
                 ReferenceEquals(geometry, Geometry.Empty))
             {
                 return;

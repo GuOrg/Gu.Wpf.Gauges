@@ -109,7 +109,7 @@ namespace Gu.Wpf.Gauges.Tests.Primitives.Linear
 
         private static string GetFileName(LinearTextBar tickBar)
         {
-            if (tickBar.Ticks == null &&
+            if (tickBar.Ticks is null &&
                 DoubleUtil.AreClose(tickBar.TickFrequency, 0))
             {
                 return $"LinearTextBar_Placement_{tickBar.Placement}_Empty.png";

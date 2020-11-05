@@ -39,7 +39,7 @@
         private static void OnEndPointChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             var l = o as System.Windows.Shapes.Line;
-            if (l == null)
+            if (l is null)
             {
                 return;
             }
@@ -52,7 +52,7 @@
         private static void OnStartPointChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
         {
             var l = o as System.Windows.Shapes.Line;
-            if (l == null)
+            if (l is null)
             {
                 return;
             }
