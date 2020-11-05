@@ -8,58 +8,43 @@ namespace Gu.Wpf.Gauges
 
     public abstract class GeometryBar : FrameworkElement
     {
-        /// <summary>
-        /// Identifies the <see cref="P:LinearGeometryBar.Value" /> dependency property.
-        /// </summary>
-        /// <returns>
-        /// The identifier for the <see cref="P:LinearGeometryBar.Value" /> dependency property.
-        /// </returns>
+        /// <summary>Identifies the <see cref="Value"/> dependency property.</summary>
         public static readonly DependencyProperty ValueProperty = Gauge.ValueProperty.AddOwner(
             typeof(GeometryBar),
             new FrameworkPropertyMetadata(
                 double.NaN,
                 FrameworkPropertyMetadataOptions.AffectsRender,
-                OnValueChanged));
+                (d, e) => ((GeometryBar)d).OnValueChanged((double)e.OldValue, (double)e.NewValue)));
 
-        /// <summary>
-        /// Identifies the <see cref="P:Bar.Minimum" /> dependency property.
-        /// </summary>
-        /// <returns>
-        /// The identifier for the <see cref="P:Bar.Minimum" /> dependency property.
-        /// </returns>
+        /// <summary>Identifies the <see cref="Minimum"/> dependency property.</summary>
         public static readonly DependencyProperty MinimumProperty = Gauge.MinimumProperty.AddOwner(
             typeof(GeometryBar),
             new FrameworkPropertyMetadata(
                 0.0,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
-        /// <summary>
-        /// Identifies the <see cref="P:Bar.Maximum" /> dependency property.
-        /// </summary>
-        /// <returns>
-        /// The identifier for the <see cref="P:Bar.Maximum" /> dependency property.
-        /// </returns>
+        /// <summary>Identifies the <see cref="Maximum"/> dependency property.</summary>
         public static readonly DependencyProperty MaximumProperty = Gauge.MaximumProperty.AddOwner(
             typeof(GeometryBar),
             new FrameworkPropertyMetadata(
                 1.0,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
-        /// <summary>
-        /// Identifies the <see cref="P:Bar.IsDirectionReversed" /> dependency property.
-        /// </summary>
+        /// <summary>Identifies the <see cref="IsDirectionReversed"/> dependency property.</summary>
         public static readonly DependencyProperty IsDirectionReversedProperty = Gauge.IsDirectionReversedProperty.AddOwner(
             typeof(GeometryBar),
             new FrameworkPropertyMetadata(
                 false,
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
+        /// <summary>Identifies the <see cref="Fill"/> dependency property.</summary>
         public static readonly DependencyProperty FillProperty = Shape.FillProperty.AddOwner(
             typeof(GeometryBar),
             new FrameworkPropertyMetadata(
                 default(Brush),
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
+        /// <summary>Identifies the <see cref="Stroke"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeProperty = Shape.StrokeProperty.AddOwner(
             typeof(GeometryBar),
             new FrameworkPropertyMetadata(
@@ -67,6 +52,7 @@ namespace Gu.Wpf.Gauges
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.SubPropertiesDoNotAffectRender,
                 (d, e) => ((GeometryBar)d).ResetPen()));
 
+        /// <summary>Identifies the <see cref="StrokeThickness"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeThicknessProperty = Shape.StrokeThicknessProperty.AddOwner(
             typeof(GeometryBar),
             new FrameworkPropertyMetadata(
@@ -74,9 +60,7 @@ namespace Gu.Wpf.Gauges
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
                 (d, e) => ((GeometryBar)d).pen = null));
 
-        /// <summary>
-        /// StrokeStartLineCap property
-        /// </summary>
+        /// <summary>Identifies the <see cref="StrokeStartLineCap"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeStartLineCapProperty = DependencyProperty.Register(
             nameof(StrokeStartLineCap),
             typeof(PenLineCap),
@@ -87,9 +71,7 @@ namespace Gu.Wpf.Gauges
                 (d, e) => ((GeometryBar)d).pen = null),
             ValidateEnums.IsPenLineCapValid);
 
-        /// <summary>
-        /// StrokeEndLineCap property
-        /// </summary>
+        /// <summary>Identifies the <see cref="StrokeEndLineCap"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeEndLineCapProperty = DependencyProperty.Register(
             nameof(StrokeEndLineCap),
             typeof(PenLineCap),
@@ -115,9 +97,7 @@ namespace Gu.Wpf.Gauges
                     (d, e) => ((GeometryBar)d).pen = null),
                 ValidateEnums.IsPenLineCapValid);
 
-        /// <summary>
-        /// StrokeLineJoin property
-        /// </summary>
+        /// <summary>Identifies the <see cref="StrokeLineJoin"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeLineJoinProperty =
             DependencyProperty.Register(
                 nameof(StrokeLineJoin),
@@ -129,9 +109,7 @@ namespace Gu.Wpf.Gauges
                     (d, e) => ((GeometryBar)d).pen = null),
                 ValidateEnums.IsPenLineJoinValid);
 
-        /// <summary>
-        /// StrokeMiterLimit property
-        /// </summary>
+        /// <summary>Identifies the <see cref="StrokeMiterLimit"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeMiterLimitProperty =
             DependencyProperty.Register(
                 nameof(StrokeMiterLimit),
@@ -142,9 +120,7 @@ namespace Gu.Wpf.Gauges
                     FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
                     (d, e) => ((GeometryBar)d).pen = null));
 
-        /// <summary>
-        /// StrokeDashOffset property
-        /// </summary>
+        /// <summary>Identifies the <see cref="StrokeDashOffset"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeDashOffsetProperty =
             DependencyProperty.Register(
                 nameof(StrokeDashOffset),
@@ -155,9 +131,7 @@ namespace Gu.Wpf.Gauges
                     FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
                     (d, e) => ((GeometryBar)d).pen = null));
 
-        /// <summary>
-        /// StrokeDashArray property
-        /// </summary>
+        /// <summary>Identifies the <see cref="StrokeDashArray"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeDashArrayProperty =
             DependencyProperty.Register(
                 nameof(StrokeDashArray),
@@ -377,7 +351,7 @@ namespace Gu.Wpf.Gauges
             return new Size(strokeThickness, strokeThickness);
         }
 
-        protected override void OnRender(DrawingContext dc)
+        protected override void OnRender(DrawingContext drawingContext)
         {
             var geometry = this.DefiningGeometry;
             if (geometry is null ||
@@ -386,7 +360,7 @@ namespace Gu.Wpf.Gauges
                 return;
             }
 
-            dc.DrawGeometry(this.Fill, this.Pen, geometry);
+            drawingContext.DrawGeometry(this.Fill, this.Pen, geometry);
         }
 
         protected void ResetPen()
@@ -394,14 +368,11 @@ namespace Gu.Wpf.Gauges
             this.pen = null;
         }
 
-        [SuppressMessage("ReSharper", "UnusedParameter.Global")]
+        /// <summary>This method is invoked when the <see cref="ValueProperty"/> changes.</summary>
+        /// <param name="oldValue">The old value of <see cref="ValueProperty"/>.</param>
+        /// <param name="newValue">The new value of <see cref="ValueProperty"/>.</param>
         protected virtual void OnValueChanged(double oldValue, double newValue)
         {
-        }
-
-        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            ((GeometryBar)d).OnValueChanged((double)e.OldValue, (double)e.NewValue);
         }
     }
 }

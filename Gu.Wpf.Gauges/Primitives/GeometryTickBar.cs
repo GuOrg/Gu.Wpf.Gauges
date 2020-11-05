@@ -7,12 +7,14 @@ namespace Gu.Wpf.Gauges
 
     public abstract class GeometryTickBar : TickBarBase
     {
+        /// <summary>Identifies the <see cref="Fill"/> dependency property.</summary>
         public static readonly DependencyProperty FillProperty = Shape.FillProperty.AddOwner(
             typeof(GeometryTickBar),
             new FrameworkPropertyMetadata(
                 default(Brush),
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
+        /// <summary>Identifies the <see cref="Stroke"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeProperty = Shape.StrokeProperty.AddOwner(
             typeof(GeometryTickBar),
             new FrameworkPropertyMetadata(
@@ -20,6 +22,7 @@ namespace Gu.Wpf.Gauges
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.SubPropertiesDoNotAffectRender,
                 (d, e) => ((GeometryTickBar)d).ResetPen()));
 
+        /// <summary>Identifies the <see cref="StrokeThickness"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeThicknessProperty = Shape.StrokeThicknessProperty.AddOwner(
             typeof(GeometryTickBar),
             new FrameworkPropertyMetadata(
@@ -27,9 +30,7 @@ namespace Gu.Wpf.Gauges
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
                 (d, e) => ((GeometryTickBar)d).pen = null));
 
-        /// <summary>
-        /// StrokeStartLineCap property
-        /// </summary>
+        /// <summary>Identifies the <see cref="StrokeStartLineCap"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeStartLineCapProperty = DependencyProperty.Register(
             nameof(StrokeStartLineCap),
             typeof(PenLineCap),
@@ -40,9 +41,7 @@ namespace Gu.Wpf.Gauges
                 (d, e) => ((GeometryTickBar)d).pen = null),
             ValidateEnums.IsPenLineCapValid);
 
-        /// <summary>
-        /// StrokeEndLineCap property
-        /// </summary>
+        /// <summary>Identifies the <see cref="StrokeEndLineCap"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeEndLineCapProperty = DependencyProperty.Register(
             nameof(StrokeEndLineCap),
             typeof(PenLineCap),
@@ -53,9 +52,7 @@ namespace Gu.Wpf.Gauges
                 (d, e) => ((GeometryTickBar)d).pen = null),
             ValidateEnums.IsPenLineCapValid);
 
-        /// <summary>
-        /// StrokeDashCap property
-        /// </summary>
+        /// <summary>Identifies the <see cref="StrokeDashCap"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeDashCapProperty =
             DependencyProperty.Register(
                 nameof(StrokeDashCap),
@@ -67,9 +64,7 @@ namespace Gu.Wpf.Gauges
                     (d, e) => ((GeometryTickBar)d).pen = null),
                 ValidateEnums.IsPenLineCapValid);
 
-        /// <summary>
-        /// StrokeLineJoin property
-        /// </summary>
+        /// <summary>Identifies the <see cref="StrokeLineJoin"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeLineJoinProperty =
             DependencyProperty.Register(
                 nameof(StrokeLineJoin),
@@ -81,9 +76,7 @@ namespace Gu.Wpf.Gauges
                     (d, e) => ((GeometryTickBar)d).pen = null),
                 ValidateEnums.IsPenLineJoinValid);
 
-        /// <summary>
-        /// StrokeMiterLimit property
-        /// </summary>
+        /// <summary>Identifies the <see cref="StrokeMiterLimit"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeMiterLimitProperty =
             DependencyProperty.Register(
                 nameof(StrokeMiterLimit),
@@ -94,9 +87,7 @@ namespace Gu.Wpf.Gauges
                     FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
                     (d, e) => ((GeometryTickBar)d).pen = null));
 
-        /// <summary>
-        /// StrokeDashOffset property
-        /// </summary>
+        /// <summary>Identifies the <see cref="StrokeDashOffset"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeDashOffsetProperty =
             DependencyProperty.Register(
                 nameof(StrokeDashOffset),
@@ -107,9 +98,7 @@ namespace Gu.Wpf.Gauges
                     FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
                     (d, e) => ((GeometryTickBar)d).pen = null));
 
-        /// <summary>
-        /// StrokeDashArray property
-        /// </summary>
+        /// <summary>Identifies the <see cref="StrokeDashArray"/> dependency property.</summary>
         public static readonly DependencyProperty StrokeDashArrayProperty =
             DependencyProperty.Register(
                 nameof(StrokeDashArray),
@@ -120,7 +109,7 @@ namespace Gu.Wpf.Gauges
                     FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender,
                     (d, e) => ((GeometryTickBar)d).pen = null));
 
-        private Pen pen;
+        private Pen? pen;
 
         protected GeometryTickBar()
         {
@@ -286,7 +275,7 @@ namespace Gu.Wpf.Gauges
             return new Size(strokeThickness, strokeThickness);
         }
 
-        protected override void OnRender(DrawingContext dc)
+        protected override void OnRender(DrawingContext drawingContext)
         {
             var geometry = this.DefiningGeometry;
             if (geometry is null ||
@@ -295,7 +284,7 @@ namespace Gu.Wpf.Gauges
                 return;
             }
 
-            dc.DrawGeometry(this.Fill, this.Pen, geometry);
+            drawingContext.DrawGeometry(this.Fill, this.Pen, geometry);
         }
 
         protected void ResetPen()

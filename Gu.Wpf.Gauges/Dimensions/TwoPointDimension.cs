@@ -10,6 +10,7 @@ namespace Gu.Wpf.Gauges
     {
 #pragma warning disable SA1202 // Elements must be ordered by access
 
+        /// <summary>Identifies the <see cref="P1"/> dependency property.</summary>
         public static readonly DependencyProperty P1Property = DependencyProperty.Register(
             nameof(P1),
             typeof(Point),
@@ -18,6 +19,7 @@ namespace Gu.Wpf.Gauges
                 new Point(double.NaN, double.NaN),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
+        /// <summary>Identifies the <see cref="P2"/> dependency property.</summary>
         public static readonly DependencyProperty P2Property = DependencyProperty.Register(
             nameof(P2),
             typeof(Point),
@@ -26,6 +28,7 @@ namespace Gu.Wpf.Gauges
                 new Point(double.NaN, double.NaN),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
+        /// <summary>Identifies the <see cref="OffsetPoint"/> dependency property.</summary>
         public static readonly DependencyProperty OffsetPointProperty = DependencyProperty.Register(
             nameof(OffsetPoint),
             typeof(Point?),
@@ -34,6 +37,7 @@ namespace Gu.Wpf.Gauges
                 new Point(double.NaN, double.NaN),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
+        /// <summary>Identifies the <see cref="Offset"/> dependency property.</summary>
         public static readonly DependencyProperty OffsetProperty = DependencyProperty.Register(
             nameof(Offset),
             typeof(double),
@@ -42,6 +46,7 @@ namespace Gu.Wpf.Gauges
                 12.0,
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
+        /// <summary>Identifies the <see cref="OffsetDirection"/> dependency property.</summary>
         public static readonly DependencyProperty OffsetDirectionProperty = DependencyProperty.Register(
             nameof(OffsetDirection),
             typeof(Vector),
@@ -50,6 +55,7 @@ namespace Gu.Wpf.Gauges
                 new Vector(double.NaN, double.NaN),
                 FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
+        /// <summary>Identifies the <see cref="Scale"/> dependency property.</summary>
         public static readonly DependencyProperty ScaleProperty = DependencyProperty.Register(
             nameof(Scale),
             typeof(double),
@@ -66,6 +72,7 @@ namespace Gu.Wpf.Gauges
                 default(Point),
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>Identifies the <see cref="DimensionLineP1"/> dependency property.</summary>
         public static readonly DependencyProperty DimensionLineP1Property =
             DimensionLineP1PropertyKey.DependencyProperty;
 
@@ -77,6 +84,7 @@ namespace Gu.Wpf.Gauges
                 default(Point),
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>Identifies the <see cref="DimensionLineP2"/> dependency property.</summary>
         public static readonly DependencyProperty DimensionLineP2Property =
             DimensionLineP2PropertyKey.DependencyProperty;
 
@@ -88,6 +96,7 @@ namespace Gu.Wpf.Gauges
                 default(Point),
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>Identifies the <see cref="BoundaryLine1P1"/> dependency property.</summary>
         public static readonly DependencyProperty BoundaryLine1P1Property =
             BoundaryLine1P1PropertyKey.DependencyProperty;
 
@@ -99,6 +108,7 @@ namespace Gu.Wpf.Gauges
                 default(Point),
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>Identifies the <see cref="BoundaryLine1P2"/> dependency property.</summary>
         public static readonly DependencyProperty BoundaryLine1P2Property =
             BoundaryLine1P2PropertyKey.DependencyProperty;
 
@@ -110,6 +120,7 @@ namespace Gu.Wpf.Gauges
                 default(Point),
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>Identifies the <see cref="BoundaryLine2P1"/> dependency property.</summary>
         public static readonly DependencyProperty BoundaryLine2P1Property =
             BoundaryLine2P1PropertyKey.DependencyProperty;
 
@@ -121,6 +132,7 @@ namespace Gu.Wpf.Gauges
                 default(Point),
                 FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>Identifies the <see cref="BoundaryLine2P2"/> dependency property.</summary>
         public static readonly DependencyProperty BoundaryLine2P2Property =
             BoundaryLine2P2PropertyKey.DependencyProperty;
 
@@ -133,6 +145,7 @@ namespace Gu.Wpf.Gauges
                     default(Vector),
                     FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>Identifies the <see cref="ArrowHead1Direction"/> dependency property.</summary>
         public static readonly DependencyProperty ArrowHead1DirectionProperty =
             ArrowHead1DirectionPropertyKey.DependencyProperty;
 
@@ -145,6 +158,7 @@ namespace Gu.Wpf.Gauges
                     default(Vector),
                     FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>Identifies the <see cref="ArrowHead2Direction"/> dependency property.</summary>
         public static readonly DependencyProperty ArrowHead2DirectionProperty =
             ArrowHead2DirectionPropertyKey.DependencyProperty;
 
@@ -181,7 +195,7 @@ namespace Gu.Wpf.Gauges
         [TypeConverter(typeof(PointConverter))]
         public Point? OffsetPoint
         {
-            get => (Point)this.GetValue(OffsetPointProperty);
+            get => (Point?)this.GetValue(OffsetPointProperty);
             set => this.SetValue(OffsetPointProperty, value);
         }
 
