@@ -7,8 +7,6 @@ namespace Gu.Wpf.Gauges
     /// </summary>
     public abstract class AngularGeometryTickBar : GeometryTickBar
     {
-#pragma warning disable SA1202 // Elements must be ordered by access
-
         public static readonly DependencyProperty ThicknessProperty = DependencyProperty.RegisterAttached(
             nameof(Thickness),
             typeof(double),
@@ -30,10 +28,10 @@ namespace Gu.Wpf.Gauges
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
-        /// Identifies the <see cref="P:LinearGeometryBar.Value" /> dependency property.
+        /// Identifies the <see cref="P:LinearGeometryBar.Value" />Â dependency property.
         /// </summary>
         /// <returns>
-        /// The identifier for the <see cref="P:LinearGeometryBar.Value" /> dependency property.
+        /// The identifier for the <see cref="P:LinearGeometryBar.Value" />Â dependency property.
         /// </returns>
         public static readonly DependencyProperty ValueProperty = Gauge.ValueProperty.AddOwner(
             typeof(AngularGeometryTickBar),
@@ -59,7 +57,6 @@ namespace Gu.Wpf.Gauges
                 CoerceOverflow));
 
         public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
-#pragma warning restore SA1202 // Elements must be ordered by access
 
         public double Thickness
         {

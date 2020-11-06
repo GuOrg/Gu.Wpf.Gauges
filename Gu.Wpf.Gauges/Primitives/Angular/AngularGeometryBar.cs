@@ -5,8 +5,6 @@ namespace Gu.Wpf.Gauges
 
     public abstract class AngularGeometryBar : GeometryBar
     {
-#pragma warning disable SA1202 // Elements must be ordered by access
-
         public static readonly DependencyProperty ThicknessProperty = DependencyProperty.RegisterAttached(
             nameof(Thickness),
             typeof(double),
@@ -45,7 +43,6 @@ namespace Gu.Wpf.Gauges
                 CoerceOverflow));
 
         public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
-#pragma warning restore SA1202 // Elements must be ordered by access
 
         public double Thickness
         {

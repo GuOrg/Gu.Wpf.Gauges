@@ -10,13 +10,11 @@ namespace Gu.Wpf.Gauges
 
     public class TickBarBase : FrameworkElement
     {
-#pragma warning disable SA1202 // Elements must be ordered by access
-
         /// <summary>
-        /// Identifies the <see cref="P:Bar.Minimum" /> dependency property.
+        /// Identifies the <see cref="P:Bar.Minimum" />Â dependency property.
         /// </summary>
         /// <returns>
-        /// The identifier for the <see cref="P:Bar.Minimum" /> dependency property.
+        /// The identifier for the <see cref="P:Bar.Minimum" />Â dependency property.
         /// </returns>
         public static readonly DependencyProperty MinimumProperty = Gauge.MinimumProperty.AddOwner(
             typeof(TickBarBase),
@@ -26,10 +24,10 @@ namespace Gu.Wpf.Gauges
                 (d, _) => ((TickBarBase)d).UpdateTicks()));
 
         /// <summary>
-        /// Identifies the <see cref="P:Bar.Maximum" /> dependency property.
+        /// Identifies the <see cref="P:Bar.Maximum" />Â dependency property.
         /// </summary>
         /// <returns>
-        /// The identifier for the <see cref="P:Bar.Maximum" /> dependency property.
+        /// The identifier for the <see cref="P:Bar.Maximum" />Â dependency property.
         /// </returns>
         public static readonly DependencyProperty MaximumProperty = Gauge.MaximumProperty.AddOwner(
             typeof(TickBarBase),
@@ -39,7 +37,7 @@ namespace Gu.Wpf.Gauges
                 (d, _) => ((TickBarBase)d).UpdateTicks()));
 
         /// <summary>
-        /// Identifies the <see cref="P:Bar.IsDirectionReversed" /> dependency property.
+        /// Identifies the <see cref="P:Bar.IsDirectionReversed" />Â dependency property.
         /// </summary>
         public static readonly DependencyProperty IsDirectionReversedProperty = Gauge.IsDirectionReversedProperty.AddOwner(
             typeof(TickBarBase),
@@ -48,7 +46,7 @@ namespace Gu.Wpf.Gauges
                 FrameworkPropertyMetadataOptions.AffectsRender | FrameworkPropertyMetadataOptions.Inherits));
 
         /// <summary>
-        /// Identifies the <see cref="P:Bar.TickFrequency" /> dependency property.
+        /// Identifies the <see cref="P:Bar.TickFrequency" />Â dependency property.
         /// </summary>
         public static readonly DependencyProperty TickFrequencyProperty = Slider.TickFrequencyProperty.AddOwner(
             typeof(TickBarBase),
@@ -67,7 +65,7 @@ namespace Gu.Wpf.Gauges
                 (d, _) => ((TickBarBase)d).UpdateTicks()));
 
         /// <summary>
-        /// Identifies the <see cref="P:Bar.Ticks" /> dependency property.
+        /// Identifies the <see cref="P:Bar.Ticks" />Â dependency property.
         /// </summary>
         public static readonly DependencyProperty TicksProperty = Slider.TicksProperty.AddOwner(
             typeof(TickBarBase),
@@ -94,8 +92,6 @@ namespace Gu.Wpf.Gauges
             new PropertyMetadata(
                 default(IEnumerable<double>),
                 OnExcludeTicksChanged));
-
-#pragma warning restore SA1202 // Elements must be ordered by access
 
         /// <summary>
         /// Gets or sets the <see cref="P:Bar.Minimum" />

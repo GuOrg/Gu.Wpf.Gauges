@@ -1,4 +1,4 @@
-﻿namespace Gu.Wpf.Gauges
+namespace Gu.Wpf.Gauges
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -7,7 +7,6 @@
 
     public class LinearIndicator : ValueIndicator
     {
-#pragma warning disable SA1202 // Elements must be ordered by access
         public static readonly DependencyProperty PlacementProperty = LinearGauge.PlacementProperty.AddOwner(
             typeof(LinearIndicator),
             new FrameworkPropertyMetadata(
@@ -22,7 +21,6 @@
             new PropertyMetadata(default(Thickness)));
 
         public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
-#pragma warning restore SA1202 // Elements must be ordered by access
 
         static LinearIndicator()
         {

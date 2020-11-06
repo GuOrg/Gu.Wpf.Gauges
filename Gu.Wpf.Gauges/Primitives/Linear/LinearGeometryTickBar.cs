@@ -8,12 +8,11 @@ namespace Gu.Wpf.Gauges
     /// </summary>
     public abstract class LinearGeometryTickBar : GeometryTickBar
     {
-#pragma warning disable SA1202 // Elements must be ordered by access
         /// <summary>
-        /// Identifies the <see cref="P:LinearGeometryBar.Value" /> dependency property.
+        /// Identifies the <see cref="P:LinearGeometryBar.Value" />Â dependency property.
         /// </summary>
         /// <returns>
-        /// The identifier for the <see cref="P:LinearGeometryBar.Value" /> dependency property.
+        /// The identifier for the <see cref="P:LinearGeometryBar.Value" />Â dependency property.
         /// </returns>
         public static readonly DependencyProperty ValueProperty = Gauge.ValueProperty.AddOwner(
             typeof(LinearGeometryTickBar),
@@ -23,10 +22,10 @@ namespace Gu.Wpf.Gauges
                 OnValueChanged));
 
         /// <summary>
-        /// Identifies the <see cref="P:LinearGeometryBar.Placement" /> dependency property. This property is read-only.
+        /// Identifies the <see cref="P:LinearGeometryBar.Placement" />Â dependency property. This property is read-only.
         /// </summary>
         /// <returns>
-        /// The identifier for the <see cref="P:LinearGeometryBar.Placement" /> dependency property.
+        /// The identifier for the <see cref="P:LinearGeometryBar.Placement" />Â dependency property.
         /// </returns>
         public static readonly DependencyProperty PlacementProperty = LinearGauge.PlacementProperty.AddOwner(
             typeof(LinearGeometryTickBar),
@@ -52,7 +51,6 @@ namespace Gu.Wpf.Gauges
                 CoerceOverflow));
 
         public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
-#pragma warning restore SA1202 // Elements must be ordered by access
 
         /// <summary>
         /// Gets or sets the current magnitude of the range control.

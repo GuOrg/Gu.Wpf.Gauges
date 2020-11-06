@@ -10,8 +10,6 @@ namespace Gu.Wpf.Gauges
     /// </summary>
     public abstract class TextTickBar : TickBarBase
     {
-#pragma warning disable SA1202 // Elements must be ordered by access
-
         public static readonly DependencyProperty PaddingProperty = DependencyProperty.Register(
             nameof(Padding),
             typeof(Thickness),
@@ -148,7 +146,6 @@ namespace Gu.Wpf.Gauges
                 (d, _) => ((TextTickBar)d).UpdateTexts()));
 
         private Typeface typeFace;
-#pragma warning restore SA1202 // Elements must be ordered by access
 
         public Thickness Padding
         {

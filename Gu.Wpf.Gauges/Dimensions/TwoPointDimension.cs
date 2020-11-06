@@ -8,8 +8,6 @@ namespace Gu.Wpf.Gauges
 
     public abstract class TwoPointDimension : Control
     {
-#pragma warning disable SA1202 // Elements must be ordered by access
-
         /// <summary>Identifies the <see cref="P1"/> dependency property.</summary>
         public static readonly DependencyProperty P1Property = DependencyProperty.Register(
             nameof(P1),
@@ -166,8 +164,6 @@ namespace Gu.Wpf.Gauges
         protected const double Extension = 2;
         protected static readonly RotateTransform Rotate90Cw = new RotateTransform(90);
         protected static readonly RotateTransform Rotate90Ccw = new RotateTransform(-90);
-
-#pragma warning restore SA1202 // Elements must be ordered by access
 
         static TwoPointDimension()
         {

@@ -7,12 +7,11 @@ namespace Gu.Wpf.Gauges
 
     public class LinearLineBar : LineBar
     {
-#pragma warning disable SA1202 // Elements must be ordered by access
         /// <summary>
-        /// Identifies the <see cref="P:LinearLineBar.Value" /> dependency property.
+        /// Identifies the <see cref="P:LinearLineBar.Value" />Â dependency property.
         /// </summary>
         /// <returns>
-        /// The identifier for the <see cref="P:LinearLineBar.Value" /> dependency property.
+        /// The identifier for the <see cref="P:LinearLineBar.Value" />Â dependency property.
         /// </returns>
         public static readonly DependencyProperty ValueProperty = Gauge.ValueProperty.AddOwner(
             typeof(LinearLineBar),
@@ -21,10 +20,10 @@ namespace Gu.Wpf.Gauges
                 FrameworkPropertyMetadataOptions.AffectsRender));
 
         /// <summary>
-        /// Identifies the <see cref="P:LinearLineBar.Placement" /> dependency property. This property is read-only.
+        /// Identifies the <see cref="P:LinearLineBar.Placement" />Â dependency property. This property is read-only.
         /// </summary>
         /// <returns>
-        /// The identifier for the <see cref="P:LinearLineBar.Placement" /> dependency property.
+        /// The identifier for the <see cref="P:LinearLineBar.Placement" />Â dependency property.
         /// </returns>
         public static readonly DependencyProperty PlacementProperty = LinearGauge.PlacementProperty.AddOwner(
             typeof(LinearLineBar),
@@ -47,7 +46,6 @@ namespace Gu.Wpf.Gauges
             new PropertyMetadata(default(Thickness)));
 
         public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
-#pragma warning restore SA1202 // Elements must be ordered by access
 
         /// <summary>
         /// Gets or sets the current magnitude of the range control.

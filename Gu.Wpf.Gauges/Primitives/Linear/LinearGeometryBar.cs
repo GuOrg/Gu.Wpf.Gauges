@@ -8,12 +8,11 @@ namespace Gu.Wpf.Gauges
     /// </summary>
     public abstract class LinearGeometryBar : GeometryBar
     {
-#pragma warning disable SA1202 // Elements must be ordered by access
         /// <summary>
-        /// Identifies the <see cref="P:LinearGeometryBar.Placement" /> dependency property. This property is read-only.
+        /// Identifies the <see cref="P:LinearGeometryBar.Placement" />Â dependency property. This property is read-only.
         /// </summary>
         /// <returns>
-        /// The identifier for the <see cref="P:LinearGeometryBar.Placement" /> dependency property.
+        /// The identifier for the <see cref="P:LinearGeometryBar.Placement" />Â dependency property.
         /// </returns>
         public static readonly DependencyProperty PlacementProperty = LinearGauge.PlacementProperty.AddOwner(
             typeof(LinearGeometryBar),
@@ -39,7 +38,6 @@ namespace Gu.Wpf.Gauges
                 CoerceOverflow));
 
         public static readonly DependencyProperty OverflowProperty = OverflowPropertyKey.DependencyProperty;
-#pragma warning restore SA1202 // Elements must be ordered by access
 
         /// <summary>
         /// Gets or sets where tick marks appear  relative to a <see cref="T:System.Windows.Controls.Primitives.Track" /> of a <see cref="T:System.Windows.Controls.Slider" /> control.

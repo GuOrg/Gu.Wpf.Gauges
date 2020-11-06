@@ -6,7 +6,6 @@ namespace Gu.Wpf.Gauges
 
     public partial class Gauge : ContentControl
     {
-#pragma warning disable SA1202 // Elements must be ordered by access
         public static readonly RoutedEvent ValueChangedEvent = EventManager.RegisterRoutedEvent(
             nameof(ValueChanged),
             RoutingStrategy.Bubble,
@@ -30,7 +29,6 @@ namespace Gu.Wpf.Gauges
                 FrameworkPropertyMetadataOptions.AffectsArrange));
 
         public static readonly DependencyProperty ContentOverflowProperty = ContentOverflowPropertyKey.DependencyProperty;
-#pragma warning restore SA1202 // Elements must be ordered by access
 
         private Thickness contentOverflow = default(Thickness);
 
